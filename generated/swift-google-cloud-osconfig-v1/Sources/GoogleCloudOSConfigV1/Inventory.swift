@@ -386,7 +386,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OriginType: Codable, Equatable, Sendable {
+    public enum OriginType: Codable, Equatable, Hashable, Sendable {
       /// Invalid. An origin type must be specified.
       case unspecified
       /// This inventory item was discovered as the result of the agent
@@ -497,7 +497,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Invalid. An type must be specified.
       case unspecified
       /// This represents a package that is installed on the VM.

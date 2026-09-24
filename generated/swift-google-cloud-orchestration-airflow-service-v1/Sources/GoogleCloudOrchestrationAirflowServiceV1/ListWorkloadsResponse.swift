@@ -274,7 +274,7 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ComposerWorkloadType: Codable, Equatable, Sendable {
+  public enum ComposerWorkloadType: Codable, Equatable, Hashable, Sendable {
     /// Not able to determine the type of the workload.
     case unspecified
     /// Celery worker.
@@ -433,7 +433,7 @@ public struct ListWorkloadsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ComposerWorkloadState: Codable, Equatable, Sendable {
+  public enum ComposerWorkloadState: Codable, Equatable, Hashable, Sendable {
     /// Not able to determine the status of the workload.
     case unspecified
     /// Workload is in pending state and has not yet started.

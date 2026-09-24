@@ -297,7 +297,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IntegrationType: Codable, Equatable, Sendable {
+  public enum IntegrationType: Codable, Equatable, Hashable, Sendable {
     /// Default type that indicates this enum hasn't been specified. This is not
     /// a valid IntegrationType, one of the other types must be specified
     /// instead.
@@ -436,7 +436,7 @@ public struct WebKeySettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ChallengeSecurityPreference: Codable, Equatable, Sendable {
+  public enum ChallengeSecurityPreference: Codable, Equatable, Hashable, Sendable {
     /// Default type that indicates this enum hasn't been specified.
     case unspecified
     /// Key tends to show fewer and easier challenges.

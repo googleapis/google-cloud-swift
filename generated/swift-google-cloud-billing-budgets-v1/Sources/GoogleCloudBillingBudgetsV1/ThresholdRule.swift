@@ -114,7 +114,7 @@ public struct ThresholdRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Basis: Codable, Equatable, Sendable {
+  public enum Basis: Codable, Equatable, Hashable, Sendable {
     /// Unspecified threshold basis.
     case unspecified
     /// Use current spend as the basis for comparison against the threshold.

@@ -250,7 +250,7 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// If not specified, will default to ENABLED.
     case unspecified
     /// When ENABLED, this configuration will generate logs.
@@ -367,7 +367,7 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AggregationInterval: Codable, Equatable, Sendable {
+  public enum AggregationInterval: Codable, Equatable, Hashable, Sendable {
     /// If not specified, will default to INTERVAL_5_SEC.
     case unspecified
     /// Aggregate logs in 5s intervals.
@@ -512,7 +512,7 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Metadata: Codable, Equatable, Sendable {
+  public enum Metadata: Codable, Equatable, Hashable, Sendable {
     /// If not specified, will default to INCLUDE_ALL_METADATA.
     case unspecified
     /// Include all metadata fields.
@@ -637,7 +637,7 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CrossProjectMetadata: Codable, Equatable, Sendable {
+  public enum CrossProjectMetadata: Codable, Equatable, Hashable, Sendable {
     /// If not specified, the default is CROSS_PROJECT_METADATA_ENABLED.
     case unspecified
     /// When CROSS_PROJECT_METADATA_ENABLED, metadata from other projects will be
@@ -757,7 +757,7 @@ public struct VpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TargetResourceState: Codable, Equatable, Sendable {
+  public enum TargetResourceState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified target resource state.
     case unspecified
     /// Indicates that the target resource exists.

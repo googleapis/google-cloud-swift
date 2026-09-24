@@ -107,7 +107,7 @@ public struct EncryptionInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EncryptionType: Codable, Equatable, Sendable {
+  public enum EncryptionType: Codable, Equatable, Hashable, Sendable {
     /// Encryption type was not specified, though data at rest remains encrypted.
     case unspecified
     /// The data backing this resource is encrypted at rest with a key that is

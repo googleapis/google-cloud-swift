@@ -132,7 +132,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HarmProbability: Codable, Equatable, Sendable {
+    public enum HarmProbability: Codable, Equatable, Hashable, Sendable {
       /// Harm probability unspecified.
       case unspecified
       /// Negligible level of harm.
@@ -263,7 +263,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HarmSeverity: Codable, Equatable, Sendable {
+    public enum HarmSeverity: Codable, Equatable, Hashable, Sendable {
       /// Harm severity unspecified.
       case unspecified
       /// Negligible level of harm severity.

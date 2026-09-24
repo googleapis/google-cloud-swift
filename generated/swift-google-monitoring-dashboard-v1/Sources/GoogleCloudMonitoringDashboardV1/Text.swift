@@ -220,7 +220,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HorizontalAlignment: Codable, Equatable, Sendable {
+    public enum HorizontalAlignment: Codable, Equatable, Hashable, Sendable {
       /// No horizontal alignment specified, will default to H_LEFT
       case unspecified
       /// Left-align
@@ -344,7 +344,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VerticalAlignment: Codable, Equatable, Sendable {
+    public enum VerticalAlignment: Codable, Equatable, Hashable, Sendable {
       /// No vertical alignment specified, will default to V_TOP
       case unspecified
       /// Top-align
@@ -468,7 +468,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PaddingSize: Codable, Equatable, Sendable {
+    public enum PaddingSize: Codable, Equatable, Hashable, Sendable {
       /// No padding size specified, will default to P_EXTRA_SMALL
       case unspecified
       /// Extra small padding
@@ -606,7 +606,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FontSize: Codable, Equatable, Sendable {
+    public enum FontSize: Codable, Equatable, Hashable, Sendable {
       /// No font size specified, will default to FS_LARGE
       case unspecified
       /// Extra small font size
@@ -745,7 +745,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PointerLocation: Codable, Equatable, Sendable {
+    public enum PointerLocation: Codable, Equatable, Hashable, Sendable {
       /// No visual pointer
       case unspecified
       /// Placed in the middle of the top of the widget
@@ -943,7 +943,7 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Format: Codable, Equatable, Sendable {
+  public enum Format: Codable, Equatable, Hashable, Sendable {
     /// Format is unspecified. Defaults to MARKDOWN.
     case unspecified
     /// The text contains Markdown formatting.

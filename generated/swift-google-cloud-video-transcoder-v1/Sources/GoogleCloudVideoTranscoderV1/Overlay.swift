@@ -615,7 +615,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FadeType: Codable, Equatable, Sendable {
+  public enum FadeType: Codable, Equatable, Hashable, Sendable {
     /// The fade type is not specified.
     case unspecified
     /// Fade the overlay object into view.

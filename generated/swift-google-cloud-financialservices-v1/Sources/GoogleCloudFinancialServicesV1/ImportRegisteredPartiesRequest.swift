@@ -128,7 +128,7 @@ public struct ImportRegisteredPartiesRequest: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UpdateMode: Codable, Equatable, Sendable {
+  public enum UpdateMode: Codable, Equatable, Hashable, Sendable {
     /// Default mode.
     case unspecified
     /// Replace parties that are removable in Parties Table with new parties.

@@ -148,7 +148,7 @@ public struct AnnotateAssessmentRequest: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Annotation: Codable, Equatable, Sendable {
+  public enum Annotation: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified type.
     case unspecified
     /// Provides information that the event turned out to be legitimate.
@@ -291,7 +291,7 @@ public struct AnnotateAssessmentRequest: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Reason: Codable, Equatable, Sendable {
+  public enum Reason: Codable, Equatable, Hashable, Sendable {
     /// Unspecified reason. Do not use.
     case unspecified
     /// Indicates that the transaction had a chargeback issued with no other

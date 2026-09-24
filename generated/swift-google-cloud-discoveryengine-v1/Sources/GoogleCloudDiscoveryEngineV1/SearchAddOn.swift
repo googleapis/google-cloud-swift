@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchAddOn: Codable, Equatable, Sendable {
+  public enum SearchAddOn: Codable, Equatable, Hashable, Sendable {
     /// Default value when the enum is unspecified. This is invalid to use.
     case unspecified
     /// Large language model add-on.

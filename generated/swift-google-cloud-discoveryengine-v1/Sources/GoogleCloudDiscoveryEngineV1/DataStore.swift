@@ -439,7 +439,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ContentConfig: Codable, Equatable, Sendable {
+    public enum ContentConfig: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// Only contains documents without any

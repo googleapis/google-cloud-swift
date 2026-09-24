@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlAvailabilityType: Codable, Equatable, Sendable {
+  public enum SqlAvailabilityType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown Availability type.
     case unspecified
     /// Zonal available instance.

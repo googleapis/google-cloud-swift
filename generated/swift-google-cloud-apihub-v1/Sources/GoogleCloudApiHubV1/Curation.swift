@@ -254,7 +254,7 @@ public struct Curation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LastExecutionState: Codable, Equatable, Sendable {
+  public enum LastExecutionState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified state.
     case unspecified
     /// The last curation execution was successful.
@@ -371,7 +371,7 @@ public struct Curation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ErrorCode: Codable, Equatable, Sendable {
+  public enum ErrorCode: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified error code.
     case unspecified
     /// The execution failed due to an internal error.

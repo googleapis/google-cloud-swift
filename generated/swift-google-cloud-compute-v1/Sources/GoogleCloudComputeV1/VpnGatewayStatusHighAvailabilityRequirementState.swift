@@ -98,7 +98,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// VPN tunnels are configured with adequate redundancy from Cloud VPN
       /// gateway to the peer VPN gateway. For both GCP-to-non-GCP and GCP-to-GCP
       /// connections, the adequate redundancy is a pre-requirement for users to
@@ -165,7 +165,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UnsatisfiedReason: Codable, Equatable, Sendable {
+    public enum UnsatisfiedReason: Codable, Equatable, Hashable, Sendable {
       case incompleteTunnelsCoverage
       /// Encodes an unknown string value.
       ///

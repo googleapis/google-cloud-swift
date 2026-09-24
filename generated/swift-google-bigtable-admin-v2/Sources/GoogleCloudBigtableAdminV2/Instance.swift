@@ -190,7 +190,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the instance could not be determined.
     case notKnown
     /// The instance has been successfully created and can serve requests
@@ -309,7 +309,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// The type of the instance is unspecified. If set when creating an
     /// instance, a `PRODUCTION` instance will be created. If set when updating
     /// an instance, the type will be left unchanged.
@@ -434,7 +434,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Edition: Codable, Equatable, Sendable {
+  public enum Edition: Codable, Equatable, Hashable, Sendable {
     /// The edition is unspecified. This is treated as `ENTERPRISE`.
     case unspecified
     /// The Enterprise edition. This is the default offering that is designed to

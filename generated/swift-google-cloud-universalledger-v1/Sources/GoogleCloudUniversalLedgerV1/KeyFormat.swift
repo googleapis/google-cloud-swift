@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum KeyFormat: Codable, Equatable, Sendable {
+public enum KeyFormat: Codable, Equatable, Hashable, Sendable {
   /// The key format is unspecified. This value is invalid and should not be
   /// used.
   case unspecified

@@ -145,7 +145,7 @@ public struct SessionOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SessionOperationType: Codable, Equatable, Sendable {
+  public enum SessionOperationType: Codable, Equatable, Hashable, Sendable {
     /// Session operation type is unknown.
     case unspecified
     /// Create Session operation type.

@@ -108,7 +108,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StopState: Codable, Equatable, Sendable {
+    public enum StopState: Codable, Equatable, Hashable, Sendable {
       /// The instance is gracefully shutting down.
       case pendingStop
       /// The instance is stopping.
@@ -168,7 +168,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TargetState: Codable, Equatable, Sendable {
+    public enum TargetState: Codable, Equatable, Hashable, Sendable {
       /// The instance will be deleted.
       case deleted
       /// The instance will be stopped.

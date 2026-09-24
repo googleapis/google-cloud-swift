@@ -134,7 +134,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The connection has been accepted by the producer.
       case accepted
       /// The connection has been closed by the producer.

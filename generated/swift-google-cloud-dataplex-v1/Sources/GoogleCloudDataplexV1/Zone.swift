@@ -241,7 +241,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocationType: Codable, Equatable, Sendable {
+    public enum LocationType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified location type.
       case unspecified
       /// Resources that are associated with a single region.
@@ -699,7 +699,7 @@ public struct Zone: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Zone type not specified.
     case unspecified
     /// A zone that contains data that needs further processing before it is

@@ -441,7 +441,7 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SolvingMode: Codable, Equatable, Sendable {
+  public enum SolvingMode: Codable, Equatable, Hashable, Sendable {
     /// Solve the model.
     case defaultSolve
     /// Only validates the model without solving it: populates as many
@@ -581,7 +581,7 @@ public struct OptimizeToursRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchMode: Codable, Equatable, Sendable {
+  public enum SearchMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified search mode, equivalent to `RETURN_FAST`.
     case unspecified
     /// Stop the search after finding the first good solution.

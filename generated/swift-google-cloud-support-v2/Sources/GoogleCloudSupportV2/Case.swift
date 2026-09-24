@@ -245,7 +245,7 @@ public struct Case: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Case is in an unknown state.
     case unspecified
     /// The case has been created but no one is assigned to work on it yet.
@@ -383,7 +383,7 @@ public struct Case: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Priority: Codable, Equatable, Sendable {
+  public enum Priority: Codable, Equatable, Hashable, Sendable {
     /// Priority is undefined or has not been set yet.
     case unspecified
     /// Extreme impact on a production service. Service is hard down.

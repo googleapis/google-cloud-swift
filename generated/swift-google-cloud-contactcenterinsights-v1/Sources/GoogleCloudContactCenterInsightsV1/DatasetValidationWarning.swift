@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DatasetValidationWarning: Codable, Equatable, Sendable {
+public enum DatasetValidationWarning: Codable, Equatable, Hashable, Sendable {
   /// Unspecified data validation warning.
   case unspecified
   /// A non-trivial percentage of the feedback labels are invalid.

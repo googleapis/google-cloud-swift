@@ -132,7 +132,7 @@ public struct DeleteDeploymentGroupRequest: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DeploymentReferencePolicy: Codable, Equatable, Sendable {
+  public enum DeploymentReferencePolicy: Codable, Equatable, Hashable, Sendable {
     /// The default behavior. If unspecified, the system will act as if
     /// `FAIL_IF_ANY_REFERENCES_EXIST` is specified.
     case unspecified

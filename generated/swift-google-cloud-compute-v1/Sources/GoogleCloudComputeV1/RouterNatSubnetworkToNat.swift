@@ -111,7 +111,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SourceIpRangesToNat: Codable, Equatable, Sendable {
+    public enum SourceIpRangesToNat: Codable, Equatable, Hashable, Sendable {
       /// The primary and all the secondary ranges are allowed to Nat.
       case allIpRanges
       /// A list of secondary ranges are allowed to Nat.

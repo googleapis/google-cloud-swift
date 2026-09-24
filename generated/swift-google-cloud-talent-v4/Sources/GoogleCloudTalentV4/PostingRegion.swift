@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum PostingRegion: Codable, Equatable, Sendable {
+public enum PostingRegion: Codable, Equatable, Hashable, Sendable {
   /// If the region is unspecified, the job is only returned if it
   /// matches the [LocationFilter][google.cloud.talent.v4.LocationFilter].
   ///

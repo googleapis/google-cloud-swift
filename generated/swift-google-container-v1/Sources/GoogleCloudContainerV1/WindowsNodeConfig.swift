@@ -85,7 +85,7 @@ public struct WindowsNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OSVersion: Codable, Equatable, Sendable {
+  public enum OSVersion: Codable, Equatable, Hashable, Sendable {
     /// When OSVersion is not specified.
     case unspecified
     /// LTSC2019 specifies to use LTSC2019 as the Windows Servercore Base Image.

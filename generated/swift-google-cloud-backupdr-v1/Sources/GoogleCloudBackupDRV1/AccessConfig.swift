@@ -137,7 +137,7 @@ public struct AccessConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AccessType: Codable, Equatable, Sendable {
+  public enum AccessType: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// ONE_TO_ONE_NAT
@@ -254,7 +254,7 @@ public struct AccessConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NetworkTier: Codable, Equatable, Sendable {
+  public enum NetworkTier: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// High quality, Google-grade network tier, support for all networking

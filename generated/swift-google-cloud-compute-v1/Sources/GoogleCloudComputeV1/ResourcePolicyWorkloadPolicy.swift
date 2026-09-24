@@ -109,7 +109,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AcceleratorTopologyMode: Codable, Equatable, Sendable {
+    public enum AcceleratorTopologyMode: Codable, Equatable, Hashable, Sendable {
       /// The interconnected chips are pre-configured at the time of VM creation.
       case autoConnect
       /// The interconnected chips are connected on demand. At the time of VM
@@ -170,7 +170,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MaxTopologyDistance: Codable, Equatable, Sendable {
+    public enum MaxTopologyDistance: Codable, Equatable, Hashable, Sendable {
       /// VMs must be provisioned in the same block.
       case block
       /// VMs must be provisioned in the same cluster.
@@ -235,7 +235,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// MIG spreads out the instances as much as possible for high availability.
       case highAvailability
       /// MIG provisions instances as close to each other as possible for high

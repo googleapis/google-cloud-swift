@@ -387,7 +387,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConstraintDefault: Codable, Equatable, Sendable {
+    public enum ConstraintDefault: Codable, Equatable, Hashable, Sendable {
       /// This is only used for distinguishing unset values and should never be
       /// used.
       case unspecified
@@ -656,7 +656,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MethodType: Codable, Equatable, Sendable {
+    public enum MethodType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified. Will results in user error.
       case unspecified
       /// Constraint applied when creating the resource.
@@ -794,7 +794,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ActionType: Codable, Equatable, Sendable {
+    public enum ActionType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified. Will results in user error.
       case unspecified
       /// Allowed action type.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DiscountType: Codable, Equatable, Sendable {
+public enum DiscountType: Codable, Equatable, Hashable, Sendable {
   /// Not used.
   case unspecified
   /// Regional discount.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum EntityNameTransformation: Codable, Equatable, Sendable {
+public enum EntityNameTransformation: Codable, Equatable, Hashable, Sendable {
   /// Entity name transformation unspecified.
   case unspecified
   /// No transformation.

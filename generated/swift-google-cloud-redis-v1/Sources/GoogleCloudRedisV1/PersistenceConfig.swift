@@ -120,7 +120,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PersistenceMode: Codable, Equatable, Sendable {
+  public enum PersistenceMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Persistence is disabled for the instance,
@@ -238,7 +238,7 @@ public struct PersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SnapshotPeriod: Codable, Equatable, Sendable {
+  public enum SnapshotPeriod: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Snapshot every 1 hour.

@@ -139,7 +139,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AggregationInterval: Codable, Equatable, Sendable {
+    public enum AggregationInterval: Codable, Equatable, Hashable, Sendable {
       case interval10Min
       case interval15Min
       case interval1Min
@@ -213,7 +213,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Metadata: Codable, Equatable, Sendable {
+    public enum Metadata: Codable, Equatable, Hashable, Sendable {
       case customMetadata
       case excludeAllMetadata
       case includeAllMetadata

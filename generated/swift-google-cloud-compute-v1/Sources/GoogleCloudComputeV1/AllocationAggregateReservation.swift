@@ -116,7 +116,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VmFamily: Codable, Equatable, Sendable {
+    public enum VmFamily: Codable, Equatable, Hashable, Sendable {
       case cloudTpuDeviceCt3
       case cloudTpuLiteDeviceCt5L
       case cloudTpuLitePodSliceCt5Lp
@@ -205,7 +205,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum WorkloadType: Codable, Equatable, Sendable {
+    public enum WorkloadType: Codable, Equatable, Hashable, Sendable {
       /// Reserved resources will be optimized for BATCH workloads, such as ML
       /// training.
       case batch

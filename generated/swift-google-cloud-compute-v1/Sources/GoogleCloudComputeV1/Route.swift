@@ -518,7 +518,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Code: Codable, Equatable, Sendable {
+      public enum Code: Codable, Equatable, Hashable, Sendable {
         /// Warning about failed cleanup of transient changes made by a failed
         /// operation.
         case cleanupFailed
@@ -756,7 +756,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NextHopOrigin: Codable, Equatable, Sendable {
+    public enum NextHopOrigin: Codable, Equatable, Hashable, Sendable {
       case egp
       case igp
       case incomplete
@@ -818,7 +818,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RouteStatus: Codable, Equatable, Sendable {
+    public enum RouteStatus: Codable, Equatable, Hashable, Sendable {
       /// This route is processed and active.
       case active
       /// The route is dropped due to the VPC exceeding the dynamic route limit.
@@ -892,7 +892,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RouteType: Codable, Equatable, Sendable {
+    public enum RouteType: Codable, Equatable, Hashable, Sendable {
       case bgp
       case `static`
       case subnet

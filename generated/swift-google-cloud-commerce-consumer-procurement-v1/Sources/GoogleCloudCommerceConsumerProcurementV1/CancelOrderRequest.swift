@@ -107,7 +107,7 @@ public struct CancelOrderRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CancellationPolicy: Codable, Equatable, Sendable {
+  public enum CancellationPolicy: Codable, Equatable, Hashable, Sendable {
     /// If unspecified, cancellation will try to cancel the order, if order
     /// cannot be immediately cancelled, auto renewal will be turned off.
     /// However, caller should avoid using the value as it will yield a

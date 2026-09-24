@@ -892,7 +892,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CompressionMode: Codable, Equatable, Sendable {
+    public enum CompressionMode: Codable, Equatable, Hashable, Sendable {
       /// Automatically uses the best compression based on the Accept-Encoding
       /// header sent by the client.
       case automatic
@@ -954,7 +954,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ExternalManagedMigrationState: Codable, Equatable, Sendable {
+    public enum ExternalManagedMigrationState: Codable, Equatable, Hashable, Sendable {
       case prepare
       case testAllTraffic
       case testByPercentage
@@ -1016,7 +1016,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IpAddressSelectionPolicy: Codable, Equatable, Sendable {
+    public enum IpAddressSelectionPolicy: Codable, Equatable, Hashable, Sendable {
       /// Only send IPv4 traffic to the backends of the Backend Service
       /// (Instance Group, Managed Instance Group, Network Endpoint Group)
       /// regardless of traffic from the client to the proxy.
@@ -1094,7 +1094,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LoadBalancingScheme: Codable, Equatable, Sendable {
+    public enum LoadBalancingScheme: Codable, Equatable, Hashable, Sendable {
       /// Signifies that this will be used for classic Application Load Balancers,
       /// global external proxy Network Load Balancers,
       /// or external passthrough Network Load Balancers.
@@ -1179,7 +1179,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocalityLbPolicy: Codable, Equatable, Sendable {
+    public enum LocalityLbPolicy: Codable, Equatable, Hashable, Sendable {
       case invalidLbPolicy
       /// An O(1) algorithm which selects two random healthy hosts and
       /// picks the host which has fewer active requests.
@@ -1307,7 +1307,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Protocol_: Codable, Equatable, Sendable {
+    public enum Protocol_: Codable, Equatable, Hashable, Sendable {
       /// gRPC (available for Traffic Director).
       case grpc
       /// HTTP2 over cleartext
@@ -1401,7 +1401,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SessionAffinity: Codable, Equatable, Sendable {
+    public enum SessionAffinity: Codable, Equatable, Hashable, Sendable {
       /// 2-tuple hash on packet's source and destination IP addresses. Connections
       /// from the same source IP address to the same destination IP address will be
       /// served by the same backend VM while that VM remains healthy.

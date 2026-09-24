@@ -105,7 +105,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UpdateStrategy: Codable, Equatable, Sendable {
+    public enum UpdateStrategy: Codable, Equatable, Hashable, Sendable {
       /// Updates are reflected in the local peering but aren't applied to the
       /// peering connection until a complementary change is made to the
       /// matching peering.

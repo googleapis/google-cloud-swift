@@ -156,7 +156,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PortSpecification: Codable, Equatable, Sendable {
+    public enum PortSpecification: Codable, Equatable, Hashable, Sendable {
       /// The port number in the health check's port is used for health
       /// checking. Applies to network endpoint group and instance group backends.
       case useFixedPort
@@ -225,7 +225,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProxyHeader: Codable, Equatable, Sendable {
+    public enum ProxyHeader: Codable, Equatable, Hashable, Sendable {
       case `none`
       case proxyV1
       /// Encodes an unknown string value.

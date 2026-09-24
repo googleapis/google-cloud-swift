@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AudioEncoding: Codable, Equatable, Sendable {
+public enum AudioEncoding: Codable, Equatable, Hashable, Sendable {
   /// Not specified. Only used by GenerateVoiceCloningKey. Otherwise, will return
   /// result
   /// [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT].

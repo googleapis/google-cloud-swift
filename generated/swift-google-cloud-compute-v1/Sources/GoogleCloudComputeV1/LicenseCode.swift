@@ -252,7 +252,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Machines are not allowed to attach boot disks with this License Code.
       /// Requests to create new resources with this license will be rejected.
       case disabled

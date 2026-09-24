@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SemanticType: Codable, Equatable, Sendable {
+public enum SemanticType: Codable, Equatable, Hashable, Sendable {
   /// No semantic type. All fields must specify a semantic type.
   case unspecified
   /// A boolean (with no special semantics).

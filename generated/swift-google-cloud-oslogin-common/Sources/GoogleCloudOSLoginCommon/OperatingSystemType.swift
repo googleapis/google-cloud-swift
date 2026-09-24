@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum OperatingSystemType: Codable, Equatable, Sendable {
+public enum OperatingSystemType: Codable, Equatable, Hashable, Sendable {
   /// The operating system type associated with the user account information is
   /// unspecified.
   case unspecified

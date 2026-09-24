@@ -119,7 +119,7 @@ public struct CompensationFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FilterType: Codable, Equatable, Sendable {
+  public enum FilterType: Codable, Equatable, Hashable, Sendable {
     /// Filter type unspecified. Position holder, INVALID, should never be used.
     case unspecified
     /// Filter by `base compensation entry's` unit. A job is a match if and

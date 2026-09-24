@@ -124,7 +124,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RolloutStatus: Codable, Equatable, Sendable {
+    public enum RolloutStatus: Codable, Equatable, Hashable, Sendable {
       /// IN_PROGRESS - A rollout is in process which will change the limit value
       /// to future limit.
       case inProgress

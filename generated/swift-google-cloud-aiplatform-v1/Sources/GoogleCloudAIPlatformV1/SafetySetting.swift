@@ -105,7 +105,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HarmBlockThreshold: Codable, Equatable, Sendable {
+    public enum HarmBlockThreshold: Codable, Equatable, Hashable, Sendable {
       /// Unspecified harm block threshold.
       case unspecified
       /// Block low threshold and above (i.e. block more).
@@ -243,7 +243,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HarmBlockMethod: Codable, Equatable, Sendable {
+    public enum HarmBlockMethod: Codable, Equatable, Hashable, Sendable {
       /// The harm block method is unspecified.
       case unspecified
       /// The harm block method uses both probability and severity scores.

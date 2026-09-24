@@ -759,7 +759,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum State: Codable, Equatable, Sendable {
+      public enum State: Codable, Equatable, Hashable, Sendable {
         /// The exporting state is unspecified.
         case unspecified
         /// The exporting completed successfully.
@@ -907,7 +907,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ScanType: Codable, Equatable, Sendable {
+  public enum ScanType: Codable, Equatable, Hashable, Sendable {
     /// An unspecified data scan type.
     case unspecified
     /// Data scan for data profile.
@@ -1031,7 +1031,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified job state.
     case unspecified
     /// Data scan job started.
@@ -1169,7 +1169,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Trigger: Codable, Equatable, Sendable {
+  public enum Trigger: Codable, Equatable, Hashable, Sendable {
     /// An unspecified trigger type.
     case unspecified
     /// Data scan triggers on demand.
@@ -1293,7 +1293,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// An unspecified scope type.
     case unspecified
     /// Data scan runs on all of the data.

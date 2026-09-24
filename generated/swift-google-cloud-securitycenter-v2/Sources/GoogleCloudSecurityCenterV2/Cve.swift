@@ -167,7 +167,7 @@ public struct Cve: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RiskRating: Codable, Equatable, Sendable {
+  public enum RiskRating: Codable, Equatable, Hashable, Sendable {
     /// Invalid or empty value.
     case unspecified
     /// Exploitation would have little to no security impact.
@@ -303,7 +303,7 @@ public struct Cve: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExploitationActivity: Codable, Equatable, Sendable {
+  public enum ExploitationActivity: Codable, Equatable, Hashable, Sendable {
     /// Invalid or empty value.
     case unspecified
     /// Exploitation has been reported or confirmed to widely occur.

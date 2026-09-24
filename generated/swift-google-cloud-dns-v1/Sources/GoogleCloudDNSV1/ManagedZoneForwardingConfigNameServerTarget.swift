@@ -107,7 +107,7 @@ public struct ManagedZoneForwardingConfigNameServerTarget: Codable, Equatable, G
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ForwardingPath: Codable, Equatable, Sendable {
+  public enum ForwardingPath: Codable, Equatable, Hashable, Sendable {
     /// Cloud DNS makes forwarding decisions based on address ranges; that is, RFC1918 addresses forward to the target through the VPC and non-RFC1918 addresses forward to the target through the internet
     case `default`
     /// Cloud DNS always forwards to this target through the VPC.

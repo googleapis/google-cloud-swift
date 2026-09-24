@@ -407,7 +407,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the backup is unknown.
     case unspecified
     /// The backup is ready.
@@ -538,7 +538,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Backup Type is unknown.
     case unspecified
     /// ON_DEMAND backups that were triggered by the customer (e.g., not

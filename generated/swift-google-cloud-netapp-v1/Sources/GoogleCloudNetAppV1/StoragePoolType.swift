@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum StoragePoolType: Codable, Equatable, Sendable {
+public enum StoragePoolType: Codable, Equatable, Hashable, Sendable {
   /// Storage pool type is not specified.
   case unspecified
   /// Storage pool type is file.

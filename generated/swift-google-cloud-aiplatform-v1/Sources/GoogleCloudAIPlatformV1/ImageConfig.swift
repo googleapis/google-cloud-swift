@@ -186,7 +186,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PersonGeneration: Codable, Equatable, Sendable {
+    public enum PersonGeneration: Codable, Equatable, Hashable, Sendable {
       /// The default behavior is unspecified. The model will decide whether to
       /// generate images of people.
       case unspecified

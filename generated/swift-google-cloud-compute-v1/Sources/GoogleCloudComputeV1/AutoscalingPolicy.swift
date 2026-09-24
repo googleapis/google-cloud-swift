@@ -197,7 +197,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Do not automatically scale the MIG in or out.
       /// The recommended_size field contains the size of MIG that would be set if
       /// the actuation mode was enabled.

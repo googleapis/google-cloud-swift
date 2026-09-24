@@ -471,7 +471,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Type_: Codable, Equatable, Sendable {
+        public enum Type_: Codable, Equatable, Hashable, Sendable {
           /// Default value. This value is unused.
           case unspecified
           /// Checks for resource conflicts such as schema errors.
@@ -694,7 +694,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ComplianceState: Codable, Equatable, Sendable {
+      public enum ComplianceState: Codable, Equatable, Hashable, Sendable {
         /// The resource is in an unknown compliance state.
         ///
         /// To get more details about why the policy is in this state, review
@@ -834,7 +834,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ComplianceState: Codable, Equatable, Sendable {
+    public enum ComplianceState: Codable, Equatable, Hashable, Sendable {
       /// The policy is in an unknown compliance state.
       ///
       /// Refer to the field `compliance_state_reason` to learn the exact reason

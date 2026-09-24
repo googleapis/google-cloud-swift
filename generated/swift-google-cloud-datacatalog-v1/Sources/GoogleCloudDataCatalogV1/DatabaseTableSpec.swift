@@ -194,7 +194,7 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ViewType: Codable, Equatable, Sendable {
+    public enum ViewType: Codable, Equatable, Hashable, Sendable {
       /// Default unknown view type.
       case unspecified
       /// Standard view.
@@ -330,7 +330,7 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TableType: Codable, Equatable, Sendable {
+  public enum TableType: Codable, Equatable, Hashable, Sendable {
     /// Default unknown table type.
     case unspecified
     /// Native table.

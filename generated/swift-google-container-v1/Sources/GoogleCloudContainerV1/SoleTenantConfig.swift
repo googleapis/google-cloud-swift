@@ -174,7 +174,7 @@ public struct SoleTenantConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Operator: Codable, Equatable, Sendable {
+    public enum Operator: Codable, Equatable, Hashable, Sendable {
       /// Invalid or unspecified affinity operator.
       case unspecified
       /// Affinity operator.

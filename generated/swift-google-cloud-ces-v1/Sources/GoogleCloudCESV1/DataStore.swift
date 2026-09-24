@@ -220,7 +220,7 @@ public struct DataStore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataStoreType: Codable, Equatable, Sendable {
+  public enum DataStoreType: Codable, Equatable, Hashable, Sendable {
     /// Not specified. This value indicates that the data store type is not
     /// specified, so it will not be used during search.
     case unspecified
@@ -353,7 +353,7 @@ public struct DataStore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DocumentProcessingMode: Codable, Equatable, Sendable {
+  public enum DocumentProcessingMode: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// Documents are processed as documents.

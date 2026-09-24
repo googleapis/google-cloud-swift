@@ -281,7 +281,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EncodingFormat: Codable, Equatable, Sendable {
+    public enum EncodingFormat: Codable, Equatable, Hashable, Sendable {
       /// Not specified. By default, PEM format will be used.
       case unspecified
       /// The
@@ -884,7 +884,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum EcSignatureAlgorithm: Codable, Equatable, Sendable {
+        public enum EcSignatureAlgorithm: Codable, Equatable, Hashable, Sendable {
           /// Not specified. Signifies that any signature algorithm may be used.
           case unspecified
           /// Refers to the Elliptic Curve Digital Signature Algorithm over the
@@ -1155,7 +1155,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tier: Codable, Equatable, Sendable {
+  public enum Tier: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// Enterprise tier.

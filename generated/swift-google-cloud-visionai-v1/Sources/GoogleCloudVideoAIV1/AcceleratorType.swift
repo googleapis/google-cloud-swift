@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AcceleratorType: Codable, Equatable, Sendable {
+public enum AcceleratorType: Codable, Equatable, Hashable, Sendable {
   /// Unspecified accelerator type, which means no accelerator.
   case unspecified
   /// Nvidia Tesla K80 GPU.

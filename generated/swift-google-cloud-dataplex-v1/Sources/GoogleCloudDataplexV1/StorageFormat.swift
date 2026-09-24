@@ -399,7 +399,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Format: Codable, Equatable, Sendable {
+  public enum Format: Codable, Equatable, Hashable, Sendable {
     /// Format unspecified.
     case unspecified
     /// Parquet-formatted structured data.
@@ -586,7 +586,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CompressionFormat: Codable, Equatable, Sendable {
+  public enum CompressionFormat: Codable, Equatable, Hashable, Sendable {
     /// CompressionFormat unspecified. Implies uncompressed data.
     case unspecified
     /// GZip compressed set of files.

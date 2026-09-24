@@ -190,7 +190,7 @@ public struct DeploymentGroup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is omitted.
     case unspecified
     /// The deployment group is being created.
@@ -343,7 +343,7 @@ public struct DeploymentGroup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProvisioningState: Codable, Equatable, Sendable {
+  public enum ProvisioningState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified provisioning state.
     case unspecified
     /// The deployment group is being provisioned.

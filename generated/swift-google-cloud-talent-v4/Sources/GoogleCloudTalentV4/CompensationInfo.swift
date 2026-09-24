@@ -434,7 +434,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CompensationType: Codable, Equatable, Sendable {
+  public enum CompensationType: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Base compensation: Refers to the fixed amount of money paid to an
@@ -596,7 +596,7 @@ public struct CompensationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CompensationUnit: Codable, Equatable, Sendable {
+  public enum CompensationUnit: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Hourly.

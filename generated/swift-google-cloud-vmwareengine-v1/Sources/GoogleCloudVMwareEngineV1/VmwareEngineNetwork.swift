@@ -236,7 +236,7 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// The default value. This value should never be used.
       case unspecified
       /// VPC network that will be peered with a consumer VPC network or the
@@ -375,7 +375,7 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is omitted.
     case unspecified
     /// The VMware Engine network is being created.
@@ -506,7 +506,7 @@ public struct VmwareEngineNetwork: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value should never be used.
     case unspecified
     /// Network type used by private clouds created in projects without a network

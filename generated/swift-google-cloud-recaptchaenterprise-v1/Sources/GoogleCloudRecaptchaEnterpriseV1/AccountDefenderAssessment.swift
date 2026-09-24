@@ -248,7 +248,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RiskReason: Codable, Equatable, Sendable {
+    public enum RiskReason: Codable, Equatable, Hashable, Sendable {
       /// Default unspecified type.
       case unspecified
       /// The client has been observed sending bot-like traffic to this site in
@@ -462,7 +462,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TrustReason: Codable, Equatable, Sendable {
+    public enum TrustReason: Codable, Equatable, Hashable, Sendable {
       /// Default unspecified type.
       case unspecified
       /// The request matches a trusted profile associated with this account.
@@ -611,7 +611,7 @@ public struct AccountDefenderAssessment: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AccountDefenderLabel: Codable, Equatable, Sendable {
+  public enum AccountDefenderLabel: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified type.
     case unspecified
     /// The request matches a trusted profile associated with this account.

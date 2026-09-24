@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PipelineState: Codable, Equatable, Sendable {
+  public enum PipelineState: Codable, Equatable, Hashable, Sendable {
     /// The pipeline state is unspecified.
     case unspecified
     /// The pipeline has been created or resumed, and processing has not yet

@@ -126,7 +126,7 @@ public struct Stage: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Name: Codable, Equatable, Sendable {
+  public enum Name: Codable, Equatable, Hashable, Sendable {
     /// Not specified. Invalid name.
     case unspecified
     /// Artifact Registry Stage
@@ -271,7 +271,7 @@ public struct Stage: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not specified. Invalid state.
     case unspecified
     /// Stage has not started.

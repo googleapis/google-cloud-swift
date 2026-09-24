@@ -145,7 +145,7 @@ public struct SyncState: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SyncCode: Codable, Equatable, Sendable {
+  public enum SyncCode: Codable, Equatable, Hashable, Sendable {
     /// Config Sync cannot determine a sync code
     case unspecified
     /// Config Sync successfully synced the git Repo with the cluster

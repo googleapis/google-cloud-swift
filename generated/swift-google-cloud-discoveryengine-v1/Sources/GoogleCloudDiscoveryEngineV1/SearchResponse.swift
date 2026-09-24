@@ -662,7 +662,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum RetrievalSource: Codable, Equatable, Sendable {
+        public enum RetrievalSource: Codable, Equatable, Hashable, Sendable {
           /// Unspecified retrieval source.
           case unspecified
           /// Indicates the result was retrieved by keyword search.
@@ -1675,7 +1675,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SummarySkippedReason: Codable, Equatable, Sendable {
+      public enum SummarySkippedReason: Codable, Equatable, Hashable, Sendable {
         /// Default value. The summary skipped reason is not specified.
         case unspecified
         /// The adversarial query ignored case.
@@ -2318,7 +2318,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum Comparison: Codable, Equatable, Sendable {
+          public enum Comparison: Codable, Equatable, Hashable, Sendable {
             /// Undefined comparison operator.
             case unspecified
             /// Denotes equality `=` operator.
@@ -2996,7 +2996,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SemanticState: Codable, Equatable, Sendable {
+    public enum SemanticState: Codable, Equatable, Hashable, Sendable {
       /// Default value. Should not be used.
       case unspecified
       /// Semantic search was disabled for this search response.

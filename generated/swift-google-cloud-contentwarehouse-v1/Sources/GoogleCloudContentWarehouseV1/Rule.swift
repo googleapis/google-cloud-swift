@@ -121,7 +121,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TriggerType: Codable, Equatable, Sendable {
+  public enum TriggerType: Codable, Equatable, Hashable, Sendable {
     /// Trigger for unknown action.
     case unknown
     /// Trigger for create document action.

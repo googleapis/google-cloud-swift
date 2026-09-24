@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LineItemChangeState: Codable, Equatable, Sendable {
+public enum LineItemChangeState: Codable, Equatable, Hashable, Sendable {
   /// Sentinel value. Do not use.
   case unspecified
   /// Change is in this state when a change is initiated and waiting for partner

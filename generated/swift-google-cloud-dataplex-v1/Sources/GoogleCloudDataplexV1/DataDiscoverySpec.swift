@@ -222,7 +222,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TableType: Codable, Equatable, Sendable {
+    public enum TableType: Codable, Equatable, Hashable, Sendable {
       /// Table type unspecified.
       case unspecified
       /// Default. Discovered tables are published as BigQuery external tables

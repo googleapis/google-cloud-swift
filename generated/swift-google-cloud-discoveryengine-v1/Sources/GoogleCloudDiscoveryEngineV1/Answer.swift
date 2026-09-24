@@ -1706,7 +1706,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum State: Codable, Equatable, Sendable {
+      public enum State: Codable, Equatable, Hashable, Sendable {
         /// Unknown.
         case unspecified
         /// Step is currently in progress.
@@ -1971,7 +1971,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Type_: Codable, Equatable, Sendable {
+        public enum Type_: Codable, Equatable, Hashable, Sendable {
           /// Unspecified query classification type.
           case unspecified
           /// Adversarial query classification type.
@@ -2134,7 +2134,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Unknown.
       case unspecified
       /// Answer generation is currently in progress.
@@ -2265,7 +2265,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AnswerSkippedReason: Codable, Equatable, Sendable {
+    public enum AnswerSkippedReason: Codable, Equatable, Hashable, Sendable {
       /// Default value. The answer skipped reason is not specified.
       case unspecified
       /// The adversarial query ignored case.

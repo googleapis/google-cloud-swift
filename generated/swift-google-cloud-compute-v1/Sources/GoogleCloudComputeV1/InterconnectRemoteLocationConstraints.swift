@@ -125,7 +125,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PortPairRemoteLocation: Codable, Equatable, Sendable {
+    public enum PortPairRemoteLocation: Codable, Equatable, Hashable, Sendable {
       /// If PORT_PAIR_MATCHING_REMOTE_LOCATION, the remote cloud provider
       /// allocates ports in pairs, and the user should choose the same remote
       /// location for both ports.
@@ -191,7 +191,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PortPairVlan: Codable, Equatable, Sendable {
+    public enum PortPairVlan: Codable, Equatable, Hashable, Sendable {
       /// If PORT_PAIR_MATCHING_VLAN, the Interconnect for this attachment is
       /// part of a pair of ports that should have matching VLAN allocations.
       /// This occurs with Cross-Cloud Interconnect to Azure remote locations.

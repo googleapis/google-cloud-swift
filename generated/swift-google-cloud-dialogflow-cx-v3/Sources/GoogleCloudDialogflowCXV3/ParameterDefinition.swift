@@ -122,7 +122,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ParameterType: Codable, Equatable, Sendable {
+    public enum ParameterType: Codable, Equatable, Hashable, Sendable {
       /// Not specified. No validation will be performed.
       case unspecified
       /// Represents any string value.

@@ -91,7 +91,7 @@ public struct ReportSessionResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Result: Codable, Equatable, Sendable {
+  public enum Result: Codable, Equatable, Hashable, Sendable {
     case unspecified
     /// The session is complete, and everything passed.
     case passed

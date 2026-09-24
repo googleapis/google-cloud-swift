@@ -126,7 +126,7 @@ public struct ListTransferRunsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RunAttempt: Codable, Equatable, Sendable {
+  public enum RunAttempt: Codable, Equatable, Hashable, Sendable {
     /// All runs should be returned.
     case unspecified
     /// Only latest run per day should be returned.

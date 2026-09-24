@@ -749,7 +749,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum OperationType: Codable, Equatable, Sendable {
+          public enum OperationType: Codable, Equatable, Hashable, Sendable {
             /// Operation type unspecified. Invalid, ConnectorTool create/update
             /// will fail.
             case unspecified
@@ -1256,7 +1256,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum OauthGrantType: Codable, Equatable, Sendable {
+        public enum OauthGrantType: Codable, Equatable, Hashable, Sendable {
           /// Default value. This value is unused.
           case unspecified
           /// Represents the [client credential
@@ -1444,7 +1444,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ServiceAgentAuth: Codable, Equatable, Sendable {
+        public enum ServiceAgentAuth: Codable, Equatable, Hashable, Sendable {
           /// Service agent auth type unspecified. Default to ID_TOKEN.
           case unspecified
           /// Use [ID
@@ -1669,7 +1669,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum RequestLocation: Codable, Equatable, Sendable {
+      public enum RequestLocation: Codable, Equatable, Hashable, Sendable {
         /// Default value. This value is unused.
         case unspecified
         /// Represents the key in http header.
@@ -2043,7 +2043,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConfirmationRequirement: Codable, Equatable, Sendable {
+    public enum ConfirmationRequirement: Codable, Equatable, Hashable, Sendable {
       /// Unspecified. Whether the action requires confirmation is inferred from
       /// method_type.
       case unspecified
@@ -2161,7 +2161,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MethodType: Codable, Equatable, Sendable {
+    public enum MethodType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// GET method.

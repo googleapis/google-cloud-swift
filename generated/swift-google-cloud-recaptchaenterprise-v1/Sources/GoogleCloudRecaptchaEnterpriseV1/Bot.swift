@@ -115,7 +115,7 @@ public struct Bot: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BotType: Codable, Equatable, Sendable {
+  public enum BotType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified type.
     case unspecified
     /// Software program that interacts with a site and performs tasks

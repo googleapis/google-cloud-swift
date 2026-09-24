@@ -692,7 +692,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AccessMode: Codable, Equatable, Sendable {
+    public enum AccessMode: Codable, Equatable, Hashable, Sendable {
       /// The AccessMode means the disk can be attached to multiple instances in RO
       /// mode.
       case readOnlyMany
@@ -760,7 +760,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Architecture: Codable, Equatable, Sendable {
+    public enum Architecture: Codable, Equatable, Hashable, Sendable {
       /// Default value indicating Architecture is not set.
       case unspecified
       /// Machines with architecture ARM64
@@ -825,7 +825,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// Disk is provisioning
       case creating
       /// Disk is deleting.

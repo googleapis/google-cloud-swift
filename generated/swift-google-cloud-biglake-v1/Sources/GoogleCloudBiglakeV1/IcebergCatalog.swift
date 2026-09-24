@@ -293,7 +293,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// The replica state is unknown.
       case unknown
       /// The replica is the writable primary.
@@ -1260,7 +1260,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CatalogType: Codable, Equatable, Sendable {
+  public enum CatalogType: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Google Cloud Storage bucket catalog type.
@@ -1384,7 +1384,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CredentialMode: Codable, Equatable, Sendable {
+  public enum CredentialMode: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// End user credentials, default. The authenticating user must have access

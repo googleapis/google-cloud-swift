@@ -109,7 +109,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PredictiveMethod: Codable, Equatable, Sendable {
+    public enum PredictiveMethod: Codable, Equatable, Hashable, Sendable {
       /// No predictive method is used. The autoscaler scales the group to meet
       /// current demand based on real-time metrics
       case `none`

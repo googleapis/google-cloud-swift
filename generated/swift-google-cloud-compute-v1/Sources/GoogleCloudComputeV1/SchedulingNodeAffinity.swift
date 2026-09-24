@@ -100,7 +100,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Operator: Codable, Equatable, Sendable {
+    public enum Operator: Codable, Equatable, Hashable, Sendable {
       /// Requires Compute Engine to seek for matched nodes.
       case `in`
       /// Requires Compute Engine to avoid certain nodes.

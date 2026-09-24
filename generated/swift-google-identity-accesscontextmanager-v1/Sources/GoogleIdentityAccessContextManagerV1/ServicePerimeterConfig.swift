@@ -1203,7 +1203,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IdentityType: Codable, Equatable, Sendable {
+  public enum IdentityType: Codable, Equatable, Hashable, Sendable {
     /// No blanket identity group specified.
     case unspecified
     /// Authorize access from all identities outside the perimeter.

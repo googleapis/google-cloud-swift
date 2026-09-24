@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LicenseType: Codable, Equatable, Sendable {
+public enum LicenseType: Codable, Equatable, Hashable, Sendable {
   /// unspecified.
   case unspecified
   /// Billing will be based on number of users listed per month.

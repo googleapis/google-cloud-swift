@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DashboardType: Codable, Equatable, Sendable {
+public enum DashboardType: Codable, Equatable, Hashable, Sendable {
   /// Default unspecified.
   case unspecified
   /// Out of the box curated dashboards provided by Chronicle.

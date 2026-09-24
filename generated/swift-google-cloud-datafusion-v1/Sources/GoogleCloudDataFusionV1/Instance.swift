@@ -351,7 +351,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// No type specified. The instance creation will fail.
     case unspecified
     /// Basic Data Fusion instance. In Basic type, the user will be able to
@@ -483,7 +483,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Instance does not have a state yet
     case unspecified
     /// Instance is being created
@@ -657,7 +657,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DisabledReason: Codable, Equatable, Sendable {
+  public enum DisabledReason: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown reason for disabling.
     case unspecified
     /// The KMS key used by the instance is either revoked or denied access to

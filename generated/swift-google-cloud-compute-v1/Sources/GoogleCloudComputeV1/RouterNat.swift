@@ -368,7 +368,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AutoNetworkTier: Codable, Equatable, Sendable {
+    public enum AutoNetworkTier: Codable, Equatable, Hashable, Sendable {
       /// Public internet quality with fixed bandwidth.
       case fixedStandard
       /// High quality, Google-grade network tier, support for all networking
@@ -442,7 +442,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EndpointTypes: Codable, Equatable, Sendable {
+    public enum EndpointTypes: Codable, Equatable, Hashable, Sendable {
       /// This is used for regional Application Load Balancers (internal and
       /// external) and regional proxy Network Load Balancers (internal and
       /// external) endpoints.
@@ -510,7 +510,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NatIpAllocateOption: Codable, Equatable, Sendable {
+    public enum NatIpAllocateOption: Codable, Equatable, Hashable, Sendable {
       /// Nat IPs are allocated by GCP; customers can not specify any Nat IPs.
       case autoOnly
       /// Only use Nat IPs provided by customers. When specified Nat IPs are not
@@ -571,7 +571,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SourceSubnetworkIpRangesToNat: Codable, Equatable, Sendable {
+    public enum SourceSubnetworkIpRangesToNat: Codable, Equatable, Hashable, Sendable {
       /// All the IP ranges in every Subnetwork are allowed to Nat.
       case allSubnetworksAllIpRanges
       /// All the primary IP ranges in every Subnetwork are allowed to Nat.
@@ -639,7 +639,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SourceSubnetworkIpRangesToNat64: Codable, Equatable, Sendable {
+    public enum SourceSubnetworkIpRangesToNat64: Codable, Equatable, Hashable, Sendable {
       /// NAT64 is enabled for all the IPv6 subnet ranges.
       /// In dual stack subnets, NAT64 will only be enabled for IPv6-only VMs.
       case allIpv6Subnetworks
@@ -702,7 +702,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// NAT used for private IP translation.
       case `private`
       /// NAT used for public IP translation.

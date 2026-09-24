@@ -84,7 +84,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InstanceState: Codable, Equatable, Sendable {
+    public enum InstanceState: Codable, Equatable, Hashable, Sendable {
       /// Includes all instances in the generated list regardless of their state.
       case all
       /// Includes instances in the generated list only if they have a RUNNING

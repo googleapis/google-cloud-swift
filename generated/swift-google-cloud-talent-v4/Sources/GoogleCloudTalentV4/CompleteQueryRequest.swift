@@ -161,7 +161,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CompletionScope: Codable, Equatable, Sendable {
+  public enum CompletionScope: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Suggestions are based only on the data provided by the client.
@@ -279,7 +279,7 @@ public struct CompleteQueryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CompletionType: Codable, Equatable, Sendable {
+  public enum CompletionType: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Suggest job titles for jobs autocomplete.

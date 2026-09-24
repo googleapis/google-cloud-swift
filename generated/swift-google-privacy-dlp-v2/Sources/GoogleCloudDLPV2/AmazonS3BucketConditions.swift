@@ -97,7 +97,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BucketType: Codable, Equatable, Sendable {
+  public enum BucketType: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case typeUnspecified
     /// All supported classes.
@@ -215,7 +215,7 @@ public struct AmazonS3BucketConditions: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ObjectStorageClass: Codable, Equatable, Sendable {
+  public enum ObjectStorageClass: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// All supported classes.

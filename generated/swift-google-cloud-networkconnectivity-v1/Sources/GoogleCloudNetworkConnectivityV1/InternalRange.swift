@@ -434,7 +434,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Usage: Codable, Equatable, Sendable {
+  public enum Usage: Codable, Equatable, Hashable, Sendable {
     /// Unspecified usage is allowed in calls which identify the resource by
     /// other fields and do not need Usage set to complete. These are, i.e.:
     /// GetInternalRange and DeleteInternalRange.
@@ -568,7 +568,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Peering: Codable, Equatable, Sendable {
+  public enum Peering: Codable, Equatable, Hashable, Sendable {
     /// If Peering is left unspecified in CreateInternalRange or
     /// UpdateInternalRange, it will be defaulted to FOR_SELF.
     case unspecified
@@ -707,7 +707,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Overlap: Codable, Equatable, Sendable {
+  public enum Overlap: Codable, Equatable, Hashable, Sendable {
     /// No overlap overrides.
     case unspecified
     /// Allow creation of static routes more specific that the current
@@ -825,7 +825,7 @@ public struct InternalRange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AllocationStrategy: Codable, Equatable, Sendable {
+  public enum AllocationStrategy: Codable, Equatable, Hashable, Sendable {
     /// Unspecified is the only valid option when the range is specified
     /// explicitly by ip_cidr_range field. Otherwise unspefified means using the
     /// default strategy.

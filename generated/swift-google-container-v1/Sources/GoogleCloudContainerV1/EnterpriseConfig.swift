@@ -102,7 +102,7 @@ public struct EnterpriseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
   @available(*, deprecated)
-  public enum ClusterTier: Codable, Equatable, Sendable {
+  public enum ClusterTier: Codable, Equatable, Hashable, Sendable {
     /// CLUSTER_TIER_UNSPECIFIED is when cluster_tier is not set.
     case unspecified
     /// STANDARD indicates a standard GKE cluster.

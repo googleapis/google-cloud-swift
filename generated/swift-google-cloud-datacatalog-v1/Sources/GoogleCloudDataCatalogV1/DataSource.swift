@@ -129,7 +129,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Service: Codable, Equatable, Sendable {
+  public enum Service: Codable, Equatable, Hashable, Sendable {
     /// Default unknown service.
     case unspecified
     /// Google Cloud Storage service.

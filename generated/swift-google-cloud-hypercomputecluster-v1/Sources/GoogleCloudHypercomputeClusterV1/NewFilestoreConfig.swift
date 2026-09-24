@@ -130,7 +130,7 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tier: Codable, Equatable, Sendable {
+  public enum Tier: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Offers expanded capacity and performance scaling capabilities suitable
@@ -249,7 +249,7 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Protocol_: Codable, Equatable, Sendable {
+  public enum Protocol_: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// NFS 3.0.

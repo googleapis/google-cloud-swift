@@ -94,7 +94,7 @@ public struct JsonFileFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SchemaFileFormat: Codable, Equatable, Sendable {
+  public enum SchemaFileFormat: Codable, Equatable, Hashable, Sendable {
     /// Unspecified schema file format.
     case unspecified
     /// Do not attach schema file.
@@ -211,7 +211,7 @@ public struct JsonFileFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JsonCompression: Codable, Equatable, Sendable {
+  public enum JsonCompression: Codable, Equatable, Hashable, Sendable {
     /// Unspecified json file compression.
     case unspecified
     /// Do not compress JSON file.

@@ -369,7 +369,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ValueType: Codable, Equatable, Sendable {
+  public enum ValueType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown flag type.
     case unspecified
     /// String type flag.
@@ -500,7 +500,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// The scope of the flag is not specified. Default is DATABASE.
     case unspecified
     /// The flag is a database flag.

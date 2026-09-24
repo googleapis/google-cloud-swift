@@ -148,7 +148,7 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AutoUpgradeStatus: Codable, Equatable, Sendable {
+  public enum AutoUpgradeStatus: Codable, Equatable, Hashable, Sendable {
     /// UNKNOWN indicates an unknown status.
     case unknown
     /// ACTIVE indicates an active status.
@@ -274,7 +274,7 @@ public struct ClusterUpgradeInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AutoUpgradePausedReason: Codable, Equatable, Sendable {
+  public enum AutoUpgradePausedReason: Codable, Equatable, Hashable, Sendable {
     /// AUTO_UPGRADE_PAUSED_REASON_UNSPECIFIED indicates an unspecified reason.
     case unspecified
     /// MAINTENANCE_WINDOW indicates the cluster is outside customer maintenance

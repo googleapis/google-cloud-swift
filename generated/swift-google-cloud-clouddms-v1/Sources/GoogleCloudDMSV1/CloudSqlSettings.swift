@@ -288,7 +288,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlActivationPolicy: Codable, Equatable, Sendable {
+  public enum SqlActivationPolicy: Codable, Equatable, Hashable, Sendable {
     /// unspecified policy.
     case unspecified
     /// The instance is always up and running.
@@ -405,7 +405,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlDataDiskType: Codable, Equatable, Sendable {
+  public enum SqlDataDiskType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// SSD disk.
@@ -522,7 +522,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlDatabaseVersion: Codable, Equatable, Sendable {
+  public enum SqlDatabaseVersion: Codable, Equatable, Hashable, Sendable {
     /// Unspecified version.
     case unspecified
     /// MySQL 5.6.
@@ -695,7 +695,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlAvailabilityType: Codable, Equatable, Sendable {
+  public enum SqlAvailabilityType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown Availability type.
     case unspecified
     /// Zonal availablility instance.
@@ -813,7 +813,7 @@ public struct CloudSqlSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Edition: Codable, Equatable, Sendable {
+  public enum Edition: Codable, Equatable, Hashable, Sendable {
     /// The instance did not specify the edition.
     case unspecified
     /// The instance is an enterprise edition.

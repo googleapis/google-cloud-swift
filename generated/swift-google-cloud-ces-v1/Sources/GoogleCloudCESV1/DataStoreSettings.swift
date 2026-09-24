@@ -158,7 +158,7 @@ public struct DataStoreSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Unspecified engine type.
       case unspecified
       /// The SOLUTION_TYPE_SEARCH engine for the app. All connector data stores

@@ -81,7 +81,7 @@ public struct ManagedOpenTelemetryConfig: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// SCOPE_UNSPECIFIED is when the scope is not set.
     case unspecified
     /// NONE is used to disable the Managed OpenTelemetry pipeline.

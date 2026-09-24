@@ -228,7 +228,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SessionAffinity: Codable, Equatable, Sendable {
+    public enum SessionAffinity: Codable, Equatable, Hashable, Sendable {
       /// 2-tuple hash on packet's source and destination IP addresses. Connections
       /// from the same source IP address to the same destination IP address will be
       /// served by the same backend VM while that VM remains healthy.

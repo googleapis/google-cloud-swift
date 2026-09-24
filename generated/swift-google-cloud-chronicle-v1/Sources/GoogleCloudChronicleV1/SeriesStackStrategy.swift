@@ -21,7 +21,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SeriesStackStrategy: Codable, Equatable, Sendable {
+public enum SeriesStackStrategy: Codable, Equatable, Hashable, Sendable {
   case unspecified
   case samesign
   case all

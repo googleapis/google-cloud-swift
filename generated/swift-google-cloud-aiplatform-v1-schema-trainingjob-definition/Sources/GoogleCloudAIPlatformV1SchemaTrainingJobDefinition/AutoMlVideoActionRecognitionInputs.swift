@@ -80,7 +80,7 @@ public struct AutoMlVideoActionRecognitionInputs: Codable, Equatable, GoogleWKT.
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ModelType: Codable, Equatable, Sendable {
+  public enum ModelType: Codable, Equatable, Hashable, Sendable {
     /// Should not be set.
     case unspecified
     /// A model best tailored to be used within Google Cloud, and which c annot

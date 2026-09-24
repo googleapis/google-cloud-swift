@@ -126,7 +126,7 @@ public struct InjectFaultRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FaultType: Codable, Equatable, Sendable {
+  public enum FaultType: Codable, Equatable, Hashable, Sendable {
     /// The fault type is unknown.
     case unspecified
     /// Stop the VM

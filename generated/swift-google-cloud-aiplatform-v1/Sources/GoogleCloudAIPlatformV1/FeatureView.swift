@@ -699,7 +699,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum DistanceMeasureType: Codable, Equatable, Sendable {
+      public enum DistanceMeasureType: Codable, Equatable, Hashable, Sendable {
         /// Should not be set.
         case unspecified
         /// Euclidean (L_2) Distance.
@@ -1238,7 +1238,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ServiceAgentType: Codable, Equatable, Sendable {
+    public enum ServiceAgentType: Codable, Equatable, Hashable, Sendable {
       /// By default, the project-level Vertex AI Service Agent is enabled.
       case unspecified
       /// Indicates the project-level Vertex AI Service Agent

@@ -812,7 +812,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Default value. Default to
     /// [Catalog.product_level_config.ingestion_product_type][google.cloud.retail.v2.ProductLevelConfig.ingestion_product_type]
     /// if unset.
@@ -971,7 +971,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Availability: Codable, Equatable, Sendable {
+  public enum Availability: Codable, Equatable, Hashable, Sendable {
     /// Default product availability. Default to
     /// [Availability.IN_STOCK][google.cloud.retail.v2.Product.Availability.IN_STOCK]
     /// if unset.

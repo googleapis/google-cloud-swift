@@ -215,7 +215,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum DataFormat: Codable, Equatable, Sendable {
+      public enum DataFormat: Codable, Equatable, Hashable, Sendable {
         /// Format unspecified, used when unset.
         case unspecified
         /// Examples are stored in JSONL files.

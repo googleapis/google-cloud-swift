@@ -665,7 +665,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum GroundingDecision: Codable, Equatable, Sendable {
+      public enum GroundingDecision: Codable, Equatable, Hashable, Sendable {
         /// Decision not specified.
         case unspecified
         /// Grounding have accepted the answer.
@@ -782,7 +782,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum GroundingScoreBucket: Codable, Equatable, Sendable {
+      public enum GroundingScoreBucket: Codable, Equatable, Hashable, Sendable {
         /// Score not specified.
         case unspecified
         /// We have very low confidence that the answer is grounded.
@@ -1018,7 +1018,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SafetyDecision: Codable, Equatable, Sendable {
+      public enum SafetyDecision: Codable, Equatable, Hashable, Sendable {
         /// Decision not specified.
         case unspecified
         /// No manual or automatic safety check fired.
@@ -1135,7 +1135,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum BannedPhraseMatch: Codable, Equatable, Sendable {
+      public enum BannedPhraseMatch: Codable, Equatable, Hashable, Sendable {
         /// No banned phrase check was executed.
         case unspecified
         /// All banned phrase checks led to no match.

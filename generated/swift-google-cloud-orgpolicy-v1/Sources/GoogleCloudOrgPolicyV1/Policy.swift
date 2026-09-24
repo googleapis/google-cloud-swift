@@ -409,7 +409,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllValues: Codable, Equatable, Sendable {
+    public enum AllValues: Codable, Equatable, Hashable, Sendable {
       /// Indicates that allowed_values or denied_values must be set.
       case unspecified
       /// A policy with this set allows all values.

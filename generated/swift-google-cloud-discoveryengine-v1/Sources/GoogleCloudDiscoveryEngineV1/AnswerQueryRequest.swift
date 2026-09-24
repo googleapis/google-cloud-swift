@@ -386,7 +386,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum HarmBlockThreshold: Codable, Equatable, Sendable {
+        public enum HarmBlockThreshold: Codable, Equatable, Hashable, Sendable {
           /// Unspecified harm block threshold.
           case unspecified
           /// Block low threshold and above (i.e. block more).
@@ -692,7 +692,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum FilteringLevel: Codable, Equatable, Sendable {
+      public enum FilteringLevel: Codable, Equatable, Hashable, Sendable {
         /// Default is no filter
         case unspecified
         /// Filter answers based on a low threshold.
@@ -2282,7 +2282,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Type_: Codable, Equatable, Sendable {
+        public enum Type_: Codable, Equatable, Hashable, Sendable {
           /// Unspecified query classification type.
           case unspecified
           /// Adversarial query classification type.
@@ -2578,7 +2578,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum ModelType: Codable, Equatable, Sendable {
+          public enum ModelType: Codable, Equatable, Hashable, Sendable {
             /// Unspecified model type.
             case unspecified
             /// Small query rephraser model. Gemini 1.0 XS model.

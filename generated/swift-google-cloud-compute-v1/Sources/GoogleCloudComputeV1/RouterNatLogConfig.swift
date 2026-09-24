@@ -97,7 +97,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Filter: Codable, Equatable, Sendable {
+    public enum Filter: Codable, Equatable, Hashable, Sendable {
       /// Export logs for all (successful and unsuccessful) connections.
       case all
       /// Export logs for connection failures only.

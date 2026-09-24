@@ -115,7 +115,7 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SslType: Codable, Equatable, Sendable {
+  public enum SslType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Only 'ca_certificate' specified.

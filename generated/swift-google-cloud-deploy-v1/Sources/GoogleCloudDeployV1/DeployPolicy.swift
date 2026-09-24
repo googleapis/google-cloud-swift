@@ -213,7 +213,7 @@ public struct DeployPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Invoker: Codable, Equatable, Sendable {
+  public enum Invoker: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// The action is user-driven. For example, creating a rollout manually via a

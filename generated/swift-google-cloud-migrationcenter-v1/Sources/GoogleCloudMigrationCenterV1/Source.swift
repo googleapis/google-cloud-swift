@@ -170,7 +170,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SourceType: Codable, Equatable, Sendable {
+  public enum SourceType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified
     case unknown
     /// Manually uploaded file (e.g. CSV)
@@ -301,7 +301,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// The source is active and ready to be used.

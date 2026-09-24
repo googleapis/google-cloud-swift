@@ -122,7 +122,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VersionedExpr: Codable, Equatable, Sendable {
+    public enum VersionedExpr: Codable, Equatable, Hashable, Sendable {
       /// Matches the source IP address of a request to the IP ranges supplied
       /// in config.
       case srcIpsV1

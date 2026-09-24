@@ -138,7 +138,7 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Clock: Codable, Equatable, Sendable {
+  public enum Clock: Codable, Equatable, Hashable, Sendable {
     /// Clock is not specified.
     case unspecified
     /// Use the timestamp when the data is captured. Clients need to sync the

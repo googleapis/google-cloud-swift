@@ -91,7 +91,7 @@ public struct Xxe: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Location: Codable, Equatable, Sendable {
+  public enum Location: Codable, Equatable, Hashable, Sendable {
     /// Unknown Location.
     case unspecified
     /// The XML payload replaced the complete request body.

@@ -329,7 +329,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CaMode: Codable, Equatable, Sendable {
+    public enum CaMode: Codable, Equatable, Hashable, Sendable {
       /// CA mode is unknown.
       case unspecified
       /// Google-managed self-signed internal CA.
@@ -456,7 +456,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MdxProtocolSupport: Codable, Equatable, Sendable {
+    public enum MdxProtocolSupport: Codable, Equatable, Hashable, Sendable {
       /// Not specified.
       case unspecified
       /// Client should send the client protocol type in the MDX request.

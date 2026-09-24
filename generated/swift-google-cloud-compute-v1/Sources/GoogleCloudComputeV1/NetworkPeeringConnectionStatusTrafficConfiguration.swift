@@ -125,7 +125,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StackType: Codable, Equatable, Sendable {
+    public enum StackType: Codable, Equatable, Hashable, Sendable {
       /// This Peering will allow IPv4 traffic and routes to be
       /// exchanged. Additionally if the matching peering is
       /// IPV4_IPV6, IPv6 traffic and routes will be exchanged as

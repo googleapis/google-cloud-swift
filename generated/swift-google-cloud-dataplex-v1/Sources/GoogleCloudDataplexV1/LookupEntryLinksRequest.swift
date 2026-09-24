@@ -138,7 +138,7 @@ public struct LookupEntryLinksRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EntryMode: Codable, Equatable, Sendable {
+  public enum EntryMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified entry mode. Returns both directional and non-directional
     /// entry links which references the entry.
     case unspecified

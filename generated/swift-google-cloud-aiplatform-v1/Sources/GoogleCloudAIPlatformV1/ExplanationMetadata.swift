@@ -643,7 +643,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Type_: Codable, Equatable, Sendable {
+        public enum Type_: Codable, Equatable, Hashable, Sendable {
           /// Should not be used.
           case unspecified
           /// Shows which pixel contributed to the image prediction.
@@ -762,7 +762,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Polarity: Codable, Equatable, Sendable {
+        public enum Polarity: Codable, Equatable, Hashable, Sendable {
           /// Default value. This is the same as POSITIVE.
           case unspecified
           /// Highlights the pixels/outlines that were most influential to the
@@ -888,7 +888,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ColorMap: Codable, Equatable, Sendable {
+        public enum ColorMap: Codable, Equatable, Hashable, Sendable {
           /// Should not be used.
           case unspecified
           /// Positive: green. Negative: pink.
@@ -1035,7 +1035,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum OverlayType: Codable, Equatable, Sendable {
+        public enum OverlayType: Codable, Equatable, Hashable, Sendable {
           /// Default value. This is the same as NONE.
           case unspecified
           /// No overlay.
@@ -1180,7 +1180,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Encoding: Codable, Equatable, Sendable {
+      public enum Encoding: Codable, Equatable, Hashable, Sendable {
         /// Default value. This is the same as IDENTITY.
         case unspecified
         /// The tensor represents one feature.

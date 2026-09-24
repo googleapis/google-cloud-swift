@@ -99,7 +99,7 @@ public struct IpOverrideData: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OverrideType: Codable, Equatable, Sendable {
+  public enum OverrideType: Codable, Equatable, Hashable, Sendable {
     /// Default override type that indicates this enum hasn't been specified.
     case unspecified
     /// Allowlist the IP address; i.e. give a `risk_analysis.score` of 0.9 for

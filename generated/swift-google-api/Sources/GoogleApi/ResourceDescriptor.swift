@@ -241,7 +241,7 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum History: Codable, Equatable, Sendable {
+  public enum History: Codable, Equatable, Hashable, Sendable {
     /// The "unset" value.
     case unspecified
     /// The resource originally had one pattern and launched as such, and
@@ -361,7 +361,7 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Style: Codable, Equatable, Sendable {
+  public enum Style: Codable, Equatable, Hashable, Sendable {
     /// The unspecified value. Do not use.
     case unspecified
     /// This resource is intended to be "declarative-friendly".

@@ -1513,7 +1513,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ReclaimPolicy: Codable, Equatable, Sendable {
+      public enum ReclaimPolicy: Codable, Equatable, Hashable, Sendable {
         /// Do not use.
         case unspecified
         /// Delete the persistent disk when deleting the workstation.
@@ -1768,7 +1768,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ReclaimPolicy: Codable, Equatable, Sendable {
+      public enum ReclaimPolicy: Codable, Equatable, Hashable, Sendable {
         /// Do not use.
         case unspecified
         /// Delete the persistent disk when deleting the workstation.

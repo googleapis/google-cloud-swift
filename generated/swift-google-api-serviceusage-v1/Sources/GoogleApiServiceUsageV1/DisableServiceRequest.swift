@@ -114,7 +114,7 @@ public struct DisableServiceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CheckIfServiceHasUsage: Codable, Equatable, Sendable {
+  public enum CheckIfServiceHasUsage: Codable, Equatable, Hashable, Sendable {
     /// When unset, the default behavior is used, which is SKIP.
     case unspecified
     /// If set, skip checking service usage when disabling a service.

@@ -115,7 +115,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Backfill job was never started for the stream object (stream has backfill
@@ -270,7 +270,7 @@ public struct BackfillJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Trigger: Codable, Equatable, Sendable {
+  public enum Trigger: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Object backfill job was triggered automatically according to the stream's

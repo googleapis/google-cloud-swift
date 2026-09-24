@@ -308,7 +308,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlBackupType: Codable, Equatable, Sendable {
+    public enum SqlBackupType: Codable, Equatable, Hashable, Sendable {
       /// This is an unknown backup type.
       case unspecified
       /// The backup schedule triggers a backup automatically.
@@ -432,7 +432,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlBackupState: Codable, Equatable, Sendable {
+    public enum SqlBackupState: Codable, Equatable, Hashable, Sendable {
       /// The state of the backup is unknown.
       case unspecified
       /// The backup that's added to a queue.

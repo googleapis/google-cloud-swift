@@ -81,7 +81,7 @@ public struct PodAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HPAProfile: Codable, Equatable, Sendable {
+  public enum HPAProfile: Codable, Equatable, Hashable, Sendable {
     /// HPA_PROFILE_UNSPECIFIED is used when no custom HPA profile is set.
     case unspecified
     /// Customers explicitly opt-out of HPA profiles.

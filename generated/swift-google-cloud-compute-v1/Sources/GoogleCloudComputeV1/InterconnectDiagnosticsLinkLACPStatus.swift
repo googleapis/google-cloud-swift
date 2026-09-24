@@ -102,7 +102,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// The link is configured and active within the bundle.
       case active
       /// The link is not configured within the bundle, this means the rest of

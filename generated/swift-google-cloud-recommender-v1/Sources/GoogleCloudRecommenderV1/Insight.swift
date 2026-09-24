@@ -251,7 +251,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Category: Codable, Equatable, Sendable {
+  public enum Category: Codable, Equatable, Hashable, Sendable {
     /// Unspecified category.
     case unspecified
     /// The insight is related to cost.
@@ -396,7 +396,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Severity: Codable, Equatable, Sendable {
+  public enum Severity: Codable, Equatable, Hashable, Sendable {
     /// Insight has unspecified severity.
     case unspecified
     /// Insight has low severity.

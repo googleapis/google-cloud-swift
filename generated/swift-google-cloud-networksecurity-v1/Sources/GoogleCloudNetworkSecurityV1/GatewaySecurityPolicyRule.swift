@@ -187,7 +187,7 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BasicProfile: Codable, Equatable, Sendable {
+  public enum BasicProfile: Codable, Equatable, Hashable, Sendable {
     /// If there is not a mentioned action for the target.
     case unspecified
     /// Allow the matched traffic.

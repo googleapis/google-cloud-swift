@@ -102,7 +102,7 @@ public struct UsableSubnetworkSecondaryRange: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     /// UNKNOWN is the zero value of the Status enum. It's not a valid status.
     case unknown
     /// UNUSED denotes that this range is unclaimed by any cluster.

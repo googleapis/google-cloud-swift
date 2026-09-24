@@ -84,7 +84,7 @@ public struct MaliciousUriFilterSettings: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MaliciousUriFilterEnforcement: Codable, Equatable, Sendable {
+  public enum MaliciousUriFilterEnforcement: Codable, Equatable, Hashable, Sendable {
     /// Same as Disabled
     case unspecified
     /// Enabled

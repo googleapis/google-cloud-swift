@@ -350,7 +350,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum GoalType: Codable, Equatable, Sendable {
+      public enum GoalType: Codable, Equatable, Hashable, Sendable {
         /// Goal Type will default to maximize.
         case unspecified
         /// Maximize the goal metric.
@@ -1317,7 +1317,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ScaleType: Codable, Equatable, Sendable {
+      public enum ScaleType: Codable, Equatable, Hashable, Sendable {
         /// By default, no scaling is applied.
         case unspecified
         /// Scales the feasible space to (0, 1) linearly.
@@ -1927,7 +1927,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Algorithm: Codable, Equatable, Sendable {
+    public enum Algorithm: Codable, Equatable, Hashable, Sendable {
       /// The default algorithm used by Vertex AI for [hyperparameter
       /// tuning](https://cloud.google.com/vertex-ai/docs/training/hyperparameter-tuning-overview)
       /// and [Vertex AI Vizier](https://cloud.google.com/vertex-ai/docs/vizier).
@@ -2050,7 +2050,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ObservationNoise: Codable, Equatable, Sendable {
+    public enum ObservationNoise: Codable, Equatable, Hashable, Sendable {
       /// The default noise level chosen by Vertex AI.
       case unspecified
       /// Vertex AI assumes that the objective function is (nearly)
@@ -2182,7 +2182,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MeasurementSelectionType: Codable, Equatable, Sendable {
+    public enum MeasurementSelectionType: Codable, Equatable, Hashable, Sendable {
       /// Will be treated as LAST_MEASUREMENT.
       case unspecified
       /// Use the last measurement reported.

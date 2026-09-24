@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum FindingsRefinementType: Codable, Equatable, Sendable {
+public enum FindingsRefinementType: Codable, Equatable, Hashable, Sendable {
   /// The findings refinement type is unspecified.
   case unspecified
   /// Indicates that the findings refinement is a detection exclusion and

@@ -222,7 +222,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is omitted.
     case unspecified
     /// The private connection is being created.
@@ -368,7 +368,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value should never be used.
     case unspecified
     /// Connection used for establishing [private services
@@ -500,7 +500,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RoutingMode: Codable, Equatable, Sendable {
+  public enum RoutingMode: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value should never be used.
     case unspecified
     /// Global Routing Mode
@@ -618,7 +618,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PeeringState: Codable, Equatable, Sendable {
+  public enum PeeringState: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the peering state is omitted or
     /// unknown.
     case unspecified

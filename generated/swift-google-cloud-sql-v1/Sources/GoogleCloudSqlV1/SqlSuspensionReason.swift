@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlSuspensionReason: Codable, Equatable, Sendable {
+  public enum SqlSuspensionReason: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown suspension reason.
     case unspecified
     /// The instance is suspended due to billing issues (for example:, account

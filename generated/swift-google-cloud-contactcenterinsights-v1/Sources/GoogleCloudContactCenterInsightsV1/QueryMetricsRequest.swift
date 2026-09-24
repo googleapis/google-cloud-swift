@@ -137,7 +137,7 @@ public struct QueryMetricsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TimeGranularity: Codable, Equatable, Sendable {
+  public enum TimeGranularity: Codable, Equatable, Hashable, Sendable {
     /// The time granularity is unspecified and will default to NONE.
     case unspecified
     /// No time granularity. The response won't contain a time series.

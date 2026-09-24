@@ -188,7 +188,7 @@ public struct ListTracesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ViewType: Codable, Equatable, Sendable {
+  public enum ViewType: Codable, Equatable, Hashable, Sendable {
     /// Default is `MINIMAL` if unspecified.
     case unspecified
     /// Minimal view of the trace record that contains only the project

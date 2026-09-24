@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ValuePresentInList: Codable, Equatable, Sendable {
+public enum ValuePresentInList: Codable, Equatable, Hashable, Sendable {
   /// Value present in list unspecified
   case unspecified
   /// If the source value is in the supplied list at value_list

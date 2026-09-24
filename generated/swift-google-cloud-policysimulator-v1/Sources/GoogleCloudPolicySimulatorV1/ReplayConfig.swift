@@ -117,7 +117,7 @@ public struct ReplayConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LogSource: Codable, Equatable, Sendable {
+  public enum LogSource: Codable, Equatable, Hashable, Sendable {
     /// An unspecified log source.
     /// If the log source is unspecified, the
     /// [Replay][google.cloud.policysimulator.v1.Replay] defaults to using

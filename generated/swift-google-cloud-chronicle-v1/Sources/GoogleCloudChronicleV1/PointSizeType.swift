@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum PointSizeType: Codable, Equatable, Sendable {
+public enum PointSizeType: Codable, Equatable, Hashable, Sendable {
   /// Point size is not specified.
   case unspecified
   /// Point size is fixed.

@@ -227,7 +227,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProvisioningState: Codable, Equatable, Sendable {
+  public enum ProvisioningState: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// The entitlement is currently active.
@@ -348,7 +348,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SuspensionReason: Codable, Equatable, Sendable {
+  public enum SuspensionReason: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// Entitlement was manually suspended by the Reseller.

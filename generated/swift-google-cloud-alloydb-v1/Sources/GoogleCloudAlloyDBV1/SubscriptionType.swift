@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SubscriptionType: Codable, Equatable, Sendable {
+public enum SubscriptionType: Codable, Equatable, Hashable, Sendable {
   /// This is an unknown subscription type. By default, the subscription type is
   /// STANDARD.
   case unspecified

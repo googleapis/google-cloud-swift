@@ -267,7 +267,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LicenseModel: Codable, Equatable, Sendable {
+  public enum LicenseModel: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Default is license included.
@@ -384,7 +384,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExadbVmClusterLifecycleState: Codable, Equatable, Sendable {
+  public enum ExadbVmClusterLifecycleState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Indicates that the resource is in provisioning state.
@@ -538,7 +538,7 @@ public struct ExadbVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ShapeAttribute: Codable, Equatable, Sendable {
+  public enum ShapeAttribute: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Indicates that the resource is in smart storage.

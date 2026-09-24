@@ -149,7 +149,7 @@ public struct TransferOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OverwriteWhen: Codable, Equatable, Sendable {
+  public enum OverwriteWhen: Codable, Equatable, Hashable, Sendable {
     /// Overwrite behavior is unspecified.
     case unspecified
     /// Overwrites destination objects with the source objects, only if the

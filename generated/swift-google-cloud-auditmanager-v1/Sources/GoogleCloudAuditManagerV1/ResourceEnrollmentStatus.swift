@@ -132,7 +132,7 @@ public struct ResourceEnrollmentStatus: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResourceEnrollmentState: Codable, Equatable, Sendable {
+  public enum ResourceEnrollmentState: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// The resource isn't enrolled.

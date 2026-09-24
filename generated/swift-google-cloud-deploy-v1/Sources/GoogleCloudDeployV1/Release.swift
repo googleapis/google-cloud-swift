@@ -405,7 +405,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TargetRenderState: Codable, Equatable, Sendable {
+    public enum TargetRenderState: Codable, Equatable, Hashable, Sendable {
       /// The render operation state is unspecified.
       case unspecified
       /// The render operation has completed successfully.
@@ -529,7 +529,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FailureCause: Codable, Equatable, Sendable {
+    public enum FailureCause: Codable, Equatable, Hashable, Sendable {
       /// No reason for failure is specified.
       case unspecified
       /// Cloud Build is not available, either because it is not enabled or
@@ -951,7 +951,7 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RenderState: Codable, Equatable, Sendable {
+  public enum RenderState: Codable, Equatable, Hashable, Sendable {
     /// The render state is unspecified.
     case unspecified
     /// All rendering operations have completed successfully.

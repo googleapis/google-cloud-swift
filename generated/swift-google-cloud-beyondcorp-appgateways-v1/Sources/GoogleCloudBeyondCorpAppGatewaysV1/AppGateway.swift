@@ -257,7 +257,7 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// TCP Proxy based BeyondCorp Connection. API will default to this if unset.
@@ -367,7 +367,7 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// AppGateway is being created.
@@ -507,7 +507,7 @@ public struct AppGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HostType: Codable, Equatable, Sendable {
+  public enum HostType: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// AppGateway hosted in a GCP regional managed instance group.

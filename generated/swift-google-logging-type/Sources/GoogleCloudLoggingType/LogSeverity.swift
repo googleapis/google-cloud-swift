@@ -37,7 +37,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LogSeverity: Codable, Equatable, Sendable {
+public enum LogSeverity: Codable, Equatable, Hashable, Sendable {
   /// (0) The log entry has no assigned severity level.
   case `default`
   /// (100) Debug or trace information.

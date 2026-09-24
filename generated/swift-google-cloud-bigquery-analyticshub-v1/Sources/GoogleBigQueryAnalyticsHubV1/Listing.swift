@@ -671,7 +671,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ReplicaState: Codable, Equatable, Sendable {
+      public enum ReplicaState: Codable, Equatable, Hashable, Sendable {
         /// Default value. This value is unused.
         case unspecified
         /// The replica is backfilled and ready to use.
@@ -789,7 +789,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum PrimaryState: Codable, Equatable, Sendable {
+      public enum PrimaryState: Codable, Equatable, Hashable, Sendable {
         /// Default value. This value is unused.
         case unspecified
         /// The replica is the primary replica.
@@ -1222,7 +1222,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum CommercialState: Codable, Equatable, Sendable {
+      public enum CommercialState: Codable, Equatable, Hashable, Sendable {
         /// Commercialization is incomplete and cannot be used.
         case unspecified
         /// Commercialization has been initialized.
@@ -1362,7 +1362,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Subscribable state. Users with dataexchange.listings.subscribe permission
@@ -1473,7 +1473,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Category: Codable, Equatable, Sendable {
+  public enum Category: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case others
     case advertisingAndMarketing

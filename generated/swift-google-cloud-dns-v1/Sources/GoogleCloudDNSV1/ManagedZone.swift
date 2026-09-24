@@ -202,7 +202,7 @@ public struct ManagedZone: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Visibility: Codable, Equatable, Sendable {
+  public enum Visibility: Codable, Equatable, Hashable, Sendable {
     /// Indicates that records in this zone can be queried from the public internet.
     case `public`
     /// Indicates that records in this zone cannot be queried from the public internet. Access to private zones depends on the zone configuration.

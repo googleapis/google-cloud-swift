@@ -112,7 +112,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Severity: Codable, Equatable, Sendable {
+    public enum Severity: Codable, Equatable, Hashable, Sendable {
       /// Critical severity.
       case critical
       /// High severity.
@@ -187,7 +187,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Risk type related to global DNS.
       case globalDns
       /// Default value. This value is unused.

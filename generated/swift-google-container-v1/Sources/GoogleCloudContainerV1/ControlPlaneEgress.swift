@@ -82,7 +82,7 @@ public struct ControlPlaneEgress: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mode: Codable, Equatable, Sendable {
+  public enum Mode: Codable, Equatable, Hashable, Sendable {
     /// Default value not specified.
     case unspecified
     /// Control plane has public IP and no restriction on egress.

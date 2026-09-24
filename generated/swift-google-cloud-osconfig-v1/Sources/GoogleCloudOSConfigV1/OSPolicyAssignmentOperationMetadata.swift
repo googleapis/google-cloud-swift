@@ -125,7 +125,7 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleWKT
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum APIMethod: Codable, Equatable, Sendable {
+  public enum APIMethod: Codable, Equatable, Hashable, Sendable {
     /// Invalid value
     case unspecified
     /// Create OS policy assignment API method
@@ -249,7 +249,7 @@ public struct OSPolicyAssignmentOperationMetadata: Codable, Equatable, GoogleWKT
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RolloutState: Codable, Equatable, Sendable {
+  public enum RolloutState: Codable, Equatable, Hashable, Sendable {
     /// Invalid value
     case unspecified
     /// The rollout is in progress.

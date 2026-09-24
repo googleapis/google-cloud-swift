@@ -134,7 +134,7 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageType: Codable, Equatable, Sendable {
+  public enum StorageType: Codable, Equatable, Hashable, Sendable {
     /// Storage type not specified.
     case unspecified
     /// Amazon S3 storage.

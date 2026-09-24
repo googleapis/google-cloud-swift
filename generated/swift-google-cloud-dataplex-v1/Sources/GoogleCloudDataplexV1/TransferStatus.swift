@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum TransferStatus: Codable, Equatable, Sendable {
+public enum TransferStatus: Codable, Equatable, Hashable, Sendable {
   /// The default value. It is set for resources that were not subject for
   /// migration from Data Catalog service.
   case unspecified

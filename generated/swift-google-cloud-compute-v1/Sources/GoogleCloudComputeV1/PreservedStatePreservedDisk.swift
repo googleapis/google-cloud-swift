@@ -104,7 +104,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AutoDelete: Codable, Equatable, Sendable {
+    public enum AutoDelete: Codable, Equatable, Hashable, Sendable {
       case never
       case onPermanentInstanceDeletion
       /// Encodes an unknown string value.
@@ -163,7 +163,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Attaches this disk in read-only mode. Multiple VM instances can use
       /// a disk in READ_ONLY mode at a time.
       case readOnly

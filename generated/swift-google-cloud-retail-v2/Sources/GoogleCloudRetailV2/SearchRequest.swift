@@ -1097,7 +1097,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// Disable Dynamic Facet.
@@ -1496,7 +1496,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Condition: Codable, Equatable, Sendable {
+    public enum Condition: Codable, Equatable, Hashable, Sendable {
       /// Unspecified query expansion condition. In this case, server behavior
       /// defaults to
       /// [Condition.DISABLED][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition.DISABLED].
@@ -1695,7 +1695,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Default value. In this case, server behavior defaults to
       /// [Mode.AUTO][google.cloud.retail.v2.SearchRequest.PersonalizationSpec.Mode.AUTO].
       ///
@@ -1891,7 +1891,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Unspecified spell correction mode. In this case, server behavior
       /// defaults to
       /// [Mode.AUTO][google.cloud.retail.v2.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
@@ -2416,7 +2416,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchMode: Codable, Equatable, Sendable {
+  public enum SearchMode: Codable, Equatable, Hashable, Sendable {
     /// Default value. In this case both product search and faceted search will
     /// be performed. Both
     /// [SearchResponse.SearchResult][google.cloud.retail.v2.SearchResponse.SearchResult]

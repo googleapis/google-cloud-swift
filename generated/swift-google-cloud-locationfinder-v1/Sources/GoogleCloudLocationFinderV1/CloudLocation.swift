@@ -155,7 +155,7 @@ public struct CloudLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CloudProvider: Codable, Equatable, Sendable {
+  public enum CloudProvider: Codable, Equatable, Hashable, Sendable {
     /// Unspecified type.
     case unspecified
     /// Cloud provider type for Google Cloud.
@@ -287,7 +287,7 @@ public struct CloudLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CloudLocationType: Codable, Equatable, Sendable {
+  public enum CloudLocationType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified type.
     case unspecified
     /// CloudLocation type for region.

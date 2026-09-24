@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum FallbackScope: Codable, Equatable, Sendable {
+public enum FallbackScope: Codable, Equatable, Hashable, Sendable {
   /// Unspecified scope type.
   case unspecified
   /// If set to `FALLBACK_SCOPE_PROJECT`, the API will fall back to using key's

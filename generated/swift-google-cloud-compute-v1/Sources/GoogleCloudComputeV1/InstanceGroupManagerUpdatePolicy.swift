@@ -191,7 +191,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InstanceRedistributionType: Codable, Equatable, Sendable {
+    public enum InstanceRedistributionType: Codable, Equatable, Hashable, Sendable {
       /// No action is being proactively performed in order to bring this IGM
       /// to its target instance distribution.
       case `none`
@@ -252,7 +252,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MinimalAction: Codable, Equatable, Sendable {
+    public enum MinimalAction: Codable, Equatable, Hashable, Sendable {
       /// Do not perform any action.
       case `none`
       /// Do not stop the instance.
@@ -323,7 +323,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MostDisruptiveAllowedAction: Codable, Equatable, Sendable {
+    public enum MostDisruptiveAllowedAction: Codable, Equatable, Hashable, Sendable {
       /// Do not perform any action.
       case `none`
       /// Do not stop the instance.
@@ -394,7 +394,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ReplacementMethod: Codable, Equatable, Sendable {
+    public enum ReplacementMethod: Codable, Equatable, Hashable, Sendable {
       /// Instances will be recreated (with the same name)
       case recreate
       /// Default option: instances will be deleted and created (with a new name)
@@ -454,7 +454,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// MIG will apply new configurations
       /// to existing VMs only when you selectively target specific or all VMs to
       /// be updated.

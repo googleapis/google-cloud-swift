@@ -287,7 +287,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Format: Codable, Equatable, Sendable {
+    public enum Format: Codable, Equatable, Hashable, Sendable {
       /// Unspecified format.
       case unspecified
       /// CSV format.
@@ -418,7 +418,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FeedbackLabelType: Codable, Equatable, Sendable {
+  public enum FeedbackLabelType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified format
     case unspecified
     /// Downloaded file will contain all Quality AI labels from the latest

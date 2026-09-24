@@ -101,7 +101,7 @@ public struct ManagedZoneDnsSecConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NonExistence: Codable, Equatable, Sendable {
+  public enum NonExistence: Codable, Equatable, Hashable, Sendable {
     /// Indicates that Cloud DNS will sign records in the managed zone according to RFC 4034 and respond with NSEC records for names that do not exist.
     case nsec
     /// Indicates that Cloud DNS will sign records in the managed zone according to RFC 5155 and respond with NSEC3 records for names that do not exist.
@@ -159,7 +159,7 @@ public struct ManagedZoneDnsSecConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// DNSSEC is disabled; the zone is not signed.
     case off
     /// DNSSEC is enabled; the zone is signed and fully managed.

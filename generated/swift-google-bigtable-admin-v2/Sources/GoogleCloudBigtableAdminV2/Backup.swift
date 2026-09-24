@@ -198,7 +198,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// The pending backup is still being created. Operations on the
@@ -316,7 +316,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackupType: Codable, Equatable, Sendable {
+  public enum BackupType: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// The default type for Cloud Bigtable managed backups. Supported for

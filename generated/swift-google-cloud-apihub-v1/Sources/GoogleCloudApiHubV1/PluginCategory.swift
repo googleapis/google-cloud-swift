@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum PluginCategory: Codable, Equatable, Sendable {
+public enum PluginCategory: Codable, Equatable, Hashable, Sendable {
   /// Default unspecified plugin type.
   case unspecified
   /// API_GATEWAY plugins represent plugins built for API Gateways like Apigee.

@@ -386,7 +386,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ImportMethod: Codable, Equatable, Sendable {
+  public enum ImportMethod: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
@@ -604,7 +604,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ImportJobState: Codable, Equatable, Sendable {
+  public enum ImportJobState: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// The wrapping key for this job is still being generated. It may not be

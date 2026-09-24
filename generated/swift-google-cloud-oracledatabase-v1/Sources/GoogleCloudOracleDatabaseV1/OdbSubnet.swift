@@ -127,7 +127,7 @@ public struct OdbSubnet: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Purpose: Codable, Equatable, Sendable {
+  public enum Purpose: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Subnet to be used for client connections.
@@ -244,7 +244,7 @@ public struct OdbSubnet: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Indicates that the resource is in provisioning state.

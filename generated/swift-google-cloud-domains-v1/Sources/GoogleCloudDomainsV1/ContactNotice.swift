@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ContactNotice: Codable, Equatable, Sendable {
+public enum ContactNotice: Codable, Equatable, Hashable, Sendable {
   /// The notice is undefined.
   case unspecified
   /// Required when setting the `privacy` field of `ContactSettings` to

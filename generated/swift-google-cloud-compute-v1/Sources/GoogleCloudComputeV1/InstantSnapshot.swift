@@ -310,7 +310,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Architecture: Codable, Equatable, Sendable {
+    public enum Architecture: Codable, Equatable, Hashable, Sendable {
       /// Default value indicating Architecture is not set.
       case unspecified
       /// Machines with architecture ARM64
@@ -375,7 +375,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// InstantSnapshot creation is in progress.
       case creating
       /// InstantSnapshot is currently being deleted.

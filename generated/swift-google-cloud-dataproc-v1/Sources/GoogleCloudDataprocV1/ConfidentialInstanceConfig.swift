@@ -106,7 +106,7 @@ public struct ConfidentialInstanceConfig: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConfidentialInstanceType: Codable, Equatable, Sendable {
+  public enum ConfidentialInstanceType: Codable, Equatable, Hashable, Sendable {
     /// Confidential Instance Type is not specified.
     case unspecified
     /// [AMD Secure Encrypted

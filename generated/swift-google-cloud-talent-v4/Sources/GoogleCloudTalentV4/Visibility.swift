@@ -26,7 +26,7 @@ import Foundation
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
 @available(*, deprecated)
-public enum Visibility: Codable, Equatable, Sendable {
+public enum Visibility: Codable, Equatable, Hashable, Sendable {
   /// Default value.
   case unspecified
   /// The resource is only visible to the GCP account who owns it.

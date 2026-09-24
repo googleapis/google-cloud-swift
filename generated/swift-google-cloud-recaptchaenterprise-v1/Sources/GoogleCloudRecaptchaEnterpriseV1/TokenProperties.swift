@@ -142,7 +142,7 @@ public struct TokenProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InvalidReason: Codable, Equatable, Sendable {
+  public enum InvalidReason: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified type.
     case unspecified
     /// If the failure reason was not accounted for.

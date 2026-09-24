@@ -243,7 +243,7 @@ public struct Input: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Input type is not specified.
     case unspecified
     /// Input will take an rtmp input stream.
@@ -360,7 +360,7 @@ public struct Input: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tier: Codable, Equatable, Sendable {
+  public enum Tier: Codable, Equatable, Hashable, Sendable {
     /// Tier is not specified.
     case unspecified
     /// Resolution < 1280x720. Bitrate <= 6 Mbps. FPS <= 60.

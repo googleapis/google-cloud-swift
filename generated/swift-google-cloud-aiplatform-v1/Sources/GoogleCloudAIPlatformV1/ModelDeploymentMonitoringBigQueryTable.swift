@@ -123,7 +123,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LogSource: Codable, Equatable, Sendable {
+    public enum LogSource: Codable, Equatable, Hashable, Sendable {
       /// Unspecified source.
       case unspecified
       /// Logs coming from Training dataset.
@@ -240,7 +240,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LogType: Codable, Equatable, Sendable {
+    public enum LogType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified type.
       case unspecified
       /// Predict logs.

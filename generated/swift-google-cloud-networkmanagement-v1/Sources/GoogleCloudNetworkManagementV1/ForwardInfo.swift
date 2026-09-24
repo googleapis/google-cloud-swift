@@ -99,7 +99,7 @@ public struct ForwardInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Target: Codable, Equatable, Sendable {
+  public enum Target: Codable, Equatable, Hashable, Sendable {
     /// Target not specified.
     case unspecified
     /// Forwarded to a VPC peering network.

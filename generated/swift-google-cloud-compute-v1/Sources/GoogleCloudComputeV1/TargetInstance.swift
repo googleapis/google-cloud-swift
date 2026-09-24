@@ -184,7 +184,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NatPolicy: Codable, Equatable, Sendable {
+    public enum NatPolicy: Codable, Equatable, Hashable, Sendable {
       /// No NAT performed.
       case noNat
       /// Encodes an unknown string value.

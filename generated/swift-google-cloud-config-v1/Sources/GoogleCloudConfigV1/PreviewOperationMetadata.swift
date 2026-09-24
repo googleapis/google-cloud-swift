@@ -109,7 +109,7 @@ public struct PreviewOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PreviewStep: Codable, Equatable, Sendable {
+  public enum PreviewStep: Codable, Equatable, Hashable, Sendable {
     /// Unspecified preview step.
     case unspecified
     /// Infra Manager is creating a Google Cloud Storage bucket to store

@@ -318,7 +318,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// SchemaType unspecified.
     case unspecified
     /// Boolean field.
@@ -527,7 +527,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mode: Codable, Equatable, Sendable {
+  public enum Mode: Codable, Equatable, Hashable, Sendable {
     /// Mode unspecified.
     case unspecified
     /// The field has required semantics.
@@ -651,7 +651,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PartitionStyle: Codable, Equatable, Sendable {
+  public enum PartitionStyle: Codable, Equatable, Hashable, Sendable {
     /// PartitionStyle unspecified
     case unspecified
     /// Partitions are hive-compatible.

@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ComputeModel: Codable, Equatable, Sendable {
+public enum ComputeModel: Codable, Equatable, Hashable, Sendable {
   /// Unspecified compute model.
   case unspecified
   /// Abstract measure of compute resources. ECPUs are based on the number of

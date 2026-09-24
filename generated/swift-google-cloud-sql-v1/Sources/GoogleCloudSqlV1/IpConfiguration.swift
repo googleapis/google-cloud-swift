@@ -228,7 +228,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SslMode: Codable, Equatable, Sendable {
+    public enum SslMode: Codable, Equatable, Hashable, Sendable {
       /// The SSL mode is unknown.
       case unspecified
       /// Allow non-SSL/non-TLS and SSL/TLS connections.
@@ -377,7 +377,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CaMode: Codable, Equatable, Sendable {
+    public enum CaMode: Codable, Equatable, Hashable, Sendable {
       /// CA mode is unspecified. It is effectively the same as
       /// `GOOGLE_MANAGED_INTERNAL_CA`.
       case unspecified
@@ -504,7 +504,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ServerCertificateRotationMode: Codable, Equatable, Sendable {
+    public enum ServerCertificateRotationMode: Codable, Equatable, Hashable, Sendable {
       /// Unspecified: no automatic server certificate rotation.
       case unspecified
       /// No automatic server certificate rotation. The user must [manage server

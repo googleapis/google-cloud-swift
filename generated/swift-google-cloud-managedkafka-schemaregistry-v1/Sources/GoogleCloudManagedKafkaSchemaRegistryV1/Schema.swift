@@ -187,7 +187,7 @@ public struct Schema: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SchemaType: Codable, Equatable, Sendable {
+  public enum SchemaType: Codable, Equatable, Hashable, Sendable {
     /// No schema type. The default will be AVRO.
     case unspecified
     /// Avro schema type.

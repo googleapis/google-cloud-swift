@@ -199,7 +199,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Format: Codable, Equatable, Sendable {
+    public enum Format: Codable, Equatable, Hashable, Sendable {
       /// Unspecified format.
       case unspecified
       /// Exports Data Objects in `JSONL` format.

@@ -216,7 +216,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EnforceOnKey: Codable, Equatable, Sendable {
+    public enum EnforceOnKey: Codable, Equatable, Hashable, Sendable {
       case all
       case asn
       case httpCookie

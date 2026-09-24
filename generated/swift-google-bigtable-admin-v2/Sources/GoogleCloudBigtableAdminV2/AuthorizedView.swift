@@ -300,7 +300,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResponseView: Codable, Equatable, Sendable {
+  public enum ResponseView: Codable, Equatable, Hashable, Sendable {
     /// Uses the default view for each method as documented in the request.
     case unspecified
     /// Only populates `name`.

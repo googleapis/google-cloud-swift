@@ -253,7 +253,7 @@ public struct ManagedFolder: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum IngestOnWrite: Codable, Equatable, Sendable {
+      public enum IngestOnWrite: Codable, Equatable, Hashable, Sendable {
         /// The behavior is not specified at this resource level.
         /// It should be inherited from the parent resource's configuration.
         /// This is the default value.

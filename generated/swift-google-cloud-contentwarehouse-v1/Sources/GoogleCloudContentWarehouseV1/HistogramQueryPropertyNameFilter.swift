@@ -122,7 +122,7 @@ public struct HistogramQueryPropertyNameFilter: Codable, Equatable, GoogleWKT._A
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HistogramYAxis: Codable, Equatable, Sendable {
+  public enum HistogramYAxis: Codable, Equatable, Hashable, Sendable {
     /// Count the documents per property name.
     case histogramYaxisDocument
     /// Count the properties per property name.

@@ -224,7 +224,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MatchMode: Codable, Equatable, Sendable {
+    public enum MatchMode: Codable, Equatable, Hashable, Sendable {
       /// Not specified.
       case unspecified
       /// Best for agents with a small number of examples in intents and/or wide
@@ -343,7 +343,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ApiVersion: Codable, Equatable, Sendable {
+    public enum ApiVersion: Codable, Equatable, Hashable, Sendable {
       /// Not specified.
       case unspecified
       /// Legacy V1 API.
@@ -467,7 +467,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Tier: Codable, Equatable, Sendable {
+    public enum Tier: Codable, Equatable, Hashable, Sendable {
       /// Not specified. This value should never be used.
       case unspecified
       /// Trial Edition, previously known as Standard Edition.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum OperationsInsightsState: Codable, Equatable, Sendable {
+public enum OperationsInsightsState: Codable, Equatable, Hashable, Sendable {
   /// Default unspecified value.
   case unspecified
   /// Enabling status for operation insights.

@@ -137,7 +137,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MetadataSchemaType: Codable, Equatable, Sendable {
+    public enum MetadataSchemaType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified type for the MetadataSchema.
       case unspecified
       /// A type indicating that the MetadataSchema will be used by Artifacts.

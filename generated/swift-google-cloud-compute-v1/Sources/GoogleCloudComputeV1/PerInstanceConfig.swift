@@ -126,7 +126,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The per-instance configuration is being applied to the instance, but is
       /// not yet effective, possibly waiting for the instance to, for example,REFRESH.
       case applying

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DependencyType: Codable, Equatable, Sendable {
+public enum DependencyType: Codable, Equatable, Hashable, Sendable {
   /// Dependency type unspecified.
   case unspecified
   /// Exact data copy without any change.

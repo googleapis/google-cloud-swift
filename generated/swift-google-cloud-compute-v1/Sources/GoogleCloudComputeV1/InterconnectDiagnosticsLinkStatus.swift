@@ -143,7 +143,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OperationalStatus: Codable, Equatable, Sendable {
+    public enum OperationalStatus: Codable, Equatable, Hashable, Sendable {
       /// The interface is unable to communicate with the remote end.
       case linkOperationalStatusDown
       /// The interface has low level communication with the remote end.

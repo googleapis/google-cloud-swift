@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ScaleType: Codable, Equatable, Sendable {
+public enum ScaleType: Codable, Equatable, Hashable, Sendable {
   /// Unspecified scale type.
   case unspecified
   /// Represents standard capacity and performance scale-type.

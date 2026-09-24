@@ -284,7 +284,7 @@ public struct PrivatePoolV1Config: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EgressOption: Codable, Equatable, Sendable {
+    public enum EgressOption: Codable, Equatable, Hashable, Sendable {
       /// If set, defaults to PUBLIC_EGRESS.
       case unspecified
       /// If set, workers are created without any public address, which prevents

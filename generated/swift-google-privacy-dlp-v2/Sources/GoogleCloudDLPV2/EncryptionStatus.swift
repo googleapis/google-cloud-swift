@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum EncryptionStatus: Codable, Equatable, Sendable {
+public enum EncryptionStatus: Codable, Equatable, Hashable, Sendable {
   /// Unused.
   case unspecified
   /// Google manages server-side encryption keys on your behalf.

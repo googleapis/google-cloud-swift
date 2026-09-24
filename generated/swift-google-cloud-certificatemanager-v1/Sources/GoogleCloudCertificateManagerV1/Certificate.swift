@@ -467,7 +467,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Reason: Codable, Equatable, Sendable {
+      public enum Reason: Codable, Equatable, Hashable, Sendable {
         /// Reason is unspecified.
         case unspecified
         /// Certificate provisioning failed due to an issue with one or more of
@@ -696,7 +696,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum State: Codable, Equatable, Sendable {
+      public enum State: Codable, Equatable, Hashable, Sendable {
         /// State is unspecified.
         case unspecified
         /// Certificate provisioning for this domain is under way. Google Cloud
@@ -823,7 +823,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum FailureReason: Codable, Equatable, Sendable {
+      public enum FailureReason: Codable, Equatable, Hashable, Sendable {
         /// FailureReason is unspecified.
         case unspecified
         /// There was a problem with the user's DNS or load balancer
@@ -962,7 +962,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// State is unspecified.
       case unspecified
       /// Certificate Manager attempts to provision or renew the certificate.
@@ -1103,7 +1103,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// Certificates with default scope are served from core Google data centers.
     /// If unsure, choose this option.
     case `default`

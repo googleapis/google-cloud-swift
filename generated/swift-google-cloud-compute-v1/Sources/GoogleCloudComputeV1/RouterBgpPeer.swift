@@ -323,7 +323,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AdvertiseMode: Codable, Equatable, Sendable {
+    public enum AdvertiseMode: Codable, Equatable, Hashable, Sendable {
       case custom
       case `default`
       /// Encodes an unknown string value.
@@ -381,7 +381,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AdvertisedGroups: Codable, Equatable, Sendable {
+    public enum AdvertisedGroups: Codable, Equatable, Hashable, Sendable {
       /// Advertise all available subnets (including peer VPC subnets).
       case allSubnets
       /// Encodes an unknown string value.
@@ -436,7 +436,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Enable: Codable, Equatable, Sendable {
+    public enum Enable: Codable, Equatable, Hashable, Sendable {
       case `false`
       case `true`
       /// Encodes an unknown string value.
@@ -494,7 +494,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ManagementType: Codable, Equatable, Sendable {
+    public enum ManagementType: Codable, Equatable, Hashable, Sendable {
       /// The BGP peer is automatically created for PARTNER type
       /// InterconnectAttachment; Google will automatically create/delete
       /// this BGP peer when the PARTNER InterconnectAttachment is

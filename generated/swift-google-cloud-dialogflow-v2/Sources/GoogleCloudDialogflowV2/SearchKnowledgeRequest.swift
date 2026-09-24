@@ -727,7 +727,7 @@
               ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
               ///   expecting specific values to remain unparsed; future releases may promote
               ///   them to named cases.
-              public enum AttributeType: Codable, Equatable, Sendable {
+              public enum AttributeType: Codable, Equatable, Hashable, Sendable {
                 /// Unspecified AttributeType.
                 case unspecified
                 /// The value of the numerical field will be used to dynamically
@@ -854,7 +854,7 @@
               ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
               ///   expecting specific values to remain unparsed; future releases may promote
               ///   them to named cases.
-              public enum InterpolationType: Codable, Equatable, Sendable {
+              public enum InterpolationType: Codable, Equatable, Hashable, Sendable {
                 /// Interpolation type is unspecified. In this case, it defaults to
                 /// Linear.
                 case unspecified
@@ -1114,7 +1114,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum QuerySource: Codable, Equatable, Sendable {
+    public enum QuerySource: Codable, Equatable, Hashable, Sendable {
       /// Unknown query source.
       case unspecified
       /// The query is from agents.

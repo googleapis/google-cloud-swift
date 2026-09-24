@@ -789,7 +789,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseEdition: Codable, Equatable, Sendable {
+  public enum DatabaseEdition: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Standard Database Edition
@@ -906,7 +906,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LicenseType: Codable, Equatable, Sendable {
+  public enum LicenseType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified
     case unspecified
     /// License included part of offer
@@ -1023,7 +1023,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MaintenanceScheduleType: Codable, Equatable, Sendable {
+  public enum MaintenanceScheduleType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// An EARLY maintenance schedule patches the database before
@@ -1141,7 +1141,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LocalDisasterRecoveryType: Codable, Equatable, Sendable {
+  public enum LocalDisasterRecoveryType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Autonomous Data Guard recovery.
@@ -1265,7 +1265,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataSafeState: Codable, Equatable, Sendable {
+  public enum DataSafeState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Registering data safe state.
@@ -1403,7 +1403,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseManagementState: Codable, Equatable, Sendable {
+  public enum DatabaseManagementState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Enabling Database Management state
@@ -1548,7 +1548,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OpenMode: Codable, Equatable, Sendable {
+  public enum OpenMode: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Read Only Mode
@@ -1665,7 +1665,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PermissionLevel: Codable, Equatable, Sendable {
+  public enum PermissionLevel: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Restricted mode allows access only by admin users.
@@ -1782,7 +1782,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RefreshableMode: Codable, Equatable, Sendable {
+  public enum RefreshableMode: Codable, Equatable, Hashable, Sendable {
     /// The default unspecified value.
     case unspecified
     /// AUTOMATIC indicates that the cloned database is automatically
@@ -1901,7 +1901,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RefreshableState: Codable, Equatable, Sendable {
+  public enum RefreshableState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Refreshing
@@ -2018,7 +2018,7 @@ public struct AutonomousDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Role: Codable, Equatable, Sendable {
+  public enum Role: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Primary role

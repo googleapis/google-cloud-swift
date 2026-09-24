@@ -166,7 +166,7 @@ public struct StreamingRecognizeResponse: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SpeechEventType: Codable, Equatable, Sendable {
+  public enum SpeechEventType: Codable, Equatable, Hashable, Sendable {
     /// No speech event specified.
     case unspecified
     /// This event indicates that the server has detected the end of the user's

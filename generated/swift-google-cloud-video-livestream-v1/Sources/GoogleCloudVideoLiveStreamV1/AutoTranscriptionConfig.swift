@@ -98,7 +98,7 @@ public struct AutoTranscriptionConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DisplayTiming: Codable, Equatable, Sendable {
+  public enum DisplayTiming: Codable, Equatable, Hashable, Sendable {
     /// Display timing is not specified. Caption display will be asynchronous by
     /// default.
     case unspecified
@@ -218,7 +218,7 @@ public struct AutoTranscriptionConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum QualityPreset: Codable, Equatable, Sendable {
+  public enum QualityPreset: Codable, Equatable, Hashable, Sendable {
     /// Quality Preset is not specified. By default, BALANCED_QUALITY will be
     /// used.
     case unspecified

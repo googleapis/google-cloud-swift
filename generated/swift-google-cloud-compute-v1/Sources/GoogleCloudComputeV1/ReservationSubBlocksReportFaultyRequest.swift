@@ -102,7 +102,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DisruptionSchedule: Codable, Equatable, Sendable {
+    public enum DisruptionSchedule: Codable, Equatable, Hashable, Sendable {
       case unspecified
       /// All VMs will be disrupted immediately.
       case immediate
@@ -161,7 +161,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FailureComponent: Codable, Equatable, Sendable {
+    public enum FailureComponent: Codable, Equatable, Hashable, Sendable {
       case unspecified
       /// Multiple hosts experienced the fault.
       case multipleFaultyHosts

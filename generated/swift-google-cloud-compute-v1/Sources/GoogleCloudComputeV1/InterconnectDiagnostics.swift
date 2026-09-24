@@ -126,7 +126,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BundleAggregationType: Codable, Equatable, Sendable {
+    public enum BundleAggregationType: Codable, Equatable, Hashable, Sendable {
       /// LACP is enabled.
       case lacp
       /// LACP is disabled.
@@ -186,7 +186,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BundleOperationalStatus: Codable, Equatable, Sendable {
+    public enum BundleOperationalStatus: Codable, Equatable, Hashable, Sendable {
       /// If bundleAggregationType is LACP: LACP is not established and/or all
       /// links in the bundle have DOWN operational status. If
       /// bundleAggregationType is STATIC: one or more links in the bundle has

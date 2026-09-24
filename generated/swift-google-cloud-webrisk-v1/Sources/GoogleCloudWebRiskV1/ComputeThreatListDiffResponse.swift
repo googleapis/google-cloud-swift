@@ -201,7 +201,7 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResponseType: Codable, Equatable, Sendable {
+  public enum ResponseType: Codable, Equatable, Hashable, Sendable {
     /// Unknown.
     case unspecified
     /// Partial updates are applied to the client's existing local database.

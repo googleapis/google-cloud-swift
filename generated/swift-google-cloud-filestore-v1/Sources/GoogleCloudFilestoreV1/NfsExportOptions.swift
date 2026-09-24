@@ -138,7 +138,7 @@ public struct NfsExportOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AccessMode: Codable, Equatable, Sendable {
+  public enum AccessMode: Codable, Equatable, Hashable, Sendable {
     /// AccessMode not set.
     case unspecified
     /// The client can only read the file share.
@@ -255,7 +255,7 @@ public struct NfsExportOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SquashMode: Codable, Equatable, Sendable {
+  public enum SquashMode: Codable, Equatable, Hashable, Sendable {
     /// SquashMode not set.
     case unspecified
     /// The Root user has root access to the file share (default).

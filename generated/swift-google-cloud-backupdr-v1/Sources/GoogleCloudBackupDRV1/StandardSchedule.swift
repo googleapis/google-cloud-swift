@@ -184,7 +184,7 @@ public struct StandardSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RecurrenceType: Codable, Equatable, Sendable {
+  public enum RecurrenceType: Codable, Equatable, Hashable, Sendable {
     /// recurrence type not set
     case unspecified
     /// The `BackupRule` is to be applied hourly.

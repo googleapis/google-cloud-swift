@@ -118,7 +118,7 @@ public struct GoldengateDeploymentLock: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LockType: Codable, Equatable, Sendable {
+  public enum LockType: Codable, Equatable, Hashable, Sendable {
     /// The lock type is unspecified.
     case unspecified
     /// The lock type is full.

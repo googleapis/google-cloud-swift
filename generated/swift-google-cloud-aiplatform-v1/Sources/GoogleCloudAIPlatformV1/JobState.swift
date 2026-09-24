@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JobState: Codable, Equatable, Sendable {
+  public enum JobState: Codable, Equatable, Hashable, Sendable {
     /// The job state is unspecified.
     case unspecified
     /// The job has been just created or resumed and processing has not yet begun.

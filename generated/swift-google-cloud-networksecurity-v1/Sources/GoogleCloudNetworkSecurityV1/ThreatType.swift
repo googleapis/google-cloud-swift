@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ThreatType: Codable, Equatable, Sendable {
+public enum ThreatType: Codable, Equatable, Hashable, Sendable {
   /// Type of threat not specified.
   case unspecified
   /// Type of threat is not derivable from threat ID. An override will be

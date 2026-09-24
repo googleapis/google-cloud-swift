@@ -133,7 +133,7 @@ public struct BatchCreateInstanceStatus: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the instance is unknown.
     case unspecified
     /// Instance is pending creation and has not yet been picked up for

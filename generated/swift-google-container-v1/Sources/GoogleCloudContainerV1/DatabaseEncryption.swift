@@ -209,7 +209,7 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Should never be set
     case unknown
     /// Secrets in etcd are encrypted.
@@ -337,7 +337,7 @@ public struct DatabaseEncryption: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CurrentState: Codable, Equatable, Sendable {
+  public enum CurrentState: Codable, Equatable, Hashable, Sendable {
     /// Should never be set
     case unspecified
     /// Secrets in etcd are stored in plain text (at etcd level) - this is

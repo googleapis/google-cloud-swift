@@ -217,7 +217,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Persona: Codable, Equatable, Sendable {
+    public enum Persona: Codable, Equatable, Hashable, Sendable {
       /// UNKNOWN persona.
       case unknown
       /// The agent keeps the responses concise and to the point
@@ -539,7 +539,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Modality: Codable, Equatable, Sendable {
+    public enum Modality: Codable, Equatable, Hashable, Sendable {
       /// Unknown modality.
       case unspecified
       /// Widget supports both chat and voice input.
@@ -670,7 +670,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Theme: Codable, Equatable, Sendable {
+    public enum Theme: Codable, Equatable, Hashable, Sendable {
       /// Unknown theme.
       case unspecified
       /// Light theme.
@@ -1006,7 +1006,7 @@ public struct ChannelProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ChannelType: Codable, Equatable, Sendable {
+  public enum ChannelType: Codable, Equatable, Hashable, Sendable {
     /// Unknown channel type.
     case unknown
     /// Web UI channel.

@@ -148,7 +148,7 @@ public struct NodePoolAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LocationPolicy: Codable, Equatable, Sendable {
+  public enum LocationPolicy: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// BALANCED is a best effort policy that aims to balance the sizes of

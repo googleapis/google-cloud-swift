@@ -349,7 +349,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AddressType: Codable, Equatable, Sendable {
+    public enum AddressType: Codable, Equatable, Hashable, Sendable {
       /// A publicly visible external IP address.
       case external
       /// A private network IP address, for use with an Instance or Internal Load
@@ -414,7 +414,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IpVersion: Codable, Equatable, Sendable {
+    public enum IpVersion: Codable, Equatable, Hashable, Sendable {
       case ipv4
       case ipv6
       case unspecifiedVersion
@@ -476,7 +476,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6EndpointType: Codable, Equatable, Sendable {
+    public enum Ipv6EndpointType: Codable, Equatable, Hashable, Sendable {
       /// Reserved IPv6 address can be used on network load balancer.
       case netlb
       /// Reserved IPv6 address can be used on VM.
@@ -536,7 +536,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NetworkTier: Codable, Equatable, Sendable {
+    public enum NetworkTier: Codable, Equatable, Hashable, Sendable {
       /// Public internet quality with fixed bandwidth.
       case fixedStandard
       /// High quality, Google-grade network tier, support for all networking
@@ -610,7 +610,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Purpose: Codable, Equatable, Sendable {
+    public enum Purpose: Codable, Equatable, Hashable, Sendable {
       /// DNS resolver address in the subnetwork.
       case dnsResolver
       /// VM internal/alias IP, Internal LB service IP, etc.
@@ -708,7 +708,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// Address is being used by another resource and is not available.
       case inUse
       /// Address is reserved and available to use.

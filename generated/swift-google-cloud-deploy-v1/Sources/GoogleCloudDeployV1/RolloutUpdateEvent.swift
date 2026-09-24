@@ -150,7 +150,7 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RolloutUpdateType: Codable, Equatable, Sendable {
+  public enum RolloutUpdateType: Codable, Equatable, Hashable, Sendable {
     /// Rollout update type unspecified.
     case unspecified
     /// rollout state updated to pending.

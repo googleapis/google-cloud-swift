@@ -93,7 +93,7 @@ public struct AirflowMetadataRetentionPolicyConfig: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RetentionMode: Codable, Equatable, Sendable {
+  public enum RetentionMode: Codable, Equatable, Hashable, Sendable {
     /// Default mode doesn't change environment parameters.
     case unspecified
     /// Retention policy is enabled.

@@ -274,7 +274,7 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PluggableDatabaseLifecycleState: Codable, Equatable, Sendable {
+  public enum PluggableDatabaseLifecycleState: Codable, Equatable, Hashable, Sendable {
     /// The lifecycle state is unspecified.
     case unspecified
     /// The pluggable database is provisioning.
@@ -469,7 +469,7 @@ public struct PluggableDatabaseProperties: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OperationsInsightsState: Codable, Equatable, Sendable {
+  public enum OperationsInsightsState: Codable, Equatable, Hashable, Sendable {
     /// The status is not specified.
     case unspecified
     /// Operations Insights is enabling.

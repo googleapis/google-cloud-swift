@@ -288,7 +288,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackVector: Codable, Equatable, Sendable {
+  public enum AttackVector: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Attack Vector: Network (AV:N). Defined in CVSS v2, v3, v4.
@@ -419,7 +419,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackComplexity: Codable, Equatable, Sendable {
+  public enum AttackComplexity: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Low attack complexity (AC:L). Defined in CVSS v2, v3, v4.
@@ -543,7 +543,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Authentication: Codable, Equatable, Sendable {
+  public enum Authentication: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Multiple authentication required (Au:M). Defined in CVSS v2.
@@ -667,7 +667,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PrivilegesRequired: Codable, Equatable, Sendable {
+  public enum PrivilegesRequired: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// No privileges required (PR:N). Defined in CVSS v3, v4.
@@ -791,7 +791,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UserInteraction: Codable, Equatable, Sendable {
+  public enum UserInteraction: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// No user interaction required (UI:N). Defined in CVSS v3, v4.
@@ -922,7 +922,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Scope: Unchanged (S:U). Defined in CVSS v3.
@@ -1039,7 +1039,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Impact: Codable, Equatable, Sendable {
+  public enum Impact: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// High impact (H). Defined in CVSS v3, v4.
@@ -1177,7 +1177,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackRequirements: Codable, Equatable, Sendable {
+  public enum AttackRequirements: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// No attack requirements (AT:N). Defined in CVSS v4.
@@ -1294,7 +1294,7 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExploitMaturity: Codable, Equatable, Sendable {
+  public enum ExploitMaturity: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Exploit maturity: Not defined (E:X). Defined in CVSS v4.

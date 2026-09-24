@@ -278,7 +278,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DestNetworkContext: Codable, Equatable, Sendable {
+    public enum DestNetworkContext: Codable, Equatable, Hashable, Sendable {
       case internet
       case intraVpc
       case nonInternet
@@ -348,7 +348,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DestNetworkType: Codable, Equatable, Sendable {
+    public enum DestNetworkType: Codable, Equatable, Hashable, Sendable {
       case internet
       case intraVpc
       case nonInternet
@@ -418,7 +418,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SrcNetworkContext: Codable, Equatable, Sendable {
+    public enum SrcNetworkContext: Codable, Equatable, Hashable, Sendable {
       case internet
       case intraVpc
       case nonInternet
@@ -488,7 +488,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SrcNetworkType: Codable, Equatable, Sendable {
+    public enum SrcNetworkType: Codable, Equatable, Hashable, Sendable {
       case internet
       case intraVpc
       case nonInternet

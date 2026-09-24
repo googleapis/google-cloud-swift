@@ -228,7 +228,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CurrentAction: Codable, Equatable, Sendable {
+    public enum CurrentAction: Codable, Equatable, Hashable, Sendable {
       /// The managed instance group is abandoning this instance. The instance
       /// will be removed from the instance group and from any target pools that
       /// are associated with this group.
@@ -360,7 +360,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InstanceStatus: Codable, Equatable, Sendable {
+    public enum InstanceStatus: Codable, Equatable, Hashable, Sendable {
       /// The instance is halted and we are performing tear down tasks like network
       /// deprogramming, releasing quota, IP, tearing down disks etc.
       case deprovisioning
@@ -474,7 +474,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TargetStatus: Codable, Equatable, Sendable {
+    public enum TargetStatus: Codable, Equatable, Hashable, Sendable {
       /// The managed instance will eventually be ABANDONED, i.e. dissociated
       /// from the managed instance group.
       case abandoned

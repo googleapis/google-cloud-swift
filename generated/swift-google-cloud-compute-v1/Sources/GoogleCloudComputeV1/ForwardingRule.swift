@@ -737,7 +737,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IPProtocol: Codable, Equatable, Sendable {
+    public enum IPProtocol: Codable, Equatable, Hashable, Sendable {
       case ah
       case esp
       case icmp
@@ -815,7 +815,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ExternalManagedBackendBucketMigrationState: Codable, Equatable, Sendable {
+    public enum ExternalManagedBackendBucketMigrationState: Codable, Equatable, Hashable, Sendable {
       case prepare
       case testAllTraffic
       case testByPercentage
@@ -877,7 +877,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IpVersion: Codable, Equatable, Sendable {
+    public enum IpVersion: Codable, Equatable, Hashable, Sendable {
       case ipv4
       case ipv6
       case unspecifiedVersion
@@ -939,7 +939,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LoadBalancingScheme: Codable, Equatable, Sendable {
+    public enum LoadBalancingScheme: Codable, Equatable, Hashable, Sendable {
       case external
       case externalManaged
       case `internal`
@@ -1013,7 +1013,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NetworkTier: Codable, Equatable, Sendable {
+    public enum NetworkTier: Codable, Equatable, Hashable, Sendable {
       /// Public internet quality with fixed bandwidth.
       case fixedStandard
       /// High quality, Google-grade network tier, support for all networking
@@ -1087,7 +1087,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PscConnectionStatus: Codable, Equatable, Sendable {
+    public enum PscConnectionStatus: Codable, Equatable, Hashable, Sendable {
       /// The connection has been accepted by the producer.
       case accepted
       /// The connection has been closed by the producer and will not serve traffic

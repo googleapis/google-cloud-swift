@@ -90,7 +90,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Op: Codable, Equatable, Sendable {
+    public enum Op: Codable, Equatable, Hashable, Sendable {
       /// The operator matches if the field value contains the specified
       /// value.
       case contains

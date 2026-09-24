@@ -151,7 +151,7 @@ public struct LoggingServer: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Protocol_: Codable, Equatable, Sendable {
+  public enum Protocol_: Codable, Equatable, Hashable, Sendable {
     /// Unspecified communications protocol. This is the default value.
     case unspecified
     /// UDP
@@ -289,7 +289,7 @@ public struct LoggingServer: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SourceType: Codable, Equatable, Sendable {
+  public enum SourceType: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value should never be used.
     case unspecified
     /// Logs produced by ESXI hosts

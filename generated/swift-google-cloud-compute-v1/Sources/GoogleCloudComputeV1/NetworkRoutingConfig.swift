@@ -141,7 +141,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BgpBestPathSelectionMode: Codable, Equatable, Sendable {
+    public enum BgpBestPathSelectionMode: Codable, Equatable, Hashable, Sendable {
       case legacy
       case standard
       /// Encodes an unknown string value.
@@ -199,7 +199,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BgpInterRegionCost: Codable, Equatable, Sendable {
+    public enum BgpInterRegionCost: Codable, Equatable, Hashable, Sendable {
       case addCostToMed
       case `default`
       /// Encodes an unknown string value.
@@ -257,7 +257,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EffectiveBgpInterRegionCost: Codable, Equatable, Sendable {
+    public enum EffectiveBgpInterRegionCost: Codable, Equatable, Hashable, Sendable {
       case addCostToMed
       case `default`
       /// Encodes an unknown string value.
@@ -315,7 +315,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RoutingMode: Codable, Equatable, Sendable {
+    public enum RoutingMode: Codable, Equatable, Hashable, Sendable {
       case global
       case regional
       /// Encodes an unknown string value.

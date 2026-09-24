@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum PlotMode: Codable, Equatable, Sendable {
+public enum PlotMode: Codable, Equatable, Hashable, Sendable {
   /// Plot mode is not specified.
   case unspecified
   /// Plot mode is points.

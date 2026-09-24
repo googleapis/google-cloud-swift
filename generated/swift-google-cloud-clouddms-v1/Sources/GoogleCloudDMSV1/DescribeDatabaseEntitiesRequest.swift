@@ -158,7 +158,7 @@ public struct DescribeDatabaseEntitiesRequest: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DBTreeType: Codable, Equatable, Sendable {
+  public enum DBTreeType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified tree type.
     case unspecified
     /// The source database tree.

@@ -509,7 +509,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NetworkType: Codable, Equatable, Sendable {
+  public enum NetworkType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. The test will analyze all possible IP address locations.
     /// This might take longer and produce inaccurate or ambiguous results, so
     /// prefer specifying an explicit network type.
@@ -650,7 +650,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ForwardingRuleTarget: Codable, Equatable, Sendable {
+  public enum ForwardingRuleTarget: Codable, Equatable, Hashable, Sendable {
     /// Forwarding rule target is unknown.
     case unspecified
     /// Compute Engine instance for protocol forwarding.

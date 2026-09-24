@@ -307,7 +307,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ApprovalState: Codable, Equatable, Sendable {
+  public enum ApprovalState: Codable, Equatable, Hashable, Sendable {
     /// The `Rollout` has an unspecified approval state.
     case unspecified
     /// The `Rollout` requires approval.
@@ -438,7 +438,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The `Rollout` has an unspecified state.
     case unspecified
     /// The `Rollout` has completed successfully.
@@ -612,7 +612,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FailureCause: Codable, Equatable, Sendable {
+  public enum FailureCause: Codable, Equatable, Hashable, Sendable {
     /// No reason for failure is specified.
     case unspecified
     /// Cloud Build is not available, either because it is not enabled or because

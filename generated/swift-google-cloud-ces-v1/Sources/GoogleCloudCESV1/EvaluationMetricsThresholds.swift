@@ -306,7 +306,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SemanticSimilarityChannel: Codable, Equatable, Sendable {
+      public enum SemanticSimilarityChannel: Codable, Equatable, Hashable, Sendable {
         /// Metric unspecified. Defaults to TEXT.
         case unspecified
         /// Use text semantic similarity.
@@ -584,7 +584,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ExtraToolCallBehavior: Codable, Equatable, Sendable {
+    public enum ExtraToolCallBehavior: Codable, Equatable, Hashable, Sendable {
       /// Unspecified behavior. Defaults to FAIL.
       case unspecified
       /// Fail the evaluation if an extra tool call is encountered.
@@ -715,7 +715,7 @@ public struct EvaluationMetricsThresholds: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HallucinationMetricBehavior: Codable, Equatable, Sendable {
+  public enum HallucinationMetricBehavior: Codable, Equatable, Hashable, Sendable {
     /// Unspecified hallucination metric behavior.
     case unspecified
     /// Disable hallucination metric.

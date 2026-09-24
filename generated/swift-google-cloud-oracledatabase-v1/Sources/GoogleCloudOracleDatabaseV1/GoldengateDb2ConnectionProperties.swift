@@ -214,7 +214,7 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleWKT._
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Db2SecurityProtocol: Codable, Equatable, Sendable {
+  public enum Db2SecurityProtocol: Codable, Equatable, Hashable, Sendable {
     /// Security protocol not specified.
     case unspecified
     /// Plain text communication.

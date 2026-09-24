@@ -95,7 +95,7 @@ public struct Session: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Version: Codable, Equatable, Sendable {
+  public enum Version: Codable, Equatable, Hashable, Sendable {
     /// Unspecified version. If passed on creation, the session will default
     /// to using the latest stable release.
     case unspecified

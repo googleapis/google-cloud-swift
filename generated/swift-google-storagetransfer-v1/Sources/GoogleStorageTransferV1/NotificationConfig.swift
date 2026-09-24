@@ -142,7 +142,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EventType: Codable, Equatable, Sendable {
+  public enum EventType: Codable, Equatable, Hashable, Sendable {
     /// Illegal value, to avoid allowing a default.
     case unspecified
     /// `TransferOperation` completed with status
@@ -275,7 +275,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PayloadFormat: Codable, Equatable, Sendable {
+  public enum PayloadFormat: Codable, Equatable, Hashable, Sendable {
     /// Illegal value, to avoid allowing a default.
     case unspecified
     /// No payload is included with the notification.

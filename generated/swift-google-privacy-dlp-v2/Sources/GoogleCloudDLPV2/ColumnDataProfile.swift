@@ -263,7 +263,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// The profile is currently running. Once a profile has finished it will
@@ -383,7 +383,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ColumnDataType: Codable, Equatable, Sendable {
+  public enum ColumnDataType: Codable, Equatable, Hashable, Sendable {
     /// Invalid type.
     case unspecified
     /// Encoded as a string in decimal format.
@@ -613,7 +613,7 @@ public struct ColumnDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ColumnPolicyState: Codable, Equatable, Sendable {
+  public enum ColumnPolicyState: Codable, Equatable, Hashable, Sendable {
     /// No policy tags.
     case unspecified
     /// Column has policy tag applied.

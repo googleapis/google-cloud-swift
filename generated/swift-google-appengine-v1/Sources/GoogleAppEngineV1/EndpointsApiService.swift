@@ -131,7 +131,7 @@ public struct EndpointsApiService: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RolloutStrategy: Codable, Equatable, Sendable {
+  public enum RolloutStrategy: Codable, Equatable, Hashable, Sendable {
     /// Not specified. Defaults to `FIXED`.
     case unspecifiedRolloutStrategy
     /// Endpoints service configuration ID will be fixed to the configuration ID

@@ -27,7 +27,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum EncodingType: Codable, Equatable, Sendable {
+public enum EncodingType: Codable, Equatable, Hashable, Sendable {
   /// If `EncodingType` is not specified, encoding-dependent information (such as
   /// `begin_offset`) will be set at `-1`.
   case `none`

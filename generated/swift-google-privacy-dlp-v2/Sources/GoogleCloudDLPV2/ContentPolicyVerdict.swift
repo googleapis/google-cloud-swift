@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ContentPolicyVerdict: Codable, Equatable, Sendable {
+public enum ContentPolicyVerdict: Codable, Equatable, Hashable, Sendable {
   /// Not used.
   case unspecified
   /// The policy allows the provided content to be used.

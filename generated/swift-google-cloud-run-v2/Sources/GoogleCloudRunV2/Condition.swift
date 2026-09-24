@@ -167,7 +167,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is omitted.
     case unspecified
     /// Transient state: Reconciliation has not started yet.
@@ -298,7 +298,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Severity: Codable, Equatable, Sendable {
+  public enum Severity: Codable, Equatable, Hashable, Sendable {
     /// Unspecified severity
     case unspecified
     /// Error severity.
@@ -422,7 +422,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CommonReason: Codable, Equatable, Sendable {
+  public enum CommonReason: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case undefined
     /// Reason unknown. Further details will be in message.
@@ -634,7 +634,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RevisionReason: Codable, Equatable, Sendable {
+  public enum RevisionReason: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case undefined
     /// Revision in Pending state.
@@ -829,7 +829,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExecutionReason: Codable, Equatable, Sendable {
+  public enum ExecutionReason: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case undefined
     /// Internal system error getting execution status. System will retry.

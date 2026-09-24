@@ -280,7 +280,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VersionFormat: Codable, Equatable, Sendable {
+  public enum VersionFormat: Codable, Equatable, Hashable, Sendable {
     /// An unspecified format version that will default to V2.
     case unspecified
     /// `LogEntry` version 2 format.

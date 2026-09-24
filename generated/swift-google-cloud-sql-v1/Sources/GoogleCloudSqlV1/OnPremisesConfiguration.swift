@@ -187,7 +187,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SslOption: Codable, Equatable, Sendable {
+    public enum SslOption: Codable, Equatable, Hashable, Sendable {
       /// Unknown SSL option i.e. SSL option not specified by user.
       case unspecified
       /// SSL is not used for replica connection to the on-premises source.

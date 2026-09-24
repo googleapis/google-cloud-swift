@@ -169,7 +169,7 @@ public struct LocationFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TelecommutePreference: Codable, Equatable, Sendable {
+  public enum TelecommutePreference: Codable, Equatable, Hashable, Sendable {
     /// Default value if the telecommute preference isn't specified.
     case unspecified
     /// Deprecated: Ignore telecommute status of jobs. Use

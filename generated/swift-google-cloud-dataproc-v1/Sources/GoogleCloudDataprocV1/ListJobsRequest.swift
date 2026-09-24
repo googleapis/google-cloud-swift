@@ -159,7 +159,7 @@ public struct ListJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JobStateMatcher: Codable, Equatable, Sendable {
+  public enum JobStateMatcher: Codable, Equatable, Hashable, Sendable {
     /// Match all jobs, regardless of state.
     case all
     /// Only match jobs in non-terminal states: PENDING, RUNNING, or

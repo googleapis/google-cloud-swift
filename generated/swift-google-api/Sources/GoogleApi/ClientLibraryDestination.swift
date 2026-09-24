@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ClientLibraryDestination: Codable, Equatable, Sendable {
+public enum ClientLibraryDestination: Codable, Equatable, Hashable, Sendable {
   /// Client libraries will neither be generated nor published to package
   /// managers.
   case unspecified

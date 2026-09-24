@@ -83,7 +83,7 @@ public struct LoggingComponentConfig: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Component: Codable, Equatable, Sendable {
+  public enum Component: Codable, Equatable, Hashable, Sendable {
     /// No component is specified
     case unspecified
     /// This indicates that system logging components is enabled.

@@ -161,7 +161,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HealthState: Codable, Equatable, Sendable {
+    public enum HealthState: Codable, Equatable, Hashable, Sendable {
       case healthy
       case unhealthy
       /// Encodes an unknown string value.
@@ -219,7 +219,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6HealthState: Codable, Equatable, Sendable {
+    public enum Ipv6HealthState: Codable, Equatable, Hashable, Sendable {
       case healthy
       case unhealthy
       /// Encodes an unknown string value.
@@ -277,7 +277,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum WeightError: Codable, Equatable, Sendable {
+    public enum WeightError: Codable, Equatable, Hashable, Sendable {
       /// The response to a Health Check probe had the HTTP response header field
       /// X-Load-Balancing-Endpoint-Weight, but its content was invalid (i.e., not
       /// a non-negative single-precision floating-point number in decimal string

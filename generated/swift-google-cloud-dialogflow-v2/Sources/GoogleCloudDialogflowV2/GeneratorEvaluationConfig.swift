@@ -435,7 +435,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SummaryGenerationOption: Codable, Equatable, Sendable {
+      public enum SummaryGenerationOption: Codable, Equatable, Hashable, Sendable {
         /// Default option will not be used
         case unspecified
         /// Always Generate summary for all conversations.
@@ -709,7 +709,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InputDataSourceType: Codable, Equatable, Sendable {
+    public enum InputDataSourceType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified InputDataSourceType. Should not be used.
       case unspecified
       /// Fetch data from Agent Assist storage. If this source type is chosen,

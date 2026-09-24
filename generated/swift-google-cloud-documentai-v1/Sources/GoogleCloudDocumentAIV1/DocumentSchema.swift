@@ -415,7 +415,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum OccurrenceType: Codable, Equatable, Sendable {
+      public enum OccurrenceType: Codable, Equatable, Hashable, Sendable {
         /// Unspecified occurrence type.
         case unspecified
         /// There will be zero or one instance of this entity type.  The same
@@ -548,7 +548,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Method: Codable, Equatable, Sendable {
+      public enum Method: Codable, Equatable, Hashable, Sendable {
         /// Unspecified method. It defaults to `EXTRACT`.
         case unspecified
         /// The entity's value is directly extracted as-is from the document

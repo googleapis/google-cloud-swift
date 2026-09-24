@@ -143,7 +143,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AddressMode: Codable, Equatable, Sendable {
+  public enum AddressMode: Codable, Equatable, Hashable, Sendable {
     /// Internet protocol not set.
     case unspecified
     /// Use the IPv4 internet protocol.
@@ -253,7 +253,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConnectMode: Codable, Equatable, Sendable {
+  public enum ConnectMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Connect via direct peering to the Filestore service.

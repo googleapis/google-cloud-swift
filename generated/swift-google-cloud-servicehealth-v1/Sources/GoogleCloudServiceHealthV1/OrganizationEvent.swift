@@ -214,7 +214,7 @@ public struct OrganizationEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EventCategory: Codable, Equatable, Sendable {
+  public enum EventCategory: Codable, Equatable, Hashable, Sendable {
     /// Unspecified category.
     case unspecified
     /// Event category for service outage or degradation.
@@ -325,7 +325,7 @@ public struct OrganizationEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DetailedCategory: Codable, Equatable, Sendable {
+  public enum DetailedCategory: Codable, Equatable, Hashable, Sendable {
     /// Unspecified detailed category.
     case unspecified
     /// Indicates an event with category INCIDENT has a confirmed impact to at
@@ -445,7 +445,7 @@ public struct OrganizationEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified state.
     case unspecified
     /// Event is actively affecting a Google Cloud product and will continue to
@@ -565,7 +565,7 @@ public struct OrganizationEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DetailedState: Codable, Equatable, Sendable {
+  public enum DetailedState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified detail state.
     case unspecified
     /// Google engineers are actively investigating the incident to determine the

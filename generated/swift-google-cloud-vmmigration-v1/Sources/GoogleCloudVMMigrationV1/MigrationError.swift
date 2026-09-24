@@ -117,7 +117,7 @@ public struct MigrationError: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ErrorCode: Codable, Equatable, Sendable {
+  public enum ErrorCode: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is not used.
     case unspecified
     /// Migrate to Virtual Machines encountered an unknown error.

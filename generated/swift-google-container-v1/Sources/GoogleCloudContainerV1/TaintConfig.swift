@@ -82,7 +82,7 @@ public struct TaintConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ArchitectureTaintBehavior: Codable, Equatable, Sendable {
+  public enum ArchitectureTaintBehavior: Codable, Equatable, Hashable, Sendable {
     /// Specifies that the behavior is unspecified, defaults to ARM.
     case unspecified
     /// Disables default architecture taints on the node pool.

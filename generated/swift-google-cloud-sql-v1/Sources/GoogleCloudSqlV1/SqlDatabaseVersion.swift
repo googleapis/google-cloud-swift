@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlDatabaseVersion: Codable, Equatable, Sendable {
+  public enum SqlDatabaseVersion: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown database version.
     case unspecified
     /// The database version is MySQL 5.1.

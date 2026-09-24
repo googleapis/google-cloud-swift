@@ -122,7 +122,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AcceleratorTopologyMode: Codable, Equatable, Sendable {
+    public enum AcceleratorTopologyMode: Codable, Equatable, Hashable, Sendable {
       /// The interconnected chips are pre-configured at the time of VM creation.
       case autoConnect
       /// The interconnected chips are connected on demand. At the time of VM
@@ -183,7 +183,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Collocation: Codable, Equatable, Sendable {
+    public enum Collocation: Codable, Equatable, Hashable, Sendable {
       case collocated
       case unspecifiedCollocation
       /// Encodes an unknown string value.

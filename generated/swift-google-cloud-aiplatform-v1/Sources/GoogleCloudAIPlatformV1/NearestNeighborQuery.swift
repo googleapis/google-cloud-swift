@@ -442,7 +442,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Operator: Codable, Equatable, Sendable {
+      public enum Operator: Codable, Equatable, Hashable, Sendable {
         /// Unspecified operator.
         case unspecified
         /// Entities are eligible if their value is < the query's.

@@ -442,7 +442,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ModelRoutingPreference: Codable, Equatable, Sendable {
+        public enum ModelRoutingPreference: Codable, Equatable, Hashable, Sendable {
           /// Unspecified model routing preference.
           case unknown
           /// Prefer higher quality over low cost.
@@ -739,7 +739,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ThinkingLevel: Codable, Equatable, Sendable {
+      public enum ThinkingLevel: Codable, Equatable, Hashable, Sendable {
         /// Unspecified thinking level.
         case unspecified
         /// Low thinking level.
@@ -881,7 +881,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Modality: Codable, Equatable, Sendable {
+    public enum Modality: Codable, Equatable, Hashable, Sendable {
       /// Unspecified modality. Will be processed as text.
       case unspecified
       /// Text modality.
@@ -1005,7 +1005,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MediaResolution: Codable, Equatable, Sendable {
+    public enum MediaResolution: Codable, Equatable, Hashable, Sendable {
       /// Media resolution has not been set.
       case unspecified
       /// Media resolution set to low (64 tokens).

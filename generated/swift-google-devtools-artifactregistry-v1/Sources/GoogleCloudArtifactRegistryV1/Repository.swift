@@ -387,7 +387,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VersionPolicy: Codable, Equatable, Sendable {
+    public enum VersionPolicy: Codable, Equatable, Hashable, Sendable {
       /// VERSION_POLICY_UNSPECIFIED - the version policy is not defined.
       /// When the version policy is not defined, no validation is performed
       /// for the versions.
@@ -685,7 +685,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EnablementConfig: Codable, Equatable, Sendable {
+    public enum EnablementConfig: Codable, Equatable, Hashable, Sendable {
       /// Not set. This will be treated as INHERITED for Docker repositories and
       /// DISABLED for non-Docker repositories.
       case unspecified
@@ -805,7 +805,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EnablementState: Codable, Equatable, Sendable {
+    public enum EnablementState: Codable, Equatable, Hashable, Sendable {
       /// Enablement state is unclear.
       case unspecified
       /// Repository does not support vulnerability scanning.
@@ -941,7 +941,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Format: Codable, Equatable, Sendable {
+  public enum Format: Codable, Equatable, Hashable, Sendable {
     /// Unspecified package format.
     case unspecified
     /// Docker package format.
@@ -1115,7 +1115,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mode: Codable, Equatable, Sendable {
+  public enum Mode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified mode.
     case unspecified
     /// A standard repository storing artifacts.

@@ -209,7 +209,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AnswerType: Codable, Equatable, Sendable {
+    public enum AnswerType: Codable, Equatable, Hashable, Sendable {
       /// The answer has a unspecified type.
       case unspecified
       /// The answer is from FAQ documents.

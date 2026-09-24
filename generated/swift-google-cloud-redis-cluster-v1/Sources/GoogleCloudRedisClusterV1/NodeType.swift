@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum NodeType: Codable, Equatable, Sendable {
+public enum NodeType: Codable, Equatable, Hashable, Sendable {
   /// Node type unspecified
   case unspecified
   /// Redis shared core nano node_type.

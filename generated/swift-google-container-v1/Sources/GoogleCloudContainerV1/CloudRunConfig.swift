@@ -92,7 +92,7 @@ public struct CloudRunConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoadBalancerType: Codable, Equatable, Sendable {
+  public enum LoadBalancerType: Codable, Equatable, Hashable, Sendable {
     /// Load balancer type for Cloud Run is unspecified.
     case unspecified
     /// Install external load balancer for Cloud Run.

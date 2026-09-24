@@ -104,7 +104,7 @@ public struct MigrationSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MigrationSourceType: Codable, Equatable, Sendable {
+  public enum MigrationSourceType: Codable, Equatable, Hashable, Sendable {
     /// Migration source is unknown.
     case unspecified
     /// DMS source means the cluster was created via DMS migration job.

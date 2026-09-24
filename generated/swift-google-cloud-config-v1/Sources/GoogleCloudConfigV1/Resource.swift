@@ -124,7 +124,7 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Intent: Codable, Equatable, Sendable {
+  public enum Intent: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the intent is omitted.
     case unspecified
     /// Infra Manager will create this Resource.
@@ -262,7 +262,7 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is omitted.
     case unspecified
     /// Resource has been planned for reconcile.

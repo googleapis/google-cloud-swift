@@ -371,7 +371,7 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State not set (this is not a valid state).
     case unspecified
     /// The endpoint group is ready and in sync with the target deployment group.
@@ -523,7 +523,7 @@ public struct MirroringEndpointGroup: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// An endpoint group that sends packets to a single deployment group.

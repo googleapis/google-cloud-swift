@@ -297,7 +297,7 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProducerInstanceLocation: Codable, Equatable, Sendable {
+    public enum ProducerInstanceLocation: Codable, Equatable, Hashable, Sendable {
       /// Producer instance location is not specified. When this option is
       /// chosen, then the PSC connections created by this
       /// ServiceConnectionPolicy must be within the same project as the Producer
@@ -634,7 +634,7 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// An invalid state as the default case.
     case unspecified
     /// The connection has been created successfully. However, for the

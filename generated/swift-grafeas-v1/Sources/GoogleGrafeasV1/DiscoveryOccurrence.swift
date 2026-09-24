@@ -321,7 +321,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SBOMState: Codable, Equatable, Sendable {
+    public enum SBOMState: Codable, Equatable, Hashable, Sendable {
       /// Default unknown state.
       case unspecified
       /// SBOM scanning is pending.
@@ -527,7 +527,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VulnerabilityAttestationState: Codable, Equatable, Sendable {
+    public enum VulnerabilityAttestationState: Codable, Equatable, Hashable, Sendable {
       /// Default unknown state.
       case unspecified
       /// Attestation was successfully generated and stored.
@@ -732,7 +732,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ContinuousAnalysis: Codable, Equatable, Sendable {
+  public enum ContinuousAnalysis: Codable, Equatable, Hashable, Sendable {
     /// Unknown.
     case unspecified
     /// The resource is continuously analyzed.
@@ -850,7 +850,7 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AnalysisStatus: Codable, Equatable, Sendable {
+  public enum AnalysisStatus: Codable, Equatable, Hashable, Sendable {
     /// Unknown.
     case unspecified
     /// Resource is known but no action has been taken yet.

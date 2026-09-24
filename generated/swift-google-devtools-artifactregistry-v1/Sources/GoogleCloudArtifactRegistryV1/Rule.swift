@@ -120,7 +120,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Action: Codable, Equatable, Sendable {
+  public enum Action: Codable, Equatable, Hashable, Sendable {
     /// Action not specified.
     case unspecified
     /// Allow the operation.
@@ -237,7 +237,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Operation: Codable, Equatable, Sendable {
+  public enum Operation: Codable, Equatable, Hashable, Sendable {
     /// Operation not specified.
     case unspecified
     /// Download operation.

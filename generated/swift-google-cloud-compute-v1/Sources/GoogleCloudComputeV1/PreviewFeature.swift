@@ -144,7 +144,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ActivationStatus: Codable, Equatable, Sendable {
+    public enum ActivationStatus: Codable, Equatable, Hashable, Sendable {
       case activationStateUnspecified
       case disabled
       case enabled

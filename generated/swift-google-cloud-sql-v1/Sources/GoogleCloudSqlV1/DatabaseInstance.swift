@@ -864,7 +864,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SqlOutOfDiskState: Codable, Equatable, Sendable {
+      public enum SqlOutOfDiskState: Codable, Equatable, Hashable, Sendable {
         /// Unspecified state
         case unspecified
         /// The instance has plenty space on data disk
@@ -1124,7 +1124,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlInstanceState: Codable, Equatable, Sendable {
+    public enum SqlInstanceState: Codable, Equatable, Hashable, Sendable {
       /// The state of the instance is unknown.
       case unspecified
       /// The instance is running, or has been stopped by owner.
@@ -1292,7 +1292,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlNetworkArchitecture: Codable, Equatable, Sendable {
+    public enum SqlNetworkArchitecture: Codable, Equatable, Hashable, Sendable {
       case unspecified
       /// The instance uses the new network architecture.
       case newNetworkArchitecture

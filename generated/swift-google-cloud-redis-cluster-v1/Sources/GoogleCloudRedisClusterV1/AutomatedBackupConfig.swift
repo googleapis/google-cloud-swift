@@ -193,7 +193,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AutomatedBackupMode: Codable, Equatable, Sendable {
+  public enum AutomatedBackupMode: Codable, Equatable, Hashable, Sendable {
     /// Default value. Automated backup config is not specified.
     case unspecified
     /// Automated backup config disabled.

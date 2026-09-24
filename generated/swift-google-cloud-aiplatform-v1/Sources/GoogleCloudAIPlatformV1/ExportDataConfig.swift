@@ -240,7 +240,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ExportUse: Codable, Equatable, Sendable {
+    public enum ExportUse: Codable, Equatable, Hashable, Sendable {
       /// Regular user export.
       case unspecified
       /// Export for custom code training.

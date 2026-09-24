@@ -81,7 +81,7 @@ public struct FileTypeFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FileType: Codable, Equatable, Sendable {
+  public enum FileType: Codable, Equatable, Hashable, Sendable {
     /// Default document type. If set, disables the filter.
     case unspecified
     /// Returns all document types, including folders.

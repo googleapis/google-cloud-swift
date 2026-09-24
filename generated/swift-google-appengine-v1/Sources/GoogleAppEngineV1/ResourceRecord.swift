@@ -101,7 +101,7 @@ public struct ResourceRecord: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RecordType: Codable, Equatable, Sendable {
+  public enum RecordType: Codable, Equatable, Hashable, Sendable {
     /// An unknown resource record.
     case unspecified
     /// An A resource record. Data is an IPv4 address.

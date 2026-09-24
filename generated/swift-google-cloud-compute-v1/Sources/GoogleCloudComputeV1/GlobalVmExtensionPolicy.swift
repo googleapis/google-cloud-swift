@@ -196,7 +196,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ScopedResourceStatus: Codable, Equatable, Sendable {
+    public enum ScopedResourceStatus: Codable, Equatable, Hashable, Sendable {
       /// The zonal policies are being deleted.
       case deleting
       /// Default value. This value is unused.

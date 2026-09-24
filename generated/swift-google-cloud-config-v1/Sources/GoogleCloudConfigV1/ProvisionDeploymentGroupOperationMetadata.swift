@@ -98,7 +98,7 @@ public struct ProvisionDeploymentGroupOperationMetadata: Codable, Equatable, Goo
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProvisionDeploymentGroupStep: Codable, Equatable, Sendable {
+  public enum ProvisionDeploymentGroupStep: Codable, Equatable, Hashable, Sendable {
     /// Unspecified step.
     case unspecified
     /// Validating the deployment group.

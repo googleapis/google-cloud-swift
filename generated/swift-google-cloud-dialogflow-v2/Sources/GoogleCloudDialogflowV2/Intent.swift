@@ -541,7 +541,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Type_: Codable, Equatable, Sendable {
+      public enum Type_: Codable, Equatable, Hashable, Sendable {
         /// Not specified. This value should never be used.
         case unspecified
         /// Examples do not contain @-prefixed entity type names, but example parts
@@ -2686,7 +2686,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ResponseMediaType: Codable, Equatable, Sendable {
+        public enum ResponseMediaType: Codable, Equatable, Hashable, Sendable {
           /// Unspecified.
           case unspecified
           /// Response media type is audio.
@@ -3049,7 +3049,7 @@
             ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
             ///   expecting specific values to remain unparsed; future releases may promote
             ///   them to named cases.
-            public enum UrlTypeHint: Codable, Equatable, Sendable {
+            public enum UrlTypeHint: Codable, Equatable, Hashable, Sendable {
               /// Unspecified
               case unspecified
               /// Url would be an amp action
@@ -3194,7 +3194,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ImageDisplayOptions: Codable, Equatable, Sendable {
+        public enum ImageDisplayOptions: Codable, Equatable, Hashable, Sendable {
           /// Fill the gaps between the image and the image container with gray
           /// bars.
           case unspecified
@@ -3534,7 +3534,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum HorizontalAlignment: Codable, Equatable, Sendable {
+        public enum HorizontalAlignment: Codable, Equatable, Hashable, Sendable {
           /// Text is aligned to the leading edge of the column.
           case unspecified
           /// Text is aligned to the leading edge of the column.
@@ -3822,7 +3822,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Platform: Codable, Equatable, Sendable {
+      public enum Platform: Codable, Equatable, Hashable, Sendable {
         /// Default platform.
         case unspecified
         /// Facebook.
@@ -4115,7 +4115,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum WebhookState: Codable, Equatable, Sendable {
+    public enum WebhookState: Codable, Equatable, Hashable, Sendable {
       /// Webhook is disabled in the agent and in the intent.
       case unspecified
       /// Webhook is enabled in the agent and in the intent.

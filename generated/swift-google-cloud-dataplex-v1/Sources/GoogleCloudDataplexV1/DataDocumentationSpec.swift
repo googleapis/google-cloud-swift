@@ -97,7 +97,7 @@ public struct DataDocumentationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GenerationScope: Codable, Equatable, Sendable {
+  public enum GenerationScope: Codable, Equatable, Hashable, Sendable {
     /// Unspecified generation scope. If no generation scope is specified, all
     /// available documentation components will be generated.
     case unspecified

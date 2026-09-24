@@ -186,7 +186,7 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OracleAuthenticationMode: Codable, Equatable, Sendable {
+  public enum OracleAuthenticationMode: Codable, Equatable, Hashable, Sendable {
     /// Authentication mode not specified.
     case unspecified
     /// TLS authentication mode.
@@ -303,7 +303,7 @@ public struct GoldengateOracleConnectionProperties: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SessionMode: Codable, Equatable, Sendable {
+  public enum SessionMode: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Indicates that the resource is using direct session mode.

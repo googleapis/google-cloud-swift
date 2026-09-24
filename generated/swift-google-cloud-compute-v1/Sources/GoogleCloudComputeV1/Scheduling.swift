@@ -243,7 +243,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InstanceTerminationAction: Codable, Equatable, Sendable {
+    public enum InstanceTerminationAction: Codable, Equatable, Hashable, Sendable {
       /// Delete the VM.
       case delete
       /// Default value. This value is unused.
@@ -308,7 +308,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OnHostMaintenance: Codable, Equatable, Sendable {
+    public enum OnHostMaintenance: Codable, Equatable, Hashable, Sendable {
       /// *[Default]* Allows Compute Engine to automatically migrate instances
       /// out of the way of maintenance events.
       case migrate
@@ -373,7 +373,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProvisioningModel: Codable, Equatable, Sendable {
+    public enum ProvisioningModel: Codable, Equatable, Hashable, Sendable {
       /// Instance is provisioned using the Flex Start provisioning model and
       /// has a limited runtime.
       case flexStart

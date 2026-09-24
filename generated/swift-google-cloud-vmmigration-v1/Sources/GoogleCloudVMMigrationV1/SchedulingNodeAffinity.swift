@@ -105,7 +105,7 @@ public struct SchedulingNodeAffinity: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Operator: Codable, Equatable, Sendable {
+  public enum Operator: Codable, Equatable, Hashable, Sendable {
     /// An unknown, unexpected behavior.
     case unspecified
     /// The node resource group should be in these resources affinity.

@@ -90,7 +90,7 @@ public struct ObjectRetention: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RetentionMode: Codable, Equatable, Sendable {
+  public enum RetentionMode: Codable, Equatable, Hashable, Sendable {
     /// If set and retain_until_time is empty, clears the retention.
     case unspecified
     /// Sets the retention mode to locked.

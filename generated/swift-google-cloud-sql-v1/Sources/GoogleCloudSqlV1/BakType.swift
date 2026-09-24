@@ -22,7 +22,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BakType: Codable, Equatable, Sendable {
+  public enum BakType: Codable, Equatable, Hashable, Sendable {
     /// Default type.
     case unspecified
     /// Full backup.

@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum NativeDashboardView: Codable, Equatable, Sendable {
+public enum NativeDashboardView: Codable, Equatable, Hashable, Sendable {
   /// Defaults to basic.
   case unspecified
   /// Include basic metadata about the dashboard without full definition.

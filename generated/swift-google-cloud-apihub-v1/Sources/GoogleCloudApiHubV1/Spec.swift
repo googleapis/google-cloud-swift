@@ -206,7 +206,7 @@ public struct Spec: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ParsingMode: Codable, Equatable, Sendable {
+  public enum ParsingMode: Codable, Equatable, Hashable, Sendable {
     /// Defaults to `RELAXED`.
     case unspecified
     /// Parsing of the Spec on create and update is relaxed, meaning that

@@ -176,7 +176,7 @@ public struct Subnet: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BondingType: Codable, Equatable, Sendable {
+  public enum BondingType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified
     /// Bonding type will be unspecified by default and if the user chooses to
     /// not specify a bonding type at time of creating the VLAN. This will be

@@ -97,7 +97,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SupportedSla: Codable, Equatable, Sendable {
+    public enum SupportedSla: Codable, Equatable, Hashable, Sendable {
       case noSla
       case productionCritical
       case productionNonCritical

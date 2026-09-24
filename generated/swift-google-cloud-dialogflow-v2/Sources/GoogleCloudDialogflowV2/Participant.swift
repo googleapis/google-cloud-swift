@@ -212,7 +212,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Role: Codable, Equatable, Sendable {
+    public enum Role: Codable, Equatable, Hashable, Sendable {
       /// Participant role not set.
       case unspecified
       /// Participant is a human agent.
@@ -338,7 +338,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AgentDesktopSource: Codable, Equatable, Sendable {
+    public enum AgentDesktopSource: Codable, Equatable, Hashable, Sendable {
       /// Agent Desktop Source is not specified.
       case unspecified
       /// Agent Desktop Source is Live Person.

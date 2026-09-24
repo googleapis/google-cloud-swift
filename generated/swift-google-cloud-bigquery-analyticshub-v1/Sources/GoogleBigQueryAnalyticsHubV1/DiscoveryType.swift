@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DiscoveryType: Codable, Equatable, Sendable {
+public enum DiscoveryType: Codable, Equatable, Hashable, Sendable {
   /// Unspecified. Defaults to DISCOVERY_TYPE_PRIVATE.
   case unspecified
   /// The Data exchange/listing can be discovered in the 'Private' results

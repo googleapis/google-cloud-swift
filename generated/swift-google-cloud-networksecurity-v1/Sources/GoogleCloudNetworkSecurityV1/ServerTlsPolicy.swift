@@ -271,7 +271,7 @@ public struct ServerTlsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ClientValidationMode: Codable, Equatable, Sendable {
+    public enum ClientValidationMode: Codable, Equatable, Hashable, Sendable {
       /// Not allowed.
       case unspecified
       /// Allow connection even if certificate chain validation

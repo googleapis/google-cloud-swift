@@ -127,7 +127,7 @@ public struct RunningService: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Service state unspecified.
     case unspecified
     /// Service is active.
@@ -251,7 +251,7 @@ public struct RunningService: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StartMode: Codable, Equatable, Sendable {
+  public enum StartMode: Codable, Equatable, Hashable, Sendable {
     /// Start mode unspecified.
     case unspecified
     /// The service is a device driver started by the system loader.

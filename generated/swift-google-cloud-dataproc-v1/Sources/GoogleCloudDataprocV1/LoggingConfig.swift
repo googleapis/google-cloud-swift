@@ -90,7 +90,7 @@ public struct LoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Level: Codable, Equatable, Sendable {
+  public enum Level: Codable, Equatable, Hashable, Sendable {
     /// Level is unspecified. Use default level for log4j.
     case unspecified
     /// Use ALL level for log4j.

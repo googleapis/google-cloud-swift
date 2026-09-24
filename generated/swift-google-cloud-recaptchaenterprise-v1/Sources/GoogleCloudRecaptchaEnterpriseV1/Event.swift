@@ -244,7 +244,7 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FraudPrevention: Codable, Equatable, Sendable {
+  public enum FraudPrevention: Codable, Equatable, Hashable, Sendable {
     /// Default, unspecified setting. `fraud_prevention_assessment` is returned
     /// if `transaction_data` is present in `Event` and Fraud Prevention is
     /// enabled in the Google Cloud console.

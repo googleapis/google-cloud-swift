@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NotebookRuntimeType: Codable, Equatable, Sendable {
+  public enum NotebookRuntimeType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified notebook runtime type, NotebookRuntimeType will default to
     /// USER_DEFINED.
     case unspecified

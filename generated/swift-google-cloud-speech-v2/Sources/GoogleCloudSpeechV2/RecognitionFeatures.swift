@@ -186,7 +186,7 @@ public struct RecognitionFeatures: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MultiChannelMode: Codable, Equatable, Sendable {
+  public enum MultiChannelMode: Codable, Equatable, Hashable, Sendable {
     /// Default value for the multi-channel mode. If the audio contains
     /// multiple channels, only the first channel will be transcribed; other
     /// channels will be ignored.

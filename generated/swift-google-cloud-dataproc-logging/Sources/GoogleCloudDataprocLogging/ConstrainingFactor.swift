@@ -21,7 +21,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ConstrainingFactor: Codable, Equatable, Sendable {
+public enum ConstrainingFactor: Codable, Equatable, Hashable, Sendable {
   case unspecified
   /// The project does not have sufficient regional, global, and or preemptible
   /// quota to allocate a new VM.

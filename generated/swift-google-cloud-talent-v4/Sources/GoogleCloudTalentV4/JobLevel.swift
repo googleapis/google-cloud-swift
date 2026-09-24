@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum JobLevel: Codable, Equatable, Sendable {
+public enum JobLevel: Codable, Equatable, Hashable, Sendable {
   /// The default value if the level isn't specified.
   case unspecified
   /// Entry-level individual contributors, typically with less than 2 years of

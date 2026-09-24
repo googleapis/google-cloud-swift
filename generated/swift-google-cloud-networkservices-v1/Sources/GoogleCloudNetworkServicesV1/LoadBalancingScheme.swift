@@ -26,7 +26,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LoadBalancingScheme: Codable, Equatable, Sendable {
+public enum LoadBalancingScheme: Codable, Equatable, Hashable, Sendable {
   /// Default value. Do not use.
   case unspecified
   /// Signifies that this is used for Internal HTTP(S) Load Balancing.

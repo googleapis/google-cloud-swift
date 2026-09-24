@@ -1016,7 +1016,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum AttributeType: Codable, Equatable, Sendable {
+        public enum AttributeType: Codable, Equatable, Hashable, Sendable {
           /// Unspecified AttributeType.
           case unspecified
           /// The value of the numerical field will be used to dynamically update
@@ -1142,7 +1142,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum InterpolationType: Codable, Equatable, Sendable {
+        public enum InterpolationType: Codable, Equatable, Hashable, Sendable {
           /// Interpolation type is unspecified. In this case, it defaults to
           /// Linear.
           case unspecified
@@ -1372,7 +1372,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ModalityType: Codable, Equatable, Sendable {
+    public enum ModalityType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified modality type.
       case unspecified
       /// Text modality.
@@ -1500,7 +1500,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FilterParameterBehavior: Codable, Equatable, Sendable {
+  public enum FilterParameterBehavior: Codable, Equatable, Hashable, Sendable {
     /// Default filter behavior.
     /// Include filter parameter for connector datastores.
     /// For the rest of the datastore types, the filter input parameter is

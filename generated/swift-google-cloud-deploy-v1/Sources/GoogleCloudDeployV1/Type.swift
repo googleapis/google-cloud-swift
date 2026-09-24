@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum Type_: Codable, Equatable, Sendable {
+public enum Type_: Codable, Equatable, Hashable, Sendable {
   /// Type is unspecified.
   case unspecified
   /// A Pub/Sub notification failed to be sent.

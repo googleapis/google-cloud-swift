@@ -82,7 +82,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ServiceShareType: Codable, Equatable, Sendable {
+    public enum ServiceShareType: Codable, Equatable, Hashable, Sendable {
       /// Allow all Google Cloud managed services to share reservations.
       case allowAll
       /// [Default] Disallow sharing with all Google Cloud services.

@@ -408,7 +408,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TimeSeriesResourceHierarchyLevel: Codable, Equatable, Sendable {
+    public enum TimeSeriesResourceHierarchyLevel: Codable, Equatable, Hashable, Sendable {
       /// Do not use this default value.
       case unspecified
       /// Scopes a metric to a project.
@@ -546,7 +546,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MetricKind: Codable, Equatable, Sendable {
+  public enum MetricKind: Codable, Equatable, Hashable, Sendable {
     /// Do not use this default value.
     case unspecified
     /// An instantaneous measurement of a value.
@@ -674,7 +674,7 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ValueType: Codable, Equatable, Sendable {
+  public enum ValueType: Codable, Equatable, Hashable, Sendable {
     /// Do not use this default value.
     case unspecified
     /// The value is a boolean.

@@ -84,7 +84,7 @@ public struct TaskLogsRetentionConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TaskLogsStorageMode: Codable, Equatable, Sendable {
+  public enum TaskLogsStorageMode: Codable, Equatable, Hashable, Sendable {
     /// This configuration is not specified by the user.
     case unspecified
     /// Store task logs in Cloud Logging and in the environment's Cloud Storage

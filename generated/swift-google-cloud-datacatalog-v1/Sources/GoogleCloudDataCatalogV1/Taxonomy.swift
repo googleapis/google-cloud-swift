@@ -249,7 +249,7 @@ public struct Taxonomy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PolicyType: Codable, Equatable, Sendable {
+  public enum PolicyType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified policy type.
     case unspecified
     /// Fine-grained access control policy that enables access control on

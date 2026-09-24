@@ -93,7 +93,7 @@ public struct Accelerator: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AcceleratorType: Codable, Equatable, Sendable {
+  public enum AcceleratorType: Codable, Equatable, Hashable, Sendable {
     /// Default value, if unspecified.
     case unspecified
     /// Change Data Capture accelerator for CDF.
@@ -220,7 +220,7 @@ public struct Accelerator: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Default value, do not use
     case unspecified
     /// Indicates that the accelerator is enabled and available to use

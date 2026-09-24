@@ -99,7 +99,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlApiWarningCode: Codable, Equatable, Sendable {
+    public enum SqlApiWarningCode: Codable, Equatable, Hashable, Sendable {
       /// An unknown or unset warning type from Cloud SQL API.
       case unspecified
       /// Warning when one or more regions are not reachable.  The returned result

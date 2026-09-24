@@ -531,7 +531,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DumpParallelLevel: Codable, Equatable, Sendable {
+    public enum DumpParallelLevel: Codable, Equatable, Hashable, Sendable {
       /// Unknown dump parallel level. Will be defaulted to OPTIMAL.
       case unspecified
       /// Minimal parallel level.
@@ -666,7 +666,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the migration job is unknown.
     case unspecified
     /// The migration job is down for maintenance.
@@ -874,7 +874,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Phase: Codable, Equatable, Sendable {
+  public enum Phase: Codable, Equatable, Hashable, Sendable {
     /// The phase of the migration job is unknown.
     case unspecified
     /// The migration job is in the full dump phase.
@@ -1013,7 +1013,7 @@ public struct MigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// The type of the migration job is unknown.
     case unspecified
     /// The migration job is a one time migration.

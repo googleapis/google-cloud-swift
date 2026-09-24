@@ -111,7 +111,7 @@ public struct AbortInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Cause: Codable, Equatable, Sendable {
+  public enum Cause: Codable, Equatable, Hashable, Sendable {
     /// Cause is unspecified.
     case unspecified
     /// Aborted due to unknown network. Deprecated, not used in the new tests.

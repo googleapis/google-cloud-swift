@@ -96,7 +96,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RetentionUnit: Codable, Equatable, Sendable {
+    public enum RetentionUnit: Codable, Equatable, Hashable, Sendable {
       /// Backup retention unit is unspecified, will be treated as COUNT.
       case unspecified
       /// Retention will be by count, eg. "retain the most recent 7 backups".

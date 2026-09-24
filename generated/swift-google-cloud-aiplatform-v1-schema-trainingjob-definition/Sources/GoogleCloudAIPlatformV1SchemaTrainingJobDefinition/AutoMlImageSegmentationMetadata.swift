@@ -93,7 +93,7 @@ public struct AutoMlImageSegmentationMetadata: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SuccessfulStopReason: Codable, Equatable, Sendable {
+  public enum SuccessfulStopReason: Codable, Equatable, Hashable, Sendable {
     /// Should not be set.
     case unspecified
     /// The inputs.budgetMilliNodeHours had been reached.

@@ -127,7 +127,7 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Action: Codable, Equatable, Sendable {
+  public enum Action: Codable, Equatable, Hashable, Sendable {
     /// Action not specified.
     case unspecified
     /// Delete action.

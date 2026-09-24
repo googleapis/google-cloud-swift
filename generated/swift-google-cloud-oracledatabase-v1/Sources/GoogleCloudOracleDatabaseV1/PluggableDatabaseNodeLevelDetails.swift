@@ -102,7 +102,7 @@ public struct PluggableDatabaseNodeLevelDetails: Codable, Equatable, GoogleWKT._
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PluggableDatabaseOpenMode: Codable, Equatable, Sendable {
+  public enum PluggableDatabaseOpenMode: Codable, Equatable, Hashable, Sendable {
     /// The open mode is unspecified.
     case unspecified
     /// The pluggable database is opened in read-only mode.

@@ -295,7 +295,7 @@ public struct CrossClusterReplicationConfig: Codable, Equatable, GoogleWKT._AnyP
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ClusterRole: Codable, Equatable, Sendable {
+  public enum ClusterRole: Codable, Equatable, Hashable, Sendable {
     /// Cluster role is not set.
     /// The behavior is equivalent to NONE.
     case unspecified

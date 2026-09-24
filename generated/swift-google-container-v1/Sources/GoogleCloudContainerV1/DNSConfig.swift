@@ -111,7 +111,7 @@ public struct DNSConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Provider: Codable, Equatable, Sendable {
+  public enum Provider: Codable, Equatable, Hashable, Sendable {
     /// Default value
     case unspecified
     /// Use GKE default DNS provider(kube-dns) for DNS resolution.
@@ -235,7 +235,7 @@ public struct DNSConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DNSScope: Codable, Equatable, Sendable {
+  public enum DNSScope: Codable, Equatable, Hashable, Sendable {
     /// Default value, will be inferred as cluster scope.
     case unspecified
     /// DNS records are accessible from within the cluster.

@@ -98,7 +98,7 @@ public struct VPCSCConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VPCSCPolicy: Codable, Equatable, Sendable {
+  public enum VPCSCPolicy: Codable, Equatable, Hashable, Sendable {
     /// VPCSC_POLICY_UNSPECIFIED - the VPS SC policy is not defined.
     /// When VPS SC policy is not defined - the Service will use the default
     /// behavior (VPCSC_DENY).

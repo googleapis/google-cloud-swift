@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DeviceManagementLevel: Codable, Equatable, Sendable {
+public enum DeviceManagementLevel: Codable, Equatable, Hashable, Sendable {
   /// The device's management level is not specified or not known.
   case managementUnspecified
   /// The device is not managed.

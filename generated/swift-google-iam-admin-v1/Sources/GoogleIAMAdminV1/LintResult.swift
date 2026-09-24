@@ -136,7 +136,7 @@ public struct LintResult: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Level: Codable, Equatable, Sendable {
+  public enum Level: Codable, Equatable, Hashable, Sendable {
     /// Level is unspecified.
     case unspecified
     /// A validation unit which operates on an individual condition within a
@@ -247,7 +247,7 @@ public struct LintResult: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Severity: Codable, Equatable, Sendable {
+  public enum Severity: Codable, Equatable, Hashable, Sendable {
     /// Severity is unspecified.
     case unspecified
     /// A validation unit returns an error only for critical issues. If an

@@ -175,7 +175,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConsumerGroup: Codable, Equatable, Sendable {
+  public enum ConsumerGroup: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// High consumer group.
@@ -313,7 +313,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HostFormat: Codable, Equatable, Sendable {
+  public enum HostFormat: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// FQDN
@@ -430,7 +430,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Protocol_: Codable, Equatable, Sendable {
+  public enum Protocol_: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Tcp
@@ -547,7 +547,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SessionMode: Codable, Equatable, Sendable {
+  public enum SessionMode: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Direct
@@ -664,7 +664,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SyntaxFormat: Codable, Equatable, Sendable {
+  public enum SyntaxFormat: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Long
@@ -788,7 +788,7 @@ public struct DatabaseConnectionStringProfile: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TLSAuthentication: Codable, Equatable, Sendable {
+  public enum TLSAuthentication: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Server

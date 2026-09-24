@@ -370,7 +370,7 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProbingResult: Codable, Equatable, Sendable {
+  public enum ProbingResult: Codable, Equatable, Hashable, Sendable {
     /// No result was specified.
     case unspecified
     /// At least 95% of packets reached the destination.
@@ -505,7 +505,7 @@ public struct ProbingDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProbingAbortCause: Codable, Equatable, Sendable {
+  public enum ProbingAbortCause: Codable, Equatable, Hashable, Sendable {
     /// No reason was specified.
     case unspecified
     /// The user lacks permission to access some of the

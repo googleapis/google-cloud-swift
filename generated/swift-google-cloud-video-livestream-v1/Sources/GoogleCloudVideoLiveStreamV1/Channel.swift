@@ -363,7 +363,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StreamingState: Codable, Equatable, Sendable {
+  public enum StreamingState: Codable, Equatable, Hashable, Sendable {
     /// Streaming state is not specified.
     case unspecified
     /// Channel is getting the input stream, generating the live streams to the

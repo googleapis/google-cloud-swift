@@ -257,7 +257,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProcessingState: Codable, Equatable, Sendable {
+  public enum ProcessingState: Codable, Equatable, Hashable, Sendable {
     /// The processing state is not specified.
     case unspecified
     /// The job is enqueued and will be picked up for processing soon.
@@ -389,7 +389,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProcessingMode: Codable, Equatable, Sendable {
+  public enum ProcessingMode: Codable, Equatable, Hashable, Sendable {
     /// The job processing mode is not specified.
     case unspecified
     /// The job processing mode is interactive mode.
@@ -509,7 +509,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OptimizationStrategy: Codable, Equatable, Sendable {
+  public enum OptimizationStrategy: Codable, Equatable, Hashable, Sendable {
     /// The optimization strategy is not specified.
     case unspecified
     /// Prioritize job processing speed.

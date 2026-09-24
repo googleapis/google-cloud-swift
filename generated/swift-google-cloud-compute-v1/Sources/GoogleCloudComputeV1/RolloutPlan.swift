@@ -159,7 +159,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocationScope: Codable, Equatable, Sendable {
+    public enum LocationScope: Codable, Equatable, Hashable, Sendable {
       /// Unspecified value. Considered as ZONAL.
       case unspecified
       /// Regional scope.

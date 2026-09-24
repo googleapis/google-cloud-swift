@@ -151,7 +151,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseEngine: Codable, Equatable, Sendable {
+  public enum DatabaseEngine: Codable, Equatable, Hashable, Sendable {
     /// An engine that is not currently supported by Sensitive Data Protection.
     case unknown
     /// Cloud SQL for MySQL instance.

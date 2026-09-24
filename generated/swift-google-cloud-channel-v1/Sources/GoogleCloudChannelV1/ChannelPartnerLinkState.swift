@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ChannelPartnerLinkState: Codable, Equatable, Sendable {
+public enum ChannelPartnerLinkState: Codable, Equatable, Hashable, Sendable {
   /// Not used.
   case unspecified
   /// An invitation has been sent to the reseller to create a channel partner

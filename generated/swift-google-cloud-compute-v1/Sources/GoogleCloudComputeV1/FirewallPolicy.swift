@@ -269,7 +269,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PolicyType: Codable, Equatable, Sendable {
+    public enum PolicyType: Codable, Equatable, Hashable, Sendable {
       case rdmaRocePolicy
       case ullPolicy
       case vpcPolicy

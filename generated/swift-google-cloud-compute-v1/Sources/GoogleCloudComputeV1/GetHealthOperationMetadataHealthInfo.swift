@@ -117,7 +117,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AvailabilitySloStatus: Codable, Equatable, Sendable {
+    public enum AvailabilitySloStatus: Codable, Equatable, Hashable, Sendable {
       /// The slot availability is in SLO.
       case inSlo
       /// The slot availability is out of SLO.
@@ -187,7 +187,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HealthStatus: Codable, Equatable, Sendable {
+    public enum HealthStatus: Codable, Equatable, Hashable, Sendable {
       /// The reservation slot is healthy.
       case healthy
       /// The reservation slot is unhealthy.
@@ -252,7 +252,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RepairCategory: Codable, Equatable, Sendable {
+    public enum RepairCategory: Codable, Equatable, Hashable, Sendable {
       /// The repair is because of critical failures, that are scoped outside
       /// emergent maintenance
       case criticalFailure
@@ -329,7 +329,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UnhealthyReason: Codable, Equatable, Sendable {
+    public enum UnhealthyReason: Codable, Equatable, Hashable, Sendable {
       /// The slot is unhealthy because there is a pending repair, waiting for
       /// customer approval
       case pendingUserApproval

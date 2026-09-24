@@ -195,7 +195,7 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DeploymentCategory: Codable, Equatable, Sendable {
+  public enum DeploymentCategory: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Goldengate Deployment Environment category is DATA_REPLICATION_CATEGORY.
@@ -312,7 +312,7 @@ public struct GoldengateDeploymentEnvironment: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DeploymentEnvironmentType: Codable, Equatable, Sendable {
+  public enum DeploymentEnvironmentType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Goldengate Deployment Environment type is PRODUCTION.

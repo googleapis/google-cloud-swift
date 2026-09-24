@@ -315,7 +315,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackupRetentionInheritance: Codable, Equatable, Sendable {
+  public enum BackupRetentionInheritance: Codable, Equatable, Hashable, Sendable {
     /// Inheritance behavior not set. This will default to
     /// `INHERIT_VAULT_RETENTION`.
     case unspecified
@@ -442,7 +442,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State not set.
     case unspecified
     /// The backup vault is being created.
@@ -580,7 +580,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AccessRestriction: Codable, Equatable, Sendable {
+  public enum AccessRestriction: Codable, Equatable, Hashable, Sendable {
     /// Access restriction not set. If user does not provide any value or pass
     /// this value, it will be changed to WITHIN_ORGANIZATION.
     case unspecified

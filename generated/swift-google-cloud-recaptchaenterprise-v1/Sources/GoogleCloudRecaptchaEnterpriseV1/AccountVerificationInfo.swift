@@ -124,7 +124,7 @@ public struct AccountVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Result: Codable, Equatable, Sendable {
+  public enum Result: Codable, Equatable, Hashable, Sendable {
     /// No information about the latest account verification.
     case unspecified
     /// The user was successfully verified. This means the account verification

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum StorageSystem: Codable, Equatable, Sendable {
+public enum StorageSystem: Codable, Equatable, Hashable, Sendable {
   /// Storage system unspecified.
   case unspecified
   /// The entity data is contained within a Cloud Storage bucket.

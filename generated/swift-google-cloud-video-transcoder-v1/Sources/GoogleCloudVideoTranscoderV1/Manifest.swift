@@ -201,7 +201,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SegmentReferenceScheme: Codable, Equatable, Sendable {
+    public enum SegmentReferenceScheme: Codable, Equatable, Hashable, Sendable {
       /// The segment reference scheme is not specified.
       case unspecified
       /// Explicitly lists the URLs of media files for each segment. For example,
@@ -354,7 +354,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ManifestType: Codable, Equatable, Sendable {
+  public enum ManifestType: Codable, Equatable, Hashable, Sendable {
     /// The manifest type is not specified.
     case unspecified
     /// Create an HLS manifest. The corresponding file extension is `.m3u8`.

@@ -247,7 +247,7 @@ public struct NetworkPeering: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified network peering state. This is the default value.
     case unspecified
     /// The peering is not active.
@@ -378,7 +378,7 @@ public struct NetworkPeering: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PeerNetworkType: Codable, Equatable, Sendable {
+  public enum PeerNetworkType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified
     case unspecified
     /// Peering connection used for connecting to another VPC network established

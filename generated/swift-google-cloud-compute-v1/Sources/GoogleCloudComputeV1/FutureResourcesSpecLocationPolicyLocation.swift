@@ -84,7 +84,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Preference: Codable, Equatable, Sendable {
+    public enum Preference: Codable, Equatable, Hashable, Sendable {
       /// Location is allowed for use.
       case allow
       /// Location is prohibited.

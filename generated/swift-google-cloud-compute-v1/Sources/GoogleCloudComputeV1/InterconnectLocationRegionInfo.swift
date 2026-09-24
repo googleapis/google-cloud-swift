@@ -109,7 +109,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocationPresence: Codable, Equatable, Sendable {
+    public enum LocationPresence: Codable, Equatable, Hashable, Sendable {
       /// This region is not in any common network presence with this
       /// InterconnectLocation.
       case global

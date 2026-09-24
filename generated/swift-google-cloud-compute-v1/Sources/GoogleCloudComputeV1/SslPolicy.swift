@@ -394,7 +394,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Code: Codable, Equatable, Sendable {
+      public enum Code: Codable, Equatable, Hashable, Sendable {
         /// Warning about failed cleanup of transient changes made by a failed
         /// operation.
         case cleanupFailed
@@ -632,7 +632,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MinTlsVersion: Codable, Equatable, Sendable {
+    public enum MinTlsVersion: Codable, Equatable, Hashable, Sendable {
       /// TLS 1.0
       case tls10
       /// TLS 1.1
@@ -702,7 +702,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PostQuantumKeyExchange: Codable, Equatable, Sendable {
+    public enum PostQuantumKeyExchange: Codable, Equatable, Hashable, Sendable {
       /// Default behavior: disabled until October 2026, enabled afterward.
       case `default`
       /// Disabled until October 2027, enabled afterward.
@@ -767,7 +767,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Profile: Codable, Equatable, Sendable {
+    public enum Profile: Codable, Equatable, Hashable, Sendable {
       /// Compatible profile. Allows the broadset set of clients, even those which
       /// support only out-of-date SSL features to negotiate with the load
       /// balancer.

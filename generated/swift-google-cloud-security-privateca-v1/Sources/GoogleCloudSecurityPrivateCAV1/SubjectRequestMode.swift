@@ -31,7 +31,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SubjectRequestMode: Codable, Equatable, Sendable {
+public enum SubjectRequestMode: Codable, Equatable, Hashable, Sendable {
   /// Not specified.
   case unspecified
   /// The default mode used in most cases. Indicates that the certificate's

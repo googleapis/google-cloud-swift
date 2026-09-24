@@ -81,7 +81,7 @@ public struct GPUDriverInstallationConfig: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GPUDriverVersion: Codable, Equatable, Sendable {
+  public enum GPUDriverVersion: Codable, Equatable, Hashable, Sendable {
     /// Default value is to not install any GPU driver.
     case unspecified
     /// Disable GPU driver auto installation and needs manual installation

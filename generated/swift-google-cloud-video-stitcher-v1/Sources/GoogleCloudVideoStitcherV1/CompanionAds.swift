@@ -92,7 +92,7 @@ public struct CompanionAds: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DisplayRequirement: Codable, Equatable, Sendable {
+  public enum DisplayRequirement: Codable, Equatable, Hashable, Sendable {
     /// Required companions are not specified. The default is ALL.
     case unspecified
     /// All companions are required to be displayed.

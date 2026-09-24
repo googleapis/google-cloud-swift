@@ -531,7 +531,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ServingState: Codable, Equatable, Sendable {
+  public enum ServingState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified serving state.
     case unspecified
     /// The model is not serving.
@@ -656,7 +656,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TrainingState: Codable, Equatable, Sendable {
+  public enum TrainingState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified training state.
     case unspecified
     /// The model training is paused.
@@ -778,7 +778,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PeriodicTuningState: Codable, Equatable, Sendable {
+  public enum PeriodicTuningState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified default value, should never be explicitly set.
     case unspecified
     /// The model has periodic tuning disabled. Tuning
@@ -909,7 +909,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataState: Codable, Equatable, Sendable {
+  public enum DataState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified default value, should never be explicitly set.
     case unspecified
     /// The model has sufficient training data.
@@ -1027,7 +1027,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ContextProductsType: Codable, Equatable, Sendable {
+  public enum ContextProductsType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified default value, should never be explicitly set.
     /// Defaults to
     /// [MULTIPLE_CONTEXT_PRODUCTS][google.cloud.retail.v2.Model.ContextProductsType.MULTIPLE_CONTEXT_PRODUCTS].

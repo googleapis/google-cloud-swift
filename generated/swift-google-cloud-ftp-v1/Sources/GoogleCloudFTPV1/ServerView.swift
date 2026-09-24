@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ServerView: Codable, Equatable, Sendable {
+public enum ServerView: Codable, Equatable, Hashable, Sendable {
   /// Default value. Equivalent to SERVER_VIEW_BASIC.
   case unspecified
   /// Basic view. Excludes heavy configurations (internal_config,

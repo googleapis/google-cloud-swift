@@ -242,7 +242,7 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ResourceType: Codable, Equatable, Sendable {
+    public enum ResourceType: Codable, Equatable, Hashable, Sendable {
       /// Resource type is unspecified.
       case unspecified
       /// Resource type is project.

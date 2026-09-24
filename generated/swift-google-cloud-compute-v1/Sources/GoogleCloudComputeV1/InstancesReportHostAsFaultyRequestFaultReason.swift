@@ -88,7 +88,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Behavior: Codable, Equatable, Sendable {
+    public enum Behavior: Codable, Equatable, Hashable, Sendable {
       /// Public reportable behaviors
       case unspecified
       /// Any GPU or TPU errors or faults where the accelerator becomes unusable

@@ -124,7 +124,7 @@ public struct ResourceBundleDeploymentInfo: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SyncState: Codable, Equatable, Sendable {
+  public enum SyncState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified state.
     case unspecified
     /// Reconciling state.

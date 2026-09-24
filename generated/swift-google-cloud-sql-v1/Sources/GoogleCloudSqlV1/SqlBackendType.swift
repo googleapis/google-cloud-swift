@@ -22,7 +22,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlBackendType: Codable, Equatable, Sendable {
+  public enum SqlBackendType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown backend type for instance.
     case unspecified
     /// V1 speckle instance.

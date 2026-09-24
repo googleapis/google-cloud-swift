@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum BodySendMode: Codable, Equatable, Sendable {
+public enum BodySendMode: Codable, Equatable, Hashable, Sendable {
   /// Default value. Do not use.
   case unspecified
   /// Calls to the extension are executed in the streamed mode. Subsequent

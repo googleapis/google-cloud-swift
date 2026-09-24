@@ -176,7 +176,7 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ValueType: Codable, Equatable, Sendable {
+  public enum ValueType: Codable, Equatable, Hashable, Sendable {
     /// Value type is not specified.
     case unspecified
     /// Value type is string.
@@ -321,7 +321,7 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Status is unspecified.
     case unspecified
     /// Config variable is active

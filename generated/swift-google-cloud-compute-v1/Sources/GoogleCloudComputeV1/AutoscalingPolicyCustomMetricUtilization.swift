@@ -179,7 +179,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UtilizationTargetType: Codable, Equatable, Sendable {
+    public enum UtilizationTargetType: Codable, Equatable, Hashable, Sendable {
       /// Sets the utilization target value for a cumulative or delta metric,
       /// expressed as the rate of growth per minute.
       case deltaPerMinute

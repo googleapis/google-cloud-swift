@@ -231,7 +231,7 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InstanceType: Codable, Equatable, Sendable {
+  public enum InstanceType: Codable, Equatable, Hashable, Sendable {
     /// Instance type is not mentioned.
     case unspecified
     /// Instance for backup and restore management (i.e., AGM).
@@ -341,7 +341,7 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InstanceState: Codable, Equatable, Sendable {
+  public enum InstanceState: Codable, Equatable, Hashable, Sendable {
     /// State not set.
     case unspecified
     /// The instance is being created.

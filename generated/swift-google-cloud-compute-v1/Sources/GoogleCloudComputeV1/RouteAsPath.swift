@@ -102,7 +102,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PathSegmentType: Codable, Equatable, Sendable {
+    public enum PathSegmentType: Codable, Equatable, Hashable, Sendable {
       case asConfedSequence
       case asConfedSet
       case asSequence

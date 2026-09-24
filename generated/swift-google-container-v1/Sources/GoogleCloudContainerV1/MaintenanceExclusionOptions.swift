@@ -96,7 +96,7 @@ public struct MaintenanceExclusionOptions: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// NO_UPGRADES excludes all upgrades, including patch upgrades and minor
     /// upgrades across control planes and nodes. This is the default exclusion
     /// behavior.
@@ -218,7 +218,7 @@ public struct MaintenanceExclusionOptions: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EndTimeBehavior: Codable, Equatable, Sendable {
+  public enum EndTimeBehavior: Codable, Equatable, Hashable, Sendable {
     /// END_TIME_BEHAVIOR_UNSPECIFIED is the default behavior, which is fixed
     /// end time.
     case unspecified

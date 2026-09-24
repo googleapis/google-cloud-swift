@@ -182,7 +182,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// SIP Trunk connection state is Not specified.
       case unspecified
       /// SIP Trunk connection is connected.
@@ -313,7 +313,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CertificateState: Codable, Equatable, Sendable {
+    public enum CertificateState: Codable, Equatable, Hashable, Sendable {
       /// Certificate state is not specified.
       case unspecified
       /// Certificate is valid.

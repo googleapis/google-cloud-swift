@@ -83,7 +83,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InputSwitchMode: Codable, Equatable, Sendable {
+  public enum InputSwitchMode: Codable, Equatable, Hashable, Sendable {
     /// The input switch mode is not specified.
     case unspecified
     /// Automatic failover is enabled. The primary input stream is always

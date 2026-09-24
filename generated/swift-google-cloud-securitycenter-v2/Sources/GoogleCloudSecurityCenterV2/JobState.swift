@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum JobState: Codable, Equatable, Sendable {
+public enum JobState: Codable, Equatable, Hashable, Sendable {
   /// Unspecified represents an unknown state and should not be used.
   case unspecified
   /// Job is scheduled and pending for run

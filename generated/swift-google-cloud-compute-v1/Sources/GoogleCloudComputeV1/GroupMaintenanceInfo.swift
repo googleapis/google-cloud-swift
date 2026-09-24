@@ -156,7 +156,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SchedulingType: Codable, Equatable, Sendable {
+    public enum SchedulingType: Codable, Equatable, Hashable, Sendable {
       /// Maintenance on all reserved instances in the reservation is synchronized.
       case grouped
       /// Unknown maintenance type.

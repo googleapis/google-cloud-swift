@@ -176,7 +176,7 @@ public struct ExecutionStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Result: Codable, Equatable, Sendable {
+    public enum Result: Codable, Equatable, Hashable, Sendable {
       /// Default unspecified execution result.
       case unspecified
       /// The plugin instance executed successfully.
@@ -304,7 +304,7 @@ public struct ExecutionStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CurrentExecutionState: Codable, Equatable, Sendable {
+  public enum CurrentExecutionState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified execution state.
     case unspecified
     /// The plugin instance is executing.

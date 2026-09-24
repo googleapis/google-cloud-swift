@@ -125,7 +125,7 @@ public struct ComputeScheduling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OnHostMaintenance: Codable, Equatable, Sendable {
+  public enum OnHostMaintenance: Codable, Equatable, Hashable, Sendable {
     /// An unknown, unexpected behavior.
     case unspecified
     /// Terminate the instance when the host machine undergoes maintenance.
@@ -243,7 +243,7 @@ public struct ComputeScheduling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RestartType: Codable, Equatable, Sendable {
+  public enum RestartType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified behavior. This will use the default.
     case unspecified
     /// The Instance should be automatically restarted whenever it is

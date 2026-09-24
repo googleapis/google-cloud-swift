@@ -293,7 +293,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiskType: Codable, Equatable, Sendable {
+  public enum DiskType: Codable, Equatable, Hashable, Sendable {
     /// Default value, which is unused.
     case unspecified
     /// A scratch disk type.
@@ -410,7 +410,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiskMode: Codable, Equatable, Sendable {
+  public enum DiskMode: Codable, Equatable, Hashable, Sendable {
     /// Default value, which is unused.
     case unspecified
     /// Attaches this disk in read-write mode. Only one
@@ -539,7 +539,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiskInterface: Codable, Equatable, Sendable {
+  public enum DiskInterface: Codable, Equatable, Hashable, Sendable {
     /// Default value, which is unused.
     case unspecified
     /// SCSI Disk Interface.
@@ -670,7 +670,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiskSavedState: Codable, Equatable, Sendable {
+  public enum DiskSavedState: Codable, Equatable, Hashable, Sendable {
     /// Default Disk state has not been preserved.
     case unspecified
     /// Disk state has been preserved.

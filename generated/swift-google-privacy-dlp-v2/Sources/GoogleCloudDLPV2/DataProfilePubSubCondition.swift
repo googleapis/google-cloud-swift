@@ -257,7 +257,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PubSubLogicalOperator: Codable, Equatable, Sendable {
+    public enum PubSubLogicalOperator: Codable, Equatable, Hashable, Sendable {
       /// Unused.
       case logicalOperatorUnspecified
       /// Conditional OR.
@@ -387,7 +387,7 @@ public struct DataProfilePubSubCondition: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProfileScoreBucket: Codable, Equatable, Sendable {
+  public enum ProfileScoreBucket: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// High risk/sensitivity detected.

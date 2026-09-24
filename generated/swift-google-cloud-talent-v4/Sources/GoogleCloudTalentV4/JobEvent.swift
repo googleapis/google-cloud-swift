@@ -109,7 +109,7 @@ public struct JobEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JobEventType: Codable, Equatable, Sendable {
+  public enum JobEventType: Codable, Equatable, Hashable, Sendable {
     /// The event is unspecified by other provided values.
     case unspecified
     /// The job seeker or other entity interacting with the service has

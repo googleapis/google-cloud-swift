@@ -162,7 +162,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RescheduleType: Codable, Equatable, Sendable {
+    public enum RescheduleType: Codable, Equatable, Hashable, Sendable {
       case unspecified
       /// Reschedules maintenance to happen now (within 5 minutes).
       case immediate

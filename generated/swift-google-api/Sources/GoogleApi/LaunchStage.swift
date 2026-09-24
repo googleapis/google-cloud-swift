@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LaunchStage: Codable, Equatable, Sendable {
+public enum LaunchStage: Codable, Equatable, Hashable, Sendable {
   /// Do not use this default value.
   case unspecified
   /// Early Access features are limited to a closed group of testers. To use

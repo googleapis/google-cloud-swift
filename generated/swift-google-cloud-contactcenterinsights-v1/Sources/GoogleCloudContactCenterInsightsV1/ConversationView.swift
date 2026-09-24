@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ConversationView: Codable, Equatable, Sendable {
+public enum ConversationView: Codable, Equatable, Hashable, Sendable {
   /// The conversation view is not specified.
   ///
   /// * Defaults to `FULL` in `GetConversationRequest`.

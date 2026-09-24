@@ -100,7 +100,7 @@ public struct ListServiceAccountKeysRequest: Codable, Equatable, GoogleWKT._AnyP
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum KeyType: Codable, Equatable, Sendable {
+  public enum KeyType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified key type. The presence of this in the
     /// message will immediately result in an error.
     case unspecified

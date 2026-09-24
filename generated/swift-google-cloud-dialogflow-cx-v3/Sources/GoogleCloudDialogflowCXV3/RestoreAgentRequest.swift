@@ -211,7 +211,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RestoreOption: Codable, Equatable, Sendable {
+    public enum RestoreOption: Codable, Equatable, Hashable, Sendable {
       /// Unspecified. Treated as KEEP.
       case unspecified
       /// Always respect the settings from the exported agent file. It may cause

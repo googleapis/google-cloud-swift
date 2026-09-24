@@ -245,7 +245,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Kind: Codable, Equatable, Sendable {
+    public enum Kind: Codable, Equatable, Hashable, Sendable {
       /// Not specified. This value should be never used.
       case unspecified
       /// Map entity types allow mapping of a group of synonyms to a reference
@@ -375,7 +375,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AutoExpansionMode: Codable, Equatable, Sendable {
+    public enum AutoExpansionMode: Codable, Equatable, Hashable, Sendable {
       /// Auto expansion disabled for the entity.
       case unspecified
       /// Allows an agent to recognize values that have not been explicitly

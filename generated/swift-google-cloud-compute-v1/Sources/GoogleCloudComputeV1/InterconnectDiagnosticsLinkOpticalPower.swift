@@ -105,7 +105,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// The value has crossed above the high alarm threshold.
       case highAlarm
       /// The value of the current optical power has crossed above the high

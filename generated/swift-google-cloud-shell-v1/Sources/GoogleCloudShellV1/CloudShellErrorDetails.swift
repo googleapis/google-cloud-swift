@@ -85,7 +85,7 @@ public struct CloudShellErrorDetails: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CloudShellErrorCode: Codable, Equatable, Sendable {
+  public enum CloudShellErrorCode: Codable, Equatable, Hashable, Sendable {
     /// An unknown error occurred.
     case unspecified
     /// The image used by the Cloud Shell environment either does not exist or

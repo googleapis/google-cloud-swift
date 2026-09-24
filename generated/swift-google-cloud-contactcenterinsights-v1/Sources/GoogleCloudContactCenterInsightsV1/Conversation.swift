@@ -985,7 +985,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Medium: Codable, Equatable, Sendable {
+  public enum Medium: Codable, Equatable, Hashable, Sendable {
     /// Default value, if unspecified will default to PHONE_CALL.
     case unspecified
     /// The format for conversations that took place over the phone.

@@ -622,7 +622,7 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LocalSsdEncryptionMode: Codable, Equatable, Sendable {
+  public enum LocalSsdEncryptionMode: Codable, Equatable, Hashable, Sendable {
     /// The given node will be encrypted using keys managed by Google
     /// infrastructure and the keys will be deleted when the node is
     /// deleted.
@@ -746,7 +746,7 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EffectiveCgroupMode: Codable, Equatable, Sendable {
+  public enum EffectiveCgroupMode: Codable, Equatable, Hashable, Sendable {
     /// EFFECTIVE_CGROUP_MODE_UNSPECIFIED means the cgroup configuration for the
     /// node pool is unspecified, i.e. the node pool is a Windows node pool.
     case unspecified

@@ -115,7 +115,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConnectionType: Codable, Equatable, Sendable {
+    public enum ConnectionType: Codable, Equatable, Hashable, Sendable {
       /// Unknown connection type.
       case unspecified
       /// Public IP.
@@ -239,7 +239,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DnsScope: Codable, Equatable, Sendable {
+    public enum DnsScope: Codable, Equatable, Hashable, Sendable {
       /// DNS scope not set. This value should not be used.
       case unspecified
       /// Indicates an instance-level DNS name.
@@ -356,7 +356,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RecordManager: Codable, Equatable, Sendable {
+    public enum RecordManager: Codable, Equatable, Hashable, Sendable {
       /// Record manager not set. This value should not be used.
       case unspecified
       /// The record may be managed by the customer. It is not automatically

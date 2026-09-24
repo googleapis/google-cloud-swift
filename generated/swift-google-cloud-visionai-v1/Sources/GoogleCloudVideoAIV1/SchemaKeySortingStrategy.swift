@@ -162,7 +162,7 @@ public struct SchemaKeySortingStrategy: Codable, Equatable, GoogleWKT._AnyPackab
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AggregateMethod: Codable, Equatable, Sendable {
+    public enum AggregateMethod: Codable, Equatable, Hashable, Sendable {
       /// The unspecified aggregate method will be overwritten as mentioned
       /// above.
       case unspecified

@@ -107,7 +107,7 @@ public struct MetadataExchangeRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AuthType: Codable, Equatable, Sendable {
+  public enum AuthType: Codable, Equatable, Hashable, Sendable {
     /// Authentication type is unspecified and DB_NATIVE is used by default
     case unspecified
     /// Database native authentication (user/password)

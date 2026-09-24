@@ -929,7 +929,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HostCapability: Codable, Equatable, Sendable {
+    public enum HostCapability: Codable, Equatable, Hashable, Sendable {
       /// UNKNOWN should never be set.
       case unspecified
       /// Pull represents the capability to fetch manifests and blobs by digest.

@@ -301,7 +301,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DeploymentTier: Codable, Equatable, Sendable {
+    public enum DeploymentTier: Codable, Equatable, Hashable, Sendable {
       /// Default deployment tier.
       case unspecified
       /// Optimized for costs.

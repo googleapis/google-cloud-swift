@@ -132,7 +132,7 @@ public struct MigrationWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Workflow state is unspecified.
     case unspecified
     /// Workflow is in draft status, i.e. tasks are not yet eligible for

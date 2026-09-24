@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlDataDiskType: Codable, Equatable, Sendable {
+  public enum SqlDataDiskType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown data disk type.
     case unspecified
     /// An SSD data disk.

@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ReportView: Codable, Equatable, Sendable {
+public enum ReportView: Codable, Equatable, Hashable, Sendable {
   /// The report view is not specified. The API displays the basic view by
   /// default.
   case unspecified

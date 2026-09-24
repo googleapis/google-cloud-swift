@@ -254,7 +254,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ContainerFormat: Codable, Equatable, Sendable {
+      public enum ContainerFormat: Codable, Equatable, Hashable, Sendable {
         /// The default type, not supposed to be used.
         case unspecified
         /// Mp4 container format.

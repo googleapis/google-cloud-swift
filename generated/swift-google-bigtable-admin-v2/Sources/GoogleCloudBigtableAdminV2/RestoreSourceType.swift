@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum RestoreSourceType: Codable, Equatable, Sendable {
+public enum RestoreSourceType: Codable, Equatable, Hashable, Sendable {
   /// No restore associated.
   case unspecified
   /// A backup was used as the source of the restore.

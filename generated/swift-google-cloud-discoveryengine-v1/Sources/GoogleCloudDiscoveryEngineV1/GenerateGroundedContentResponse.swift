@@ -365,7 +365,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum Source: Codable, Equatable, Sendable {
+          public enum Source: Codable, Equatable, Hashable, Sendable {
             /// Unspecified source.
             case unspecified
             /// Vertex AI search.
@@ -653,7 +653,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum Version: Codable, Equatable, Sendable {
+          public enum Version: Codable, Equatable, Hashable, Sendable {
             /// Unspecified version, should never be used.
             case unspecified
             /// The V1 model which is evaluating each source independently.

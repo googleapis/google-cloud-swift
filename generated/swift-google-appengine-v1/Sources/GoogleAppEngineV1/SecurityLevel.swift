@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SecurityLevel: Codable, Equatable, Sendable {
+public enum SecurityLevel: Codable, Equatable, Hashable, Sendable {
   /// Both HTTP and HTTPS requests with URLs that match the handler succeed
   /// without redirects. The application can examine the request to determine
   /// which protocol was used, and respond accordingly.

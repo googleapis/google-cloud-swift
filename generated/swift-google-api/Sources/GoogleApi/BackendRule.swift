@@ -276,7 +276,7 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PathTranslation: Codable, Equatable, Sendable {
+  public enum PathTranslation: Codable, Equatable, Hashable, Sendable {
     case unspecified
     /// Use the backend address as-is, with no modification to the path. If the
     /// URL pattern contains variables, the variable names and values will be

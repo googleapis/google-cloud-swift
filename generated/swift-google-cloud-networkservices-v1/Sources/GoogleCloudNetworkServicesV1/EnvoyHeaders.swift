@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum EnvoyHeaders: Codable, Equatable, Sendable {
+public enum EnvoyHeaders: Codable, Equatable, Hashable, Sendable {
   /// Defaults to NONE.
   case unspecified
   /// Suppress envoy debug headers.

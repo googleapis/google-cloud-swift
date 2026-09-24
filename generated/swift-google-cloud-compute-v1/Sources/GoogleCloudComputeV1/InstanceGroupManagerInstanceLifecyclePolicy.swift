@@ -141,7 +141,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DefaultActionOnFailure: Codable, Equatable, Sendable {
+    public enum DefaultActionOnFailure: Codable, Equatable, Hashable, Sendable {
       /// MIG does not repair a failed VM.
       case doNothing
       /// (default): MIG automatically repairs a failed VM by recreating it.
@@ -203,7 +203,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ForceUpdateOnRepair: Codable, Equatable, Sendable {
+    public enum ForceUpdateOnRepair: Codable, Equatable, Hashable, Sendable {
       case no
       case yes
       /// Encodes an unknown string value.
@@ -261,7 +261,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OnFailedHealthCheck: Codable, Equatable, Sendable {
+    public enum OnFailedHealthCheck: Codable, Equatable, Hashable, Sendable {
       /// (Default) MIG uses the same action configured for
       /// instanceLifecyclePolicy.defaultActionOnFailure field.
       case defaultAction

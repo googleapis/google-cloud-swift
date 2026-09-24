@@ -208,7 +208,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RedundancyType: Codable, Equatable, Sendable {
+    public enum RedundancyType: Codable, Equatable, Hashable, Sendable {
       /// The external VPN gateway has four public IP addresses; at the time of
       /// writing this API, the AWS virtual private gateway is an example which has
       /// four public IP addresses for high availability connections; there should

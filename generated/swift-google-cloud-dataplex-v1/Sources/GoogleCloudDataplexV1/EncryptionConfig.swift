@@ -221,7 +221,7 @@ public struct EncryptionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ErrorCode: Codable, Equatable, Sendable {
+    public enum ErrorCode: Codable, Equatable, Hashable, Sendable {
       /// The error code is not specified
       case unknown
       /// Error because of internal server error, will be retried automatically.
@@ -350,7 +350,7 @@ public struct EncryptionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EncryptionState: Codable, Equatable, Sendable {
+  public enum EncryptionState: Codable, Equatable, Hashable, Sendable {
     /// State is not specified.
     case unspecified
     /// The encryption state of the database when the EncryptionConfig is created

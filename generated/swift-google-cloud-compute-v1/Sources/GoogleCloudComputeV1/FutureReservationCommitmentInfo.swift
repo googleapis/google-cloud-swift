@@ -104,7 +104,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CommitmentPlan: Codable, Equatable, Sendable {
+    public enum CommitmentPlan: Codable, Equatable, Hashable, Sendable {
       case invalid
       case thirtySixMonth
       case twelveMonth
@@ -166,7 +166,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PreviousCommitmentTerms: Codable, Equatable, Sendable {
+    public enum PreviousCommitmentTerms: Codable, Equatable, Hashable, Sendable {
       /// All associated parent Committed Used Discount(s) end-date/term will be
       /// extended to the end-time of this future reservation. Default is to
       /// extend previous commitment(s) time to the end_time of the reservation.

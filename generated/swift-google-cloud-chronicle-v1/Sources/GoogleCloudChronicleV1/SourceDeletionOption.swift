@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SourceDeletionOption: Codable, Equatable, Sendable {
+public enum SourceDeletionOption: Codable, Equatable, Hashable, Sendable {
   /// If encountered, will be treated as `SOURCE_DELETION_NEVER`.
   case unspecified
   /// Never delete files from the source.

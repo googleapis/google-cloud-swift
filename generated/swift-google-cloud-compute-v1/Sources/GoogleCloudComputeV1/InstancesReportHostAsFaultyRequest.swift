@@ -92,7 +92,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DisruptionSchedule: Codable, Equatable, Sendable {
+    public enum DisruptionSchedule: Codable, Equatable, Hashable, Sendable {
       /// Not used. Required as per aip/126.
       case unspecified
       /// Delay disruption for caller control. Will be default soon.

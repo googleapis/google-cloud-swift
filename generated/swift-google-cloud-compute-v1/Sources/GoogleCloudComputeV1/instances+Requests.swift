@@ -5606,7 +5606,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum MinimalAction: Codable, Equatable, Sendable {
+      public enum MinimalAction: Codable, Equatable, Hashable, Sendable {
         case invalid
         /// No changes can be made to the instance.
         case noEffect
@@ -5675,7 +5675,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum MostDisruptiveAllowedAction: Codable, Equatable, Sendable {
+      public enum MostDisruptiveAllowedAction: Codable, Equatable, Hashable, Sendable {
         case invalid
         /// No changes can be made to the instance.
         case noEffect

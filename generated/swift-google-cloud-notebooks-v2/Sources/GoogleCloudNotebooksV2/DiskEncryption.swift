@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DiskEncryption: Codable, Equatable, Sendable {
+public enum DiskEncryption: Codable, Equatable, Hashable, Sendable {
   /// Disk encryption is not specified.
   case unspecified
   /// Use Google managed encryption keys to encrypt the boot disk.

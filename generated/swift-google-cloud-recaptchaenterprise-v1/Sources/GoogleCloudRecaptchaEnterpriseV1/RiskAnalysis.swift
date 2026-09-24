@@ -140,7 +140,7 @@ public struct RiskAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ClassificationReason: Codable, Equatable, Sendable {
+  public enum ClassificationReason: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified type.
     case unspecified
     /// Interactions matched the behavior of an automated agent.
@@ -318,7 +318,7 @@ public struct RiskAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Challenge: Codable, Equatable, Sendable {
+  public enum Challenge: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified type.
     case unspecified
     /// No challenge was presented for solving.

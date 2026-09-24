@@ -178,7 +178,7 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Gateway does not have a state yet.
     case unspecified
     /// Gateway is being created.
@@ -317,7 +317,7 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StreamingMode: Codable, Equatable, Sendable {
+  public enum StreamingMode: Codable, Equatable, Hashable, Sendable {
     /// Lets the service select the streaming mode.
     case unspecified
     /// Enables streaming. The gateway supports Server-Sent Events (SSE), HTTP/2
@@ -430,7 +430,7 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EffectiveStreamingMode: Codable, Equatable, Sendable {
+  public enum EffectiveStreamingMode: Codable, Equatable, Hashable, Sendable {
     /// Indicates that the service has not resolved a mode. Every gateway
     /// returned by `GetGateway` and `ListGateways` carries a resolved mode, so
     /// this value should not be returned under normal circumstances.

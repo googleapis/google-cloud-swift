@@ -362,7 +362,7 @@ public struct Template: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EnforcementType: Codable, Equatable, Sendable {
+    public enum EnforcementType: Codable, Equatable, Hashable, Sendable {
       /// Default value. Same as INSPECT_AND_BLOCK.
       case unspecified
       /// Model Armor filters will run in inspect only mode. No action will be

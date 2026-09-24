@@ -85,7 +85,7 @@ public struct NetworkSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IngressTrafficAllowed: Codable, Equatable, Sendable {
+  public enum IngressTrafficAllowed: Codable, Equatable, Hashable, Sendable {
     /// Unspecified
     case unspecified
     /// Allow HTTP traffic from public and private sources.

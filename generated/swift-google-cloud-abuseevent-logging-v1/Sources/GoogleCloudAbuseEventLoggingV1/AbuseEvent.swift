@@ -184,7 +184,7 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DetectionType: Codable, Equatable, Sendable {
+  public enum DetectionType: Codable, Equatable, Hashable, Sendable {
     /// Default/unspecified abuse detection type.
     case unspecified
     /// The monitored resource is used to mine cryptocurrencies.
@@ -334,7 +334,7 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ActionType: Codable, Equatable, Sendable {
+  public enum ActionType: Codable, Equatable, Hashable, Sendable {
     /// The monitored resource state is unspecified.
     case unspecified
     /// The owner of the monitored resource needs to be notified about a finding.

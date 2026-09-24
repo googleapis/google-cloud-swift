@@ -129,7 +129,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     case pending
     case done
     /// Encodes an unknown string value.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum TrafficTargetAllocationType: Codable, Equatable, Sendable {
+public enum TrafficTargetAllocationType: Codable, Equatable, Hashable, Sendable {
   /// Unspecified instance allocation type.
   case unspecified
   /// Allocates instances to the Service's latest ready Revision.

@@ -28,7 +28,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum FieldBehavior: Codable, Equatable, Sendable {
+public enum FieldBehavior: Codable, Equatable, Hashable, Sendable {
   /// Conventional default for enums. Do not use this.
   case unspecified
   /// Specifically denotes a field as optional.

@@ -145,7 +145,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The consumer allows traffic from the producer to reach its VPC.
       case accepted
       /// The consumer network attachment no longer exists.

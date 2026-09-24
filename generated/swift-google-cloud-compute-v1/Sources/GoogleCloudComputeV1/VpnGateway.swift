@@ -224,7 +224,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum GatewayIpVersion: Codable, Equatable, Sendable {
+    public enum GatewayIpVersion: Codable, Equatable, Hashable, Sendable {
       /// Every HA-VPN gateway interface is configured with an IPv4 address.
       case ipv4
       /// Every HA-VPN gateway interface is configured with an IPv6 address.
@@ -284,7 +284,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StackType: Codable, Equatable, Sendable {
+    public enum StackType: Codable, Equatable, Hashable, Sendable {
       /// Enable VPN gateway with both IPv4 and IPv6 protocols.
       case ipv4Ipv6
       /// Enable VPN gateway with only IPv4 protocol.

@@ -415,7 +415,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Version: Codable, Equatable, Sendable {
+        public enum Version: Codable, Equatable, Hashable, Sendable {
           /// Automatically choose the best version of the retrieval predictor.
           case unspecified
           /// The V1 model which is evaluating each source independently.

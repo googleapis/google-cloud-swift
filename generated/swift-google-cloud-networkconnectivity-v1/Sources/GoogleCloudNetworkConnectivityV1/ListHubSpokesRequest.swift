@@ -149,7 +149,7 @@ public struct ListHubSpokesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SpokeView: Codable, Equatable, Sendable {
+  public enum SpokeView: Codable, Equatable, Hashable, Sendable {
     /// The spoke view is unspecified. When the spoke view is unspecified, the
     /// API returns the same fields as the `BASIC` view.
     case unspecified

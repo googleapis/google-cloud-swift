@@ -338,7 +338,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// This value is unused. In this case, server behavior defaults to
       /// [Type.INCLUDE][google.cloud.discoveryengine.v1.TargetSite.Type.INCLUDE].
       ///
@@ -458,7 +458,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IndexingStatus: Codable, Equatable, Sendable {
+    public enum IndexingStatus: Codable, Equatable, Hashable, Sendable {
       /// Defaults to SUCCEEDED.
       case unspecified
       /// The target site is in the update queue and will be picked up by indexing

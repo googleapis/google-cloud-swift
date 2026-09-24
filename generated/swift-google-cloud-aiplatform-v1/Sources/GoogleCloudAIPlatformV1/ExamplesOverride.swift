@@ -122,7 +122,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DataFormat: Codable, Equatable, Sendable {
+    public enum DataFormat: Codable, Equatable, Hashable, Sendable {
       /// Unspecified format. Must not be used.
       case unspecified
       /// Provided data is a set of model inputs.

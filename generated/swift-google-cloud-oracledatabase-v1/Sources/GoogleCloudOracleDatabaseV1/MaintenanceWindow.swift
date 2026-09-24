@@ -179,7 +179,7 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MaintenanceWindowPreference: Codable, Equatable, Sendable {
+  public enum MaintenanceWindowPreference: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Custom preference.
@@ -296,7 +296,7 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PatchingMode: Codable, Equatable, Sendable {
+  public enum PatchingMode: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Updates the Cloud Exadata database server hosts in a rolling fashion.

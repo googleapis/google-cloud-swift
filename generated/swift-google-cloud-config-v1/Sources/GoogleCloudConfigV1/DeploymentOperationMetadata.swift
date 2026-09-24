@@ -119,7 +119,7 @@ public struct DeploymentOperationMetadata: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DeploymentStep: Codable, Equatable, Sendable {
+  public enum DeploymentStep: Codable, Equatable, Hashable, Sendable {
     /// Unspecified deployment step
     case unspecified
     /// Infra Manager is creating a Google Cloud Storage bucket to store

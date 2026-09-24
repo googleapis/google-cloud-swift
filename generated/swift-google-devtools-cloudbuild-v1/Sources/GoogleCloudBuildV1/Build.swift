@@ -461,7 +461,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Priority: Codable, Equatable, Sendable {
+    public enum Priority: Codable, Equatable, Hashable, Sendable {
       /// Should not be used.
       case unspecified
       /// e.g. deprecation warnings and alternative feature highlights.
@@ -665,7 +665,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FailureType: Codable, Equatable, Sendable {
+    public enum FailureType: Codable, Equatable, Hashable, Sendable {
       /// Type unspecified
       case unspecified
       /// Unable to push the image to the repository.
@@ -821,7 +821,7 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     /// Status of the build is unknown.
     case unknown
     /// Build or step is queued; work has not yet begun.

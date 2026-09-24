@@ -126,7 +126,7 @@ public struct Restore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the metadata restore is unknown.
     case unspecified
     /// The metadata restore is running.
@@ -257,7 +257,7 @@ public struct Restore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RestoreType: Codable, Equatable, Sendable {
+  public enum RestoreType: Codable, Equatable, Hashable, Sendable {
     /// The restore type is unknown.
     case unspecified
     /// The service's metadata and configuration are restored.

@@ -139,7 +139,7 @@ public struct DeploymentUnitProgress: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is unused.
     case unspecified
     /// The deployment unit is queued for deployment creation or update.
@@ -299,7 +299,7 @@ public struct DeploymentUnitProgress: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Intent: Codable, Equatable, Sendable {
+  public enum Intent: Codable, Equatable, Hashable, Sendable {
     /// Unspecified intent.
     case unspecified
     /// Create deployment in the unit from the deployment spec.

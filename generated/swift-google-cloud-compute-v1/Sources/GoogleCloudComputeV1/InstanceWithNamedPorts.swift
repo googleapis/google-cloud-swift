@@ -98,7 +98,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The instance is halted and we are performing tear down tasks like network
       /// deprogramming, releasing quota, IP, tearing down disks etc.
       case deprovisioning

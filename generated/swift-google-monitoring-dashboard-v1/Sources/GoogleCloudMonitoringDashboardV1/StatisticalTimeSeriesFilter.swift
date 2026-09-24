@@ -99,7 +99,7 @@ public struct StatisticalTimeSeriesFilter: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Method: Codable, Equatable, Sendable {
+  public enum Method: Codable, Equatable, Hashable, Sendable {
     /// Not allowed in well-formed requests.
     case unspecified
     /// Compute the outlier score of each stream.

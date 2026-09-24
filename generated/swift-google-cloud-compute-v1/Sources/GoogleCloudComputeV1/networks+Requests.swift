@@ -987,7 +987,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Direction: Codable, Equatable, Sendable {
+      public enum Direction: Codable, Equatable, Hashable, Sendable {
         /// For routes exported from peer network.
         case incoming
         /// For routes exported from local network.

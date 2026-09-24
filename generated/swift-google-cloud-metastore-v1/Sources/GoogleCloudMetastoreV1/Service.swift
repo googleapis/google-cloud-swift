@@ -292,7 +292,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the metastore service is unknown.
     case unspecified
     /// The metastore service is in the process of being created.
@@ -447,7 +447,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tier: Codable, Equatable, Sendable {
+  public enum Tier: Codable, Equatable, Hashable, Sendable {
     /// The tier is not set.
     case unspecified
     /// The developer tier provides limited scalability and no fault tolerance.
@@ -568,7 +568,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReleaseChannel: Codable, Equatable, Sendable {
+  public enum ReleaseChannel: Codable, Equatable, Hashable, Sendable {
     /// Release channel is not specified.
     case unspecified
     /// The `CANARY` release channel contains the newest features, which may be
@@ -688,7 +688,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseType: Codable, Equatable, Sendable {
+  public enum DatabaseType: Codable, Equatable, Hashable, Sendable {
     /// The DATABASE_TYPE is not set.
     case unspecified
     /// MySQL is used to persist the metastore data.

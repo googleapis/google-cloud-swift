@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DomainOverrideStrategy: Codable, Equatable, Sendable {
+public enum DomainOverrideStrategy: Codable, Equatable, Hashable, Sendable {
   /// Strategy unspecified. Defaults to `STRICT`.
   case unspecifiedDomainOverrideStrategy
   /// Overrides not allowed. If a mapping already exists for the

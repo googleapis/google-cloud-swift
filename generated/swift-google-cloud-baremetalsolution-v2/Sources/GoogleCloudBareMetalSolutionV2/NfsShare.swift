@@ -297,7 +297,7 @@ public struct NfsShare: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The share is in an unknown state.
     case unspecified
     /// The share has been provisioned.
@@ -428,7 +428,7 @@ public struct NfsShare: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MountPermissions: Codable, Equatable, Sendable {
+  public enum MountPermissions: Codable, Equatable, Hashable, Sendable {
     /// Permissions were not specified.
     case unspecified
     /// NFS share can be mount with read-only permissions.
@@ -545,7 +545,7 @@ public struct NfsShare: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageType: Codable, Equatable, Sendable {
+  public enum StorageType: Codable, Equatable, Hashable, Sendable {
     /// The storage type for this volume is unknown.
     case unspecified
     /// The storage type for this volume is SSD.

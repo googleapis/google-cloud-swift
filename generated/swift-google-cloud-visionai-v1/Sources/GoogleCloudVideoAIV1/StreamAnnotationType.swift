@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum StreamAnnotationType: Codable, Equatable, Sendable {
+public enum StreamAnnotationType: Codable, Equatable, Hashable, Sendable {
   /// Type UNSPECIFIED.
   case unspecified
   /// active_zone annotation defines a polygon on top of the content from an

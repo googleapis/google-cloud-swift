@@ -85,7 +85,7 @@ public struct SensitivityScore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SensitivityScoreLevel: Codable, Equatable, Sendable {
+  public enum SensitivityScoreLevel: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case sensitivityScoreUnspecified
     /// No sensitive information detected. The resource isn't publicly

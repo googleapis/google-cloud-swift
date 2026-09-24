@@ -142,7 +142,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VersionStatus: Codable, Equatable, Sendable {
+    public enum VersionStatus: Codable, Equatable, Hashable, Sendable {
       /// Not specified. This value is not used.
       case unspecified
       /// Version is not ready to serve (e.g. training is in progress).

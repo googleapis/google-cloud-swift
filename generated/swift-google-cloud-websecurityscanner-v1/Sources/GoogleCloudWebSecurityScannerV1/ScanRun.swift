@@ -181,7 +181,7 @@ public struct ScanRun: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExecutionState: Codable, Equatable, Sendable {
+  public enum ExecutionState: Codable, Equatable, Hashable, Sendable {
     /// Represents an invalid state caused by internal server error. This value
     /// should never be returned.
     case unspecified
@@ -306,7 +306,7 @@ public struct ScanRun: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResultState: Codable, Equatable, Sendable {
+  public enum ResultState: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is returned when the ScanRun is not yet
     /// finished.
     case unspecified

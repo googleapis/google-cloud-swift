@@ -236,7 +236,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlUserType: Codable, Equatable, Sendable {
+    public enum SqlUserType: Codable, Equatable, Hashable, Sendable {
       /// The database's built-in user type.
       case builtIn
       /// Cloud IAM user.
@@ -391,7 +391,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DualPasswordType: Codable, Equatable, Sendable {
+    public enum DualPasswordType: Codable, Equatable, Hashable, Sendable {
       /// The default value.
       case unspecified
       /// Do not update the user's dual password status.
@@ -515,7 +515,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IamStatus: Codable, Equatable, Sendable {
+    public enum IamStatus: Codable, Equatable, Hashable, Sendable {
       /// The default value for users that are not of type CLOUD_IAM_GROUP.
       /// Only CLOUD_IAM_GROUP users will be inactive or active.
       /// Users with an IamStatus of IAM_STATUS_UNSPECIFIED will not

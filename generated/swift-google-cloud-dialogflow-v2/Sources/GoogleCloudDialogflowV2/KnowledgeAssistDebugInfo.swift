@@ -512,7 +512,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum QueryGenerationFailureReason: Codable, Equatable, Sendable {
+    public enum QueryGenerationFailureReason: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// Query generation is blocked due to out of quota.
@@ -704,7 +704,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum QueryCategorizationFailureReason: Codable, Equatable, Sendable {
+    public enum QueryCategorizationFailureReason: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// Vertex AI Search config supplied for query categorization is invalid.

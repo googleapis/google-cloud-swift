@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum EmploymentType: Codable, Equatable, Sendable {
+public enum EmploymentType: Codable, Equatable, Hashable, Sendable {
   /// The default value if the employment type isn't specified.
   case unspecified
   /// The job requires working a number of hours that constitute full

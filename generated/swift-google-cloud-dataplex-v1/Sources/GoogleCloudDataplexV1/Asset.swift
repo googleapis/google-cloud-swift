@@ -268,7 +268,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// State unspecified.
       case unspecified
       /// Security policy has been successfully applied to the attached resource.
@@ -816,7 +816,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Type not specified.
       case unspecified
       /// Cloud Storage bucket.
@@ -934,7 +934,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AccessMode: Codable, Equatable, Sendable {
+    public enum AccessMode: Codable, Equatable, Hashable, Sendable {
       /// Access mode unspecified.
       case unspecified
       /// Default. Data is accessed directly using storage APIs.
@@ -1148,7 +1148,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// State unspecified.
       case unspecified
       /// Resource does not have any errors.
@@ -1469,7 +1469,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// State is unspecified.
       case unspecified
       /// Discovery for the asset is scheduled.

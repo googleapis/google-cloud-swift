@@ -106,7 +106,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PostStartupScriptBehavior: Codable, Equatable, Sendable {
+    public enum PostStartupScriptBehavior: Codable, Equatable, Hashable, Sendable {
       /// Unspecified post startup script behavior.
       case unspecified
       /// Run post startup script after runtime is started.

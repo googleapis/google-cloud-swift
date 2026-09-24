@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DocumentCreatorDefaultRole: Codable, Equatable, Sendable {
+public enum DocumentCreatorDefaultRole: Codable, Equatable, Hashable, Sendable {
   /// Unspecified, will be default to document admin role.
   case unspecified
   /// Document Admin, same as contentwarehouse.googleapis.com/documentAdmin.

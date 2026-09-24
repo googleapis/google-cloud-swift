@@ -109,7 +109,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Unspecified function calling mode. This value should not be used.
       case unspecified
       /// Default model behavior, model decides to predict either function calls

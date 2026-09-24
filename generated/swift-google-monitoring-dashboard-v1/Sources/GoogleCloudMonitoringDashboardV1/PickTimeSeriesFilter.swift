@@ -119,7 +119,7 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Method: Codable, Equatable, Sendable {
+  public enum Method: Codable, Equatable, Hashable, Sendable {
     /// Not allowed. You must specify a different `Method` if you specify a
     /// `PickTimeSeriesFilter`.
     case unspecified
@@ -258,7 +258,7 @@ public struct PickTimeSeriesFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Direction: Codable, Equatable, Sendable {
+  public enum Direction: Codable, Equatable, Hashable, Sendable {
     /// Not allowed. You must specify a different `Direction` if you specify a
     /// `PickTimeSeriesFilter`.
     case unspecified

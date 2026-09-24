@@ -86,7 +86,7 @@ public struct SdpBasicConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SdpBasicConfigEnforcement: Codable, Equatable, Sendable {
+  public enum SdpBasicConfigEnforcement: Codable, Equatable, Hashable, Sendable {
     /// Same as Disabled
     case unspecified
     /// Enabled

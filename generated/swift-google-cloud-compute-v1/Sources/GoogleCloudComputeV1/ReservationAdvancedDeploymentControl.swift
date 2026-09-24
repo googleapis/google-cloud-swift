@@ -87,7 +87,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ReservationOperationalMode: Codable, Equatable, Sendable {
+    public enum ReservationOperationalMode: Codable, Equatable, Hashable, Sendable {
       /// Google Cloud does not manage the failure of machines, but provides
       /// additional capacity, which is not guaranteed to be available.
       case allCapacity

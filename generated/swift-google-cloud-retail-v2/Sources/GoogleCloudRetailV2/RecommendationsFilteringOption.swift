@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum RecommendationsFilteringOption: Codable, Equatable, Sendable {
+public enum RecommendationsFilteringOption: Codable, Equatable, Hashable, Sendable {
   /// Value used when unset.
   /// In this case, server behavior defaults to
   /// [RECOMMENDATIONS_FILTERING_DISABLED][google.cloud.retail.v2.RecommendationsFilteringOption.RECOMMENDATIONS_FILTERING_DISABLED].

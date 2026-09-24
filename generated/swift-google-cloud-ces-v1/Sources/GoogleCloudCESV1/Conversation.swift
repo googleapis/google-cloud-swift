@@ -283,7 +283,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ChannelType: Codable, Equatable, Sendable {
+  public enum ChannelType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified channel type.
     case unspecified
     /// The conversation only contains text messages between the end user and the
@@ -410,7 +410,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Source: Codable, Equatable, Sendable {
+  public enum Source: Codable, Equatable, Hashable, Sendable {
     /// Unspecified source.
     case unspecified
     /// The conversation is from the live end user.
@@ -542,7 +542,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InputType: Codable, Equatable, Sendable {
+  public enum InputType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified input type.
     case unspecified
     /// Text input.

@@ -161,7 +161,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConnectionPersistenceOnUnhealthyBackends: Codable, Equatable, Sendable {
+    public enum ConnectionPersistenceOnUnhealthyBackends: Codable, Equatable, Hashable, Sendable {
       case alwaysPersist
       case defaultForProtocol
       case neverPersist
@@ -223,7 +223,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TrackingMode: Codable, Equatable, Sendable {
+    public enum TrackingMode: Codable, Equatable, Hashable, Sendable {
       case invalidTrackingMode
       case perConnection
       case perSession

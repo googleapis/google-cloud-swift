@@ -485,7 +485,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Redis instance is being created.
@@ -646,7 +646,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tier: Codable, Equatable, Sendable {
+  public enum Tier: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// BASIC tier: standalone instance
@@ -763,7 +763,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConnectMode: Codable, Equatable, Sendable {
+  public enum ConnectMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Connect via direct peering to the Memorystore for Redis hosted service.
@@ -882,7 +882,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TransitEncryptionMode: Codable, Equatable, Sendable {
+  public enum TransitEncryptionMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Client to Server traffic encryption enabled with server authentication.
@@ -999,7 +999,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReadReplicasMode: Codable, Equatable, Sendable {
+  public enum ReadReplicasMode: Codable, Equatable, Hashable, Sendable {
     /// If not set, Memorystore Redis backend will default to
     /// READ_REPLICAS_DISABLED.
     case unspecified
@@ -1119,7 +1119,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SuspensionReason: Codable, Equatable, Sendable {
+  public enum SuspensionReason: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Something wrong with the CMEK key provided by customer.

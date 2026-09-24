@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum IPVersion: Codable, Equatable, Sendable {
+public enum IPVersion: Codable, Equatable, Hashable, Sendable {
   /// Default value. We will use IPv4 or IPv6 depending on the IP version of
   /// first available subnetwork.
   case unspecified

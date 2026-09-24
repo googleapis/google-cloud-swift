@@ -1557,7 +1557,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the instance is unknown.
     case unspecified
     /// The instance is active and running.
@@ -1722,7 +1722,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InstanceType: Codable, Equatable, Sendable {
+  public enum InstanceType: Codable, Equatable, Hashable, Sendable {
     /// The type of the instance is unknown.
     case unspecified
     /// PRIMARY instances support read and write operations.
@@ -1856,7 +1856,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AvailabilityType: Codable, Equatable, Sendable {
+  public enum AvailabilityType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown Availability type.
     case unspecified
     /// Zonal available instance.
@@ -1973,7 +1973,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ActivationPolicy: Codable, Equatable, Sendable {
+  public enum ActivationPolicy: Codable, Equatable, Hashable, Sendable {
     /// The policy is not specified.
     case unspecified
     /// The instance is running.

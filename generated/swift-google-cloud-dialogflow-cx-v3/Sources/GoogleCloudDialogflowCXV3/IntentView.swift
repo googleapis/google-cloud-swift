@@ -26,7 +26,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IntentView: Codable, Equatable, Sendable {
+  public enum IntentView: Codable, Equatable, Hashable, Sendable {
     /// Not specified. Treated as INTENT_VIEW_FULL.
     case unspecified
     /// Training phrases field is not populated in the response.

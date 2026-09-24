@@ -382,7 +382,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum AudioFormat: Codable, Equatable, Sendable {
+      public enum AudioFormat: Codable, Equatable, Hashable, Sendable {
         /// Unspecified. Do not use.
         case unspecified
         /// G.711 mu-law PCM with 8kHz sample rate.
@@ -590,7 +590,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RedactionStrategy: Codable, Equatable, Sendable {
+    public enum RedactionStrategy: Codable, Equatable, Hashable, Sendable {
       /// Do not redact.
       case unspecified
       /// Call redaction service to clean up the data to be persisted.
@@ -700,7 +700,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RedactionScope: Codable, Equatable, Sendable {
+    public enum RedactionScope: Codable, Equatable, Hashable, Sendable {
       /// Don't redact any kind of data.
       case unspecified
       /// On data to be written to disk or similar devices that are capable of
@@ -812,7 +812,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RetentionStrategy: Codable, Equatable, Sendable {
+    public enum RetentionStrategy: Codable, Equatable, Hashable, Sendable {
       /// Retains the persisted data with Dialogflow's internal default 365d TTLs.
       case unspecified
       /// Removes data when the conversation ends. If there is no [Conversation][]
@@ -924,7 +924,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PurgeDataType: Codable, Equatable, Sendable {
+    public enum PurgeDataType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified. Do not use.
       case unspecified
       /// Dialogflow history. This does not include Cloud logging, which is

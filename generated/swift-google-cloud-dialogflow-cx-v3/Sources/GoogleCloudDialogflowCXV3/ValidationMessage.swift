@@ -129,7 +129,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ResourceType: Codable, Equatable, Sendable {
+    public enum ResourceType: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// Agent.
@@ -330,7 +330,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Severity: Codable, Equatable, Sendable {
+    public enum Severity: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// The agent doesn't follow Dialogflow best practices.

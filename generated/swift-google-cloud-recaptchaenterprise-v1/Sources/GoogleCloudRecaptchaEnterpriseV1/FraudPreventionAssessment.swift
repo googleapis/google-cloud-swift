@@ -182,7 +182,7 @@ public struct FraudPreventionAssessment: Codable, Equatable, GoogleWKT._AnyPacka
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Reason: Codable, Equatable, Sendable {
+    public enum Reason: Codable, Equatable, Hashable, Sendable {
       /// Default unspecified type.
       case unspecified
       /// A suspiciously high number of recent transactions have used identifiers

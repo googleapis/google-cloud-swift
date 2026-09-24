@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum PrivateIPv6GoogleAccess: Codable, Equatable, Sendable {
+public enum PrivateIPv6GoogleAccess: Codable, Equatable, Hashable, Sendable {
   /// Default value. Same as DISABLED
   case privateIpv6GoogleAccessUnspecified
   /// No private access to or from Google Services

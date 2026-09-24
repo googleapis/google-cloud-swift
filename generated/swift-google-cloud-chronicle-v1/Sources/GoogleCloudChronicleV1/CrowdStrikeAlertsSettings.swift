@@ -101,7 +101,7 @@ public struct CrowdStrikeAlertsSettings: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IngestionType: Codable, Equatable, Sendable {
+  public enum IngestionType: Codable, Equatable, Hashable, Sendable {
     /// For the feeds in which this field is not set
     case unspecified
     /// Ingests both new as well as old alerts which are updated

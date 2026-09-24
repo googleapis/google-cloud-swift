@@ -204,7 +204,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// The policy is active and applied to matching VMs.
       /// Newly created VMs that match the policy will also receive the
       /// extension policy.

@@ -1681,7 +1681,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum AttributeType: Codable, Equatable, Sendable {
+          public enum AttributeType: Codable, Equatable, Hashable, Sendable {
             /// Unspecified AttributeType.
             case unspecified
             /// The value of the numerical field will be used to dynamically update
@@ -1807,7 +1807,7 @@
           ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
           ///   expecting specific values to remain unparsed; future releases may promote
           ///   them to named cases.
-          public enum InterpolationType: Codable, Equatable, Sendable {
+          public enum InterpolationType: Codable, Equatable, Hashable, Sendable {
             /// Interpolation type is unspecified. In this case, it defaults to
             /// Linear.
             case unspecified
@@ -2029,7 +2029,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Condition: Codable, Equatable, Sendable {
+      public enum Condition: Codable, Equatable, Hashable, Sendable {
         /// Unspecified query expansion condition. In this case, server behavior
         /// defaults to
         /// [Condition.DISABLED][google.cloud.discoveryengine.v1.SearchRequest.QueryExpansionSpec.Condition.DISABLED].
@@ -2230,7 +2230,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Mode: Codable, Equatable, Sendable {
+      public enum Mode: Codable, Equatable, Hashable, Sendable {
         /// Unspecified spell correction mode. In this case, server behavior
         /// defaults to
         /// [Mode.AUTO][google.cloud.discoveryengine.v1.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
@@ -3207,7 +3207,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SearchResultMode: Codable, Equatable, Sendable {
+      public enum SearchResultMode: Codable, Equatable, Hashable, Sendable {
         /// Default value.
         case unspecified
         /// Returns documents in the search result.
@@ -3462,7 +3462,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum FilterExtractionCondition: Codable, Equatable, Sendable {
+      public enum FilterExtractionCondition: Codable, Equatable, Hashable, Sendable {
         /// Server behavior defaults to `DISABLED`.
         case conditionUnspecified
         /// Disables NL filter extraction.
@@ -3579,7 +3579,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ExtractedFilterBehavior: Codable, Equatable, Sendable {
+      public enum ExtractedFilterBehavior: Codable, Equatable, Hashable, Sendable {
         /// `EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED` will use the default behavior
         /// for extracted filters. For single datastore search, the default is to
         /// apply as hard filters. For multi-datastore search, the default is to
@@ -3877,7 +3877,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Condition: Codable, Equatable, Sendable {
+      public enum Condition: Codable, Equatable, Hashable, Sendable {
         /// Server behavior defaults to
         /// [Condition.DISABLED][google.cloud.discoveryengine.v1.SearchRequest.SearchAsYouTypeSpec.Condition.DISABLED].
         ///
@@ -4079,7 +4079,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum MatchHighlightingCondition: Codable, Equatable, Sendable {
+      public enum MatchHighlightingCondition: Codable, Equatable, Hashable, Sendable {
         /// Server behavior is the same as `MATCH_HIGHLIGHTING_DISABLED`.
         case unspecified
         /// Disables match highlighting on all documents.
@@ -4298,7 +4298,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Mode: Codable, Equatable, Sendable {
+      public enum Mode: Codable, Equatable, Hashable, Sendable {
         /// Unspecified crowding mode. In this case, server behavior defaults to
         /// [Mode.DROP_CROWDED_RESULTS][google.cloud.discoveryengine.v1.SearchRequest.CrowdingSpec.Mode.DROP_CROWDED_RESULTS].
         ///
@@ -4977,7 +4977,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RankingExpressionBackend: Codable, Equatable, Sendable {
+    public enum RankingExpressionBackend: Codable, Equatable, Hashable, Sendable {
       /// Default option for unspecified/unknown values.
       case unspecified
       /// Deprecated: Use `RANK_BY_EMBEDDING` instead.
@@ -5124,7 +5124,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RelevanceThreshold: Codable, Equatable, Sendable {
+    public enum RelevanceThreshold: Codable, Equatable, Hashable, Sendable {
       /// Default value. In this case, server behavior defaults to Google defined
       /// threshold.
       case unspecified

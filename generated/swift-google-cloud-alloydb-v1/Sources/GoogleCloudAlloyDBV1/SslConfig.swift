@@ -91,7 +91,7 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SslMode: Codable, Equatable, Sendable {
+  public enum SslMode: Codable, Equatable, Hashable, Sendable {
     /// SSL mode is not specified. Defaults to ENCRYPTED_ONLY.
     case unspecified
     /// SSL connections are optional. CA verification not enforced.
@@ -243,7 +243,7 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CaSource: Codable, Equatable, Sendable {
+  public enum CaSource: Codable, Equatable, Hashable, Sendable {
     /// Certificate Authority (CA) source not specified. Defaults to
     /// CA_SOURCE_MANAGED.
     case unspecified

@@ -130,7 +130,7 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Target: Codable, Equatable, Sendable {
+  public enum Target: Codable, Equatable, Hashable, Sendable {
     /// Target not specified.
     case unspecified
     /// Target is a Compute Engine instance.
@@ -376,7 +376,7 @@ public struct DeliverInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoogleServiceType: Codable, Equatable, Sendable {
+  public enum GoogleServiceType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified Google Service.
     case unspecified
     /// Identity aware proxy.

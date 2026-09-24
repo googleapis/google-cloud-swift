@@ -553,7 +553,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum GarbageCollectionMode: Codable, Equatable, Sendable {
+      public enum GarbageCollectionMode: Codable, Equatable, Hashable, Sendable {
         /// The garbage collection has not been specified.
         case unspecified
         /// Configures Geth's garbage collection so that older data not needed
@@ -900,7 +900,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Network: Codable, Equatable, Sendable {
+    public enum Network: Codable, Equatable, Hashable, Sendable {
       /// The network has not been specified, but should be.
       case unspecified
       /// The Ethereum Mainnet.
@@ -1046,7 +1046,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NodeType: Codable, Equatable, Sendable {
+    public enum NodeType: Codable, Equatable, Hashable, Sendable {
       /// Node type has not been specified, but should be.
       case unspecified
       /// An Ethereum node that only downloads Ethereum block headers.
@@ -1179,7 +1179,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ExecutionClient: Codable, Equatable, Sendable {
+    public enum ExecutionClient: Codable, Equatable, Hashable, Sendable {
       /// Execution client has not been specified, but should be.
       case unspecified
       /// Official Go implementation of the Ethereum protocol.
@@ -1307,7 +1307,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConsensusClient: Codable, Equatable, Sendable {
+    public enum ConsensusClient: Codable, Equatable, Hashable, Sendable {
       /// Consensus client has not been specified, but should be.
       case unspecified
       /// Consensus client implementation written in Rust, maintained by Sigma
@@ -1437,7 +1437,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BlockchainType: Codable, Equatable, Sendable {
+  public enum BlockchainType: Codable, Equatable, Hashable, Sendable {
     /// Blockchain type has not been specified, but should be.
     case unspecified
     /// The blockchain type is Ethereum.
@@ -1547,7 +1547,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state has not been specified.
     case unspecified
     /// The node has been requested and is in the process of being created.

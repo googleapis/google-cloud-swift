@@ -150,7 +150,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Complexity: Codable, Equatable, Sendable {
+    public enum Complexity: Codable, Equatable, Hashable, Sendable {
       /// Complexity check is not specified.
       case unspecified
       /// A combination of lowercase, uppercase, numeric, and non-alphanumeric

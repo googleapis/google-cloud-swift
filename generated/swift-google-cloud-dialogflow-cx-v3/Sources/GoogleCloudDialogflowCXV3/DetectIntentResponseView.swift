@@ -27,7 +27,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DetectIntentResponseView: Codable, Equatable, Sendable {
+  public enum DetectIntentResponseView: Codable, Equatable, Hashable, Sendable {
     /// Not specified. `DETECT_INTENT_RESPONSE_VIEW_DEFAULT` will be used.
     case unspecified
     /// Full response view includes all fields.

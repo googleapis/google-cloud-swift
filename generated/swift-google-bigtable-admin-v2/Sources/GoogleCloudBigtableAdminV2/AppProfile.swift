@@ -673,7 +673,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ComputeBillingOwner: Codable, Equatable, Sendable {
+    public enum ComputeBillingOwner: Codable, Equatable, Hashable, Sendable {
       /// Unspecified value.
       case unspecified
       /// The host Cloud Project containing the targeted Bigtable Instance /
@@ -797,7 +797,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Priority: Codable, Equatable, Sendable {
+  public enum Priority: Codable, Equatable, Hashable, Sendable {
     /// Default value. Mapped to PRIORITY_HIGH (the legacy behavior) on creation.
     case unspecified
     case low

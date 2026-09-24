@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ModelDeploymentMonitoringObjectiveType: Codable, Equatable, Sendable {
+  public enum ModelDeploymentMonitoringObjectiveType: Codable, Equatable, Hashable, Sendable {
     /// Default value, should not be set.
     case unspecified
     /// Raw feature values' stats to detect skew between Training-Prediction

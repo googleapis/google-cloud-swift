@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AutoDnsStatus: Codable, Equatable, Sendable {
+  public enum AutoDnsStatus: Codable, Equatable, Hashable, Sendable {
     /// Unspecified status. This means status is missing from dependency service.
     case unspecified
     /// DNS provisioning is OK.

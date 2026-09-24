@@ -93,7 +93,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// The accelerator topology is available.
       case available
       /// The accelerator topology is degraded. The underlying capacity is not in a

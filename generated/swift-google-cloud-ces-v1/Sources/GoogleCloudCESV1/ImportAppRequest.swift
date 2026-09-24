@@ -232,7 +232,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConflictResolutionStrategy: Codable, Equatable, Sendable {
+    public enum ConflictResolutionStrategy: Codable, Equatable, Hashable, Sendable {
       /// The conflict resolution strategy is unspecified.
       case unspecified
       /// Replace existing data with imported data.

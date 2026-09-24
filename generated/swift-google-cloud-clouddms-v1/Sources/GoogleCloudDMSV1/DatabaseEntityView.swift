@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DatabaseEntityView: Codable, Equatable, Sendable {
+public enum DatabaseEntityView: Codable, Equatable, Hashable, Sendable {
   /// Unspecified view. Defaults to basic view.
   case unspecified
   /// Default view. Does not return DDLs or Issues.

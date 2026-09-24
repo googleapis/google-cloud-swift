@@ -866,7 +866,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum StatusClass: Codable, Equatable, Sendable {
+      public enum StatusClass: Codable, Equatable, Hashable, Sendable {
         /// Default value that matches no status codes.
         case unspecified
         /// The class of status codes between 100 and 199.
@@ -1098,7 +1098,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ServiceAgentAuthenticationType: Codable, Equatable, Sendable {
+      public enum ServiceAgentAuthenticationType: Codable, Equatable, Hashable, Sendable {
         /// Default value, will result in OIDC Authentication.
         case unspecified
         /// OIDC Authentication
@@ -1221,7 +1221,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RequestMethod: Codable, Equatable, Sendable {
+    public enum RequestMethod: Codable, Equatable, Hashable, Sendable {
       /// No request method specified.
       case methodUnspecified
       /// GET request.
@@ -1338,7 +1338,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ContentType: Codable, Equatable, Sendable {
+    public enum ContentType: Codable, Equatable, Hashable, Sendable {
       /// No content type specified.
       case typeUnspecified
       /// `body` is in URL-encoded form. Equivalent to setting the `Content-Type`
@@ -1739,7 +1739,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum JsonPathMatcherOption: Codable, Equatable, Sendable {
+      public enum JsonPathMatcherOption: Codable, Equatable, Hashable, Sendable {
         /// No JSONPath matcher type specified (not valid).
         case unspecified
         /// Selects 'exact string' matching. The match succeeds if the content at
@@ -1872,7 +1872,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ContentMatcherOption: Codable, Equatable, Sendable {
+    public enum ContentMatcherOption: Codable, Equatable, Hashable, Sendable {
       /// No content matcher type specified (maintained for backward
       /// compatibility, but deprecated for future use).
       /// Treated as `CONTAINS_STRING`.
@@ -2051,7 +2051,7 @@ public struct UptimeCheckConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CheckerType: Codable, Equatable, Sendable {
+  public enum CheckerType: Codable, Equatable, Hashable, Sendable {
     /// The default checker type. Currently converted to `STATIC_IP_CHECKERS`
     /// on creation, the default conversion behavior may change in the future.
     case unspecified

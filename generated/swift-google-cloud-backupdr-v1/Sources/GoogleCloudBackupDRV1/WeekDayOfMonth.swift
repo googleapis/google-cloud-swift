@@ -96,7 +96,7 @@ public struct WeekDayOfMonth: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WeekOfMonth: Codable, Equatable, Sendable {
+  public enum WeekOfMonth: Codable, Equatable, Hashable, Sendable {
     /// The zero value. Do not use.
     case unspecified
     /// The first week of the month.

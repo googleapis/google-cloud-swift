@@ -486,7 +486,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Direction: Codable, Equatable, Sendable {
+    public enum Direction: Codable, Equatable, Hashable, Sendable {
       /// Indicates that firewall should apply to outgoing traffic.
       case egress
       /// Indicates that firewall should apply to incoming traffic.

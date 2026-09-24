@@ -82,7 +82,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TotalEgressBandwidthTier: Codable, Equatable, Sendable {
+    public enum TotalEgressBandwidthTier: Codable, Equatable, Hashable, Sendable {
       case `default`
       case tier1
       /// Encodes an unknown string value.

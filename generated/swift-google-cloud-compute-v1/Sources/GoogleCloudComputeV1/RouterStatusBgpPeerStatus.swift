@@ -234,7 +234,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       case down
       case unknown
       case up
@@ -296,7 +296,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StatusReason: Codable, Equatable, Sendable {
+    public enum StatusReason: Codable, Equatable, Hashable, Sendable {
       /// BGP peer disabled because it requires IPv4 but the underlying
       /// connection is IPv6-only.
       case ipv4PeerOnIpv6OnlyConnection

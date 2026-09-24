@@ -209,7 +209,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ChangeType: Codable, Equatable, Sendable {
+  public enum ChangeType: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// New Entitlement was created.
@@ -413,7 +413,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OperatorType: Codable, Equatable, Sendable {
+  public enum OperatorType: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// Customer service representative.
@@ -545,7 +545,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CancellationReason: Codable, Equatable, Sendable {
+  public enum CancellationReason: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// Reseller triggered a cancellation of the service.
@@ -671,7 +671,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ActivationReason: Codable, Equatable, Sendable {
+  public enum ActivationReason: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// Reseller reactivated a suspended Entitlement.

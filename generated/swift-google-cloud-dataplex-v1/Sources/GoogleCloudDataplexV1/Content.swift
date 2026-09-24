@@ -259,7 +259,7 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum QueryEngine: Codable, Equatable, Sendable {
+    public enum QueryEngine: Codable, Equatable, Hashable, Sendable {
       /// Value was unspecified.
       case unspecified
       /// Spark SQL Query.
@@ -439,7 +439,7 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum KernelType: Codable, Equatable, Sendable {
+    public enum KernelType: Codable, Equatable, Hashable, Sendable {
       /// Kernel Type unspecified.
       case unspecified
       /// Python 3 Kernel.

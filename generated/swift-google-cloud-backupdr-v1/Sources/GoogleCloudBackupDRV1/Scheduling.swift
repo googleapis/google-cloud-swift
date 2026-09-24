@@ -217,7 +217,7 @@ public struct Scheduling: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Operator: Codable, Equatable, Sendable {
+    public enum Operator: Codable, Equatable, Hashable, Sendable {
       /// Default value. This value is unused.
       case unspecified
       /// Requires Compute Engine to seek for matched nodes.
@@ -345,7 +345,7 @@ public struct Scheduling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OnHostMaintenance: Codable, Equatable, Sendable {
+  public enum OnHostMaintenance: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Tells Compute Engine to terminate and (optionally) restart the instance
@@ -464,7 +464,7 @@ public struct Scheduling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProvisioningModel: Codable, Equatable, Sendable {
+  public enum ProvisioningModel: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is not used.
     case unspecified
     /// Standard provisioning with user controlled runtime, no discounts.
@@ -581,7 +581,7 @@ public struct Scheduling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InstanceTerminationAction: Codable, Equatable, Sendable {
+  public enum InstanceTerminationAction: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Delete the VM.

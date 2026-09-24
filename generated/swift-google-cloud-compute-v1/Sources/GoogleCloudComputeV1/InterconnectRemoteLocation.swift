@@ -281,7 +281,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Continent: Codable, Equatable, Sendable {
+    public enum Continent: Codable, Equatable, Hashable, Sendable {
       case africa
       case asiaPac
       case europe
@@ -351,7 +351,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Lacp: Codable, Equatable, Sendable {
+    public enum Lacp: Codable, Equatable, Hashable, Sendable {
       /// LACP_SUPPORTED: LACP is supported, and enabled by default on
       /// the Cross-Cloud Interconnect.
       case supported
@@ -414,7 +414,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The InterconnectRemoteLocation is available for provisioning new
       /// Cross-Cloud Interconnects.
       case available

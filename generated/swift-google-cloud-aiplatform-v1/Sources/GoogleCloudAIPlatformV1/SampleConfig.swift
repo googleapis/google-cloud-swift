@@ -151,7 +151,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SampleStrategy: Codable, Equatable, Sendable {
+    public enum SampleStrategy: Codable, Equatable, Hashable, Sendable {
       /// Default will be treated as UNCERTAINTY.
       case unspecified
       /// Sample the most uncertain data to label.

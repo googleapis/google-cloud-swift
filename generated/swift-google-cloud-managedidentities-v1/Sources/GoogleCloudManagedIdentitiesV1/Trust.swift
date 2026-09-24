@@ -178,7 +178,7 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// The domain trust is being created.
@@ -316,7 +316,7 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TrustType: Codable, Equatable, Sendable {
+  public enum TrustType: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// The forest trust.
@@ -436,7 +436,7 @@ public struct Trust: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TrustDirection: Codable, Equatable, Sendable {
+  public enum TrustDirection: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// The inbound direction represents the trusting side.

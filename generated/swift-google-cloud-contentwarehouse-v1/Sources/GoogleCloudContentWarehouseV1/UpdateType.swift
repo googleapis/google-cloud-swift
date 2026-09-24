@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum UpdateType: Codable, Equatable, Sendable {
+public enum UpdateType: Codable, Equatable, Hashable, Sendable {
   /// Defaults to full replace behavior, ie. FULL_REPLACE.
   case unspecified
   /// Fully replace all the fields (including previously linked raw document).

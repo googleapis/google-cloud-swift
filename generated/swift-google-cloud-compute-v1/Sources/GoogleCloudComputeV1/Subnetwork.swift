@@ -452,7 +452,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6AccessType: Codable, Equatable, Sendable {
+    public enum Ipv6AccessType: Codable, Equatable, Hashable, Sendable {
       /// VMs on this subnet will be assigned IPv6 addresses that are accessible
       /// via the Internet, as well as the VPC network.
       case external
@@ -514,7 +514,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6GceEndpoint: Codable, Equatable, Sendable {
+    public enum Ipv6GceEndpoint: Codable, Equatable, Hashable, Sendable {
       case vmAndFr
       case vmOnly
       /// Encodes an unknown string value.
@@ -572,7 +572,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PrivateIpv6GoogleAccess: Codable, Equatable, Sendable {
+    public enum PrivateIpv6GoogleAccess: Codable, Equatable, Hashable, Sendable {
       /// Disable private IPv6 access to/from Google services.
       case disableGoogleAccess
       /// Bidirectional private IPv6 access to/from Google services.
@@ -639,7 +639,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Purpose: Codable, Equatable, Sendable {
+    public enum Purpose: Codable, Equatable, Hashable, Sendable {
       /// Subnet reserved for Global Envoy-based Load Balancing.
       case globalManagedProxy
       /// Subnet reserved for Internal HTTP(S) Load Balancing. This is a legacy
@@ -732,7 +732,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ResolveSubnetMask: Codable, Equatable, Sendable {
+    public enum ResolveSubnetMask: Codable, Equatable, Hashable, Sendable {
       /// All ranges assigned to the VM NIC will respond to ARP.
       case arpAllRanges
       /// VMs will receive an ARP response from a VM instance owning the target IP
@@ -810,7 +810,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Role: Codable, Equatable, Sendable {
+    public enum Role: Codable, Equatable, Hashable, Sendable {
       /// The ACTIVE subnet that is currently used.
       case active
       /// The BACKUP subnet that could be promoted to ACTIVE.
@@ -870,7 +870,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StackType: Codable, Equatable, Sendable {
+    public enum StackType: Codable, Equatable, Hashable, Sendable {
       /// New VMs in this subnet can have both IPv4 and IPv6 addresses.
       case ipv4Ipv6
       /// New VMs in this subnet will only be assigned IPv4 addresses.
@@ -935,7 +935,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Subnetwork is being drained.
       case draining
       /// Subnetwork is ready for use.

@@ -202,7 +202,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OperationType: Codable, Equatable, Sendable {
+    public enum OperationType: Codable, Equatable, Hashable, Sendable {
       /// Operation type unspecified. Invalid, ConnectorTool create/update
       /// will fail.
       case unspecified

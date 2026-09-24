@@ -93,7 +93,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConfidentialInstanceType: Codable, Equatable, Sendable {
+    public enum ConfidentialInstanceType: Codable, Equatable, Hashable, Sendable {
       /// Bare Metal Secure AI.
       case bmsai
       /// Arm Confidential Compute Architecture.

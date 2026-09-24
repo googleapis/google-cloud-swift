@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum OsCapability: Codable, Equatable, Sendable {
+public enum OsCapability: Codable, Equatable, Hashable, Sendable {
   /// This is for API compatibility only and is not in use.
   case unspecified
   /// NVMe driver installed and the VM can use NVMe PD or local SSD.

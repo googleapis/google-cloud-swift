@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SearchResultType: Codable, Equatable, Sendable {
+public enum SearchResultType: Codable, Equatable, Hashable, Sendable {
   /// Default unknown type.
   case unspecified
   /// An [Entry][google.cloud.datacatalog.v1.Entry].

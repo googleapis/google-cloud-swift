@@ -235,7 +235,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Unspecified type.
       case unspecified
       /// The LLM dynamically decides whether to generate a text response
@@ -478,7 +478,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Unspecified mode.
       case unspecified
       /// Use the `field_mappings` map for data transformation.
@@ -607,7 +607,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WidgetType: Codable, Equatable, Sendable {
+  public enum WidgetType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified widget type.
     case unspecified
     /// Custom widget type.

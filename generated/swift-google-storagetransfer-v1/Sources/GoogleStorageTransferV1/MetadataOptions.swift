@@ -189,7 +189,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Symlink: Codable, Equatable, Sendable {
+  public enum Symlink: Codable, Equatable, Hashable, Sendable {
     /// Symlink behavior is unspecified.
     case unspecified
     /// Do not preserve symlinks during a transfer job.
@@ -306,7 +306,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mode: Codable, Equatable, Sendable {
+  public enum Mode: Codable, Equatable, Hashable, Sendable {
     /// Mode behavior is unspecified.
     case unspecified
     /// Do not preserve mode during a transfer job.
@@ -423,7 +423,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GID: Codable, Equatable, Sendable {
+  public enum GID: Codable, Equatable, Hashable, Sendable {
     /// GID behavior is unspecified.
     case unspecified
     /// Do not preserve GID during a transfer job.
@@ -540,7 +540,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UID: Codable, Equatable, Sendable {
+  public enum UID: Codable, Equatable, Hashable, Sendable {
     /// UID behavior is unspecified.
     case unspecified
     /// Do not preserve UID during a transfer job.
@@ -657,7 +657,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Acl: Codable, Equatable, Sendable {
+  public enum Acl: Codable, Equatable, Hashable, Sendable {
     /// ACL behavior is unspecified.
     case unspecified
     /// Use the destination bucket's default object ACLS, if applicable.
@@ -778,7 +778,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageClass: Codable, Equatable, Sendable {
+  public enum StorageClass: Codable, Equatable, Hashable, Sendable {
     /// Storage class behavior is unspecified.
     case unspecified
     /// Use the destination bucket's default storage class.
@@ -927,7 +927,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TemporaryHold: Codable, Equatable, Sendable {
+  public enum TemporaryHold: Codable, Equatable, Hashable, Sendable {
     /// Temporary hold behavior is unspecified.
     case unspecified
     /// Do not set a temporary hold on the destination object.
@@ -1044,7 +1044,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum KmsKey: Codable, Equatable, Sendable {
+  public enum KmsKey: Codable, Equatable, Hashable, Sendable {
     /// KmsKey behavior is unspecified.
     case unspecified
     /// Use the destination bucket's default encryption settings.
@@ -1165,7 +1165,7 @@ public struct MetadataOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TimeCreated: Codable, Equatable, Sendable {
+  public enum TimeCreated: Codable, Equatable, Hashable, Sendable {
     /// TimeCreated behavior is unspecified.
     case unspecified
     /// Do not preserve the `timeCreated` metadata from the source object.

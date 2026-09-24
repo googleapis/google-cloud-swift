@@ -141,7 +141,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MaintenanceReasons: Codable, Equatable, Sendable {
+    public enum MaintenanceReasons: Codable, Equatable, Hashable, Sendable {
       /// Maintenance due to disk errors.
       case failureDisk
       /// Maintenance due to GPU errors.
@@ -285,7 +285,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MaintenanceStatus: Codable, Equatable, Sendable {
+    public enum MaintenanceStatus: Codable, Equatable, Hashable, Sendable {
       /// There is ongoing maintenance on this VM.
       case ongoing
       /// There is pending maintenance.
@@ -350,7 +350,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Multiple maintenance types in one window.
       /// This is only intended to be used for groups.
       case multiple

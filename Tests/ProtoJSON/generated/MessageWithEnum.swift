@@ -110,7 +110,7 @@ public struct MessageWithEnum: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TestEnum: Codable, Equatable, Sendable {
+  public enum TestEnum: Codable, Equatable, Hashable, Sendable {
     /// Open enums require a default value of `0`.
     case unspecified
     /// A test value.

@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlMaintenanceType: Codable, Equatable, Sendable {
+  public enum SqlMaintenanceType: Codable, Equatable, Hashable, Sendable {
     /// Maintenance type is unspecified.
     case unspecified
     /// Indicates that a standalone instance is undergoing maintenance. The

@@ -485,7 +485,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JobCompletionState: Codable, Equatable, Sendable {
+  public enum JobCompletionState: Codable, Equatable, Hashable, Sendable {
     /// The status is not specified. This state is used when job is not yet
     /// finished.
     case unspecified

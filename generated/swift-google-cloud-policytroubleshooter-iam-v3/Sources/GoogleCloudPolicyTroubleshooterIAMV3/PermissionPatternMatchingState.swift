@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum PermissionPatternMatchingState: Codable, Equatable, Sendable {
+public enum PermissionPatternMatchingState: Codable, Equatable, Hashable, Sendable {
   /// Not specified.
   case unspecified
   /// The permission in the request matches the permission in the policy.

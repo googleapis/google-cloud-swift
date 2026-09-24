@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DirectoryServiceType: Codable, Equatable, Sendable {
+public enum DirectoryServiceType: Codable, Equatable, Hashable, Sendable {
   /// Directory service type is not specified.
   case unspecified
   /// Active directory policy attached to the storage pool.

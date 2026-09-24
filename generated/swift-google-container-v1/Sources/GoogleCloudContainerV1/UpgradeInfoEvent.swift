@@ -207,7 +207,7 @@ public struct UpgradeInfoEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// STATE_UNSPECIFIED indicates the state is unspecified.
     case unspecified
     /// SCHEDULED indicates the upgrade was scheduled.
@@ -345,7 +345,7 @@ public struct UpgradeInfoEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EventType: Codable, Equatable, Sendable {
+  public enum EventType: Codable, Equatable, Hashable, Sendable {
     /// EVENT_TYPE_UNSPECIFIED indicates the event type is unspecified.
     case unspecified
     /// END_OF_SUPPORT indicates GKE version reaches end of support, check

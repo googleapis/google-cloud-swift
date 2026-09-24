@@ -173,7 +173,7 @@ public struct MirroringDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State not set (this is not a valid state).
     case unspecified
     /// The deployment is ready and in sync with the parent group.

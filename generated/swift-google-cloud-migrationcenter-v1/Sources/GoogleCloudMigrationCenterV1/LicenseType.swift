@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LicenseType: Codable, Equatable, Sendable {
+public enum LicenseType: Codable, Equatable, Hashable, Sendable {
   /// Unspecified (default value).
   case unspecified
   /// Default Google Cloud licensing plan. Licensing is charged per usage.

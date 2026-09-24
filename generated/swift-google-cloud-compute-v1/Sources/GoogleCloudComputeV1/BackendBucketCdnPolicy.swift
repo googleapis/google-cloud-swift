@@ -266,7 +266,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CacheMode: Codable, Equatable, Sendable {
+    public enum CacheMode: Codable, Equatable, Hashable, Sendable {
       /// Automatically cache static content, including common image formats,
       /// media (video and audio), and web assets (JavaScript and CSS).
       /// Requests and responses that are marked as uncacheable, as well as

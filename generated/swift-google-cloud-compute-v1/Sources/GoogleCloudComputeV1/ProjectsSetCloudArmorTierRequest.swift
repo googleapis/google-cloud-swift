@@ -82,7 +82,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CloudArmorTier: Codable, Equatable, Sendable {
+    public enum CloudArmorTier: Codable, Equatable, Hashable, Sendable {
       /// Enterprise tier protection billed annually.
       case caEnterpriseAnnual
       /// Enterprise tier protection billed monthly.

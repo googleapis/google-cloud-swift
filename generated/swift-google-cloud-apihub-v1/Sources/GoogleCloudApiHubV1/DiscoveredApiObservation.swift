@@ -206,7 +206,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Style: Codable, Equatable, Sendable {
+  public enum Style: Codable, Equatable, Hashable, Sendable {
     /// Unknown style
     case unspecified
     /// Style is Rest API
@@ -330,7 +330,7 @@ public struct DiscoveredApiObservation: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SourceType: Codable, Equatable, Sendable {
+  public enum SourceType: Codable, Equatable, Hashable, Sendable {
     /// Source type not specified.
     case unspecified
     /// GCP external load balancer.

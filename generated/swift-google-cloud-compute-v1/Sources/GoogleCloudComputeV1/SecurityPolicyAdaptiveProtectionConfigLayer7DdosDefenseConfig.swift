@@ -115,7 +115,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RuleVisibility: Codable, Equatable, Sendable {
+    public enum RuleVisibility: Codable, Equatable, Hashable, Sendable {
       case premium
       case standard
       /// Encodes an unknown string value.

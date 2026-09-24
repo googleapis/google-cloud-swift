@@ -114,7 +114,7 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackingType: Codable, Equatable, Sendable {
+  public enum BackingType: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Flat v1.
@@ -273,7 +273,7 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VmdkMode: Codable, Equatable, Sendable {
+  public enum VmdkMode: Codable, Equatable, Hashable, Sendable {
     /// VMDK disk mode unspecified or unknown.
     case unspecified
     /// Dependent disk mode.
@@ -397,7 +397,7 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RdmCompatibility: Codable, Equatable, Sendable {
+  public enum RdmCompatibility: Codable, Equatable, Hashable, Sendable {
     /// Compatibility mode unspecified or unknown.
     case unspecified
     /// Physical compatibility mode.

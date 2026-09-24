@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum BigQueryExportPackage: Codable, Equatable, Sendable {
+public enum BigQueryExportPackage: Codable, Equatable, Hashable, Sendable {
   /// The BigQueryExportPackage is unspecified.
   case unspecified
   /// The BigQueryExportPackage is Bring Your Own BigQuery.

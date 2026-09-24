@@ -309,7 +309,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TrainingMethod: Codable, Equatable, Sendable {
+    public enum TrainingMethod: Codable, Equatable, Hashable, Sendable {
       case unspecified
       case modelBased
       case templateBased

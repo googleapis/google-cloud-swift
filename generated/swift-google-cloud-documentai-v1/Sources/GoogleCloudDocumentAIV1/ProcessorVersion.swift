@@ -526,7 +526,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum CustomModelType: Codable, Equatable, Sendable {
+      public enum CustomModelType: Codable, Equatable, Hashable, Sendable {
         /// The model type is unspecified.
         case unspecified
         /// The model is a versioned foundation model.
@@ -676,7 +676,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The processor version is in an unspecified state.
     case unspecified
     /// The processor version is deployed and can be used for processing.
@@ -835,7 +835,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ModelType: Codable, Equatable, Sendable {
+  public enum ModelType: Codable, Equatable, Hashable, Sendable {
     /// The processor version has unspecified model type.
     case unspecified
     /// The processor version has generative model type.

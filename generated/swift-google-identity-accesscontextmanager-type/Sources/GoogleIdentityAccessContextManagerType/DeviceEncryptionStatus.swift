@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DeviceEncryptionStatus: Codable, Equatable, Sendable {
+public enum DeviceEncryptionStatus: Codable, Equatable, Hashable, Sendable {
   /// The encryption status of the device is not specified or not known.
   case encryptionUnspecified
   /// The device does not support encryption.

@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SizingOptimizationStrategy: Codable, Equatable, Sendable {
+public enum SizingOptimizationStrategy: Codable, Equatable, Hashable, Sendable {
   /// Unspecified (default value).
   case unspecified
   /// No optimization applied. Virtual machine sizing matches as closely as

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum HealthStatus: Codable, Equatable, Sendable {
+public enum HealthStatus: Codable, Equatable, Hashable, Sendable {
   /// Health status is unknown: not initialized or failed to retrieve.
   case unspecified
   /// The resource is healthy.

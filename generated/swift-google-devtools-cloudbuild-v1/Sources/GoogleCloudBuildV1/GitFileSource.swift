@@ -174,7 +174,7 @@ public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RepoType: Codable, Equatable, Sendable {
+  public enum RepoType: Codable, Equatable, Hashable, Sendable {
     /// The default, unknown repo type. Don't use it, instead use one of
     /// the other repo types.
     case unknown

@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DetectionConfidenceLevel: Codable, Equatable, Sendable {
+public enum DetectionConfidenceLevel: Codable, Equatable, Hashable, Sendable {
   /// Same as LOW_AND_ABOVE.
   case unspecified
   /// Highest chance of a false positive.

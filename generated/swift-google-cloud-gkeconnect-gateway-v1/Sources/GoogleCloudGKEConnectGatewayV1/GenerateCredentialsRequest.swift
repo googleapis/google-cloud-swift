@@ -131,7 +131,7 @@ public struct GenerateCredentialsRequest: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OperatingSystem: Codable, Equatable, Sendable {
+  public enum OperatingSystem: Codable, Equatable, Hashable, Sendable {
     /// Generates a kubeconfig that works for all operating systems not defined
     /// below.
     case unspecified

@@ -269,7 +269,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BucketObjectType: Codable, Equatable, Sendable {
+    public enum BucketObjectType: Codable, Equatable, Hashable, Sendable {
       /// The object type is unspecified and will default to `TRANSCRIPT`.
       case unspecified
       /// The object is a transcript.

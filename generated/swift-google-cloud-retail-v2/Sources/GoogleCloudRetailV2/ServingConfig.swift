@@ -472,7 +472,7 @@ public struct ServingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiversityType: Codable, Equatable, Sendable {
+  public enum DiversityType: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Rule based diversity.

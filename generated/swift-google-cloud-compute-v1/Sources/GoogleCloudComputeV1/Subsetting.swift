@@ -83,7 +83,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Policy: Codable, Equatable, Sendable {
+    public enum Policy: Codable, Equatable, Hashable, Sendable {
       /// Subsetting based on consistent hashing.
       ///
       /// For Traffic Director, the number of backends per backend group

@@ -145,7 +145,7 @@ public struct BatchOperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BatchOperationType: Codable, Equatable, Sendable {
+  public enum BatchOperationType: Codable, Equatable, Hashable, Sendable {
     /// Batch operation type is unknown.
     case unspecified
     /// Batch operation type.

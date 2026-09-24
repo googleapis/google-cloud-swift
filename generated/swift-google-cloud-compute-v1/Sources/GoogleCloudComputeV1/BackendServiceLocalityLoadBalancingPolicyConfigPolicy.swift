@@ -89,7 +89,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Name: Codable, Equatable, Sendable {
+    public enum Name: Codable, Equatable, Hashable, Sendable {
       case invalidLbPolicy
       /// An O(1) algorithm which selects two random healthy hosts and
       /// picks the host which has fewer active requests.

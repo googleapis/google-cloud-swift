@@ -184,7 +184,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProxyHeader: Codable, Equatable, Sendable {
+    public enum ProxyHeader: Codable, Equatable, Hashable, Sendable {
       case `none`
       case proxyV1
       /// Encodes an unknown string value.

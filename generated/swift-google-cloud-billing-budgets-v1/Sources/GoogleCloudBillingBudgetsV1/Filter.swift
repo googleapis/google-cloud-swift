@@ -219,7 +219,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CreditTypesTreatment: Codable, Equatable, Sendable {
+  public enum CreditTypesTreatment: Codable, Equatable, Hashable, Sendable {
     case unspecified
     /// All types of credit are subtracted from the gross cost to determine the
     /// spend for threshold calculations.

@@ -100,7 +100,7 @@ public struct CustomVoiceParams: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReportedUsage: Codable, Equatable, Sendable {
+  public enum ReportedUsage: Codable, Equatable, Hashable, Sendable {
     /// Request with reported usage unspecified will be rejected.
     case unspecified
     /// For scenarios where the synthesized audio is not downloadable and can

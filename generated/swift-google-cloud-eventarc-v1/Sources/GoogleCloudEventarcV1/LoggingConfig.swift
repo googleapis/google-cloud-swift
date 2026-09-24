@@ -89,7 +89,7 @@ public struct LoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LogSeverity: Codable, Equatable, Sendable {
+  public enum LogSeverity: Codable, Equatable, Hashable, Sendable {
     /// Log severity is not specified. This value is treated the same as NONE,
     /// but is used to distinguish between no update and update to NONE in
     /// update_masks.

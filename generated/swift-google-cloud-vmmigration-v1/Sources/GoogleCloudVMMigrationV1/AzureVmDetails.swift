@@ -469,7 +469,7 @@ public struct AzureVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PowerState: Codable, Equatable, Sendable {
+  public enum PowerState: Codable, Equatable, Hashable, Sendable {
     /// Power state is not specified.
     case unspecified
     /// The VM is starting.
@@ -621,7 +621,7 @@ public struct AzureVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BootOption: Codable, Equatable, Sendable {
+  public enum BootOption: Codable, Equatable, Hashable, Sendable {
     /// The boot option is unknown.
     case unspecified
     /// The boot option is UEFI.
@@ -738,7 +738,7 @@ public struct AzureVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VmArchitecture: Codable, Equatable, Sendable {
+  public enum VmArchitecture: Codable, Equatable, Hashable, Sendable {
     /// The architecture is unknown.
     case unspecified
     /// The architecture is one of the x86 architectures.

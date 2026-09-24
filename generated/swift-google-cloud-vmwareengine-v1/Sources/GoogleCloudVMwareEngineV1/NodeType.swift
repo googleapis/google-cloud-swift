@@ -182,7 +182,7 @@ public struct NodeType: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Kind: Codable, Equatable, Sendable {
+  public enum Kind: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value should never be used.
     case unspecified
     /// Standard HCI node.
@@ -299,7 +299,7 @@ public struct NodeType: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Capability: Codable, Equatable, Sendable {
+  public enum Capability: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the capability is omitted or
     /// unknown.
     case unspecified

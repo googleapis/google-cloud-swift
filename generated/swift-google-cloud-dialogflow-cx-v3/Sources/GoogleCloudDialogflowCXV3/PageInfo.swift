@@ -318,7 +318,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ParameterState: Codable, Equatable, Sendable {
+        public enum ParameterState: Codable, Equatable, Hashable, Sendable {
           /// Not specified. This value should be never used.
           case unspecified
           /// Indicates that the parameter does not have a value.

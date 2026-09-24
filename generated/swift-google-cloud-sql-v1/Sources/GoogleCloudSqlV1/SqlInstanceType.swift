@@ -22,7 +22,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlInstanceType: Codable, Equatable, Sendable {
+  public enum SqlInstanceType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown Cloud SQL instance type.
     case unspecified
     /// A regular Cloud SQL instance that is not replicating from a primary

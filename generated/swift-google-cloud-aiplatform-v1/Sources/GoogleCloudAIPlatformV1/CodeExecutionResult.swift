@@ -96,7 +96,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Outcome: Codable, Equatable, Sendable {
+    public enum Outcome: Codable, Equatable, Hashable, Sendable {
       /// Unspecified status. This value should not be used.
       case unspecified
       /// Code execution completed successfully.

@@ -202,7 +202,7 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PolicyVerdict: Codable, Equatable, Sendable {
+  public enum PolicyVerdict: Codable, Equatable, Hashable, Sendable {
     /// This should never happen.
     case unspecified
     /// Allowed by policy. This enum value is not currently used but may be used
@@ -322,7 +322,7 @@ public struct DeployPolicyEvaluationEvent: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PolicyVerdictOverride: Codable, Equatable, Sendable {
+  public enum PolicyVerdictOverride: Codable, Equatable, Hashable, Sendable {
     /// This should never happen.
     case unspecified
     /// The policy was overridden.

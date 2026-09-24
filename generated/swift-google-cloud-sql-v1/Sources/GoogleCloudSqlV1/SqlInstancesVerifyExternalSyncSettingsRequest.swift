@@ -187,7 +187,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ExternalSyncMode: Codable, Equatable, Sendable {
+    public enum ExternalSyncMode: Codable, Equatable, Hashable, Sendable {
       /// Unknown external sync mode, will be defaulted to ONLINE mode
       case unspecified
       /// Online external sync will set up replication after initial data external
@@ -307,7 +307,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MigrationType: Codable, Equatable, Sendable {
+    public enum MigrationType: Codable, Equatable, Hashable, Sendable {
       /// Default value is a logical dump file-based migration
       case unspecified
       /// Logical dump file-based migration

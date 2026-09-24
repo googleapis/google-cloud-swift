@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum HttpAuthorizationHeader: Codable, Equatable, Sendable {
+public enum HttpAuthorizationHeader: Codable, Equatable, Hashable, Sendable {
   /// Default value, equivalent to `SYSTEM_ID_TOKEN`
   case unspecified
   /// Send an ID token for the project-specific Google Workspace add-ons system

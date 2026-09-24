@@ -283,7 +283,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MetadataLabelMatchCriteria: Codable, Equatable, Sendable {
+    public enum MetadataLabelMatchCriteria: Codable, Equatable, Hashable, Sendable {
       /// Default value. Should not be used.
       case unspecified
       /// At least one of the Labels specified in the matcher should match the

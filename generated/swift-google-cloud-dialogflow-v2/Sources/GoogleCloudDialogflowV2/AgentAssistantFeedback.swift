@@ -437,7 +437,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AnswerRelevance: Codable, Equatable, Sendable {
+    public enum AnswerRelevance: Codable, Equatable, Hashable, Sendable {
       /// Answer relevance unspecified.
       case unspecified
       /// Answer is irrelevant to query.
@@ -554,7 +554,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DocumentCorrectness: Codable, Equatable, Sendable {
+    public enum DocumentCorrectness: Codable, Equatable, Hashable, Sendable {
       /// Document correctness unspecified.
       case unspecified
       /// Information in document is incorrect.
@@ -671,7 +671,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DocumentEfficiency: Codable, Equatable, Sendable {
+    public enum DocumentEfficiency: Codable, Equatable, Hashable, Sendable {
       /// Document efficiency unspecified.
       case unspecified
       /// Document is inefficient.

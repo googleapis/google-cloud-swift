@@ -267,7 +267,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ByoipApiVersion: Codable, Equatable, Sendable {
+    public enum ByoipApiVersion: Codable, Equatable, Hashable, Sendable {
       /// This public delegated prefix usually takes 4 weeks to delete, and the BGP
       /// status cannot be changed. Announce and Withdraw APIs can not be used on
       /// this prefix.
@@ -330,7 +330,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6AccessType: Codable, Equatable, Sendable {
+    public enum Ipv6AccessType: Codable, Equatable, Hashable, Sendable {
       /// The parent public advertised prefix will be announced to the internet.
       /// All children public delegated prefixes will have IPv6 access type as
       /// EXTERNAL.
@@ -394,7 +394,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// The public delegated prefix is used for further sub-delegation only. Such
       /// prefixes cannot set allocatablePrefixLength.
       case delegation
@@ -475,7 +475,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The public delegated prefix is ready to use.
       case active
       /// The public delegated prefix is announced and ready to use.

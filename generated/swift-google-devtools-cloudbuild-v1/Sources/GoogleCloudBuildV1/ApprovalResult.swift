@@ -122,7 +122,7 @@ public struct ApprovalResult: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Decision: Codable, Equatable, Sendable {
+  public enum Decision: Codable, Equatable, Hashable, Sendable {
     /// Default enum type. This should not be used.
     case unspecified
     /// Build is approved.

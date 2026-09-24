@@ -94,7 +94,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DeleteStatus: Codable, Equatable, Sendable {
+    public enum DeleteStatus: Codable, Equatable, Hashable, Sendable {
       /// Both network admins have agreed this consensus peering connection can
       /// be deleted.
       case deleteAcknowledged
@@ -177,7 +177,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UpdateStatus: Codable, Equatable, Sendable {
+    public enum UpdateStatus: Codable, Equatable, Hashable, Sendable {
       /// No pending configuration update proposals to the  peering connection.
       case inSync
       /// The peer network admin has made an updatePeering call. The change is

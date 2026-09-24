@@ -623,7 +623,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SchemaChange: Codable, Equatable, Sendable {
+    public enum SchemaChange: Codable, Equatable, Hashable, Sendable {
       /// Schema change unspecified.
       case unspecified
       /// Newly discovered schema is incompatible with existing schema.
@@ -812,7 +812,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PartitionStructure: Codable, Equatable, Sendable {
+    public enum PartitionStructure: Codable, Equatable, Hashable, Sendable {
       /// PartitionStructure unspecified.
       case unspecified
       /// Consistent hive-style partition definition (both raw and curated zone).
@@ -1054,7 +1054,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Category: Codable, Equatable, Sendable {
+  public enum Category: Codable, Equatable, Hashable, Sendable {
     /// Unspecified category.
     case unspecified
     /// Resource management related issues.

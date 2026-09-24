@@ -181,7 +181,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConfidenceLevel: Codable, Equatable, Sendable {
+    public enum ConfidenceLevel: Codable, Equatable, Hashable, Sendable {
       /// Default.
       case unspecified
       /// Less than 60% confidence that the URI is unsafe.
@@ -393,7 +393,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum JustificationLabel: Codable, Equatable, Sendable {
+    public enum JustificationLabel: Codable, Equatable, Hashable, Sendable {
       /// Default.
       case unspecified
       /// The submitter manually verified that the submission is unsafe.
@@ -528,7 +528,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AbuseType: Codable, Equatable, Sendable {
+  public enum AbuseType: Codable, Equatable, Hashable, Sendable {
     /// Default.
     case unspecified
     /// The URI contains malware.

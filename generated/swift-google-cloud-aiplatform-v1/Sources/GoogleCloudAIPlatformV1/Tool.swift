@@ -597,7 +597,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Environment: Codable, Equatable, Sendable {
+      public enum Environment: Codable, Equatable, Hashable, Sendable {
         /// Defaults to browser.
         case unspecified
         /// Operates in a web browser.
@@ -721,7 +721,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PhishBlockThreshold: Codable, Equatable, Sendable {
+    public enum PhishBlockThreshold: Codable, Equatable, Hashable, Sendable {
       /// Defaults to unspecified.
       case unspecified
       /// Blocks Low and above confidence URL that is risky.

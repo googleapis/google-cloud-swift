@@ -294,7 +294,7 @@ public struct Attribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DefinitionType: Codable, Equatable, Sendable {
+  public enum DefinitionType: Codable, Equatable, Hashable, Sendable {
     /// Attribute definition type unspecified.
     case unspecified
     /// The attribute is predefined by the API Hub. Note that only the list of
@@ -413,7 +413,7 @@ public struct Attribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// Scope Unspecified.
     case unspecified
     /// Attribute can be linked to an API.
@@ -579,7 +579,7 @@ public struct Attribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataType: Codable, Equatable, Sendable {
+  public enum DataType: Codable, Equatable, Hashable, Sendable {
     /// Attribute data type unspecified.
     case unspecified
     /// Attribute's value is of type enum.

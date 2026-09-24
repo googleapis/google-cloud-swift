@@ -103,7 +103,7 @@ public struct RejoinUserEventsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UserEventRejoinScope: Codable, Equatable, Sendable {
+  public enum UserEventRejoinScope: Codable, Equatable, Hashable, Sendable {
     /// Rejoin all events with the latest product catalog, including both joined
     /// events and unjoined events.
     case unspecified

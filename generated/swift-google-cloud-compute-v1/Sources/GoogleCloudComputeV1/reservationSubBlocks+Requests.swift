@@ -126,7 +126,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum View: Codable, Equatable, Sendable {
+      public enum View: Codable, Equatable, Hashable, Sendable {
         /// This view includes basic information about the reservation sub block
         case subBlockViewBasic
         /// Includes detailed topology view.

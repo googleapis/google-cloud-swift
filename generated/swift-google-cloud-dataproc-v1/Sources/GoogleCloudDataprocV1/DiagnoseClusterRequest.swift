@@ -154,7 +154,7 @@ public struct DiagnoseClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TarballAccess: Codable, Equatable, Sendable {
+  public enum TarballAccess: Codable, Equatable, Hashable, Sendable {
     /// Tarball Access unspecified. Falls back to default access of the bucket
     case unspecified
     /// Google Cloud Support group has read access to the

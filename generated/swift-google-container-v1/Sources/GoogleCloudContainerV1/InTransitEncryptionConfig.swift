@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum InTransitEncryptionConfig: Codable, Equatable, Sendable {
+public enum InTransitEncryptionConfig: Codable, Equatable, Hashable, Sendable {
   /// Unspecified, will be inferred as default -
   /// IN_TRANSIT_ENCRYPTION_UNSPECIFIED.
   case unspecified

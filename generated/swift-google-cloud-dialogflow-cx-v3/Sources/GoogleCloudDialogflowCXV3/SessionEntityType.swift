@@ -125,7 +125,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EntityOverrideMode: Codable, Equatable, Sendable {
+    public enum EntityOverrideMode: Codable, Equatable, Hashable, Sendable {
       /// Not specified. This value should be never used.
       case unspecified
       /// The collection of session entities overrides the collection of entities

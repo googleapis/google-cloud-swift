@@ -166,7 +166,7 @@ public struct LiveConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State is not specified.
     case unspecified
     /// Live config is being created.
@@ -292,7 +292,7 @@ public struct LiveConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StitchingPolicy: Codable, Equatable, Sendable {
+  public enum StitchingPolicy: Codable, Equatable, Hashable, Sendable {
     /// Stitching policy is not specified.
     case unspecified
     /// Cuts an ad short and returns to content in the middle of the ad.

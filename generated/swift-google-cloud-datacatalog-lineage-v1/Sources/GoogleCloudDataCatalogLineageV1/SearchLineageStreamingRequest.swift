@@ -411,7 +411,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchDirection: Codable, Equatable, Sendable {
+  public enum SearchDirection: Codable, Equatable, Hashable, Sendable {
     /// Direction is unspecified.
     case unspecified
     /// Retrieve links that lead from the specified asset to downstream assets.
@@ -528,7 +528,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EntitySet: Codable, Equatable, Sendable {
+  public enum EntitySet: Codable, Equatable, Hashable, Sendable {
     /// The entity set is unspecified. Returns all the data.
     case unspecified
     /// Returns entities with only FQN specified. For example, entities with the

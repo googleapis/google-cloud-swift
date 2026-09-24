@@ -349,7 +349,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HealthState: Codable, Equatable, Sendable {
+    public enum HealthState: Codable, Equatable, Hashable, Sendable {
       /// Unspecified health state.
       case unspecified
       /// NotebookRuntime is in healthy state. Applies to ACTIVE state.
@@ -467,7 +467,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RuntimeState: Codable, Equatable, Sendable {
+    public enum RuntimeState: Codable, Equatable, Hashable, Sendable {
       /// Unspecified runtime state.
       case unspecified
       /// NotebookRuntime is in running state.

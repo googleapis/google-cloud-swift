@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum InstanceView: Codable, Equatable, Sendable {
+public enum InstanceView: Codable, Equatable, Hashable, Sendable {
   /// INSTANCE_VIEW_UNSPECIFIED Not specified, equivalent to BASIC.
   case unspecified
   /// BASIC server responses for a primary or read instance include all the

@@ -212,7 +212,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CloudArmorTier: Codable, Equatable, Sendable {
+    public enum CloudArmorTier: Codable, Equatable, Hashable, Sendable {
       /// Enterprise tier protection billed annually.
       case caEnterpriseAnnual
       /// Enterprise tier protection billed monthly.
@@ -277,7 +277,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DefaultNetworkTier: Codable, Equatable, Sendable {
+    public enum DefaultNetworkTier: Codable, Equatable, Hashable, Sendable {
       /// Public internet quality with fixed bandwidth.
       case fixedStandard
       /// High quality, Google-grade network tier, support for all networking
@@ -351,7 +351,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VmDnsSetting: Codable, Equatable, Sendable {
+    public enum VmDnsSetting: Codable, Equatable, Hashable, Sendable {
       case globalDefault
       case unspecifiedVmDnsSetting
       case zonalDefault
@@ -417,7 +417,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum XpnProjectStatus: Codable, Equatable, Sendable {
+    public enum XpnProjectStatus: Codable, Equatable, Hashable, Sendable {
       case host
       case unspecifiedXpnProjectStatus
       /// Encodes an unknown string value.

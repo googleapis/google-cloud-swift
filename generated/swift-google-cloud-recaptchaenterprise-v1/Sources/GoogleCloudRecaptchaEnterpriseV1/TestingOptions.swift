@@ -97,7 +97,7 @@ public struct TestingOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TestingChallenge: Codable, Equatable, Sendable {
+  public enum TestingChallenge: Codable, Equatable, Hashable, Sendable {
     /// Perform the normal risk analysis and return either nocaptcha or a
     /// challenge depending on risk and trust factors.
     case unspecified

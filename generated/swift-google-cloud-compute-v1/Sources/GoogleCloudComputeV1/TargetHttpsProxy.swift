@@ -362,7 +362,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum QuicOverride: Codable, Equatable, Sendable {
+    public enum QuicOverride: Codable, Equatable, Hashable, Sendable {
       /// The load balancer will not attempt to negotiate QUIC with clients.
       case disable
       /// The load balancer will attempt to negotiate QUIC with clients.
@@ -428,7 +428,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TlsEarlyData: Codable, Equatable, Sendable {
+    public enum TlsEarlyData: Codable, Equatable, Hashable, Sendable {
       /// TLS 1.3 Early Data is not advertised, and any (invalid) attempts to send
       /// Early Data will be rejected by closing the connection.
       case disabled

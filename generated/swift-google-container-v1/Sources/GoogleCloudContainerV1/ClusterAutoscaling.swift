@@ -154,7 +154,7 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AutoscalingProfile: Codable, Equatable, Sendable {
+  public enum AutoscalingProfile: Codable, Equatable, Hashable, Sendable {
     /// No change to autoscaling configuration.
     case profileUnspecified
     /// Prioritize optimizing utilization of resources.
@@ -271,7 +271,7 @@ public struct ClusterAutoscaling: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AutopilotGeneralProfile: Codable, Equatable, Sendable {
+  public enum AutopilotGeneralProfile: Codable, Equatable, Hashable, Sendable {
     /// Use default configuration.
     case unspecified
     /// Avoid extra IP consumption.

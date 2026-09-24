@@ -169,7 +169,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BfdSessionInitializationMode: Codable, Equatable, Sendable {
+    public enum BfdSessionInitializationMode: Codable, Equatable, Hashable, Sendable {
       case active
       case disabled
       case passive
@@ -231,7 +231,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocalDiagnostic: Codable, Equatable, Sendable {
+    public enum LocalDiagnostic: Codable, Equatable, Hashable, Sendable {
       case administrativelyDown
       case concatenatedPathDown
       case controlDetectionTimeExpired
@@ -324,7 +324,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocalState: Codable, Equatable, Sendable {
+    public enum LocalState: Codable, Equatable, Hashable, Sendable {
       case adminDown
       case down
       case `init`

@@ -1046,7 +1046,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Policy: Codable, Equatable, Sendable {
+    public enum Policy: Codable, Equatable, Hashable, Sendable {
       /// Default behavior. GKE selects the image based on node type.
       /// For CPU and TPU nodes, the image will not allow loading external
       /// kernel modules.
@@ -1330,7 +1330,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CgroupMode: Codable, Equatable, Sendable {
+  public enum CgroupMode: Codable, Equatable, Hashable, Sendable {
     /// CGROUP_MODE_UNSPECIFIED is when unspecified cgroup configuration is used.
     /// The default for the GKE node OS image will be used.
     case unspecified
@@ -1450,7 +1450,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TransparentHugepageEnabled: Codable, Equatable, Sendable {
+  public enum TransparentHugepageEnabled: Codable, Equatable, Hashable, Sendable {
     /// Default value. GKE will not modify the kernel configuration.
     case unspecified
     /// Transparent hugepage support for anonymous memory is enabled system wide.
@@ -1575,7 +1575,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TransparentHugepageDefrag: Codable, Equatable, Sendable {
+  public enum TransparentHugepageDefrag: Codable, Equatable, Hashable, Sendable {
     /// Default value. GKE will not modify the kernel configuration.
     case unspecified
     /// It means that an application requesting THP will stall on allocation

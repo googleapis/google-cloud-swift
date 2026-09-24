@@ -358,7 +358,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VerifyOption: Codable, Equatable, Sendable {
+  public enum VerifyOption: Codable, Equatable, Hashable, Sendable {
     /// Not a verifiable build (the default).
     case notVerified
     /// Build must be verified.
@@ -470,7 +470,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MachineType: Codable, Equatable, Sendable {
+  public enum MachineType: Codable, Equatable, Hashable, Sendable {
     /// Standard machine type.
     case unspecified
     /// Highcpu machine with 8 CPUs.
@@ -623,7 +623,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SubstitutionOption: Codable, Equatable, Sendable {
+  public enum SubstitutionOption: Codable, Equatable, Hashable, Sendable {
     /// Fails the build if error in substitutions checks, like missing
     /// a substitution in the template or in the map.
     case mustMatch
@@ -734,7 +734,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LogStreamingOption: Codable, Equatable, Sendable {
+  public enum LogStreamingOption: Codable, Equatable, Hashable, Sendable {
     /// Service may automatically determine build log streaming behavior.
     case streamDefault
     /// Build logs should be streamed to Cloud Storage.
@@ -852,7 +852,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoggingMode: Codable, Equatable, Sendable {
+  public enum LoggingMode: Codable, Equatable, Hashable, Sendable {
     /// The service determines the logging mode. The default is `LEGACY`. Do not
     /// rely on the default logging behavior as it may change in the future.
     case loggingUnspecified
@@ -1000,7 +1000,7 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DefaultLogsBucketBehavior: Codable, Equatable, Sendable {
+  public enum DefaultLogsBucketBehavior: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Bucket is located in user-owned project in the same region as the

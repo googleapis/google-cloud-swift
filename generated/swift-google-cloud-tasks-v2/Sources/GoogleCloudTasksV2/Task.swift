@@ -265,7 +265,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum View: Codable, Equatable, Sendable {
+  public enum View: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. Defaults to BASIC.
     case unspecified
     /// The basic view omits fields which can be large or can contain

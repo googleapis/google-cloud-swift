@@ -501,7 +501,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AvailableFeatures: Codable, Equatable, Sendable {
+    public enum AvailableFeatures: Codable, Equatable, Hashable, Sendable {
       /// Cross-Site Networking
       case ifCrossSiteNetwork
       /// L2 Interconnect Attachment Forwarding
@@ -566,7 +566,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InterconnectType: Codable, Equatable, Sendable {
+    public enum InterconnectType: Codable, Equatable, Hashable, Sendable {
       /// A dedicated physical interconnection with the customer.
       case dedicated
       /// [Deprecated] A private, physical interconnection with the customer.
@@ -631,7 +631,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LinkType: Codable, Equatable, Sendable {
+    public enum LinkType: Codable, Equatable, Hashable, Sendable {
       /// 100G Ethernet, LR Optics.
       case ethernet100GLr
       /// 10G Ethernet, LR Optics.
@@ -697,7 +697,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OperationalStatus: Codable, Equatable, Sendable {
+    public enum OperationalStatus: Codable, Equatable, Hashable, Sendable {
       /// The interconnect is valid, turned up, and ready to use. Attachments may
       /// be provisioned on this interconnect.
       case osActive
@@ -759,7 +759,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RequestedFeatures: Codable, Equatable, Sendable {
+    public enum RequestedFeatures: Codable, Equatable, Hashable, Sendable {
       /// Cross-Site Networking
       case ifCrossSiteNetwork
       /// L2 Interconnect Attachment Forwarding
@@ -824,7 +824,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// The interconnect is valid, turned up, and ready to use. Attachments may
       /// be provisioned on this interconnect.
       case active
@@ -886,7 +886,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Subzone: Codable, Equatable, Sendable {
+    public enum Subzone: Codable, Equatable, Hashable, Sendable {
       /// Subzone A.
       case a
       /// Subzone B.

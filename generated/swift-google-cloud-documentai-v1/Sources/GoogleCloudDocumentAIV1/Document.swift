@@ -1212,7 +1212,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Orientation: Codable, Equatable, Sendable {
+      public enum Orientation: Codable, Equatable, Hashable, Sendable {
         /// Unspecified orientation.
         case unspecified
         /// Orientation is aligned with page up.
@@ -1814,7 +1814,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Type_: Codable, Equatable, Sendable {
+        public enum Type_: Codable, Equatable, Hashable, Sendable {
           /// Unspecified break type.
           case unspecified
           /// A single whitespace.
@@ -3470,7 +3470,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Method: Codable, Equatable, Sendable {
+    public enum Method: Codable, Equatable, Hashable, Sendable {
       /// When the method is not specified, it should be treated as `EXTRACT`.
       case unspecified
       /// The entity's value is directly extracted as-is from the document
@@ -4050,7 +4050,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum LayoutType: Codable, Equatable, Sendable {
+      public enum LayoutType: Codable, Equatable, Hashable, Sendable {
         /// Layout Unspecified.
         case unspecified
         /// References a
@@ -4444,7 +4444,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OperationType: Codable, Equatable, Sendable {
+    public enum OperationType: Codable, Equatable, Hashable, Sendable {
       /// Operation type unspecified. If no operation is specified a provenance
       /// entry is simply used to match against a `parent`.
       case unspecified
@@ -6965,7 +6965,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ValidationResultType: Codable, Equatable, Sendable {
+      public enum ValidationResultType: Codable, Equatable, Hashable, Sendable {
         /// The validation result type is unspecified.
         case unspecified
         /// The validation is valid.

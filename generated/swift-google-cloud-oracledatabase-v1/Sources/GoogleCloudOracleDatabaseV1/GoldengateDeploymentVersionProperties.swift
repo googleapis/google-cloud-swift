@@ -135,7 +135,7 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleW
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DeploymentType: Codable, Equatable, Sendable {
+  public enum DeploymentType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Goldengate Deployment Type category is OGG.
@@ -308,7 +308,7 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleW
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DeploymentReleaseType: Codable, Equatable, Sendable {
+  public enum DeploymentReleaseType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Goldengate Deployment Version release type is MAJOR.

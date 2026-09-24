@@ -1231,7 +1231,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OpenSourceCategory: Codable, Equatable, Sendable {
+    public enum OpenSourceCategory: Codable, Equatable, Hashable, Sendable {
       /// The open source category is unspecified, which should not be used.
       case unspecified
       /// Used to indicate the PublisherModel is not open sourced.
@@ -1376,7 +1376,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LaunchStage: Codable, Equatable, Sendable {
+    public enum LaunchStage: Codable, Equatable, Hashable, Sendable {
       /// The model launch stage is unspecified.
       case unspecified
       /// Used to indicate the PublisherModel is at Experimental launch stage,
@@ -1514,7 +1514,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VersionState: Codable, Equatable, Sendable {
+    public enum VersionState: Codable, Equatable, Hashable, Sendable {
       /// The version state is unspecified.
       case unspecified
       /// Used to indicate the version is stable.

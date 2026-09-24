@@ -280,7 +280,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum GoalType: Codable, Equatable, Sendable {
+        public enum GoalType: Codable, Equatable, Hashable, Sendable {
           /// Goal Type will default to maximize.
           case unspecified
           /// Maximize the goal metric.
@@ -606,7 +606,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum MultiTrialAlgorithm: Codable, Equatable, Sendable {
+      public enum MultiTrialAlgorithm: Codable, Equatable, Hashable, Sendable {
         /// Defaults to `REINFORCEMENT_LEARNING`.
         case unspecified
         /// The Reinforcement Learning Algorithm for Multi-trial Neural

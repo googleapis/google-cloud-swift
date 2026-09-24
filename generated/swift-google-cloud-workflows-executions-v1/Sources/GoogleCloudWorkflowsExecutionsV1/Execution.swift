@@ -748,7 +748,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// No type specified.
       case unspecified
       /// Caused by an issue with KMS.
@@ -870,7 +870,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Invalid state.
     case unspecified
     /// The execution is in progress.
@@ -1016,7 +1016,7 @@ public struct Execution: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CallLogLevel: Codable, Equatable, Sendable {
+  public enum CallLogLevel: Codable, Equatable, Hashable, Sendable {
     /// No call logging level specified.
     case unspecified
     /// Log all call steps within workflows, all call returns, and all exceptions

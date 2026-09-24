@@ -91,7 +91,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Behavior: Codable, Equatable, Sendable {
+    public enum Behavior: Codable, Equatable, Hashable, Sendable {
       case faultBehaviorUnspecified
       /// The subBlock experienced a GPU error.
       case gpuError

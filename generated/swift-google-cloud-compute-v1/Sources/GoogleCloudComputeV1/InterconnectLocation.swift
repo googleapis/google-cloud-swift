@@ -287,7 +287,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AvailableFeatures: Codable, Equatable, Sendable {
+    public enum AvailableFeatures: Codable, Equatable, Hashable, Sendable {
       /// Cross-Site Networking
       case ifCrossSiteNetwork
       /// L2 Interconnect Attachment Forwarding
@@ -352,7 +352,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AvailableLinkTypes: Codable, Equatable, Sendable {
+    public enum AvailableLinkTypes: Codable, Equatable, Hashable, Sendable {
       /// 100G Ethernet, LR Optics.
       case linkTypeEthernet100GLr
       /// 10G Ethernet, LR Optics.
@@ -418,7 +418,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Continent: Codable, Equatable, Sendable {
+    public enum Continent: Codable, Equatable, Hashable, Sendable {
       case africa
       case asiaPac
       case cAfrica
@@ -508,7 +508,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The InterconnectLocation is available for provisioning new Interconnects.
       case available
       /// The InterconnectLocation is closed for provisioning new Interconnects.

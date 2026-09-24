@@ -122,7 +122,7 @@ public struct SearchGrantsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CallerRelationshipType: Codable, Equatable, Sendable {
+  public enum CallerRelationshipType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified caller relationship type.
     case unspecified
     /// The user created this grant by calling `CreateGrant` earlier.

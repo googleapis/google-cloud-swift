@@ -99,7 +99,7 @@ public struct ZoneMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RackType: Codable, Equatable, Sendable {
+  public enum RackType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified rack type, single rack also belongs to this type.
     case unspecified
     /// Base rack type, a pair of two modified Config-1 racks containing

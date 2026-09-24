@@ -100,7 +100,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TargetShape: Codable, Equatable, Sendable {
+    public enum TargetShape: Codable, Equatable, Hashable, Sendable {
       /// The group picks zones for creating VM instances to fulfill the requested
       /// number of VMs within present resource constraints and to maximize
       /// utilization of unused zonal reservations. Recommended for batch workloads

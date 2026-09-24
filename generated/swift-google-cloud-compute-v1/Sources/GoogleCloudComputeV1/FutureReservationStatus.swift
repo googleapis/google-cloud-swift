@@ -174,7 +174,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AmendmentStatus: Codable, Equatable, Sendable {
+    public enum AmendmentStatus: Codable, Equatable, Hashable, Sendable {
       /// The requested amendment to the Future Resevation has been approved and
       /// applied by GCP.
       case amendmentApproved
@@ -246,7 +246,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProcurementStatus: Codable, Equatable, Sendable {
+    public enum ProcurementStatus: Codable, Equatable, Hashable, Sendable {
       /// Future reservation is approved by GCP.
       case approved
       /// Future reservation is cancelled by the customer.

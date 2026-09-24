@@ -1298,7 +1298,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum DesiredState: Codable, Equatable, Sendable {
+      public enum DesiredState: Codable, Equatable, Hashable, Sendable {
         /// Unspecified is invalid.
         case unspecified
         /// Ensure that the package is installed.
@@ -1650,7 +1650,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ArchiveType: Codable, Equatable, Sendable {
+        public enum ArchiveType: Codable, Equatable, Hashable, Sendable {
           /// Unspecified is invalid.
           case unspecified
           /// Deb indicates that the archive contains binary files.
@@ -2295,7 +2295,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum Interpreter: Codable, Equatable, Sendable {
+        public enum Interpreter: Codable, Equatable, Hashable, Sendable {
           /// Invalid value, the request will return validation error.
           case unspecified
           /// If an interpreter is not specified, the
@@ -2579,7 +2579,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum DesiredState: Codable, Equatable, Sendable {
+      public enum DesiredState: Codable, Equatable, Hashable, Sendable {
         /// Unspecified is invalid.
         case unspecified
         /// Ensure file at path is present.
@@ -2846,7 +2846,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mode: Codable, Equatable, Sendable {
+  public enum Mode: Codable, Equatable, Hashable, Sendable {
     /// Invalid mode
     case unspecified
     /// This mode checks if the configuration resources in the policy are in

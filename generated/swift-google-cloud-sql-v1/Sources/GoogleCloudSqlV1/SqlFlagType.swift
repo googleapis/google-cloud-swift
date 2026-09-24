@@ -22,7 +22,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlFlagType: Codable, Equatable, Sendable {
+  public enum SqlFlagType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown flag type.
     case unspecified
     /// Boolean type flag.

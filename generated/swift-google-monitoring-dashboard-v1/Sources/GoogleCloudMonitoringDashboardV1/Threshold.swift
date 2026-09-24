@@ -122,7 +122,7 @@ public struct Threshold: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Color: Codable, Equatable, Sendable {
+  public enum Color: Codable, Equatable, Hashable, Sendable {
     /// Color is unspecified. Not allowed in well-formed requests.
     case unspecified
     /// Crossing the threshold is "concerning" behavior.
@@ -240,7 +240,7 @@ public struct Threshold: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Direction: Codable, Equatable, Sendable {
+  public enum Direction: Codable, Equatable, Hashable, Sendable {
     /// Not allowed in well-formed requests.
     case unspecified
     /// The threshold will be considered crossed if the actual value is above
@@ -359,7 +359,7 @@ public struct Threshold: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TargetAxis: Codable, Equatable, Sendable {
+  public enum TargetAxis: Codable, Equatable, Hashable, Sendable {
     /// The target axis was not specified. Defaults to Y1.
     case unspecified
     /// The y_axis (the right axis of chart).

@@ -103,7 +103,7 @@ public struct AnswerFeedback: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CorrectnessLevel: Codable, Equatable, Sendable {
+  public enum CorrectnessLevel: Codable, Equatable, Hashable, Sendable {
     /// Correctness level unspecified.
     case unspecified
     /// Answer is totally wrong.

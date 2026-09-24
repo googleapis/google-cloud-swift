@@ -2134,7 +2134,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EvaluationMissingData: Codable, Equatable, Sendable {
+    public enum EvaluationMissingData: Codable, Equatable, Hashable, Sendable {
       /// An unspecified evaluation missing data option.  Equivalent to
       /// EVALUATION_MISSING_DATA_NO_OP.
       case unspecified
@@ -2544,7 +2544,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NotificationPrompt: Codable, Equatable, Sendable {
+    public enum NotificationPrompt: Codable, Equatable, Hashable, Sendable {
       /// No strategy specified. Treated as error.
       case unspecified
       /// Notify when an incident is opened.
@@ -2672,7 +2672,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConditionCombinerType: Codable, Equatable, Sendable {
+  public enum ConditionCombinerType: Codable, Equatable, Hashable, Sendable {
     /// An unspecified combiner.
     case combineUnspecified
     /// Combine conditions using the logical `AND` operator. An
@@ -2802,7 +2802,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Severity: Codable, Equatable, Sendable {
+  public enum Severity: Codable, Equatable, Hashable, Sendable {
     /// No severity is specified. This is the default value.
     case unspecified
     /// This is the highest severity level. Use this if the problem could

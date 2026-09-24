@@ -321,7 +321,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BalancingMode: Codable, Equatable, Sendable {
+    public enum BalancingMode: Codable, Equatable, Hashable, Sendable {
       /// Balance based on the number of simultaneous connections.
       case connection
       /// Based on custom defined and reported metrics.
@@ -396,7 +396,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Preference: Codable, Equatable, Sendable {
+    public enum Preference: Codable, Equatable, Hashable, Sendable {
       /// No preference.
       case `default`
       /// If preference is unspecified, we set it to the DEFAULT value
@@ -461,7 +461,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TrafficDuration: Codable, Equatable, Sendable {
+    public enum TrafficDuration: Codable, Equatable, Hashable, Sendable {
       /// Most of the requests are expected to take more than multiple seconds to
       /// finish.
       case long

@@ -643,7 +643,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum ContentFormat: Codable, Equatable, Sendable {
+        public enum ContentFormat: Codable, Equatable, Hashable, Sendable {
           /// Unspecified content format.
           case unspecified
           /// Content was provided in JSON format.
@@ -772,7 +772,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum UpdateMode: Codable, Equatable, Sendable {
+      public enum UpdateMode: Codable, Equatable, Hashable, Sendable {
         /// Unspecified update mode.
         case unspecified
         /// Context content updates are applied in append mode.
@@ -960,7 +960,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum GeneratorType: Codable, Equatable, Sendable {
+      public enum GeneratorType: Codable, Equatable, Hashable, Sendable {
         /// Unspecified generator type.
         case unspecified
         /// Free form generator type.
@@ -1117,7 +1117,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LifecycleState: Codable, Equatable, Sendable {
+    public enum LifecycleState: Codable, Equatable, Hashable, Sendable {
       /// Unknown.
       case unspecified
       /// Conversation is currently open for media analysis.
@@ -1236,7 +1236,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConversationStage: Codable, Equatable, Sendable {
+    public enum ConversationStage: Codable, Equatable, Hashable, Sendable {
       /// Unknown. Should never be used after a conversation is successfully
       /// created.
       case unspecified

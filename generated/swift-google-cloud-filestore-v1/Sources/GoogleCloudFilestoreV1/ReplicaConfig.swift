@@ -111,7 +111,7 @@ public struct ReplicaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State not set.
     case unspecified
     /// The replica is being created.
@@ -244,7 +244,7 @@ public struct ReplicaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StateReason: Codable, Equatable, Sendable {
+  public enum StateReason: Codable, Equatable, Hashable, Sendable {
     /// Reason not specified.
     case unspecified
     /// The peer instance is unreachable.

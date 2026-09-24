@@ -88,7 +88,7 @@ public struct DependencyErrorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Error: Codable, Equatable, Sendable {
+  public enum Error: Codable, Equatable, Hashable, Sendable {
     /// Default value used for no error in the dependency.
     case unspecified
     /// Supplier entity has been deleted.

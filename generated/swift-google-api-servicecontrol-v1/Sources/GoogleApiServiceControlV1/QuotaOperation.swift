@@ -162,7 +162,7 @@ public struct QuotaOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum QuotaMode: Codable, Equatable, Sendable {
+  public enum QuotaMode: Codable, Equatable, Hashable, Sendable {
     /// Guard against implicit default. Must not be used.
     case unspecified
     /// For AllocateQuota request, allocates quota for the amount specified in

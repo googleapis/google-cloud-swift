@@ -113,7 +113,7 @@ public struct AdditionalIPRangesConfig: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     /// Not set, same as ACTIVE.
     case unspecified
     /// ACTIVE status indicates that the subnet is available for new node pool

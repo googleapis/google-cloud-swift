@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum QosType: Codable, Equatable, Sendable {
+public enum QosType: Codable, Equatable, Hashable, Sendable {
   /// Unspecified QoS Type
   case unspecified
   /// QoS Type is Auto

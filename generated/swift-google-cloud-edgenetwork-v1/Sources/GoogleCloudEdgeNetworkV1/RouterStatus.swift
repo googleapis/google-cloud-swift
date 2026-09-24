@@ -216,7 +216,7 @@ public struct RouterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BgpStatus: Codable, Equatable, Sendable {
+    public enum BgpStatus: Codable, Equatable, Hashable, Sendable {
       /// The default status indicating BGP session is in unknown state.
       case unknown
       /// The UP status indicating BGP session is established.

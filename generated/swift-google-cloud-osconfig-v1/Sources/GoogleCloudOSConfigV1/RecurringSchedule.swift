@@ -166,7 +166,7 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Frequency: Codable, Equatable, Sendable {
+  public enum Frequency: Codable, Equatable, Hashable, Sendable {
     /// Invalid. A frequency must be specified.
     case unspecified
     /// Indicates that the frequency of recurrence should be expressed in terms

@@ -111,7 +111,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BgpMd5: Codable, Equatable, Sendable {
+    public enum BgpMd5: Codable, Equatable, Hashable, Sendable {
       /// MD5_OPTIONAL: BGP MD5 authentication is supported and can optionally be
       /// configured.
       case md5Optional

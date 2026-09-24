@@ -201,7 +201,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Enable: Codable, Equatable, Sendable {
+    public enum Enable: Codable, Equatable, Hashable, Sendable {
       case `false`
       case `true`
       /// Encodes an unknown string value.

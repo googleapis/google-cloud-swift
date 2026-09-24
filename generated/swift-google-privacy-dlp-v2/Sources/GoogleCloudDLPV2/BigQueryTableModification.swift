@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum BigQueryTableModification: Codable, Equatable, Sendable {
+public enum BigQueryTableModification: Codable, Equatable, Hashable, Sendable {
   /// Unused.
   case tableModificationUnspecified
   /// A table will be considered modified when the last_modified_time from

@@ -234,7 +234,7 @@ public struct QuotaInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ContainerType: Codable, Equatable, Sendable {
+  public enum ContainerType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified container type.
     case unspecified
     /// consumer project

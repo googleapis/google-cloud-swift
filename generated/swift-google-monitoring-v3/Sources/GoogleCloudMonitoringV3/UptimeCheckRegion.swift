@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum UptimeCheckRegion: Codable, Equatable, Sendable {
+public enum UptimeCheckRegion: Codable, Equatable, Hashable, Sendable {
   /// Default value if no region is specified. Will result in Uptime checks
   /// running from all regions.
   case regionUnspecified

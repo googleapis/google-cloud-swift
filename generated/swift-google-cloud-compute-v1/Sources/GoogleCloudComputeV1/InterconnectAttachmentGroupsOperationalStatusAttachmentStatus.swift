@@ -112,7 +112,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IsActive: Codable, Equatable, Sendable {
+    public enum IsActive: Codable, Equatable, Hashable, Sendable {
       case active
       case inactive
       case unspecified
@@ -174,7 +174,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       case attachmentStatusUnknown
       case connectionDisabled
       case connectionDown

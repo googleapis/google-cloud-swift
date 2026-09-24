@@ -98,7 +98,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseEngine: Codable, Equatable, Sendable {
+  public enum DatabaseEngine: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// Include all supported database engines.
@@ -223,7 +223,7 @@ public struct DiscoveryCloudSqlConditions: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseResourceType: Codable, Equatable, Sendable {
+  public enum DatabaseResourceType: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// Includes database resource types that become supported at a later time.

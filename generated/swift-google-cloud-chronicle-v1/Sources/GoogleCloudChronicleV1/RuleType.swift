@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum RuleType: Codable, Equatable, Sendable {
+public enum RuleType: Codable, Equatable, Hashable, Sendable {
   /// The rule type is unspecified/unknown.
   case unspecified
   /// Rule checks for the existence of a single event.

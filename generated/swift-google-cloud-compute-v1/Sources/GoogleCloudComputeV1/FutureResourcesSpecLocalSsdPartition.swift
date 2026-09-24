@@ -89,7 +89,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DiskInterface: Codable, Equatable, Sendable {
+    public enum DiskInterface: Codable, Equatable, Hashable, Sendable {
       case nvme
       case scsi
       /// Encodes an unknown string value.

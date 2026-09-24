@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum OrganizationEventView: Codable, Equatable, Sendable {
+public enum OrganizationEventView: Codable, Equatable, Hashable, Sendable {
   /// Unspecified event view. Default to `ORGANIZATION_EVENT_VIEW_BASIC`.
   case unspecified
   /// Includes all organization event fields except `updates`. This view is the

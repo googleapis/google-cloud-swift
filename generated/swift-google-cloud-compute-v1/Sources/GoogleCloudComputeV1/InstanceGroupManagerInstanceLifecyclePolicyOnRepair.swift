@@ -92,7 +92,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowChangingZone: Codable, Equatable, Sendable {
+    public enum AllowChangingZone: Codable, Equatable, Hashable, Sendable {
       /// [Default] MIG cannot change a VM's zone during a repair.
       case no
       /// MIG can select a different zone for the VM during a repair.

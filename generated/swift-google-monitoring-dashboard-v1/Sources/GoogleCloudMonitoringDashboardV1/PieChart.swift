@@ -194,7 +194,7 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PieChartType: Codable, Equatable, Sendable {
+  public enum PieChartType: Codable, Equatable, Hashable, Sendable {
     /// The zero value. No type specified. Do not use.
     case unspecified
     /// A Pie type PieChart.

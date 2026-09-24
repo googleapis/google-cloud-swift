@@ -122,7 +122,7 @@ public struct AdmissionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EvaluationMode: Codable, Equatable, Sendable {
+  public enum EvaluationMode: Codable, Equatable, Hashable, Sendable {
     /// Do not use.
     case unspecified
     /// This rule allows all pod creations.
@@ -249,7 +249,7 @@ public struct AdmissionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EnforcementMode: Codable, Equatable, Sendable {
+  public enum EnforcementMode: Codable, Equatable, Hashable, Sendable {
     /// Do not use.
     case unspecified
     /// Enforce the admission rule by blocking the pod creation.

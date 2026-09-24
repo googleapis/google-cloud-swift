@@ -103,7 +103,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ResetSslMode: Codable, Equatable, Sendable {
+    public enum ResetSslMode: Codable, Equatable, Hashable, Sendable {
       /// Reset SSL mode is not specified.
       case unspecified
       /// Refresh all TLS configs. This is the default behaviour.

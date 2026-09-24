@@ -232,7 +232,7 @@ public struct NotificationChannel: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VerificationStatus: Codable, Equatable, Sendable {
+  public enum VerificationStatus: Codable, Equatable, Hashable, Sendable {
     /// Sentinel value used to indicate that the state is unknown, omitted, or
     /// is not applicable (as in the case of channels that neither support
     /// nor require verification in order to function).

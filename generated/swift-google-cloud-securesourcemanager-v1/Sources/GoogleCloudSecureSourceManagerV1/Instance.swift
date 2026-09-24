@@ -581,7 +581,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not set. This should only be the case for incoming requests.
     case unspecified
     /// Instance is being created.
@@ -719,7 +719,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StateNote: Codable, Equatable, Sendable {
+  public enum StateNote: Codable, Equatable, Hashable, Sendable {
     /// STATE_NOTE_UNSPECIFIED as the first value of State.
     case unspecified
     /// CMEK access is unavailable.

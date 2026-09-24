@@ -266,7 +266,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Engine: Codable, Equatable, Sendable {
+    public enum Engine: Codable, Equatable, Hashable, Sendable {
       /// An unspecified Engine type.
       case unspecified
       /// Spark-sql engine is specified in Query.
@@ -394,7 +394,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EventType: Codable, Equatable, Sendable {
+  public enum EventType: Codable, Equatable, Hashable, Sendable {
     /// An unspecified event type.
     case unspecified
     /// Event when the session is assigned to a user.

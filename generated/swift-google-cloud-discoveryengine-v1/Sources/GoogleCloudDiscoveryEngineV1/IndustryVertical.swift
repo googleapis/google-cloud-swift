@@ -27,7 +27,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IndustryVertical: Codable, Equatable, Sendable {
+  public enum IndustryVertical: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset.
     case unspecified
     /// The generic vertical for documents that are not specific to any industry

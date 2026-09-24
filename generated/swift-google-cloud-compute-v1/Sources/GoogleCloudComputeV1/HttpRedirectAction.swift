@@ -159,7 +159,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RedirectResponseCode: Codable, Equatable, Sendable {
+    public enum RedirectResponseCode: Codable, Equatable, Hashable, Sendable {
       /// Http Status Code 302 - Found.
       case found
       /// Http Status Code 301 - Moved Permanently.

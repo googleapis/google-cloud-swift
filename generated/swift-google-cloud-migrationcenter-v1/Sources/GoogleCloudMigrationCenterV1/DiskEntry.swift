@@ -162,7 +162,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InterfaceType: Codable, Equatable, Sendable {
+  public enum InterfaceType: Codable, Equatable, Hashable, Sendable {
     /// Interface type unknown or unspecified.
     case unspecified
     /// IDE interface type.

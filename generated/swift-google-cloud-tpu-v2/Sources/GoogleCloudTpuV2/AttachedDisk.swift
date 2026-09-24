@@ -94,7 +94,7 @@ public struct AttachedDisk: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiskMode: Codable, Equatable, Sendable {
+  public enum DiskMode: Codable, Equatable, Hashable, Sendable {
     /// The disk mode is not known/set.
     case unspecified
     /// Attaches the disk in read-write mode. Only one TPU node can attach a disk

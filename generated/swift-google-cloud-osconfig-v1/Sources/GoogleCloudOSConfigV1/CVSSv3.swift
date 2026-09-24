@@ -193,7 +193,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackVector: Codable, Equatable, Sendable {
+  public enum AttackVector: Codable, Equatable, Hashable, Sendable {
     /// Invalid value.
     case unspecified
     /// The vulnerable component is bound to the network stack and the set of
@@ -330,7 +330,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackComplexity: Codable, Equatable, Sendable {
+  public enum AttackComplexity: Codable, Equatable, Hashable, Sendable {
     /// Invalid value.
     case unspecified
     /// Specialized access conditions or extenuating circumstances do not exist.
@@ -454,7 +454,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PrivilegesRequired: Codable, Equatable, Sendable {
+  public enum PrivilegesRequired: Codable, Equatable, Hashable, Sendable {
     /// Invalid value.
     case unspecified
     /// The attacker is unauthorized prior to attack, and therefore does not
@@ -587,7 +587,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UserInteraction: Codable, Equatable, Sendable {
+  public enum UserInteraction: Codable, Equatable, Hashable, Sendable {
     /// Invalid value.
     case unspecified
     /// The vulnerable system can be exploited without interaction from any user.
@@ -706,7 +706,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     /// Invalid value.
     case unspecified
     /// An exploited vulnerability can only affect resources managed by the same
@@ -827,7 +827,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Impact: Codable, Equatable, Sendable {
+  public enum Impact: Codable, Equatable, Hashable, Sendable {
     /// Invalid value.
     case unspecified
     /// High impact.

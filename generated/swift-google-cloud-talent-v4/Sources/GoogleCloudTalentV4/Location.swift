@@ -125,7 +125,7 @@ public struct Location: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LocationType: Codable, Equatable, Sendable {
+  public enum LocationType: Codable, Equatable, Hashable, Sendable {
     /// Default value if the type isn't specified.
     case unspecified
     /// A country level location.

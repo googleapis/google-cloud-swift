@@ -95,7 +95,7 @@ public struct MetadataExchangeResponse: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResponseCode: Codable, Equatable, Sendable {
+  public enum ResponseCode: Codable, Equatable, Hashable, Sendable {
     /// Unknown response code
     case unspecified
     /// Success

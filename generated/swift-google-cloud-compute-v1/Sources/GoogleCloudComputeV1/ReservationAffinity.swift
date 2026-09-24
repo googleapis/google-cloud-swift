@@ -105,7 +105,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConsumeReservationType: Codable, Equatable, Sendable {
+    public enum ConsumeReservationType: Codable, Equatable, Hashable, Sendable {
       /// Consume any allocation available.
       case anyReservation
       /// Do not consume from any allocated capacity.

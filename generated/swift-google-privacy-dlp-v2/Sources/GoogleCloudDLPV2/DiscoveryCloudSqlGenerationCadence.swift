@@ -182,7 +182,7 @@ public struct DiscoveryCloudSqlGenerationCadence: Codable, Equatable, GoogleWKT.
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CloudSqlSchemaModification: Codable, Equatable, Sendable {
+    public enum CloudSqlSchemaModification: Codable, Equatable, Hashable, Sendable {
       /// Unused.
       case sqlSchemaModificationUnspecified
       /// New columns have appeared.

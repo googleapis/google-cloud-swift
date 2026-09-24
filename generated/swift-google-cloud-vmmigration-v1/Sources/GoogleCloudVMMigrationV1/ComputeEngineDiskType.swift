@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ComputeEngineDiskType: Codable, Equatable, Sendable {
+public enum ComputeEngineDiskType: Codable, Equatable, Hashable, Sendable {
   /// An unspecified disk type. Will be used as STANDARD.
   case unspecified
   /// A Standard disk type.

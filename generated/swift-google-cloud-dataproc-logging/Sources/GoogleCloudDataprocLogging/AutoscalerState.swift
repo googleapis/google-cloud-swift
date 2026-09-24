@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AutoscalerState: Codable, Equatable, Sendable {
+public enum AutoscalerState: Codable, Equatable, Hashable, Sendable {
   case unspecified
   /// The Autoscaler is sleeping and waiting for the next update.
   case cooldown

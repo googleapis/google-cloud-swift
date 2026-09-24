@@ -239,7 +239,7 @@ public struct GoldengatePostgresqlConnectionProperties: Codable, Equatable, Goog
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PostgresqlSecurityProtocol: Codable, Equatable, Sendable {
+  public enum PostgresqlSecurityProtocol: Codable, Equatable, Hashable, Sendable {
     /// Security protocol not specified.
     case unspecified
     /// Plain text communication.
@@ -363,7 +363,7 @@ public struct GoldengatePostgresqlConnectionProperties: Codable, Equatable, Goog
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PostgresqlSslMode: Codable, Equatable, Sendable {
+  public enum PostgresqlSslMode: Codable, Equatable, Hashable, Sendable {
     /// SSL mode not specified.
     case unspecified
     /// Prefer SSL.

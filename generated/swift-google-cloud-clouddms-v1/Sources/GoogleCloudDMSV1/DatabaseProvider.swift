@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DatabaseProvider: Codable, Equatable, Sendable {
+public enum DatabaseProvider: Codable, Equatable, Hashable, Sendable {
   /// The database provider is unknown.
   case unspecified
   /// CloudSQL runs the database.

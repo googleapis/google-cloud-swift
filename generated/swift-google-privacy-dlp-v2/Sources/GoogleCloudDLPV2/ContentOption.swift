@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ContentOption: Codable, Equatable, Sendable {
+public enum ContentOption: Codable, Equatable, Hashable, Sendable {
   /// Includes entire content of a file or a data stream.
   case contentUnspecified
   /// Text content within the data, excluding any metadata.

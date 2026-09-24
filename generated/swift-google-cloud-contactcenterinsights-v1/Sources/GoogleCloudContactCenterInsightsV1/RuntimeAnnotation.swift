@@ -273,7 +273,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum QuerySource: Codable, Equatable, Sendable {
+    public enum QuerySource: Codable, Equatable, Hashable, Sendable {
       /// Unknown query source.
       case unspecified
       /// The query is from agents.

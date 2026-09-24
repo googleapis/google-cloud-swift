@@ -410,7 +410,7 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     /// Unspecified status.
     case unspecified
     /// Operation succeeded.
@@ -562,7 +562,7 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Stage: Codable, Equatable, Sendable {
+  public enum Stage: Codable, Equatable, Hashable, Sendable {
     /// Unspecified stage.
     case unspecified
     /// Pre-upgrade custom checks, not covered by pg_upgrade.

@@ -342,7 +342,7 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ResourceType: Codable, Equatable, Sendable {
+    public enum ResourceType: Codable, Equatable, Hashable, Sendable {
       /// Unknown resource type.
       case unspecified
       /// Consumer project.
@@ -741,7 +741,7 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SetupState: Codable, Equatable, Sendable {
+    public enum SetupState: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// SAA enrollment pending.
@@ -858,7 +858,7 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SetupError: Codable, Equatable, Sendable {
+    public enum SetupError: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// Invalid states for all customers, to be redirected to AA UI for
@@ -1005,7 +1005,7 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ComplianceRegime: Codable, Equatable, Sendable {
+  public enum ComplianceRegime: Codable, Equatable, Hashable, Sendable {
     /// Unknown compliance regime.
     case unspecified
     /// Information protection as per DoD IL4 requirements.
@@ -1195,7 +1195,7 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum KajEnrollmentState: Codable, Equatable, Sendable {
+  public enum KajEnrollmentState: Codable, Equatable, Hashable, Sendable {
     /// Default State for KAJ Enrollment.
     case unspecified
     /// Pending State for KAJ Enrollment.
@@ -1312,7 +1312,7 @@ public struct Workload: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Partner: Codable, Equatable, Sendable {
+  public enum Partner: Codable, Equatable, Hashable, Sendable {
     /// Unknown partner regime/controls.
     case unspecified
     /// S3NS regime/controls.

@@ -91,7 +91,7 @@ public struct LogConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LogSeverity: Codable, Equatable, Sendable {
+  public enum LogSeverity: Codable, Equatable, Hashable, Sendable {
     /// Log severity is not specified. This is the same as log severity is OFF.
     case unspecified
     /// Log is turned off.

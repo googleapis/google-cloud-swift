@@ -302,7 +302,7 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// The type of the customer managed gateway is unspecified.
     case unspecified
     /// The type of the customer managed gateway is TrafficDirector Open
@@ -423,7 +423,7 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IpVersion: Codable, Equatable, Sendable {
+  public enum IpVersion: Codable, Equatable, Hashable, Sendable {
     /// The type when IP version is not specified. Defaults to IPV4.
     case unspecified
     /// The type for IP version 4.
@@ -544,7 +544,7 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RoutingMode: Codable, Equatable, Sendable {
+  public enum RoutingMode: Codable, Equatable, Hashable, Sendable {
     /// The routing mode is explicit; clients are configured to send
     /// traffic through the gateway. This is the default routing mode.
     case explicitRoutingMode

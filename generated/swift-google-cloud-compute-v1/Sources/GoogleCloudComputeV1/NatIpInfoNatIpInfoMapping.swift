@@ -98,7 +98,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       case auto
       case manual
       /// Encodes an unknown string value.
@@ -156,7 +156,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Usage: Codable, Equatable, Sendable {
+    public enum Usage: Codable, Equatable, Hashable, Sendable {
       case inUse
       case unused
       /// Encodes an unknown string value.

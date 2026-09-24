@@ -118,7 +118,7 @@ public struct ExportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExportFormat: Codable, Equatable, Sendable {
+  public enum ExportFormat: Codable, Equatable, Hashable, Sendable {
     /// The export format is unspecified.
     case unspecified
     /// The export format is JSON.

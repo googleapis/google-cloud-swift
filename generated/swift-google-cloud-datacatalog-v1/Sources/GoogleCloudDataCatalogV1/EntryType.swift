@@ -34,7 +34,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum EntryType: Codable, Equatable, Sendable {
+public enum EntryType: Codable, Equatable, Hashable, Sendable {
   /// Default unknown type.
   case unspecified
   /// The entry type that has a GoogleSQL schema, including

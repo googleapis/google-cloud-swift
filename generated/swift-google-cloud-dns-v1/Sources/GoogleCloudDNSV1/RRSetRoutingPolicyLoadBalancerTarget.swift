@@ -129,7 +129,7 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IpProtocol: Codable, Equatable, Sendable {
+  public enum IpProtocol: Codable, Equatable, Hashable, Sendable {
     case undefined
     /// Indicates the load balancer is accessible via TCP.
     case tcp
@@ -191,7 +191,7 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoadBalancerType: Codable, Equatable, Sendable {
+  public enum LoadBalancerType: Codable, Equatable, Hashable, Sendable {
     case `none`
     /// Indicates the load balancer is a Cross-Region Application Load Balancer.
     case globalL7Ilb

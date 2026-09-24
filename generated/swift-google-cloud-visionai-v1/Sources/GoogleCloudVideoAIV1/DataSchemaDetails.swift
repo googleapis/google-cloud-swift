@@ -537,7 +537,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SearchStrategyType: Codable, Equatable, Sendable {
+    public enum SearchStrategyType: Codable, Equatable, Hashable, Sendable {
       /// Annotatation values of the `key` above will not be searchable.
       case noSearch
       /// When searching with `key`, the value must be exactly as the annotation
@@ -667,7 +667,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataType: Codable, Equatable, Sendable {
+  public enum DataType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified type.
     case unspecified
     /// Integer type.
@@ -895,7 +895,7 @@ public struct DataSchemaDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Granularity: Codable, Equatable, Sendable {
+  public enum Granularity: Codable, Equatable, Hashable, Sendable {
     /// Unspecified granularity.
     case unspecified
     /// Asset-level granularity (annotations must not contain partition info).

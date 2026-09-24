@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum NodePoolUpdateStrategy: Codable, Equatable, Sendable {
+public enum NodePoolUpdateStrategy: Codable, Equatable, Hashable, Sendable {
   /// Default value if unset. GKE internally defaults the update strategy to
   /// SURGE for unspecified strategies.
   case unspecified

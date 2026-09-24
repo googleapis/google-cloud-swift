@@ -101,7 +101,7 @@ public struct PiAndJailbreakFilterSettings: Codable, Equatable, GoogleWKT._AnyPa
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PiAndJailbreakFilterEnforcement: Codable, Equatable, Sendable {
+  public enum PiAndJailbreakFilterEnforcement: Codable, Equatable, Hashable, Sendable {
     /// Same as Disabled
     case unspecified
     /// Enabled

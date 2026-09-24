@@ -658,7 +658,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ServiceAgentAuth: Codable, Equatable, Sendable {
+      public enum ServiceAgentAuth: Codable, Equatable, Hashable, Sendable {
         /// Service agent auth type unspecified. Default to ID_TOKEN.
         case unspecified
         /// No token used.
@@ -790,7 +790,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum WebhookType: Codable, Equatable, Sendable {
+      public enum WebhookType: Codable, Equatable, Hashable, Sendable {
         /// Default value. This value is unused.
         case unspecified
         /// Represents a standard webhook.
@@ -907,7 +907,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum HttpMethod: Codable, Equatable, Sendable {
+      public enum HttpMethod: Codable, Equatable, Hashable, Sendable {
         /// HTTP method not specified.
         case unspecified
         /// HTTP POST Method.

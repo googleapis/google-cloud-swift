@@ -26,7 +26,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum VersionView: Codable, Equatable, Sendable {
+public enum VersionView: Codable, Equatable, Hashable, Sendable {
   /// Basic version information including scaling and inbound services,
   /// but not detailed deployment information.
   case basic

@@ -96,7 +96,7 @@ public struct IdentityConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConnectionState: Codable, Equatable, Sendable {
+  public enum ConnectionState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// The identity pool connection is connected.

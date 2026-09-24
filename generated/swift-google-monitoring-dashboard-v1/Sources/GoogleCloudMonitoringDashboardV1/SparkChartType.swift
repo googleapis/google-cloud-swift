@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SparkChartType: Codable, Equatable, Sendable {
+public enum SparkChartType: Codable, Equatable, Hashable, Sendable {
   /// Not allowed in well-formed requests.
   case unspecified
   /// The sparkline will be rendered as a small line chart.

@@ -86,7 +86,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AutoDelete: Codable, Equatable, Sendable {
+    public enum AutoDelete: Codable, Equatable, Hashable, Sendable {
       case never
       case onPermanentInstanceDeletion
       /// Encodes an unknown string value.

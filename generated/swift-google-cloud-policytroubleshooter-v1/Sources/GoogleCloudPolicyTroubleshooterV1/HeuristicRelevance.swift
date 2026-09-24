@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum HeuristicRelevance: Codable, Equatable, Sendable {
+public enum HeuristicRelevance: Codable, Equatable, Hashable, Sendable {
   /// Default value. This value is unused.
   case unspecified
   /// The data point has a limited effect on the result. Changing the data point

@@ -111,7 +111,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LogType: Codable, Equatable, Sendable {
+    public enum LogType: Codable, Equatable, Hashable, Sendable {
       /// Admin reads. Example: CloudIAM getIamPolicy
       case adminRead
       /// Data reads. Example: CloudSQL Users list

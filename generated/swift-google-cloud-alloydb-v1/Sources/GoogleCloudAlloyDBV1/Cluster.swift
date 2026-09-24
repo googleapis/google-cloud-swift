@@ -910,7 +910,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the cluster is unknown.
     case unspecified
     /// The cluster is active and running.
@@ -1081,7 +1081,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ClusterType: Codable, Equatable, Sendable {
+  public enum ClusterType: Codable, Equatable, Hashable, Sendable {
     /// The type of the cluster is unknown.
     case unspecified
     /// Primary cluster that support read and write operations.

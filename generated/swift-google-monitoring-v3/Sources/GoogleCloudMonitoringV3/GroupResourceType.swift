@@ -27,7 +27,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum GroupResourceType: Codable, Equatable, Sendable {
+public enum GroupResourceType: Codable, Equatable, Hashable, Sendable {
   /// Default value (not valid).
   case resourceTypeUnspecified
   /// A group of instances from Google Cloud Platform (GCP) or

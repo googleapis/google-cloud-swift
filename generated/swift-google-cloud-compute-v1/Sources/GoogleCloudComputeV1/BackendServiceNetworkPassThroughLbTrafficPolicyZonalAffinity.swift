@@ -115,7 +115,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Spillover: Codable, Equatable, Sendable {
+    public enum Spillover: Codable, Equatable, Hashable, Sendable {
       case zonalAffinityDisabled
       case zonalAffinitySpillCrossZone
       case zonalAffinityStayWithinZone

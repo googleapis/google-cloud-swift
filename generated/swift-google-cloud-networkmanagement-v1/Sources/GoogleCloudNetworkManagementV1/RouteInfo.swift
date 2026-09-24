@@ -314,7 +314,7 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RouteType: Codable, Equatable, Sendable {
+  public enum RouteType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified type. Default value.
     case unspecified
     /// Route is a subnet route automatically created by the system.
@@ -475,7 +475,7 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NextHopType: Codable, Equatable, Sendable {
+  public enum NextHopType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified type. Default value.
     case unspecified
     /// Next hop is an IP address.
@@ -678,7 +678,7 @@ public struct RouteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RouteScope: Codable, Equatable, Sendable {
+  public enum RouteScope: Codable, Equatable, Hashable, Sendable {
     /// Unspecified scope. Default value.
     case unspecified
     /// Route is applicable to packets in Network.

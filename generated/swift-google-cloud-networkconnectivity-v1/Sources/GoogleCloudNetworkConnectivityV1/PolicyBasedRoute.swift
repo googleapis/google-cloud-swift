@@ -489,7 +489,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProtocolVersion: Codable, Equatable, Sendable {
+    public enum ProtocolVersion: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// The PBR is for IPv4 internet protocol traffic.
@@ -694,7 +694,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Code: Codable, Equatable, Sendable {
+    public enum Code: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case warningUnspecified
       /// The policy-based route is not active and functioning. Common causes are
@@ -825,7 +825,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum OtherRoutes: Codable, Equatable, Sendable {
+  public enum OtherRoutes: Codable, Equatable, Hashable, Sendable {
     /// Default value.
     case unspecified
     /// Use the routes from the default routing tables (system-generated routes,

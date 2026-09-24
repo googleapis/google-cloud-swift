@@ -340,7 +340,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Code: Codable, Equatable, Sendable {
+      public enum Code: Codable, Equatable, Hashable, Sendable {
         /// Warning about failed cleanup of transient changes made by a failed
         /// operation.
         case cleanupFailed
@@ -578,7 +578,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       case down
       case up
       /// Encodes an unknown string value.

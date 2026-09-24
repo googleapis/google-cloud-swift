@@ -422,7 +422,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageType: Codable, Equatable, Sendable {
+  public enum StorageType: Codable, Equatable, Hashable, Sendable {
     /// The storage type for this volume is unknown.
     case unspecified
     /// The storage type for this volume is SSD.
@@ -539,7 +539,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The storage volume is in an unknown state.
     case unspecified
     /// The storage volume is being created.
@@ -679,7 +679,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SnapshotAutoDeleteBehavior: Codable, Equatable, Sendable {
+  public enum SnapshotAutoDeleteBehavior: Codable, Equatable, Hashable, Sendable {
     /// The unspecified behavior.
     case unspecified
     /// Don't delete any snapshots. This disables new snapshot creation, as
@@ -804,7 +804,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Protocol_: Codable, Equatable, Sendable {
+  public enum Protocol_: Codable, Equatable, Hashable, Sendable {
     /// Value is not specified.
     case unspecified
     /// Fibre Channel protocol.
@@ -922,7 +922,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WorkloadProfile: Codable, Equatable, Sendable {
+  public enum WorkloadProfile: Codable, Equatable, Hashable, Sendable {
     /// The workload profile is in an unknown state.
     case unspecified
     /// The workload profile is generic.

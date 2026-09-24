@@ -227,7 +227,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HealthStatusAggregationPolicy: Codable, Equatable, Sendable {
+    public enum HealthStatusAggregationPolicy: Codable, Equatable, Hashable, Sendable {
       /// If any backend's health check reports UNHEALTHY,
       /// then UNHEALTHY is the HealthState of
       /// the entire health check service. If all backend's are healthy,

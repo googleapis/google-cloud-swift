@@ -353,7 +353,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConfidentialComputeType: Codable, Equatable, Sendable {
+    public enum ConfidentialComputeType: Codable, Equatable, Hashable, Sendable {
       /// Bare Metal Secure AI.
       case bmsai
       /// Intel Trust Domain Extensions.
@@ -417,7 +417,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DeploymentType: Codable, Equatable, Sendable {
+    public enum DeploymentType: Codable, Equatable, Hashable, Sendable {
       /// The reserved capacity is made up of densely deployed reservation blocks.
       case dense
       case unspecified
@@ -476,7 +476,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PlanningStatus: Codable, Equatable, Sendable {
+    public enum PlanningStatus: Codable, Equatable, Hashable, Sendable {
       /// Future Reservation is being drafted.
       case draft
       case unspecified
@@ -540,7 +540,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ReservationMode: Codable, Equatable, Sendable {
+    public enum ReservationMode: Codable, Equatable, Hashable, Sendable {
       /// The delivered reservations will delivered at specified start time and
       /// terminated at specified end time along with terminating the VMs running
       /// on it.
@@ -607,7 +607,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SchedulingType: Codable, Equatable, Sendable {
+    public enum SchedulingType: Codable, Equatable, Hashable, Sendable {
       /// Maintenance on all reserved instances in the reservation is synchronized.
       case grouped
       /// Unknown maintenance type.

@@ -317,7 +317,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IgmpQuery: Codable, Equatable, Sendable {
+    public enum IgmpQuery: Codable, Equatable, Hashable, Sendable {
       /// The network interface has disabled IGMP query.
       case disabled
       /// The network interface has enabled IGMP query - v2.
@@ -377,7 +377,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6AccessType: Codable, Equatable, Sendable {
+    public enum Ipv6AccessType: Codable, Equatable, Hashable, Sendable {
       /// This network interface can have external IPv6.
       case external
       /// This network interface can have internal IPv6.
@@ -437,7 +437,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NicType: Codable, Equatable, Sendable {
+    public enum NicType: Codable, Equatable, Hashable, Sendable {
       /// GVNIC
       case gvnic
       /// IDPF
@@ -517,7 +517,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StackType: Codable, Equatable, Sendable {
+    public enum StackType: Codable, Equatable, Hashable, Sendable {
       /// The network interface can have both IPv4 and IPv6 addresses.
       case ipv4Ipv6
       /// The network interface will only be assigned IPv4 addresses.

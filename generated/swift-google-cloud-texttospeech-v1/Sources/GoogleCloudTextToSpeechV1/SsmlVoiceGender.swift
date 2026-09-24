@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SsmlVoiceGender: Codable, Equatable, Sendable {
+public enum SsmlVoiceGender: Codable, Equatable, Hashable, Sendable {
   /// An unspecified gender.
   /// In VoiceSelectionParams, this means that the client doesn't care which
   /// gender the selected voice will have. In the Voice field of

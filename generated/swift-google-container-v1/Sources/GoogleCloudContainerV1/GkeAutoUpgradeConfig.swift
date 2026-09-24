@@ -85,7 +85,7 @@ public struct GkeAutoUpgradeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PatchMode: Codable, Equatable, Sendable {
+  public enum PatchMode: Codable, Equatable, Hashable, Sendable {
     /// PATCH_MODE_UNSPECIFIED defaults to using the upgrade target from the
     /// channel's patch upgrade targets as the upgrade target for the
     /// version.

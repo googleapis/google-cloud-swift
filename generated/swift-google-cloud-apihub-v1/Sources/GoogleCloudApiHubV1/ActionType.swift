@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ActionType: Codable, Equatable, Sendable {
+public enum ActionType: Codable, Equatable, Hashable, Sendable {
   /// Default unspecified action type.
   case unspecified
   /// Action type for sync metadata.

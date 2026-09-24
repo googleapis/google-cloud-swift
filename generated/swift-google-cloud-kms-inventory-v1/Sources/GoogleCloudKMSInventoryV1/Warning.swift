@@ -92,7 +92,7 @@ public struct Warning: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WarningCode: Codable, Equatable, Sendable {
+  public enum WarningCode: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Indicates that the caller or service agent lacks necessary permissions

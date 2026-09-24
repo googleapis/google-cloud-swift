@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum S3Region: Codable, Equatable, Sendable {
+public enum S3Region: Codable, Equatable, Hashable, Sendable {
   /// Unspecified region means Auto detect.
   /// Auto detect does not successfully detect GOV Cloud.
   case unspecified

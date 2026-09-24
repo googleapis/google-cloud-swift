@@ -99,7 +99,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HealthStatus: Codable, Equatable, Sendable {
+    public enum HealthStatus: Codable, Equatable, Hashable, Sendable {
       /// The reservation block is degraded.
       case degraded
       /// The reservation block is healthy.

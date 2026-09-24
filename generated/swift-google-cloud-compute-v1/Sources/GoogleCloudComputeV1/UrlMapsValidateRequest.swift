@@ -106,7 +106,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LoadBalancingSchemes: Codable, Equatable, Sendable {
+    public enum LoadBalancingSchemes: Codable, Equatable, Hashable, Sendable {
       /// Signifies that this will be used for classic Application Load Balancers.
       case external
       /// Signifies that this will be used for Envoy-based global external

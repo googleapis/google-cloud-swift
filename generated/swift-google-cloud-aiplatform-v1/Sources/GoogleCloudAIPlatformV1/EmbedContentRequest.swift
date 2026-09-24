@@ -259,7 +259,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EmbeddingTaskType: Codable, Equatable, Sendable {
+    public enum EmbeddingTaskType: Codable, Equatable, Hashable, Sendable {
       /// Unset value, which will default to one of the other enum values.
       case unspecified
       /// Specifies the given text is a query in a search/retrieval setting.

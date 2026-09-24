@@ -242,7 +242,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ByoipApiVersion: Codable, Equatable, Sendable {
+    public enum ByoipApiVersion: Codable, Equatable, Hashable, Sendable {
       /// This public advertised prefix can be used to create both regional and
       /// global public delegated prefixes. It usually takes 4 weeks to create or
       /// delete a public delegated prefix. The BGP status cannot be changed.
@@ -306,7 +306,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6AccessType: Codable, Equatable, Sendable {
+    public enum Ipv6AccessType: Codable, Equatable, Hashable, Sendable {
       /// Default IPv6 access type. The prefix will be announced to the internet.
       /// All children Public Delegated Prefixes will have IPv6 access type as
       /// EXTERNAL.
@@ -370,7 +370,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PdpScope: Codable, Equatable, Sendable {
+    public enum PdpScope: Codable, Equatable, Hashable, Sendable {
       /// The public delegated prefix is global only. The provisioning will take ~4
       /// weeks.
       case global
@@ -438,7 +438,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The prefix is announced to Internet.
       case announcedToInternet
       /// RPKI validation is complete.

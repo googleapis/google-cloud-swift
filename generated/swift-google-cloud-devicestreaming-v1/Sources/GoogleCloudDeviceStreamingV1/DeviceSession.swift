@@ -276,7 +276,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SessionState: Codable, Equatable, Sendable {
+  public enum SessionState: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Initial state of a session request. The session is being validated for

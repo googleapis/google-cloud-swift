@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ClusterView: Codable, Equatable, Sendable {
+public enum ClusterView: Codable, Equatable, Hashable, Sendable {
   /// CLUSTER_VIEW_UNSPECIFIED Not specified, equivalent to BASIC.
   case unspecified
   /// BASIC server responses include all the relevant cluster details, excluding

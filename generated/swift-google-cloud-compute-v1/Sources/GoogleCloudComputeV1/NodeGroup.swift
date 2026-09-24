@@ -233,7 +233,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MaintenanceInterval: Codable, Equatable, Sendable {
+    public enum MaintenanceInterval: Codable, Equatable, Hashable, Sendable {
       /// VMs are eligible to receive infrastructure and hypervisor updates as they
       /// become available.  This may result in more maintenance operations (live
       /// migrations or terminations) for the VM than the PERIODIC andRECURRENT options.
@@ -300,7 +300,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MaintenancePolicy: Codable, Equatable, Sendable {
+    public enum MaintenancePolicy: Codable, Equatable, Hashable, Sendable {
       /// Allow the node and corresponding instances to retain default
       /// maintenance behavior.
       case `default`
@@ -377,7 +377,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       case creating
       case deleting
       case invalid

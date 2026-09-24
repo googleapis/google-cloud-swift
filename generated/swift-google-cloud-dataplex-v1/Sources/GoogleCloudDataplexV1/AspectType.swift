@@ -730,7 +730,7 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataClassification: Codable, Equatable, Sendable {
+  public enum DataClassification: Codable, Equatable, Hashable, Sendable {
     /// Denotes that the aspect contains only metadata.
     case unspecified
     /// Metadata and data classification.

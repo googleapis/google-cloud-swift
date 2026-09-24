@@ -116,7 +116,7 @@ public struct LoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoggableAction: Codable, Equatable, Sendable {
+  public enum LoggableAction: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Listing objects in a bucket.
@@ -240,7 +240,7 @@ public struct LoggingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoggableActionState: Codable, Equatable, Sendable {
+  public enum LoggableActionState: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// `LoggableAction` completed successfully. `SUCCEEDED` actions are

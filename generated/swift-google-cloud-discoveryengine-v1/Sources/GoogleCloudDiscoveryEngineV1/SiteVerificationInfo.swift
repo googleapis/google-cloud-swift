@@ -93,7 +93,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SiteVerificationState: Codable, Equatable, Sendable {
+    public enum SiteVerificationState: Codable, Equatable, Hashable, Sendable {
       /// Defaults to VERIFIED.
       case unspecified
       /// Site ownership verified.

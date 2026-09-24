@@ -131,7 +131,7 @@ public struct MitreAttack: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tactic: Codable, Equatable, Sendable {
+  public enum Tactic: Codable, Equatable, Hashable, Sendable {
     /// Unspecified value.
     case unspecified
     /// TA0043
@@ -333,7 +333,7 @@ public struct MitreAttack: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Technique: Codable, Equatable, Sendable {
+  public enum Technique: Codable, Equatable, Hashable, Sendable {
     /// Unspecified value.
     case unspecified
     /// T1595

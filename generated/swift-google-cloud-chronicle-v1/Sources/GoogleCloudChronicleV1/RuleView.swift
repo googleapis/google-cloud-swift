@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum RuleView: Codable, Equatable, Sendable {
+public enum RuleView: Codable, Equatable, Hashable, Sendable {
   /// The default/unset value.
   /// The API will default to the BASIC view for ListRules/ListRuleRevisions.
   /// The API will default to the FULL view for GetRule.

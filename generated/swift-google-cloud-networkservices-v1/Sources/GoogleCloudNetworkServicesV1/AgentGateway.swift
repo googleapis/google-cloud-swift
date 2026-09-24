@@ -275,7 +275,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum GovernedAccessPath: Codable, Equatable, Sendable {
+    public enum GovernedAccessPath: Codable, Equatable, Hashable, Sendable {
       /// Governed access path is not specified.
       case unspecified
       /// Govern agent conections to destinations.
@@ -894,7 +894,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Protocol_: Codable, Equatable, Sendable {
+  public enum Protocol_: Codable, Equatable, Hashable, Sendable {
     /// Unspecified protocol.
     case unspecified
     /// Message Control Plane protocol.

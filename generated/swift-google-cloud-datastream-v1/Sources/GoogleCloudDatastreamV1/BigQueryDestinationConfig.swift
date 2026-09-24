@@ -513,7 +513,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FileFormat: Codable, Equatable, Sendable {
+    public enum FileFormat: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// Parquet file format.
@@ -623,7 +623,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TableFormat: Codable, Equatable, Sendable {
+    public enum TableFormat: Codable, Equatable, Hashable, Sendable {
       /// Default value.
       case unspecified
       /// Iceberg table format.

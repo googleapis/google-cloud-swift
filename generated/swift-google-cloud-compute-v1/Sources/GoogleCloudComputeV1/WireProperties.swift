@@ -113,7 +113,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BandwidthAllocation: Codable, Equatable, Sendable {
+    public enum BandwidthAllocation: Codable, Equatable, Hashable, Sendable {
       /// Configures a separate unmetered bandwidth allocation (and associated
       /// charges) for each wire in the group.
       case allocatePerWire
@@ -178,7 +178,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FaultResponse: Codable, Equatable, Sendable {
+    public enum FaultResponse: Codable, Equatable, Hashable, Sendable {
       /// Set the port line protocol down when inline probes detect a fault. This
       /// setting is only permitted on port mode pseudowires.
       case disablePort

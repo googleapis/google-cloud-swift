@@ -82,7 +82,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MaintenanceScope: Codable, Equatable, Sendable {
+    public enum MaintenanceScope: Codable, Equatable, Hashable, Sendable {
       /// Trigger maintenance for all hosts belonging to this reservation
       /// irrespective of whether VMs are running on them or not.
       case all

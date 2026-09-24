@@ -1160,7 +1160,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IdentityType: Codable, Equatable, Sendable {
+    public enum IdentityType: Codable, Equatable, Hashable, Sendable {
       /// Default value. Use a custom service account if the `service_account`
       /// field is set, otherwise use the default Vertex AI Reasoning Engine
       /// Service Agent in the project. Same behavior as SERVICE_ACCOUNT.

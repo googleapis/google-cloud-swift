@@ -238,7 +238,7 @@ public struct CloudStorageOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SampleMethod: Codable, Equatable, Sendable {
+  public enum SampleMethod: Codable, Equatable, Hashable, Sendable {
     /// No sampling.
     case unspecified
     /// Scan from the top (default).

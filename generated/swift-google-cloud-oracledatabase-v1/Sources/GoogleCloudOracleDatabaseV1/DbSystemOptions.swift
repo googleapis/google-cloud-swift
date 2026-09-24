@@ -84,7 +84,7 @@ public struct DbSystemOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageManagement: Codable, Equatable, Sendable {
+  public enum StorageManagement: Codable, Equatable, Hashable, Sendable {
     /// The storage management is unspecified.
     case unspecified
     /// Automatic storage management. This option is not supported. Only LVM is

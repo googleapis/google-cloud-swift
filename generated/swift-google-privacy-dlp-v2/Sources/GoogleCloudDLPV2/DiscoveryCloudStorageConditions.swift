@@ -107,7 +107,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CloudStorageObjectAttribute: Codable, Equatable, Sendable {
+  public enum CloudStorageObjectAttribute: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// Scan objects regardless of the attribute.
@@ -270,7 +270,7 @@ public struct DiscoveryCloudStorageConditions: Codable, Equatable, GoogleWKT._An
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CloudStorageBucketAttribute: Codable, Equatable, Sendable {
+  public enum CloudStorageBucketAttribute: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// Scan buckets regardless of the attribute.

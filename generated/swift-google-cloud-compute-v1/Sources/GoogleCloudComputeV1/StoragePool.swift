@@ -296,7 +296,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CapacityProvisioningType: Codable, Equatable, Sendable {
+    public enum CapacityProvisioningType: Codable, Equatable, Hashable, Sendable {
       /// Advanced provisioning "thinly" allocates the related resource.
       case advanced
       /// Standard provisioning allocates the related resource for the pool
@@ -361,7 +361,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PerformanceProvisioningType: Codable, Equatable, Sendable {
+    public enum PerformanceProvisioningType: Codable, Equatable, Hashable, Sendable {
       /// Advanced provisioning "thinly" allocates the related resource.
       case advanced
       /// Standard provisioning allocates the related resource for the pool
@@ -426,7 +426,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// StoragePool is provisioning
       case creating
       /// StoragePool is deleting.

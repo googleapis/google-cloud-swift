@@ -325,7 +325,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Category: Codable, Equatable, Sendable {
+    public enum Category: Codable, Equatable, Hashable, Sendable {
       case unspecified
       case license
       case machine
@@ -387,7 +387,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Plan: Codable, Equatable, Sendable {
+    public enum Plan: Codable, Equatable, Hashable, Sendable {
       case invalid
       case thirtySixMonth
       case twelveMonth
@@ -449,7 +449,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       case active
       /// Deprecate CANCELED status. Will use separate status to differentiate
       /// cancel by mergeCud or manual cancellation.
@@ -521,7 +521,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       case acceleratorOptimized
       case acceleratorOptimizedA3
       case acceleratorOptimizedA3Mega

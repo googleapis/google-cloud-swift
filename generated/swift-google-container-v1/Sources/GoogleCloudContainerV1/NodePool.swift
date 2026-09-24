@@ -614,7 +614,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Phase: Codable, Equatable, Sendable {
+      public enum Phase: Codable, Equatable, Hashable, Sendable {
         /// Unspecified phase.
         case unspecified
         /// blue-green upgrade has been initiated.
@@ -868,7 +868,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// TYPE_UNSPECIFIED specifies no requirements on nodes
       /// placement.
       case unspecified
@@ -1381,7 +1381,7 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// The PROVISIONING state indicates the node pool is being created.

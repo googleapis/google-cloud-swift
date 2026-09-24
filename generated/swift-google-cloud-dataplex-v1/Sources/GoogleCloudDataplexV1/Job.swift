@@ -177,7 +177,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Service: Codable, Equatable, Sendable {
+  public enum Service: Codable, Equatable, Hashable, Sendable {
     /// Service used to run the job is unspecified.
     case unspecified
     /// Dataproc service is used to run this job.
@@ -285,7 +285,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The job state is unknown.
     case unspecified
     /// The job is running.
@@ -430,7 +430,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Trigger: Codable, Equatable, Sendable {
+  public enum Trigger: Codable, Equatable, Hashable, Sendable {
     /// The trigger is unspecified.
     case unspecified
     /// The job was triggered by Dataplex Universal Catalog based on trigger spec

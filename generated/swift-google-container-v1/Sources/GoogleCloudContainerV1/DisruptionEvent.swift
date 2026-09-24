@@ -194,7 +194,7 @@ public struct DisruptionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DisruptionType: Codable, Equatable, Sendable {
+  public enum DisruptionType: Codable, Equatable, Hashable, Sendable {
     /// DISRUPTION_TYPE_UNSPECIFIED indicates the disruption type is unspecified.
     case unspecified
     /// POD_NOT_ENOUGH_PDB indicates there are still running pods

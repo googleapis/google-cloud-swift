@@ -236,7 +236,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Views: Codable, Equatable, Sendable {
+      public enum Views: Codable, Equatable, Hashable, Sendable {
         case `default`
         /// Utilization data is included in the response.
         case withUtilization
@@ -619,7 +619,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Views: Codable, Equatable, Sendable {
+      public enum Views: Codable, Equatable, Hashable, Sendable {
         case `default`
         /// Utilization data is included in the response.
         case withUtilization
@@ -1088,7 +1088,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Views: Codable, Equatable, Sendable {
+      public enum Views: Codable, Equatable, Hashable, Sendable {
         case `default`
         /// Utilization data is included in the response.
         case withUtilization

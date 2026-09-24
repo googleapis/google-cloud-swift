@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ConnectionState: Codable, Equatable, Sendable {
+public enum ConnectionState: Codable, Equatable, Hashable, Sendable {
   /// Unused
   case unspecified
   /// The DLP API automatically created this connection during an initial scan,

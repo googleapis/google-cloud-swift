@@ -101,7 +101,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HealthState: Codable, Equatable, Sendable {
+    public enum HealthState: Codable, Equatable, Hashable, Sendable {
       case healthy
       case unhealthy
       case unknown

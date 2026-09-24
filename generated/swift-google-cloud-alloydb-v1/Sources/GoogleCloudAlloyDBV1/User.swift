@@ -120,7 +120,7 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UserType: Codable, Equatable, Sendable {
+  public enum UserType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified user type.
     case unspecified
     /// The default user type that authenticates via password-based

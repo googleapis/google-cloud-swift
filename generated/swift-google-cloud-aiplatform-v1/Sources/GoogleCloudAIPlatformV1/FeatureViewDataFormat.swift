@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FeatureViewDataFormat: Codable, Equatable, Sendable {
+  public enum FeatureViewDataFormat: Codable, Equatable, Hashable, Sendable {
     /// Not set. Will be treated as the KeyValue format.
     case unspecified
     /// Return response data in key-value format.

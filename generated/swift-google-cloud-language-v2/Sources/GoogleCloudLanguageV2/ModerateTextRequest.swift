@@ -90,7 +90,7 @@ public struct ModerateTextRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ModelVersion: Codable, Equatable, Sendable {
+  public enum ModelVersion: Codable, Equatable, Hashable, Sendable {
     /// The default model version.
     case unspecified
     /// Use the v1 model, this model is used by default when not provided.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AttributeConfigLevel: Codable, Equatable, Sendable {
+public enum AttributeConfigLevel: Codable, Equatable, Hashable, Sendable {
   /// Value used when unset. In this case, server behavior defaults to
   /// [CATALOG_LEVEL_ATTRIBUTE_CONFIG][google.cloud.retail.v2.AttributeConfigLevel.CATALOG_LEVEL_ATTRIBUTE_CONFIG].
   ///

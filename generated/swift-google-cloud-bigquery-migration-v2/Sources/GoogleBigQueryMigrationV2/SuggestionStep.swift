@@ -94,7 +94,7 @@ public struct SuggestionStep: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SuggestionType: Codable, Equatable, Sendable {
+  public enum SuggestionType: Codable, Equatable, Hashable, Sendable {
     /// Suggestion type unspecified.
     case unspecified
     /// Query customization.
@@ -211,7 +211,7 @@ public struct SuggestionStep: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RewriteTarget: Codable, Equatable, Sendable {
+  public enum RewriteTarget: Codable, Equatable, Hashable, Sendable {
     /// Rewrite target unspecified.
     case unspecified
     /// Source SQL.

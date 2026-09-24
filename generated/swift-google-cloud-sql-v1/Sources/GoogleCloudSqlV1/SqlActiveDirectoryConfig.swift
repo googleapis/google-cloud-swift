@@ -135,7 +135,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ActiveDirectoryMode: Codable, Equatable, Sendable {
+    public enum ActiveDirectoryMode: Codable, Equatable, Hashable, Sendable {
       /// Unspecified mode. Will default to MANAGED_ACTIVE_DIRECTORY if the mode is
       /// not specified to maintain backward compatibility.
       case unspecified

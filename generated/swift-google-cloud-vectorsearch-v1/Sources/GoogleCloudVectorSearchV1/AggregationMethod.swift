@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AggregationMethod: Codable, Equatable, Sendable {
+public enum AggregationMethod: Codable, Equatable, Hashable, Sendable {
   /// Should not be used.
   case unspecified
   /// Count the number of data objects that match the filter.

@@ -121,7 +121,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LocationCategory: Codable, Equatable, Sendable {
+  public enum LocationCategory: Codable, Equatable, Hashable, Sendable {
     /// Unused location
     case locationUnspecified
     /// The infoType is not issued by or tied to a specific region, but is used
@@ -590,7 +590,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IndustryCategory: Codable, Equatable, Sendable {
+  public enum IndustryCategory: Codable, Equatable, Hashable, Sendable {
     /// Unused industry
     case industryUnspecified
     /// The infoType is typically used in the finance industry.
@@ -715,7 +715,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TypeCategory: Codable, Equatable, Sendable {
+  public enum TypeCategory: Codable, Equatable, Hashable, Sendable {
     /// Unused type
     case typeUnspecified
     /// Personally identifiable information, for example, a

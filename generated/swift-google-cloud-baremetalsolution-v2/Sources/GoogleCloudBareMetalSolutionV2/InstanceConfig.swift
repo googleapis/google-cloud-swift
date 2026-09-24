@@ -295,7 +295,7 @@ public struct InstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NetworkConfig: Codable, Equatable, Sendable {
+  public enum NetworkConfig: Codable, Equatable, Hashable, Sendable {
     /// The unspecified network configuration.
     case networkconfigUnspecified
     /// Instance part of single client network and single private network.

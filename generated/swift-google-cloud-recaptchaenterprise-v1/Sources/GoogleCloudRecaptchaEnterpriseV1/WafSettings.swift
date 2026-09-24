@@ -94,7 +94,7 @@ public struct WafSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WafFeature: Codable, Equatable, Sendable {
+  public enum WafFeature: Codable, Equatable, Hashable, Sendable {
     /// Undefined feature.
     case unspecified
     /// Redirects suspicious traffic to reCAPTCHA.
@@ -234,7 +234,7 @@ public struct WafSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WafService: Codable, Equatable, Sendable {
+  public enum WafService: Codable, Equatable, Hashable, Sendable {
     /// Undefined WAF
     case unspecified
     /// Cloud Armor

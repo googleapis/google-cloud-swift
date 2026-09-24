@@ -108,7 +108,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Delimiter: Codable, Equatable, Sendable {
+    public enum Delimiter: Codable, Equatable, Hashable, Sendable {
       /// The delay will also be added between batches of projects
       /// corresponding to the same location.
       case batch
@@ -177,7 +177,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// The total processing time for each batch of projects will be padded
       /// if needed to meet the specified delay duration.
       case minimum

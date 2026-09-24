@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum TransferState: Codable, Equatable, Sendable {
+public enum TransferState: Codable, Equatable, Hashable, Sendable {
   /// State placeholder (0).
   case unspecified
   /// Data transfer is scheduled and is waiting to be picked up by

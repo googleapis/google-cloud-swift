@@ -1350,7 +1350,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExclusionType: Codable, Equatable, Sendable {
+  public enum ExclusionType: Codable, Equatable, Hashable, Sendable {
     /// A finding of this custom info type will not be excluded from results.
     case unspecified
     /// A finding of this custom info type will be excluded from final results,

@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum JobCategory: Codable, Equatable, Sendable {
+public enum JobCategory: Codable, Equatable, Hashable, Sendable {
   /// The default value if the category isn't specified.
   case unspecified
   /// An accounting and finance job, such as an Accountant.

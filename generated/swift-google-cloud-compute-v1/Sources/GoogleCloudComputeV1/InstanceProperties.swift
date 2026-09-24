@@ -311,7 +311,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum KeyRevocationActionType: Codable, Equatable, Sendable {
+    public enum KeyRevocationActionType: Codable, Equatable, Hashable, Sendable {
       /// Default value. This value is unused.
       case unspecified
       /// Indicates user chose no operation.
@@ -376,7 +376,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LocalSsdEncryptionMode: Codable, Equatable, Sendable {
+    public enum LocalSsdEncryptionMode: Codable, Equatable, Hashable, Sendable {
       /// The given VM will opt-in for using ephemeral key for
       /// encryption of Local SSDs.
       /// The Local SSDs will not be able to recover data in case of VM
@@ -448,7 +448,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PrivateIpv6GoogleAccess: Codable, Equatable, Sendable {
+    public enum PrivateIpv6GoogleAccess: Codable, Equatable, Hashable, Sendable {
       /// Bidirectional private IPv6 access to/from Google services. If
       /// specified, the subnetwork who is attached to the instance's default network
       /// interface will be assigned an internal IPv6 prefix if it doesn't have

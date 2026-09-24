@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum RawDocumentFileType: Codable, Equatable, Sendable {
+public enum RawDocumentFileType: Codable, Equatable, Hashable, Sendable {
   /// No raw document specified or it is non-parsable
   case unspecified
   /// Adobe PDF format

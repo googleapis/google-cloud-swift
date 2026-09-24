@@ -156,7 +156,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StatusReason: Codable, Equatable, Sendable {
+  public enum StatusReason: Codable, Equatable, Hashable, Sendable {
     /// Reason unknown.
     case unspecified
     /// The cluster upgrade is currently paused.

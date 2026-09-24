@@ -170,7 +170,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SnapshotPeriod: Codable, Equatable, Sendable {
+    public enum SnapshotPeriod: Codable, Equatable, Hashable, Sendable {
       /// Not set.
       case unspecified
       /// One hour.
@@ -372,7 +372,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AppendFsync: Codable, Equatable, Sendable {
+    public enum AppendFsync: Codable, Equatable, Hashable, Sendable {
       /// Not set. Default: EVERYSEC
       case unspecified
       /// Never fsync. Normally Linux will flush data every 30 seconds with this
@@ -510,7 +510,7 @@ public struct ClusterPersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PersistenceMode: Codable, Equatable, Sendable {
+  public enum PersistenceMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Persistence is disabled, and any snapshot data is deleted.

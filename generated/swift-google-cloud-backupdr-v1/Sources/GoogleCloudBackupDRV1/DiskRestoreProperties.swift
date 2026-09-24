@@ -225,7 +225,7 @@ public struct DiskRestoreProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AccessMode: Codable, Equatable, Sendable {
+  public enum AccessMode: Codable, Equatable, Hashable, Sendable {
     /// The default AccessMode, means the disk can be attached to single instance
     /// in RW mode.
     case readWriteSingle
@@ -345,7 +345,7 @@ public struct DiskRestoreProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Architecture: Codable, Equatable, Sendable {
+  public enum Architecture: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// Disks with architecture X86_64

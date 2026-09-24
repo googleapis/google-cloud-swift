@@ -748,7 +748,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SyncMode: Codable, Equatable, Sendable {
+    public enum SyncMode: Codable, Equatable, Hashable, Sendable {
       /// Sync mode unspecified.
       case unspecified
       /// All resources in the job's scope are modified. If a resource exists in
@@ -885,7 +885,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LogLevel: Codable, Equatable, Sendable {
+    public enum LogLevel: Codable, Equatable, Hashable, Sendable {
       /// Log level unspecified.
       case unspecified
       /// Debug-level logging. Captures detailed logs for each import item. Use
@@ -1332,7 +1332,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// State unspecified.
       case unspecified
       /// The job is queued.
@@ -1495,7 +1495,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Import job.

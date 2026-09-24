@@ -132,7 +132,7 @@ public struct AccessSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IdentitySource: Codable, Equatable, Sendable {
+  public enum IdentitySource: Codable, Equatable, Hashable, Sendable {
     /// IdentitySource Unspecified.
     /// When selected, IAP relies on which identity settings are fully configured
     /// to redirect the traffic to. The precedence order is

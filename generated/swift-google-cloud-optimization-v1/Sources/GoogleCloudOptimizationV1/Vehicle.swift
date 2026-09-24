@@ -849,7 +849,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TravelMode: Codable, Equatable, Sendable {
+  public enum TravelMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified travel mode, equivalent to `DRIVING`.
     case unspecified
     /// Travel mode corresponding to driving directions (car, ...).
@@ -970,7 +970,7 @@ public struct Vehicle: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UnloadingPolicy: Codable, Equatable, Sendable {
+  public enum UnloadingPolicy: Codable, Equatable, Hashable, Sendable {
     /// Unspecified unloading policy; deliveries must just occur after their
     /// corresponding pickups.
     case unspecified

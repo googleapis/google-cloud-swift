@@ -27,7 +27,7 @@ import Foundation
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
 @available(*, deprecated)
-public enum ServiceTier: Codable, Equatable, Sendable {
+public enum ServiceTier: Codable, Equatable, Hashable, Sendable {
   /// An invalid sentinel value, used to indicate that a tier has not
   /// been provided explicitly.
   case unspecified

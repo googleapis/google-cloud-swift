@@ -95,7 +95,7 @@ public struct GetDataScanJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataScanJobView: Codable, Equatable, Sendable {
+  public enum DataScanJobView: Codable, Equatable, Hashable, Sendable {
     /// The API will default to the `BASIC` view.
     case unspecified
     /// Basic view that does not include *spec* and *result*.

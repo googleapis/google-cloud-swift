@@ -170,7 +170,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackVector: Codable, Equatable, Sendable {
+  public enum AttackVector: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case network
     case adjacent
@@ -294,7 +294,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttackComplexity: Codable, Equatable, Sendable {
+  public enum AttackComplexity: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case low
     case high
@@ -406,7 +406,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PrivilegesRequired: Codable, Equatable, Sendable {
+  public enum PrivilegesRequired: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case `none`
     case low
@@ -524,7 +524,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UserInteraction: Codable, Equatable, Sendable {
+  public enum UserInteraction: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case `none`
     case `required`
@@ -636,7 +636,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Scope: Codable, Equatable, Sendable {
+  public enum Scope: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case unchanged
     case changed
@@ -748,7 +748,7 @@ public struct CVSSv3: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Impact: Codable, Equatable, Sendable {
+  public enum Impact: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case high
     case low

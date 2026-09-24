@@ -97,7 +97,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Policy: Codable, Equatable, Sendable {
+    public enum Policy: Codable, Equatable, Hashable, Sendable {
       /// Store snapshot in the same region as with the originating disk.
       /// No additional parameters are needed.
       case localRegion

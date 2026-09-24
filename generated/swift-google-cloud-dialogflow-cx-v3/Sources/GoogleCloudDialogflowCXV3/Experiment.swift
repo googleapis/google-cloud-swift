@@ -715,7 +715,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum MetricType: Codable, Equatable, Sendable {
+      public enum MetricType: Codable, Equatable, Hashable, Sendable {
         /// Metric unspecified.
         case metricUnspecified
         /// Percentage of contained sessions without user calling back in 24 hours.
@@ -855,7 +855,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum CountType: Codable, Equatable, Sendable {
+      public enum CountType: Codable, Equatable, Hashable, Sendable {
         /// Count type unspecified.
         case unspecified
         /// Total number of occurrences of a 'NO_MATCH'.
@@ -990,7 +990,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// State unspecified.
       case unspecified
       /// The experiment is created but not started yet.

@@ -143,7 +143,7 @@ public struct AutokeyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state of the AutokeyConfig is unspecified.
     case unspecified
     /// The AutokeyConfig is currently active.
@@ -288,7 +288,7 @@ public struct AutokeyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum KeyProjectResolutionMode: Codable, Equatable, Sendable {
+  public enum KeyProjectResolutionMode: Codable, Equatable, Hashable, Sendable {
     /// Default value. KeyProjectResolutionMode when not specified will act as
     /// `DEDICATED_KEY_PROJECT`.
     case unspecified

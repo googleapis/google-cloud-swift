@@ -310,7 +310,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VpcConnectorEgressSettings: Codable, Equatable, Sendable {
+  public enum VpcConnectorEgressSettings: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Use the VPC Access Connector only for private IP space from RFC1918.
@@ -432,7 +432,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IngressSettings: Codable, Equatable, Sendable {
+  public enum IngressSettings: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Allow HTTP traffic from public and private sources.
@@ -561,7 +561,7 @@ public struct ServiceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SecurityLevel: Codable, Equatable, Sendable {
+  public enum SecurityLevel: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Requests for a URL that match this handler that do not use HTTPS are

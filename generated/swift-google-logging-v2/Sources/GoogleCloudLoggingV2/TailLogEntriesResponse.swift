@@ -167,7 +167,7 @@ public struct TailLogEntriesResponse: Codable, Equatable, GoogleWKT._AnyPackable
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Reason: Codable, Equatable, Sendable {
+    public enum Reason: Codable, Equatable, Hashable, Sendable {
       /// Unexpected default.
       case unspecified
       /// Indicates suppression occurred due to relevant entries being

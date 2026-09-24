@@ -93,7 +93,7 @@ public struct ManagementSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RenewalMethod: Codable, Equatable, Sendable {
+  public enum RenewalMethod: Codable, Equatable, Hashable, Sendable {
     /// The renewal method is undefined.
     case unspecified
     /// The domain is automatically renewed each year .

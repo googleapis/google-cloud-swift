@@ -177,7 +177,7 @@ public struct ListTimeSeriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TimeSeriesView: Codable, Equatable, Sendable {
+  public enum TimeSeriesView: Codable, Equatable, Hashable, Sendable {
     /// Returns the identity of the metric(s), the time series,
     /// and the time series data.
     case full

@@ -102,7 +102,7 @@ public struct MaintenanceControl: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Control: Codable, Equatable, Sendable {
+  public enum Control: Codable, Equatable, Hashable, Sendable {
     /// Unspecified control.
     case unspecified
     /// Apply control.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum NumericFilterOption: Codable, Equatable, Sendable {
+public enum NumericFilterOption: Codable, Equatable, Hashable, Sendable {
   /// Numeric filter option unspecified
   case unspecified
   /// Numeric filter option that matches all numeric columns.

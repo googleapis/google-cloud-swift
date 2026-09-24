@@ -28,7 +28,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchUseCase: Codable, Equatable, Sendable {
+  public enum SearchUseCase: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset. Will not occur in CSS.
     case unspecified
     /// Search use case. Expects the traffic has a non-empty

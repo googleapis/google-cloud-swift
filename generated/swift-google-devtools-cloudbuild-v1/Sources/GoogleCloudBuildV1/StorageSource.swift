@@ -117,7 +117,7 @@ public struct StorageSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SourceFetcher: Codable, Equatable, Sendable {
+  public enum SourceFetcher: Codable, Equatable, Hashable, Sendable {
     /// Unspecified defaults to GSUTIL.
     case unspecified
     /// Use the "gsutil" tool to download the source file.

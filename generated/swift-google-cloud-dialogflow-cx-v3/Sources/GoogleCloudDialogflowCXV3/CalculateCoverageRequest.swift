@@ -97,7 +97,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CoverageType: Codable, Equatable, Sendable {
+    public enum CoverageType: Codable, Equatable, Hashable, Sendable {
       /// Should never be used.
       case unspecified
       /// Intent coverage.

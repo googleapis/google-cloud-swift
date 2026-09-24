@@ -96,7 +96,7 @@ public struct ComposeTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DraftAccess: Codable, Equatable, Sendable {
+  public enum DraftAccess: Codable, Equatable, Hashable, Sendable {
     /// Default value when nothing is set for DraftAccess.
     case unspecified
     /// NONE means compose trigger won't be able to access any data of the draft

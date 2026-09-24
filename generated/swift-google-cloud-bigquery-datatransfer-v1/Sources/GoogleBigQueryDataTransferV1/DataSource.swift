@@ -264,7 +264,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AuthorizationType: Codable, Equatable, Sendable {
+  public enum AuthorizationType: Codable, Equatable, Hashable, Sendable {
     /// Type unspecified.
     case unspecified
     /// Use OAuth 2 authorization codes that can be exchanged
@@ -391,7 +391,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataRefreshType: Codable, Equatable, Sendable {
+  public enum DataRefreshType: Codable, Equatable, Hashable, Sendable {
     /// The data source won't support data auto refresh, which is default value.
     case unspecified
     /// The data source supports data auto refresh, and runs will be scheduled

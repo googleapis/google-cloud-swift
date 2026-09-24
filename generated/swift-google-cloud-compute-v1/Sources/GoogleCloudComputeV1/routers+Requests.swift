@@ -1781,7 +1781,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum AddressFamily: Codable, Equatable, Sendable {
+      public enum AddressFamily: Codable, Equatable, Hashable, Sendable {
         case ipv4
         case ipv6
         case unspecifiedIpVersion
@@ -1843,7 +1843,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum RouteType: Codable, Equatable, Sendable {
+      public enum RouteType: Codable, Equatable, Hashable, Sendable {
         case advertised
         case learned
         case unspecifiedRouteType

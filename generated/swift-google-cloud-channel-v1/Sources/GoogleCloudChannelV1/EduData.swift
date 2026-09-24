@@ -101,7 +101,7 @@ public struct EduData: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InstituteType: Codable, Equatable, Sendable {
+  public enum InstituteType: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// Elementary/Secondary Schools & Districts
@@ -218,7 +218,7 @@ public struct EduData: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum InstituteSize: Codable, Equatable, Sendable {
+  public enum InstituteSize: Codable, Equatable, Hashable, Sendable {
     /// Not used.
     case unspecified
     /// 1 - 100

@@ -391,7 +391,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Algorithm: Codable, Equatable, Sendable {
+    public enum Algorithm: Codable, Equatable, Hashable, Sendable {
       /// The algorithm is unspecified.
       case unspecified
       /// RSA/MD5. Cannot be used for new deployments.
@@ -614,7 +614,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DigestType: Codable, Equatable, Sendable {
+    public enum DigestType: Codable, Equatable, Hashable, Sendable {
       /// The DigestType is unspecified.
       case unspecified
       /// SHA-1. Not recommended for new deployments.
@@ -851,7 +851,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DsState: Codable, Equatable, Sendable {
+  public enum DsState: Codable, Equatable, Hashable, Sendable {
     /// DS state is unspecified.
     case unspecified
     /// DNSSEC is disabled for this domain. No DS records for this domain are

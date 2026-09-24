@@ -102,7 +102,7 @@ public struct CloudSqlBigQueryConnectionSpec: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseType: Codable, Equatable, Sendable {
+  public enum DatabaseType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified database type.
     case unspecified
     /// Cloud SQL for PostgreSQL.

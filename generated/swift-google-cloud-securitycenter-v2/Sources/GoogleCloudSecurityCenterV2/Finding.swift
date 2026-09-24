@@ -955,7 +955,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified state.
     case unspecified
     /// The finding requires attention and has not been addressed yet.
@@ -1073,7 +1073,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Severity: Codable, Equatable, Sendable {
+  public enum Severity: Codable, Equatable, Hashable, Sendable {
     /// This value is used for findings when a source doesn't write a severity
     /// value.
     case unspecified
@@ -1246,7 +1246,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mute: Codable, Equatable, Sendable {
+  public enum Mute: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Finding has been muted.
@@ -1370,7 +1370,7 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FindingClass: Codable, Equatable, Sendable {
+  public enum FindingClass: Codable, Equatable, Hashable, Sendable {
     /// Unspecified finding class.
     case unspecified
     /// Describes unwanted or malicious activity.

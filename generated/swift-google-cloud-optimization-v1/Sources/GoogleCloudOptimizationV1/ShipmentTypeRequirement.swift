@@ -115,7 +115,7 @@ public struct ShipmentTypeRequirement: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RequirementMode: Codable, Equatable, Sendable {
+  public enum RequirementMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified requirement mode. This value should never be used.
     case unspecified
     /// In this mode, all "dependent" shipments must share the same vehicle as at

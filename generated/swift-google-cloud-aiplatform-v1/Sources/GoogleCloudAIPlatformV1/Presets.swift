@@ -93,7 +93,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Query: Codable, Equatable, Sendable {
+    public enum Query: Codable, Equatable, Hashable, Sendable {
       /// More precise neighbors as a trade-off against slower response.
       case precise
       /// Faster response as a trade-off against less precise neighbors.
@@ -203,7 +203,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Modality: Codable, Equatable, Sendable {
+    public enum Modality: Codable, Equatable, Hashable, Sendable {
       /// Should not be set. Added as a recommended best practice for enums
       case unspecified
       /// IMAGE modality

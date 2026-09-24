@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum BigQuerySchemaModification: Codable, Equatable, Sendable {
+public enum BigQuerySchemaModification: Codable, Equatable, Hashable, Sendable {
   /// Unused
   case schemaModificationUnspecified
   /// Profiles should be regenerated when new columns are added to the table.

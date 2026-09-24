@@ -148,7 +148,7 @@ public struct NodeGroupOperationMetadata: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NodeGroupOperationType: Codable, Equatable, Sendable {
+  public enum NodeGroupOperationType: Codable, Equatable, Hashable, Sendable {
     /// Node group operation type is unknown.
     case unspecified
     /// Create node group operation type.

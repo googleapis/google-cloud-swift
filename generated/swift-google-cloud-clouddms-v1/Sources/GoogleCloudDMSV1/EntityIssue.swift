@@ -236,7 +236,7 @@ public struct EntityIssue: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IssueType: Codable, Equatable, Sendable {
+  public enum IssueType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified issue type.
     case unspecified
     /// Issue originated from the DDL
@@ -360,7 +360,7 @@ public struct EntityIssue: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IssueSeverity: Codable, Equatable, Sendable {
+  public enum IssueSeverity: Codable, Equatable, Hashable, Sendable {
     /// Unspecified issue severity
     case unspecified
     /// Info

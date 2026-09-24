@@ -307,7 +307,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is unknown.
     case unspecified
     /// The preview is being created.
@@ -460,7 +460,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PreviewMode: Codable, Equatable, Sendable {
+  public enum PreviewMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified policy, default mode will be used.
     case unspecified
     /// DEFAULT mode generates an execution plan for reconciling current resource
@@ -578,7 +578,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ErrorCode: Codable, Equatable, Sendable {
+  public enum ErrorCode: Codable, Equatable, Hashable, Sendable {
     /// No error code was specified.
     case unspecified
     /// Cloud Build failed due to a permissions issue.

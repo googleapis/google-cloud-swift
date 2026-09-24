@@ -182,7 +182,7 @@ public struct LoadBalancerBackendInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HealthCheckFirewallsConfigState: Codable, Equatable, Sendable {
+  public enum HealthCheckFirewallsConfigState: Codable, Equatable, Hashable, Sendable {
     /// Configuration state unspecified. It usually means that the backend has
     /// no health check attached, or there was an unexpected configuration error
     /// preventing Connectivity tests from verifying health check configuration.

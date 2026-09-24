@@ -124,7 +124,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InstantiateFrom: Codable, Equatable, Sendable {
+    public enum InstantiateFrom: Codable, Equatable, Hashable, Sendable {
       /// Attach the existing disk in read-only mode. The request will fail if the
       /// disk was attached in read-write mode on the source instance. Applicable
       /// to: read-only disks.

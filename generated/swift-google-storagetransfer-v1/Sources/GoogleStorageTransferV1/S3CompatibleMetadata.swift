@@ -124,7 +124,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AuthMethod: Codable, Equatable, Sendable {
+  public enum AuthMethod: Codable, Equatable, Hashable, Sendable {
     /// AuthMethod is not specified.
     case unspecified
     /// Auth requests with AWS SigV4.
@@ -241,7 +241,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RequestModel: Codable, Equatable, Sendable {
+  public enum RequestModel: Codable, Equatable, Hashable, Sendable {
     /// RequestModel is not specified.
     case unspecified
     /// Perform requests using Virtual Hosted Style.
@@ -360,7 +360,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NetworkProtocol: Codable, Equatable, Sendable {
+  public enum NetworkProtocol: Codable, Equatable, Hashable, Sendable {
     /// NetworkProtocol is not specified.
     case unspecified
     /// Perform requests using HTTPS.
@@ -479,7 +479,7 @@ public struct S3CompatibleMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ListApi: Codable, Equatable, Sendable {
+  public enum ListApi: Codable, Equatable, Hashable, Sendable {
     /// ListApi is not specified.
     case unspecified
     /// Perform listing using ListObjectsV2 API.

@@ -121,7 +121,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FilterMatchCriteria: Codable, Equatable, Sendable {
+    public enum FilterMatchCriteria: Codable, Equatable, Hashable, Sendable {
       /// Specifies that all filterLabels must match for themetadataFilter to be considered a match.
       case matchAll
       /// Specifies that any filterLabel must match for themetadataFilter to be considered a match.

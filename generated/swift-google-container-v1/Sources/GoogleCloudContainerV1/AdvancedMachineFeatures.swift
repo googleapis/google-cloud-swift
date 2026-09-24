@@ -100,7 +100,7 @@ public struct AdvancedMachineFeatures: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PerformanceMonitoringUnit: Codable, Equatable, Sendable {
+  public enum PerformanceMonitoringUnit: Codable, Equatable, Hashable, Sendable {
     /// PMU not enabled.
     case unspecified
     /// Architecturally defined non-LLC events.

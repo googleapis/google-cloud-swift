@@ -268,7 +268,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlOperationType: Codable, Equatable, Sendable {
+    public enum SqlOperationType: Codable, Equatable, Hashable, Sendable {
       /// Unknown operation type.
       case unspecified
       /// Imports data into a Cloud SQL instance.
@@ -774,7 +774,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlOperationStatus: Codable, Equatable, Sendable {
+    public enum SqlOperationStatus: Codable, Equatable, Hashable, Sendable {
       /// The state of the operation is unknown.
       case unspecified
       /// The operation has been queued, but has not started yet.

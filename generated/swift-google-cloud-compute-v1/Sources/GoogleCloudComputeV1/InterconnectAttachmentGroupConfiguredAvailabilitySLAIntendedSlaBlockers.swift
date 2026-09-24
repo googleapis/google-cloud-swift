@@ -149,7 +149,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BlockerType: Codable, Equatable, Sendable {
+    public enum BlockerType: Codable, Equatable, Hashable, Sendable {
       case unspecified
       case incompatibleMetros
       case incompatibleRegions

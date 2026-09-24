@@ -110,7 +110,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ModelType: Codable, Equatable, Sendable {
+    public enum ModelType: Codable, Equatable, Hashable, Sendable {
       /// Not specified. `MODEL_TYPE_STANDARD` will be used.
       case unspecified
       /// Use standard NLU model.
@@ -227,7 +227,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ModelTrainingMode: Codable, Equatable, Sendable {
+    public enum ModelTrainingMode: Codable, Equatable, Hashable, Sendable {
       /// Not specified. `MODEL_TRAINING_MODE_AUTOMATIC` will be used.
       case unspecified
       /// NLU model training is automatically triggered when a flow gets modified.

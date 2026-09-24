@@ -104,7 +104,7 @@ public struct TestGoldengateConnectionAssignmentResponse: Codable, Equatable, Go
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResultType: Codable, Equatable, Sendable {
+  public enum ResultType: Codable, Equatable, Hashable, Sendable {
     /// Result type is unspecified.
     case unspecified
     /// Test connection succeeded.

@@ -141,7 +141,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OptionalMode: Codable, Equatable, Sendable {
+    public enum OptionalMode: Codable, Equatable, Hashable, Sendable {
       /// A subset of optional fields.
       case custom
       /// None optional fields.

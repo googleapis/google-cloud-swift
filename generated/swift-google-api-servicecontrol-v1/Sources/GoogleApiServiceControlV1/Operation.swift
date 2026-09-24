@@ -224,7 +224,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Importance: Codable, Equatable, Sendable {
+  public enum Importance: Codable, Equatable, Hashable, Sendable {
     /// Allows data caching, batching, and aggregation. It provides
     /// higher performance with higher data loss risk.
     case low

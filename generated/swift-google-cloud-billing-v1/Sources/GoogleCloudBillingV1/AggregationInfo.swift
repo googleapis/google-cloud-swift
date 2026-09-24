@@ -106,7 +106,7 @@ public struct AggregationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AggregationLevel: Codable, Equatable, Sendable {
+  public enum AggregationLevel: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case account
     case project
@@ -222,7 +222,7 @@ public struct AggregationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AggregationInterval: Codable, Equatable, Sendable {
+  public enum AggregationInterval: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case daily
     case monthly

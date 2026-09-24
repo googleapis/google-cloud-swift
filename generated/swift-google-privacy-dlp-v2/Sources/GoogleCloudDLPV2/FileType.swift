@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum FileType: Codable, Equatable, Sendable {
+public enum FileType: Codable, Equatable, Hashable, Sendable {
   /// Includes all files.
   case unspecified
   /// Includes all file extensions not covered by another entry. Binary

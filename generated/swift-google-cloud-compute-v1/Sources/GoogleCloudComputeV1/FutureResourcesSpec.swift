@@ -112,7 +112,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DeploymentType: Codable, Equatable, Sendable {
+    public enum DeploymentType: Codable, Equatable, Hashable, Sendable {
       /// The reserved capacity is made up of densely deployed reservation blocks.
       case dense
       case unspecified

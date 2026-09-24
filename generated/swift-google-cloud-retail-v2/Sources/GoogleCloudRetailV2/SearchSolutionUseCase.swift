@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum SearchSolutionUseCase: Codable, Equatable, Sendable {
+public enum SearchSolutionUseCase: Codable, Equatable, Hashable, Sendable {
   /// The value when it's unspecified. In this case, server behavior defaults to
   /// [SEARCH_SOLUTION_USE_CASE_SEARCH][google.cloud.retail.v2.SearchSolutionUseCase.SEARCH_SOLUTION_USE_CASE_SEARCH].
   ///

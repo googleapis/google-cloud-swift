@@ -188,7 +188,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TransactionalLogStorageState: Codable, Equatable, Sendable {
+    public enum TransactionalLogStorageState: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// The transaction logs used for PITR for the instance are stored
@@ -326,7 +326,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum BackupTier: Codable, Equatable, Sendable {
+    public enum BackupTier: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// Instance is managed by Cloud SQL.

@@ -128,7 +128,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RecommendationType: Codable, Equatable, Sendable {
+    public enum RecommendationType: Codable, Equatable, Hashable, Sendable {
       /// A Future Reservation is recommended.
       case futureReservation
       /// Default value, unused.

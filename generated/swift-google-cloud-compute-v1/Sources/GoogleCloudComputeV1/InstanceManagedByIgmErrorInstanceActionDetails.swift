@@ -102,7 +102,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Action: Codable, Equatable, Sendable {
+    public enum Action: Codable, Equatable, Hashable, Sendable {
       /// The managed instance group is abandoning this instance. The instance
       /// will be removed from the instance group and from any target pools that
       /// are associated with this group.

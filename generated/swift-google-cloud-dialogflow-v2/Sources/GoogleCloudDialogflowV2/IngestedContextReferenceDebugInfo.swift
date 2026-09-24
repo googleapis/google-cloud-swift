@@ -180,7 +180,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum IngestionStatus: Codable, Equatable, Sendable {
+      public enum IngestionStatus: Codable, Equatable, Hashable, Sendable {
         /// Default value, indicates that the ingestion status is not specified.
         case unspecified
         /// Indicates that the parameter was successfully ingested.

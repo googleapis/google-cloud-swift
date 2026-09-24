@@ -94,7 +94,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InstanceState: Codable, Equatable, Sendable {
+    public enum InstanceState: Codable, Equatable, Hashable, Sendable {
       /// Matches any status of the instances, running, non-running and others.
       case all
       /// Instance is in RUNNING state if it is running.

@@ -413,7 +413,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CryptoKeyVersionAlgorithm: Codable, Equatable, Sendable {
+  public enum CryptoKeyVersionAlgorithm: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// Creates symmetric encryption keys.
@@ -870,7 +870,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CryptoKeyVersionState: Codable, Equatable, Sendable {
+  public enum CryptoKeyVersionState: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// This version may be used for cryptographic operations.
@@ -1104,7 +1104,7 @@ public struct CryptoKeyVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CryptoKeyVersionView: Codable, Equatable, Sendable {
+  public enum CryptoKeyVersionView: Codable, Equatable, Hashable, Sendable {
     /// Default view for each
     /// [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Does not
     /// include the

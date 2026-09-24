@@ -232,7 +232,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum KeyRevocationActionType: Codable, Equatable, Sendable {
+    public enum KeyRevocationActionType: Codable, Equatable, Hashable, Sendable {
       /// Default value. This value is unused.
       case unspecified
       /// Indicates user chose no operation.
@@ -297,7 +297,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PostKeyRevocationActionType: Codable, Equatable, Sendable {
+    public enum PostKeyRevocationActionType: Codable, Equatable, Hashable, Sendable {
       /// Indicates user chose no operation.
       case noop
       /// Default value. This value is unused.

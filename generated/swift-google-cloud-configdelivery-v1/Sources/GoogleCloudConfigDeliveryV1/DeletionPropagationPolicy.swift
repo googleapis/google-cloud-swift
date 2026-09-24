@@ -25,7 +25,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DeletionPropagationPolicy: Codable, Equatable, Sendable {
+public enum DeletionPropagationPolicy: Codable, Equatable, Hashable, Sendable {
   /// Unspecified deletion propagation policy. Defaults to FOREGROUND.
   case unspecified
   /// Foreground deletion propagation policy. Any resources synced to the cluster

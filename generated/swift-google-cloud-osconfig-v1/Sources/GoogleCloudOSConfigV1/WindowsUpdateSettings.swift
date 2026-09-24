@@ -106,7 +106,7 @@ public struct WindowsUpdateSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Classification: Codable, Equatable, Sendable {
+  public enum Classification: Codable, Equatable, Hashable, Sendable {
     /// Invalid. If classifications are included, they must be specified.
     case unspecified
     /// "A widely released fix for a specific problem that addresses a critical,

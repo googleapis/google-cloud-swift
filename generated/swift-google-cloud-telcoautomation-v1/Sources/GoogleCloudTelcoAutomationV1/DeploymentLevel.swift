@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DeploymentLevel: Codable, Equatable, Sendable {
+public enum DeploymentLevel: Codable, Equatable, Hashable, Sendable {
   /// Default unspecified deployment level.
   case unspecified
   /// Blueprints at HYDRATION level cannot be used to create a Deployment

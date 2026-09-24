@@ -140,7 +140,7 @@ public struct ForecastParams: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Period: Codable, Equatable, Sendable {
+  public enum Period: Codable, Equatable, Hashable, Sendable {
     /// Unknown or simply not given.
     case unspecified
     /// 24 hours

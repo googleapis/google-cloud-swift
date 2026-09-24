@@ -82,7 +82,7 @@ public struct GkeNetworkPolicySkippedInfo: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Reason: Codable, Equatable, Sendable {
+  public enum Reason: Codable, Equatable, Hashable, Sendable {
     /// Unused default value.
     case unspecified
     /// Network Policy is disabled on the cluster.

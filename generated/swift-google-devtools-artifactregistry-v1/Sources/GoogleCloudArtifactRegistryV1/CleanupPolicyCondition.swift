@@ -125,7 +125,7 @@ public struct CleanupPolicyCondition: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TagState: Codable, Equatable, Sendable {
+  public enum TagState: Codable, Equatable, Hashable, Sendable {
     /// Tag status not specified.
     case unspecified
     /// Applies to tagged versions only.

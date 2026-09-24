@@ -215,7 +215,7 @@ public struct Processor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProcessorType: Codable, Equatable, Sendable {
+  public enum ProcessorType: Codable, Equatable, Hashable, Sendable {
     /// Processor Type UNSPECIFIED.
     case unspecified
     /// Processor Type PRETRAINED.
@@ -347,7 +347,7 @@ public struct Processor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProcessorState: Codable, Equatable, Sendable {
+  public enum ProcessorState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified Processor state.
     case unspecified
     /// Processor is being created (not ready for use).

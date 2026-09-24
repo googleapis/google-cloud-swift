@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AllowAccessState: Codable, Equatable, Sendable {
+public enum AllowAccessState: Codable, Equatable, Hashable, Sendable {
   /// Not specified.
   case unspecified
   /// The allow policy gives the principal the permission.

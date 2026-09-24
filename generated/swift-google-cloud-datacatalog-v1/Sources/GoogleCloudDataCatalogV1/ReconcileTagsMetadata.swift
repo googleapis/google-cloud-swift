@@ -104,7 +104,7 @@ public struct ReconcileTagsMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReconciliationState: Codable, Equatable, Sendable {
+  public enum ReconciliationState: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// The reconciliation has been queued and awaits for execution.

@@ -148,7 +148,7 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FirmwareType: Codable, Equatable, Sendable {
+  public enum FirmwareType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified or unknown.
     case unspecified
     /// BIOS firmware.
@@ -265,7 +265,7 @@ public struct MachineArchitectureDetails: Codable, Equatable, GoogleWKT._AnyPack
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CpuHyperThreading: Codable, Equatable, Sendable {
+  public enum CpuHyperThreading: Codable, Equatable, Hashable, Sendable {
     /// Unspecified or unknown.
     case unspecified
     /// Hyper-threading is disabled.

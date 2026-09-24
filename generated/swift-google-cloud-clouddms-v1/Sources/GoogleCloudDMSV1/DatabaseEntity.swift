@@ -250,7 +250,7 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TreeType: Codable, Equatable, Sendable {
+  public enum TreeType: Codable, Equatable, Hashable, Sendable {
     /// Tree type unspecified.
     case unspecified
     /// Tree of entities loaded from a source database.

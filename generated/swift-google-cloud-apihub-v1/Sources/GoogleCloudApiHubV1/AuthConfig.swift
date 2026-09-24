@@ -376,7 +376,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum HttpElementLocation: Codable, Equatable, Sendable {
+    public enum HttpElementLocation: Codable, Equatable, Hashable, Sendable {
       /// HTTP element location not specified.
       case unspecified
       /// Element is in the HTTP request query.

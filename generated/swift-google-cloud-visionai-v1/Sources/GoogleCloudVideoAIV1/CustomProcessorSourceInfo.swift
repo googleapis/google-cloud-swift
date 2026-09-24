@@ -315,7 +315,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SourceType: Codable, Equatable, Sendable {
+  public enum SourceType: Codable, Equatable, Hashable, Sendable {
     /// Source type unspecified.
     case unspecified
     /// Custom processors coming from Vertex AutoML product.

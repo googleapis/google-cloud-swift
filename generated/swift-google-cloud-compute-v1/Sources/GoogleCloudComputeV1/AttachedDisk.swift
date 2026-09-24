@@ -278,7 +278,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Architecture: Codable, Equatable, Sendable {
+    public enum Architecture: Codable, Equatable, Hashable, Sendable {
       /// Default value indicating Architecture is not set.
       case unspecified
       /// Machines with architecture ARM64
@@ -343,7 +343,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Interface: Codable, Equatable, Sendable {
+    public enum Interface: Codable, Equatable, Hashable, Sendable {
       case nvme
       case scsi
       /// Encodes an unknown string value.
@@ -401,7 +401,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Attaches this disk in read-only mode. Multiple virtual machines can use
       /// a disk in read-only mode at a time.
       case readOnly
@@ -463,7 +463,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SavedState: Codable, Equatable, Sendable {
+    public enum SavedState: Codable, Equatable, Hashable, Sendable {
       /// *[Default]* Disk state has not been preserved.
       case diskSavedStateUnspecified
       /// Disk state has been preserved.
@@ -523,7 +523,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       case persistent
       case scratch
       /// Encodes an unknown string value.

@@ -847,7 +847,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FeedSourceType: Codable, Equatable, Sendable {
+  public enum FeedSourceType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified feed source type.
     case unspecified
     /// Cloud Storage.
@@ -1094,7 +1094,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum STSMigrationReadiness: Codable, Equatable, Sendable {
+  public enum STSMigrationReadiness: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// The feed needs some work for STS migration.

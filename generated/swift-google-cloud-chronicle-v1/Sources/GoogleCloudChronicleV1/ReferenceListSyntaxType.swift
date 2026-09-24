@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ReferenceListSyntaxType: Codable, Equatable, Sendable {
+public enum ReferenceListSyntaxType: Codable, Equatable, Hashable, Sendable {
   /// Defaults to REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING.
   case unspecified
   /// List contains plain text patterns.

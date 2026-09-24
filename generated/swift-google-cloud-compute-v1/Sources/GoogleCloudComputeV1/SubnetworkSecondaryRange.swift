@@ -138,7 +138,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum IpVersion: Codable, Equatable, Sendable {
+    public enum IpVersion: Codable, Equatable, Hashable, Sendable {
       case ipv4
       case ipv6
       /// Treated as IPV4 for backward-compatibility.

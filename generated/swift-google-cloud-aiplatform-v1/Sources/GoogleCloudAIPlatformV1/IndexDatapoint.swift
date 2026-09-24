@@ -428,7 +428,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Operator: Codable, Equatable, Sendable {
+      public enum Operator: Codable, Equatable, Hashable, Sendable {
         /// Default value of the enum.
         case unspecified
         /// Datapoints are eligible iff their value is < the query's.

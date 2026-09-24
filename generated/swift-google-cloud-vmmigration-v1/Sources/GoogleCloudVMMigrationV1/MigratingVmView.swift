@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum MigratingVmView: Codable, Equatable, Sendable {
+public enum MigratingVmView: Codable, Equatable, Hashable, Sendable {
   /// View is unspecified. The API will fallback to the default value.
   case unspecified
   /// Get the migrating VM basic details.

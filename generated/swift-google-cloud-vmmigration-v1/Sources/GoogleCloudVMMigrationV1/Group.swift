@@ -127,7 +127,7 @@ public struct Group: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MigrationTargetType: Codable, Equatable, Sendable {
+  public enum MigrationTargetType: Codable, Equatable, Hashable, Sendable {
     /// Group type is not specified. This defaults to Compute Engine targets.
     case unspecified
     /// All MigratingVMs in the group must have Compute Engine targets.

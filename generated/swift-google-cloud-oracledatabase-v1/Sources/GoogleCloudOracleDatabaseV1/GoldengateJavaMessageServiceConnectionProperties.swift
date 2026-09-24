@@ -381,7 +381,7 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JmsSecurityProtocol: Codable, Equatable, Sendable {
+  public enum JmsSecurityProtocol: Codable, Equatable, Hashable, Sendable {
     /// Security protocol not specified.
     case unspecified
     /// Plain text communication.
@@ -505,7 +505,7 @@ public struct GoldengateJavaMessageServiceConnectionProperties: Codable, Equatab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum JmsAuthenticationType: Codable, Equatable, Sendable {
+  public enum JmsAuthenticationType: Codable, Equatable, Hashable, Sendable {
     /// Authentication type not specified.
     case unspecified
     /// No authentication.

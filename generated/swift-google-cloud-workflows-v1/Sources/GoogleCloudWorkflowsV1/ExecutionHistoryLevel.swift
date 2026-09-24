@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ExecutionHistoryLevel: Codable, Equatable, Sendable {
+public enum ExecutionHistoryLevel: Codable, Equatable, Hashable, Sendable {
   /// The default/unset value.
   case unspecified
   /// Enable execution history basic feature.

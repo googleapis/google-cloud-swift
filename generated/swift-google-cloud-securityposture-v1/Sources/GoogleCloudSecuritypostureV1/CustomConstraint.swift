@@ -178,7 +178,7 @@ public struct CustomConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MethodType: Codable, Equatable, Sendable {
+  public enum MethodType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. Results in an error.
     case unspecified
     /// Constraint applied when creating the resource.
@@ -303,7 +303,7 @@ public struct CustomConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ActionType: Codable, Equatable, Sendable {
+  public enum ActionType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. Results in an error.
     case unspecified
     /// Allowed action type.

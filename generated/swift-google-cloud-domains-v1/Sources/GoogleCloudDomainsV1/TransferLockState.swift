@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum TransferLockState: Codable, Equatable, Sendable {
+public enum TransferLockState: Codable, Equatable, Hashable, Sendable {
   /// The state is unspecified.
   case unspecified
   /// The domain is unlocked and can be transferred to another registrar.

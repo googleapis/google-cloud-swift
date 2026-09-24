@@ -139,7 +139,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PerformanceMonitoringUnit: Codable, Equatable, Sendable {
+    public enum PerformanceMonitoringUnit: Codable, Equatable, Hashable, Sendable {
       /// Architecturally defined non-LLC events.
       case architectural
       /// Most documented core/L2 and LLC events.

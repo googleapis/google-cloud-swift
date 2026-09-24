@@ -129,7 +129,7 @@ public struct AutopilotCompatibilityIssue: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IssueType: Codable, Equatable, Sendable {
+  public enum IssueType: Codable, Equatable, Hashable, Sendable {
     /// Default value, should not be used.
     case unspecified
     /// Indicates that the issue is a known incompatibility between the

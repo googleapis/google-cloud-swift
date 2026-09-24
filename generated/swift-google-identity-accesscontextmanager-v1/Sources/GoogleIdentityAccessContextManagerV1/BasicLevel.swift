@@ -98,7 +98,7 @@ public struct BasicLevel: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ConditionCombiningFunction: Codable, Equatable, Sendable {
+  public enum ConditionCombiningFunction: Codable, Equatable, Hashable, Sendable {
     /// All `Conditions` must be true for the `BasicLevel` to be true.
     case and
     /// If at least one `Condition` is true, then the `BasicLevel` is true.

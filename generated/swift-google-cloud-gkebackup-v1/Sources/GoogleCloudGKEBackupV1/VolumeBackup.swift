@@ -225,7 +225,7 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VolumeBackupFormat: Codable, Equatable, Sendable {
+  public enum VolumeBackupFormat: Codable, Equatable, Hashable, Sendable {
     /// Default value, not specified.
     case unspecified
     /// Compute Engine Persistent Disk snapshot based volume backup.
@@ -335,7 +335,7 @@ public struct VolumeBackup: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// This is an illegal state and should not be encountered.
     case unspecified
     /// A volume for the backup was identified and backup process is about to

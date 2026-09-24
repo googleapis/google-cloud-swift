@@ -201,7 +201,7 @@
       ///   Do not pattern-match against `unknownStringValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum View: Codable, Equatable, Sendable {
+      public enum View: Codable, Equatable, Hashable, Sendable {
         /// The default view of a ForwardingRule, which includes the basic fields.
         case basic
         /// The full view, including the ForwardingRule.`attached_extensions` field.

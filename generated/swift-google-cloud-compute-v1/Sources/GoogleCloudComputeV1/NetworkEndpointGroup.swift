@@ -262,7 +262,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NetworkEndpointType: Codable, Equatable, Sendable {
+    public enum NetworkEndpointType: Codable, Equatable, Hashable, Sendable {
       /// The network endpoint is represented by an IP address.
       case gceVmIp
       /// The network endpoint for targeting a specific network interface of a

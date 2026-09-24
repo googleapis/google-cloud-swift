@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum CollectionType: Codable, Equatable, Sendable {
+public enum CollectionType: Codable, Equatable, Hashable, Sendable {
   /// The default value. This value is used if the collection type is omitted.
   case unspecified
   /// The collection type is upsert. This should be used when an API is created

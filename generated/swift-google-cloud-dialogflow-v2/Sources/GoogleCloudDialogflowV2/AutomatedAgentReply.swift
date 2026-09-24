@@ -119,7 +119,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AutomatedAgentReplyType: Codable, Equatable, Sendable {
+    public enum AutomatedAgentReplyType: Codable, Equatable, Hashable, Sendable {
       /// Not specified. This should never happen.
       case unspecified
       /// Partial reply. e.g. Aggregated responses in a `Fulfillment` that enables

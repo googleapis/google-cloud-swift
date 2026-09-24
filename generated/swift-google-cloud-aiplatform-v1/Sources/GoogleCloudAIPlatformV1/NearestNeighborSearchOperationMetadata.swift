@@ -198,7 +198,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum RecordErrorType: Codable, Equatable, Sendable {
+      public enum RecordErrorType: Codable, Equatable, Hashable, Sendable {
         /// Default, shall not be used.
         case errorTypeUnspecified
         /// The record is empty.

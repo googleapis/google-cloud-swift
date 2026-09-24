@@ -104,7 +104,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Metric: Codable, Equatable, Sendable {
+    public enum Metric: Codable, Equatable, Hashable, Sendable {
       case a2Cpus
       case affinityGroups
       case autoscalers

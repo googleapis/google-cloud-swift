@@ -22,7 +22,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SqlIpAddressType: Codable, Equatable, Sendable {
+  public enum SqlIpAddressType: Codable, Equatable, Hashable, Sendable {
     /// This is an unknown IP address type.
     case unspecified
     /// IP address the customer is supposed to connect to. Usually this is the

@@ -499,7 +499,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Architecture: Codable, Equatable, Sendable {
+    public enum Architecture: Codable, Equatable, Hashable, Sendable {
       /// Default value indicating Architecture is not set.
       case unspecified
       /// Machines with architecture ARM64
@@ -564,7 +564,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SnapshotType: Codable, Equatable, Sendable {
+    public enum SnapshotType: Codable, Equatable, Hashable, Sendable {
       case archive
       case standard
       /// Encodes an unknown string value.
@@ -622,7 +622,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// Snapshot creation is in progress.
       case creating
       /// Snapshot is currently being deleted.
@@ -697,7 +697,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StorageBytesStatus: Codable, Equatable, Sendable {
+    public enum StorageBytesStatus: Codable, Equatable, Hashable, Sendable {
       case updating
       case upToDate
       /// Encodes an unknown string value.

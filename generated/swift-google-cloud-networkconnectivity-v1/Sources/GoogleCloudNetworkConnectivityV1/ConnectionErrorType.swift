@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ConnectionErrorType: Codable, Equatable, Sendable {
+public enum ConnectionErrorType: Codable, Equatable, Hashable, Sendable {
   /// An invalid error type as the default case.
   case unspecified
   /// The error is due to Service Automation system internal.

@@ -496,7 +496,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateConnectionType: Codable, Equatable, Sendable {
+  public enum GoldengateConnectionType: Codable, Equatable, Hashable, Sendable {
     /// Connection type unspecified.
     case unspecified
     /// Goldengate connection type.
@@ -802,7 +802,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateConnectionLifecycleState: Codable, Equatable, Sendable {
+  public enum GoldengateConnectionLifecycleState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Indicates that the resource is in provisioning state.
@@ -948,7 +948,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateConnectionRoutingMethod: Codable, Equatable, Sendable {
+  public enum GoldengateConnectionRoutingMethod: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Network traffic flows from the assigned deployment's private endpoint

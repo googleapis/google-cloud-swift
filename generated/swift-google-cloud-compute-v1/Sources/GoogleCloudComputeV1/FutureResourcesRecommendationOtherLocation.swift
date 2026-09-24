@@ -95,7 +95,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// The requested resources are offered in this location
       /// but the requested time window is does not meet the required conditions.
       case conditionsNotMet

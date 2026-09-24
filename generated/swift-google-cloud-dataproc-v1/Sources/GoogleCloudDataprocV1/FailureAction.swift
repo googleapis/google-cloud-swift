@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum FailureAction: Codable, Equatable, Sendable {
+public enum FailureAction: Codable, Equatable, Hashable, Sendable {
   /// When FailureAction is unspecified, failure action defaults to NO_ACTION.
   case unspecified
   /// Take no action on failure to create a cluster resource. NO_ACTION is the

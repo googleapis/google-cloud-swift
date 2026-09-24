@@ -102,7 +102,7 @@ public struct ReauthSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Method: Codable, Equatable, Sendable {
+  public enum Method: Codable, Equatable, Hashable, Sendable {
     /// Reauthentication disabled.
     case unspecified
     /// Prompts the user to log in again.
@@ -239,7 +239,7 @@ public struct ReauthSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PolicyType: Codable, Equatable, Sendable {
+  public enum PolicyType: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// This policy acts as a minimum to other policies, lower in the hierarchy.

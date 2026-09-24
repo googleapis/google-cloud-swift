@@ -214,7 +214,7 @@ public struct SkippedShipment: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Code: Codable, Equatable, Sendable {
+    public enum Code: Codable, Equatable, Hashable, Sendable {
       /// This should never be used. If we are unable to understand why a
       /// shipment was skipped, we simply return an empty set of reasons.
       case unspecified

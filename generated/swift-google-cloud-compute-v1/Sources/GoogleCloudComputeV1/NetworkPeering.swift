@@ -215,7 +215,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StackType: Codable, Equatable, Sendable {
+    public enum StackType: Codable, Equatable, Hashable, Sendable {
       /// This Peering will allow IPv4 traffic and routes to be
       /// exchanged. Additionally if the matching peering is
       /// IPV4_IPV6, IPv6 traffic and routes will be exchanged as
@@ -279,7 +279,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Matching configuration exists on the peer.
       case active
       /// There is no matching configuration on the peer, including the case when
@@ -340,7 +340,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UpdateStrategy: Codable, Equatable, Sendable {
+    public enum UpdateStrategy: Codable, Equatable, Hashable, Sendable {
       /// Updates are reflected in the local peering but aren't applied to the
       /// peering connection until a complementary change is made to the
       /// matching peering.

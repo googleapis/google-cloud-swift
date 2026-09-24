@@ -91,7 +91,7 @@ public struct SchemaMode: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ModeType: Codable, Equatable, Sendable {
+  public enum ModeType: Codable, Equatable, Hashable, Sendable {
     /// The default / unset value.
     /// The subject mode is NONE/unset by default, which means use the global
     /// schema registry mode. This should not be used for setting the mode.

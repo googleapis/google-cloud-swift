@@ -121,7 +121,7 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageManagement: Codable, Equatable, Sendable {
+  public enum StorageManagement: Codable, Equatable, Hashable, Sendable {
     /// Unspecified storage management.
     case unspecified
     /// Automatic Storage Management.
@@ -238,7 +238,7 @@ public struct DbSystemInitialStorageSizeProperties: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ShapeType: Codable, Equatable, Sendable {
+  public enum ShapeType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified shape type.
     case unspecified
     /// Standard X86.

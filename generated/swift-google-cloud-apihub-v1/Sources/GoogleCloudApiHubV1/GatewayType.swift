@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum GatewayType: Codable, Equatable, Sendable {
+public enum GatewayType: Codable, Equatable, Hashable, Sendable {
   /// The gateway type is not specified.
   case unspecified
   /// The gateway type is Apigee X and Hybrid.

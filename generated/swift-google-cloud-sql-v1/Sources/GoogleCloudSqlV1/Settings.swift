@@ -550,7 +550,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SqlActivationPolicy: Codable, Equatable, Sendable {
+    public enum SqlActivationPolicy: Codable, Equatable, Hashable, Sendable {
       /// Unknown activation plan.
       case unspecified
       /// The instance is always up and running.
@@ -681,7 +681,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Edition: Codable, Equatable, Sendable {
+    public enum Edition: Codable, Equatable, Hashable, Sendable {
       /// The instance did not specify the edition.
       case unspecified
       /// The instance is an enterprise edition.
@@ -805,7 +805,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConnectorEnforcement: Codable, Equatable, Sendable {
+    public enum ConnectorEnforcement: Codable, Equatable, Hashable, Sendable {
       /// The requirement for Cloud SQL connectors is unknown.
       case unspecified
       /// Do not require Cloud SQL connectors.
@@ -924,7 +924,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DataApiAccess: Codable, Equatable, Sendable {
+    public enum DataApiAccess: Codable, Equatable, Hashable, Sendable {
       /// Unspecified, effectively the same as `DISALLOW_DATA_API`.
       case unspecified
       /// Disallow using ExecuteSql API to connect to the instance.

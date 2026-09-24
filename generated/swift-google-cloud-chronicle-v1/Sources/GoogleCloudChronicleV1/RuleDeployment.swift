@@ -184,7 +184,7 @@ public struct RuleDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExecutionState: Codable, Equatable, Sendable {
+  public enum ExecutionState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified or unknown execution state.
     case unspecified
     /// Default execution state.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum UserView: Codable, Equatable, Sendable {
+public enum UserView: Codable, Equatable, Hashable, Sendable {
   /// Default value. Equivalent to USER_VIEW_BASIC.
   case unspecified
   /// Basic view. Excludes heavy configurations (user_credentials,

@@ -247,7 +247,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified replication State
     case unspecified
     /// Replication is creating.
@@ -416,7 +416,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReplicationRole: Codable, Equatable, Sendable {
+  public enum ReplicationRole: Codable, Equatable, Hashable, Sendable {
     /// Unspecified replication role
     case unspecified
     /// Indicates Source volume.
@@ -535,7 +535,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReplicationSchedule: Codable, Equatable, Sendable {
+  public enum ReplicationSchedule: Codable, Equatable, Hashable, Sendable {
     /// Unspecified ReplicationSchedule
     case unspecified
     /// Replication happens once every 10 minutes.
@@ -660,7 +660,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MirrorState: Codable, Equatable, Sendable {
+  public enum MirrorState: Codable, Equatable, Hashable, Sendable {
     /// Unspecified MirrorState
     case unspecified
     /// Destination volume is being prepared.
@@ -820,7 +820,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HybridReplicationType: Codable, Equatable, Sendable {
+  public enum HybridReplicationType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified hybrid replication type.
     case unspecified
     /// Hybrid replication type for migration.

@@ -180,7 +180,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataPolicyType: Codable, Equatable, Sendable {
+  public enum DataPolicyType: Codable, Equatable, Hashable, Sendable {
     /// Default value for the data policy type. This should not be used.
     case unspecified
     /// Used to create a data policy for data masking.
@@ -306,7 +306,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Version: Codable, Equatable, Sendable {
+  public enum Version: Codable, Equatable, Hashable, Sendable {
     /// Default value for the data policy version. This should not be used.
     case unspecified
     /// V1 data policy version. V1 Data Policies will be present in V2 List api

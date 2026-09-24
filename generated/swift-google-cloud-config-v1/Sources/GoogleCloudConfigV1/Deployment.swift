@@ -335,7 +335,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the state is omitted.
     case unspecified
     /// The deployment is being created.
@@ -488,7 +488,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ErrorCode: Codable, Equatable, Sendable {
+  public enum ErrorCode: Codable, Equatable, Hashable, Sendable {
     /// No error code was specified.
     case unspecified
     /// The revision failed. See Revision for more details.
@@ -645,7 +645,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LockState: Codable, Equatable, Sendable {
+  public enum LockState: Codable, Equatable, Hashable, Sendable {
     /// The default value. This value is used if the lock state is omitted.
     case unspecified
     /// The deployment is locked.

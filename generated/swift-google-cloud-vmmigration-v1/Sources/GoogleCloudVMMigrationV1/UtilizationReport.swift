@@ -168,7 +168,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state is unknown. This value is not in use.
     case unspecified
     /// The report is in the making.
@@ -292,7 +292,7 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TimeFrame: Codable, Equatable, Sendable {
+  public enum TimeFrame: Codable, Equatable, Hashable, Sendable {
     /// The time frame was not specified and will default to WEEK.
     case unspecified
     /// One week.

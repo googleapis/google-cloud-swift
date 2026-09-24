@@ -157,7 +157,7 @@ public struct FeedPack: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PackType: Codable, Equatable, Sendable {
+  public enum PackType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified feed pack type.
     case unspecified
     /// Product based feed pack type.

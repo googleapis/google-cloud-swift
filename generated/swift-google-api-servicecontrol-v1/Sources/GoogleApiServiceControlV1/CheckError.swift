@@ -117,7 +117,7 @@ public struct CheckError: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Code: Codable, Equatable, Sendable {
+  public enum Code: Codable, Equatable, Hashable, Sendable {
     /// This is the default value if error code is not explicitly set.
     /// It should not be used directly.
     case errorCodeUnspecified

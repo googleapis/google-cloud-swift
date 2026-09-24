@@ -211,7 +211,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AncestorMode: Codable, Equatable, Sendable {
+  public enum AncestorMode: Codable, Equatable, Hashable, Sendable {
     /// The ancestor mode is unspecified.
     case unspecified
     /// Do not include the entity's ancestors in the index.
@@ -328,7 +328,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Direction: Codable, Equatable, Sendable {
+  public enum Direction: Codable, Equatable, Hashable, Sendable {
     /// The direction is unspecified.
     case unspecified
     /// The property's values are indexed so as to support sequencing in
@@ -447,7 +447,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// The state is unspecified.
     case unspecified
     /// The index is being created, and cannot be used by queries.

@@ -86,7 +86,7 @@ public struct ReleaseChannel: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Channel: Codable, Equatable, Sendable {
+  public enum Channel: Codable, Equatable, Hashable, Sendable {
     /// Deprecated: No channel specified. it will be removed in the future, use
     /// RAPID, REGULAR, STABLE or EXTENDED instead.
     @available(*, deprecated)

@@ -146,7 +146,7 @@ public struct Role: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RoleLaunchStage: Codable, Equatable, Sendable {
+  public enum RoleLaunchStage: Codable, Equatable, Hashable, Sendable {
     /// The user has indicated this role is currently in an Alpha phase. If this
     /// launch stage is selected, the `stage` field will not be included when
     /// requesting the definition for a given role.

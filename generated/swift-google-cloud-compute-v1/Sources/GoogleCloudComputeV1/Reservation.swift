@@ -349,7 +349,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ConfidentialComputeType: Codable, Equatable, Sendable {
+    public enum ConfidentialComputeType: Codable, Equatable, Hashable, Sendable {
       /// Bare Metal Secure AI.
       case bmsai
       /// Intel Trust Domain Extensions.
@@ -413,7 +413,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DeploymentType: Codable, Equatable, Sendable {
+    public enum DeploymentType: Codable, Equatable, Hashable, Sendable {
       /// The reserved capacity is made up of densely deployed reservation blocks.
       case dense
       case unspecified
@@ -472,7 +472,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EarlyAccessMaintenance: Codable, Equatable, Sendable {
+    public enum EarlyAccessMaintenance: Codable, Equatable, Hashable, Sendable {
       /// No early access.
       case noEarlyAccess
       /// Wave 1: Fastest notification period
@@ -537,7 +537,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ProtectionTier: Codable, Equatable, Sendable {
+    public enum ProtectionTier: Codable, Equatable, Hashable, Sendable {
       /// CAPACITY_OPTIMIZED capacity leverages redundancies (e.g. power, cooling)
       /// at the data center during normal operating conditions. In the event of
       /// infrastructure failures at data center (e.g. power and/or cooling
@@ -610,7 +610,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SchedulingType: Codable, Equatable, Sendable {
+    public enum SchedulingType: Codable, Equatable, Hashable, Sendable {
       /// Maintenance on all reserved instances in the reservation is synchronized.
       case grouped
       /// Unknown maintenance type.
@@ -677,7 +677,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       /// Reservation resources are being allocated.
       case creating
       /// Reservation deletion is in progress.

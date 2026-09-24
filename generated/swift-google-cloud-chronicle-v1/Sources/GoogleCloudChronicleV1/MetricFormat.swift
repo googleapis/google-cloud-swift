@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum MetricFormat: Codable, Equatable, Sendable {
+public enum MetricFormat: Codable, Equatable, Hashable, Sendable {
   /// Metric format is not specified.
   case unspecified
   /// Metric format in number

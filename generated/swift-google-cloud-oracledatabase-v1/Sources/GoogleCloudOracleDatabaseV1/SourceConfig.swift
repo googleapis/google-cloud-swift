@@ -195,7 +195,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RefreshableMode: Codable, Equatable, Sendable {
+  public enum RefreshableMode: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Automatic refresh.
@@ -314,7 +314,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SourceType: Codable, Equatable, Sendable {
+  public enum SourceType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Clone database from an existing database specified in
@@ -458,7 +458,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CloneType: Codable, Equatable, Sendable {
+  public enum CloneType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Creates a new database with the source database's data and metadata.

@@ -747,7 +747,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AttributeType: Codable, Equatable, Sendable {
+  public enum AttributeType: Codable, Equatable, Hashable, Sendable {
     /// The type of the attribute is unknown.
     ///
     /// Used when type cannot be derived from attribute that is not
@@ -869,7 +869,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IndexableOption: Codable, Equatable, Sendable {
+  public enum IndexableOption: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset.
     case unspecified
     /// Indexable option enabled for an attribute.
@@ -986,7 +986,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DynamicFacetableOption: Codable, Equatable, Sendable {
+  public enum DynamicFacetableOption: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset.
     case unspecified
     /// Dynamic facetable option enabled for an attribute.
@@ -1103,7 +1103,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchableOption: Codable, Equatable, Sendable {
+  public enum SearchableOption: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset.
     case unspecified
     /// Searchable option enabled for an attribute.
@@ -1220,7 +1220,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExactSearchableOption: Codable, Equatable, Sendable {
+  public enum ExactSearchableOption: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset.
     case unspecified
     /// Exact searchable option enabled for an attribute.
@@ -1337,7 +1337,7 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RetrievableOption: Codable, Equatable, Sendable {
+  public enum RetrievableOption: Codable, Equatable, Hashable, Sendable {
     /// Value used when unset.
     case unspecified
     /// Retrievable option enabled for an attribute.

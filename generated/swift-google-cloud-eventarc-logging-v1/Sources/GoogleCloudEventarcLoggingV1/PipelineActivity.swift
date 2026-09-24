@@ -617,7 +617,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RetryStatus: Codable, Equatable, Sendable {
+    public enum RetryStatus: Codable, Equatable, Hashable, Sendable {
       /// Default value. This value is unused.
       case unspecified
       /// The Pipeline will retry dispatching the message to the destination.
@@ -746,7 +746,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PayloadFormat: Codable, Equatable, Sendable {
+  public enum PayloadFormat: Codable, Equatable, Hashable, Sendable {
     /// Default value. This value is unused.
     case unspecified
     /// JSON payload format.

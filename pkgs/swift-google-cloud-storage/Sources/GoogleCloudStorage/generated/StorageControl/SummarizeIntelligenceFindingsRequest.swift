@@ -145,7 +145,7 @@ public struct SummarizeIntelligenceFindingsRequest: Codable, Equatable, GoogleWK
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ResourceScope: Codable, Equatable, Sendable {
+  public enum ResourceScope: Codable, Equatable, Hashable, Sendable {
     /// The default behavior. Falls back to PARENT behaviour
     case unspecified
     /// Summaries are aggregated at the level of the `parent` resource.

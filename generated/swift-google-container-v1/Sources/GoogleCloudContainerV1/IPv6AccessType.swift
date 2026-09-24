@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum IPv6AccessType: Codable, Equatable, Sendable {
+public enum IPv6AccessType: Codable, Equatable, Hashable, Sendable {
   /// Default value, will be defaulted as type external.
   case ipv6AccessTypeUnspecified
   /// Access type internal (all v6 addresses are internal IPs)

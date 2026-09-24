@@ -24,7 +24,7 @@ import Foundation
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
 @available(*, deprecated)
-public enum TransferType: Codable, Equatable, Sendable {
+public enum TransferType: Codable, Equatable, Hashable, Sendable {
   /// Invalid or Unknown transfer type placeholder.
   case unspecified
   /// Batch data transfer.

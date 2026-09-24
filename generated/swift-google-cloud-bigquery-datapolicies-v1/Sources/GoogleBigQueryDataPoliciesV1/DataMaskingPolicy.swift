@@ -109,7 +109,7 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PredefinedExpression: Codable, Equatable, Sendable {
+  public enum PredefinedExpression: Codable, Equatable, Hashable, Sendable {
     /// Default, unspecified predefined expression. No masking will take place
     /// since no expression is specified.
     case unspecified

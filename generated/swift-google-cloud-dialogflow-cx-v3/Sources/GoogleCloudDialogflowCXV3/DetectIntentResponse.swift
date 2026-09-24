@@ -141,7 +141,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ResponseType: Codable, Equatable, Sendable {
+    public enum ResponseType: Codable, Equatable, Hashable, Sendable {
       /// Not specified. This should never happen.
       case unspecified
       /// Partial response. e.g. Aggregated responses in a Fulfillment that enables

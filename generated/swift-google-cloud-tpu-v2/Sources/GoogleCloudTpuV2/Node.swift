@@ -313,7 +313,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// TPU node state is not known/set.
     case unspecified
     /// TPU node is being created.
@@ -524,7 +524,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Health: Codable, Equatable, Sendable {
+  public enum Health: Codable, Equatable, Hashable, Sendable {
     /// Health status is unknown: not initialized or failed to retrieve.
     case unspecified
     /// The resource is healthy.
@@ -656,7 +656,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ApiVersion: Codable, Equatable, Sendable {
+  public enum ApiVersion: Codable, Equatable, Hashable, Sendable {
     /// API version is unknown.
     case unspecified
     /// TPU API V1Alpha1 version.

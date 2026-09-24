@@ -102,7 +102,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NetworkType: Codable, Equatable, Sendable {
+    public enum NetworkType: Codable, Equatable, Hashable, Sendable {
       /// RDMA network.
       case rdma
       /// ULL network.
@@ -167,7 +167,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum RdmaSubtype: Codable, Equatable, Sendable {
+    public enum RdmaSubtype: Codable, Equatable, Hashable, Sendable {
       /// RDMA over Falcon.
       case falcon
       /// RDMA over Converged Ethernet (RoCE).
@@ -232,7 +232,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum UllSubtype: Codable, Equatable, Sendable {
+    public enum UllSubtype: Codable, Equatable, Hashable, Sendable {
       /// Exchange operator.
       case `operator`
       /// Exchange participant.
@@ -292,7 +292,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum VpcSubtype: Codable, Equatable, Sendable {
+    public enum VpcSubtype: Codable, Equatable, Hashable, Sendable {
       /// Regionally bound VPC network.
       case regional
       /// Encodes an unknown string value.

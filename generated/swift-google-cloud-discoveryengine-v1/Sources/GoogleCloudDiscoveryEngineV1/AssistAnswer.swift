@@ -211,7 +211,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Unknown.
       case unspecified
       /// Assist operation is currently in progress.
@@ -342,7 +342,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AssistSkippedReason: Codable, Equatable, Sendable {
+    public enum AssistSkippedReason: Codable, Equatable, Hashable, Sendable {
       /// Default value. Skip reason is not specified.
       case unspecified
       /// The assistant ignored the query, because it did not appear to be

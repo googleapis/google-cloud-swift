@@ -202,7 +202,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Aligner: Codable, Equatable, Sendable {
+  public enum Aligner: Codable, Equatable, Hashable, Sendable {
     /// No alignment. Raw data is returned. Not valid if cross-series reduction
     /// is requested. The `value_type` of the result is the same as the
     /// `value_type` of the input.
@@ -525,7 +525,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Reducer: Codable, Equatable, Sendable {
+  public enum Reducer: Codable, Equatable, Hashable, Sendable {
     /// No cross-time series reduction. The output of the `Aligner` is
     /// returned.
     case reduceNone

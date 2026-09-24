@@ -90,7 +90,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Stage: Codable, Equatable, Sendable {
+    public enum Stage: Codable, Equatable, Hashable, Sendable {
       case deprecated
       case ga
       case preview

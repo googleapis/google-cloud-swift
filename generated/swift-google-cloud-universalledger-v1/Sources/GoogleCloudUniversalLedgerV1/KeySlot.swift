@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum KeySlot: Codable, Equatable, Sendable {
+public enum KeySlot: Codable, Equatable, Hashable, Sendable {
   /// The key slot is unspecified.
   case unspecified
   /// The primary key slot.

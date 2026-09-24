@@ -570,7 +570,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum Type_: Codable, Equatable, Sendable {
+      public enum Type_: Codable, Equatable, Hashable, Sendable {
         /// Unknown event type.
         case unspecified
         /// Indicates a sent message.
@@ -899,7 +899,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// The relationship of the two spans is unknown.
       case unspecified
       /// The linked span is a child of the current span.
@@ -1107,7 +1107,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SpanKind: Codable, Equatable, Sendable {
+  public enum SpanKind: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. Do NOT use as default.
     /// Implementations MAY assume SpanKind.INTERNAL to be default.
     case unspecified

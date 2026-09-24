@@ -660,7 +660,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State not set.
     case unspecified
     /// The instance is being created.
@@ -845,7 +845,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Tier: Codable, Equatable, Sendable {
+  public enum Tier: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// STANDARD tier. BASIC_HDD is the preferred term for this tier.
@@ -1012,7 +1012,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SuspensionReason: Codable, Equatable, Sendable {
+  public enum SuspensionReason: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// The KMS key used by the instance is either revoked or denied access to.
@@ -1122,7 +1122,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FileProtocol: Codable, Equatable, Sendable {
+  public enum FileProtocol: Codable, Equatable, Hashable, Sendable {
     /// FILE_PROTOCOL_UNSPECIFIED serves a "not set" default value when
     /// a FileProtocol is a separate field in a message.
     case unspecified

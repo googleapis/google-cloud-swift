@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AdTracking: Codable, Equatable, Sendable {
+public enum AdTracking: Codable, Equatable, Hashable, Sendable {
   /// The ad tracking policy is not specified.
   case unspecified
   /// Client-side ad tracking is specified. The client player is expected to

@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ClientLibraryOrganization: Codable, Equatable, Sendable {
+public enum ClientLibraryOrganization: Codable, Equatable, Hashable, Sendable {
   /// Not useful.
   case unspecified
   /// Google Cloud Platform Org.

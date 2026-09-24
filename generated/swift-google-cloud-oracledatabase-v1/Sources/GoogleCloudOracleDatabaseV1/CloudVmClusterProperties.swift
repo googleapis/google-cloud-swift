@@ -420,7 +420,7 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LicenseType: Codable, Equatable, Sendable {
+  public enum LicenseType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified
     case unspecified
     /// License included part of offer
@@ -537,7 +537,7 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiskRedundancy: Codable, Equatable, Sendable {
+  public enum DiskRedundancy: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// High -  3 way mirror.
@@ -654,7 +654,7 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Indicates that the resource is in provisioning state.
@@ -806,7 +806,7 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StorageManagementType: Codable, Equatable, Sendable {
+  public enum StorageManagementType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified storage management type.
     case unspecified
     /// Automatic Storage Management.
@@ -923,7 +923,7 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VmFileSystemStorageType: Codable, Equatable, Sendable {
+  public enum VmFileSystemStorageType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified storage type.
     case unspecified
     /// Local DB server storage.
@@ -1040,7 +1040,7 @@ public struct CloudVmClusterProperties: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VmBackupStorageType: Codable, Equatable, Sendable {
+  public enum VmBackupStorageType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified storage type.
     case unspecified
     /// Local DB server storage.

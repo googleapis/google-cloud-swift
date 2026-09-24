@@ -190,7 +190,7 @@ public struct SimpleExportPolicyRule: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SquashMode: Codable, Equatable, Sendable {
+  public enum SquashMode: Codable, Equatable, Hashable, Sendable {
     /// Defaults to `NO_ROOT_SQUASH`.
     case unspecified
     /// The root user (UID 0) retains full access. Other users are

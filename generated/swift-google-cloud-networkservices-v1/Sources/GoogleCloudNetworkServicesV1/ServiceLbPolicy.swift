@@ -390,7 +390,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoadBalancingAlgorithm: Codable, Equatable, Sendable {
+  public enum LoadBalancingAlgorithm: Codable, Equatable, Hashable, Sendable {
     /// The type of the loadbalancing algorithm is unspecified.
     case unspecified
     /// Balance traffic across all backends across the world proportionally based
@@ -528,7 +528,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IsolationGranularity: Codable, Equatable, Sendable {
+  public enum IsolationGranularity: Codable, Equatable, Hashable, Sendable {
     /// No isolation is configured for the backend service. Traffic can overflow
     /// based on the load balancing algorithm.
     case unspecified
@@ -640,7 +640,7 @@ public struct ServiceLbPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IsolationMode: Codable, Equatable, Sendable {
+  public enum IsolationMode: Codable, Equatable, Hashable, Sendable {
     /// No isolation mode is configured for the backend service.
     case unspecified
     /// Traffic will be sent to the nearest region.

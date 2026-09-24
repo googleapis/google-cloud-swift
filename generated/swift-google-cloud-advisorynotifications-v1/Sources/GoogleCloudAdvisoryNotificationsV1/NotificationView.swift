@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum NotificationView: Codable, Equatable, Sendable {
+public enum NotificationView: Codable, Equatable, Hashable, Sendable {
   /// Not specified, equivalent to BASIC.
   case unspecified
   /// Server responses only include title, creation time and Notification ID.

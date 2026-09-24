@@ -108,7 +108,7 @@ public struct ShieldedInstanceConfig: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SecureBoot: Codable, Equatable, Sendable {
+  public enum SecureBoot: Codable, Equatable, Hashable, Sendable {
     /// No explicit value is selected. Will use the configuration of the source
     /// (if exists, otherwise the default will be false).
     case unspecified

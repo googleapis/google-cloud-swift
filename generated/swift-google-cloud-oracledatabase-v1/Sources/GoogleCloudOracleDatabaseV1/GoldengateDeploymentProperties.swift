@@ -472,7 +472,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateDeploymentLifecycleState: Codable, Equatable, Sendable {
+  public enum GoldengateDeploymentLifecycleState: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// The deployment is being created.
@@ -667,7 +667,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LicenseModel: Codable, Equatable, Sendable {
+  public enum LicenseModel: Codable, Equatable, Hashable, Sendable {
     /// The license model is unspecified.
     case unspecified
     /// The license model is included.
@@ -784,7 +784,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateDeploymentLifecycleSubState: Codable, Equatable, Sendable {
+  public enum GoldengateDeploymentLifecycleSubState: Codable, Equatable, Hashable, Sendable {
     /// The lifecycle sub-state is unspecified.
     case unspecified
     /// The deployment is recovering.
@@ -944,7 +944,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateDeploymentCategory: Codable, Equatable, Sendable {
+  public enum GoldengateDeploymentCategory: Codable, Equatable, Hashable, Sendable {
     /// The category is unspecified.
     case unspecified
     /// The deployment is data replication.
@@ -1061,7 +1061,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NextMaintenanceActionType: Codable, Equatable, Sendable {
+  public enum NextMaintenanceActionType: Codable, Equatable, Hashable, Sendable {
     /// The next maintenance action type is unspecified.
     case unspecified
     /// The next maintenance action type is upgrade.
@@ -1171,7 +1171,7 @@ public struct GoldengateDeploymentProperties: Codable, Equatable, GoogleWKT._Any
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum GoldengateDeploymentRoleType: Codable, Equatable, Sendable {
+  public enum GoldengateDeploymentRoleType: Codable, Equatable, Hashable, Sendable {
     /// The deployment role type is unspecified.
     case unspecified
     /// The deployment role type is primary.

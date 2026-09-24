@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum URISourceType: Codable, Equatable, Sendable {
+public enum URISourceType: Codable, Equatable, Hashable, Sendable {
   /// If encountered, will throw an `INVALID_ARGUMENT` error.
   case unspecified
   /// The type of files pointed to by `source_uris` are files.

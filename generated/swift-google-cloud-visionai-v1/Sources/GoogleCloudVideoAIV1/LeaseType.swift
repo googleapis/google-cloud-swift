@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LeaseType: Codable, Equatable, Sendable {
+public enum LeaseType: Codable, Equatable, Hashable, Sendable {
   /// Lease type unspecified.
   case unspecified
   /// Lease for stream reader.

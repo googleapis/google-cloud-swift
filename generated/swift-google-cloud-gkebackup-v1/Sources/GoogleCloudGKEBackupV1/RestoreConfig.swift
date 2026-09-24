@@ -692,7 +692,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Op: Codable, Equatable, Sendable {
+    public enum Op: Codable, Equatable, Hashable, Sendable {
       /// Unspecified operation
       case unspecified
       /// The "remove" operation removes the value at the target location.
@@ -1316,7 +1316,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VolumeDataRestorePolicy: Codable, Equatable, Sendable {
+  public enum VolumeDataRestorePolicy: Codable, Equatable, Hashable, Sendable {
     /// Unspecified (illegal).
     case unspecified
     /// For each PVC to be restored, create a new underlying volume and PV
@@ -1449,7 +1449,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ClusterResourceConflictPolicy: Codable, Equatable, Sendable {
+  public enum ClusterResourceConflictPolicy: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. Only allowed if no cluster-scoped resources will be
     /// restored.
     case unspecified
@@ -1571,7 +1571,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NamespacedResourceRestoreMode: Codable, Equatable, Sendable {
+  public enum NamespacedResourceRestoreMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified (invalid).
     case unspecified
     /// When conflicting top-level resources (either Namespaces or

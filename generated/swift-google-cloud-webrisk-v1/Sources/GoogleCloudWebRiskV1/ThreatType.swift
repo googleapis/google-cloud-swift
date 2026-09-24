@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ThreatType: Codable, Equatable, Sendable {
+public enum ThreatType: Codable, Equatable, Hashable, Sendable {
   /// No entries should match this threat type. This threat type is unused.
   case unspecified
   /// Malware targeting any platform.

@@ -102,7 +102,7 @@ public struct TransactionAttempt: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TransactionStatus: Codable, Equatable, Sendable {
+  public enum TransactionStatus: Codable, Equatable, Hashable, Sendable {
     /// Unknown or uninitialized state.
     case unspecified
     /// The transaction is known to this validator, but it is not finalized yet.

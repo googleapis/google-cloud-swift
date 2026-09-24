@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum FlexPerformance: Codable, Equatable, Sendable {
+public enum FlexPerformance: Codable, Equatable, Hashable, Sendable {
   /// Unspecified flex performance.
   case unspecified
   /// Flex Storage Pool with default performance.

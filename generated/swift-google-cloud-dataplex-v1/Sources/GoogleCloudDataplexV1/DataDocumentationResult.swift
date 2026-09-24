@@ -476,7 +476,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Source: Codable, Equatable, Sendable {
+    public enum Source: Codable, Equatable, Hashable, Sendable {
       /// The source of the schema relationship is unspecified.
       case unspecified
       /// The source of the schema relationship is agent.
@@ -602,7 +602,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// The type of the schema relationship is unspecified.
       case unspecified
       /// Indicates a join relationship between the schema fields.

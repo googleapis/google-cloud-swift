@@ -623,7 +623,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ImportanceLevel: Codable, Equatable, Sendable {
+    public enum ImportanceLevel: Codable, Equatable, Hashable, Sendable {
       /// Default value if the importance level isn't specified.
       case unspecified
       /// The given ranking expression is of None importance, existing relevance
@@ -792,7 +792,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SearchMode: Codable, Equatable, Sendable {
+  public enum SearchMode: Codable, Equatable, Hashable, Sendable {
     /// The mode of the search method isn't specified. The default search
     /// behavior is identical to JOB_SEARCH search behavior.
     case unspecified
@@ -925,7 +925,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiversificationLevel: Codable, Equatable, Sendable {
+  public enum DiversificationLevel: Codable, Equatable, Hashable, Sendable {
     /// The diversification level isn't specified.
     case unspecified
     /// Disables diversification. Jobs that would normally be pushed to the last
@@ -1101,7 +1101,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum KeywordMatchMode: Codable, Equatable, Sendable {
+  public enum KeywordMatchMode: Codable, Equatable, Hashable, Sendable {
     /// The keyword match option isn't specified. Defaults to
     /// [KeywordMatchMode.KEYWORD_MATCH_ALL][google.cloud.talent.v4.SearchJobsRequest.KeywordMatchMode.KEYWORD_MATCH_ALL]
     /// behavior.
@@ -1249,7 +1249,7 @@ public struct SearchJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RelevanceThreshold: Codable, Equatable, Sendable {
+  public enum RelevanceThreshold: Codable, Equatable, Hashable, Sendable {
     /// Default value. In this case, server behavior defaults to Google defined
     /// threshold.
     case unspecified

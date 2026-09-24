@@ -105,7 +105,7 @@ public struct SchemaConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CompatibilityType: Codable, Equatable, Sendable {
+  public enum CompatibilityType: Codable, Equatable, Hashable, Sendable {
     /// No compatibility check.
     case `none`
     /// Backwards compatible with the most recent version.

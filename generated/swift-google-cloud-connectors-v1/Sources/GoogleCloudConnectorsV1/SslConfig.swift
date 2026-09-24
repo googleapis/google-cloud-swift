@@ -159,7 +159,7 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TrustModel: Codable, Equatable, Sendable {
+  public enum TrustModel: Codable, Equatable, Hashable, Sendable {
     /// Public Trust Model. Takes the Default Java trust store.
     case `public`
     /// Private Trust Model. Takes custom/private trust store.

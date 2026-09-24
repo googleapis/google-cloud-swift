@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ChangeType: Codable, Equatable, Sendable {
+public enum ChangeType: Codable, Equatable, Hashable, Sendable {
   /// No value was provided.
   case unspecified
   /// The changed object exists in the 'new' service configuration, but not

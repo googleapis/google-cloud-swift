@@ -100,7 +100,7 @@ public struct LabelDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ValueType: Codable, Equatable, Sendable {
+  public enum ValueType: Codable, Equatable, Hashable, Sendable {
     /// A variable-length string. This is the default.
     case string
     /// Boolean; true or false.

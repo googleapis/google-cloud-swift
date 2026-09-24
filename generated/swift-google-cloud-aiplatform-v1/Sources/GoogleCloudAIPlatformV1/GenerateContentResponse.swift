@@ -206,7 +206,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum BlockedReason: Codable, Equatable, Sendable {
+      public enum BlockedReason: Codable, Equatable, Hashable, Sendable {
         /// Unspecified blocked reason.
         case unspecified
         /// Candidates blocked due to safety.
@@ -526,7 +526,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum TrafficType: Codable, Equatable, Sendable {
+      public enum TrafficType: Codable, Equatable, Hashable, Sendable {
         /// Unspecified request traffic type.
         case unspecified
         /// The request was processed using Pay-As-You-Go quota.

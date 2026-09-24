@@ -573,7 +573,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SharedDeploymentPolicy: Codable, Equatable, Sendable {
+    public enum SharedDeploymentPolicy: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// User applications can be deployed both on control plane and worker
@@ -1200,7 +1200,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// Upgrade initiated by users.
@@ -1317,7 +1317,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Schedule: Codable, Equatable, Sendable {
+    public enum Schedule: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// Immediately after receiving the request.
@@ -1427,7 +1427,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Unspecified.
       case unspecified
       /// The maintenance event is ongoing. The cluster might be unusable.
@@ -1700,7 +1700,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Unknown connection state.
       case unspecified
       /// This cluster is currently disconnected from Google.
@@ -1836,7 +1836,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Status: Codable, Equatable, Sendable {
+  public enum Status: Codable, Equatable, Hashable, Sendable {
     /// Status unknown.
     case unspecified
     /// The cluster is being created.
@@ -1975,7 +1975,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReleaseChannel: Codable, Equatable, Sendable {
+  public enum ReleaseChannel: Codable, Equatable, Hashable, Sendable {
     /// Unspecified release channel. This will default to the REGULAR channel.
     case unspecified
     /// No release channel.

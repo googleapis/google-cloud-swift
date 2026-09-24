@@ -424,7 +424,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AddressPurposes: Codable, Equatable, Sendable {
+    public enum AddressPurposes: Codable, Equatable, Hashable, Sendable {
       /// DNS resolver address in the subnetwork.
       case dnsResolver
       /// VM internal/alias IP, Internal LB service IP, etc.
@@ -522,7 +522,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowAddressCreation: Codable, Equatable, Sendable {
+    public enum AllowAddressCreation: Codable, Equatable, Hashable, Sendable {
       case addressCreationAllowed
       case addressCreationBlocked
       /// Encodes an unknown string value.
@@ -580,7 +580,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowAliasIpRanges: Codable, Equatable, Sendable {
+    public enum AllowAliasIpRanges: Codable, Equatable, Hashable, Sendable {
       case aliasIpRangesAllowed
       case aliasIpRangesBlocked
       /// Encodes an unknown string value.
@@ -638,7 +638,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowAutoModeSubnet: Codable, Equatable, Sendable {
+    public enum AllowAutoModeSubnet: Codable, Equatable, Hashable, Sendable {
       case autoModeSubnetAllowed
       case autoModeSubnetBlocked
       /// Encodes an unknown string value.
@@ -696,7 +696,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowClassDfirewalls: Codable, Equatable, Sendable {
+    public enum AllowClassDfirewalls: Codable, Equatable, Hashable, Sendable {
       case classDFirewallsAllowed
       case classDFirewallsBlocked
       /// Encodes an unknown string value.
@@ -754,7 +754,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowCloudNat: Codable, Equatable, Sendable {
+    public enum AllowCloudNat: Codable, Equatable, Hashable, Sendable {
       case cloudNatAllowed
       case cloudNatBlocked
       /// Encodes an unknown string value.
@@ -812,7 +812,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowCloudRouter: Codable, Equatable, Sendable {
+    public enum AllowCloudRouter: Codable, Equatable, Hashable, Sendable {
       case cloudRouterAllowed
       case cloudRouterBlocked
       /// Encodes an unknown string value.
@@ -870,7 +870,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowDefaultNicAttachment: Codable, Equatable, Sendable {
+    public enum AllowDefaultNicAttachment: Codable, Equatable, Hashable, Sendable {
       case defaultNicAttachmentAllowed
       case defaultNicAttachmentBlocked
       /// Encodes an unknown string value.
@@ -930,7 +930,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowExternalIpAccess: Codable, Equatable, Sendable {
+    public enum AllowExternalIpAccess: Codable, Equatable, Hashable, Sendable {
       case externalIpAccessAllowed
       case externalIpAccessBlocked
       /// Encodes an unknown string value.
@@ -988,7 +988,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowFirewallPolicy: Codable, Equatable, Sendable {
+    public enum AllowFirewallPolicy: Codable, Equatable, Hashable, Sendable {
       case firewallPolicyAllowed
       case firewallPolicyBlocked
       /// Encodes an unknown string value.
@@ -1046,7 +1046,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowInterconnect: Codable, Equatable, Sendable {
+    public enum AllowInterconnect: Codable, Equatable, Hashable, Sendable {
       case interconnectAllowed
       case interconnectBlocked
       /// Encodes an unknown string value.
@@ -1104,7 +1104,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowIpForwarding: Codable, Equatable, Sendable {
+    public enum AllowIpForwarding: Codable, Equatable, Hashable, Sendable {
       case ipForwardingAllowed
       case ipForwardingBlocked
       /// Encodes an unknown string value.
@@ -1162,7 +1162,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowLoadBalancing: Codable, Equatable, Sendable {
+    public enum AllowLoadBalancing: Codable, Equatable, Hashable, Sendable {
       case loadBalancingAllowed
       case loadBalancingBlocked
       /// Encodes an unknown string value.
@@ -1220,7 +1220,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowMultiNicInSameNetwork: Codable, Equatable, Sendable {
+    public enum AllowMultiNicInSameNetwork: Codable, Equatable, Hashable, Sendable {
       case multiNicInSameNetworkAllowed
       case multiNicInSameNetworkBlocked
       /// Encodes an unknown string value.
@@ -1280,7 +1280,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowMultiNicInSameSubnetwork: Codable, Equatable, Sendable {
+    public enum AllowMultiNicInSameSubnetwork: Codable, Equatable, Hashable, Sendable {
       case multiNicInSameSubnetworkAllowed
       case multiNicInSameSubnetworkBlocked
       /// Encodes an unknown string value.
@@ -1340,7 +1340,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowMulticast: Codable, Equatable, Sendable {
+    public enum AllowMulticast: Codable, Equatable, Hashable, Sendable {
       case multicastAllowed
       case multicastBlocked
       /// Encodes an unknown string value.
@@ -1398,7 +1398,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowNcc: Codable, Equatable, Sendable {
+    public enum AllowNcc: Codable, Equatable, Hashable, Sendable {
       case nccAllowed
       case nccBlocked
       /// Encodes an unknown string value.
@@ -1456,7 +1456,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowNetworkMigration: Codable, Equatable, Sendable {
+    public enum AllowNetworkMigration: Codable, Equatable, Hashable, Sendable {
       case networkMigrationAllowed
       case networkMigrationBlocked
       /// Encodes an unknown string value.
@@ -1514,7 +1514,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowPacketMirroring: Codable, Equatable, Sendable {
+    public enum AllowPacketMirroring: Codable, Equatable, Hashable, Sendable {
       case packetMirroringAllowed
       case packetMirroringBlocked
       /// Encodes an unknown string value.
@@ -1572,7 +1572,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowPrivateGoogleAccess: Codable, Equatable, Sendable {
+    public enum AllowPrivateGoogleAccess: Codable, Equatable, Hashable, Sendable {
       case privateGoogleAccessAllowed
       case privateGoogleAccessBlocked
       /// Encodes an unknown string value.
@@ -1632,7 +1632,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowPsc: Codable, Equatable, Sendable {
+    public enum AllowPsc: Codable, Equatable, Hashable, Sendable {
       case pscAllowed
       case pscBlocked
       /// Encodes an unknown string value.
@@ -1690,7 +1690,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowSameNetworkUnicast: Codable, Equatable, Sendable {
+    public enum AllowSameNetworkUnicast: Codable, Equatable, Hashable, Sendable {
       case sameNetworkUnicastAllowed
       case sameNetworkUnicastBlocked
       /// Encodes an unknown string value.
@@ -1748,7 +1748,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowStaticRoutes: Codable, Equatable, Sendable {
+    public enum AllowStaticRoutes: Codable, Equatable, Hashable, Sendable {
       case staticRoutesAllowed
       case staticRoutesBlocked
       /// Encodes an unknown string value.
@@ -1806,7 +1806,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowSubInterfaces: Codable, Equatable, Sendable {
+    public enum AllowSubInterfaces: Codable, Equatable, Hashable, Sendable {
       case subinterfacesAllowed
       case subinterfacesBlocked
       /// Encodes an unknown string value.
@@ -1864,7 +1864,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowSubnetworkCreation: Codable, Equatable, Sendable {
+    public enum AllowSubnetworkCreation: Codable, Equatable, Hashable, Sendable {
       case subnetworkCreationAllowed
       case subnetworkCreationBlocked
       /// Encodes an unknown string value.
@@ -1922,7 +1922,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowVpcFirewallRules: Codable, Equatable, Sendable {
+    public enum AllowVpcFirewallRules: Codable, Equatable, Hashable, Sendable {
       case vpcFirewallRulesAllowed
       case vpcFirewallRulesBlocked
       /// Encodes an unknown string value.
@@ -1980,7 +1980,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowVpcPeering: Codable, Equatable, Sendable {
+    public enum AllowVpcPeering: Codable, Equatable, Hashable, Sendable {
       case vpcPeeringAllowed
       case vpcPeeringBlocked
       /// Encodes an unknown string value.
@@ -2038,7 +2038,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum AllowVpn: Codable, Equatable, Sendable {
+    public enum AllowVpn: Codable, Equatable, Hashable, Sendable {
       case vpnAllowed
       case vpnBlocked
       /// Encodes an unknown string value.
@@ -2096,7 +2096,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum FirewallPolicyTypes: Codable, Equatable, Sendable {
+    public enum FirewallPolicyTypes: Codable, Equatable, Hashable, Sendable {
       case rdmaRocePolicy
       case ullPolicy
       case vpcPolicy
@@ -2158,7 +2158,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum InterfaceTypes: Codable, Equatable, Sendable {
+    public enum InterfaceTypes: Codable, Equatable, Hashable, Sendable {
       /// GVNIC
       case gvnic
       /// IDPF
@@ -2238,7 +2238,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Multicast: Codable, Equatable, Sendable {
+    public enum Multicast: Codable, Equatable, Hashable, Sendable {
       case sdn
       case ull
       /// Encodes an unknown string value.
@@ -2296,7 +2296,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SubnetPurposes: Codable, Equatable, Sendable {
+    public enum SubnetPurposes: Codable, Equatable, Hashable, Sendable {
       case subnetPurposeCustomHardware
       case subnetPurposePrivate
       /// Encodes an unknown string value.
@@ -2355,7 +2355,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SubnetStackTypes: Codable, Equatable, Sendable {
+    public enum SubnetStackTypes: Codable, Equatable, Hashable, Sendable {
       case subnetStackTypeIpv4Ipv6
       case subnetStackTypeIpv4Only
       case subnetStackTypeIpv6Only
@@ -2417,7 +2417,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SubnetworkPurposes: Codable, Equatable, Sendable {
+    public enum SubnetworkPurposes: Codable, Equatable, Hashable, Sendable {
       /// Subnet reserved for Global Envoy-based Load Balancing.
       case globalManagedProxy
       /// Subnet reserved for Internal HTTP(S) Load Balancing. This is a legacy
@@ -2510,7 +2510,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum SubnetworkStackTypes: Codable, Equatable, Sendable {
+    public enum SubnetworkStackTypes: Codable, Equatable, Hashable, Sendable {
       /// New VMs in this subnet can have both IPv4 and IPv6 addresses.
       case ipv4Ipv6
       /// New VMs in this subnet will only be assigned IPv4 addresses.
@@ -2575,7 +2575,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Unicast: Codable, Equatable, Sendable {
+    public enum Unicast: Codable, Equatable, Hashable, Sendable {
       case sdn
       case ull
       /// Encodes an unknown string value.

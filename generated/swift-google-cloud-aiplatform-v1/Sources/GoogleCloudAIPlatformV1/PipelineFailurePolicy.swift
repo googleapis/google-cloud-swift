@@ -29,7 +29,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PipelineFailurePolicy: Codable, Equatable, Sendable {
+  public enum PipelineFailurePolicy: Codable, Equatable, Hashable, Sendable {
     /// Default value, and follows fail slow behavior.
     case unspecified
     /// Indicates that the pipeline should continue to run until all possible

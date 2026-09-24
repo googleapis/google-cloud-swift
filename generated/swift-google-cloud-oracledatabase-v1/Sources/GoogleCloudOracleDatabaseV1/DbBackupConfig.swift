@@ -226,7 +226,7 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackupDestinationType: Codable, Equatable, Sendable {
+  public enum BackupDestinationType: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Backup destination type is NFS.
@@ -364,7 +364,7 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackupWindow: Codable, Equatable, Sendable {
+  public enum BackupWindow: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// 12:00 AM - 2:00 AM
@@ -551,7 +551,7 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackupDeletionPolicy: Codable, Equatable, Sendable {
+  public enum BackupDeletionPolicy: Codable, Equatable, Hashable, Sendable {
     /// Default unspecified value.
     case unspecified
     /// Keeps the backup for predefined time

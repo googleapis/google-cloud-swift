@@ -285,7 +285,7 @@ public struct AccessPolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Effect: Codable, Equatable, Sendable {
+  public enum Effect: Codable, Equatable, Hashable, Sendable {
     /// The effect is unspecified.
     case unspecified
     /// The policy will deny access if it evaluates to true.

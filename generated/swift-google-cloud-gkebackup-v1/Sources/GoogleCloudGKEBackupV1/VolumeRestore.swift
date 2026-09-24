@@ -189,7 +189,7 @@ public struct VolumeRestore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum VolumeType: Codable, Equatable, Sendable {
+  public enum VolumeType: Codable, Equatable, Hashable, Sendable {
     /// Default
     case unspecified
     /// Compute Engine Persistent Disk volume
@@ -299,7 +299,7 @@ public struct VolumeRestore: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// This is an illegal state and should not be encountered.
     case unspecified
     /// A volume for the restore was identified and restore process is about to

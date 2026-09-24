@@ -708,7 +708,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum ExportableContent: Codable, Equatable, Sendable {
+      public enum ExportableContent: Codable, Equatable, Hashable, Sendable {
         /// Should not be used.
         case unspecified
         /// Model artifact and any of its supported files. Will be exported to the
@@ -1153,7 +1153,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DeploymentResourcesType: Codable, Equatable, Sendable {
+    public enum DeploymentResourcesType: Codable, Equatable, Hashable, Sendable {
       /// Should not be used.
       case unspecified
       /// Resources that are dedicated to the

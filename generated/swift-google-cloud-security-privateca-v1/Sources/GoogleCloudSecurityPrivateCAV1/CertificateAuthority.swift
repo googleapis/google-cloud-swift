@@ -647,7 +647,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// Self-signed CA.
@@ -772,7 +772,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// Certificates can be issued from this CA. CRLs will be generated for this
@@ -954,7 +954,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum SignHashAlgorithm: Codable, Equatable, Sendable {
+  public enum SignHashAlgorithm: Codable, Equatable, Hashable, Sendable {
     /// Not specified.
     case unspecified
     /// maps to CryptoKeyVersionAlgorithm.RSA_SIGN_PSS_2048_SHA256

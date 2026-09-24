@@ -654,7 +654,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State of the QueuedResource request is not known/set.
     case unspecified
     /// The QueuedResource request has been received. We're still working on
@@ -839,7 +839,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StateInitiator: Codable, Equatable, Sendable {
+  public enum StateInitiator: Codable, Equatable, Hashable, Sendable {
     /// The state initiator is unspecified.
     case unspecified
     /// The current QueuedResource state was initiated by the user.

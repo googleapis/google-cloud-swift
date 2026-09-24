@@ -680,7 +680,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Bandwidth: Codable, Equatable, Sendable {
+    public enum Bandwidth: Codable, Equatable, Hashable, Sendable {
       /// 100 Gbit/s
       case bps100G
       /// 100 Mbit/s
@@ -800,7 +800,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum EdgeAvailabilityDomain: Codable, Equatable, Sendable {
+    public enum EdgeAvailabilityDomain: Codable, Equatable, Hashable, Sendable {
       case availabilityDomain1
       case availabilityDomain2
       case availabilityDomainAny
@@ -862,7 +862,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Encryption: Codable, Equatable, Sendable {
+    public enum Encryption: Codable, Equatable, Hashable, Sendable {
       /// The interconnect attachment will carry only encrypted traffic that is
       /// encrypted by an IPsec device such as HA VPN gateway;
       /// VMs cannot directly send traffic to or receive traffic from such an
@@ -928,7 +928,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum OperationalStatus: Codable, Equatable, Sendable {
+    public enum OperationalStatus: Codable, Equatable, Hashable, Sendable {
       /// Indicates that attachment has been turned up and is ready to
       /// use.
       case osActive
@@ -990,7 +990,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StackType: Codable, Equatable, Sendable {
+    public enum StackType: Codable, Equatable, Hashable, Sendable {
       /// The interconnect attachment can have both IPv4 and IPv6 addresses.
       case ipv4Ipv6
       /// The interconnect attachment will only be assigned IPv4 addresses.
@@ -1050,7 +1050,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum State: Codable, Equatable, Sendable {
+    public enum State: Codable, Equatable, Hashable, Sendable {
       /// Indicates that attachment has been turned up and is ready to use.
       case active
       /// The attachment was deleted externally and is no longer functional.
@@ -1140,7 +1140,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       /// Attachment to a dedicated interconnect.
       case dedicated
       /// Attachment to a dedicated interconnect, forwarding L2 packets.

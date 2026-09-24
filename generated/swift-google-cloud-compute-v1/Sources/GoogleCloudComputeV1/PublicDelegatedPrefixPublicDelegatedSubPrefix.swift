@@ -167,7 +167,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Ipv6AccessType: Codable, Equatable, Sendable {
+    public enum Ipv6AccessType: Codable, Equatable, Hashable, Sendable {
       /// The parent public advertised prefix will be announced to the internet.
       /// All children public delegated prefixes will have IPv6 access type as
       /// EXTERNAL.
@@ -231,7 +231,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// The public delegated prefix is used for further sub-delegation only. Such
       /// prefixes cannot set allocatablePrefixLength.
       case delegation
@@ -312,7 +312,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Status: Codable, Equatable, Sendable {
+    public enum Status: Codable, Equatable, Hashable, Sendable {
       case active
       case inactive
       /// Encodes an unknown string value.

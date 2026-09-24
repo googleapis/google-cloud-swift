@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LevelFormat: Codable, Equatable, Sendable {
+public enum LevelFormat: Codable, Equatable, Hashable, Sendable {
   /// The format was not specified.
   case unspecified
   /// Uses the format the resource was defined in. BasicLevels are returned as

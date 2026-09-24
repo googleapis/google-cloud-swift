@@ -156,7 +156,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum RaiCategory: Codable, Equatable, Sendable {
+      public enum RaiCategory: Codable, Equatable, Hashable, Sendable {
         /// Default value.
         case unspecified
         /// Dangerous content.
@@ -287,7 +287,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SensitivityLevel: Codable, Equatable, Sendable {
+      public enum SensitivityLevel: Codable, Equatable, Hashable, Sendable {
         /// Default value.
         /// If unspecified, the default behavior is:
         /// - DANGEROUS_CONTENT: BLOCK_FEW

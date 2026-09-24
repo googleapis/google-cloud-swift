@@ -90,7 +90,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DetailedHealthState: Codable, Equatable, Sendable {
+    public enum DetailedHealthState: Codable, Equatable, Hashable, Sendable {
       /// The instance is being drained. The existing connections to the instance
       /// have time to complete, but the new ones are being refused.
       case draining

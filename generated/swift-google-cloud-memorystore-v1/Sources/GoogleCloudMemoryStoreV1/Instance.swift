@@ -1030,7 +1030,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Instance is being created.
@@ -1168,7 +1168,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AuthorizationMode: Codable, Equatable, Sendable {
+  public enum AuthorizationMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Authorization disabled.
@@ -1292,7 +1292,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TransitEncryptionMode: Codable, Equatable, Sendable {
+  public enum TransitEncryptionMode: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// In-transit encryption is disabled.
@@ -1411,7 +1411,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NodeType: Codable, Equatable, Sendable {
+  public enum NodeType: Codable, Equatable, Hashable, Sendable {
     /// Not set.
     case unspecified
     /// Shared core nano.
@@ -1584,7 +1584,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Mode: Codable, Equatable, Sendable {
+  public enum Mode: Codable, Equatable, Hashable, Sendable {
     /// Mode is not specified.
     case unspecified
     /// Deprecated: Use CLUSTER_DISABLED instead.
@@ -1715,7 +1715,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ServerCaMode: Codable, Equatable, Sendable {
+  public enum ServerCaMode: Codable, Equatable, Hashable, Sendable {
     /// Server CA mode not specified.
     case unspecified
     /// Each instance has its own Google-managed CA.

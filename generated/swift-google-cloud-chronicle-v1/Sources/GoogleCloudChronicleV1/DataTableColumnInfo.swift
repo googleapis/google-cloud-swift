@@ -155,7 +155,7 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataTableColumnType: Codable, Equatable, Sendable {
+  public enum DataTableColumnType: Codable, Equatable, Hashable, Sendable {
     /// The default Data Table Column Type.
     case unspecified
     /// Denotes the type of the column as STRING.

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AutoRenewalBehavior: Codable, Equatable, Sendable {
+public enum AutoRenewalBehavior: Codable, Equatable, Hashable, Sendable {
   /// If unspecified, the auto renewal behavior will follow the default config.
   case unspecified
   /// Auto Renewal will be enabled on subscription.

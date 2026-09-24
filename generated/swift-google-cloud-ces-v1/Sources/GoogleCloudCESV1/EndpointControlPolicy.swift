@@ -101,7 +101,7 @@ public struct EndpointControlPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EnforcementScope: Codable, Equatable, Sendable {
+  public enum EnforcementScope: Codable, Equatable, Hashable, Sendable {
     /// Unspecified. This policy will be treated as VPCSC_ONLY.
     case unspecified
     /// This policy applies only when VPC-SC is active.

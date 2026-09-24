@@ -608,7 +608,7 @@ public struct Evaluation: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MetricsType: Codable, Equatable, Sendable {
+    public enum MetricsType: Codable, Equatable, Hashable, Sendable {
       /// The metrics type is unspecified. By default, metrics without a
       /// particular specification are for leaf entity types (i.e., top-level
       /// entity types without child types, or child types which are not

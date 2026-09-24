@@ -209,7 +209,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Interface: Codable, Equatable, Sendable {
+    public enum Interface: Codable, Equatable, Hashable, Sendable {
       case nvme
       case scsi
       /// Encodes an unknown string value.
@@ -267,7 +267,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Mode: Codable, Equatable, Sendable {
+    public enum Mode: Codable, Equatable, Hashable, Sendable {
       /// Attaches this disk in read-only mode. Multiple virtual machines can use
       /// a disk in read-only mode at a time.
       case readOnly
@@ -329,7 +329,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum StorageBytesStatus: Codable, Equatable, Sendable {
+    public enum StorageBytesStatus: Codable, Equatable, Hashable, Sendable {
       case updating
       case upToDate
       /// Encodes an unknown string value.
@@ -387,7 +387,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Type_: Codable, Equatable, Sendable {
+    public enum Type_: Codable, Equatable, Hashable, Sendable {
       case persistent
       case scratch
       /// Encodes an unknown string value.

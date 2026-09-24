@@ -213,7 +213,7 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CommitmentPlan: Codable, Equatable, Sendable {
+  public enum CommitmentPlan: Codable, Equatable, Hashable, Sendable {
     /// Invalid plan value. Requests with this value will be rejected with
     /// error code `google.rpc.Code.INVALID_ARGUMENT`.
     case unspecified
@@ -413,7 +413,7 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Invalid state value.
     case unspecified
     /// Capacity commitment is pending provisioning. Pending capacity commitment

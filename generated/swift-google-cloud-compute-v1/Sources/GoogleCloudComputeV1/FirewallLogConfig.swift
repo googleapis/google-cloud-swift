@@ -93,7 +93,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Metadata: Codable, Equatable, Sendable {
+    public enum Metadata: Codable, Equatable, Hashable, Sendable {
       case excludeAllMetadata
       case includeAllMetadata
       /// Encodes an unknown string value.

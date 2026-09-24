@@ -344,7 +344,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SafetyFilterLevel: Codable, Equatable, Sendable {
+      public enum SafetyFilterLevel: Codable, Equatable, Hashable, Sendable {
         /// Unspecified -- uses default sensitivity levels.
         case unspecified
         /// Block no text -- effectively disables the category.
@@ -475,7 +475,7 @@
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum SafetyCategory: Codable, Equatable, Sendable {
+      public enum SafetyCategory: Codable, Equatable, Hashable, Sendable {
         /// Unspecified.
         case unspecified
         /// Dangerous content.
@@ -687,7 +687,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PhraseMatchStrategy: Codable, Equatable, Sendable {
+    public enum PhraseMatchStrategy: Codable, Equatable, Hashable, Sendable {
       /// Unspecified, defaults to PARTIAL_MATCH.
       case unspecified
       /// Text that contains the phrase as a substring will be matched, e.g. "foo"

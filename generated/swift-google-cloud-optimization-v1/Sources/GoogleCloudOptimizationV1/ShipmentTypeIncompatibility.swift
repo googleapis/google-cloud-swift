@@ -97,7 +97,7 @@ public struct ShipmentTypeIncompatibility: Codable, Equatable, GoogleWKT._AnyPac
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum IncompatibilityMode: Codable, Equatable, Sendable {
+  public enum IncompatibilityMode: Codable, Equatable, Hashable, Sendable {
     /// Unspecified incompatibility mode. This value should never be used.
     case unspecified
     /// In this mode, two shipments with incompatible types can never share the

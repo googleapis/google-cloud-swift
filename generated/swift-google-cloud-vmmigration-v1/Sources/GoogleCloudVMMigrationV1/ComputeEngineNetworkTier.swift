@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ComputeEngineNetworkTier: Codable, Equatable, Sendable {
+public enum ComputeEngineNetworkTier: Codable, Equatable, Hashable, Sendable {
   /// An unspecified network tier. Will be used as PREMIUM.
   case unspecified
   /// A standard network tier.

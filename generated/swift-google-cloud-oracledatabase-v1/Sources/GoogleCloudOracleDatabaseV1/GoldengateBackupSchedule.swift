@@ -128,7 +128,7 @@ public struct GoldengateBackupSchedule: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum FrequencyBackupScheduled: Codable, Equatable, Sendable {
+  public enum FrequencyBackupScheduled: Codable, Equatable, Hashable, Sendable {
     /// The frequency backup scheduled is unspecified.
     case unspecified
     /// The frequency backup scheduled is daily.

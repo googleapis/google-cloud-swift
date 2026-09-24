@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum ComparisonType: Codable, Equatable, Sendable {
+public enum ComparisonType: Codable, Equatable, Hashable, Sendable {
   /// No ordering relationship is specified.
   case comparisonUnspecified
   /// True if the left argument is greater than the right argument.

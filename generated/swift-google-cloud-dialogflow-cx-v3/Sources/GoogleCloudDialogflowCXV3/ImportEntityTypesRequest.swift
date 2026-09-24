@@ -155,7 +155,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MergeOption: Codable, Equatable, Sendable {
+    public enum MergeOption: Codable, Equatable, Hashable, Sendable {
       /// Unspecified. If used, system uses REPORT_CONFLICT as default.
       case unspecified
       /// Replace the original entity type in the agent with the new entity type

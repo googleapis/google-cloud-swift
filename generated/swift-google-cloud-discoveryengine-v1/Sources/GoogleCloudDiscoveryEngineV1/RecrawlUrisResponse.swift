@@ -236,7 +236,7 @@
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum CorpusType: Codable, Equatable, Sendable {
+        public enum CorpusType: Codable, Equatable, Hashable, Sendable {
           /// Default value.
           case unspecified
           /// Denotes a crawling attempt for the desktop version of a page.

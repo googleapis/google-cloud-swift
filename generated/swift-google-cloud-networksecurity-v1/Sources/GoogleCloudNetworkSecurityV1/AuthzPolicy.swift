@@ -905,7 +905,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
       ///   expecting specific values to remain unparsed; future releases may promote
       ///   them to named cases.
-      public enum PrincipalSelector: Codable, Equatable, Sendable {
+      public enum PrincipalSelector: Codable, Equatable, Hashable, Sendable {
         /// Unspecified principal selector. It will be treated as
         /// CLIENT_CERT_URI_SAN by default.
         case unspecified
@@ -1725,7 +1725,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
         ///   expecting specific values to remain unparsed; future releases may promote
         ///   them to named cases.
-        public enum BaseProtocolMethodsOption: Codable, Equatable, Sendable {
+        public enum BaseProtocolMethodsOption: Codable, Equatable, Hashable, Sendable {
           /// Unspecified option. Defaults to SKIP_BASE_PROTOCOL_METHODS.
           case unspecified
           /// Skip matching on the base MCP protocol methods.
@@ -2098,7 +2098,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoadBalancingScheme: Codable, Equatable, Sendable {
+  public enum LoadBalancingScheme: Codable, Equatable, Hashable, Sendable {
     /// Default value. Do not use.
     case unspecified
     /// Signifies that this is used for Regional internal or Cross-region
@@ -2226,7 +2226,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum AuthzAction: Codable, Equatable, Sendable {
+  public enum AuthzAction: Codable, Equatable, Hashable, Sendable {
     /// Unspecified action.
     case unspecified
     /// Allow request to pass through to the backend.
@@ -2351,7 +2351,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PolicyProfile: Codable, Equatable, Sendable {
+  public enum PolicyProfile: Codable, Equatable, Hashable, Sendable {
     /// Unspecified policy profile.
     case unspecified
     /// Applies to request authorization. `CUSTOM` authorization

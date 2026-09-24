@@ -259,7 +259,7 @@ public struct IssueModel: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// Unspecified.
     case unspecified
     /// Model is not deployed but is ready to deploy.
@@ -398,7 +398,7 @@ public struct IssueModel: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ModelType: Codable, Equatable, Sendable {
+  public enum ModelType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified model type.
     case unspecified
     /// Type V1.

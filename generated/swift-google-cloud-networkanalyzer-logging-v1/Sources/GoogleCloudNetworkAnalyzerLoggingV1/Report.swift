@@ -194,7 +194,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Priority: Codable, Equatable, Sendable {
+  public enum Priority: Codable, Equatable, Hashable, Sendable {
     case severityUnspecified
     case critical
     case high
@@ -320,7 +320,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     case reportTypeUnspecified
     case info
     case warning
@@ -440,7 +440,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReportStatus: Codable, Equatable, Sendable {
+  public enum ReportStatus: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case active
     case fixed
@@ -560,7 +560,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ReportGroup: Codable, Equatable, Sendable {
+  public enum ReportGroup: Codable, Equatable, Hashable, Sendable {
     case categoryUnspecified
     case vpcNetwork
     case networkServices

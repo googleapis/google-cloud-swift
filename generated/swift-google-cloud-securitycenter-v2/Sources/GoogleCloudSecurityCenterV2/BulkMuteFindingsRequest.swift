@@ -136,7 +136,7 @@ public struct BulkMuteFindingsRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MuteState: Codable, Equatable, Sendable {
+  public enum MuteState: Codable, Equatable, Hashable, Sendable {
     /// Unused.
     case unspecified
     /// Matching findings will be muted (default).

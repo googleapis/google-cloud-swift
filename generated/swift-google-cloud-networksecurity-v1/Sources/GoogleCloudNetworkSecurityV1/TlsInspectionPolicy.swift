@@ -198,7 +198,7 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TlsVersion: Codable, Equatable, Sendable {
+  public enum TlsVersion: Codable, Equatable, Hashable, Sendable {
     /// Indicates no TLS version was specified.
     case unspecified
     /// TLS 1.0
@@ -332,7 +332,7 @@ public struct TlsInspectionPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Profile: Codable, Equatable, Sendable {
+  public enum Profile: Codable, Equatable, Hashable, Sendable {
     /// Indicates no profile was specified.
     case unspecified
     /// Compatible profile. Allows the broadest set of clients, even those

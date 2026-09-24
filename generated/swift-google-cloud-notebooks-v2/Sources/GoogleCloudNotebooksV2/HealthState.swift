@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum HealthState: Codable, Equatable, Sendable {
+public enum HealthState: Codable, Equatable, Hashable, Sendable {
   /// The instance substate is unknown.
   case unspecified
   /// The instance is known to be in an healthy state

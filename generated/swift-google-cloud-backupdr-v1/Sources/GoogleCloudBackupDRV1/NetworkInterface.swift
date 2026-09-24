@@ -201,7 +201,7 @@ public struct NetworkInterface: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum StackType: Codable, Equatable, Sendable {
+  public enum StackType: Codable, Equatable, Hashable, Sendable {
     /// Default should be STACK_TYPE_UNSPECIFIED.
     case unspecified
     /// The network interface will be assigned IPv4 address.
@@ -318,7 +318,7 @@ public struct NetworkInterface: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Ipv6AccessType: Codable, Equatable, Sendable {
+  public enum Ipv6AccessType: Codable, Equatable, Hashable, Sendable {
     /// IPv6 access type not set. Means this network interface hasn't been
     /// turned on IPv6 yet.
     case unspecifiedIpv6AccessType
@@ -436,7 +436,7 @@ public struct NetworkInterface: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum NicType: Codable, Equatable, Sendable {
+  public enum NicType: Codable, Equatable, Hashable, Sendable {
     /// Default should be NIC_TYPE_UNSPECIFIED.
     case unspecified
     /// VIRTIO

@@ -101,7 +101,7 @@ public struct WorkspaceUsersSettings: Codable, Equatable, GoogleWKT._AnyPackable
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ProjectionType: Codable, Equatable, Sendable {
+  public enum ProjectionType: Codable, Equatable, Hashable, Sendable {
     /// For the feeds in which this field is not set.
     case unspecified
     /// Do not include any custom fields for the user.

@@ -336,7 +336,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum ReplicationState: Codable, Equatable, Sendable {
+    public enum ReplicationState: Codable, Equatable, Hashable, Sendable {
       /// The replication state of the table is unknown in this cluster.
       case stateNotKnown
       /// The cluster was recently created, and the table must finish copying
@@ -583,7 +583,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum TimestampGranularity: Codable, Equatable, Sendable {
+  public enum TimestampGranularity: Codable, Equatable, Hashable, Sendable {
     /// The user did not specify a granularity. Should not be returned.
     /// When specified during table creation, MILLIS will be used.
     case unspecified
@@ -701,7 +701,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum View: Codable, Equatable, Sendable {
+  public enum View: Codable, Equatable, Hashable, Sendable {
     /// Uses the default view for each method as documented in its request.
     case unspecified
     /// Only populates `name`.

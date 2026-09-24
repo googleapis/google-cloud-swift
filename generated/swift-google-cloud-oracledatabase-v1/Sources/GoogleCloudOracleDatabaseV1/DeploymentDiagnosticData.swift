@@ -127,7 +127,7 @@ public struct DeploymentDiagnosticData: Codable, Equatable, GoogleWKT._AnyPackab
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DiagnosticState: Codable, Equatable, Sendable {
+  public enum DiagnosticState: Codable, Equatable, Hashable, Sendable {
     /// The diagnostic state is unspecified.
     case unspecified
     /// The diagnostic is in progress.

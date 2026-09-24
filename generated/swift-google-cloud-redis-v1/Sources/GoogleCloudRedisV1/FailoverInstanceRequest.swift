@@ -98,7 +98,7 @@ public struct FailoverInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DataProtectionMode: Codable, Equatable, Sendable {
+  public enum DataProtectionMode: Codable, Equatable, Hashable, Sendable {
     /// Defaults to LIMITED_DATA_LOSS if a data protection mode is not
     /// specified.
     case unspecified

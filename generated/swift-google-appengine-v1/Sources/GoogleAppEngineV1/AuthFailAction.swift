@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum AuthFailAction: Codable, Equatable, Sendable {
+public enum AuthFailAction: Codable, Equatable, Hashable, Sendable {
   /// Not specified. `AUTH_FAIL_ACTION_REDIRECT` is assumed.
   case unspecified
   /// Redirects user to "accounts.google.com". The user is redirected back to the

@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum LatestExportJobState: Codable, Equatable, Sendable {
+public enum LatestExportJobState: Codable, Equatable, Hashable, Sendable {
   /// The latest export job state is unspecified.
   case unspecified
   /// The latest export job state is successful.

@@ -131,7 +131,7 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum LoadBalancerType: Codable, Equatable, Sendable {
+  public enum LoadBalancerType: Codable, Equatable, Hashable, Sendable {
     /// Type is unspecified.
     case unspecified
     /// Internal TCP/UDP load balancer.
@@ -269,7 +269,7 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackendType: Codable, Equatable, Sendable {
+  public enum BackendType: Codable, Equatable, Hashable, Sendable {
     /// Type is unspecified.
     case unspecified
     /// Backend Service as the load balancer's backend.

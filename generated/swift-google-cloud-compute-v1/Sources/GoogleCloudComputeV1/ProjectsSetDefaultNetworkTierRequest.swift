@@ -82,7 +82,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum NetworkTier: Codable, Equatable, Sendable {
+    public enum NetworkTier: Codable, Equatable, Hashable, Sendable {
       /// Public internet quality with fixed bandwidth.
       case fixedStandard
       /// High quality, Google-grade network tier, support for all networking

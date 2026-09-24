@@ -114,7 +114,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DdosAdaptiveProtection: Codable, Equatable, Sendable {
+    public enum DdosAdaptiveProtection: Codable, Equatable, Hashable, Sendable {
       case unspecified
       case disabled
       case enabled
@@ -189,7 +189,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum DdosProtection: Codable, Equatable, Sendable {
+    public enum DdosProtection: Codable, Equatable, Hashable, Sendable {
       case advanced
       case advancedPreview
       case standard

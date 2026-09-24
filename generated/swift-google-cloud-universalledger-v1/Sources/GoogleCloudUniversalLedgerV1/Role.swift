@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum Role: Codable, Equatable, Sendable {
+public enum Role: Codable, Equatable, Hashable, Sendable {
   /// Invalid role.
   case unspecified
   /// The role that allows an account to initiate a payment transaction.

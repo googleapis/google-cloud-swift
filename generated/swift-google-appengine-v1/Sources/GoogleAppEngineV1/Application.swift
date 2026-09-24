@@ -431,7 +431,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ServingStatus: Codable, Equatable, Sendable {
+  public enum ServingStatus: Codable, Equatable, Hashable, Sendable {
     /// Serving status is unspecified.
     case unspecified
     /// Application is serving.
@@ -553,7 +553,7 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum DatabaseType: Codable, Equatable, Sendable {
+  public enum DatabaseType: Codable, Equatable, Hashable, Sendable {
     /// Database type is unspecified.
     case unspecified
     /// Cloud Datastore

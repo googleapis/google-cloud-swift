@@ -150,7 +150,7 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Algorithm: Codable, Equatable, Sendable {
+  public enum Algorithm: Codable, Equatable, Hashable, Sendable {
     case rsasha1
     case rsasha256
     case rsasha512
@@ -218,7 +218,7 @@ public struct DnsKey: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Type_: Codable, Equatable, Sendable {
+  public enum Type_: Codable, Equatable, Hashable, Sendable {
     case keySigning
     case zoneSigning
     /// Encodes an unknown string value.

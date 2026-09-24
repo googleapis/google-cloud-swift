@@ -744,7 +744,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum UserAgent: Codable, Equatable, Sendable {
+  public enum UserAgent: Codable, Equatable, Hashable, Sendable {
     /// The user agent is unknown. Service will default to CHROME_LINUX.
     case unspecified
     /// Chrome on Linux. This is the service default if unspecified.
@@ -870,7 +870,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum RiskLevel: Codable, Equatable, Sendable {
+  public enum RiskLevel: Codable, Equatable, Hashable, Sendable {
     /// Use default, which is NORMAL.
     case unspecified
     /// Normal scanning (Recommended)
@@ -988,7 +988,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ExportToSecurityCommandCenter: Codable, Equatable, Sendable {
+  public enum ExportToSecurityCommandCenter: Codable, Equatable, Hashable, Sendable {
     /// Use default, which is ENABLED.
     case unspecified
     /// Export results of this scan to Security Command Center.

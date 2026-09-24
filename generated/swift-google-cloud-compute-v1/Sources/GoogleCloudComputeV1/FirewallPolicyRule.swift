@@ -258,7 +258,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Direction: Codable, Equatable, Sendable {
+    public enum Direction: Codable, Equatable, Hashable, Sendable {
       case egress
       case ingress
       /// Encodes an unknown string value.
@@ -316,7 +316,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TargetType: Codable, Equatable, Sendable {
+    public enum TargetType: Codable, Equatable, Hashable, Sendable {
       case instances
       case internalManagedLb
       /// Encodes an unknown string value.

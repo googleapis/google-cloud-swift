@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum WasmPluginView: Codable, Equatable, Sendable {
+public enum WasmPluginView: Codable, Equatable, Hashable, Sendable {
   /// Unspecified value. Do not use.
   case unspecified
   /// If specified in the `GET` request for a `WasmPlugin` resource, the server's

@@ -114,7 +114,7 @@ public struct FileSearchTool: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CorpusType: Codable, Equatable, Sendable {
+  public enum CorpusType: Codable, Equatable, Hashable, Sendable {
     /// Unspecified corpus type.
     case unspecified
     /// The corpus is created and owned by the user.

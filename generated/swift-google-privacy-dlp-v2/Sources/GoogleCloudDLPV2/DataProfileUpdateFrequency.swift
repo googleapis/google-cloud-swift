@@ -24,7 +24,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum DataProfileUpdateFrequency: Codable, Equatable, Sendable {
+public enum DataProfileUpdateFrequency: Codable, Equatable, Hashable, Sendable {
   /// Unspecified.
   case updateFrequencyUnspecified
   /// After the data profile is created, it will never be updated.

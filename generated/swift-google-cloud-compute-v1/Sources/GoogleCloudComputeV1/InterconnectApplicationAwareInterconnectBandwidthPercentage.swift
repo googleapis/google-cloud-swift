@@ -95,7 +95,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TrafficClass: Codable, Equatable, Sendable {
+    public enum TrafficClass: Codable, Equatable, Hashable, Sendable {
       /// Traffic Class 1, corresponding to DSCP ranges (0-7) 000xxx.
       case tc1
       /// Traffic Class 2, corresponding to DSCP ranges (8-15) 001xxx.

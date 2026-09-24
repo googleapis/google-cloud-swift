@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum BackupVaultView: Codable, Equatable, Sendable {
+public enum BackupVaultView: Codable, Equatable, Hashable, Sendable {
   /// If the value is not set, the default 'FULL' view is used.
   case unspecified
   /// Includes basic data about the Backup Vault, but not the full contents.

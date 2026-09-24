@@ -100,7 +100,7 @@
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum MetricxVersion: Codable, Equatable, Sendable {
+    public enum MetricxVersion: Codable, Equatable, Hashable, Sendable {
       /// MetricX version unspecified.
       case unspecified
       /// MetricX 2024 (2.6) for translation + reference (reference-based).

@@ -202,7 +202,7 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum ErrorSeverity: Codable, Equatable, Sendable {
+  public enum ErrorSeverity: Codable, Equatable, Hashable, Sendable {
     /// Severity is unknown.
     case unspecified
     /// Severity is warning.
@@ -319,7 +319,7 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum MetadataKey: Codable, Equatable, Sendable {
+  public enum MetadataKey: Codable, Equatable, Hashable, Sendable {
     /// Key is unknown.
     case unspecified
     /// Key is row limit.
@@ -429,7 +429,7 @@ public struct QueryRuntimeError: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum WarningReason: Codable, Equatable, Sendable {
+  public enum WarningReason: Codable, Equatable, Hashable, Sendable {
     /// Reason is unknown.
     case unspecified
     /// Reason is row limit exceeded.

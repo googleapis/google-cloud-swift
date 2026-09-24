@@ -157,7 +157,7 @@ public struct Permission: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum PermissionLaunchStage: Codable, Equatable, Sendable {
+  public enum PermissionLaunchStage: Codable, Equatable, Hashable, Sendable {
     /// The permission is currently in an alpha phase.
     case alpha
     /// The permission is currently in a beta phase.
@@ -281,7 +281,7 @@ public struct Permission: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CustomRolesSupportLevel: Codable, Equatable, Sendable {
+  public enum CustomRolesSupportLevel: Codable, Equatable, Hashable, Sendable {
     /// Default state. Permission is fully supported for custom role use.
     case supported
     /// Permission is being tested to check custom role compatibility.

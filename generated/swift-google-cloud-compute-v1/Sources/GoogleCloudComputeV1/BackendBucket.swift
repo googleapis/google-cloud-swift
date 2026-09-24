@@ -220,7 +220,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum CompressionMode: Codable, Equatable, Sendable {
+    public enum CompressionMode: Codable, Equatable, Hashable, Sendable {
       /// Automatically uses the best compression based on the Accept-Encoding
       /// header sent by the client.
       case automatic
@@ -282,7 +282,7 @@
     ///   Do not pattern-match against `unknownStringValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LoadBalancingScheme: Codable, Equatable, Sendable {
+    public enum LoadBalancingScheme: Codable, Equatable, Hashable, Sendable {
       /// Signifies that this will be used for regional external Application Load
       /// Balancers.
       case externalManaged

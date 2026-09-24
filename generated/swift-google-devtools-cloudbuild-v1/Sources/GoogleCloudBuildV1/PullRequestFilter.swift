@@ -136,7 +136,7 @@ public struct PullRequestFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum CommentControl: Codable, Equatable, Sendable {
+  public enum CommentControl: Codable, Equatable, Hashable, Sendable {
     /// Do not require `/gcbrun` comments from a user with repository write
     /// permission or above on pull requests before builds are triggered.
     /// Comments that contain `/gcbrun` will still fire builds so this should

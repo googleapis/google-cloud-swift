@@ -284,7 +284,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum LivenessState: Codable, Equatable, Sendable {
+    public enum LivenessState: Codable, Equatable, Hashable, Sendable {
       /// There is no liveness health check for the instance. Only applicable for
       /// instances in App Engine standard environment.
       case unspecified
@@ -441,7 +441,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Availability: Codable, Equatable, Sendable {
+  public enum Availability: Codable, Equatable, Hashable, Sendable {
     case unspecified
     case resident
     case `dynamic`

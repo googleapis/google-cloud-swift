@@ -337,7 +337,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum State: Codable, Equatable, Sendable {
+  public enum State: Codable, Equatable, Hashable, Sendable {
     /// State not set.
     case unspecified
     /// BackupVault is being created.
@@ -475,7 +475,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum BackupVaultType: Codable, Equatable, Sendable {
+  public enum BackupVaultType: Codable, Equatable, Hashable, Sendable {
     /// BackupVault type not set.
     case unspecified
     /// BackupVault type is IN_REGION.
@@ -592,7 +592,7 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum EncryptionState: Codable, Equatable, Sendable {
+  public enum EncryptionState: Codable, Equatable, Hashable, Sendable {
     /// Encryption state not set.
     case unspecified
     /// Encryption state is pending.

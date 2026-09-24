@@ -24,7 +24,7 @@
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum HarmCategory: Codable, Equatable, Sendable {
+  public enum HarmCategory: Codable, Equatable, Hashable, Sendable {
     /// The harm category is unspecified.
     case unspecified
     /// The harm category is hate speech.

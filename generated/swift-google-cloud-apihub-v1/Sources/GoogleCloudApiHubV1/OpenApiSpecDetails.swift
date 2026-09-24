@@ -103,7 +103,7 @@ public struct OpenApiSpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
   ///   expecting specific values to remain unparsed; future releases may promote
   ///   them to named cases.
-  public enum Format: Codable, Equatable, Sendable {
+  public enum Format: Codable, Equatable, Hashable, Sendable {
     /// SpecFile type unspecified.
     case unspecified
     /// OpenAPI Spec v2.0.

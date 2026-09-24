@@ -23,7 +23,7 @@ import Foundation
 ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
 ///   expecting specific values to remain unparsed; future releases may promote
 ///   them to named cases.
-public enum Registry: Codable, Equatable, Sendable {
+public enum Registry: Codable, Equatable, Hashable, Sendable {
   /// Registry is unspecified.
   case unspecified
   /// Public Registry containing the public Operators released by Google.

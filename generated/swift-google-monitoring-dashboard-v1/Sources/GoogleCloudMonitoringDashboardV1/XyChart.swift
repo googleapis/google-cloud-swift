@@ -231,7 +231,7 @@ public struct XyChart: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum PlotType: Codable, Equatable, Sendable {
+    public enum PlotType: Codable, Equatable, Hashable, Sendable {
       /// Plot type is unspecified. The view will default to `LINE`.
       case unspecified
       /// The data is plotted as a set of lines (one line per series).
@@ -371,7 +371,7 @@ public struct XyChart: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum TargetAxis: Codable, Equatable, Sendable {
+    public enum TargetAxis: Codable, Equatable, Hashable, Sendable {
       /// The target axis was not specified. Defaults to Y1.
       case unspecified
       /// The y_axis (the right axis of chart).
@@ -565,7 +565,7 @@ public struct XyChart: Codable, Equatable, GoogleWKT._AnyPackable,
     ///   Do not pattern-match against `unknownStringValue` or `unknownIntValue`
     ///   expecting specific values to remain unparsed; future releases may promote
     ///   them to named cases.
-    public enum Scale: Codable, Equatable, Sendable {
+    public enum Scale: Codable, Equatable, Hashable, Sendable {
       /// Scale is unspecified. The view will default to `LINEAR`.
       case unspecified
       /// Linear scale.
