@@ -1616,7 +1616,6 @@
       /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:options:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
       /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
-      /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
       /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message]: <doc:StreamingAnalyzeContentResponse/message>
       public var enableSentimentAnalysis: Swift.Bool = Swift.Bool()
 
@@ -1648,7 +1647,6 @@
       /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:options:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
       /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
-      /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
       /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentResponse.message]: <doc:StreamingAnalyzeContentResponse/message>
       public var enableSentimentAnalysisV3: Swift.Bool = Swift.Bool()
 

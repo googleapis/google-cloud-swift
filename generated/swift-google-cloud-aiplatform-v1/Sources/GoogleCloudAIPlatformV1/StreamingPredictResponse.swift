@@ -20,8 +20,6 @@
 
   /// Response message for
   /// [PredictionService.StreamingPredict][google.cloud.aiplatform.v1.PredictionService.StreamingPredict].
-  ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamingPredict]: <doc:PredictionServiceClient/streamingPredict(request:options:)>
   public struct StreamingPredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

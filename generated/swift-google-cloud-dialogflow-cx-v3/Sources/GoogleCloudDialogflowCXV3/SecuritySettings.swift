@@ -110,7 +110,6 @@
     ///
     /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/OneOf_DataRetention/retentionStrategy(_:)>
     /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:options:)>
-    /// [google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent]: <doc:SessionsClient/streamingDetectIntent(request:options:)>
     public var audioExportSettings: SecuritySettings.AudioExportSettings? = nil
 
     /// Controls conversation exporting settings to Insights after conversation is

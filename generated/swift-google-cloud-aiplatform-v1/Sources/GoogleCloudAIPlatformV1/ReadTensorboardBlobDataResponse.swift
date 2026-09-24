@@ -20,8 +20,6 @@
 
   /// Response message for
   /// [TensorboardService.ReadTensorboardBlobData][google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardBlobData].
-  ///
-  /// [google.cloud.aiplatform.v1.TensorboardService.ReadTensorboardBlobData]: <doc:TensorboardServiceClient/readTensorboardBlobData(request:options:)>
   public struct ReadTensorboardBlobDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

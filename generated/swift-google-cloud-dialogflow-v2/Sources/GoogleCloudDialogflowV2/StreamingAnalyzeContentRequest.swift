@@ -58,7 +58,6 @@
   ///
   ///  After you sent all input, you must half-close or abort the request stream.
   ///
-  /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/audioConfig(_:)>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input]: <doc:StreamingAnalyzeContentRequest/OneOf_Input>

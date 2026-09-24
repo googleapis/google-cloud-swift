@@ -20,8 +20,6 @@ public import GoogleType
 
 /// Request message for
 /// [SearchLineageStreaming][google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming].
-///
-/// [google.cloud.datacatalog.lineage.v1.Lineage.SearchLineageStreaming]: <doc:LineageClient/searchLineageStreaming(request:options:)>
 public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

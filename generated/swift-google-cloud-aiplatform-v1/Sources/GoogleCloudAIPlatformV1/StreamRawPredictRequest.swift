@@ -21,8 +21,6 @@
 
   /// Request message for
   /// [PredictionService.StreamRawPredict][google.cloud.aiplatform.v1.PredictionService.StreamRawPredict].
-  ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamRawPredict]: <doc:PredictionServiceClient/streamRawPredict(request:options:)>
   public struct StreamRawPredictRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

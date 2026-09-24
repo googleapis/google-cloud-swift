@@ -20,8 +20,6 @@
 
   /// Response message for
   /// [PredictionService.StreamDirectRawPredict][google.cloud.aiplatform.v1.PredictionService.StreamDirectRawPredict].
-  ///
-  /// [google.cloud.aiplatform.v1.PredictionService.StreamDirectRawPredict]: <doc:PredictionServiceClient/streamDirectRawPredict(request:options:)>
   public struct StreamDirectRawPredictResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

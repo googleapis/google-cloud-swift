@@ -20,8 +20,6 @@ import Foundation
 /// Response message for
 /// [ConversationalSearchService.ConversationalSearch][google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]
 /// method.
-///
-/// [google.cloud.retail.v2.ConversationalSearchService.ConversationalSearch]: <doc:ConversationalSearchServiceClient/conversationalSearch(request:options:)>
 public struct ConversationalSearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

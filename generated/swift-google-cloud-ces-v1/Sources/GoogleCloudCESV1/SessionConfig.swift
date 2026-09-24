@@ -78,9 +78,6 @@ public struct SessionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// NOTE: This is only supported for text (non-voice) sessions via
   /// [StreamRunSession][google.cloud.ces.v1.SessionService.StreamRunSession] or
   /// [BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession].
-  ///
-  /// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionServiceClient/bidiRunSession(request:options:)>
-  /// [google.cloud.ces.v1.SessionService.StreamRunSession]: <doc:SessionServiceClient/streamRunSession(request:options:)>
   public var enableTextStreaming: Swift.Bool = Swift.Bool()
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

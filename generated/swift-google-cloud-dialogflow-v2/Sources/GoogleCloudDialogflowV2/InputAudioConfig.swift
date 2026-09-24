@@ -109,7 +109,6 @@
     /// `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
     ///
     /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
-    /// [google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent]: <doc:ParticipantsClient/streamingAnalyzeContent(request:options:)>
     public var disableNoSpeechRecognizedEvent: Swift.Bool = Swift.Bool()
 
     /// Enable automatic punctuation option at the speech backend.

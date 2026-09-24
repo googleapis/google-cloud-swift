@@ -20,8 +20,6 @@ import Foundation
 /// The top-level message sent by the client for the
 /// [SessionService.BidiRunSession][google.cloud.ces.v1.SessionService.BidiRunSession]
 /// method.
-///
-/// [google.cloud.ces.v1.SessionService.BidiRunSession]: <doc:SessionServiceClient/bidiRunSession(request:options:)>
 public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

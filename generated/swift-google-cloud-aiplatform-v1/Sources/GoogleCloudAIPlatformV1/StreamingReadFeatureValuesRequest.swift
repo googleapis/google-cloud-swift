@@ -20,8 +20,6 @@
 
   /// Request message for
   /// [FeaturestoreOnlineServingService.StreamingReadFeatureValues][google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.StreamingReadFeatureValues].
-  ///
-  /// [google.cloud.aiplatform.v1.FeaturestoreOnlineServingService.StreamingReadFeatureValues]: <doc:FeaturestoreOnlineServingServiceClient/streamingReadFeatureValues(request:options:)>
   public struct StreamingReadFeatureValuesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
