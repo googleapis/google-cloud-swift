@@ -73,15 +73,6 @@
       try await self.inner.rawPredict(request: request, options: options)
     }
 
-    /// Perform a streaming online prediction with an arbitrary HTTP payload.
-    ///
-    /// @Snippet(path: "PredictionService_StreamRawPredict")
-    public func streamRawPredict(
-      request: StreamRawPredictRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleApi.HttpBody {
-      try await self.inner.streamRawPredict(request: request, options: options)
-    }
-
     /// Perform an unary online prediction request to a gRPC model server for
     /// Vertex first-party products and frameworks.
     ///
@@ -100,16 +91,6 @@
       request: DirectRawPredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DirectRawPredictResponse {
       try await self.inner.directRawPredict(request: request, options: options)
-    }
-
-    /// Perform a server-side streaming online prediction request for Vertex
-    /// LLM streaming.
-    ///
-    /// @Snippet(path: "PredictionService_ServerStreamingPredict")
-    public func serverStreamingPredict(
-      request: StreamingPredictRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.StreamingPredictResponse {
-      try await self.inner.serverStreamingPredict(request: request, options: options)
     }
 
     /// Perform an online explanation.
@@ -141,15 +122,6 @@
       request: GenerateContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse {
       try await self.inner.generateContent(request: request, options: options)
-    }
-
-    /// Generate content with multimodal inputs with streaming support.
-    ///
-    /// @Snippet(path: "PredictionService_StreamGenerateContent")
-    public func streamGenerateContent(
-      request: GenerateContentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse {
-      try await self.inner.streamGenerateContent(request: request, options: options)
     }
 
     /// Embed content with multimodal inputs.
@@ -290,11 +262,6 @@
         request: RawPredictRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleApi.HttpBody
 
-      /// See `PredictionServiceClient.streamRawPredict`.
-      func streamRawPredict(
-        request: StreamRawPredictRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleApi.HttpBody
-
       /// See `PredictionServiceClient.directPredict`.
       func directPredict(
         request: DirectPredictRequest, options: GoogleGax.RequestOptions
@@ -305,11 +272,6 @@
         request: DirectRawPredictRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.DirectRawPredictResponse
 
-      /// See `PredictionServiceClient.serverStreamingPredict`.
-      func serverStreamingPredict(
-        request: StreamingPredictRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.StreamingPredictResponse
-
       /// See `PredictionServiceClient.explain`.
       func explain(
         request: ExplainRequest, options: GoogleGax.RequestOptions
@@ -317,11 +279,6 @@
 
       /// See `PredictionServiceClient.generateContent`.
       func generateContent(
-        request: GenerateContentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse
-
-      /// See `PredictionServiceClient.streamGenerateContent`.
-      func streamGenerateContent(
         request: GenerateContentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse
 
@@ -425,29 +382,6 @@
       return try await self.rawPredict(request: request)
     }
 
-    public func streamRawPredict(request: StreamRawPredictRequest) async throws
-      -> GoogleApi.HttpBody
-    {
-      try await self.streamRawPredict(request: request, options: .init())
-    }
-
-    public func streamRawPredict(
-      request: StreamRawPredictRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleApi.HttpBody {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func streamRawPredict(
-      endpoint: Swift.String,
-      httpBody: GoogleApi.HttpBody?,
-    ) async throws -> GoogleApi.HttpBody {
-      let request = StreamRawPredictRequest().with {
-        $0.endpoint = endpoint
-        $0.httpBody = httpBody
-      }
-      return try await self.streamRawPredict(request: request)
-    }
-
     public func directPredict(request: DirectPredictRequest) async throws
       -> GoogleCloudAIPlatformV1.DirectPredictResponse
     {
@@ -469,18 +403,6 @@
     public func directRawPredict(
       request: DirectRawPredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DirectRawPredictResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func serverStreamingPredict(request: StreamingPredictRequest) async throws
-      -> GoogleCloudAIPlatformV1.StreamingPredictResponse
-    {
-      try await self.serverStreamingPredict(request: request, options: .init())
-    }
-
-    public func serverStreamingPredict(
-      request: StreamingPredictRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.StreamingPredictResponse {
       throw GoogleGax.RequestError.unimplemented
     }
 
@@ -532,29 +454,6 @@
         $0.contents = contents
       }
       return try await self.generateContent(request: request)
-    }
-
-    public func streamGenerateContent(request: GenerateContentRequest) async throws
-      -> GoogleCloudAIPlatformV1.GenerateContentResponse
-    {
-      try await self.streamGenerateContent(request: request, options: .init())
-    }
-
-    public func streamGenerateContent(
-      request: GenerateContentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func streamGenerateContent(
-      model: Swift.String,
-      contents: [Content],
-    ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse {
-      let request = GenerateContentRequest().with {
-        $0.model = model
-        $0.contents = contents
-      }
-      return try await self.streamGenerateContent(request: request)
     }
 
     public func embedContent(request: EmbedContentRequest) async throws

@@ -48,21 +48,6 @@ extension Clients {
       return try await loop.run(attempt: attempt)
     }
 
-    public func conversationalSearch(
-      request: ConversationalSearchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudRetailV2.ConversationalSearchResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: ConversationalSearchRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleCloudRetailV2.ConversationalSearchResponse
-          in
-          return try await self.inner.conversationalSearch(request: r, options: o)
-        })
-    }
-
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {

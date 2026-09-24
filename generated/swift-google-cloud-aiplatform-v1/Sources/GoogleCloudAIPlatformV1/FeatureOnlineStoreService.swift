@@ -63,17 +63,6 @@
       try await self.inner.searchNearestEntities(request: request, options: options)
     }
 
-    /// Bidirectional streaming RPC to directly write to feature values in a
-    /// feature view. Requests may not have a one-to-one mapping to responses and
-    /// responses may be returned out-of-order to reduce latency.
-    ///
-    /// @Snippet(path: "FeatureOnlineStoreService_FeatureViewDirectWrite")
-    public func featureViewDirectWrite(
-      request: FeatureViewDirectWriteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse {
-      try await self.inner.featureViewDirectWrite(request: request, options: options)
-    }
-
     /// RPC to generate an access token for the given feature view. FeatureViews
     /// under the same FeatureOnlineStore share the same access token.
     ///
@@ -213,11 +202,6 @@
         request: SearchNearestEntitiesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SearchNearestEntitiesResponse
 
-      /// See `FeatureOnlineStoreServiceClient.featureViewDirectWrite`.
-      func featureViewDirectWrite(
-        request: FeatureViewDirectWriteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse
-
       /// See `FeatureOnlineStoreServiceClient.generateFetchAccessToken`.
       func generateFetchAccessToken(
         request: GenerateFetchAccessTokenRequest, options: GoogleGax.RequestOptions
@@ -304,18 +288,6 @@
     public func searchNearestEntities(
       request: SearchNearestEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.SearchNearestEntitiesResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func featureViewDirectWrite(request: FeatureViewDirectWriteRequest) async throws
-      -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse
-    {
-      try await self.featureViewDirectWrite(request: request, options: .init())
-    }
-
-    public func featureViewDirectWrite(
-      request: FeatureViewDirectWriteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse {
       throw GoogleGax.RequestError.unimplemented
     }
 

@@ -58,21 +58,6 @@
         }
       }
 
-      public func streamGenerateGroundedContent(
-        request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          name: "streamGenerateGroundedContent",
-          action: {
-            (r: GenerateGroundedContentRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse
-            in
-            return try await self.inner.streamGenerateGroundedContent(request: r, options: o)
-          })
-      }
-
       public func generateGroundedContent(
         request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse {

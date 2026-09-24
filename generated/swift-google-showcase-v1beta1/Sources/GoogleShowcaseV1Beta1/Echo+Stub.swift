@@ -36,14 +36,6 @@ extension Clients {
       request: FailEchoWithDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.FailEchoWithDetailsResponse
 
-    func expand(
-      request: ExpandRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse
-
-    func collect(
-      request: EchoRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse
-
     func pagedExpand(
       request: PagedExpandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse

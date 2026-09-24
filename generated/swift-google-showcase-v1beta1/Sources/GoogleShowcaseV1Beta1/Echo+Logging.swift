@@ -105,36 +105,6 @@ extension Clients {
         })
     }
 
-    public func expand(
-      request: ExpandRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        name: "expand",
-        action: {
-          (r: ExpandRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleShowcaseV1Beta1.EchoResponse
-          in
-          return try await self.inner.expand(request: r, options: o)
-        })
-    }
-
-    public func collect(
-      request: EchoRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        name: "collect",
-        action: {
-          (r: EchoRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleShowcaseV1Beta1.EchoResponse
-          in
-          return try await self.inner.collect(request: r, options: o)
-        })
-    }
-
     public func pagedExpand(
       request: PagedExpandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse {

@@ -26,10 +26,6 @@ extension Clients {
       request: RunSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.RunSessionResponse
 
-    func streamRunSession(
-      request: RunSessionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudCESV1.RunSessionResponse
-
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

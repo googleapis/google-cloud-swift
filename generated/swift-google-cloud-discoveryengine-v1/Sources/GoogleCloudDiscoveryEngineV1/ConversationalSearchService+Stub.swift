@@ -50,10 +50,6 @@
         request: AnswerQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
 
-      func streamAnswerQuery(
-        request: AnswerQueryRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
-
       func getAnswer(
         request: GetAnswerRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Answer

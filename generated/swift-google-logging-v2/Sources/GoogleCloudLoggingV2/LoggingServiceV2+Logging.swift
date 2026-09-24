@@ -130,21 +130,6 @@ extension Clients {
         })
     }
 
-    public func tailLogEntries(
-      request: TailLogEntriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudLoggingV2.TailLogEntriesResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        name: "tailLogEntries",
-        action: {
-          (r: TailLogEntriesRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleCloudLoggingV2.TailLogEntriesResponse
-          in
-          return try await self.inner.tailLogEntries(request: r, options: o)
-        })
-    }
-
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {

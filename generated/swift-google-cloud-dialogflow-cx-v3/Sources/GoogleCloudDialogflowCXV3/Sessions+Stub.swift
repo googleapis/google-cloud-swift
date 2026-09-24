@@ -27,10 +27,6 @@
         request: DetectIntentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse
 
-      func serverStreamingDetectIntent(
-        request: DetectIntentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse
-
       func matchIntent(
         request: MatchIntentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.MatchIntentResponse

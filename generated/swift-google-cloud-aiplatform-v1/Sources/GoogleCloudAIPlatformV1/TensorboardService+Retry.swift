@@ -443,21 +443,6 @@
           })
       }
 
-      public func readTensorboardBlobData(
-        request: ReadTensorboardBlobDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: true,
-          action: {
-            (r: ReadTensorboardBlobDataRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse
-            in
-            return try await self.inner.readTensorboardBlobData(request: r, options: o)
-          })
-      }
-
       public func writeTensorboardExperimentData(
         request: WriteTensorboardExperimentDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse {

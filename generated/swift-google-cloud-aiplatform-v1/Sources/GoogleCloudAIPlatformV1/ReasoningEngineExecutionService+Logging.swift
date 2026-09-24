@@ -19,7 +19,6 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  import GoogleApi
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
@@ -74,21 +73,6 @@
               -> GoogleCloudAIPlatformV1.QueryReasoningEngineResponse
             in
             return try await self.inner.queryReasoningEngine(request: r, options: o)
-          })
-      }
-
-      public func streamQueryReasoningEngine(
-        request: StreamQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleApi.HttpBody {
-        try await self._intercept(
-          request: request,
-          options: options,
-          name: "streamQueryReasoningEngine",
-          action: {
-            (r: StreamQueryReasoningEngineRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleApi.HttpBody
-            in
-            return try await self.inner.streamQueryReasoningEngine(request: r, options: o)
           })
       }
 

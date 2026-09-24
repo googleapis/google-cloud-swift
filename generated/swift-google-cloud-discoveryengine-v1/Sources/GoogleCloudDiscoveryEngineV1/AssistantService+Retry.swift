@@ -50,21 +50,6 @@
         return try await loop.run(attempt: attempt)
       }
 
-      public func streamAssist(
-        request: StreamAssistRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: StreamAssistRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse
-            in
-            return try await self.inner.streamAssist(request: r, options: o)
-          })
-      }
-
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {

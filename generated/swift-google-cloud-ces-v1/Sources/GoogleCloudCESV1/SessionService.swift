@@ -47,25 +47,6 @@ public final class SessionServiceClient: Clients.SessionServiceProtocol, Sendabl
     try await self.inner.runSession(request: request, options: options)
   }
 
-  /// Initiates a single-turn interaction with the CES agent. Uses server-side
-  /// streaming to deliver incremental results and partial responses as they are
-  /// generated.
-  ///
-  /// By default, complete responses (e.g., messages from callbacks or full LLM
-  /// responses) are sent to the client as soon as they are available. To enable
-  /// streaming individual text chunks directly from the model, set
-  /// [enable_text_streaming][google.cloud.ces.v1.SessionConfig.enable_text_streaming]
-  /// to true.
-  ///
-  /// [google.cloud.ces.v1.SessionConfig.enable_text_streaming]: <doc:SessionConfig/enableTextStreaming>
-  ///
-  /// @Snippet(path: "SessionService_StreamRunSession")
-  public func streamRunSession(
-    request: RunSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleCloudCESV1.RunSessionResponse {
-    try await self.inner.streamRunSession(request: request, options: options)
-  }
-
   /// Lists information about the supported locations for this service.
   ///
   /// This method lists locations based on the resource scope provided in
@@ -158,11 +139,6 @@ extension Clients {
       request: RunSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCESV1.RunSessionResponse
 
-    /// See `SessionServiceClient.streamRunSession`.
-    func streamRunSession(
-      request: RunSessionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudCESV1.RunSessionResponse
-
     /// See `SessionServiceClient.listLocations`.
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
@@ -199,18 +175,6 @@ extension Clients.SessionServiceProtocol {
   }
 
   public func runSession(
-    request: RunSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleCloudCESV1.RunSessionResponse {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  public func streamRunSession(request: RunSessionRequest) async throws
-    -> GoogleCloudCESV1.RunSessionResponse
-  {
-    try await self.streamRunSession(request: request, options: .init())
-  }
-
-  public func streamRunSession(
     request: RunSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.RunSessionResponse {
     throw GoogleGax.RequestError.unimplemented

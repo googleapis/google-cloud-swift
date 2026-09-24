@@ -129,10 +129,6 @@
         request: ReadTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse
 
-      func readTensorboardBlobData(
-        request: ReadTensorboardBlobDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse
-
       func writeTensorboardExperimentData(
         request: WriteTensorboardExperimentDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse

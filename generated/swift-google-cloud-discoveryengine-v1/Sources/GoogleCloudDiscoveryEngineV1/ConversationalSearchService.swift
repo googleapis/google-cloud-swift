@@ -125,24 +125,6 @@
       try await self.inner.answerQuery(request: request, options: options)
     }
 
-    /// Answer query method (streaming).
-    ///
-    /// It takes one
-    /// [AnswerQueryRequest][google.cloud.discoveryengine.v1.AnswerQueryRequest]
-    /// and returns multiple
-    /// [AnswerQueryResponse][google.cloud.discoveryengine.v1.AnswerQueryResponse]
-    /// messages in a stream.
-    ///
-    /// [google.cloud.discoveryengine.v1.AnswerQueryRequest]: <doc:AnswerQueryRequest>
-    /// [google.cloud.discoveryengine.v1.AnswerQueryResponse]: <doc:AnswerQueryResponse>
-    ///
-    /// @Snippet(path: "ConversationalSearchService_StreamAnswerQuery")
-    public func streamAnswerQuery(
-      request: AnswerQueryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {
-      try await self.inner.streamAnswerQuery(request: request, options: options)
-    }
-
     /// Gets a Answer.
     ///
     /// @Snippet(path: "ConversationalSearchService_GetAnswer")
@@ -289,11 +271,6 @@
 
       /// See `ConversationalSearchServiceClient.answerQuery`.
       func answerQuery(
-        request: AnswerQueryRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
-
-      /// See `ConversationalSearchServiceClient.streamAnswerQuery`.
-      func streamAnswerQuery(
         request: AnswerQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
 
@@ -503,18 +480,6 @@
     }
 
     public func answerQuery(
-      request: AnswerQueryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func streamAnswerQuery(request: AnswerQueryRequest) async throws
-      -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
-    {
-      try await self.streamAnswerQuery(request: request, options: .init())
-    }
-
-    public func streamAnswerQuery(
       request: AnswerQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {
       throw GoogleGax.RequestError.unimplemented

@@ -38,15 +38,6 @@
       self.inner = inner
     }
 
-    /// Assists the user with a query in a streaming fashion.
-    ///
-    /// @Snippet(path: "AssistantService_StreamAssist")
-    public func streamAssist(
-      request: StreamAssistRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse {
-      try await self.inner.streamAssist(request: request, options: options)
-    }
-
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
     ///
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -88,11 +79,6 @@
     /// `some AssistantServiceProtocol` or `any AssistantServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol AssistantServiceProtocol: Sendable {
-      /// See `AssistantServiceClient.streamAssist`.
-      func streamAssist(
-        request: StreamAssistRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse
-
       /// See `AssistantServiceClient.listOperations`.
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
@@ -107,18 +93,6 @@
 
   // Default implementations
   extension Clients.AssistantServiceProtocol {
-    public func streamAssist(request: StreamAssistRequest) async throws
-      -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse
-    {
-      try await self.streamAssist(request: request, options: .init())
-    }
-
-    public func streamAssist(
-      request: StreamAssistRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {

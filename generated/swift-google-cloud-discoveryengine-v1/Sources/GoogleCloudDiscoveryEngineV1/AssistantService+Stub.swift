@@ -22,10 +22,6 @@
 
   extension Clients {
     protocol AssistantServiceStub: Sendable {
-      func streamAssist(
-        request: StreamAssistRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.StreamAssistResponse
-
       func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse

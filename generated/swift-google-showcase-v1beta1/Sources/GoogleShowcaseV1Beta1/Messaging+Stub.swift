@@ -68,14 +68,6 @@ extension Clients {
       request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation
 
-    func streamBlurbs(
-      request: StreamBlurbsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.StreamBlurbsResponse
-
-    func sendBlurbs(
-      request: CreateBlurbRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.SendBlurbsResponse
-
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

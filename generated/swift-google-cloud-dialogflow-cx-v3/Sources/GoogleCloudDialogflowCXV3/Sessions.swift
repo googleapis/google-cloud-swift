@@ -60,19 +60,6 @@
       try await self.inner.detectIntent(request: request, options: options)
     }
 
-    /// Processes a natural language query and returns structured, actionable data
-    /// as a result through server-side streaming. Server-side streaming allows
-    /// Dialogflow to send [partial
-    /// responses](https://cloud.google.com/dialogflow/cx/docs/concept/fulfillment#partial-response)
-    /// earlier in a single request.
-    ///
-    /// @Snippet(path: "Sessions_ServerStreamingDetectIntent")
-    public func serverStreamingDetectIntent(
-      request: DetectIntentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
-      try await self.inner.serverStreamingDetectIntent(request: request, options: options)
-    }
-
     /// Returns preliminary intent match results, doesn't change the session
     /// status.
     ///
@@ -192,11 +179,6 @@
         request: DetectIntentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse
 
-      /// See `SessionsClient.serverStreamingDetectIntent`.
-      func serverStreamingDetectIntent(
-        request: DetectIntentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse
-
       /// See `SessionsClient.matchIntent`.
       func matchIntent(
         request: MatchIntentRequest, options: GoogleGax.RequestOptions
@@ -243,18 +225,6 @@
     }
 
     public func detectIntent(
-      request: DetectIntentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func serverStreamingDetectIntent(request: DetectIntentRequest) async throws
-      -> GoogleCloudDialogflowCXV3.DetectIntentResponse
-    {
-      try await self.serverStreamingDetectIntent(request: request, options: .init())
-    }
-
-    public func serverStreamingDetectIntent(
       request: DetectIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
       throw GoogleGax.RequestError.unimplemented

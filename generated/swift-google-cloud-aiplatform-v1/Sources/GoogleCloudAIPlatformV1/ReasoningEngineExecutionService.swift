@@ -19,7 +19,6 @@
   #if canImport(FoundationNetworking)
     import FoundationNetworking
   #endif
-  @_spi(GoogleCloudInternal) public import GoogleApi
   @_spi(GoogleCloudInternal) public import GoogleCloudLocation
   @_spi(GoogleCloudInternal) public import GoogleIAMV1
   @_spi(GoogleCloudInternal) public import GoogleLongRunning
@@ -55,15 +54,6 @@
       request: QueryReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.QueryReasoningEngineResponse {
       try await self.inner.queryReasoningEngine(request: request, options: options)
-    }
-
-    /// Streams queries using a reasoning engine.
-    ///
-    /// @Snippet(path: "ReasoningEngineExecutionService_StreamQueryReasoningEngine")
-    public func streamQueryReasoningEngine(
-      request: StreamQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleApi.HttpBody {
-      try await self.inner.streamQueryReasoningEngine(request: request, options: options)
     }
 
     /// Async query using a reasoning engine.
@@ -240,11 +230,6 @@
         request: QueryReasoningEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.QueryReasoningEngineResponse
 
-      /// See `ReasoningEngineExecutionServiceClient.streamQueryReasoningEngine`.
-      func streamQueryReasoningEngine(
-        request: StreamQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleApi.HttpBody
-
       /// See `ReasoningEngineExecutionServiceClient.asyncQueryReasoningEngine`.
       func asyncQueryReasoningEngine(
         request: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
@@ -318,18 +303,6 @@
     public func queryReasoningEngine(
       request: QueryReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.QueryReasoningEngineResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func streamQueryReasoningEngine(request: StreamQueryReasoningEngineRequest) async throws
-      -> GoogleApi.HttpBody
-    {
-      try await self.streamQueryReasoningEngine(request: request, options: .init())
-    }
-
-    public func streamQueryReasoningEngine(
-      request: StreamQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleApi.HttpBody {
       throw GoogleGax.RequestError.unimplemented
     }
 

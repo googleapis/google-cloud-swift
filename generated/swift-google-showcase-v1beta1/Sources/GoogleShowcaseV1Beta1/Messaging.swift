@@ -178,26 +178,6 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
     )
   }
 
-  /// This returns a stream that emits the blurbs that are created for a
-  /// particular chat room or user profile.
-  ///
-  /// @Snippet(path: "Messaging_StreamBlurbs")
-  public func streamBlurbs(
-    request: StreamBlurbsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.StreamBlurbsResponse {
-    try await self.inner.streamBlurbs(request: request, options: options)
-  }
-
-  /// This is a stream to create multiple blurbs. If an invalid blurb is
-  /// requested to be created, the stream will close with an error.
-  ///
-  /// @Snippet(path: "Messaging_SendBlurbs")
-  public func sendBlurbs(
-    request: CreateBlurbRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.SendBlurbsResponse {
-    try await self.inner.sendBlurbs(request: request, options: options)
-  }
-
   /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
   ///
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
@@ -374,16 +354,6 @@ extension Clients {
     func searchBlurbsPollingUntilDone(
       request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse>
-
-    /// See `MessagingClient.streamBlurbs`.
-    func streamBlurbs(
-      request: StreamBlurbsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.StreamBlurbsResponse
-
-    /// See `MessagingClient.sendBlurbs`.
-    func sendBlurbs(
-      request: CreateBlurbRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.SendBlurbsResponse
 
     /// See `MessagingClient.listLocations`.
     func listLocations(
@@ -657,30 +627,6 @@ extension Clients.MessagingProtocol {
       $0.query = query
     }
     return try await self.searchBlurbsPollingUntilDone(request: request)
-  }
-
-  public func streamBlurbs(request: StreamBlurbsRequest) async throws
-    -> GoogleShowcaseV1Beta1.StreamBlurbsResponse
-  {
-    try await self.streamBlurbs(request: request, options: .init())
-  }
-
-  public func streamBlurbs(
-    request: StreamBlurbsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.StreamBlurbsResponse {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  public func sendBlurbs(request: CreateBlurbRequest) async throws
-    -> GoogleShowcaseV1Beta1.SendBlurbsResponse
-  {
-    try await self.sendBlurbs(request: request, options: .init())
-  }
-
-  public func sendBlurbs(
-    request: CreateBlurbRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.SendBlurbsResponse {
-    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

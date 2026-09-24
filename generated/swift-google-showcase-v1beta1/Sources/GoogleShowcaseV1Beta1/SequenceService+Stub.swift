@@ -43,10 +43,6 @@ extension Clients {
       request: AttemptSequenceRequest, options: GoogleGax.RequestOptions
     ) async throws
 
-    func attemptStreamingSequence(
-      request: AttemptStreamingSequenceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse
-
     func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse

@@ -92,62 +92,6 @@
         ).get()
       }
 
-      public func streamingReadFeatureValues(
-        request: StreamingReadFeatureValuesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-        let (path, query, configure, omitted) = try {
-          () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void,
-            [Swift.String]
-          ) in
-          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-            guard
-              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-                request.entityType as Swift.String?,
-                matching: [
-                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                  .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
-                  .singleWildcard,
-                ],
-                fieldName: "entity_type")
-            else {
-              return nil
-            }
-            let path = "/v1/\(pathVariable0):streamingReadFeatureValues"
-            let query = [
-              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-            ]
-            return (path, query)
-          }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["entityType"])
-          }
-          var paths: [GoogleGax.PathMismatch] = []
-          do {
-            var builder = GoogleGax._PathMismatchBuilder()
-            builder.maybeAdd(
-              request.entityType as Swift.String?,
-              matching: [
-                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/featurestores/"), .singleWildcard, .literal("/entityTypes/"),
-                .singleWildcard,
-              ],
-              fieldName: "entity_type",
-              expecting: "projects/*/locations/*/featurestores/*/entityTypes/*"
-            )
-            paths.append(builder.build())
-          }
-          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-        }()
-        var req = try await self.inner.newRequest(
-          percentEncodedPath: path, query: query, options: options)
-        configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request, omitting: omitted)
-        return try await req.rpc(
-          GoogleCloudAIPlatformV1.ReadFeatureValuesResponse.self, timeout: options.attemptTimeout
-        ).get()
-      }
-
       public func writeFeatureValues(
         request: WriteFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteFeatureValuesResponse {

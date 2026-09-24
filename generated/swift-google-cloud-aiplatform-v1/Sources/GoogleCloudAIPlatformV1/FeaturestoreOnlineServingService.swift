@@ -54,17 +54,6 @@
       try await self.inner.readFeatureValues(request: request, options: options)
     }
 
-    /// Reads Feature values for multiple entities. Depending on their size, data
-    /// for different entities may be broken
-    /// up across multiple responses.
-    ///
-    /// @Snippet(path: "FeaturestoreOnlineServingService_StreamingReadFeatureValues")
-    public func streamingReadFeatureValues(
-      request: StreamingReadFeatureValuesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-      try await self.inner.streamingReadFeatureValues(request: request, options: options)
-    }
-
     /// Writes Feature values of one or more entities of an EntityType.
     ///
     /// The Feature values are merged into existing entities if any. The Feature
@@ -202,11 +191,6 @@
         request: ReadFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse
 
-      /// See `FeaturestoreOnlineServingServiceClient.streamingReadFeatureValues`.
-      func streamingReadFeatureValues(
-        request: StreamingReadFeatureValuesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse
-
       /// See `FeaturestoreOnlineServingServiceClient.writeFeatureValues`.
       func writeFeatureValues(
         request: WriteFeatureValuesRequest, options: GoogleGax.RequestOptions
@@ -280,27 +264,6 @@
         $0.entityType = entityType
       }
       return try await self.readFeatureValues(request: request)
-    }
-
-    public func streamingReadFeatureValues(request: StreamingReadFeatureValuesRequest) async throws
-      -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse
-    {
-      try await self.streamingReadFeatureValues(request: request, options: .init())
-    }
-
-    public func streamingReadFeatureValues(
-      request: StreamingReadFeatureValuesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func streamingReadFeatureValues(
-      entityType: Swift.String,
-    ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-      let request = StreamingReadFeatureValuesRequest().with {
-        $0.entityType = entityType
-      }
-      return try await self.streamingReadFeatureValues(request: request)
     }
 
     public func writeFeatureValues(request: WriteFeatureValuesRequest) async throws

@@ -21,7 +21,6 @@ import GoogleShowcaseV1Beta1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 
 func sample(client: EchoClient) async throws {
   let response = try await client.testIamPermissions(

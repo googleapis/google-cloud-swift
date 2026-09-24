@@ -21,7 +21,6 @@ import GoogleShowcaseV1Beta1
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
-import GoogleRpc
 
 func sample() async throws {
   let client = try GoogleShowcaseV1Beta1.EchoClient()

@@ -21,7 +21,6 @@ import Foundation
 @_spi(GoogleCloudInternal) public import GoogleCloudLocation
 @_spi(GoogleCloudInternal) public import GoogleIAMV1
 @_spi(GoogleCloudInternal) public import GoogleLongRunning
-@_spi(GoogleCloudInternal) public import GoogleRpc
 @_spi(GoogleCloudInternal) public import GoogleGax
 
 /// This service is used showcase the four main types of rpcs - unary, server
@@ -86,27 +85,6 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
     request: FailEchoWithDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.FailEchoWithDetailsResponse {
     try await self.inner.failEchoWithDetails(request: request, options: options)
-  }
-
-  /// This method splits the given content into words and will pass each word back
-  /// through the stream. This method showcases server-side streaming RPCs.
-  ///
-  /// @Snippet(path: "Echo_Expand")
-  public func expand(
-    request: ExpandRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    try await self.inner.expand(request: request, options: options)
-  }
-
-  /// This method will collect the words given to it. When the stream is closed
-  /// by the client, this method will return the a concatenation of the strings
-  /// passed to it. This method showcases client-side streaming RPCs.
-  ///
-  /// @Snippet(path: "Echo_Collect")
-  public func collect(
-    request: EchoRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    try await self.inner.collect(request: request, options: options)
   }
 
   /// This is similar to the Expand method but instead of returning a stream of
@@ -318,16 +296,6 @@ extension Clients {
       request: FailEchoWithDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.FailEchoWithDetailsResponse
 
-    /// See `EchoClient.expand`.
-    func expand(
-      request: ExpandRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse
-
-    /// See `EchoClient.collect`.
-    func collect(
-      request: EchoRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse
-
     /// See `EchoClient.pagedExpand`.
     func pagedExpand(
       request: PagedExpandRequest, options: GoogleGax.RequestOptions
@@ -433,37 +401,6 @@ extension Clients.EchoProtocol {
   public func failEchoWithDetails(
     request: FailEchoWithDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.FailEchoWithDetailsResponse {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  public func expand(request: ExpandRequest) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    try await self.expand(request: request, options: .init())
-  }
-
-  public func expand(
-    request: ExpandRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  public func expand(
-    content: Swift.String,
-    error: GoogleRpc.Status?,
-  ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    let request = ExpandRequest().with {
-      $0.content = content
-      $0.error = error
-    }
-    return try await self.expand(request: request)
-  }
-
-  public func collect(request: EchoRequest) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    try await self.collect(request: request, options: .init())
-  }
-
-  public func collect(
-    request: EchoRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
     throw GoogleGax.RequestError.unimplemented
   }
 

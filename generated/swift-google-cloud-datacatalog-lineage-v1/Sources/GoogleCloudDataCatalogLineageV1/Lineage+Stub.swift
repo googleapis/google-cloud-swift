@@ -90,10 +90,6 @@ extension Clients {
       request: BatchSearchLinkProcessesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogLineageV1.BatchSearchLinkProcessesResponse
 
-    func searchLineageStreaming(
-      request: SearchLineageStreamingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDataCatalogLineageV1.SearchLineageStreamingResponse
-
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse

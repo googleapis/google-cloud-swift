@@ -82,21 +82,6 @@
           })
       }
 
-      public func streamRawPredict(
-        request: StreamRawPredictRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleApi.HttpBody {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: StreamRawPredictRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleApi.HttpBody
-            in
-            return try await self.inner.streamRawPredict(request: r, options: o)
-          })
-      }
-
       public func directPredict(
         request: DirectPredictRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.DirectPredictResponse {
@@ -127,21 +112,6 @@
           })
       }
 
-      public func serverStreamingPredict(
-        request: StreamingPredictRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.StreamingPredictResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: StreamingPredictRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudAIPlatformV1.StreamingPredictResponse
-            in
-            return try await self.inner.serverStreamingPredict(request: r, options: o)
-          })
-      }
-
       public func explain(
         request: ExplainRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse {
@@ -169,21 +139,6 @@
               -> GoogleCloudAIPlatformV1.GenerateContentResponse
             in
             return try await self.inner.generateContent(request: r, options: o)
-          })
-      }
-
-      public func streamGenerateContent(
-        request: GenerateContentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: GenerateContentRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudAIPlatformV1.GenerateContentResponse
-            in
-            return try await self.inner.streamGenerateContent(request: r, options: o)
           })
       }
 

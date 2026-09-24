@@ -56,21 +56,6 @@ extension Clients {
       }
     }
 
-    public func conversationalSearch(
-      request: ConversationalSearchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudRetailV2.ConversationalSearchResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        name: "conversationalSearch",
-        action: {
-          (r: ConversationalSearchRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleCloudRetailV2.ConversationalSearchResponse
-          in
-          return try await self.inner.conversationalSearch(request: r, options: o)
-        })
-    }
-
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -33,10 +33,6 @@
         request: RawPredictRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleApi.HttpBody
 
-      func streamRawPredict(
-        request: StreamRawPredictRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleApi.HttpBody
-
       func directPredict(
         request: DirectPredictRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.DirectPredictResponse
@@ -45,19 +41,11 @@
         request: DirectRawPredictRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.DirectRawPredictResponse
 
-      func serverStreamingPredict(
-        request: StreamingPredictRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.StreamingPredictResponse
-
       func explain(
         request: ExplainRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse
 
       func generateContent(
-        request: GenerateContentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse
-
-      func streamGenerateContent(
         request: GenerateContentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse
 

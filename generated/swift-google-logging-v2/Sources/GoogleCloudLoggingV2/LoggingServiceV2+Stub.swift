@@ -42,10 +42,6 @@ extension Clients {
       request: ListLogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLogsResponse
 
-    func tailLogEntries(
-      request: TailLogEntriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudLoggingV2.TailLogEntriesResponse
-
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse

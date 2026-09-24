@@ -65,21 +65,6 @@ extension Clients {
         })
     }
 
-    public func streamRunSession(
-      request: RunSessionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudCESV1.RunSessionResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: RunSessionRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleCloudCESV1.RunSessionResponse
-          in
-          return try await self.inner.streamRunSession(request: r, options: o)
-        })
-    }
-
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

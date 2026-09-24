@@ -44,18 +44,6 @@ public final class ConversationalSearchServiceClient: Clients.ConversationalSear
     self.inner = inner
   }
 
-  /// Performs a conversational search.
-  ///
-  /// This feature is only available for users who have Conversational Search
-  /// enabled.
-  ///
-  /// @Snippet(path: "ConversationalSearchService_ConversationalSearch")
-  public func conversationalSearch(
-    request: ConversationalSearchRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleCloudRetailV2.ConversationalSearchResponse {
-    try await self.inner.conversationalSearch(request: request, options: options)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -86,11 +74,6 @@ extension Clients {
   /// `some ConversationalSearchServiceProtocol` or `any ConversationalSearchServiceProtocol`
   /// and pass a mock implementation in your tests.
   public protocol ConversationalSearchServiceProtocol: Sendable {
-    /// See `ConversationalSearchServiceClient.conversationalSearch`.
-    func conversationalSearch(
-      request: ConversationalSearchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudRetailV2.ConversationalSearchResponse
-
     /// See `ConversationalSearchServiceClient.listOperations`.
     func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
@@ -100,18 +83,6 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConversationalSearchServiceProtocol {
-  public func conversationalSearch(request: ConversationalSearchRequest) async throws
-    -> GoogleCloudRetailV2.ConversationalSearchResponse
-  {
-    try await self.conversationalSearch(request: request, options: .init())
-  }
-
-  public func conversationalSearch(
-    request: ConversationalSearchRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleCloudRetailV2.ConversationalSearchResponse {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {

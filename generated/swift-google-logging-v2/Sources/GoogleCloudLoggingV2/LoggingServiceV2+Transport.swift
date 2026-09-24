@@ -630,36 +630,6 @@ extension Clients {
       ).get()
     }
 
-    public func tailLogEntries(
-      request: TailLogEntriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudLoggingV2.TailLogEntriesResponse {
-      let (path, query, configure) = try {
-        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
-        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-          let path = "/v2/entries:tail"
-          let query = [
-            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-          ]
-          return (path, query)
-        }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
-        }
-        var paths: [GoogleGax.PathMismatch] = []
-        do {
-          paths.append(GoogleGax.PathMismatch())
-        }
-        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-      }()
-      var req = try await self.inner.newRequest(
-        percentEncodedPath: path, query: query, options: options)
-      configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
-      return try await req.rpc(
-        GoogleCloudLoggingV2.TailLogEntriesResponse.self, timeout: options.attemptTimeout
-      ).get()
-    }
-
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {

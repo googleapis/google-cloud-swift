@@ -90,21 +90,6 @@
           })
       }
 
-      public func featureViewDirectWrite(
-        request: FeatureViewDirectWriteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          name: "featureViewDirectWrite",
-          action: {
-            (r: FeatureViewDirectWriteRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse
-            in
-            return try await self.inner.featureViewDirectWrite(request: r, options: o)
-          })
-      }
-
       public func generateFetchAccessToken(
         request: GenerateFetchAccessTokenRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.GenerateFetchAccessTokenResponse {

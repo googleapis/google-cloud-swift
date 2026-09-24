@@ -16,7 +16,6 @@
 
 #if ReasoningEngineExecutionService
   import Foundation
-  import GoogleApi
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning
@@ -29,10 +28,6 @@
       func queryReasoningEngine(
         request: QueryReasoningEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.QueryReasoningEngineResponse
-
-      func streamQueryReasoningEngine(
-        request: StreamQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleApi.HttpBody
 
       func asyncQueryReasoningEngine(
         request: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions

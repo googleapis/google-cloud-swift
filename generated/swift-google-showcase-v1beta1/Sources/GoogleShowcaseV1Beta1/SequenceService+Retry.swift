@@ -123,21 +123,6 @@ extension Clients {
         })
     }
 
-    public func attemptStreamingSequence(
-      request: AttemptStreamingSequenceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: AttemptStreamingSequenceRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse
-          in
-          return try await self.inner.attemptStreamingSequence(request: r, options: o)
-        })
-    }
-
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

@@ -211,36 +211,6 @@ extension Clients {
         })
     }
 
-    public func streamBlurbs(
-      request: StreamBlurbsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.StreamBlurbsResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: StreamBlurbsRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleShowcaseV1Beta1.StreamBlurbsResponse
-          in
-          return try await self.inner.streamBlurbs(request: r, options: o)
-        })
-    }
-
-    public func sendBlurbs(
-      request: CreateBlurbRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.SendBlurbsResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: CreateBlurbRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleShowcaseV1Beta1.SendBlurbsResponse
-          in
-          return try await self.inner.sendBlurbs(request: r, options: o)
-        })
-    }
-
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

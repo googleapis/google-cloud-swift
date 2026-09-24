@@ -444,18 +444,6 @@
       try await self.inner.readTensorboardTimeSeriesData(request: request, options: options)
     }
 
-    /// Gets bytes of TensorboardBlobs.
-    /// This is to allow reading blob data stored in consumer project's Cloud
-    /// Storage bucket without users having to obtain Cloud Storage access
-    /// permission.
-    ///
-    /// @Snippet(path: "TensorboardService_ReadTensorboardBlobData")
-    public func readTensorboardBlobData(
-      request: ReadTensorboardBlobDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse {
-      try await self.inner.readTensorboardBlobData(request: request, options: options)
-    }
-
     /// Write time series data points of multiple TensorboardTimeSeries in multiple
     /// TensorboardRun's. If any data fail to be ingested, an error is returned.
     ///
@@ -820,11 +808,6 @@
       func readTensorboardTimeSeriesData(
         request: ReadTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse
-
-      /// See `TensorboardServiceClient.readTensorboardBlobData`.
-      func readTensorboardBlobData(
-        request: ReadTensorboardBlobDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse
 
       /// See `TensorboardServiceClient.writeTensorboardExperimentData`.
       func writeTensorboardExperimentData(
@@ -1642,27 +1625,6 @@
         $0.tensorboardTimeSeries = tensorboardTimeSeries
       }
       return try await self.readTensorboardTimeSeriesData(request: request)
-    }
-
-    public func readTensorboardBlobData(request: ReadTensorboardBlobDataRequest) async throws
-      -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse
-    {
-      try await self.readTensorboardBlobData(request: request, options: .init())
-    }
-
-    public func readTensorboardBlobData(
-      request: ReadTensorboardBlobDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
-    public func readTensorboardBlobData(
-      timeSeries: Swift.String,
-    ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse {
-      let request = ReadTensorboardBlobDataRequest().with {
-        $0.timeSeries = timeSeries
-      }
-      return try await self.readTensorboardBlobData(request: request)
     }
 
     public func writeTensorboardExperimentData(request: WriteTensorboardExperimentDataRequest)

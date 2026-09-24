@@ -153,21 +153,6 @@
           })
       }
 
-      public func streamAnswerQuery(
-        request: AnswerQueryRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: AnswerQueryRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudDiscoveryEngineV1.AnswerQueryResponse
-            in
-            return try await self.inner.streamAnswerQuery(request: r, options: o)
-          })
-      }
-
       public func getAnswer(
         request: GetAnswerRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Answer {

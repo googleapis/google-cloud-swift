@@ -303,21 +303,6 @@ extension Clients {
         })
     }
 
-    public func searchLineageStreaming(
-      request: SearchLineageStreamingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDataCatalogLineageV1.SearchLineageStreamingResponse {
-      try await self._intercept(
-        request: request,
-        options: options,
-        idempotent: false,
-        action: {
-          (r: SearchLineageStreamingRequest, o: GoogleGax.RequestOptions) async throws
-            -> GoogleCloudDataCatalogLineageV1.SearchLineageStreamingResponse
-          in
-          return try await self.inner.searchLineageStreaming(request: r, options: o)
-        })
-    }
-
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {

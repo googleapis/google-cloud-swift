@@ -69,21 +69,6 @@
           })
       }
 
-      public func streamingReadFeatureValues(
-        request: StreamingReadFeatureValuesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: StreamingReadFeatureValuesRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse
-            in
-            return try await self.inner.streamingReadFeatureValues(request: r, options: o)
-          })
-      }
-
       public func writeFeatureValues(
         request: WriteFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteFeatureValuesResponse {

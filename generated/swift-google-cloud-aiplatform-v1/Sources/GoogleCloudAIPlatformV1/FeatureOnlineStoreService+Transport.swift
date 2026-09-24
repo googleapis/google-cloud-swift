@@ -149,63 +149,6 @@
         ).get()
       }
 
-      public func featureViewDirectWrite(
-        request: FeatureViewDirectWriteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse {
-        let (path, query, configure, omitted) = try {
-          () throws -> (
-            Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void,
-            [Swift.String]
-          ) in
-          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-            guard
-              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-                request.featureView as Swift.String?,
-                matching: [
-                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                  .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
-                  .singleWildcard,
-                ],
-                fieldName: "feature_view")
-            else {
-              return nil
-            }
-            let path = "/v1/\(pathVariable0):directWrite"
-            let query = [
-              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-            ]
-            return (path, query)
-          }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["featureView"])
-          }
-          var paths: [GoogleGax.PathMismatch] = []
-          do {
-            var builder = GoogleGax._PathMismatchBuilder()
-            builder.maybeAdd(
-              request.featureView as Swift.String?,
-              matching: [
-                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/featureOnlineStores/"), .singleWildcard, .literal("/featureViews/"),
-                .singleWildcard,
-              ],
-              fieldName: "feature_view",
-              expecting: "projects/*/locations/*/featureOnlineStores/*/featureViews/*"
-            )
-            paths.append(builder.build())
-          }
-          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-        }()
-        var req = try await self.inner.newRequest(
-          percentEncodedPath: path, query: query, options: options)
-        configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        try req.setBody(json: request, omitting: omitted)
-        return try await req.rpc(
-          GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse.self,
-          timeout: options.attemptTimeout
-        ).get()
-      }
-
       public func generateFetchAccessToken(
         request: GenerateFetchAccessTokenRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.GenerateFetchAccessTokenResponse {

@@ -19,7 +19,6 @@
   // snippet.show
   import Foundation
   import GoogleCloudAIPlatformV1
-  import GoogleApi
   import GoogleCloudLocation
   import GoogleIAMV1
   import GoogleLongRunning

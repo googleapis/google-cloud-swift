@@ -240,53 +240,6 @@ extension Clients {
       ).get()
     }
 
-    public func attemptStreamingSequence(
-      request: AttemptStreamingSequenceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse {
-      let (path, query, configure, omitted) = try {
-        () throws -> (
-          Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void, [Swift.String]
-        ) in
-        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-          guard
-            let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-              request.name as Swift.String?,
-              matching: [.literal("streamingSequences/"), .singleWildcard],
-              fieldName: "name")
-          else {
-            return nil
-          }
-          let path = "/v1beta1/\(pathVariable0):stream"
-          let query = [
-            URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-          ]
-          return (path, query)
-        }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) }, ["name"])
-        }
-        var paths: [GoogleGax.PathMismatch] = []
-        do {
-          var builder = GoogleGax._PathMismatchBuilder()
-          builder.maybeAdd(
-            request.name as Swift.String?,
-            matching: [.literal("streamingSequences/"), .singleWildcard],
-            fieldName: "name",
-            expecting: "streamingSequences/*"
-          )
-          paths.append(builder.build())
-        }
-        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-      }()
-      var req = try await self.inner.newRequest(
-        percentEncodedPath: path, query: query, options: options)
-      configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request, omitting: omitted)
-      return try await req.rpc(
-        GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse.self, timeout: options.attemptTimeout
-      ).get()
-    }
-
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {

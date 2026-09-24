@@ -32,10 +32,6 @@
         request: SearchNearestEntitiesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SearchNearestEntitiesResponse
 
-      func featureViewDirectWrite(
-        request: FeatureViewDirectWriteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.FeatureViewDirectWriteResponse
-
       func generateFetchAccessToken(
         request: GenerateFetchAccessTokenRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.GenerateFetchAccessTokenResponse

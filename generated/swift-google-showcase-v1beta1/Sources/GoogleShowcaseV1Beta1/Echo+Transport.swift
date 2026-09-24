@@ -129,68 +129,6 @@ extension Clients {
       ).get()
     }
 
-    public func expand(
-      request: ExpandRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-      let (path, query, configure) = try {
-        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
-        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-          let path = "/v1beta1/echo:expand"
-          let query = [
-            URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
-            URLQueryItem(name: "$apiVersion", value: "v1_20240408"),
-          ]
-          return (path, query)
-        }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
-        }
-        var paths: [GoogleGax.PathMismatch] = []
-        do {
-          paths.append(GoogleGax.PathMismatch())
-        }
-        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-      }()
-      var req = try await self.inner.newRequest(
-        percentEncodedPath: path, query: query, options: options)
-      configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
-      return try await req.rpc(
-        GoogleShowcaseV1Beta1.EchoResponse.self, timeout: options.attemptTimeout
-      ).get()
-    }
-
-    public func collect(
-      request: EchoRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-      let (path, query, configure) = try {
-        () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void) in
-        if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-          let path = "/v1beta1/echo:collect"
-          let query = [
-            URLQueryItem(name: "$alt", value: "json;enum-encoding=int"),
-            URLQueryItem(name: "$apiVersion", value: "v1_20240408"),
-          ]
-          return (path, query)
-        }() {
-          return (candidate.0, candidate.1, { $0.setMethod(.POST) })
-        }
-        var paths: [GoogleGax.PathMismatch] = []
-        do {
-          paths.append(GoogleGax.PathMismatch())
-        }
-        throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-      }()
-      var req = try await self.inner.newRequest(
-        percentEncodedPath: path, query: query, options: options)
-      configure(&req)
-      req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-      try req.setBody(json: request)
-      return try await req.rpc(
-        GoogleShowcaseV1Beta1.EchoResponse.self, timeout: options.attemptTimeout
-      ).get()
-    }
-
     public func pagedExpand(
       request: PagedExpandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse {

@@ -28,10 +28,6 @@
         request: ReadFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse
 
-      func streamingReadFeatureValues(
-        request: StreamingReadFeatureValuesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadFeatureValuesResponse
-
       func writeFeatureValues(
         request: WriteFeatureValuesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteFeatureValuesResponse

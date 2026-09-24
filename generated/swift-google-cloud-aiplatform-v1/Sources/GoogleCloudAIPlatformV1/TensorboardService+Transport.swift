@@ -1484,64 +1484,6 @@
         ).get()
       }
 
-      public func readTensorboardBlobData(
-        request: ReadTensorboardBlobDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse {
-        let (path, query, configure) = try {
-          () throws -> (Swift.String, [URLQueryItem], (inout GoogleGax._HTTPClientRequest) -> Void)
-          in
-          if let candidate = try { () throws -> (Swift.String, [URLQueryItem])? in
-            guard
-              let pathVariable0 = try GoogleGax._RoutingMatcher.pathValue(
-                request.timeSeries as Swift.String?,
-                matching: [
-                  .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                  .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
-                  .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
-                  .singleWildcard,
-                ],
-                fieldName: "time_series")
-            else {
-              return nil
-            }
-            let path = "/v1/\(pathVariable0):readBlobData"
-            var query = [
-              URLQueryItem(name: "$alt", value: "json;enum-encoding=int")
-            ]
-            let encoder = GoogleGax._QueryParameterEncoder()
-            query.append(contentsOf: try encoder.encode(request.blobIds, prefix: "blobIds"))
-            return (path, query)
-          }() {
-            return (candidate.0, candidate.1, { $0.setMethod(.GET) })
-          }
-          var paths: [GoogleGax.PathMismatch] = []
-          do {
-            var builder = GoogleGax._PathMismatchBuilder()
-            builder.maybeAdd(
-              request.timeSeries as Swift.String?,
-              matching: [
-                .literal("projects/"), .singleWildcard, .literal("/locations/"), .singleWildcard,
-                .literal("/tensorboards/"), .singleWildcard, .literal("/experiments/"),
-                .singleWildcard, .literal("/runs/"), .singleWildcard, .literal("/timeSeries/"),
-                .singleWildcard,
-              ],
-              fieldName: "time_series",
-              expecting: "projects/*/locations/*/tensorboards/*/experiments/*/runs/*/timeSeries/*"
-            )
-            paths.append(builder.build())
-          }
-          throw GoogleGax.RequestError.binding(GoogleGax.BindingError(paths: paths))
-        }()
-        var req = try await self.inner.newRequest(
-          percentEncodedPath: path, query: query, options: options)
-        configure(&req)
-        req.addHeader(name: GoogleGax._HeaderNames.apiClient, value: Clients.clientHeader)
-        return try await req.rpc(
-          GoogleCloudAIPlatformV1.ReadTensorboardBlobDataResponse.self,
-          timeout: options.attemptTimeout
-        ).get()
-      }
-
       public func writeTensorboardExperimentData(
         request: WriteTensorboardExperimentDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse {

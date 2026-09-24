@@ -41,15 +41,6 @@
       self.inner = inner
     }
 
-    /// Generates grounded content in a streaming fashion.
-    ///
-    /// @Snippet(path: "GroundedGenerationService_StreamGenerateGroundedContent")
-    public func streamGenerateGroundedContent(
-      request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse {
-      try await self.inner.streamGenerateGroundedContent(request: request, options: options)
-    }
-
     /// Generates grounded content.
     ///
     /// @Snippet(path: "GroundedGenerationService_GenerateGroundedContent")
@@ -109,11 +100,6 @@
     /// `some GroundedGenerationServiceProtocol` or `any GroundedGenerationServiceProtocol`
     /// and pass a mock implementation in your tests.
     public protocol GroundedGenerationServiceProtocol: Sendable {
-      /// See `GroundedGenerationServiceClient.streamGenerateGroundedContent`.
-      func streamGenerateGroundedContent(
-        request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse
-
       /// See `GroundedGenerationServiceClient.generateGroundedContent`.
       func generateGroundedContent(
         request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
@@ -138,18 +124,6 @@
 
   // Default implementations
   extension Clients.GroundedGenerationServiceProtocol {
-    public func streamGenerateGroundedContent(request: GenerateGroundedContentRequest) async throws
-      -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse
-    {
-      try await self.streamGenerateGroundedContent(request: request, options: .init())
-    }
-
-    public func streamGenerateGroundedContent(
-      request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse {
-      throw GoogleGax.RequestError.unimplemented
-    }
-
     public func generateGroundedContent(request: GenerateGroundedContentRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse
     {

@@ -96,16 +96,6 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
     try await self.inner.listLogs(request: request, options: options)
   }
 
-  /// Streaming read of log entries as they are ingested. Until the stream is
-  /// terminated, it will continue reading logs.
-  ///
-  /// @Snippet(path: "LoggingServiceV2_TailLogEntries")
-  public func tailLogEntries(
-    request: TailLogEntriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleCloudLoggingV2.TailLogEntriesResponse {
-    try await self.inner.tailLogEntries(request: request, options: options)
-  }
-
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
   ///
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
@@ -171,11 +161,6 @@ extension Clients {
     func listLogs(
       request: ListLogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLogsResponse
-
-    /// See `LoggingServiceV2Client.tailLogEntries`.
-    func tailLogEntries(
-      request: TailLogEntriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleCloudLoggingV2.TailLogEntriesResponse
 
     /// See `LoggingServiceV2Client.listOperations`.
     func listOperations(
@@ -339,18 +324,6 @@ extension Clients.LoggingServiceV2Protocol {
       $0.parent = parent
     }
     return try await self.listLogs(request: request)
-  }
-
-  public func tailLogEntries(request: TailLogEntriesRequest) async throws
-    -> GoogleCloudLoggingV2.TailLogEntriesResponse
-  {
-    try await self.tailLogEntries(request: request, options: .init())
-  }
-
-  public func tailLogEntries(
-    request: TailLogEntriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleCloudLoggingV2.TailLogEntriesResponse {
-    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

@@ -66,21 +66,6 @@
           })
       }
 
-      public func serverStreamingDetectIntent(
-        request: DetectIntentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> GoogleCloudDialogflowCXV3.DetectIntentResponse {
-        try await self._intercept(
-          request: request,
-          options: options,
-          idempotent: false,
-          action: {
-            (r: DetectIntentRequest, o: GoogleGax.RequestOptions) async throws
-              -> GoogleCloudDialogflowCXV3.DetectIntentResponse
-            in
-            return try await self.inner.serverStreamingDetectIntent(request: r, options: o)
-          })
-      }
-
       public func matchIntent(
         request: MatchIntentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.MatchIntentResponse {

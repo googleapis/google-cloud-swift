@@ -87,18 +87,6 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
     try await self.inner.attemptSequence(request: request, options: options)
   }
 
-  /// Attempts a server streaming call with a sequence of responses
-  /// Can be used to test retries and stream resumption logic
-  /// May not function as expected in HTTP mode due to when http statuses are sent
-  /// See https://github.com/googleapis/gapic-showcase/issues/1377 for more details
-  ///
-  /// @Snippet(path: "SequenceService_AttemptStreamingSequence")
-  public func attemptStreamingSequence(
-    request: AttemptStreamingSequenceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse {
-    try await self.inner.attemptStreamingSequence(request: request, options: options)
-  }
-
   /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
   ///
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
@@ -230,11 +218,6 @@ extension Clients {
     func attemptSequence(
       request: AttemptSequenceRequest, options: GoogleGax.RequestOptions
     ) async throws
-
-    /// See `SequenceServiceClient.attemptStreamingSequence`.
-    func attemptStreamingSequence(
-      request: AttemptStreamingSequenceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse
 
     /// See `SequenceServiceClient.listLocations`.
     func listLocations(
@@ -381,27 +364,6 @@ extension Clients.SequenceServiceProtocol {
       $0.name = name
     }
     try await self.attemptSequence(request: request)
-  }
-
-  public func attemptStreamingSequence(request: AttemptStreamingSequenceRequest) async throws
-    -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse
-  {
-    try await self.attemptStreamingSequence(request: request, options: .init())
-  }
-
-  public func attemptStreamingSequence(
-    request: AttemptStreamingSequenceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse {
-    throw GoogleGax.RequestError.unimplemented
-  }
-
-  public func attemptStreamingSequence(
-    name: Swift.String,
-  ) async throws -> GoogleShowcaseV1Beta1.AttemptStreamingSequenceResponse {
-    let request = AttemptStreamingSequenceRequest().with {
-      $0.name = name
-    }
-    return try await self.attemptStreamingSequence(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
