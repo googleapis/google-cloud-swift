@@ -133,7 +133,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
   public struct Ingress: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var ingressConfig: OneOf_IngressConfig? = nil
+    public var ingressConfig: IngressConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -169,7 +169,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var ingressConfig: OneOf_IngressConfig? = nil
+      var ingressConfig: IngressConfigOneOf? = nil
       let ingressConfigCheckAndSet = {
         if ingressConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -481,7 +481,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public enum OneOf_IngressConfig: Codable, Equatable, Sendable {
+    public enum IngressConfigOneOf: Codable, Equatable, Sendable {
       /// The basic ingress config for ClientGateways.
       indirect case config(ClientConnectorService.Ingress.Config?)
     }
@@ -502,7 +502,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
   public struct Egress: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var destinationType: OneOf_DestinationType? = nil
+    public var destinationType: DestinationTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -538,7 +538,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var destinationType: OneOf_DestinationType? = nil
+      var destinationType: DestinationTypeOneOf? = nil
       let destinationTypeCheckAndSet = {
         if destinationType != nil {
           throw DecodingError.dataCorrupted(
@@ -643,7 +643,7 @@ public struct ClientConnectorService: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public enum OneOf_DestinationType: Codable, Equatable, Sendable {
+    public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
       /// A VPC from the consumer project.
       indirect case peeredVpc(ClientConnectorService.Egress.PeeredVpc?)
     }

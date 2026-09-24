@@ -34,7 +34,7 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The comment detail. A comment can be a review, a general comment, or a
   /// code comment.
-  public var commentDetail: OneOf_CommentDetail? = nil
+  public var commentDetail: CommentDetailOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,7 +87,7 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var commentDetail: OneOf_CommentDetail? = nil
+    var commentDetail: CommentDetailOneOf? = nil
     let commentDetailCheckAndSet = {
       if commentDetail != nil {
         throw DecodingError.dataCorrupted(
@@ -613,7 +613,7 @@ public struct PullRequestComment: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The comment detail. A comment can be a review, a general comment, or a
   /// code comment.
-  public enum OneOf_CommentDetail: Codable, Equatable, Sendable {
+  public enum CommentDetailOneOf: Codable, Equatable, Sendable {
     /// Optional. The review summary comment.
     indirect case review(PullRequestComment.Review?)
     /// Optional. The general pull request comment.

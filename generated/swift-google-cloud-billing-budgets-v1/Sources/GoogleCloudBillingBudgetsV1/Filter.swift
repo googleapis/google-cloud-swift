@@ -83,7 +83,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Multiple options to choose the budget's time period, specifying that only
   /// usage that occurs during this time period should be included in the budget.
   /// If not set, the <code>usage_period</code> defaults to CalendarPeriod.MONTH.
-  public var usagePeriod: OneOf_UsagePeriod? = nil
+  public var usagePeriod: UsagePeriodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -160,7 +160,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var usagePeriod: OneOf_UsagePeriod? = nil
+    var usagePeriod: UsagePeriodOneOf? = nil
     let usagePeriodCheckAndSet = {
       if usagePeriod != nil {
         throw DecodingError.dataCorrupted(
@@ -343,7 +343,7 @@ public struct Filter: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Multiple options to choose the budget's time period, specifying that only
   /// usage that occurs during this time period should be included in the budget.
   /// If not set, the <code>usage_period</code> defaults to CalendarPeriod.MONTH.
-  public enum OneOf_UsagePeriod: Codable, Equatable, Sendable {
+  public enum UsagePeriodOneOf: Codable, Equatable, Sendable {
     /// Optional. Specifies to track usage for recurring calendar period.
     /// For example, assume that CalendarPeriod.QUARTER is set. The budget
     /// tracks usage from April 1 to June 30, when the current calendar month is

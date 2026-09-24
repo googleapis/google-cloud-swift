@@ -22,7 +22,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The detailed location of the secret.
-  public var location: OneOf_Location? = nil
+  public var location: LocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var location: OneOf_Location? = nil
+    var location: LocationOneOf? = nil
     let locationCheckAndSet = {
       if location != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct SecretLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The detailed location of the secret.
-  public enum OneOf_Location: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Codable, Equatable, Sendable {
     /// The secret is found from a file.
     indirect case fileLocation(FileLocation?)
   }

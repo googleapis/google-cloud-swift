@@ -185,7 +185,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     public var annotations: ResourceAnnotations? = nil
 
     /// Required. Specify the input to the application instance.
-    public var inputResourceInformation: OneOf_InputResourceInformation? = nil
+    public var inputResourceInformation: InputResourceInformationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -246,7 +246,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       self.annotations = try container.decodeIfPresent(
         ResourceAnnotations.self, forKey: .annotations)
 
-      var inputResourceInformation: OneOf_InputResourceInformation? = nil
+      var inputResourceInformation: InputResourceInformationOneOf? = nil
       let inputResourceInformationCheckAndSet = {
         if inputResourceInformation != nil {
           throw DecodingError.dataCorrupted(
@@ -297,7 +297,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. Specify the input to the application instance.
-    public enum OneOf_InputResourceInformation: Codable, Equatable, Sendable {
+    public enum InputResourceInformationOneOf: Codable, Equatable, Sendable {
       /// The direct input resource name.
       /// If the instance type is STREAMING_PREDICTION, the input resource is in
       /// format of

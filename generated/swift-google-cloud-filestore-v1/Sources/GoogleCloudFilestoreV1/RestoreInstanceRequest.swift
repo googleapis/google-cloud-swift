@@ -30,7 +30,7 @@ public struct RestoreInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable
   /// is being restored to.
   public var fileShare: Swift.String = Swift.String()
 
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct RestoreInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable
       self.fileShare = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct RestoreInstanceRequest: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The resource name of the backup, in the format
     /// `projects/{project_number}/locations/{location_id}/backups/{backup_id}`.
     case sourceBackup(Swift.String)

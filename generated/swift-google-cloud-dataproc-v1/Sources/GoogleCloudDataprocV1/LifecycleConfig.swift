@@ -43,11 +43,11 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Either the exact time the cluster should be deleted at or
   /// the cluster maximum age.
-  public var ttl: OneOf_Ttl? = nil
+  public var ttl: TtlOneOf? = nil
 
   /// Either the exact time the cluster should be stopped at or
   /// the cluster maximum age.
-  public var stopTtl: OneOf_StopTtl? = nil
+  public var stopTtl: StopTtlOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,7 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.idleStartTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .idleStartTime)
 
-    var ttl: OneOf_Ttl? = nil
+    var ttl: TtlOneOf? = nil
     let ttlCheckAndSet = {
       if ttl != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.ttl = ttl
 
-    var stopTtl: OneOf_StopTtl? = nil
+    var stopTtl: StopTtlOneOf? = nil
     let stopTtlCheckAndSet = {
       if stopTtl != nil {
         throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Either the exact time the cluster should be deleted at or
   /// the cluster maximum age.
-  public enum OneOf_Ttl: Codable, Equatable, Sendable {
+  public enum TtlOneOf: Codable, Equatable, Sendable {
     /// Optional. The time when cluster will be auto-deleted (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).
@@ -194,7 +194,7 @@ public struct LifecycleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Either the exact time the cluster should be stopped at or
   /// the cluster maximum age.
-  public enum OneOf_StopTtl: Codable, Equatable, Sendable {
+  public enum StopTtlOneOf: Codable, Equatable, Sendable {
     /// Optional. The time when cluster will be auto-stopped (see JSON
     /// representation of
     /// [Timestamp](https://developers.google.com/protocol-buffers/docs/proto3#json)).

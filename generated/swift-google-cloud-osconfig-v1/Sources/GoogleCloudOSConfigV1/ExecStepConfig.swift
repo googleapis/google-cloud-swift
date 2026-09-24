@@ -32,7 +32,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var interpreter: ExecStepConfig.Interpreter = ExecStepConfig.Interpreter()
 
   /// Location of the executable.
-  public var executable: OneOf_Executable? = nil
+  public var executable: ExecutableOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.interpreter = value
     }
 
-    var executable: OneOf_Executable? = nil
+    var executable: ExecutableOneOf? = nil
     let executableCheckAndSet = {
       if executable != nil {
         throw DecodingError.dataCorrupted(
@@ -245,7 +245,7 @@ public struct ExecStepConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Location of the executable.
-  public enum OneOf_Executable: Codable, Equatable, Sendable {
+  public enum ExecutableOneOf: Codable, Equatable, Sendable {
     /// An absolute path to the executable on the VM.
     case localPath(Swift.String)
     /// A Cloud Storage object containing the executable.

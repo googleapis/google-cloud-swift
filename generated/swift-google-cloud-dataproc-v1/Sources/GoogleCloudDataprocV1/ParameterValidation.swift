@@ -22,7 +22,7 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The type of validation to be performed.
-  public var validationType: OneOf_ValidationType? = nil
+  public var validationType: ValidationTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var validationType: OneOf_ValidationType? = nil
+    var validationType: ValidationTypeOneOf? = nil
     let validationTypeCheckAndSet = {
       if validationType != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct ParameterValidation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The type of validation to be performed.
-  public enum OneOf_ValidationType: Codable, Equatable, Sendable {
+  public enum ValidationTypeOneOf: Codable, Equatable, Sendable {
     /// Validation based on regular expressions.
     indirect case regex(RegexValidation?)
     /// Validation based on a list of allowed values.

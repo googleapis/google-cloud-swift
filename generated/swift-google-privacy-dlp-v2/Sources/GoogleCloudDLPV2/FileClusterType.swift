@@ -22,7 +22,7 @@ public struct FileClusterType: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// File cluster type.
-  public var fileClusterType: OneOf_FileClusterType? = nil
+  public var fileClusterType: FileClusterTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct FileClusterType: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var fileClusterType: OneOf_FileClusterType? = nil
+    var fileClusterType: FileClusterTypeOneOf? = nil
     let fileClusterTypeCheckAndSet = {
       if fileClusterType != nil {
         throw DecodingError.dataCorrupted(
@@ -267,7 +267,7 @@ public struct FileClusterType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// File cluster type.
-  public enum OneOf_FileClusterType: Codable, Equatable, Sendable {
+  public enum FileClusterTypeOneOf: Codable, Equatable, Sendable {
     /// Cluster type.
     case cluster(FileClusterType.Cluster)
   }

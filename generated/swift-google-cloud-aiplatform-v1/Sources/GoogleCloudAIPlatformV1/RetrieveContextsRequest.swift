@@ -35,7 +35,7 @@
     public var query: RagQuery? = nil
 
     /// Data Source to retrieve contexts.
-    public var dataSource: OneOf_DataSource? = nil
+    public var dataSource: DataSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@
       }
       self.query = try container.decodeIfPresent(RagQuery.self, forKey: .query)
 
-      var dataSource: OneOf_DataSource? = nil
+      var dataSource: DataSourceOneOf? = nil
       let dataSourceCheckAndSet = {
         if dataSource != nil {
           throw DecodingError.dataCorrupted(
@@ -290,7 +290,7 @@
     }
 
     /// Data Source to retrieve contexts.
-    public enum OneOf_DataSource: Codable, Equatable, Sendable {
+    public enum DataSourceOneOf: Codable, Equatable, Sendable {
       /// The data source for Vertex RagStore.
       indirect case vertexRagStore(RetrieveContextsRequest.VertexRagStore?)
     }

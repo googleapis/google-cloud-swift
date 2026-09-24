@@ -26,7 +26,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Required. Specify destination to export a backup.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify destination to export a backup.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage bucket, like "my-bucket".
     case gcsBucket(Swift.String)
   }

@@ -57,7 +57,7 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var pipelineConfig: PipelineConfig? = nil
 
   /// The source of the compilation result to use for this invocation.
-  public var compilationSource: OneOf_CompilationSource? = nil
+  public var compilationSource: CompilationSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,7 +136,7 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleWKT._AnyPackable,
     self.pipelineConfig = try container.decodeIfPresent(
       PipelineConfig.self, forKey: .pipelineConfig)
 
-    var compilationSource: OneOf_CompilationSource? = nil
+    var compilationSource: CompilationSourceOneOf? = nil
     let compilationSourceCheckAndSet = {
       if compilationSource != nil {
         throw DecodingError.dataCorrupted(
@@ -328,7 +328,7 @@ public struct WorkflowInvocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the compilation result to use for this invocation.
-  public enum OneOf_CompilationSource: Codable, Equatable, Sendable {
+  public enum CompilationSourceOneOf: Codable, Equatable, Sendable {
     /// Immutable. The name of the compilation result to use for this invocation.
     /// Must be in the format
     /// `projects/*/locations/*/repositories/*/compilationResults/*`.

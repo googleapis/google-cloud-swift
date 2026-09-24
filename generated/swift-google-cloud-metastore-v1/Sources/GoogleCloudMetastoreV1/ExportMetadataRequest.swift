@@ -49,7 +49,7 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var databaseDumpType: DatabaseDumpSpec.Type_ = DatabaseDumpSpec.Type_()
 
   /// Required. Destination that metadata is exported to.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.databaseDumpType = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -142,7 +142,7 @@ public struct ExportMetadataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Destination that metadata is exported to.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// A Cloud Storage URI of a folder, in the format
     /// `gs://<bucket_name>/<path_inside_bucket>`. A sub-folder
     /// `<export_folder>` containing exported files will be created below it.

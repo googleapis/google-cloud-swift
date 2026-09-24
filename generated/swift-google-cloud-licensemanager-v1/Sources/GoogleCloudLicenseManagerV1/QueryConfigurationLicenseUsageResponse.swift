@@ -23,7 +23,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
 {
   /// Depending on the type of the configuration, one of the following
   /// will be populated.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -97,7 +97,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
 
   /// Depending on the type of the configuration, one of the following
   /// will be populated.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Usage information for license types which use user-count billing.
     indirect case userCountUsage(UserCountUsage?)
   }

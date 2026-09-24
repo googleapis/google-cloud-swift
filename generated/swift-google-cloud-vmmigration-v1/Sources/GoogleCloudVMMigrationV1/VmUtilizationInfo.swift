@@ -27,7 +27,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Utilization metrics for this VM.
   public var utilization: VmUtilizationMetrics? = nil
 
-  public var vmDetails: OneOf_VmDetails? = nil
+  public var vmDetails: VmDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     self.utilization = try container.decodeIfPresent(
       VmUtilizationMetrics.self, forKey: .utilization)
 
-    var vmDetails: OneOf_VmDetails? = nil
+    var vmDetails: VmDetailsOneOf? = nil
     let vmDetailsCheckAndSet = {
       if vmDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@ public struct VmUtilizationInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_VmDetails: Codable, Equatable, Sendable {
+  public enum VmDetailsOneOf: Codable, Equatable, Sendable {
     /// The description of the VM in a Source of type Vmware.
     indirect case vmwareVmDetails(VmwareVmDetails?)
   }

@@ -27,7 +27,7 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Policy action.
   public var action: CleanupPolicy.Action = CleanupPolicy.Action()
 
-  public var conditionType: OneOf_ConditionType? = nil
+  public var conditionType: ConditionTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.action = value
     }
 
-    var conditionType: OneOf_ConditionType? = nil
+    var conditionType: ConditionTypeOneOf? = nil
     let conditionTypeCheckAndSet = {
       if conditionType != nil {
         throw DecodingError.dataCorrupted(
@@ -237,7 +237,7 @@ public struct CleanupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_ConditionType: Codable, Equatable, Sendable {
+  public enum ConditionTypeOneOf: Codable, Equatable, Sendable {
     /// Policy condition for matching versions.
     indirect case condition(CleanupPolicyCondition?)
     /// Policy condition for retaining a minimum number of versions. May only be

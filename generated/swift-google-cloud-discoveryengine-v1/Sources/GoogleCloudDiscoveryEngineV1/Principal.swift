@@ -23,7 +23,7 @@
     Sendable
   {
     /// Union field principal. Principal can be a user or a group.
-    public var principal: OneOf_Principal? = nil
+    public var principal: PrincipalOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var principal: OneOf_Principal? = nil
+      var principal: PrincipalOneOf? = nil
       let principalCheckAndSet = {
         if principal != nil {
           throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@
     }
 
     /// Union field principal. Principal can be a user or a group.
-    public enum OneOf_Principal: Codable, Equatable, Sendable {
+    public enum PrincipalOneOf: Codable, Equatable, Sendable {
       /// User identifier.
       /// For Google Workspace user account, user_id should be the google workspace
       /// user email.

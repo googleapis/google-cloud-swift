@@ -60,7 +60,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. True if GPU zonal redundancy is disabled on this task template.
   public var gpuZonalRedundancyDisabled: Swift.Bool? = nil
 
-  public var retries: OneOf_Retries? = nil
+  public var retries: RetriesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,7 +136,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     self.gpuZonalRedundancyDisabled = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .gpuZonalRedundancyDisabled)
 
-    var retries: OneOf_Retries? = nil
+    var retries: RetriesOneOf? = nil
     let retriesCheckAndSet = {
       if retries != nil {
         throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct TaskTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Retries: Codable, Equatable, Sendable {
+  public enum RetriesOneOf: Codable, Equatable, Sendable {
     /// Number of retries allowed per Task, before marking this Task failed.
     /// Defaults to 3.
     case maxRetries(Swift.Int32)

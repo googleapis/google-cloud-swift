@@ -46,7 +46,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var steps: [DiskMigrationStep] = []
 
   /// Unattached source disk details.
-  public var sourceDiskDetails: OneOf_SourceDiskDetails? = nil
+  public var sourceDiskDetails: SourceDiskDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -114,7 +114,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.steps = value
     }
 
-    var sourceDiskDetails: OneOf_SourceDiskDetails? = nil
+    var sourceDiskDetails: SourceDiskDetailsOneOf? = nil
     let sourceDiskDetailsCheckAndSet = {
       if sourceDiskDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -304,7 +304,7 @@ public struct DiskMigrationJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Unattached source disk details.
-  public enum OneOf_SourceDiskDetails: Codable, Equatable, Sendable {
+  public enum SourceDiskDetailsOneOf: Codable, Equatable, Sendable {
     /// Details of the unattached AWS source disk.
     indirect case awsSourceDiskDetails(AwsSourceDiskDetails?)
   }

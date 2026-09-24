@@ -94,7 +94,7 @@
       Sendable
     {
       /// Holder of data. It only supports text for now.
-      public var data: OneOf_Data? = nil
+      public var data: DataOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var data: OneOf_Data? = nil
+        var data: DataOneOf? = nil
         let dataCheckAndSet = {
           if data != nil {
             throw DecodingError.dataCorrupted(
@@ -165,7 +165,7 @@
       }
 
       /// Holder of data. It only supports text for now.
-      public enum OneOf_Data: Codable, Equatable, Sendable {
+      public enum DataOneOf: Codable, Equatable, Sendable {
         /// Inline text.
         case text(Swift.String)
       }

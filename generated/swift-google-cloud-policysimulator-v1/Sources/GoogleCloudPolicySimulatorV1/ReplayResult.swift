@@ -50,7 +50,7 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var lastSeenDate: GoogleType.Date? = nil
 
   /// The result of replaying the access tuple.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,7 +104,7 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
     self.accessTuple = try container.decodeIfPresent(AccessTuple.self, forKey: .accessTuple)
     self.lastSeenDate = try container.decodeIfPresent(GoogleType.Date.self, forKey: .lastSeenDate)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -148,7 +148,7 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of replaying the access tuple.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// The difference between the principal's access under the current
     /// (baseline) policies and the principal's access under the proposed
     /// (simulated) policies.

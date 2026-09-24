@@ -28,7 +28,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var modelConfig: ReconConfig.ModelConfig? = nil
 
   /// Choice of clustering algorithm. Default is ConnectedComponentsConfig.
-  public var clusteringConfig: OneOf_ClusteringConfig? = nil
+  public var clusteringConfig: ClusteringConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.modelConfig = try container.decodeIfPresent(
       ReconConfig.ModelConfig.self, forKey: .modelConfig)
 
-    var clusteringConfig: OneOf_ClusteringConfig? = nil
+    var clusteringConfig: ClusteringConfigOneOf? = nil
     let clusteringConfigCheckAndSet = {
       if clusteringConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -274,7 +274,7 @@ public struct ReconConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Choice of clustering algorithm. Default is ConnectedComponentsConfig.
-  public enum OneOf_ClusteringConfig: Codable, Equatable, Sendable {
+  public enum ClusteringConfigOneOf: Codable, Equatable, Sendable {
     /// Configs for connected components.
     indirect case connectedComponentsConfig(ConnectedComponentsConfig?)
     /// Configs for affinity clustering.

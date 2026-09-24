@@ -23,7 +23,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
 {
   /// Maximum of 100 entries.
   /// The first filter containing a pattern that matches a table will be used.
-  public var pattern: OneOf_Pattern? = nil
+  public var pattern: PatternOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var pattern: OneOf_Pattern? = nil
+    var pattern: PatternOneOf? = nil
     let patternCheckAndSet = {
       if pattern != nil {
         throw DecodingError.dataCorrupted(
@@ -97,7 +97,7 @@ public struct BigQueryTableCollection: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// Maximum of 100 entries.
   /// The first filter containing a pattern that matches a table will be used.
-  public enum OneOf_Pattern: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Codable, Equatable, Sendable {
     /// A collection of regular expressions to match a BigQuery table against.
     indirect case includeRegexes(BigQueryRegexes?)
   }

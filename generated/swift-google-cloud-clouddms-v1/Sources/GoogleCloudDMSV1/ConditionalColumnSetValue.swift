@@ -32,7 +32,7 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
   /// Optional. Custom engine specific features.
   public var customFeatures: GoogleWKT.WKTStruct? = nil
 
-  public var sourceFilter: OneOf_SourceFilter? = nil
+  public var sourceFilter: SourceFilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,7 +78,7 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
     self.customFeatures = try container.decodeIfPresent(
       GoogleWKT.WKTStruct.self, forKey: .customFeatures)
 
-    var sourceFilter: OneOf_SourceFilter? = nil
+    var sourceFilter: SourceFilterOneOf? = nil
     let sourceFilterCheckAndSet = {
       if sourceFilter != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct ConditionalColumnSetValue: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OneOf_SourceFilter: Codable, Equatable, Sendable {
+  public enum SourceFilterOneOf: Codable, Equatable, Sendable {
     /// Optional. Optional filter on source column length. Used for text based
     /// data types like varchar.
     indirect case sourceTextFilter(SourceTextFilter?)

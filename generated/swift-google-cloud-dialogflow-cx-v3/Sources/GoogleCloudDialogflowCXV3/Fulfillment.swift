@@ -418,7 +418,7 @@
           Sendable
         {
           /// Either a message is returned or additional cases to be evaluated.
-          public var casesOrMessage: OneOf_CasesOrMessage? = nil
+          public var casesOrMessage: CasesOrMessageOneOf? = nil
 
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -456,7 +456,7 @@
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            var casesOrMessage: OneOf_CasesOrMessage? = nil
+            var casesOrMessage: CasesOrMessageOneOf? = nil
             let casesOrMessageCheckAndSet = {
               if casesOrMessage != nil {
                 throw DecodingError.dataCorrupted(
@@ -499,7 +499,7 @@
           }
 
           /// Either a message is returned or additional cases to be evaluated.
-          public enum OneOf_CasesOrMessage: Codable, Equatable, Sendable {
+          public enum CasesOrMessageOneOf: Codable, Equatable, Sendable {
             /// Returned message.
             indirect case message(ResponseMessage?)
             /// Additional cases to be evaluated.

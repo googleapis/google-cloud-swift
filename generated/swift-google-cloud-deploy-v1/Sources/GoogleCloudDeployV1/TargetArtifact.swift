@@ -32,7 +32,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Map from the phase ID to the phase artifacts for the `Target`.
   public var phaseArtifacts: [Swift.String: TargetArtifact.PhaseArtifact] = [:]
 
-  public var uri: OneOf_Uri? = nil
+  public var uri: UriOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
       self.phaseArtifacts = value
     }
 
-    var uri: OneOf_Uri? = nil
+    var uri: UriOneOf? = nil
     let uriCheckAndSet = {
       if uri != nil {
         throw DecodingError.dataCorrupted(
@@ -210,7 +210,7 @@ public struct TargetArtifact: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Uri: Codable, Equatable, Sendable {
+  public enum UriOneOf: Codable, Equatable, Sendable {
     /// Output only. URI of a directory containing the artifacts. This contains
     /// deployment configuration used by Skaffold during a rollout, and all
     /// paths are relative to this location.

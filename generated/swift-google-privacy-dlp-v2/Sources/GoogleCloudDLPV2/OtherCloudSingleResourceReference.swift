@@ -22,7 +22,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
   Sendable
 {
   /// The resource to scan.
-  public var resource: OneOf_Resource? = nil
+  public var resource: ResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var resource: OneOf_Resource? = nil
+    var resource: ResourceOneOf? = nil
     let resourceCheckAndSet = {
       if resource != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
   }
 
   /// The resource to scan.
-  public enum OneOf_Resource: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// Amazon S3 bucket.
     indirect case amazonS3Bucket(AmazonS3Bucket?)
   }

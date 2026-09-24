@@ -41,7 +41,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
     DataStoreTool.FilterParameterBehavior()
 
   /// Defines the search source, either a single DataStore or an Engine.
-  public var searchSource: OneOf_SearchSource? = nil
+  public var searchSource: SearchSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -110,7 +110,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
       self.filterParameterBehavior = value
     }
 
-    var searchSource: OneOf_SearchSource? = nil
+    var searchSource: SearchSourceOneOf? = nil
     let searchSourceCheckAndSet = {
       if searchSource != nil {
         throw DecodingError.dataCorrupted(
@@ -1615,7 +1615,7 @@ public struct DataStoreTool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the search source, either a single DataStore or an Engine.
-  public enum OneOf_SearchSource: Codable, Equatable, Sendable {
+  public enum SearchSourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Search within a single specific DataStore.
     indirect case dataStoreSource(DataStoreTool.DataStoreSource?)
     /// Optional. Search within an Engine (potentially across multiple

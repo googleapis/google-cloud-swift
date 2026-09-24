@@ -38,7 +38,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Whether a destination is provided or not, the translated documents will be
   /// returned within TranslateDocumentResponse.document_translation and
   /// TranslateDocumentResponse.glossary_document_translation.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.mimeType = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -122,7 +122,7 @@ public struct DocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Whether a destination is provided or not, the translated documents will be
   /// returned within TranslateDocumentResponse.document_translation and
   /// TranslateDocumentResponse.glossary_document_translation.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Optional. Google Cloud Storage destination for the translation output,
     /// e.g., `gs://my_bucket/my_directory/`.
     ///

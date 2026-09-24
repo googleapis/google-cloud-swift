@@ -42,7 +42,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var userInput: RuntimeAnnotation.UserInput? = nil
 
   /// The data in the annotation.
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     self.userInput = try container.decodeIfPresent(
       RuntimeAnnotation.UserInput.self, forKey: .userInput)
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -396,7 +396,7 @@ public struct RuntimeAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data in the annotation.
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// Agent Assist Article Suggestion data.
     indirect case articleSuggestion(ArticleSuggestionData?)
     /// Agent Assist FAQ answer data.

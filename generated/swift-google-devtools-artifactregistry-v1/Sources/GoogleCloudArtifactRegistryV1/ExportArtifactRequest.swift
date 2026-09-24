@@ -26,10 +26,10 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var repository: Swift.String = Swift.String()
 
   /// The artifact to be exported.
-  public var sourceArtifact: OneOf_SourceArtifact? = nil
+  public var sourceArtifact: SourceArtifactOneOf? = nil
 
   /// The destination to export the artifact to.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.repository = value
     }
 
-    var sourceArtifact: OneOf_SourceArtifact? = nil
+    var sourceArtifact: SourceArtifactOneOf? = nil
     let sourceArtifactCheckAndSet = {
       if sourceArtifact != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.sourceArtifact = sourceArtifact
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The artifact to be exported.
-  public enum OneOf_SourceArtifact: Codable, Equatable, Sendable {
+  public enum SourceArtifactOneOf: Codable, Equatable, Sendable {
     /// The artifact version to export.
     /// Format:
     /// projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/versions/{version}
@@ -149,7 +149,7 @@ public struct ExportArtifactRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The destination to export the artifact to.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage path to export the artifact to. Should start with the
     /// bucket name, and optionally have a directory path. Examples:
     /// `dst_bucket`, `dst_bucket/sub_dir`.

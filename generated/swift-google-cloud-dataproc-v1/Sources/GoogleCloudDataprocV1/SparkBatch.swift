@@ -45,7 +45,7 @@ public struct SparkBatch: Codable, Equatable, GoogleWKT._AnyPackable,
   /// main class name. To pass both a main jar and a main class in that jar, add
   /// the jar to `jar_file_uris`, and then specify the main class
   /// name in `main_class`.
-  public var driver: OneOf_Driver? = nil
+  public var driver: DriverOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -103,7 +103,7 @@ public struct SparkBatch: Codable, Equatable, GoogleWKT._AnyPackable,
       self.archiveUris = value
     }
 
-    var driver: OneOf_Driver? = nil
+    var driver: DriverOneOf? = nil
     let driverCheckAndSet = {
       if driver != nil {
         throw DecodingError.dataCorrupted(
@@ -153,7 +153,7 @@ public struct SparkBatch: Codable, Equatable, GoogleWKT._AnyPackable,
   /// main class name. To pass both a main jar and a main class in that jar, add
   /// the jar to `jar_file_uris`, and then specify the main class
   /// name in `main_class`.
-  public enum OneOf_Driver: Codable, Equatable, Sendable {
+  public enum DriverOneOf: Codable, Equatable, Sendable {
     /// Optional. The HCFS URI of the jar file that contains the main class.
     case mainJarFileUri(Swift.String)
     /// Optional. The name of the driver main class. The jar file that contains

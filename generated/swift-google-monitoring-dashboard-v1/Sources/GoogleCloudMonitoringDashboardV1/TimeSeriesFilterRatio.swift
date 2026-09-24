@@ -34,7 +34,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Selects an optional filter that is applied to the time series after
   /// computing the ratio.
-  public var outputFilter: OneOf_OutputFilter? = nil
+  public var outputFilter: OutputFilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,7 +87,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
     self.secondaryAggregation = try container.decodeIfPresent(
       Aggregation.self, forKey: .secondaryAggregation)
 
-    var outputFilter: OneOf_OutputFilter? = nil
+    var outputFilter: OutputFilterOneOf? = nil
     let outputFilterCheckAndSet = {
       if outputFilter != nil {
         throw DecodingError.dataCorrupted(
@@ -218,7 +218,7 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Selects an optional filter that is applied to the time series after
   /// computing the ratio.
-  public enum OneOf_OutputFilter: Codable, Equatable, Sendable {
+  public enum OutputFilterOneOf: Codable, Equatable, Sendable {
     /// Ranking based time series filter.
     indirect case pickTimeSeriesFilter(PickTimeSeriesFilter?)
     /// Statistics based time series filter.

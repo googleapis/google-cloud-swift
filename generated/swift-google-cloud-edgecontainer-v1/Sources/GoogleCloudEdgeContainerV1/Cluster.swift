@@ -304,7 +304,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct ControlPlane: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var config: OneOf_Config? = nil
+    public var config: ConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -342,7 +342,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var config: OneOf_Config? = nil
+      var config: ConfigOneOf? = nil
       let configCheckAndSet = {
         if config != nil {
           throw DecodingError.dataCorrupted(
@@ -685,7 +685,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Config: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// Remote control plane configuration.
       indirect case remote(Cluster.ControlPlane.Remote?)
       /// Local control plane configuration.

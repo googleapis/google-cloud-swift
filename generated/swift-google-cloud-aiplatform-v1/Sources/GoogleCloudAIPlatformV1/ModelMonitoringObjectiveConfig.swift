@@ -134,7 +134,7 @@
       /// If not set, we process the whole dataset.
       public var loggingSamplingStrategy: SamplingStrategy? = nil
 
-      public var dataSource: OneOf_DataSource? = nil
+      public var dataSource: DataSourceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -188,7 +188,7 @@
         self.loggingSamplingStrategy = try container.decodeIfPresent(
           SamplingStrategy.self, forKey: .loggingSamplingStrategy)
 
-        var dataSource: OneOf_DataSource? = nil
+        var dataSource: DataSourceOneOf? = nil
         let dataSourceCheckAndSet = {
           if dataSource != nil {
             throw DecodingError.dataCorrupted(
@@ -238,7 +238,7 @@
         }
       }
 
-      public enum OneOf_DataSource: Codable, Equatable, Sendable {
+      public enum DataSourceOneOf: Codable, Equatable, Sendable {
         /// The resource name of the Dataset used to train this Model.
         case dataset(Swift.String)
         /// The Google Cloud Storage uri of the unmanaged Dataset used to train
@@ -547,7 +547,7 @@
 
         /// The configuration specifying of BatchExplain job output. This can be
         /// used to generate the baseline of feature attribution scores.
-        public var destination: OneOf_Destination? = nil
+        public var destination: DestinationOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -593,7 +593,7 @@
             self.predictionFormat = value
           }
 
-          var destination: OneOf_Destination? = nil
+          var destination: DestinationOneOf? = nil
           let destinationCheckAndSet = {
             if destination != nil {
               throw DecodingError.dataCorrupted(
@@ -754,7 +754,7 @@
 
         /// The configuration specifying of BatchExplain job output. This can be
         /// used to generate the baseline of feature attribution scores.
-        public enum OneOf_Destination: Codable, Equatable, Sendable {
+        public enum DestinationOneOf: Codable, Equatable, Sendable {
           /// Cloud Storage location for BatchExplain output.
           indirect case gcs(GcsDestination?)
           /// BigQuery location for BatchExplain output.

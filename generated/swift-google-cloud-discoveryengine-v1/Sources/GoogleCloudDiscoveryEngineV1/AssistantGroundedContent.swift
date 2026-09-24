@@ -29,7 +29,7 @@
     public var content: AssistantContent? = nil
 
     /// Grounding metadata for various modals. It only supports text for now.
-    public var metadata: OneOf_Metadata? = nil
+    public var metadata: MetadataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.content = try container.decodeIfPresent(AssistantContent.self, forKey: .content)
 
-      var metadata: OneOf_Metadata? = nil
+      var metadata: MetadataOneOf? = nil
       let metadataCheckAndSet = {
         if metadata != nil {
           throw DecodingError.dataCorrupted(
@@ -475,7 +475,7 @@
     }
 
     /// Grounding metadata for various modals. It only supports text for now.
-    public enum OneOf_Metadata: Codable, Equatable, Sendable {
+    public enum MetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata for grounding based on text sources.
       indirect case textGroundingMetadata(AssistantGroundedContent.TextGroundingMetadata?)
     }

@@ -281,7 +281,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
         /// Structural and profile information for specific field type. Not
         /// available, if mode is REPEATABLE.
-        public var fieldInfo: OneOf_FieldInfo? = nil
+        public var fieldInfo: FieldInfoOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -338,7 +338,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
             self.topNValues = value
           }
 
-          var fieldInfo: OneOf_FieldInfo? = nil
+          var fieldInfo: FieldInfoOneOf? = nil
           let fieldInfoCheckAndSet = {
             if fieldInfo != nil {
               throw DecodingError.dataCorrupted(
@@ -816,7 +816,7 @@ public struct DataProfileResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
         /// Structural and profile information for specific field type. Not
         /// available, if mode is REPEATABLE.
-        public enum OneOf_FieldInfo: Codable, Equatable, Sendable {
+        public enum FieldInfoOneOf: Codable, Equatable, Sendable {
           /// String type field information.
           indirect case stringProfile(DataProfileResult.Profile.Field.ProfileInfo.StringFieldInfo?)
           /// Integer type field information.

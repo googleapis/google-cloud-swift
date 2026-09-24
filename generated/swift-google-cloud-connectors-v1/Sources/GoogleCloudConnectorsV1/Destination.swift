@@ -23,7 +23,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The port is the target port number that is accepted by the destination.
   public var port: Swift.Int32 = Swift.Int32()
 
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
       self.port = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// PSC service attachments.
     /// Format: projects/*/regions/*/serviceAttachments/*
     case serviceAttachment(Swift.String)

@@ -45,7 +45,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
   public var pageToken: Swift.String = Swift.String()
 
   /// The oneof global search query.
-  public var query: OneOf_Query? = nil
+  public var query: QueryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -108,7 +108,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
       self.pageToken = value
     }
 
-    var query: OneOf_Query? = nil
+    var query: QueryOneOf? = nil
     let queryCheckAndSet = {
       if query != nil {
         throw DecodingError.dataCorrupted(
@@ -153,7 +153,7 @@ public struct SearchIndexEndpointRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The oneof global search query.
-  public enum OneOf_Query: Codable, Equatable, Sendable {
+  public enum QueryOneOf: Codable, Equatable, Sendable {
     /// An image-only query.
     indirect case imageQuery(ImageQuery?)
     /// A text-only query.

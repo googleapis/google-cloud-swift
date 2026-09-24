@@ -95,7 +95,7 @@ public struct AwsS3Data: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.storagetransfer.v1.GoogleServiceAccount]: <doc:GoogleServiceAccount>
   public var credentialsSecret: Swift.String = Swift.String()
 
-  public var privateNetwork: OneOf_PrivateNetwork? = nil
+  public var privateNetwork: PrivateNetworkOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -159,7 +159,7 @@ public struct AwsS3Data: Codable, Equatable, GoogleWKT._AnyPackable,
       self.credentialsSecret = value
     }
 
-    var privateNetwork: OneOf_PrivateNetwork? = nil
+    var privateNetwork: PrivateNetworkOneOf? = nil
     let privateNetworkCheckAndSet = {
       if privateNetwork != nil {
         throw DecodingError.dataCorrupted(
@@ -201,7 +201,7 @@ public struct AwsS3Data: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_PrivateNetwork: Codable, Equatable, Sendable {
+  public enum PrivateNetworkOneOf: Codable, Equatable, Sendable {
     /// Egress bytes over a Google-managed private network.
     /// This network is shared between other users of Storage Transfer Service.
     case managedPrivateNetwork(Swift.Bool)

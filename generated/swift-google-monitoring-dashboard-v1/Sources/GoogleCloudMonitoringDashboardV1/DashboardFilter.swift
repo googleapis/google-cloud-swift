@@ -33,7 +33,7 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public var filterType: DashboardFilter.FilterType = DashboardFilter.FilterType()
 
   /// The default value used in the filter comparison
-  public var defaultValue: OneOf_DefaultValue? = nil
+  public var defaultValue: DefaultValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
       self.filterType = value
     }
 
-    var defaultValue: OneOf_DefaultValue? = nil
+    var defaultValue: DefaultValueOneOf? = nil
     let defaultValueCheckAndSet = {
       if defaultValue != nil {
         throw DecodingError.dataCorrupted(
@@ -262,7 +262,7 @@ public struct DashboardFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The default value used in the filter comparison
-  public enum OneOf_DefaultValue: Codable, Equatable, Sendable {
+  public enum DefaultValueOneOf: Codable, Equatable, Sendable {
     /// A variable-length string value.
     case stringValue(Swift.String)
   }

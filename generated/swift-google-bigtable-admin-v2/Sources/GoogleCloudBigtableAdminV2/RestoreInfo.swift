@@ -25,7 +25,7 @@ public struct RestoreInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sourceType: RestoreSourceType = RestoreSourceType()
 
   /// Information about the source used to restore the table.
-  public var sourceInfo: OneOf_SourceInfo? = nil
+  public var sourceInfo: SourceInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct RestoreInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sourceType = value
     }
 
-    var sourceInfo: OneOf_SourceInfo? = nil
+    var sourceInfo: SourceInfoOneOf? = nil
     let sourceInfoCheckAndSet = {
       if sourceInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct RestoreInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information about the source used to restore the table.
-  public enum OneOf_SourceInfo: Codable, Equatable, Sendable {
+  public enum SourceInfoOneOf: Codable, Equatable, Sendable {
     /// Information about the backup used to restore the table. The backup
     /// may no longer exist.
     indirect case backupInfo(BackupInfo?)

@@ -124,7 +124,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var connectionLimit: Swift.Int64 = Swift.Int64()
 
     /// Required. Specifies the type of consumer.
-    public var consumerType: OneOf_ConsumerType? = nil
+    public var consumerType: ConsumerTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -165,7 +165,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.connectionLimit = value
       }
 
-      var consumerType: OneOf_ConsumerType? = nil
+      var consumerType: ConsumerTypeOneOf? = nil
       let consumerTypeCheckAndSet = {
         if consumerType != nil {
           throw DecodingError.dataCorrupted(
@@ -201,7 +201,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. Specifies the type of consumer.
-    public enum OneOf_ConsumerType: Codable, Equatable, Sendable {
+    public enum ConsumerTypeOneOf: Codable, Equatable, Sendable {
       /// The project ID or number of the consumer project.
       /// Must be in the format: `projects/{project}`.
       case project(Swift.String)
@@ -224,7 +224,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Required. Specifies the type of consumer.
-    public var consumerType: OneOf_ConsumerType? = nil
+    public var consumerType: ConsumerTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -260,7 +260,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var consumerType: OneOf_ConsumerType? = nil
+      var consumerType: ConsumerTypeOneOf? = nil
       let consumerTypeCheckAndSet = {
         if consumerType != nil {
           throw DecodingError.dataCorrupted(
@@ -295,7 +295,7 @@ public struct InternalServerConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. Specifies the type of consumer.
-    public enum OneOf_ConsumerType: Codable, Equatable, Sendable {
+    public enum ConsumerTypeOneOf: Codable, Equatable, Sendable {
       /// The project ID or number of the consumer project.
       /// Must be in the format: `projects/{project}`.
       case project(Swift.String)

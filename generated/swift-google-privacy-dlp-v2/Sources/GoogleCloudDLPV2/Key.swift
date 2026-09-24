@@ -108,7 +108,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
     public var kind: Swift.String = Swift.String()
 
     /// The type of ID.
-    public var idType: OneOf_IdType? = nil
+    public var idType: IdTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -151,7 +151,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
         self.kind = value
       }
 
-      var idType: OneOf_IdType? = nil
+      var idType: IdTypeOneOf? = nil
       let idTypeCheckAndSet = {
         if idType != nil {
           throw DecodingError.dataCorrupted(
@@ -192,7 +192,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of ID.
-    public enum OneOf_IdType: Codable, Equatable, Sendable {
+    public enum IdTypeOneOf: Codable, Equatable, Sendable {
       /// The auto-allocated ID of the entity.
       /// Never equal to zero. Values less than zero are discouraged and may not
       /// be supported in the future.

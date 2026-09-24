@@ -26,7 +26,7 @@
     public var datasets: [InputDataset] = []
 
     /// Specific configurations for different models in order to do evaluation.
-    public var modelSpecificConfig: OneOf_ModelSpecificConfig? = nil
+    public var modelSpecificConfig: ModelSpecificConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@
         self.datasets = value
       }
 
-      var modelSpecificConfig: OneOf_ModelSpecificConfig? = nil
+      var modelSpecificConfig: ModelSpecificConfigOneOf? = nil
       let modelSpecificConfigCheckAndSet = {
         if modelSpecificConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -280,7 +280,7 @@
     }
 
     /// Specific configurations for different models in order to do evaluation.
-    public enum OneOf_ModelSpecificConfig: Codable, Equatable, Sendable {
+    public enum ModelSpecificConfigOneOf: Codable, Equatable, Sendable {
       /// Configuration for smart reply model evaluation.
       indirect case smartReplyConfig(EvaluationConfig.SmartReplyConfig?)
       /// Configuration for smart compose model evaluation.

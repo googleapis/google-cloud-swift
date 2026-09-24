@@ -39,7 +39,7 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var condition: RecordCondition? = nil
 
   /// Transformation to apply. [required]
-  public var transformation: OneOf_Transformation? = nil
+  public var transformation: TransformationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.condition = try container.decodeIfPresent(RecordCondition.self, forKey: .condition)
 
-    var transformation: OneOf_Transformation? = nil
+    var transformation: TransformationOneOf? = nil
     let transformationCheckAndSet = {
       if transformation != nil {
         throw DecodingError.dataCorrupted(
@@ -131,7 +131,7 @@ public struct FieldTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Transformation to apply. [required]
-  public enum OneOf_Transformation: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Apply the transformation to the entire field.
     indirect case primitiveTransformation(PrimitiveTransformation?)
     /// Treat the contents of the field as free text, and selectively

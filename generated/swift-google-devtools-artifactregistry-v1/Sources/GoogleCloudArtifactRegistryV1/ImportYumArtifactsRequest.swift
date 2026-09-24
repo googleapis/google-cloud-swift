@@ -25,7 +25,7 @@ public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
   public var parent: Swift.String = Swift.String()
 
   /// The source location of the package binaries.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
       self.parent = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct ImportYumArtifactsRequest: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The source location of the package binaries.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage location where input content is located.
     indirect case gcsSource(ImportYumArtifactsGcsSource?)
   }

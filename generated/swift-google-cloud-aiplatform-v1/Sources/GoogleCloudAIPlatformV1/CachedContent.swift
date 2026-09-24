@@ -67,7 +67,7 @@
     public var encryptionSpec: EncryptionSpec? = nil
 
     /// Expiration time of the cached content.
-    public var expiration: OneOf_Expiration? = nil
+    public var expiration: ExpirationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -153,7 +153,7 @@
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
 
-      var expiration: OneOf_Expiration? = nil
+      var expiration: ExpirationOneOf? = nil
       let expirationCheckAndSet = {
         if expiration != nil {
           throw DecodingError.dataCorrupted(
@@ -314,7 +314,7 @@
     }
 
     /// Expiration time of the cached content.
-    public enum OneOf_Expiration: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Codable, Equatable, Sendable {
       /// Timestamp of when this resource is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.

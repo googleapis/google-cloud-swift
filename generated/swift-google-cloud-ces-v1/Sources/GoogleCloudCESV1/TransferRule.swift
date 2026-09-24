@@ -30,7 +30,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var direction: TransferRule.Direction = TransferRule.Direction()
 
   /// The rule type.
-  public var ruleType: OneOf_RuleType? = nil
+  public var ruleType: RuleTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,7 +78,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.direction = value
     }
 
-    var ruleType: OneOf_RuleType? = nil
+    var ruleType: RuleTypeOneOf? = nil
     let ruleTypeCheckAndSet = {
       if ruleType != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The condition to evaluate.
-    public var conditionType: OneOf_ConditionType? = nil
+    public var conditionType: ConditionTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -167,7 +167,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var conditionType: OneOf_ConditionType? = nil
+      var conditionType: ConditionTypeOneOf? = nil
       let conditionTypeCheckAndSet = {
         if conditionType != nil {
           throw DecodingError.dataCorrupted(
@@ -211,7 +211,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The condition to evaluate.
-    public enum OneOf_ConditionType: Codable, Equatable, Sendable {
+    public enum ConditionTypeOneOf: Codable, Equatable, Sendable {
       /// Optional. A rule that evaluates a session state condition.
       /// If the condition evaluates to true, the transfer occurs.
       indirect case expressionCondition(ExpressionCondition?)
@@ -417,7 +417,7 @@ public struct TransferRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule type.
-  public enum OneOf_RuleType: Codable, Equatable, Sendable {
+  public enum RuleTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. A rule that immediately transfers to the target agent when the
     /// condition is met.
     indirect case deterministicTransfer(TransferRule.DeterministicTransfer?)

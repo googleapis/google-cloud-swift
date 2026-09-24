@@ -66,7 +66,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Attempting to set a `Policy` with a `policy_type` not set will result in an
   /// `invalid_argument` error.
-  public var policyType: OneOf_PolicyType? = nil
+  public var policyType: PolicyTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -125,7 +125,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var policyType: OneOf_PolicyType? = nil
+    var policyType: PolicyTypeOneOf? = nil
     let policyTypeCheckAndSet = {
       if policyType != nil {
         throw DecodingError.dataCorrupted(
@@ -722,7 +722,7 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Attempting to set a `Policy` with a `policy_type` not set will result in an
   /// `invalid_argument` error.
-  public enum OneOf_PolicyType: Codable, Equatable, Sendable {
+  public enum PolicyTypeOneOf: Codable, Equatable, Sendable {
     /// List of values either allowed or disallowed.
     indirect case listPolicy(Policy.ListPolicy?)
     /// For boolean `Constraints`, whether to enforce the `Constraint` or not.

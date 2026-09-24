@@ -35,7 +35,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   /// The credentials required for Managed Rotation.
   /// Right now, only Cloud SQL Single User credentials are supported.
-  public var credentials: OneOf_Credentials? = nil
+  public var credentials: CredentialsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
       self.parent = value
     }
 
-    var credentials: OneOf_Credentials? = nil
+    var credentials: CredentialsOneOf? = nil
     let credentialsCheckAndSet = {
       if credentials != nil {
         throw DecodingError.dataCorrupted(
@@ -206,7 +206,7 @@ public struct EnableManagedRotationRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   /// The credentials required for Managed Rotation.
   /// Right now, only Cloud SQL Single User credentials are supported.
-  public enum OneOf_Credentials: Codable, Equatable, Sendable {
+  public enum CredentialsOneOf: Codable, Equatable, Sendable {
     /// Credentials required for Cloud SQL DB for Single user Managed Rotation.
     indirect case cloudSqlSingleUserCredentials(
       EnableManagedRotationRequest.CloudSQLSingleUserCredentials?)

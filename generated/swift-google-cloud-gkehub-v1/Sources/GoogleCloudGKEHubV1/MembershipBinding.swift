@@ -49,7 +49,7 @@ public struct MembershipBinding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// What type of membershipbinding this is.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,7 @@ public struct MembershipBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -158,7 +158,7 @@ public struct MembershipBinding: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// What type of membershipbinding this is.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// A Scope resource name in the format
     /// `projects/*/locations/*/scopes/*`.
     case scope(Swift.String)

@@ -212,7 +212,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Controls how instances are created, scaled, and reaped.
   ///
   /// Defaults to `AutomaticScaling`.
-  public var scaling: OneOf_Scaling? = nil
+  public var scaling: ScalingOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -428,7 +428,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
     self.vpcAccessConnector = try container.decodeIfPresent(
       VpcAccessConnector.self, forKey: .vpcAccessConnector)
 
-    var scaling: OneOf_Scaling? = nil
+    var scaling: ScalingOneOf? = nil
     let scalingCheckAndSet = {
       if scaling != nil {
         throw DecodingError.dataCorrupted(
@@ -516,7 +516,7 @@ public struct Version: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Controls how instances are created, scaled, and reaped.
   ///
   /// Defaults to `AutomaticScaling`.
-  public enum OneOf_Scaling: Codable, Equatable, Sendable {
+  public enum ScalingOneOf: Codable, Equatable, Sendable {
     /// Automatic scaling is based on request rate, response latencies, and other
     /// application metrics. Instances are dynamically created and destroyed as
     /// needed in order to handle traffic.

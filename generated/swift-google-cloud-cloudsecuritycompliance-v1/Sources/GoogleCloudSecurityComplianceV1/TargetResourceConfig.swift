@@ -23,7 +23,7 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The resource configuration for the target resource.
-  public var resourceConfig: OneOf_ResourceConfig? = nil
+  public var resourceConfig: ResourceConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var resourceConfig: OneOf_ResourceConfig? = nil
+    var resourceConfig: ResourceConfigOneOf? = nil
     let resourceConfigCheckAndSet = {
       if resourceConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct TargetResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The resource configuration for the target resource.
-  public enum OneOf_ResourceConfig: Codable, Equatable, Sendable {
+  public enum ResourceConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. The resource hierarchy node, in one of the following formats:
     ///
     /// - `organizations/{organizationID}`

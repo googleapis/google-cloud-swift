@@ -25,7 +25,7 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public var hostname: Swift.String = Swift.String()
 
   /// Possible types of authentication.
-  public var authentication: OneOf_Authentication? = nil
+  public var authentication: AuthenticationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       self.hostname = value
     }
 
-    var authentication: OneOf_Authentication? = nil
+    var authentication: AuthenticationOneOf? = nil
     let authenticationCheckAndSet = {
       if authentication != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct SalesforceSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible types of authentication.
-  public enum OneOf_Authentication: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// Input only. OAuthPasswordGrantCredentials auth.
     indirect case oauthPasswordGrantAuth(OAuthPasswordGrantCredentials?)
     /// Input only. OAuthJWTCredentials auth.

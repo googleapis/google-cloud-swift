@@ -99,7 +99,7 @@
 
       /// Filter contexts retrieved from the vector DB based on either vector
       /// distance or vector similarity.
-      public var vectorDbThreshold: OneOf_VectorDbThreshold? = nil
+      public var vectorDbThreshold: VectorDbThresholdOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -142,7 +142,7 @@
           self.metadataFilter = value
         }
 
-        var vectorDbThreshold: OneOf_VectorDbThreshold? = nil
+        var vectorDbThreshold: VectorDbThresholdOneOf? = nil
         let vectorDbThresholdCheckAndSet = {
           if vectorDbThreshold != nil {
             throw DecodingError.dataCorrupted(
@@ -188,7 +188,7 @@
 
       /// Filter contexts retrieved from the vector DB based on either vector
       /// distance or vector similarity.
-      public enum OneOf_VectorDbThreshold: Codable, Equatable, Sendable {
+      public enum VectorDbThresholdOneOf: Codable, Equatable, Sendable {
         /// Optional. Only returns contexts with vector distance smaller than the
         /// threshold.
         case vectorDistanceThreshold(Swift.Double)
@@ -213,7 +213,7 @@
       Sendable
     {
       /// Config options for ranking. Currently only Rank Service is supported.
-      public var rankingConfig: OneOf_RankingConfig? = nil
+      public var rankingConfig: RankingConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -251,7 +251,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var rankingConfig: OneOf_RankingConfig? = nil
+        var rankingConfig: RankingConfigOneOf? = nil
         let rankingConfigCheckAndSet = {
           if rankingConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -431,7 +431,7 @@
       }
 
       /// Config options for ranking. Currently only Rank Service is supported.
-      public enum OneOf_RankingConfig: Codable, Equatable, Sendable {
+      public enum RankingConfigOneOf: Codable, Equatable, Sendable {
         /// Optional. Config for Rank Service.
         indirect case rankService(RagRetrievalConfig.Ranking.RankService?)
         /// Optional. Config for LlmRanker.

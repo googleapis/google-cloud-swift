@@ -54,7 +54,7 @@
     public var features: [Fulfillment.Feature] = []
 
     /// Required. The fulfillment configuration.
-    public var fulfillment: OneOf_Fulfillment? = nil
+    public var fulfillment: FulfillmentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -110,7 +110,7 @@
         self.features = value
       }
 
-      var fulfillment: OneOf_Fulfillment? = nil
+      var fulfillment: FulfillmentOneOf? = nil
       let fulfillmentCheckAndSet = {
         if fulfillment != nil {
           throw DecodingError.dataCorrupted(
@@ -456,7 +456,7 @@
     }
 
     /// Required. The fulfillment configuration.
-    public enum OneOf_Fulfillment: Codable, Equatable, Sendable {
+    public enum FulfillmentOneOf: Codable, Equatable, Sendable {
       /// Configuration for a generic web service.
       indirect case genericWebService(Fulfillment.GenericWebService?)
     }

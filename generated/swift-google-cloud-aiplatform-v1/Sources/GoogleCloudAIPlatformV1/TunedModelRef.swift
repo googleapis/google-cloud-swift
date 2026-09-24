@@ -23,7 +23,7 @@
     Sendable
   {
     /// The Tuned Model Reference for the model.
-    public var tunedModelRef: OneOf_TunedModelRef? = nil
+    public var tunedModelRef: TunedModelRefOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var tunedModelRef: OneOf_TunedModelRef? = nil
+      var tunedModelRef: TunedModelRefOneOf? = nil
       let tunedModelRefCheckAndSet = {
         if tunedModelRef != nil {
           throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@
     }
 
     /// The Tuned Model Reference for the model.
-    public enum OneOf_TunedModelRef: Codable, Equatable, Sendable {
+    public enum TunedModelRefOneOf: Codable, Equatable, Sendable {
       /// Support migration from model registry.
       case tunedModel(Swift.String)
       /// Support migration from tuning job list page, from gemini-1.0-pro-002

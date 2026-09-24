@@ -170,7 +170,7 @@
       Sendable
     {
       /// Failure reason.
-      public var failure: OneOf_Failure? = nil
+      public var failure: FailureOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -206,7 +206,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var failure: OneOf_Failure? = nil
+        var failure: FailureOneOf? = nil
         let failureCheckAndSet = {
           if failure != nil {
             throw DecodingError.dataCorrupted(
@@ -315,7 +315,7 @@
       }
 
       /// Failure reason.
-      public enum OneOf_Failure: Codable, Equatable, Sendable {
+      public enum FailureOneOf: Codable, Equatable, Sendable {
         /// Failed due to insufficient quota.
         indirect case quotaFailure(TargetSite.FailureReason.QuotaFailure?)
       }

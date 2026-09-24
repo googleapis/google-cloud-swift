@@ -47,7 +47,7 @@
     /// Flow`][Agent.start_flow] in the agent. Otherwise, an error will be
     /// returned.
     ///
-    /// [Agent.start_flow]: <doc:Agent/OneOf_SessionEntryResource/startFlow(_:)>
+    /// [Agent.start_flow]: <doc:Agent/SessionEntryResourceOneOf/startFlow(_:)>
     public var versionConfigs: [Environment.VersionConfig] = []
 
     /// Output only. Update time of this environment.
@@ -327,8 +327,8 @@
       /// and
       /// [`service_directory`][google.cloud.dialogflow.cx.v3.Webhook.service_directory].
       ///
-      /// [google.cloud.dialogflow.cx.v3.Webhook.generic_web_service]: <doc:Webhook/OneOf_Webhook/genericWebService(_:)>
-      /// [google.cloud.dialogflow.cx.v3.Webhook.service_directory]: <doc:Webhook/OneOf_Webhook/serviceDirectory(_:)>
+      /// [google.cloud.dialogflow.cx.v3.Webhook.generic_web_service]: <doc:Webhook/WebhookOneOf/genericWebService(_:)>
+      /// [google.cloud.dialogflow.cx.v3.Webhook.service_directory]: <doc:Webhook/WebhookOneOf/serviceDirectory(_:)>
       public var webhookOverrides: [Webhook] = []
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

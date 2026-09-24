@@ -22,7 +22,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. Specify the input.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct GlossaryInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify the input.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Required. Google Cloud Storage location of glossary data.
     /// File format is determined based on the filename extension. API returns
     /// [google.rpc.Code.INVALID_ARGUMENT] for unsupported URI-s and file

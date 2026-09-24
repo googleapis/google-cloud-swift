@@ -52,7 +52,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Immutable. The scope of the certificate.
   public var scope: Certificate.Scope = Certificate.Scope()
 
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,7 +133,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.scope = value
     }
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -1217,7 +1217,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// If set, defines data of a self-managed certificate.
     indirect case selfManaged(Certificate.SelfManagedCertificate?)
     /// If set, contains configuration and state of a managed certificate.

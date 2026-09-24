@@ -98,7 +98,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// One of the fields in the following block will be set and intend to
   /// describe a value for 'path' field.
-  public var pathValue: OneOf_PathValue? = nil
+  public var pathValue: PathValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -180,7 +180,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.pathValueMatchers = value
     }
 
-    var pathValue: OneOf_PathValue? = nil
+    var pathValue: PathValueOneOf? = nil
     let pathValueCheckAndSet = {
       if pathValue != nil {
         throw DecodingError.dataCorrupted(
@@ -229,7 +229,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// One of the fields in the following block will be set and intend to
   /// describe a value for 'path' field.
-  public enum OneOf_PathValue: Codable, Equatable, Sendable {
+  public enum PathValueOneOf: Codable, Equatable, Sendable {
     /// Value for the `path` field. Will be set for actions:'add'/'replace'.
     /// Maybe set for action: 'test'. Either this or `value_matcher` will be set
     /// for 'test' operation. An exact match must be performed.

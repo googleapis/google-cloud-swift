@@ -31,7 +31,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
   public var requestedOptions: AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions? = nil
 
   /// Values associated with this metric.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
     self.requestedOptions = try container.decodeIfPresent(
       AnalyzeDataSourceRiskDetails.RequestedRiskAnalysisOptions.self, forKey: .requestedOptions)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -1650,7 +1650,7 @@ public struct AnalyzeDataSourceRiskDetails: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Values associated with this metric.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. Numerical stats result
     indirect case numericalStatsResult(AnalyzeDataSourceRiskDetails.NumericalStatsResult?)
     /// Output only. Categorical stats result

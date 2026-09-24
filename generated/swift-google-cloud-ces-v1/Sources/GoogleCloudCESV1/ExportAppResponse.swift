@@ -25,7 +25,7 @@ public struct ExportAppResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The exported app.
-  public var app: OneOf_App? = nil
+  public var app: AppOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct ExportAppResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var app: OneOf_App? = nil
+    var app: AppOneOf? = nil
     let appCheckAndSet = {
       if app != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct ExportAppResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The exported app.
-  public enum OneOf_App: Codable, Equatable, Sendable {
+  public enum AppOneOf: Codable, Equatable, Sendable {
     /// App folder compressed as a zip file.
     case appContent(Foundation.Data)
     /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI

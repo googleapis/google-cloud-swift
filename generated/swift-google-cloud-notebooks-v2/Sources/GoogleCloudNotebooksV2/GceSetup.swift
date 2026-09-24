@@ -71,7 +71,7 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
   public var gpuDriverConfig: GPUDriverConfig? = nil
 
   /// Type of the image; can be one of VM image, or container image.
-  public var image: OneOf_Image? = nil
+  public var image: ImageOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -171,7 +171,7 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
     self.gpuDriverConfig = try container.decodeIfPresent(
       GPUDriverConfig.self, forKey: .gpuDriverConfig)
 
-    var image: OneOf_Image? = nil
+    var image: ImageOneOf? = nil
     let imageCheckAndSet = {
       if image != nil {
         throw DecodingError.dataCorrupted(
@@ -225,7 +225,7 @@ public struct GceSetup: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the image; can be one of VM image, or container image.
-  public enum OneOf_Image: Codable, Equatable, Sendable {
+  public enum ImageOneOf: Codable, Equatable, Sendable {
     /// Optional. Use a Compute Engine VM image to start the notebook instance.
     indirect case vmImage(VmImage?)
     /// Optional. Use a container image to start the notebook instance.

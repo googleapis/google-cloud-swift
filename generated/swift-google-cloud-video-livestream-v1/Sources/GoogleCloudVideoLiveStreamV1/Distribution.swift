@@ -45,7 +45,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   public var error: GoogleRpc.Status? = nil
 
   /// Configurations for the output endpoint by streaming protocols.
-  public var endpoint: OneOf_Endpoint? = nil
+  public var endpoint: EndpointOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
 
-    var endpoint: OneOf_Endpoint? = nil
+    var endpoint: EndpointOneOf? = nil
     let endpointCheckAndSet = {
       if endpoint != nil {
         throw DecodingError.dataCorrupted(
@@ -284,7 +284,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configurations for the output endpoint by streaming protocols.
-  public enum OneOf_Endpoint: Codable, Equatable, Sendable {
+  public enum EndpointOneOf: Codable, Equatable, Sendable {
     /// Output endpoint using SRT_PUSH.
     indirect case srtPush(SrtPushOutputEndpoint?)
     /// Output endpoint using RTMP_PUSH.

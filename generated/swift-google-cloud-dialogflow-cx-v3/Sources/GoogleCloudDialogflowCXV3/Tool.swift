@@ -42,7 +42,7 @@
     public var toolType: Tool.ToolType = Tool.ToolType()
 
     /// Specification of the Tool.
-    public var specification: OneOf_Specification? = nil
+    public var specification: SpecificationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@
         self.toolType = value
       }
 
-      var specification: OneOf_Specification? = nil
+      var specification: SpecificationOneOf? = nil
       let specificationCheckAndSet = {
         if specification != nil {
           throw DecodingError.dataCorrupted(
@@ -171,7 +171,7 @@
       public var serviceDirectoryConfig: Tool.ServiceDirectoryConfig? = nil
 
       /// Schema representation.
-      public var schema: OneOf_Schema? = nil
+      public var schema: SchemaOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -218,7 +218,7 @@
         self.serviceDirectoryConfig = try container.decodeIfPresent(
           Tool.ServiceDirectoryConfig.self, forKey: .serviceDirectoryConfig)
 
-        var schema: OneOf_Schema? = nil
+        var schema: SchemaOneOf? = nil
         let schemaCheckAndSet = {
           if schema != nil {
             throw DecodingError.dataCorrupted(
@@ -256,7 +256,7 @@
       }
 
       /// Schema representation.
-      public enum OneOf_Schema: Codable, Equatable, Sendable {
+      public enum SchemaOneOf: Codable, Equatable, Sendable {
         /// Required. The OpenAPI schema specified as a text.
         case textSchema(Swift.String)
       }
@@ -500,7 +500,7 @@
       Sendable
     {
       /// The auth configuration.
-      public var authConfig: OneOf_AuthConfig? = nil
+      public var authConfig: AuthConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -544,7 +544,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var authConfig: OneOf_AuthConfig? = nil
+        var authConfig: AuthConfigOneOf? = nil
         let authConfigCheckAndSet = {
           if authConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -1439,7 +1439,7 @@
       }
 
       /// The auth configuration.
-      public enum OneOf_AuthConfig: Codable, Equatable, Sendable {
+      public enum AuthConfigOneOf: Codable, Equatable, Sendable {
         /// Config for API key auth.
         indirect case apiKeyConfig(Tool.Authentication.ApiKeyConfig?)
         /// Config for OAuth.
@@ -1816,7 +1816,7 @@
     }
 
     /// Specification of the Tool.
-    public enum OneOf_Specification: Codable, Equatable, Sendable {
+    public enum SpecificationOneOf: Codable, Equatable, Sendable {
       /// OpenAPI specification of the Tool.
       indirect case openApiSpec(Tool.OpenApiTool?)
       /// Data store search tool specification.

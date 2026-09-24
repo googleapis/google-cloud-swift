@@ -36,7 +36,7 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. A full name, SQL name, or a fully qualified name of a
   /// Google Cloud Platform resource.
-  public var targetName: OneOf_TargetName? = nil
+  public var targetName: TargetNameOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.location = value
     }
 
-    var targetName: OneOf_TargetName? = nil
+    var targetName: TargetNameOneOf? = nil
     let targetNameCheckAndSet = {
       if targetName != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct LookupEntryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. A full name, SQL name, or a fully qualified name of a
   /// Google Cloud Platform resource.
-  public enum OneOf_TargetName: Codable, Equatable, Sendable {
+  public enum TargetNameOneOf: Codable, Equatable, Sendable {
     /// The full name of the Google Cloud Platform resource the Data Catalog
     /// entry represents. For more information, see [Full Resource Name]
     /// (https://cloud.google.com/apis/design/resource_names#full_resource_name).

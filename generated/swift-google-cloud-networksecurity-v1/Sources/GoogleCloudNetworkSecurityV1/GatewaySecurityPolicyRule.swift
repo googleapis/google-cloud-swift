@@ -56,7 +56,7 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleWKT._AnyPacka
   /// references a TLSInspectionConfig.
   public var tlsInspectionEnabled: Swift.Bool = Swift.Bool()
 
-  public var profile: OneOf_Profile? = nil
+  public var profile: ProfileOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleWKT._AnyPacka
       self.tlsInspectionEnabled = value
     }
 
-    var profile: OneOf_Profile? = nil
+    var profile: ProfileOneOf? = nil
     let profileCheckAndSet = {
       if profile != nil {
         throw DecodingError.dataCorrupted(
@@ -297,7 +297,7 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OneOf_Profile: Codable, Equatable, Sendable {
+  public enum ProfileOneOf: Codable, Equatable, Sendable {
     /// Required. Profile which tells what the primitive action should be.
     case basicProfile(GatewaySecurityPolicyRule.BasicProfile)
   }

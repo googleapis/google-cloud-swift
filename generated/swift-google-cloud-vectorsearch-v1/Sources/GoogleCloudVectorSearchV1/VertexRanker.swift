@@ -34,7 +34,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The record specification for ranking. At least one record spec must be
   /// set.
-  public var recordSpec: OneOf_RecordSpec? = nil
+  public var recordSpec: RecordSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
       self.topN = value
     }
 
-    var recordSpec: OneOf_RecordSpec? = nil
+    var recordSpec: RecordSpecOneOf? = nil
     let recordSpecCheckAndSet = {
       if recordSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -206,7 +206,7 @@ public struct VertexRanker: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The record specification for ranking. At least one record spec must be
   /// set.
-  public enum OneOf_RecordSpec: Codable, Equatable, Sendable {
+  public enum RecordSpecOneOf: Codable, Equatable, Sendable {
     /// The record spec for text search.
     indirect case textRecordSpec(VertexRanker.TextRecordSpec?)
   }

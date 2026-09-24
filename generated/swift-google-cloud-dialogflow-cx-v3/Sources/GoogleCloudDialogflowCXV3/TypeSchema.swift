@@ -24,7 +24,7 @@
     Sendable
   {
     /// The encapsulated schema.
-    public var schema: OneOf_Schema? = nil
+    public var schema: SchemaOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var schema: OneOf_Schema? = nil
+      var schema: SchemaOneOf? = nil
       let schemaCheckAndSet = {
         if schema != nil {
           throw DecodingError.dataCorrupted(
@@ -184,7 +184,7 @@
     }
 
     /// The encapsulated schema.
-    public enum OneOf_Schema: Codable, Equatable, Sendable {
+    public enum SchemaOneOf: Codable, Equatable, Sendable {
       /// Set if this is an inline schema definition.
       indirect case inlineSchema(InlineSchema?)
       /// Set if this is a schema reference.

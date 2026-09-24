@@ -27,7 +27,7 @@
     public var disableAttribution: Swift.Bool = Swift.Bool()
 
     /// The source of the retrieval.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@
         self.disableAttribution = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -121,7 +121,7 @@
     }
 
     /// The source of the retrieval.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Set to use data source powered by Vertex AI Search.
       indirect case vertexAiSearch(VertexAISearch?)
       /// Set to use data source powered by Vertex RAG store.

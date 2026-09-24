@@ -21,7 +21,7 @@ import Foundation
 public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var item: OneOf_Item? = nil
+  public var item: ItemOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var item: OneOf_Item? = nil
+    var item: ItemOneOf? = nil
     let itemCheckAndSet = {
       if item != nil {
         throw DecodingError.dataCorrupted(
@@ -91,7 +91,7 @@ public struct DumpItem: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Item: Codable, Equatable, Sendable {
+  public enum ItemOneOf: Codable, Equatable, Sendable {
     /// Entry and its tags.
     indirect case taggedEntry(TaggedEntry?)
   }

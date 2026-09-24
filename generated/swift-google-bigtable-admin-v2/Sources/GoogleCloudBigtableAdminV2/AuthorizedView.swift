@@ -39,7 +39,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
   public var deletionProtection: Swift.Bool = Swift.Bool()
 
   /// The type of this AuthorizedView.
-  public var authorizedView: OneOf_AuthorizedView? = nil
+  public var authorizedView: AuthorizedViewOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
       self.deletionProtection = value
     }
 
-    var authorizedView: OneOf_AuthorizedView? = nil
+    var authorizedView: AuthorizedViewOneOf? = nil
     let authorizedViewCheckAndSet = {
       if authorizedView != nil {
         throw DecodingError.dataCorrupted(
@@ -419,7 +419,7 @@ public struct AuthorizedView: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of this AuthorizedView.
-  public enum OneOf_AuthorizedView: Codable, Equatable, Sendable {
+  public enum AuthorizedViewOneOf: Codable, Equatable, Sendable {
     /// An AuthorizedView permitting access to an explicit subset of a Table.
     indirect case subsetView(AuthorizedView.SubsetView?)
   }

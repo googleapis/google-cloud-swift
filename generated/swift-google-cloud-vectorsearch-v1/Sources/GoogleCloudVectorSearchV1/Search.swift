@@ -22,7 +22,7 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of search to perform.
-  public var searchType: OneOf_SearchType? = nil
+  public var searchType: SearchTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var searchType: OneOf_SearchType? = nil
+    var searchType: SearchTypeOneOf? = nil
     let searchTypeCheckAndSet = {
       if searchType != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct Search: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of search to perform.
-  public enum OneOf_SearchType: Codable, Equatable, Sendable {
+  public enum SearchTypeOneOf: Codable, Equatable, Sendable {
     /// A vector-based search.
     indirect case vectorSearch(VectorSearch?)
     /// A semantic search.

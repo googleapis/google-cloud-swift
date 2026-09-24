@@ -99,7 +99,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configuration properties specific to the underlying metastore service
   /// technology (the software that serves metastore queries).
-  public var metastoreConfig: OneOf_MetastoreConfig? = nil
+  public var metastoreConfig: MetastoreConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -228,7 +228,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       TelemetryConfig.self, forKey: .telemetryConfig)
     self.scalingConfig = try container.decodeIfPresent(ScalingConfig.self, forKey: .scalingConfig)
 
-    var metastoreConfig: OneOf_MetastoreConfig? = nil
+    var metastoreConfig: MetastoreConfigOneOf? = nil
     let metastoreConfigCheckAndSet = {
       if metastoreConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -800,7 +800,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configuration properties specific to the underlying metastore service
   /// technology (the software that serves metastore queries).
-  public enum OneOf_MetastoreConfig: Codable, Equatable, Sendable {
+  public enum MetastoreConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration information specific to running Hive metastore
     /// software as the metastore service.
     indirect case hiveMetastoreConfig(HiveMetastoreConfig?)

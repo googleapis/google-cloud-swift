@@ -24,7 +24,7 @@ public struct Digest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The message digest.
-  public var digest: OneOf_Digest? = nil
+  public var digest: DigestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct Digest: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var digest: OneOf_Digest? = nil
+    var digest: DigestOneOf? = nil
     let digestCheckAndSet = {
       if digest != nil {
         throw DecodingError.dataCorrupted(
@@ -116,7 +116,7 @@ public struct Digest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The message digest.
-  public enum OneOf_Digest: Codable, Equatable, Sendable {
+  public enum DigestOneOf: Codable, Equatable, Sendable {
     /// A message digest produced with the SHA-256 algorithm.
     case sha256(Foundation.Data)
     /// A message digest produced with the SHA-384 algorithm.

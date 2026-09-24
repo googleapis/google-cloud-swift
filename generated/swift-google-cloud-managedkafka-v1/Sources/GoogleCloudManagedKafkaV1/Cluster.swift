@@ -53,7 +53,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public var tlsConfig: TlsConfig? = nil
 
   /// Platform specific configuration properties for a Kafka cluster.
-  public var platformConfig: OneOf_PlatformConfig? = nil
+  public var platformConfig: PlatformConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.tlsConfig = try container.decodeIfPresent(TlsConfig.self, forKey: .tlsConfig)
 
-    var platformConfig: OneOf_PlatformConfig? = nil
+    var platformConfig: PlatformConfigOneOf? = nil
     let platformConfigCheckAndSet = {
       if platformConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -299,7 +299,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Platform specific configuration properties for a Kafka cluster.
-  public enum OneOf_PlatformConfig: Codable, Equatable, Sendable {
+  public enum PlatformConfigOneOf: Codable, Equatable, Sendable {
     /// Required. Configuration properties for a Kafka cluster deployed to Google
     /// Cloud Platform.
     indirect case gcpConfig(GcpConfig?)

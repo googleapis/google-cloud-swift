@@ -123,7 +123,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   public var requestedNotBeforeTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The config used to create a signed X.509 certificate.
-  public var certificateConfig: OneOf_CertificateConfig? = nil
+  public var certificateConfig: CertificateConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -223,7 +223,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     self.requestedNotBeforeTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .requestedNotBeforeTime)
 
-    var certificateConfig: OneOf_CertificateConfig? = nil
+    var certificateConfig: CertificateConfigOneOf? = nil
     let certificateConfigCheckAndSet = {
       if certificateConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -364,7 +364,7 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The config used to create a signed X.509 certificate.
-  public enum OneOf_CertificateConfig: Codable, Equatable, Sendable {
+  public enum CertificateConfigOneOf: Codable, Equatable, Sendable {
     /// Immutable. A pem-encoded X.509 certificate signing request (CSR).
     case pemCsr(Swift.String)
     /// Immutable. A description of the certificate and key that does not require

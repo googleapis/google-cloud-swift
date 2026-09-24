@@ -41,7 +41,7 @@
     public var languageCode: Swift.String = Swift.String()
 
     /// Required. The input specification.
-    public var input: OneOf_Input? = nil
+    public var input: InputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@
         self.languageCode = value
       }
 
-      var input: OneOf_Input? = nil
+      var input: InputOneOf? = nil
       let inputCheckAndSet = {
         if input != nil {
           throw DecodingError.dataCorrupted(
@@ -155,7 +155,7 @@
     }
 
     /// Required. The input specification.
-    public enum OneOf_Input: Codable, Equatable, Sendable {
+    public enum InputOneOf: Codable, Equatable, Sendable {
       /// The natural language text to be processed.
       indirect case text(TextInput?)
       /// The intent to be triggered.

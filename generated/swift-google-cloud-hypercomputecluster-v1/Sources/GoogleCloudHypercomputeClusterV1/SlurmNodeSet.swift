@@ -61,7 +61,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
   /// with default values.
   ///
   /// [google.cloud.hypercomputecluster.v1.ComputeInstanceSlurmNodeSet]: <doc:ComputeInstanceSlurmNodeSet>
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,7 +122,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxDynamicNodeCount = value
     }
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -169,7 +169,7 @@ public struct SlurmNodeSet: Codable, Equatable, GoogleWKT._AnyPackable,
   /// with default values.
   ///
   /// [google.cloud.hypercomputecluster.v1.ComputeInstanceSlurmNodeSet]: <doc:ComputeInstanceSlurmNodeSet>
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, indicates that the nodeset should be backed by Compute
     /// Engine instances.
     indirect case computeInstance(ComputeInstanceSlurmNodeSet?)

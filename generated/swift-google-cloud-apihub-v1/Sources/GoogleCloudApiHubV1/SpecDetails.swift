@@ -25,7 +25,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The description of the spec.
   public var description: Swift.String = Swift.String()
 
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct SpecDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Additional details apart from `OperationDetails` parsed from
     /// an OpenAPI spec. The OperationDetails parsed from the spec can be
     /// obtained by using

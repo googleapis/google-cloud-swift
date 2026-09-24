@@ -23,7 +23,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Represents the types of existing conditional statements.
-  public var condition: OneOf_Condition? = nil
+  public var condition: ConditionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var condition: OneOf_Condition? = nil
+    var condition: ConditionOneOf? = nil
     let conditionCheckAndSet = {
       if condition != nil {
         throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@ public struct RepricingCondition: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Represents the types of existing conditional statements.
-  public enum OneOf_Condition: Codable, Equatable, Sendable {
+  public enum ConditionOneOf: Codable, Equatable, Sendable {
     /// SKU Group condition for override.
     indirect case skuGroupCondition(SkuGroupCondition?)
   }

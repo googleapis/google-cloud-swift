@@ -35,7 +35,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The first filter containing a pattern that matches a file store will be
   /// used.
-  public var pattern: OneOf_Pattern? = nil
+  public var pattern: PatternOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.includeTags = try container.decodeIfPresent(TagFilters.self, forKey: .includeTags)
 
-    var pattern: OneOf_Pattern? = nil
+    var pattern: PatternOneOf? = nil
     let patternCheckAndSet = {
       if pattern != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct FileStoreCollection: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The first filter containing a pattern that matches a file store will be
   /// used.
-  public enum OneOf_Pattern: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Codable, Equatable, Sendable {
     /// Optional. A collection of regular expressions to match a file store
     /// against.
     indirect case includeRegexes(FileStoreRegexes?)

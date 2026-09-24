@@ -26,7 +26,7 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var likelihoodAdjustment: CustomInfoType.DetectionRule.LikelihoodAdjustment? = nil
 
   /// Condition under which the adjustment rule is applied.
-  public var conditions: OneOf_Conditions? = nil
+  public var conditions: ConditionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
     self.likelihoodAdjustment = try container.decodeIfPresent(
       CustomInfoType.DetectionRule.LikelihoodAdjustment.self, forKey: .likelihoodAdjustment)
 
-    var conditions: OneOf_Conditions? = nil
+    var conditions: ConditionsOneOf? = nil
     let conditionsCheckAndSet = {
       if conditions != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct AdjustmentRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Condition under which the adjustment rule is applied.
-  public enum OneOf_Conditions: Codable, Equatable, Sendable {
+  public enum ConditionsOneOf: Codable, Equatable, Sendable {
     /// Set of infoTypes for which findings would affect this rule.
     indirect case adjustByMatchingInfoTypes(AdjustByMatchingInfoTypes?)
     /// AdjustmentRule condition for image findings.

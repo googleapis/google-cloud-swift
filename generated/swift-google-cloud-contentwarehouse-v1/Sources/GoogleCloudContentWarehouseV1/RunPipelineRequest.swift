@@ -30,7 +30,7 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var requestMetadata: RequestMetadata? = nil
 
   /// The predefined pipelines.
-  public var pipeline: OneOf_Pipeline? = nil
+  public var pipeline: PipelineOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.requestMetadata = try container.decodeIfPresent(
       RequestMetadata.self, forKey: .requestMetadata)
 
-    var pipeline: OneOf_Pipeline? = nil
+    var pipeline: PipelineOneOf? = nil
     let pipelineCheckAndSet = {
       if pipeline != nil {
         throw DecodingError.dataCorrupted(
@@ -143,7 +143,7 @@ public struct RunPipelineRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The predefined pipelines.
-  public enum OneOf_Pipeline: Codable, Equatable, Sendable {
+  public enum PipelineOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage ingestion pipeline.
     indirect case gcsIngestPipeline(GcsIngestPipeline?)
     /// Use DocAI processors to process documents in Cloud Storage and ingest

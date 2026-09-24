@@ -64,7 +64,7 @@
     public var importSchemaUri: Swift.String = Swift.String()
 
     /// The source of the input.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -119,7 +119,7 @@
         self.importSchemaUri = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -157,7 +157,7 @@
     }
 
     /// The source of the input.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Google Cloud Storage location for the input content.
       indirect case gcsSource(GcsSource?)
     }

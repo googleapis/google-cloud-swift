@@ -55,10 +55,10 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var clearOverridesFieldMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The target environment for the restore operation.
-  public var targetEnvironment: OneOf_TargetEnvironment? = nil
+  public var targetEnvironment: TargetEnvironmentOneOf? = nil
 
   /// The property overrides for the instance being restored.
-  public var instanceProperties: OneOf_InstanceProperties? = nil
+  public var instanceProperties: InstancePropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,7 +118,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.clearOverridesFieldMask = try container.decodeIfPresent(
       GoogleWKT.WKTFieldMask.self, forKey: .clearOverridesFieldMask)
 
-    var targetEnvironment: OneOf_TargetEnvironment? = nil
+    var targetEnvironment: TargetEnvironmentOneOf? = nil
     let targetEnvironmentCheckAndSet = {
       if targetEnvironment != nil {
         throw DecodingError.dataCorrupted(
@@ -146,7 +146,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.targetEnvironment = targetEnvironment
 
-    var instanceProperties: OneOf_InstanceProperties? = nil
+    var instanceProperties: InstancePropertiesOneOf? = nil
     let instancePropertiesCheckAndSet = {
       if instanceProperties != nil {
         throw DecodingError.dataCorrupted(
@@ -205,7 +205,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The target environment for the restore operation.
-  public enum OneOf_TargetEnvironment: Codable, Equatable, Sendable {
+  public enum TargetEnvironmentOneOf: Codable, Equatable, Sendable {
     /// Compute Engine target environment to be used during restore.
     indirect case computeInstanceTargetEnvironment(ComputeInstanceTargetEnvironment?)
     /// Disk target environment to be used during restore.
@@ -215,7 +215,7 @@ public struct RestoreBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The property overrides for the instance being restored.
-  public enum OneOf_InstanceProperties: Codable, Equatable, Sendable {
+  public enum InstancePropertiesOneOf: Codable, Equatable, Sendable {
     /// Compute Engine instance properties to be overridden during restore.
     indirect case computeInstanceRestoreProperties(ComputeInstanceRestoreProperties?)
     /// Disk properties to be overridden during restore.

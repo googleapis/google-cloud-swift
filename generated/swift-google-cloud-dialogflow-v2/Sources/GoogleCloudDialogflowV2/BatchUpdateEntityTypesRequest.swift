@@ -45,7 +45,7 @@
     ///
     /// *   If `name` is specified, we update an existing entity type.
     /// *   If `name` is not specified, we create a new entity type.
-    public var entityTypeBatch: OneOf_EntityTypeBatch? = nil
+    public var entityTypeBatch: EntityTypeBatchOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@
       self.updateMask = try container.decodeIfPresent(
         GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
 
-      var entityTypeBatch: OneOf_EntityTypeBatch? = nil
+      var entityTypeBatch: EntityTypeBatchOneOf? = nil
       let entityTypeBatchCheckAndSet = {
         if entityTypeBatch != nil {
           throw DecodingError.dataCorrupted(
@@ -149,7 +149,7 @@
     ///
     /// *   If `name` is specified, we update an existing entity type.
     /// *   If `name` is not specified, we create a new entity type.
-    public enum OneOf_EntityTypeBatch: Codable, Equatable, Sendable {
+    public enum EntityTypeBatchOneOf: Codable, Equatable, Sendable {
       /// The URI to a Google Cloud Storage file containing entity types to update
       /// or create. The file format can either be a serialized proto (of
       /// EntityBatch type) or a JSON object. Note: The URI must start with

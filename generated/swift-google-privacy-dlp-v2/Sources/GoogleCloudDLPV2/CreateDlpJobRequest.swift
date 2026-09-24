@@ -51,7 +51,7 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var locationId: Swift.String = Swift.String()
 
   /// The configuration details for the specific type of job to run.
-  public var job: OneOf_Job? = nil
+  public var job: JobOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,7 +104,7 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.locationId = value
     }
 
-    var job: OneOf_Job? = nil
+    var job: JobOneOf? = nil
     let jobCheckAndSet = {
       if job != nil {
         throw DecodingError.dataCorrupted(
@@ -147,7 +147,7 @@ public struct CreateDlpJobRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration details for the specific type of job to run.
-  public enum OneOf_Job: Codable, Equatable, Sendable {
+  public enum JobOneOf: Codable, Equatable, Sendable {
     /// An inspection job scans a storage repository for InfoTypes.
     indirect case inspectJob(InspectJobConfig?)
     /// A risk analysis job calculates re-identification risk metrics for a

@@ -36,7 +36,7 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Label type.
-  public var labelType: OneOf_LabelType? = nil
+  public var labelType: LabelTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var labelType: OneOf_LabelType? = nil
+    var labelType: LabelTypeOneOf? = nil
     let labelTypeCheckAndSet = {
       if labelType != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct FeedbackLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Label type.
-  public enum OneOf_LabelType: Codable, Equatable, Sendable {
+  public enum LabelTypeOneOf: Codable, Equatable, Sendable {
     /// String label.
     case label(Swift.String)
     /// QaAnswer label.

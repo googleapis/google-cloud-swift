@@ -59,7 +59,7 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var gcsRepositorySnapshotMetadata: GcsRepositorySnapshotMetadata? = nil
 
   /// The source of the compilation result.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -146,7 +146,7 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     self.gcsRepositorySnapshotMetadata = try container.decodeIfPresent(
       GcsRepositorySnapshotMetadata.self, forKey: .gcsRepositorySnapshotMetadata)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -298,7 +298,7 @@ public struct CompilationResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the compilation result.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Immutable. Git commit/tag/branch name at which the repository should be
     /// compiled. Must exist in the remote repository. Examples:
     /// - a commit SHA: `12ade345`

@@ -53,11 +53,11 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// default to allow requests only from the Pub/Sub system, for example.
   /// This field is optional and should be set only by users interested in
   /// authenticated push.
-  public var authenticationMethod: OneOf_AuthenticationMethod? = nil
+  public var authenticationMethod: AuthenticationMethodOneOf? = nil
 
   /// The format of the delivered message to the push endpoint is defined by
   /// the chosen wrapper. When unset, `PubsubWrapper` is used.
-  public var wrapper: OneOf_Wrapper? = nil
+  public var wrapper: WrapperOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.attributes = value
     }
 
-    var authenticationMethod: OneOf_AuthenticationMethod? = nil
+    var authenticationMethod: AuthenticationMethodOneOf? = nil
     let authenticationMethodCheckAndSet = {
       if authenticationMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.authenticationMethod = authenticationMethod
 
-    var wrapper: OneOf_Wrapper? = nil
+    var wrapper: WrapperOneOf? = nil
     let wrapperCheckAndSet = {
       if wrapper != nil {
         throw DecodingError.dataCorrupted(
@@ -400,7 +400,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// default to allow requests only from the Pub/Sub system, for example.
   /// This field is optional and should be set only by users interested in
   /// authenticated push.
-  public enum OneOf_AuthenticationMethod: Codable, Equatable, Sendable {
+  public enum AuthenticationMethodOneOf: Codable, Equatable, Sendable {
     /// Optional. If specified, Pub/Sub will generate and attach an OIDC JWT
     /// token as an `Authorization` header in the HTTP request for every pushed
     /// message.
@@ -409,7 +409,7 @@ public struct PushConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The format of the delivered message to the push endpoint is defined by
   /// the chosen wrapper. When unset, `PubsubWrapper` is used.
-  public enum OneOf_Wrapper: Codable, Equatable, Sendable {
+  public enum WrapperOneOf: Codable, Equatable, Sendable {
     /// Optional. When set, the payload to the push endpoint is in the form of
     /// the JSON representation of a PubsubMessage
     /// (https://cloud.google.com/pubsub/docs/reference/rpc/google.pubsub.v1#pubsubmessage).

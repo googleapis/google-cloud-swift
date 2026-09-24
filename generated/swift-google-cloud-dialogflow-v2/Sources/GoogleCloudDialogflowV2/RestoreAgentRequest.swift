@@ -30,7 +30,7 @@
     public var parent: Swift.String = Swift.String()
 
     /// Required. The agent to restore.
-    public var agent: OneOf_Agent? = nil
+    public var agent: AgentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@
         self.parent = value
       }
 
-      var agent: OneOf_Agent? = nil
+      var agent: AgentOneOf? = nil
       let agentCheckAndSet = {
         if agent != nil {
           throw DecodingError.dataCorrupted(
@@ -116,7 +116,7 @@
     }
 
     /// Required. The agent to restore.
-    public enum OneOf_Agent: Codable, Equatable, Sendable {
+    public enum AgentOneOf: Codable, Equatable, Sendable {
       /// The URI to a Google Cloud Storage file containing the agent to restore.
       /// Note: The URI must start with "gs://".
       ///

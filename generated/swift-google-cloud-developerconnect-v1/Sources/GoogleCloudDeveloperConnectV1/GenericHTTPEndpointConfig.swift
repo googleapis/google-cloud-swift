@@ -37,7 +37,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The authentication mechanism to use for requests to the HTTP service
   /// provider.
-  public var authentication: OneOf_Authentication? = nil
+  public var authentication: AuthenticationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,7 +89,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
       self.sslCaCertificate = value
     }
 
-    var authentication: OneOf_Authentication? = nil
+    var authentication: AuthenticationOneOf? = nil
     let authenticationCheckAndSet = {
       if authentication != nil {
         throw DecodingError.dataCorrupted(
@@ -143,7 +143,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     public var username: Swift.String = Swift.String()
 
     /// The password to authenticate as.
-    public var password: OneOf_Password? = nil
+    public var password: PasswordOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -184,7 +184,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
         self.username = value
       }
 
-      var password: OneOf_Password? = nil
+      var password: PasswordOneOf? = nil
       let passwordCheckAndSet = {
         if password != nil {
           throw DecodingError.dataCorrupted(
@@ -222,7 +222,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The password to authenticate as.
-    public enum OneOf_Password: Codable, Equatable, Sendable {
+    public enum PasswordOneOf: Codable, Equatable, Sendable {
       /// The password SecretManager secret version to authenticate as.
       case passwordSecretVersion(Swift.String)
     }
@@ -244,7 +244,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     Sendable
   {
     /// The token to authenticate as.
-    public var token: OneOf_Token? = nil
+    public var token: TokenOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -280,7 +280,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var token: OneOf_Token? = nil
+      var token: TokenOneOf? = nil
       let tokenCheckAndSet = {
         if token != nil {
           throw DecodingError.dataCorrupted(
@@ -317,7 +317,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The token to authenticate as.
-    public enum OneOf_Token: Codable, Equatable, Sendable {
+    public enum TokenOneOf: Codable, Equatable, Sendable {
       /// Optional. The token SecretManager secret version to authenticate as.
       case tokenSecretVersion(Swift.String)
     }
@@ -336,7 +336,7 @@ public struct GenericHTTPEndpointConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The authentication mechanism to use for requests to the HTTP service
   /// provider.
-  public enum OneOf_Authentication: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// Optional. Basic authentication with username and password.
     indirect case basicAuthentication(GenericHTTPEndpointConfig.BasicAuthentication?)
     /// Optional. Bearer token authentication with a token.

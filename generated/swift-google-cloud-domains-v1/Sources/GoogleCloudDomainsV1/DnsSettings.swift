@@ -26,7 +26,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public var glueRecords: [DnsSettings.GlueRecord] = []
 
   /// The DNS provider of the registration.
-  public var dnsProvider: OneOf_DnsProvider? = nil
+  public var dnsProvider: DnsProviderOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       self.glueRecords = value
     }
 
-    var dnsProvider: OneOf_DnsProvider? = nil
+    var dnsProvider: DnsProviderOneOf? = nil
     let dnsProviderCheckAndSet = {
       if dnsProvider != nil {
         throw DecodingError.dataCorrupted(
@@ -966,7 +966,7 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The DNS provider of the registration.
-  public enum OneOf_DnsProvider: Codable, Equatable, Sendable {
+  public enum DnsProviderOneOf: Codable, Equatable, Sendable {
     /// An arbitrary DNS provider identified by its name servers.
     indirect case customDns(DnsSettings.CustomDns?)
     /// The free DNS zone provided by

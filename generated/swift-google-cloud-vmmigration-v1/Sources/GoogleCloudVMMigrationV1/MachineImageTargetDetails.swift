@@ -71,7 +71,7 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
   /// ignored for machine image import.
   public var networkInterfaces: [NetworkInterface] = []
 
-  public var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
+  public var osAdaptationConfig: OsAdaptationConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -168,7 +168,7 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
       self.networkInterfaces = value
     }
 
-    var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
+    var osAdaptationConfig: OsAdaptationConfigOneOf? = nil
     let osAdaptationConfigCheckAndSet = {
       if osAdaptationConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -224,7 +224,7 @@ public struct MachineImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OneOf_OsAdaptationConfig: Codable, Equatable, Sendable {
+  public enum OsAdaptationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Use to set the parameters relevant for the OS adaptation
     /// process.
     indirect case osAdaptationParameters(ImageImportOsAdaptationParameters?)

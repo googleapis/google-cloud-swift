@@ -33,7 +33,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var fileRotationInterval: GoogleWKT.WKTDuration? = nil
 
   /// File Format that the data should be written in.
-  public var fileFormat: OneOf_FileFormat? = nil
+  public var fileFormat: FileFormatOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.fileRotationInterval = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .fileRotationInterval)
 
-    var fileFormat: OneOf_FileFormat? = nil
+    var fileFormat: FileFormatOneOf? = nil
     let fileFormatCheckAndSet = {
       if fileFormat != nil {
         throw DecodingError.dataCorrupted(
@@ -132,7 +132,7 @@ public struct GcsDestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// File Format that the data should be written in.
-  public enum OneOf_FileFormat: Codable, Equatable, Sendable {
+  public enum FileFormatOneOf: Codable, Equatable, Sendable {
     /// AVRO file format configuration.
     indirect case avroFileFormat(AvroFileFormat?)
     /// JSON file format configuration.

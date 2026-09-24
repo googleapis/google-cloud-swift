@@ -48,10 +48,10 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Only returned in `GetContent` requests and not in `ListContent` request.
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   /// Types of content
-  public var content: OneOf_Content? = nil
+  public var content: ContentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -125,7 +125,7 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.data = data
 
-    var content: OneOf_Content? = nil
+    var content: ContentOneOf? = nil
     let contentCheckAndSet = {
       if content != nil {
         throw DecodingError.dataCorrupted(
@@ -554,13 +554,13 @@ public struct Content: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Only returned in `GetContent` requests and not in `ListContent` request.
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// Required. Content data in string format.
     case dataText(Swift.String)
   }
 
   /// Types of content
-  public enum OneOf_Content: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Codable, Equatable, Sendable {
     /// Sql Script related configurations.
     indirect case sqlScript(Content.SqlScript?)
     /// Notebook related configurations.

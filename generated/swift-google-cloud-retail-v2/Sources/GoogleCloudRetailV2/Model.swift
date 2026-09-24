@@ -434,7 +434,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct ModelFeaturesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
+    public var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -471,7 +471,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
+      var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
       let typeDedicatedConfigCheckAndSet = {
         if typeDedicatedConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -508,7 +508,7 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_TypeDedicatedConfig: Codable, Equatable, Sendable {
+    public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
       /// Additional configs for frequently-bought-together models.
       indirect case frequentlyBoughtTogetherConfig(Model.FrequentlyBoughtTogetherFeaturesConfig?)
     }

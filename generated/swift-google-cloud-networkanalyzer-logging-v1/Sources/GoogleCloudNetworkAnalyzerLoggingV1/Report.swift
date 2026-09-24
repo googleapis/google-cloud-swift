@@ -55,7 +55,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The groups of the report. One report may be present in multiple groups.
   public var reportGroups: [Report.ReportGroup] = []
 
-  public var content: OneOf_Content? = nil
+  public var content: ContentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -141,7 +141,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
       self.reportGroups = value
     }
 
-    var content: OneOf_Content? = nil
+    var content: ContentOneOf? = nil
     let contentCheckAndSet = {
       if content != nil {
         throw DecodingError.dataCorrupted(
@@ -685,7 +685,7 @@ public struct Report: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Content: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Codable, Equatable, Sendable {
     indirect case ipUtilizationInfo(IpUtilizationInfo?)
   }
 

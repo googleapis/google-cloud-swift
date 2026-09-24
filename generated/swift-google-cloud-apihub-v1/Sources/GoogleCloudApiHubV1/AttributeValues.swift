@@ -26,7 +26,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
   public var attribute: Swift.String = Swift.String()
 
   /// The attribute values associated with the resource.
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
       self.attribute = value
     }
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -269,7 +269,7 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The attribute values associated with the resource.
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// The attribute values associated with a resource in case attribute data
     /// type is enum.
     indirect case enumValues(AttributeValues.EnumAttributeValues?)

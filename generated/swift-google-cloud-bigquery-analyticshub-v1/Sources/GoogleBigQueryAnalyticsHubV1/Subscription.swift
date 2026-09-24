@@ -73,7 +73,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. BigQuery destination dataset to create for the subscriber.
   public var destinationDataset: DestinationDataset? = nil
 
-  public var resourceName: OneOf_ResourceName? = nil
+  public var resourceName: ResourceNameOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -178,7 +178,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     self.destinationDataset = try container.decodeIfPresent(
       DestinationDataset.self, forKey: .destinationDataset)
 
-    var resourceName: OneOf_ResourceName? = nil
+    var resourceName: ResourceNameOneOf? = nil
     let resourceNameCheckAndSet = {
       if resourceName != nil {
         throw DecodingError.dataCorrupted(
@@ -238,7 +238,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Output only. Listing for which linked resource is created.
     public var listing: Swift.String = Swift.String()
 
-    public var reference: OneOf_Reference? = nil
+    public var reference: ReferenceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -281,7 +281,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
         self.listing = value
       }
 
-      var reference: OneOf_Reference? = nil
+      var reference: ReferenceOneOf? = nil
       let referenceCheckAndSet = {
         if reference != nil {
           throw DecodingError.dataCorrupted(
@@ -325,7 +325,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Reference: Codable, Equatable, Sendable {
+    public enum ReferenceOneOf: Codable, Equatable, Sendable {
       /// Output only. Name of the linked dataset, e.g.
       /// projects/subscriberproject/datasets/linked_dataset
       case linkedDataset(Swift.String)
@@ -608,7 +608,7 @@ public struct Subscription: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_ResourceName: Codable, Equatable, Sendable {
+  public enum ResourceNameOneOf: Codable, Equatable, Sendable {
     /// Output only. Resource name of the source Listing.
     /// e.g. projects/123/locations/us/dataExchanges/456/listings/789
     case listing(Swift.String)

@@ -68,7 +68,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var imagelessMode: Swift.Bool = Swift.Bool()
 
   /// The document payload.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,7 +136,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.imagelessMode = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -187,7 +187,7 @@ public struct ProcessRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The document payload.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// An inline document proto.
     indirect case inlineDocument(Document?)
     /// A raw document content (bytes).

@@ -68,7 +68,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Defines the optional additional chart shown on the scorecard. If
   /// neither is included - then a default scorecard is shown.
-  public var dataView: OneOf_DataView? = nil
+  public var dataView: DataViewOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -117,7 +117,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
       self.thresholds = value
     }
 
-    var dataView: OneOf_DataView? = nil
+    var dataView: DataViewOneOf? = nil
     let dataViewCheckAndSet = {
       if dataView != nil {
         throw DecodingError.dataCorrupted(
@@ -332,7 +332,7 @@ public struct Scorecard: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Defines the optional additional chart shown on the scorecard. If
   /// neither is included - then a default scorecard is shown.
-  public enum OneOf_DataView: Codable, Equatable, Sendable {
+  public enum DataViewOneOf: Codable, Equatable, Sendable {
     /// Will cause the scorecard to show a gauge chart.
     indirect case gaugeView(Scorecard.GaugeView?)
     /// Will cause the scorecard to show a spark chart.

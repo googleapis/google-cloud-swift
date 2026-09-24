@@ -43,10 +43,10 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
 
   /// Configuration for an external data store containing objects that will
   /// be converted to conversations.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// Configuration for converting individual `source` objects to conversations.
-  public var objectConfig: OneOf_ObjectConfig? = nil
+  public var objectConfig: ObjectConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -103,7 +103,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     self.speechConfig = try container.decodeIfPresent(SpeechConfig.self, forKey: .speechConfig)
     self.sampleSize = try container.decodeIfPresent(Swift.Int32.self, forKey: .sampleSize)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
     }
     self.source = source
 
-    var objectConfig: OneOf_ObjectConfig? = nil
+    var objectConfig: ObjectConfigOneOf? = nil
     let objectConfigCheckAndSet = {
       if objectConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -556,14 +556,14 @@ public struct IngestConversationsRequest: Codable, Equatable, GoogleWKT._AnyPack
 
   /// Configuration for an external data store containing objects that will
   /// be converted to conversations.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// A cloud storage bucket source. Note that any previously ingested objects
     /// from the source will be skipped to avoid duplication.
     indirect case gcsSource(IngestConversationsRequest.GcsSource?)
   }
 
   /// Configuration for converting individual `source` objects to conversations.
-  public enum OneOf_ObjectConfig: Codable, Equatable, Sendable {
+  public enum ObjectConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for when `source` contains conversation transcripts.
     indirect case transcriptObjectConfig(IngestConversationsRequest.TranscriptObjectConfig?)
   }

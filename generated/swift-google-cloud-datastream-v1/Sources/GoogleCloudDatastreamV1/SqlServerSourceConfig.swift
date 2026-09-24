@@ -34,7 +34,7 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var maxConcurrentBackfillTasks: Swift.Int32 = Swift.Int32()
 
   /// Configuration to select the CDC read method for the stream.
-  public var cdcMethod: OneOf_CdcMethod? = nil
+  public var cdcMethod: CdcMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxConcurrentBackfillTasks = value
     }
 
-    var cdcMethod: OneOf_CdcMethod? = nil
+    var cdcMethod: CdcMethodOneOf? = nil
     let cdcMethodCheckAndSet = {
       if cdcMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@ public struct SqlServerSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration to select the CDC read method for the stream.
-  public enum OneOf_CdcMethod: Codable, Equatable, Sendable {
+  public enum CdcMethodOneOf: Codable, Equatable, Sendable {
     /// CDC reader reads from transaction logs.
     indirect case transactionLogs(SqlServerTransactionLogs?)
     /// CDC reader reads from change tables.

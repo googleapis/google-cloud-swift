@@ -27,7 +27,7 @@
 
     /// The query to retrieve contexts.
     /// Currently only text query is supported.
-    public var query: OneOf_Query? = nil
+    public var query: QueryOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@
       self.ragRetrievalConfig = try container.decodeIfPresent(
         RagRetrievalConfig.self, forKey: .ragRetrievalConfig)
 
-      var query: OneOf_Query? = nil
+      var query: QueryOneOf? = nil
       let queryCheckAndSet = {
         if query != nil {
           throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@
 
     /// The query to retrieve contexts.
     /// Currently only text query is supported.
-    public enum OneOf_Query: Codable, Equatable, Sendable {
+    public enum QueryOneOf: Codable, Equatable, Sendable {
       /// Optional. The query in text format to get relevant contexts.
       case text(Swift.String)
     }

@@ -44,7 +44,7 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// A dashboard's root container element that defines the layout style.
-  public var layout: OneOf_Layout? = nil
+  public var layout: LayoutOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var layout: OneOf_Layout? = nil
+    var layout: LayoutOneOf? = nil
     let layoutCheckAndSet = {
       if layout != nil {
         throw DecodingError.dataCorrupted(
@@ -168,7 +168,7 @@ public struct Dashboard: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A dashboard's root container element that defines the layout style.
-  public enum OneOf_Layout: Codable, Equatable, Sendable {
+  public enum LayoutOneOf: Codable, Equatable, Sendable {
     /// Content is arranged with a basic layout that re-flows a simple list of
     /// informational elements like widgets or tiles.
     indirect case gridLayout(GridLayout?)

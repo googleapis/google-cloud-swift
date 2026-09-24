@@ -1130,7 +1130,7 @@
     {
       /// Search parameters to control the search behavior.
       /// Or provide search result list to generate answer.
-      public var input: OneOf_Input? = nil
+      public var input: InputOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1168,7 +1168,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var input: OneOf_Input? = nil
+        var input: InputOneOf? = nil
         let inputCheckAndSet = {
           if input != nil {
             throw DecodingError.dataCorrupted(
@@ -1428,7 +1428,7 @@
           Sendable
         {
           /// Search result content.
-          public var content: OneOf_Content? = nil
+          public var content: ContentOneOf? = nil
 
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1467,7 +1467,7 @@
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            var content: OneOf_Content? = nil
+            var content: ContentOneOf? = nil
             let contentCheckAndSet = {
               if content != nil {
                 throw DecodingError.dataCorrupted(
@@ -2080,7 +2080,7 @@
           }
 
           /// Search result content.
-          public enum OneOf_Content: Codable, Equatable, Sendable {
+          public enum ContentOneOf: Codable, Equatable, Sendable {
             /// Unstructured document information.
             indirect case unstructuredDocumentInfo(
               AnswerQueryRequest.SearchSpec.SearchResultList.SearchResult.UnstructuredDocumentInfo?)
@@ -2115,7 +2115,7 @@
 
       /// Search parameters to control the search behavior.
       /// Or provide search result list to generate answer.
-      public enum OneOf_Input: Codable, Equatable, Sendable {
+      public enum InputOneOf: Codable, Equatable, Sendable {
         /// Search parameters.
         indirect case searchParams(AnswerQueryRequest.SearchSpec.SearchParams?)
         /// Search result list.
@@ -2788,7 +2788,7 @@
         Sendable
       {
         /// Search result content.
-        public var content: OneOf_Content? = nil
+        public var content: ContentOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2824,7 +2824,7 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
 
-          var content: OneOf_Content? = nil
+          var content: ContentOneOf? = nil
           let contentCheckAndSet = {
             if content != nil {
               throw DecodingError.dataCorrupted(
@@ -3010,7 +3010,7 @@
         }
 
         /// Search result content.
-        public enum OneOf_Content: Codable, Equatable, Sendable {
+        public enum ContentOneOf: Codable, Equatable, Sendable {
           /// Chunk information.
           indirect case chunkInfo(AnswerQueryRequest.EndUserSpec.EndUserMetaData.ChunkInfo?)
         }

@@ -30,7 +30,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
   public var id: Swift.String = Swift.String()
 
   /// Content defines the component used to populate the widget.
-  public var content: OneOf_Content? = nil
+  public var content: ContentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -100,7 +100,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
       self.id = value
     }
 
-    var content: OneOf_Content? = nil
+    var content: ContentOneOf? = nil
     let contentCheckAndSet = {
       if content != nil {
         throw DecodingError.dataCorrupted(
@@ -207,7 +207,7 @@ public struct Widget: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Content defines the component used to populate the widget.
-  public enum OneOf_Content: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Codable, Equatable, Sendable {
     /// A chart of time series data.
     indirect case xyChart(XyChart?)
     /// A scorecard summarizing time series data.

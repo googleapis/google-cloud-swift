@@ -77,7 +77,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
   /// in the future (for example, a country modifies their DST start/end dates,
   /// and future DateTimes in the affected range had already been stored).
   /// If omitted, the DateTime is considered to be in local time.
-  public var timeOffset: OneOf_TimeOffset? = nil
+  public var timeOffset: TimeOffsetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -150,7 +150,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
       self.nanos = value
     }
 
-    var timeOffset: OneOf_TimeOffset? = nil
+    var timeOffset: TimeOffsetOneOf? = nil
     let timeOffsetCheckAndSet = {
       if timeOffset != nil {
         throw DecodingError.dataCorrupted(
@@ -203,7 +203,7 @@ public struct DateTime: Codable, Equatable, GoogleWKT._AnyPackable,
   /// in the future (for example, a country modifies their DST start/end dates,
   /// and future DateTimes in the affected range had already been stored).
   /// If omitted, the DateTime is considered to be in local time.
-  public enum OneOf_TimeOffset: Codable, Equatable, Sendable {
+  public enum TimeOffsetOneOf: Codable, Equatable, Sendable {
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     /// For example, a UTC offset of -4:00 would be represented as
     /// { seconds: -14400 }.

@@ -22,7 +22,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Asset export destination.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Asset export destination.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Destination on Cloud Storage.
     indirect case gcsDestination(GcsDestination?)
     /// Destination on BigQuery. The output table stores the fields in asset

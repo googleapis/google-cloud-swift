@@ -38,7 +38,7 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// Different representation of tracking info in non-streaming batch
   /// and streaming modes.
-  public var trackInfo: OneOf_TrackInfo? = nil
+  public var trackInfo: TrackInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -94,7 +94,7 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
       self.version = value
     }
 
-    var trackInfo: OneOf_TrackInfo? = nil
+    var trackInfo: TrackInfoOneOf? = nil
     let trackInfoCheckAndSet = {
       if trackInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@ public struct ObjectTrackingAnnotation: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// Different representation of tracking info in non-streaming batch
   /// and streaming modes.
-  public enum OneOf_TrackInfo: Codable, Equatable, Sendable {
+  public enum TrackInfoOneOf: Codable, Equatable, Sendable {
     /// Non-streaming batch mode ONLY.
     /// Each object track corresponds to one video segment where it appears.
     indirect case segment(VideoSegment?)

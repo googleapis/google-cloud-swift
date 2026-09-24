@@ -22,7 +22,7 @@ public struct DataItem: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Either of text or bytes data.
-  public var dataItem: OneOf_DataItem? = nil
+  public var dataItem: DataItemOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct DataItem: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dataItem: OneOf_DataItem? = nil
+    var dataItem: DataItemOneOf? = nil
     let dataItemCheckAndSet = {
       if dataItem != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct DataItem: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Either of text or bytes data.
-  public enum OneOf_DataItem: Codable, Equatable, Sendable {
+  public enum DataItemOneOf: Codable, Equatable, Sendable {
     /// Plaintext string data for sanitization.
     case text(Swift.String)
     /// Data provided in the form of bytes.

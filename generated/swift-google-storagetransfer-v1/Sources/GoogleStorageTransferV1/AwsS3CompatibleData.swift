@@ -41,7 +41,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the metadata of the S3 compatible data provider. Each provider
   /// may contain some attributes that do not apply to all S3-compatible data
   /// providers. When not specified, S3CompatibleMetadata is used by default.
-  public var dataProvider: OneOf_DataProvider? = nil
+  public var dataProvider: DataProviderOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
       self.region = value
     }
 
-    var dataProvider: OneOf_DataProvider? = nil
+    var dataProvider: DataProviderOneOf? = nil
     let dataProviderCheckAndSet = {
       if dataProvider != nil {
         throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@ public struct AwsS3CompatibleData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the metadata of the S3 compatible data provider. Each provider
   /// may contain some attributes that do not apply to all S3-compatible data
   /// providers. When not specified, S3CompatibleMetadata is used by default.
-  public enum OneOf_DataProvider: Codable, Equatable, Sendable {
+  public enum DataProviderOneOf: Codable, Equatable, Sendable {
     /// A S3 compatible metadata.
     indirect case s3Metadata(S3CompatibleMetadata?)
   }

@@ -60,7 +60,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference to the asset.
   /// The maximum size of the resource is 250 MB.
-  public var resource: OneOf_Resource? = nil
+  public var resource: ResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
 
-    var resource: OneOf_Resource? = nil
+    var resource: ResourceOneOf? = nil
     let resourceCheckAndSet = {
       if resource != nil {
         throw DecodingError.dataCorrupted(
@@ -447,7 +447,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference to the asset.
   /// The maximum size of the resource is 250 MB.
-  public enum OneOf_Resource: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// VideoAsset represents a video.
     indirect case video(Asset.VideoAsset?)
     /// ImageAsset represents an image.

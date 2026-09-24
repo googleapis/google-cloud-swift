@@ -54,7 +54,7 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
   public var networkArchitecture: NetworkArchitecture = NetworkArchitecture()
 
   /// Connectivity options used to establish a connection to the database server.
-  public var connectivity: OneOf_Connectivity? = nil
+  public var connectivity: ConnectivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,7 +133,7 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
       self.networkArchitecture = value
     }
 
-    var connectivity: OneOf_Connectivity? = nil
+    var connectivity: ConnectivityOneOf? = nil
     let connectivityCheckAndSet = {
       if connectivity != nil {
         throw DecodingError.dataCorrupted(
@@ -186,7 +186,7 @@ public struct PostgreSqlConnectionProfile: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// Connectivity options used to establish a connection to the database server.
-  public enum OneOf_Connectivity: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// Static ip connectivity data (default, no additional details needed).
     indirect case staticIpConnectivity(StaticIpConnectivity?)
     /// Private service connect connectivity.

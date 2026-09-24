@@ -60,7 +60,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
   public var customFeatures: GoogleWKT.WKTStruct? = nil
 
   /// Filter on source column parameters.
-  public var sourceFilter: OneOf_SourceFilter? = nil
+  public var sourceFilter: SourceFilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
     self.customFeatures = try container.decodeIfPresent(
       GoogleWKT.WKTStruct.self, forKey: .customFeatures)
 
-    var sourceFilter: OneOf_SourceFilter? = nil
+    var sourceFilter: SourceFilterOneOf? = nil
     let sourceFilterCheckAndSet = {
       if sourceFilter != nil {
         throw DecodingError.dataCorrupted(
@@ -187,7 +187,7 @@ public struct MultiColumnDatatypeChange: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Filter on source column parameters.
-  public enum OneOf_SourceFilter: Codable, Equatable, Sendable {
+  public enum SourceFilterOneOf: Codable, Equatable, Sendable {
     /// Optional. Filter for text-based data types like varchar.
     indirect case sourceTextFilter(SourceTextFilter?)
     /// Optional. Filter for fixed point number data types such as

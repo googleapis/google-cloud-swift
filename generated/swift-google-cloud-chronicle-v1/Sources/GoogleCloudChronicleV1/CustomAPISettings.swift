@@ -37,7 +37,7 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Choose the method and credentials used to securely authorize access to the
   /// API.
-  public var authentication: OneOf_Authentication? = nil
+  public var authentication: AuthenticationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -95,7 +95,7 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
     self.primaryRequest = try container.decodeIfPresent(
       CustomAPITransferNode.self, forKey: .primaryRequest)
 
-    var authentication: OneOf_Authentication? = nil
+    var authentication: AuthenticationOneOf? = nil
     let authenticationCheckAndSet = {
       if authentication != nil {
         throw DecodingError.dataCorrupted(
@@ -158,7 +158,7 @@ public struct CustomAPISettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Choose the method and credentials used to securely authorize access to the
   /// API.
-  public enum OneOf_Authentication: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// Authenticate without credentials or secrets.
     indirect case noAuth(CustomAPINoAuth?)
     /// Authenticate using Username/Password credentials.

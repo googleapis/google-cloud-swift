@@ -281,7 +281,7 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var allowDev: Swift.Bool = Swift.Bool()
 
     /// A client object.
-    public var client: OneOf_Client? = nil
+    public var client: ClientOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -346,7 +346,7 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.allowDev = value
       }
 
-      var client: OneOf_Client? = nil
+      var client: ClientOneOf? = nil
       let clientCheckAndSet = {
         if client != nil {
           throw DecodingError.dataCorrupted(
@@ -508,7 +508,7 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// A client object.
-    public enum OneOf_Client: Codable, Equatable, Sendable {
+    public enum ClientOneOf: Codable, Equatable, Sendable {
       /// Either a single machine, identified by an ID, or a comma-separated
       /// list of machine IDs.
       case machineId(Swift.String)

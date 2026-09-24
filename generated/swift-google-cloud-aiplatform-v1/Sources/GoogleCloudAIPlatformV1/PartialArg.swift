@@ -32,7 +32,7 @@
     public var willContinue: Swift.Bool = Swift.Bool()
 
     /// The delta of field value being streamed.
-    public var delta: OneOf_Delta? = nil
+    public var delta: DeltaOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@
         self.willContinue = value
       }
 
-      var delta: OneOf_Delta? = nil
+      var delta: DeltaOneOf? = nil
       let deltaCheckAndSet = {
         if delta != nil {
           throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@
     }
 
     /// The delta of field value being streamed.
-    public enum OneOf_Delta: Codable, Equatable, Sendable {
+    public enum DeltaOneOf: Codable, Equatable, Sendable {
       /// Optional. Represents a null value.
       case nullValue(GoogleWKT.WKTNullValue)
       /// Optional. Represents a double value.

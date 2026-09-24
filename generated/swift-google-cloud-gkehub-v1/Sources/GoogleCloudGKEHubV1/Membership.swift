@@ -86,7 +86,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   public var monitoringConfig: MonitoringConfig? = nil
 
   /// Type of resource represented by this Membership
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -174,7 +174,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
     self.monitoringConfig = try container.decodeIfPresent(
       MonitoringConfig.self, forKey: .monitoringConfig)
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -221,7 +221,7 @@ public struct Membership: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of resource represented by this Membership
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Endpoint information to reach this member.
     indirect case endpoint(MembershipEndpoint?)
   }

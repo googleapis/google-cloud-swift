@@ -48,7 +48,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.documentai.v1.Document.Page.page_number]: <doc:Document/Page/pageNumber>
   /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
-  public var pageRange: OneOf_PageRange? = nil
+  public var pageRange: PageRangeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     self.schemaOverride = try container.decodeIfPresent(
       DocumentSchema.self, forKey: .schemaOverride)
 
-    var pageRange: OneOf_PageRange? = nil
+    var pageRange: PageRangeOneOf? = nil
     let pageRangeCheckAndSet = {
       if pageRange != nil {
         throw DecodingError.dataCorrupted(
@@ -413,7 +413,7 @@ public struct ProcessOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.documentai.v1.Document.Page.page_number]: <doc:Document/Page/pageNumber>
   /// [google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument]: <doc:DocumentProcessorServiceClient/processDocument(request:options:)>
-  public enum OneOf_PageRange: Codable, Equatable, Sendable {
+  public enum PageRangeOneOf: Codable, Equatable, Sendable {
     /// Which pages to process (1-indexed).
     indirect case individualPageSelector(ProcessOptions.IndividualPageSelector?)
     /// Only process certain pages from the start. Process all if the document

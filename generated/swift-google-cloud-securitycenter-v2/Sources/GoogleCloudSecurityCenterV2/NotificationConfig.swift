@@ -51,7 +51,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The config for triggering notifications.
-  public var notifyConfig: OneOf_NotifyConfig? = nil
+  public var notifyConfig: NotifyConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -111,7 +111,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var notifyConfig: OneOf_NotifyConfig? = nil
+    var notifyConfig: NotifyConfigOneOf? = nil
     let notifyConfigCheckAndSet = {
       if notifyConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -242,7 +242,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The config for triggering notifications.
-  public enum OneOf_NotifyConfig: Codable, Equatable, Sendable {
+  public enum NotifyConfigOneOf: Codable, Equatable, Sendable {
     /// The config for triggering streaming-based notifications.
     indirect case streamingConfig(NotificationConfig.StreamingConfig?)
   }

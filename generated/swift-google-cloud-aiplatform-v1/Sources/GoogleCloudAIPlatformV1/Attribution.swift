@@ -91,9 +91,9 @@
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.feature_attributions_schema_uri]: <doc:ExplanationMetadata/featureAttributionsSchemaUri>
     /// [google.cloud.aiplatform.v1.ExplanationMetadata.inputs]: <doc:ExplanationMetadata/inputs>
     /// [google.cloud.aiplatform.v1.ExplanationSpec]: <doc:ExplanationSpec>
-    /// [google.protobuf.Value.list_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/OneOf_Kind/listValue(_:)
-    /// [google.protobuf.Value.number_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/OneOf_Kind/numberValue(_:)
-    /// [google.protobuf.Value.struct_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/OneOf_Kind/structValue(_:)
+    /// [google.protobuf.Value.list_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/KindOneOf/listValue(_:)
+    /// [google.protobuf.Value.number_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/KindOneOf/numberValue(_:)
+    /// [google.protobuf.Value.struct_value]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTValue/KindOneOf/structValue(_:)
     public var featureAttributions: GoogleWKT.WKTValue? = nil
 
     /// Output only. The index that locates the explained prediction output.
@@ -142,9 +142,9 @@
     /// for more information.
     ///
     /// [google.cloud.aiplatform.v1.Attribution.feature_attributions]: <doc:Attribution/featureAttributions>
-    /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
-    /// [google.cloud.aiplatform.v1.ExplanationParameters.sampled_shapley_attribution]: <doc:ExplanationParameters/OneOf_Method/sampledShapleyAttribution(_:)>
-    /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/OneOf_Method/xraiAttribution(_:)>
+    /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/MethodOneOf/integratedGradientsAttribution(_:)>
+    /// [google.cloud.aiplatform.v1.ExplanationParameters.sampled_shapley_attribution]: <doc:ExplanationParameters/MethodOneOf/sampledShapleyAttribution(_:)>
+    /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/MethodOneOf/xraiAttribution(_:)>
     /// [google.cloud.aiplatform.v1.IntegratedGradientsAttribution.step_count]: <doc:IntegratedGradientsAttribution/stepCount>
     /// [google.cloud.aiplatform.v1.SampledShapleyAttribution.path_count]: <doc:SampledShapleyAttribution/pathCount>
     /// [google.cloud.aiplatform.v1.XraiAttribution.step_count]: <doc:XraiAttribution/stepCount>

@@ -114,18 +114,18 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var personalDetails: PersonalDetails? = nil
 
   /// Required. Entry type.
-  public var entryType: OneOf_EntryType? = nil
+  public var entryType: EntryTypeOneOf? = nil
 
   /// The source system of the entry.
-  public var system: OneOf_System? = nil
+  public var system: SystemOneOf? = nil
 
   /// System specification.
   /// Can be used as a complement for `spec`, when some metadata is relevant for
   /// all entries existing within given system
-  public var systemSpec: OneOf_SystemSpec? = nil
+  public var systemSpec: SystemSpecOneOf? = nil
 
   /// Type specification.
-  public var typeSpec: OneOf_TypeSpec? = nil
+  public var typeSpec: TypeSpecOneOf? = nil
 
   /// Type- and system-specific information. Specifications for types contain
   /// fields common to all entries of a given type, and sub-specifications with
@@ -133,7 +133,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// When extending the API with new types and systems, use this field instead
   /// of the legacy `type_spec`.
-  public var spec: OneOf_Spec? = nil
+  public var spec: SpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -255,7 +255,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     self.personalDetails = try container.decodeIfPresent(
       PersonalDetails.self, forKey: .personalDetails)
 
-    var entryType: OneOf_EntryType? = nil
+    var entryType: EntryTypeOneOf? = nil
     let entryTypeCheckAndSet = {
       if entryType != nil {
         throw DecodingError.dataCorrupted(
@@ -275,7 +275,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.entryType = entryType
 
-    var system: OneOf_System? = nil
+    var system: SystemOneOf? = nil
     let systemCheckAndSet = {
       if system != nil {
         throw DecodingError.dataCorrupted(
@@ -297,7 +297,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.system = system
 
-    var systemSpec: OneOf_SystemSpec? = nil
+    var systemSpec: SystemSpecOneOf? = nil
     let systemSpecCheckAndSet = {
       if systemSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -324,7 +324,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.systemSpec = systemSpec
 
-    var typeSpec: OneOf_TypeSpec? = nil
+    var typeSpec: TypeSpecOneOf? = nil
     let typeSpecCheckAndSet = {
       if typeSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -351,7 +351,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.typeSpec = typeSpec
 
-    var spec: OneOf_Spec? = nil
+    var spec: SpecOneOf? = nil
     let specCheckAndSet = {
       if spec != nil {
         throw DecodingError.dataCorrupted(
@@ -479,7 +479,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Entry type.
-  public enum OneOf_EntryType: Codable, Equatable, Sendable {
+  public enum EntryTypeOneOf: Codable, Equatable, Sendable {
     /// The type of the entry.
     ///
     /// For details, see [`EntryType`](#entrytype).
@@ -501,7 +501,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source system of the entry.
-  public enum OneOf_System: Codable, Equatable, Sendable {
+  public enum SystemOneOf: Codable, Equatable, Sendable {
     /// Output only. Indicates the entry's source system that Data Catalog
     /// integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
     case integratedSystem(IntegratedSystem)
@@ -520,7 +520,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// System specification.
   /// Can be used as a complement for `spec`, when some metadata is relevant for
   /// all entries existing within given system
-  public enum OneOf_SystemSpec: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to a relational database system. Only settable
     /// when `user_specified_system` is equal to `SQL_DATABASE`
     indirect case sqlDatabaseSystemSpec(SqlDatabaseSystemSpec?)
@@ -533,7 +533,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type specification.
-  public enum OneOf_TypeSpec: Codable, Equatable, Sendable {
+  public enum TypeSpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to a Cloud Storage fileset. Valid only
     /// for entries with the `FILESET` type.
     indirect case gcsFilesetSpec(GcsFilesetSpec?)
@@ -554,7 +554,7 @@ public struct Entry: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// When extending the API with new types and systems, use this field instead
   /// of the legacy `type_spec`.
-  public enum OneOf_Spec: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to a table resource. Valid only
     /// for entries with the `TABLE` or `EXPLORE` type.
     indirect case databaseTableSpec(DatabaseTableSpec?)

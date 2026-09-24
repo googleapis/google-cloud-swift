@@ -87,7 +87,7 @@
     /// Metadata containing information about the Cloud Bigtable.
     public var bigtableMetadata: FeatureView.BigtableMetadata? = nil
 
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -191,7 +191,7 @@
       self.bigtableMetadata = try container.decodeIfPresent(
         FeatureView.BigtableMetadata.self, forKey: .bigtableMetadata)
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -452,7 +452,7 @@
 
       /// The configuration with regard to the algorithms used for efficient
       /// search.
-      public var algorithmConfig: OneOf_AlgorithmConfig? = nil
+      public var algorithmConfig: AlgorithmConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -516,7 +516,7 @@
           self.distanceMeasureType = value
         }
 
-        var algorithmConfig: OneOf_AlgorithmConfig? = nil
+        var algorithmConfig: AlgorithmConfigOneOf? = nil
         let algorithmConfigCheckAndSet = {
           if algorithmConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -824,7 +824,7 @@
 
       /// The configuration with regard to the algorithms used for efficient
       /// search.
-      public enum OneOf_AlgorithmConfig: Codable, Equatable, Sendable {
+      public enum AlgorithmConfigOneOf: Codable, Equatable, Sendable {
         /// Optional. Configuration options for the tree-AH algorithm (Shallow tree
         /// + Asymmetric Hashing). Please refer to this paper for more details:
         /// https://arxiv.org/abs/1908.10396
@@ -1352,7 +1352,7 @@
       }
     }
 
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Optional. Configures how data is supposed to be extracted from a BigQuery
       /// source to be loaded onto the FeatureOnlineStore.
       indirect case bigQuerySource(FeatureView.BigQuerySource?)

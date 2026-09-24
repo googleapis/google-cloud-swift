@@ -42,7 +42,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var conditionalOverrides: [ConditionalOverride] = []
 
   /// Required. Defines the granularity for repricing.
-  public var granularity: OneOf_Granularity? = nil
+  public var granularity: GranularityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.conditionalOverrides = value
     }
 
-    var granularity: OneOf_Granularity? = nil
+    var granularity: GranularityOneOf? = nil
     let granularityCheckAndSet = {
       if granularity != nil {
         throw DecodingError.dataCorrupted(
@@ -288,7 +288,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Defines the granularity for repricing.
-  public enum OneOf_Granularity: Codable, Equatable, Sendable {
+  public enum GranularityOneOf: Codable, Equatable, Sendable {
     /// Required. Applies the repricing configuration at the entitlement level.
     ///
     /// Note: If a
@@ -318,7 +318,7 @@ public struct RepricingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// instead.
     ///
     /// [google.cloud.channel.v1.ChannelPartnerRepricingConfig]: <doc:ChannelPartnerRepricingConfig>
-    /// [google.cloud.channel.v1.RepricingConfig.entitlement_granularity]: <doc:RepricingConfig/OneOf_Granularity/entitlementGranularity(_:)>
+    /// [google.cloud.channel.v1.RepricingConfig.entitlement_granularity]: <doc:RepricingConfig/GranularityOneOf/entitlementGranularity(_:)>
     @available(*, deprecated)
     indirect case channelPartnerGranularity(RepricingConfig.ChannelPartnerGranularity?)
   }

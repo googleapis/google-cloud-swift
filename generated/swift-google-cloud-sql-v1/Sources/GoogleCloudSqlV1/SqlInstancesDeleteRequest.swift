@@ -34,7 +34,7 @@
     /// Optional. The description of the final backup.
     public var finalBackupDescription: Swift.String = Swift.String()
 
-    public var expiration: OneOf_Expiration? = nil
+    public var expiration: ExpirationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@
         self.finalBackupDescription = value
       }
 
-      var expiration: OneOf_Expiration? = nil
+      var expiration: ExpirationOneOf? = nil
       let expirationCheckAndSet = {
         if expiration != nil {
           throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@
       }
     }
 
-    public enum OneOf_Expiration: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Codable, Equatable, Sendable {
       /// Optional. Retention period of the final backup.
       case finalBackupTtlDays(Swift.Int64)
       /// Optional. Final Backup expiration time.

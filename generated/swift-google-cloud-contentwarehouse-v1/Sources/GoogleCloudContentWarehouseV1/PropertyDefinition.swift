@@ -59,7 +59,7 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   public var schemaSources: [PropertyDefinition.SchemaSource] = []
 
   /// Type of the property.
-  public var valueTypeOptions: OneOf_ValueTypeOptions? = nil
+  public var valueTypeOptions: ValueTypeOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,7 +158,7 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
       self.schemaSources = value
     }
 
-    var valueTypeOptions: OneOf_ValueTypeOptions? = nil
+    var valueTypeOptions: ValueTypeOptionsOneOf? = nil
     let valueTypeOptionsCheckAndSet = {
       if valueTypeOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -475,7 +475,7 @@ public struct PropertyDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the property.
-  public enum OneOf_ValueTypeOptions: Codable, Equatable, Sendable {
+  public enum ValueTypeOptionsOneOf: Codable, Equatable, Sendable {
     /// Integer property.
     indirect case integerTypeOptions(IntegerTypeOptions?)
     /// Float property.

@@ -63,10 +63,10 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   public var isMultiBucketJob: Swift.Bool = Swift.Bool()
 
   /// Specifies objects to be transformed.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// Operation to be performed on the objects.
-  public var transformation: OneOf_Transformation? = nil
+  public var transformation: TransformationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -160,7 +160,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       self.isMultiBucketJob = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -175,7 +175,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var transformation: OneOf_Transformation? = nil
+    var transformation: TransformationOneOf? = nil
     let transformationCheckAndSet = {
       if transformation != nil {
         throw DecodingError.dataCorrupted(
@@ -392,13 +392,13 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies objects to be transformed.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Specifies a list of buckets and their objects to be transformed.
     indirect case bucketList(BucketList?)
   }
 
   /// Operation to be performed on the objects.
-  public enum OneOf_Transformation: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Changes object hold status.
     indirect case putObjectHold(PutObjectHold?)
     /// Delete objects.

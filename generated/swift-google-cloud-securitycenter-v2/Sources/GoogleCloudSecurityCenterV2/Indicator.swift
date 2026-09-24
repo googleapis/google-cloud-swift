@@ -117,7 +117,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
       .SignatureType()
 
     /// The signature.
-    public var signature: OneOf_Signature? = nil
+    public var signature: SignatureOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -162,7 +162,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
         self.signatureType = value
       }
 
-      var signature: OneOf_Signature? = nil
+      var signature: SignatureOneOf? = nil
       let signatureCheckAndSet = {
         if signature != nil {
           throw DecodingError.dataCorrupted(
@@ -556,7 +556,7 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The signature.
-    public enum OneOf_Signature: Codable, Equatable, Sendable {
+    public enum SignatureOneOf: Codable, Equatable, Sendable {
       /// Signature indicating that a binary family was matched.
       indirect case memoryHashSignature(Indicator.ProcessSignature.MemoryHashSignature?)
       /// Signature indicating that a YARA rule was matched.

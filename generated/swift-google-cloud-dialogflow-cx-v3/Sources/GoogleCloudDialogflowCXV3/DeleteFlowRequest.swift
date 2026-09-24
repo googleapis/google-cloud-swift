@@ -41,8 +41,8 @@
     ///    flow][TransitionRoute.target_flow] in transition routes that point to
     ///    this flow will be cleared).
     ///
-    /// [EventHandler.target_flow]: <doc:EventHandler/OneOf_Target/targetFlow(_:)>
-    /// [TransitionRoute.target_flow]: <doc:TransitionRoute/OneOf_Target/targetFlow(_:)>
+    /// [EventHandler.target_flow]: <doc:EventHandler/TargetOneOf/targetFlow(_:)>
+    /// [TransitionRoute.target_flow]: <doc:TransitionRoute/TargetOneOf/targetFlow(_:)>
     public var force: Swift.Bool = Swift.Bool()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

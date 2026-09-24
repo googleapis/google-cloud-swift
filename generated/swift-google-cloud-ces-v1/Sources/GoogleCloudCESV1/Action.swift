@@ -33,7 +33,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   public var outputFields: [Swift.String] = []
 
   /// Specification for an action to configure for the tool to use.
-  public var actionSpec: OneOf_ActionSpec? = nil
+  public var actionSpec: ActionSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       self.outputFields = value
     }
 
-    var actionSpec: OneOf_ActionSpec? = nil
+    var actionSpec: ActionSpecOneOf? = nil
     let actionSpecCheckAndSet = {
       if actionSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -346,7 +346,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specification for an action to configure for the tool to use.
-  public enum OneOf_ActionSpec: Codable, Equatable, Sendable {
+  public enum ActionSpecOneOf: Codable, Equatable, Sendable {
     /// ID of a Connection action for the tool to use.
     case connectionActionId(Swift.String)
     /// Entity operation configuration for the tool to use.

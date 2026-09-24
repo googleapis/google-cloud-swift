@@ -22,7 +22,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Types of analysis.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -543,7 +543,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Semantic tag that identifies what a column contains, to determine which
       /// statistical model to use to estimate the reidentifiability of each
       /// value. [required]
-      public var tag: OneOf_Tag? = nil
+      public var tag: TagOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -586,7 +586,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.field = try container.decodeIfPresent(FieldId.self, forKey: .field)
 
-        var tag: OneOf_Tag? = nil
+        var tag: TagOneOf? = nil
         let tagCheckAndSet = {
           if tag != nil {
             throw DecodingError.dataCorrupted(
@@ -635,7 +635,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Semantic tag that identifies what a column contains, to determine which
       /// statistical model to use to estimate the reidentifiability of each
       /// value. [required]
-      public enum OneOf_Tag: Codable, Equatable, Sendable {
+      public enum TagOneOf: Codable, Equatable, Sendable {
         /// A column can be tagged with a InfoType to use the relevant public
         /// dataset as a statistical model of population, if available. We
         /// currently support US ZIP codes, region codes, ages and genders.
@@ -941,7 +941,7 @@ public struct PrivacyMetric: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Types of analysis.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Numerical stats
     indirect case numericalStatsConfig(PrivacyMetric.NumericalStatsConfig?)
     /// Categorical stats

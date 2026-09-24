@@ -22,7 +22,7 @@ import Foundation
 public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var intermediary: OneOf_Intermediary? = nil
+  public var intermediary: IntermediaryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var intermediary: OneOf_Intermediary? = nil
+    var intermediary: IntermediaryOneOf? = nil
     let intermediaryCheckAndSet = {
       if intermediary != nil {
         throw DecodingError.dataCorrupted(
@@ -92,7 +92,7 @@ public struct Transport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Intermediary: Codable, Equatable, Sendable {
+  public enum IntermediaryOneOf: Codable, Equatable, Sendable {
     /// The Pub/Sub topic and subscription used by Eventarc as a transport
     /// intermediary.
     indirect case pubsub(Pubsub?)

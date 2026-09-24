@@ -22,7 +22,7 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Either of Sensitive Data Protection Inspect result or Deidentify result.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Either of Sensitive Data Protection Inspect result or Deidentify result.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Sensitive Data Protection Inspection result if inspection is performed.
     indirect case inspectResult(SdpInspectResult?)
     /// Sensitive Data Protection Deidentification result if deidentification is

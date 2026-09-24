@@ -174,7 +174,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var split: LogSplit? = nil
 
   /// The log entry payload, which can be one of multiple types.
-  public var payload: OneOf_Payload? = nil
+  public var payload: PayloadOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -277,7 +277,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       LogEntrySourceLocation.self, forKey: .sourceLocation)
     self.split = try container.decodeIfPresent(LogSplit.self, forKey: .split)
 
-    var payload: OneOf_Payload? = nil
+    var payload: PayloadOneOf? = nil
     let payloadCheckAndSet = {
       if payload != nil {
         throw DecodingError.dataCorrupted(
@@ -340,7 +340,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The log entry payload, which can be one of multiple types.
-  public enum OneOf_Payload: Codable, Equatable, Sendable {
+  public enum PayloadOneOf: Codable, Equatable, Sendable {
     /// The log entry payload, represented as a protocol buffer. Some Google
     /// Cloud Platform services use this field for their log entry payloads.
     ///

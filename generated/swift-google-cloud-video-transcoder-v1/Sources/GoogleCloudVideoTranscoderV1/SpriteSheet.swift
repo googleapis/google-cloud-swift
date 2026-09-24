@@ -93,7 +93,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
   public var quality: Swift.Int32 = Swift.Int32()
 
   /// Specify either total number of sprites or interval to create sprites.
-  public var extractionStrategy: OneOf_ExtractionStrategy? = nil
+  public var extractionStrategy: ExtractionStrategyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -174,7 +174,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
       self.quality = value
     }
 
-    var extractionStrategy: OneOf_ExtractionStrategy? = nil
+    var extractionStrategy: ExtractionStrategyOneOf? = nil
     let extractionStrategyCheckAndSet = {
       if extractionStrategy != nil {
         throw DecodingError.dataCorrupted(
@@ -224,7 +224,7 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specify either total number of sprites or interval to create sprites.
-  public enum OneOf_ExtractionStrategy: Codable, Equatable, Sendable {
+  public enum ExtractionStrategyOneOf: Codable, Equatable, Sendable {
     /// Total number of sprites. Create the specified number of sprites
     /// distributed evenly across the timeline of the output media. The default
     /// is 100.

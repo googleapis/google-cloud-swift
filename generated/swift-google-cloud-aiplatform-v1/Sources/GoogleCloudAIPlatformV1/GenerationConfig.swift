@@ -293,7 +293,7 @@
       Sendable
     {
       /// Routing mode.
-      public var routingConfig: OneOf_RoutingConfig? = nil
+      public var routingConfig: RoutingConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -331,7 +331,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var routingConfig: OneOf_RoutingConfig? = nil
+        var routingConfig: RoutingConfigOneOf? = nil
         let routingConfigCheckAndSet = {
           if routingConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -640,7 +640,7 @@
       }
 
       /// Routing mode.
-      public enum OneOf_RoutingConfig: Codable, Equatable, Sendable {
+      public enum RoutingConfigOneOf: Codable, Equatable, Sendable {
         /// Automated routing.
         indirect case autoMode(GenerationConfig.RoutingConfig.AutoRoutingMode?)
         /// Manual routing.

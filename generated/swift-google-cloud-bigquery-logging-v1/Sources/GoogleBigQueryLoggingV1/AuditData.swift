@@ -32,10 +32,10 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   public var tableDataReadEvents: [TableDataReadEvent] = []
 
   /// Request data for each BigQuery method.
-  public var request: OneOf_Request? = nil
+  public var request: RequestOneOf? = nil
 
   /// Response data for each BigQuery method.
-  public var response: OneOf_Response? = nil
+  public var response: ResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,7 +118,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tableDataReadEvents = value
     }
 
-    var request: OneOf_Request? = nil
+    var request: RequestOneOf? = nil
     let requestCheckAndSet = {
       if request != nil {
         throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.request = request
 
-    var response: OneOf_Response? = nil
+    var response: ResponseOneOf? = nil
     let responseCheckAndSet = {
       if response != nil {
         throw DecodingError.dataCorrupted(
@@ -300,7 +300,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Request data for each BigQuery method.
-  public enum OneOf_Request: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Codable, Equatable, Sendable {
     /// Table insert request.
     indirect case tableInsertRequest(TableInsertRequest?)
     /// Table update request.
@@ -324,7 +324,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Response data for each BigQuery method.
-  public enum OneOf_Response: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// Table insert response.
     indirect case tableInsertResponse(TableInsertResponse?)
     /// Table update response.

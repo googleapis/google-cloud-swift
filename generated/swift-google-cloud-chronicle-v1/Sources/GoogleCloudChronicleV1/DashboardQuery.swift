@@ -115,7 +115,7 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct Input: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var timeInput: OneOf_TimeInput? = nil
+    public var timeInput: TimeInputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -153,7 +153,7 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var timeInput: OneOf_TimeInput? = nil
+      var timeInput: TimeInputOneOf? = nil
       let timeInputCheckAndSet = {
         if timeInput != nil {
           throw DecodingError.dataCorrupted(
@@ -271,7 +271,7 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_TimeInput: Codable, Equatable, Sendable {
+    public enum TimeInputOneOf: Codable, Equatable, Sendable {
       /// time range to fetch the data for.
       indirect case timeWindow(GoogleType.Interval?)
       /// time range for last x units.

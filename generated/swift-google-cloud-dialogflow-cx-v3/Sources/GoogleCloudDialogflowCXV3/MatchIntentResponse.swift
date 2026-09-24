@@ -34,7 +34,7 @@
     public var currentPage: Page? = nil
 
     /// The original conversational query.
-    public var query: OneOf_Query? = nil
+    public var query: QueryOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@
       }
       self.currentPage = try container.decodeIfPresent(Page.self, forKey: .currentPage)
 
-      var query: OneOf_Query? = nil
+      var query: QueryOneOf? = nil
       let queryCheckAndSet = {
         if query != nil {
           throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@
     }
 
     /// The original conversational query.
-    public enum OneOf_Query: Codable, Equatable, Sendable {
+    public enum QueryOneOf: Codable, Equatable, Sendable {
       /// If [natural language text][google.cloud.dialogflow.cx.v3.TextInput] was
       /// provided as input, this field will contain a copy of the text.
       ///

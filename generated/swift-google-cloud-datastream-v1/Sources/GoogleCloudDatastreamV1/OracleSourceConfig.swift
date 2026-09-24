@@ -36,10 +36,10 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var maxConcurrentBackfillTasks: Swift.Int32 = Swift.Int32()
 
   /// The configuration for handle Oracle large objects.
-  public var largeObjectsHandling: OneOf_LargeObjectsHandling? = nil
+  public var largeObjectsHandling: LargeObjectsHandlingOneOf? = nil
 
   /// Configuration to select the CDC method.
-  public var cdcMethod: OneOf_CdcMethod? = nil
+  public var cdcMethod: CdcMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxConcurrentBackfillTasks = value
     }
 
-    var largeObjectsHandling: OneOf_LargeObjectsHandling? = nil
+    var largeObjectsHandling: LargeObjectsHandlingOneOf? = nil
     let largeObjectsHandlingCheckAndSet = {
       if largeObjectsHandling != nil {
         throw DecodingError.dataCorrupted(
@@ -121,7 +121,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.largeObjectsHandling = largeObjectsHandling
 
-    var cdcMethod: OneOf_CdcMethod? = nil
+    var cdcMethod: CdcMethodOneOf? = nil
     let cdcMethodCheckAndSet = {
       if cdcMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -353,7 +353,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Configuration to specify how the log file should be accessed.
-    public var logFileAccess: OneOf_LogFileAccess? = nil
+    public var logFileAccess: LogFileAccessOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -391,7 +391,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var logFileAccess: OneOf_LogFileAccess? = nil
+      var logFileAccess: LogFileAccessOneOf? = nil
       let logFileAccessCheckAndSet = {
         if logFileAccess != nil {
           throw DecodingError.dataCorrupted(
@@ -575,7 +575,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Configuration to specify how the log file should be accessed.
-    public enum OneOf_LogFileAccess: Codable, Equatable, Sendable {
+    public enum LogFileAccessOneOf: Codable, Equatable, Sendable {
       /// Use Oracle ASM.
       indirect case oracleAsmLogFileAccess(
         OracleSourceConfig.BinaryLogParser.OracleAsmLogFileAccess?)
@@ -595,7 +595,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration for handle Oracle large objects.
-  public enum OneOf_LargeObjectsHandling: Codable, Equatable, Sendable {
+  public enum LargeObjectsHandlingOneOf: Codable, Equatable, Sendable {
     /// Drop large object values.
     indirect case dropLargeObjects(OracleSourceConfig.DropLargeObjects?)
     /// Stream large object values.
@@ -603,7 +603,7 @@ public struct OracleSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration to select the CDC method.
-  public enum OneOf_CdcMethod: Codable, Equatable, Sendable {
+  public enum CdcMethodOneOf: Codable, Equatable, Sendable {
     /// Use LogMiner.
     indirect case logMiner(OracleSourceConfig.LogMiner?)
     /// Use Binary Log Parser.

@@ -67,7 +67,7 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var errors: [GoogleRpc.Status] = []
 
   /// The context of the InsightsConfig.
-  public var insightsConfigContext: OneOf_InsightsConfigContext? = nil
+  public var insightsConfigContext: InsightsConfigContextOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -156,7 +156,7 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.errors = value
     }
 
-    var insightsConfigContext: OneOf_InsightsConfigContext? = nil
+    var insightsConfigContext: InsightsConfigContextOneOf? = nil
     let insightsConfigContextCheckAndSet = {
       if insightsConfigContext != nil {
         throw DecodingError.dataCorrupted(
@@ -332,7 +332,7 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The context of the InsightsConfig.
-  public enum OneOf_InsightsConfigContext: Codable, Equatable, Sendable {
+  public enum InsightsConfigContextOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the App Hub Application.
     /// Format:
     /// projects/{project}/locations/{location}/applications/{application}

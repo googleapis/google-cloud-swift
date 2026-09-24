@@ -37,7 +37,7 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A policy that specifies how to restart the failed connectors/tasks in a
   /// Cluster resource. If not set, the failed connectors/tasks won't be
   /// restarted.
-  public var restartPolicy: OneOf_RestartPolicy? = nil
+  public var restartPolicy: RestartPolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var restartPolicy: OneOf_RestartPolicy? = nil
+    var restartPolicy: RestartPolicyOneOf? = nil
     let restartPolicyCheckAndSet = {
       if restartPolicy != nil {
         throw DecodingError.dataCorrupted(
@@ -277,7 +277,7 @@ public struct Connector: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A policy that specifies how to restart the failed connectors/tasks in a
   /// Cluster resource. If not set, the failed connectors/tasks won't be
   /// restarted.
-  public enum OneOf_RestartPolicy: Codable, Equatable, Sendable {
+  public enum RestartPolicyOneOf: Codable, Equatable, Sendable {
     /// Optional. Restarts the individual tasks of a Connector.
     indirect case taskRestartPolicy(TaskRetryPolicy?)
   }

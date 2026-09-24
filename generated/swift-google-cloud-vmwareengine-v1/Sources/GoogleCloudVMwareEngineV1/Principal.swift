@@ -25,7 +25,7 @@ public struct Principal: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The consumer provided user/service account which needs to be
   /// granted permission to DNS bind with the intranet VPC corresponding to the
   /// consumer project.
-  public var principal: OneOf_Principal? = nil
+  public var principal: PrincipalOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct Principal: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var principal: OneOf_Principal? = nil
+    var principal: PrincipalOneOf? = nil
     let principalCheckAndSet = {
       if principal != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct Principal: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The consumer provided user/service account which needs to be
   /// granted permission to DNS bind with the intranet VPC corresponding to the
   /// consumer project.
-  public enum OneOf_Principal: Codable, Equatable, Sendable {
+  public enum PrincipalOneOf: Codable, Equatable, Sendable {
     /// The user who needs to be granted permission.
     case user(Swift.String)
     /// The service account which needs to be granted the permission.

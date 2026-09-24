@@ -22,7 +22,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Represents the batch to inspect or redact.
-  public var batch: OneOf_Batch? = nil
+  public var batch: BatchOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var batch: OneOf_Batch? = nil
+    var batch: BatchOneOf? = nil
     let batchCheckAndSet = {
       if batch != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct BatchContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Represents the batch to inspect or redact.
-  public enum OneOf_Batch: Codable, Equatable, Sendable {
+  public enum BatchOneOf: Codable, Equatable, Sendable {
     /// Optional. Represents a batch of string values to inspect or redact.
     indirect case stringValueBatch(StringValueBatch?)
   }

@@ -27,7 +27,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// within the location being profiled. The first filter to match will be
   /// applied, regardless of the condition. If none is set, will default to
   /// `other_tables`.
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -179,7 +179,7 @@ public struct DiscoveryBigQueryFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// within the location being profiled. The first filter to match will be
   /// applied, regardless of the condition. If none is set, will default to
   /// `other_tables`.
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// A specific set of tables for this filter to apply to. A table collection
     /// must be specified in only one filter per config.
     /// If a table id or dataset is empty, Cloud DLP assumes all tables in that

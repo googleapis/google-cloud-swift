@@ -25,7 +25,7 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Data transfer schedules.
-  public var schedule: OneOf_Schedule? = nil
+  public var schedule: ScheduleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var schedule: OneOf_Schedule? = nil
+    var schedule: ScheduleOneOf? = nil
     let scheduleCheckAndSet = {
       if schedule != nil {
         throw DecodingError.dataCorrupted(
@@ -116,7 +116,7 @@ public struct ScheduleOptionsV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data transfer schedules.
-  public enum OneOf_Schedule: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Time based transfer schedule options. This is the default schedule
     /// option.
     indirect case timeBasedSchedule(TimeBasedSchedule?)

@@ -43,7 +43,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If `done` == `false`, neither `error` nor `response` is set.
   /// If `done` == `true`, exactly one of `error` or `response` can be set.
   /// Some services might not provide the result.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -94,7 +94,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.done = value
     }
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@ public struct Operation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// If `done` == `false`, neither `error` nor `response` is set.
   /// If `done` == `true`, exactly one of `error` or `response` can be set.
   /// Some services might not provide the result.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// The error result of the operation in case of failure or cancellation.
     indirect case error(GoogleRpc.Status?)
     /// The normal, successful response of the operation.  If the original

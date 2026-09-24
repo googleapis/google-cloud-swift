@@ -134,7 +134,7 @@
       Sendable
     {
       /// Additional configs that defines the behavior of the chunking.
-      public var chunkMode: OneOf_ChunkMode? = nil
+      public var chunkMode: ChunkModeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -170,7 +170,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var chunkMode: OneOf_ChunkMode? = nil
+        var chunkMode: ChunkModeOneOf? = nil
         let chunkModeCheckAndSet = {
           if chunkMode != nil {
             throw DecodingError.dataCorrupted(
@@ -294,7 +294,7 @@
       }
 
       /// Additional configs that defines the behavior of the chunking.
-      public enum OneOf_ChunkMode: Codable, Equatable, Sendable {
+      public enum ChunkModeOneOf: Codable, Equatable, Sendable {
         /// Configuration for the layout based chunking.
         indirect case layoutBasedChunkingConfig(
           DocumentProcessingConfig.ChunkingConfig.LayoutBasedChunkingConfig?)
@@ -317,7 +317,7 @@
       Sendable
     {
       /// Configs for document processing types.
-      public var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
+      public var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -357,7 +357,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
+        var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
         let typeDedicatedConfigCheckAndSet = {
           if typeDedicatedConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -687,7 +687,7 @@
       }
 
       /// Configs for document processing types.
-      public enum OneOf_TypeDedicatedConfig: Codable, Equatable, Sendable {
+      public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
         /// Configurations applied to digital parser.
         indirect case digitalParsingConfig(
           DocumentProcessingConfig.ParsingConfig.DigitalParsingConfig?)

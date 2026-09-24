@@ -92,9 +92,9 @@
       /// [event input][google.cloud.dialogflow.cx.v3.QueryInput.event], [dtmf
       /// input][google.cloud.dialogflow.cx.v3.QueryInput.dtmf] in the test case.
       ///
-      /// [google.cloud.dialogflow.cx.v3.QueryInput.dtmf]: <doc:QueryInput/OneOf_Input/dtmf(_:)>
-      /// [google.cloud.dialogflow.cx.v3.QueryInput.event]: <doc:QueryInput/OneOf_Input/event(_:)>
-      /// [google.cloud.dialogflow.cx.v3.QueryInput.text]: <doc:QueryInput/OneOf_Input/text(_:)>
+      /// [google.cloud.dialogflow.cx.v3.QueryInput.dtmf]: <doc:QueryInput/InputOneOf/dtmf(_:)>
+      /// [google.cloud.dialogflow.cx.v3.QueryInput.event]: <doc:QueryInput/InputOneOf/event(_:)>
+      /// [google.cloud.dialogflow.cx.v3.QueryInput.text]: <doc:QueryInput/InputOneOf/text(_:)>
       public var input: QueryInput? = nil
 
       /// Parameters that need to be injected into the conversation during intent

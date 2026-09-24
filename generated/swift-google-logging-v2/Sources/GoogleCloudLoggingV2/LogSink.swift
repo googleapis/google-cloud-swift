@@ -129,7 +129,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Destination dependent options.
-  public var options: OneOf_Options? = nil
+  public var options: OptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -223,7 +223,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var options: OneOf_Options? = nil
+    var options: OptionsOneOf? = nil
     let optionsCheckAndSet = {
       if options != nil {
         throw DecodingError.dataCorrupted(
@@ -391,7 +391,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Destination dependent options.
-  public enum OneOf_Options: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Options that affect sinks exporting data to BigQuery.
     indirect case bigqueryOptions(BigQueryOptions?)
   }

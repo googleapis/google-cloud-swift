@@ -51,7 +51,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The internal information of an asset. Only one field can be specified
   /// with different attributes based on the type of the asset.
-  public var assetDetails: OneOf_AssetDetails? = nil
+  public var assetDetails: AssetDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       self.assignedGroups = value
     }
 
-    var assetDetails: OneOf_AssetDetails? = nil
+    var assetDetails: AssetDetailsOneOf? = nil
     let assetDetailsCheckAndSet = {
       if assetDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -177,7 +177,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The internal information of an asset. Only one field can be specified
   /// with different attributes based on the type of the asset.
-  public enum OneOf_AssetDetails: Codable, Equatable, Sendable {
+  public enum AssetDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Asset information specific for virtual and physical
     /// machines.
     indirect case machineDetails(MachineDetails?)

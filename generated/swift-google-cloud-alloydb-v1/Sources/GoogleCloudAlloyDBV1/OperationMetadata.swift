@@ -43,7 +43,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// value with a [google.rpc.Status.code][google.rpc.Status.code] of 1,
   /// corresponding to `Code.CANCELLED`.
   ///
-  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/error(_:)
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/error(_:)
   /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
@@ -51,7 +51,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var apiVersion: Swift.String = Swift.String()
 
   /// Request specific metadata, if any.
-  public var requestSpecific: OneOf_RequestSpecific? = nil
+  public var requestSpecific: RequestSpecificOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,7 +122,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.apiVersion = value
     }
 
-    var requestSpecific: OneOf_RequestSpecific? = nil
+    var requestSpecific: RequestSpecificOneOf? = nil
     let requestSpecificCheckAndSet = {
       if requestSpecific != nil {
         throw DecodingError.dataCorrupted(
@@ -173,7 +173,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Request specific metadata, if any.
-  public enum OneOf_RequestSpecific: Codable, Equatable, Sendable {
+  public enum RequestSpecificOneOf: Codable, Equatable, Sendable {
     /// Output only. BatchCreateInstances related metadata.
     indirect case batchCreateInstancesMetadata(BatchCreateInstancesMetadata?)
     /// Output only. UpgradeClusterStatus related metadata.

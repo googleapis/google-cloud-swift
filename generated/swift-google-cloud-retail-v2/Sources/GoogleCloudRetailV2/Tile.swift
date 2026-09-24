@@ -27,7 +27,7 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var representativeProductId: Swift.String = Swift.String()
 
   /// The attribute key and value for the tile.
-  public var productAttribute: OneOf_ProductAttribute? = nil
+  public var productAttribute: ProductAttributeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.representativeProductId = value
     }
 
-    var productAttribute: OneOf_ProductAttribute? = nil
+    var productAttribute: ProductAttributeOneOf? = nil
     let productAttributeCheckAndSet = {
       if productAttribute != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct Tile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The attribute key and value for the tile.
-  public enum OneOf_ProductAttribute: Codable, Equatable, Sendable {
+  public enum ProductAttributeOneOf: Codable, Equatable, Sendable {
     /// The product attribute key-value.
     indirect case productAttributeValue(ProductAttributeValue?)
     /// The product attribute key-numeric interval.

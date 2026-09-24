@@ -56,7 +56,7 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var prerequisiteStepIds: [Swift.String] = []
 
   /// Required. The job definition.
-  public var jobType: OneOf_JobType? = nil
+  public var jobType: JobTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.prerequisiteStepIds = value
     }
 
-    var jobType: OneOf_JobType? = nil
+    var jobType: JobTypeOneOf? = nil
     let jobTypeCheckAndSet = {
       if jobType != nil {
         throw DecodingError.dataCorrupted(
@@ -214,7 +214,7 @@ public struct OrderedJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The job definition.
-  public enum OneOf_JobType: Codable, Equatable, Sendable {
+  public enum JobTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Job is a Hadoop job.
     indirect case hadoopJob(HadoopJob?)
     /// Optional. Job is a Spark job.

@@ -52,7 +52,7 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The behavior for the ProfileType that the SecurityProfile resource is meant
   /// to configure. This field must correspond to the ProfileType of the
   /// SecurityProfile.
-  public var profile: OneOf_Profile? = nil
+  public var profile: ProfileOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var profile: OneOf_Profile? = nil
+    var profile: ProfileOneOf? = nil
     let profileCheckAndSet = {
       if profile != nil {
         throw DecodingError.dataCorrupted(
@@ -326,7 +326,7 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The behavior for the ProfileType that the SecurityProfile resource is meant
   /// to configure. This field must correspond to the ProfileType of the
   /// SecurityProfile.
-  public enum OneOf_Profile: Codable, Equatable, Sendable {
+  public enum ProfileOneOf: Codable, Equatable, Sendable {
     /// The threat prevention configuration for the SecurityProfile.
     indirect case threatPreventionProfile(ThreatPreventionProfile?)
     /// The custom Packet Mirroring v2 configuration for the SecurityProfile.

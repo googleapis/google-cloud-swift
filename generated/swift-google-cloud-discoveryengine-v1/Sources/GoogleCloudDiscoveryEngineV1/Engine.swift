@@ -92,10 +92,10 @@
     public var disableAnalytics: Swift.Bool = Swift.Bool()
 
     /// Additional config specs that defines the behavior of the engine.
-    public var engineConfig: OneOf_EngineConfig? = nil
+    public var engineConfig: EngineConfigOneOf? = nil
 
     /// Engine metadata to monitor the status of the engine.
-    public var engineMetadata: OneOf_EngineMetadata? = nil
+    public var engineMetadata: EngineMetadataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -181,7 +181,7 @@
         self.disableAnalytics = value
       }
 
-      var engineConfig: OneOf_EngineConfig? = nil
+      var engineConfig: EngineConfigOneOf? = nil
       let engineConfigCheckAndSet = {
         if engineConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -209,7 +209,7 @@
       }
       self.engineConfig = engineConfig
 
-      var engineMetadata: OneOf_EngineMetadata? = nil
+      var engineMetadata: EngineMetadataOneOf? = nil
       let engineMetadataCheckAndSet = {
         if engineMetadata != nil {
           throw DecodingError.dataCorrupted(
@@ -578,7 +578,7 @@
       {
         /// Feature related configurations applied to a specific type of meida
         /// recommendation engines.
-        public var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
+        public var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -616,7 +616,7 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
 
-          var typeDedicatedConfig: OneOf_TypeDedicatedConfig? = nil
+          var typeDedicatedConfig: TypeDedicatedConfigOneOf? = nil
           let typeDedicatedConfigCheckAndSet = {
             if typeDedicatedConfig != nil {
               throw DecodingError.dataCorrupted(
@@ -663,7 +663,7 @@
 
         /// Feature related configurations applied to a specific type of meida
         /// recommendation engines.
-        public enum OneOf_TypeDedicatedConfig: Codable, Equatable, Sendable {
+        public enum TypeDedicatedConfigOneOf: Codable, Equatable, Sendable {
           /// Recommended for you engine feature config.
           indirect case recommendedForYouConfig(
             Engine.MediaRecommendationEngineConfig.RecommendedForYouFeatureConfig?)
@@ -1354,7 +1354,7 @@
     }
 
     /// Additional config specs that defines the behavior of the engine.
-    public enum OneOf_EngineConfig: Codable, Equatable, Sendable {
+    public enum EngineConfigOneOf: Codable, Equatable, Sendable {
       /// Configurations for the Chat Engine. Only applicable if
       /// [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type] is
       /// [SOLUTION_TYPE_CHAT][google.cloud.discoveryengine.v1.SolutionType.SOLUTION_TYPE_CHAT].
@@ -1384,7 +1384,7 @@
     }
 
     /// Engine metadata to monitor the status of the engine.
-    public enum OneOf_EngineMetadata: Codable, Equatable, Sendable {
+    public enum EngineMetadataOneOf: Codable, Equatable, Sendable {
       /// Output only. Additional information of the Chat Engine. Only applicable
       /// if [solution_type][google.cloud.discoveryengine.v1.Engine.solution_type]
       /// is

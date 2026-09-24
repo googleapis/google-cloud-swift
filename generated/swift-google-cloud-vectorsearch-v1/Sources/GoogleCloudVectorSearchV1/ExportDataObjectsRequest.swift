@@ -39,7 +39,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public var fieldFilter: ExportDataObjectsRequest.FieldFilter? = nil
 
   /// The configuration for the export data.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     self.fieldFilter = try container.decodeIfPresent(
       ExportDataObjectsRequest.FieldFilter.self, forKey: .fieldFilter)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -319,7 +319,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     Sendable
   {
     /// Exactly one of `included_fields` or `excluded_fields` must be set.
-    public var selector: OneOf_Selector? = nil
+    public var selector: SelectorOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -357,7 +357,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var selector: OneOf_Selector? = nil
+      var selector: SelectorOneOf? = nil
       let selectorCheckAndSet = {
         if selector != nil {
           throw DecodingError.dataCorrupted(
@@ -473,7 +473,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
 
     /// Exactly one of `included_fields` or `excluded_fields` must be set.
-    public enum OneOf_Selector: Codable, Equatable, Sendable {
+    public enum SelectorOneOf: Codable, Equatable, Sendable {
       /// Optional. Only these top-level fields will appear in each exported
       /// record.
       indirect case includedFields(ExportDataObjectsRequest.FieldFilter.FieldList?)
@@ -494,7 +494,7 @@ public struct ExportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The configuration for the export data.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage location where user wants to export Data Objects.
     indirect case gcsDestination(ExportDataObjectsRequest.GcsExportDestination?)
   }

@@ -26,13 +26,13 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   public var parent: Swift.String = Swift.String()
 
   /// The connection profile on which to run discover.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   /// The depth of the retrieved hierarchy of data objects.
-  public var hierarchy: OneOf_Hierarchy? = nil
+  public var hierarchy: HierarchyOneOf? = nil
 
   /// The data object to populate with child data objects and metadata.
-  public var dataObject: OneOf_DataObject? = nil
+  public var dataObject: DataObjectOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
       self.parent = value
     }
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
     }
     self.target = target
 
-    var hierarchy: OneOf_Hierarchy? = nil
+    var hierarchy: HierarchyOneOf? = nil
     let hierarchyCheckAndSet = {
       if hierarchy != nil {
         throw DecodingError.dataCorrupted(
@@ -132,7 +132,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
     }
     self.hierarchy = hierarchy
 
-    var dataObject: OneOf_DataObject? = nil
+    var dataObject: DataObjectOneOf? = nil
     let dataObjectCheckAndSet = {
       if dataObject != nil {
         throw DecodingError.dataCorrupted(
@@ -219,7 +219,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The connection profile on which to run discover.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// An ad-hoc connection profile configuration.
     indirect case connectionProfile(ConnectionProfile?)
     /// A reference to an existing connection profile.
@@ -227,7 +227,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The depth of the retrieved hierarchy of data objects.
-  public enum OneOf_Hierarchy: Codable, Equatable, Sendable {
+  public enum HierarchyOneOf: Codable, Equatable, Sendable {
     /// Whether to retrieve the full hierarchy of data objects (TRUE) or only the
     /// current level (FALSE).
     case fullHierarchy(Swift.Bool)
@@ -236,7 +236,7 @@ public struct DiscoverConnectionProfileRequest: Codable, Equatable, GoogleWKT._A
   }
 
   /// The data object to populate with child data objects and metadata.
-  public enum OneOf_DataObject: Codable, Equatable, Sendable {
+  public enum DataObjectOneOf: Codable, Equatable, Sendable {
     /// Oracle RDBMS to enrich with child data objects and metadata.
     indirect case oracleRdbms(OracleRdbms?)
     /// MySQL RDBMS to enrich with child data objects and metadata.

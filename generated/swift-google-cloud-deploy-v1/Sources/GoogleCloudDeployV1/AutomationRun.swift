@@ -79,7 +79,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var waitUntilTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The operation that the `AutomationRun` will perform.
-  public var operation: OneOf_Operation? = nil
+  public var operation: OperationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -186,7 +186,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
     self.waitUntilTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .waitUntilTime)
 
-    var operation: OneOf_Operation? = nil
+    var operation: OperationOneOf? = nil
     let operationCheckAndSet = {
       if operation != nil {
         throw DecodingError.dataCorrupted(
@@ -403,7 +403,7 @@ public struct AutomationRun: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The operation that the `AutomationRun` will perform.
-  public enum OneOf_Operation: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Codable, Equatable, Sendable {
     /// Output only. Promotes a release to a specified 'Target'.
     indirect case promoteReleaseOperation(PromoteReleaseOperation?)
     /// Output only. Advances a rollout to the next phase.

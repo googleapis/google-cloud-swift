@@ -52,7 +52,7 @@
     /// Optional. Description of the FeatureGroup.
     public var description: Swift.String = Swift.String()
 
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,7 +118,7 @@
         self.description = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -352,7 +352,7 @@
       }
     }
 
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Indicates that features for this group come from BigQuery Table/View.
       /// By default treats the source as a sparse time series source. The BigQuery
       /// source table or view must have at least one entity ID column and a column

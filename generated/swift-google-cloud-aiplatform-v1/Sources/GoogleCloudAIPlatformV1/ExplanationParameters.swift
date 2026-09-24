@@ -45,7 +45,7 @@
     /// [google.cloud.aiplatform.v1.ExplanationParameters.top_k]: <doc:ExplanationParameters/topK>
     public var outputIndices: GoogleWKT.WKTListValue? = nil
 
-    public var method: OneOf_Method? = nil
+    public var method: MethodOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@
       self.outputIndices = try container.decodeIfPresent(
         GoogleWKT.WKTListValue.self, forKey: .outputIndices)
 
-      var method: OneOf_Method? = nil
+      var method: MethodOneOf? = nil
       let methodCheckAndSet = {
         if method != nil {
           throw DecodingError.dataCorrupted(
@@ -154,7 +154,7 @@
       }
     }
 
-    public enum OneOf_Method: Codable, Equatable, Sendable {
+    public enum MethodOneOf: Codable, Equatable, Sendable {
       /// An attribution method that approximates Shapley values for features that
       /// contribute to the label being predicted. A sampling strategy is used to
       /// approximate the value rather than considering all subsets of features.

@@ -35,7 +35,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
   public var encryption: Encryption? = nil
 
   /// The target storage.
-  public var targetStorage: OneOf_TargetStorage? = nil
+  public var targetStorage: TargetStorageOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
     }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
-    var targetStorage: OneOf_TargetStorage? = nil
+    var targetStorage: TargetStorageOneOf? = nil
     let targetStorageCheckAndSet = {
       if targetStorage != nil {
         throw DecodingError.dataCorrupted(
@@ -124,7 +124,7 @@ public struct DiskMigrationJobTargetDetails: Codable, Equatable, GoogleWKT._AnyP
   }
 
   /// The target storage.
-  public enum OneOf_TargetStorage: Codable, Equatable, Sendable {
+  public enum TargetStorageOneOf: Codable, Equatable, Sendable {
     /// Required. The target disk.
     indirect case targetDisk(ComputeEngineDisk?)
   }

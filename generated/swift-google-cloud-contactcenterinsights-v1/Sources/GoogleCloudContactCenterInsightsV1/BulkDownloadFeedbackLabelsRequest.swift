@@ -61,7 +61,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
 
   /// Configuration for an external data store to which the feedback labels
   /// will be written to.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
       self.templateQaScorecardId = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -531,7 +531,7 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
 
   /// Configuration for an external data store to which the feedback labels
   /// will be written to.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// A cloud storage bucket destination.
     indirect case gcsDestination(BulkDownloadFeedbackLabelsRequest.GcsDestination?)
   }

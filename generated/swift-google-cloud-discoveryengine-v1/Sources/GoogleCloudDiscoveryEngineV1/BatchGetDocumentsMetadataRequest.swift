@@ -247,7 +247,7 @@
       /// Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s.
       ///
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-      public var matcher: OneOf_Matcher? = nil
+      public var matcher: MatcherOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -285,7 +285,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var matcher: OneOf_Matcher? = nil
+        var matcher: MatcherOneOf? = nil
         let matcherCheckAndSet = {
           if matcher != nil {
             throw DecodingError.dataCorrupted(
@@ -331,7 +331,7 @@
       /// Matcher for the [Document][google.cloud.discoveryengine.v1.Document]s.
       ///
       /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-      public enum OneOf_Matcher: Codable, Equatable, Sendable {
+      public enum MatcherOneOf: Codable, Equatable, Sendable {
         /// Matcher by exact URIs.
         indirect case urisMatcher(BatchGetDocumentsMetadataRequest.UrisMatcher?)
         /// Matcher by FHIR resource names.

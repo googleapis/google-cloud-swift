@@ -44,7 +44,7 @@
 
     /// The origin location of the RagFile if it is imported from Google Cloud
     /// Storage or Google Drive.
-    public var ragFileSource: OneOf_RagFileSource? = nil
+    public var ragFileSource: RagFileSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,7 @@
         GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
       self.fileStatus = try container.decodeIfPresent(FileStatus.self, forKey: .fileStatus)
 
-      var ragFileSource: OneOf_RagFileSource? = nil
+      var ragFileSource: RagFileSourceOneOf? = nil
       let ragFileSourceCheckAndSet = {
         if ragFileSource != nil {
           throw DecodingError.dataCorrupted(
@@ -189,7 +189,7 @@
 
     /// The origin location of the RagFile if it is imported from Google Cloud
     /// Storage or Google Drive.
-    public enum OneOf_RagFileSource: Codable, Equatable, Sendable {
+    public enum RagFileSourceOneOf: Codable, Equatable, Sendable {
       /// Output only. Google Cloud Storage location of the RagFile.
       /// It does not support wildcards in the Cloud Storage uri for now.
       indirect case gcsSource(GcsSource?)

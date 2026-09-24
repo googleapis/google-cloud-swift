@@ -24,7 +24,7 @@ import Foundation
 /// in case of success.
 ///
 /// [google.cloud.talent.v4.JobService.BatchCreateJobs]: <doc:JobServiceClient/batchCreateJobs(request:options:)>
-/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
 public struct BatchCreateJobsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

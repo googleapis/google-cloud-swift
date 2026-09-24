@@ -24,7 +24,7 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Particular type of configuration for this network resource.
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct NetworkResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of configuration for this network resource.
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that a new network should be
     /// created.
     indirect case newNetwork(NewNetworkConfig?)

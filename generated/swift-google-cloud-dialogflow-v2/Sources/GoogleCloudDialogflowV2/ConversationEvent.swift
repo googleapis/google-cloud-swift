@@ -37,7 +37,7 @@
     public var errorStatus: GoogleRpc.Status? = nil
 
     /// Payload of conversation event.
-    public var payload: OneOf_Payload? = nil
+    public var payload: PayloadOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,7 +89,7 @@
       }
       self.errorStatus = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .errorStatus)
 
-      var payload: OneOf_Payload? = nil
+      var payload: PayloadOneOf? = nil
       let payloadCheckAndSet = {
         if payload != nil {
           throw DecodingError.dataCorrupted(
@@ -302,7 +302,7 @@
     }
 
     /// Payload of conversation event.
-    public enum OneOf_Payload: Codable, Equatable, Sendable {
+    public enum PayloadOneOf: Codable, Equatable, Sendable {
       /// Payload of NEW_MESSAGE event.
       indirect case newMessagePayload(Message?)
       /// Payload of NEW_RECOGNITION_RESULT event.

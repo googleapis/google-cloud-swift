@@ -146,16 +146,16 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// * For [Pub/Sub targets][google.cloud.scheduler.v1.Job.pubsub_target], this
   /// field is ignored.
   ///
-  /// [google.cloud.scheduler.v1.Job.app_engine_http_target]: <doc:Job/OneOf_Target/appEngineHttpTarget(_:)>
-  /// [google.cloud.scheduler.v1.Job.http_target]: <doc:Job/OneOf_Target/httpTarget(_:)>
-  /// [google.cloud.scheduler.v1.Job.pubsub_target]: <doc:Job/OneOf_Target/pubsubTarget(_:)>
+  /// [google.cloud.scheduler.v1.Job.app_engine_http_target]: <doc:Job/TargetOneOf/appEngineHttpTarget(_:)>
+  /// [google.cloud.scheduler.v1.Job.http_target]: <doc:Job/TargetOneOf/httpTarget(_:)>
+  /// [google.cloud.scheduler.v1.Job.pubsub_target]: <doc:Job/TargetOneOf/pubsubTarget(_:)>
   /// [google.cloud.scheduler.v1.RetryConfig]: <doc:RetryConfig>
   public var attemptDeadline: GoogleWKT.WKTDuration? = nil
 
   /// Required.
   ///
   /// Delivery settings containing destination and parameters.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -242,7 +242,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     self.attemptDeadline = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .attemptDeadline)
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -444,7 +444,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   ///
   /// Delivery settings containing destination and parameters.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Pub/Sub target.
     indirect case pubsubTarget(PubsubTarget?)
     /// App Engine HTTP target.

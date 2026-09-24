@@ -69,7 +69,7 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Detailed specification of the change, embedding the original request.
-  public var changePayload: OneOf_ChangePayload? = nil
+  public var changePayload: ChangePayloadOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -198,7 +198,7 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var changePayload: OneOf_ChangePayload? = nil
+    var changePayload: ChangePayloadOneOf? = nil
     let changePayloadCheckAndSet = {
       if changePayload != nil {
         throw DecodingError.dataCorrupted(
@@ -692,7 +692,7 @@ public struct ChangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Detailed specification of the change, embedding the original request.
-  public enum OneOf_ChangePayload: Codable, Equatable, Sendable {
+  public enum ChangePayloadOneOf: Codable, Equatable, Sendable {
     /// Payload for creating an Entry.
     indirect case createEntry(CreateEntryRequest?)
     /// Payload for updating an Entry.

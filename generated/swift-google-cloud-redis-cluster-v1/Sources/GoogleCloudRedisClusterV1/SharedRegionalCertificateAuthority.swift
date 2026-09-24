@@ -27,7 +27,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
   public var name: Swift.String = Swift.String()
 
   /// Server ca information.
-  public var serverCa: OneOf_ServerCa? = nil
+  public var serverCa: ServerCaOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
       self.name = value
     }
 
-    var serverCa: OneOf_ServerCa? = nil
+    var serverCa: ServerCaOneOf? = nil
     let serverCaCheckAndSet = {
       if serverCa != nil {
         throw DecodingError.dataCorrupted(
@@ -251,7 +251,7 @@ public struct SharedRegionalCertificateAuthority: Codable, Equatable, GoogleWKT.
   }
 
   /// Server ca information.
-  public enum OneOf_ServerCa: Codable, Equatable, Sendable {
+  public enum ServerCaOneOf: Codable, Equatable, Sendable {
     /// CA certificate chains for redis managed server authentication.
     indirect case managedServerCa(
       SharedRegionalCertificateAuthority.RegionalManagedCertificateAuthority?)

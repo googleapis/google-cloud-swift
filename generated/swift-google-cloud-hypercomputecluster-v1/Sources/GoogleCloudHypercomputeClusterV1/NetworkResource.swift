@@ -31,7 +31,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Reference to the network resource in Google Cloud. Exactly one of these
   /// fields will be populated based on the configured type of network resource.
-  public var reference: OneOf_Reference? = nil
+  public var reference: ReferenceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.config = try container.decodeIfPresent(NetworkResourceConfig.self, forKey: .config)
 
-    var reference: OneOf_Reference? = nil
+    var reference: ReferenceOneOf? = nil
     let referenceCheckAndSet = {
       if reference != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Reference to the network resource in Google Cloud. Exactly one of these
   /// fields will be populated based on the configured type of network resource.
-  public enum OneOf_Reference: Codable, Equatable, Sendable {
+  public enum ReferenceOneOf: Codable, Equatable, Sendable {
     /// Reference to a network in Google Compute Engine.
     indirect case network(NetworkReference?)
   }

@@ -178,7 +178,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var releaseTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The result of this release attempt.
-    public var result: OneOf_Result? = nil
+    public var result: ResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -220,7 +220,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.releaseTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .releaseTime)
 
-      var result: OneOf_Result? = nil
+      var result: ResultOneOf? = nil
       let resultCheckAndSet = {
         if result != nil {
           throw DecodingError.dataCorrupted(
@@ -265,7 +265,7 @@ public struct ReleaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The result of this release attempt.
-    public enum OneOf_Result: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Codable, Equatable, Sendable {
       /// The name of the created compilation result, if one was successfully
       /// created. Must be in the format
       /// `projects/*/locations/*/repositories/*/compilationResults/*`.

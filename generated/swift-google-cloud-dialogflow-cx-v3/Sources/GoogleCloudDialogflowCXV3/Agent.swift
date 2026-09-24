@@ -150,7 +150,7 @@
     public var satisfiesPzi: Swift.Bool? = nil
 
     /// The resource to start the conversations with for the agent.
-    public var sessionEntryResource: OneOf_SessionEntryResource? = nil
+    public var sessionEntryResource: SessionEntryResourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -298,7 +298,7 @@
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
-      var sessionEntryResource: OneOf_SessionEntryResource? = nil
+      var sessionEntryResource: SessionEntryResourceOneOf? = nil
       let sessionEntryResourceCheckAndSet = {
         if sessionEntryResource != nil {
           throw DecodingError.dataCorrupted(
@@ -370,7 +370,7 @@
       Sendable
     {
       /// The git settings to specific systems.
-      public var gitSettings: OneOf_GitSettings? = nil
+      public var gitSettings: GitSettingsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -406,7 +406,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var gitSettings: OneOf_GitSettings? = nil
+        var gitSettings: GitSettingsOneOf? = nil
         let gitSettingsCheckAndSet = {
           if gitSettings != nil {
             throw DecodingError.dataCorrupted(
@@ -549,7 +549,7 @@
       }
 
       /// The git settings to specific systems.
-      public enum OneOf_GitSettings: Codable, Equatable, Sendable {
+      public enum GitSettingsOneOf: Codable, Equatable, Sendable {
         /// GitHub settings.
         indirect case githubSettings(Agent.GitIntegrationSettings.GithubSettings?)
       }
@@ -879,7 +879,7 @@
     }
 
     /// The resource to start the conversations with for the agent.
-    public enum OneOf_SessionEntryResource: Codable, Equatable, Sendable {
+    public enum SessionEntryResourceOneOf: Codable, Equatable, Sendable {
       /// Name of the start flow in this agent. A start flow will be automatically
       /// created when the agent is created, and can only be deleted by deleting
       /// the agent.

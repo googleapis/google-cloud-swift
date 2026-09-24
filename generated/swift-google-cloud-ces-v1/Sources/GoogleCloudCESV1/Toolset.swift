@@ -57,7 +57,7 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
   public var toolFakeConfig: ToolFakeConfig? = nil
 
   /// The type of the toolset.
-  public var toolsetType: OneOf_ToolsetType? = nil
+  public var toolsetType: ToolsetTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
     self.toolFakeConfig = try container.decodeIfPresent(
       ToolFakeConfig.self, forKey: .toolFakeConfig)
 
-    var toolsetType: OneOf_ToolsetType? = nil
+    var toolsetType: ToolsetTypeOneOf? = nil
     let toolsetTypeCheckAndSet = {
       if toolsetType != nil {
         throw DecodingError.dataCorrupted(
@@ -195,7 +195,7 @@ public struct Toolset: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the toolset.
-  public enum OneOf_ToolsetType: Codable, Equatable, Sendable {
+  public enum ToolsetTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. A toolset that contains a list of tools that are offered by the
     /// MCP server.
     indirect case mcpToolset(McpToolset?)

@@ -86,13 +86,13 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   public var kmsKeyVersions: [Swift.String] = []
 
   /// Workload specific backup properties.
-  public var backupProperties: OneOf_BackupProperties? = nil
+  public var backupProperties: BackupPropertiesOneOf? = nil
 
   /// Configuration Info has the resource format-specific configuration.
-  public var planInfo: OneOf_PlanInfo? = nil
+  public var planInfo: PlanInfoOneOf? = nil
 
   /// Resource that is being backed up.
-  public var sourceResource: OneOf_SourceResource? = nil
+  public var sourceResource: SourceResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -220,7 +220,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.kmsKeyVersions = value
     }
 
-    var backupProperties: OneOf_BackupProperties? = nil
+    var backupProperties: BackupPropertiesOneOf? = nil
     let backupPropertiesCheckAndSet = {
       if backupProperties != nil {
         throw DecodingError.dataCorrupted(
@@ -260,7 +260,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.backupProperties = backupProperties
 
-    var planInfo: OneOf_PlanInfo? = nil
+    var planInfo: PlanInfoOneOf? = nil
     let planInfoCheckAndSet = {
       if planInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -277,7 +277,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.planInfo = planInfo
 
-    var sourceResource: OneOf_SourceResource? = nil
+    var sourceResource: SourceResourceOneOf? = nil
     let sourceResourceCheckAndSet = {
       if sourceResource != nil {
         throw DecodingError.dataCorrupted(
@@ -724,7 +724,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Workload specific backup properties.
-  public enum OneOf_BackupProperties: Codable, Equatable, Sendable {
+  public enum BackupPropertiesOneOf: Codable, Equatable, Sendable {
     /// Output only. Compute Engine specific backup properties.
     indirect case computeInstanceBackupProperties(ComputeInstanceBackupProperties?)
     /// Output only. Cloud SQL specific backup properties.
@@ -738,13 +738,13 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration Info has the resource format-specific configuration.
-  public enum OneOf_PlanInfo: Codable, Equatable, Sendable {
+  public enum PlanInfoOneOf: Codable, Equatable, Sendable {
     /// Output only. Configuration for a Google Cloud resource.
     indirect case gcpBackupPlanInfo(Backup.GCPBackupPlanInfo?)
   }
 
   /// Resource that is being backed up.
-  public enum OneOf_SourceResource: Codable, Equatable, Sendable {
+  public enum SourceResourceOneOf: Codable, Equatable, Sendable {
     /// Output only. Unique identifier of the GCP resource that is being backed
     /// up.
     indirect case gcpResource(BackupGcpResource?)

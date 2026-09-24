@@ -22,7 +22,7 @@ public struct DataProfileLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The location to be scanned.
-  public var location: OneOf_Location? = nil
+  public var location: LocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct DataProfileLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var location: OneOf_Location? = nil
+    var location: LocationOneOf? = nil
     let locationCheckAndSet = {
       if location != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct DataProfileLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The location to be scanned.
-  public enum OneOf_Location: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Codable, Equatable, Sendable {
     /// The ID of an organization to scan.
     case organizationId(Swift.Int64)
     /// The ID of the folder within an organization to scan.

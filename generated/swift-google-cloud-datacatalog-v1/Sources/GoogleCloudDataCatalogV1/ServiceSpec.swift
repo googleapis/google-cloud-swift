@@ -23,7 +23,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// System spec
-  public var systemSpec: OneOf_SystemSpec? = nil
+  public var systemSpec: SystemSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var systemSpec: OneOf_SystemSpec? = nil
+    var systemSpec: SystemSpecOneOf? = nil
     let systemSpecCheckAndSet = {
       if systemSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@ public struct ServiceSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// System spec
-  public enum OneOf_SystemSpec: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Specification that applies to Instance entries of `CLOUD_BIGTABLE`
     /// system.
     indirect case cloudBigtableInstanceSpec(CloudBigtableInstanceSpec?)

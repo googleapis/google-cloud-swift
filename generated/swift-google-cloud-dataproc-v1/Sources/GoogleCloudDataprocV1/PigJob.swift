@@ -46,7 +46,7 @@ public struct PigJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Pig queries to execute, specified as an HCFS
   /// file URI or a list of queries.
-  public var queries: OneOf_Queries? = nil
+  public var queries: QueriesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -111,7 +111,7 @@ public struct PigJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
-    var queries: OneOf_Queries? = nil
+    var queries: QueriesOneOf? = nil
     let queriesCheckAndSet = {
       if queries != nil {
         throw DecodingError.dataCorrupted(
@@ -157,7 +157,7 @@ public struct PigJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Pig queries to execute, specified as an HCFS
   /// file URI or a list of queries.
-  public enum OneOf_Queries: Codable, Equatable, Sendable {
+  public enum QueriesOneOf: Codable, Equatable, Sendable {
     /// The HCFS URI of the script that contains the Pig queries.
     case queryFileUri(Swift.String)
     /// A list of queries.

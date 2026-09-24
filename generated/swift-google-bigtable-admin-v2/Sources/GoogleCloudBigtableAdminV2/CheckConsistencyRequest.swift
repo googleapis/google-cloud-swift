@@ -34,7 +34,7 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// Which type of read needs to consistently observe which type of write?
   /// Default: `standard_read_remote_writes`
-  public var mode: OneOf_Mode? = nil
+  public var mode: ModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.consistencyToken = value
     }
 
-    var mode: OneOf_Mode? = nil
+    var mode: ModeOneOf? = nil
     let modeCheckAndSet = {
       if mode != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct CheckConsistencyRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// Which type of read needs to consistently observe which type of write?
   /// Default: `standard_read_remote_writes`
-  public enum OneOf_Mode: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Codable, Equatable, Sendable {
     /// Checks that reads using an app profile with `StandardIsolation` can
     /// see all writes committed before the token was created, even if the
     /// read and write target different clusters.

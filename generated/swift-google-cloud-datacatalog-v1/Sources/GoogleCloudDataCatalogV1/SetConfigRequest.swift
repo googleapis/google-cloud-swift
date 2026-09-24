@@ -28,7 +28,7 @@ public struct SetConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// The configuration field to set.
-  public var configuration: OneOf_Configuration? = nil
+  public var configuration: ConfigurationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct SetConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var configuration: OneOf_Configuration? = nil
+    var configuration: ConfigurationOneOf? = nil
     let configurationCheckAndSet = {
       if configuration != nil {
         throw DecodingError.dataCorrupted(
@@ -116,7 +116,7 @@ public struct SetConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration field to set.
-  public enum OneOf_Configuration: Codable, Equatable, Sendable {
+  public enum ConfigurationOneOf: Codable, Equatable, Sendable {
     /// Opt-in status for the migration of Tag Templates to Dataplex.
     case tagTemplateMigration(TagTemplateMigration)
     /// Opt-in status for the UI switch to Dataplex.

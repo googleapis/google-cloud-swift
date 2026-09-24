@@ -26,7 +26,7 @@
     Sendable
   {
     /// The exported flow.
-    public var flow: OneOf_Flow? = nil
+    public var flow: FlowOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var flow: OneOf_Flow? = nil
+      var flow: FlowOneOf? = nil
       let flowCheckAndSet = {
         if flow != nil {
           throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@
     }
 
     /// The exported flow.
-    public enum OneOf_Flow: Codable, Equatable, Sendable {
+    public enum FlowOneOf: Codable, Equatable, Sendable {
       /// The URI to a file containing the exported flow. This field is populated
       /// only if `flow_uri` is specified in
       /// [ExportFlowRequest][google.cloud.dialogflow.cx.v3.ExportFlowRequest].

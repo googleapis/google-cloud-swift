@@ -36,7 +36,7 @@
     /// For streaming audio detect intent, `config` must be provided in
     /// the first request and `audio` must be provided in all following requests.
     ///
-    /// [google.cloud.dialogflow.cx.v3.QueryResult.transcript]: <doc:QueryResult/OneOf_Query/transcript(_:)>
+    /// [google.cloud.dialogflow.cx.v3.QueryResult.transcript]: <doc:QueryResult/QueryOneOf/transcript(_:)>
     public var audio: Foundation.Data = Foundation.Data()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

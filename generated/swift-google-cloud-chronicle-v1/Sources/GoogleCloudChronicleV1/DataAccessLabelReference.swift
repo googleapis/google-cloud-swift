@@ -29,7 +29,7 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
   public var displayName: Swift.String = Swift.String()
 
   /// The unique identifier for the label.
-  public var label: OneOf_Label? = nil
+  public var label: LabelOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
       self.displayName = value
     }
 
-    var label: OneOf_Label? = nil
+    var label: LabelOneOf? = nil
     let labelCheckAndSet = {
       if label != nil {
         throw DecodingError.dataCorrupted(
@@ -133,7 +133,7 @@ public struct DataAccessLabelReference: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The unique identifier for the label.
-  public enum OneOf_Label: Codable, Equatable, Sendable {
+  public enum LabelOneOf: Codable, Equatable, Sendable {
     /// The name of the data access label.
     case dataAccessLabel(Swift.String)
     /// The name of the log type.

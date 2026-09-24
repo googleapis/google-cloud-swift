@@ -26,10 +26,10 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
   public var metadataFields: [Swift.String] = []
 
   /// Filter options for storage systems.
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
   /// Options on destination for storage systems.
-  public var destinationOptions: OneOf_DestinationOptions? = nil
+  public var destinationOptions: DestinationOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
       self.metadataFields = value
     }
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -89,7 +89,7 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
     }
     self.filter = filter
 
-    var destinationOptions: OneOf_DestinationOptions? = nil
+    var destinationOptions: DestinationOptionsOneOf? = nil
     let destinationOptionsCheckAndSet = {
       if destinationOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -134,13 +134,13 @@ public struct ObjectMetadataReportOptions: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// Filter options for storage systems.
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage as the storage system.
     indirect case storageFilters(CloudStorageFilters?)
   }
 
   /// Options on destination for storage systems.
-  public enum OneOf_DestinationOptions: Codable, Equatable, Sendable {
+  public enum DestinationOptionsOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage as the storage system.
     indirect case storageDestinationOptions(CloudStorageDestinationOptions?)
   }

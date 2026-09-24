@@ -132,7 +132,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
   {
     public var metadata: ExecuteDashboardQueryResponse.ColumnValue.ValueMetadata? = nil
 
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -190,7 +190,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       self.metadata = try container.decodeIfPresent(
         ExecuteDashboardQueryResponse.ColumnValue.ValueMetadata.self, forKey: .metadata)
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -357,7 +357,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// True if the value is NULL.
       case nullVal(Swift.Bool)
       /// Boolean value.
@@ -396,7 +396,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
   public struct ColumnType: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var type: OneOf_Type? = nil
+    public var type: TypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -434,7 +434,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type? = nil
+      var type: TypeOneOf? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -547,7 +547,7 @@ public struct ExecuteDashboardQueryResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public enum OneOf_Type: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Single value in a column.
       indirect case value(ExecuteDashboardQueryResponse.ColumnValue?)
       /// List of values in a column e.g. IPs

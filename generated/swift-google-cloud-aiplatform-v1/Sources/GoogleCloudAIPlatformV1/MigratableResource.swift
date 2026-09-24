@@ -31,7 +31,7 @@
     /// Output only. Timestamp when this MigratableResource was last updated.
     public var lastUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
-    public var resource: OneOf_Resource? = nil
+    public var resource: ResourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@
       self.lastUpdateTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .lastUpdateTime)
 
-      var resource: OneOf_Resource? = nil
+      var resource: ResourceOneOf? = nil
       let resourceCheckAndSet = {
         if resource != nil {
           throw DecodingError.dataCorrupted(
@@ -567,7 +567,7 @@
       }
     }
 
-    public enum OneOf_Resource: Codable, Equatable, Sendable {
+    public enum ResourceOneOf: Codable, Equatable, Sendable {
       /// Output only. Represents one Version in ml.googleapis.com.
       indirect case mlEngineModelVersion(MigratableResource.MlEngineModelVersion?)
       /// Output only. Represents one Model in automl.googleapis.com.

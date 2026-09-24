@@ -35,7 +35,7 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The actual type of Annotation.
   public var type: StreamAnnotationType = StreamAnnotationType()
 
-  public var annotationPayload: OneOf_AnnotationPayload? = nil
+  public var annotationPayload: AnnotationPayloadOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var annotationPayload: OneOf_AnnotationPayload? = nil
+    var annotationPayload: AnnotationPayloadOneOf? = nil
     let annotationPayloadCheckAndSet = {
       if annotationPayload != nil {
         throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@ public struct StreamAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_AnnotationPayload: Codable, Equatable, Sendable {
+  public enum AnnotationPayloadOneOf: Codable, Equatable, Sendable {
     /// Annotation for type ACTIVE_ZONE
     indirect case activeZone(NormalizedPolygon?)
     /// Annotation for type CROSSING_LINE

@@ -185,7 +185,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// This is a required field and the user must explicitly opt out if a
     /// justification from the requester isn't mandatory.
-    public var justificationType: OneOf_JustificationType? = nil
+    public var justificationType: JustificationTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -223,7 +223,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var justificationType: OneOf_JustificationType? = nil
+      var justificationType: JustificationTypeOneOf? = nil
       let justificationTypeCheckAndSet = {
         if justificationType != nil {
           throw DecodingError.dataCorrupted(
@@ -385,7 +385,7 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// This is a required field and the user must explicitly opt out if a
     /// justification from the requester isn't mandatory.
-    public enum OneOf_JustificationType: Codable, Equatable, Sendable {
+    public enum JustificationTypeOneOf: Codable, Equatable, Sendable {
       /// This option means the requester isn't required to provide a
       /// justification.
       indirect case notMandatory(Entitlement.RequesterJustificationConfig.NotMandatory?)

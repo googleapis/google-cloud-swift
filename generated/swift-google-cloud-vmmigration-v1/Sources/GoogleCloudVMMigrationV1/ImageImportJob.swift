@@ -49,11 +49,11 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The image import steps list representing its progress.
   public var steps: [ImageImportStep] = []
 
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// The configuration of the resources that were created in GCP as a result of
   /// the image import.
-  public var targetDetails: OneOf_TargetDetails? = nil
+  public var targetDetails: TargetDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.steps = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -147,7 +147,7 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var targetDetails: OneOf_TargetDetails? = nil
+    var targetDetails: TargetDetailsOneOf? = nil
     let targetDetailsCheckAndSet = {
       if targetDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -350,7 +350,7 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. The path to the Cloud Storage file from which the image
     /// should be imported.
     case cloudStorageUri(Swift.String)
@@ -358,7 +358,7 @@ public struct ImageImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The configuration of the resources that were created in GCP as a result of
   /// the image import.
-  public enum OneOf_TargetDetails: Codable, Equatable, Sendable {
+  public enum TargetDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Target details used to import a disk image.
     indirect case diskImageTargetDetails(DiskImageTargetDetails?)
     /// Output only. Target details used to import a machine image.

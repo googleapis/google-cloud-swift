@@ -25,7 +25,7 @@ public struct SignatureInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var signature: Foundation.Data = Foundation.Data()
 
   /// How this signature may be verified.
-  public var verificationInfo: OneOf_VerificationInfo? = nil
+  public var verificationInfo: VerificationInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct SignatureInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       self.signature = value
     }
 
-    var verificationInfo: OneOf_VerificationInfo? = nil
+    var verificationInfo: VerificationInfoOneOf? = nil
     let verificationInfoCheckAndSet = {
       if verificationInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct SignatureInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// How this signature may be verified.
-  public enum OneOf_VerificationInfo: Codable, Equatable, Sendable {
+  public enum VerificationInfoOneOf: Codable, Equatable, Sendable {
     /// The public key for the Google default signing, encoded in PEM format. The
     /// signature was created using a private key which may be verified using
     /// this public key.

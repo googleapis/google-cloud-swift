@@ -22,7 +22,7 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// auth tyoe for the SQS queue.
-  public var authType: OneOf_AuthType? = nil
+  public var authType: AuthTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var authType: OneOf_AuthType? = nil
+    var authType: AuthTypeOneOf? = nil
     let authTypeCheckAndSet = {
       if authType != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct SQSAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// auth tyoe for the SQS queue.
-  public enum OneOf_AuthType: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Required. Auth key and secret for the SQS queue.
     indirect case sqsV2AccessKeySecretAuth(SQSV2AccessKeySecretAuth?)
     /// Required. AWS IAM Role for Identity Federation.

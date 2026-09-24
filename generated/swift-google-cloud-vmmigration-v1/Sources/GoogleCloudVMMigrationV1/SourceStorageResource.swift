@@ -22,7 +22,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Source storage resource details.
-  public var storageResource: OneOf_StorageResource? = nil
+  public var storageResource: StorageResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var storageResource: OneOf_StorageResource? = nil
+    var storageResource: StorageResourceOneOf? = nil
     let storageResourceCheckAndSet = {
       if storageResource != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct SourceStorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Source storage resource details.
-  public enum OneOf_StorageResource: Codable, Equatable, Sendable {
+  public enum StorageResourceOneOf: Codable, Equatable, Sendable {
     /// Source AWS volume details.
     indirect case awsDiskDetails(AwsSourceDiskDetails?)
   }

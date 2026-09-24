@@ -65,7 +65,7 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
   public var toolFakeConfig: ToolFakeConfig? = nil
 
   /// The type of the tool.
-  public var toolType: OneOf_ToolType? = nil
+  public var toolType: ToolTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -163,7 +163,7 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
     self.toolFakeConfig = try container.decodeIfPresent(
       ToolFakeConfig.self, forKey: .toolFakeConfig)
 
-    var toolType: OneOf_ToolType? = nil
+    var toolType: ToolTypeOneOf? = nil
     let toolTypeCheckAndSet = {
       if toolType != nil {
         throw DecodingError.dataCorrupted(
@@ -276,7 +276,7 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the tool.
-  public enum OneOf_ToolType: Codable, Equatable, Sendable {
+  public enum ToolTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. The client function.
     indirect case clientFunction(ClientFunction?)
     /// Optional. The open API tool.

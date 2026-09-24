@@ -93,7 +93,7 @@
       Sendable
     {
       /// A TransitionNode can be either a page or a flow.
-      public var kind: OneOf_Kind? = nil
+      public var kind: KindOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var kind: OneOf_Kind? = nil
+        var kind: KindOneOf? = nil
         let kindCheckAndSet = {
           if kind != nil {
             throw DecodingError.dataCorrupted(
@@ -171,7 +171,7 @@
       }
 
       /// A TransitionNode can be either a page or a flow.
-      public enum OneOf_Kind: Codable, Equatable, Sendable {
+      public enum KindOneOf: Codable, Equatable, Sendable {
         /// Indicates a transition to a [Page][google.cloud.dialogflow.cx.v3.Page].
         /// Only some fields such as name and displayname will be set.
         ///
@@ -213,7 +213,7 @@
       public var covered: Swift.Bool = Swift.Bool()
 
       /// The detailed transition.
-      public var detail: OneOf_Detail? = nil
+      public var detail: DetailOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -269,7 +269,7 @@
           self.covered = value
         }
 
-        var detail: OneOf_Detail? = nil
+        var detail: DetailOneOf? = nil
         let detailCheckAndSet = {
           if detail != nil {
             throw DecodingError.dataCorrupted(
@@ -317,7 +317,7 @@
       }
 
       /// The detailed transition.
-      public enum OneOf_Detail: Codable, Equatable, Sendable {
+      public enum DetailOneOf: Codable, Equatable, Sendable {
         /// Intent route or condition route.
         indirect case transitionRoute(TransitionRoute?)
         /// Event handler.

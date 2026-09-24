@@ -26,7 +26,7 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public var redactedFields: [RedactedField] = []
 
   /// The query-specific result.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       self.redactedFields = value
     }
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct QueryDataResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The query-specific result.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// The account information, if the query was for an account.
     indirect case account(Account?)
     /// The state of a transaction, if the query was for a transaction.

@@ -388,7 +388,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
     /// Recursively nested sub-field, if needed.
     public var subField: GoogleWKT.WKTRecursive<OptimizeToursValidationError.FieldReference>? = nil
 
-    public var indexOrKey: OneOf_IndexOrKey? = nil
+    public var indexOrKey: IndexOrKeyOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -435,7 +435,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
       self.subField = try container.decodeIfPresent(
         GoogleWKT.WKTRecursive<OptimizeToursValidationError.FieldReference>.self, forKey: .subField)
 
-      var indexOrKey: OneOf_IndexOrKey? = nil
+      var indexOrKey: IndexOrKeyOneOf? = nil
       let indexOrKeyCheckAndSet = {
         if indexOrKey != nil {
           throw DecodingError.dataCorrupted(
@@ -476,7 +476,7 @@ public struct OptimizeToursValidationError: Codable, Equatable, GoogleWKT._AnyPa
       }
     }
 
-    public enum OneOf_IndexOrKey: Codable, Equatable, Sendable {
+    public enum IndexOrKeyOneOf: Codable, Equatable, Sendable {
       /// Index of the field if repeated.
       case index(Swift.Int32)
       /// Key if the field is a map.

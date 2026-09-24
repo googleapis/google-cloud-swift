@@ -42,7 +42,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Method for calculating shift that takes context into consideration. If
   /// set, must also set context. Can only be applied to table items.
-  public var method: OneOf_Method? = nil
+  public var method: MethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.context = try container.decodeIfPresent(FieldId.self, forKey: .context)
 
-    var method: OneOf_Method? = nil
+    var method: MethodOneOf? = nil
     let methodCheckAndSet = {
       if method != nil {
         throw DecodingError.dataCorrupted(
@@ -130,7 +130,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Method for calculating shift that takes context into consideration. If
   /// set, must also set context. Can only be applied to table items.
-  public enum OneOf_Method: Codable, Equatable, Sendable {
+  public enum MethodOneOf: Codable, Equatable, Sendable {
     /// Causes the shift to be computed based on this key and the context. This
     /// results in the same shift for the same context and crypto_key. If
     /// set, must also set context. Can only be applied to table items.

@@ -42,7 +42,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   public var hasCredential: Swift.Bool = Swift.Bool()
 
   /// Properties specific to the underlying data source.
-  public var properties: OneOf_Properties? = nil
+  public var properties: PropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,7 +120,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       self.hasCredential = value
     }
 
-    var properties: OneOf_Properties? = nil
+    var properties: PropertiesOneOf? = nil
     let propertiesCheckAndSet = {
       if properties != nil {
         throw DecodingError.dataCorrupted(
@@ -197,7 +197,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Properties specific to the underlying data source.
-  public enum OneOf_Properties: Codable, Equatable, Sendable {
+  public enum PropertiesOneOf: Codable, Equatable, Sendable {
     /// Cloud SQL properties.
     indirect case cloudSql(CloudSqlProperties?)
     /// Amazon Web Services (AWS) properties.

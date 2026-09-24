@@ -22,7 +22,7 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// Type of transformation.
-  public var transformation: OneOf_Transformation? = nil
+  public var transformation: TransformationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var transformation: OneOf_Transformation? = nil
+    var transformation: TransformationOneOf? = nil
     let transformationCheckAndSet = {
       if transformation != nil {
         throw DecodingError.dataCorrupted(
@@ -192,7 +192,7 @@ public struct PrimitiveTransformation: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Type of transformation.
-  public enum OneOf_Transformation: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Replace with a specified value.
     indirect case replaceConfig(ReplaceValueConfig?)
     /// Redact

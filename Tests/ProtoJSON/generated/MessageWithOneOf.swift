@@ -21,13 +21,13 @@ import Foundation
 public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var singleString: OneOf_SingleString? = nil
+  public var singleString: SingleStringOneOf? = nil
 
-  public var twoStrings: OneOf_TwoStrings? = nil
+  public var twoStrings: TwoStringsOneOf? = nil
 
-  public var oneMessage: OneOf_OneMessage? = nil
+  public var oneMessage: OneMessageOneOf? = nil
 
-  public var mixed: OneOf_Mixed? = nil
+  public var mixed: MixedOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var singleString: OneOf_SingleString? = nil
+    var singleString: SingleStringOneOf? = nil
     let singleStringCheckAndSet = {
       if singleString != nil {
         throw DecodingError.dataCorrupted(
@@ -92,7 +92,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.singleString = singleString
 
-    var twoStrings: OneOf_TwoStrings? = nil
+    var twoStrings: TwoStringsOneOf? = nil
     let twoStringsCheckAndSet = {
       if twoStrings != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.twoStrings = twoStrings
 
-    var oneMessage: OneOf_OneMessage? = nil
+    var oneMessage: OneMessageOneOf? = nil
     let oneMessageCheckAndSet = {
       if oneMessage != nil {
         throw DecodingError.dataCorrupted(
@@ -131,7 +131,7 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.oneMessage = oneMessage
 
-    var mixed: OneOf_Mixed? = nil
+    var mixed: MixedOneOf? = nil
     let mixedCheckAndSet = {
       if mixed != nil {
         throw DecodingError.dataCorrupted(
@@ -267,20 +267,20 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_SingleString: Codable, Equatable, Sendable {
+  public enum SingleStringOneOf: Codable, Equatable, Sendable {
     case stringContents(Swift.String)
   }
 
-  public enum OneOf_TwoStrings: Codable, Equatable, Sendable {
+  public enum TwoStringsOneOf: Codable, Equatable, Sendable {
     case stringContentsOne(Swift.String)
     case stringContentsTwo(Swift.String)
   }
 
-  public enum OneOf_OneMessage: Codable, Equatable, Sendable {
+  public enum OneMessageOneOf: Codable, Equatable, Sendable {
     indirect case messageValue(MessageWithOneOf.Message?)
   }
 
-  public enum OneOf_Mixed: Codable, Equatable, Sendable {
+  public enum MixedOneOf: Codable, Equatable, Sendable {
     indirect case anotherMessage(MessageWithOneOf.Message?)
     case string(Swift.String)
     indirect case duration(GoogleWKT.WKTDuration?)

@@ -29,11 +29,11 @@
 
     /// Decides sample size for the initial batch. initial_batch_sample_percentage
     /// is used by default.
-    public var initialBatchSampleSize: OneOf_InitialBatchSampleSize? = nil
+    public var initialBatchSampleSize: InitialBatchSampleSizeOneOf? = nil
 
     /// Decides sample size for the following batches.
     /// following_batch_sample_percentage is used by default.
-    public var followingBatchSampleSize: OneOf_FollowingBatchSampleSize? = nil
+    public var followingBatchSampleSize: FollowingBatchSampleSizeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@
         self.sampleStrategy = value
       }
 
-      var initialBatchSampleSize: OneOf_InitialBatchSampleSize? = nil
+      var initialBatchSampleSize: InitialBatchSampleSizeOneOf? = nil
       let initialBatchSampleSizeCheckAndSet = {
         if initialBatchSampleSize != nil {
           throw DecodingError.dataCorrupted(
@@ -98,7 +98,7 @@
       }
       self.initialBatchSampleSize = initialBatchSampleSize
 
-      var followingBatchSampleSize: OneOf_FollowingBatchSampleSize? = nil
+      var followingBatchSampleSize: FollowingBatchSampleSizeOneOf? = nil
       let followingBatchSampleSizeCheckAndSet = {
         if followingBatchSampleSize != nil {
           throw DecodingError.dataCorrupted(
@@ -256,14 +256,14 @@
 
     /// Decides sample size for the initial batch. initial_batch_sample_percentage
     /// is used by default.
-    public enum OneOf_InitialBatchSampleSize: Codable, Equatable, Sendable {
+    public enum InitialBatchSampleSizeOneOf: Codable, Equatable, Sendable {
       /// The percentage of data needed to be labeled in the first batch.
       case initialBatchSamplePercentage(Swift.Int32)
     }
 
     /// Decides sample size for the following batches.
     /// following_batch_sample_percentage is used by default.
-    public enum OneOf_FollowingBatchSampleSize: Codable, Equatable, Sendable {
+    public enum FollowingBatchSampleSizeOneOf: Codable, Equatable, Sendable {
       /// The percentage of data needed to be labeled in each following batch
       /// (except the first batch).
       case followingBatchSamplePercentage(Swift.Int32)

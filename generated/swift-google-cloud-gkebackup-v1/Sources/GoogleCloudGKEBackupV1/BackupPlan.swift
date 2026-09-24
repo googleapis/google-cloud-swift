@@ -543,7 +543,7 @@ public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This defines the "scope" of the Backup - which namespaced
     /// resources in the cluster will be included in a Backup.
     /// Exactly one of the fields of backup_scope MUST be specified.
-    public var backupScope: OneOf_BackupScope? = nil
+    public var backupScope: BackupScopeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -601,7 +601,7 @@ public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
         self.permissiveMode = value
       }
 
-      var backupScope: OneOf_BackupScope? = nil
+      var backupScope: BackupScopeOneOf? = nil
       let backupScopeCheckAndSet = {
         if backupScope != nil {
           throw DecodingError.dataCorrupted(
@@ -657,7 +657,7 @@ public struct BackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This defines the "scope" of the Backup - which namespaced
     /// resources in the cluster will be included in a Backup.
     /// Exactly one of the fields of backup_scope MUST be specified.
-    public enum OneOf_BackupScope: Codable, Equatable, Sendable {
+    public enum BackupScopeOneOf: Codable, Equatable, Sendable {
       /// If True, include all namespaced resources
       case allNamespaces(Swift.Bool)
       /// If set, include just the resources in the listed namespaces.

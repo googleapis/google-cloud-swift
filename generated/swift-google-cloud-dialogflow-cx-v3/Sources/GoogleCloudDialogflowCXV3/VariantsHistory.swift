@@ -27,7 +27,7 @@
 
     /// The variants updated. We currently only support single variant
     /// experiment.
-    public var variants: OneOf_Variants? = nil
+    public var variants: VariantsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@
       self.updateTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-      var variants: OneOf_Variants? = nil
+      var variants: VariantsOneOf? = nil
       let variantsCheckAndSet = {
         if variants != nil {
           throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@
 
     /// The variants updated. We currently only support single variant
     /// experiment.
-    public enum OneOf_Variants: Codable, Equatable, Sendable {
+    public enum VariantsOneOf: Codable, Equatable, Sendable {
       /// The flow versions as the variants.
       indirect case versionVariants(VersionVariants?)
     }

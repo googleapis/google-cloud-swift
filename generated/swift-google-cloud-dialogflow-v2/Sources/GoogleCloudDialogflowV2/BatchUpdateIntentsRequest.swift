@@ -39,7 +39,7 @@
     public var intentView: IntentView = IntentView()
 
     /// The source of the intent batch.
-    public var intentBatch: OneOf_IntentBatch? = nil
+    public var intentBatch: IntentBatchOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@
         self.intentView = value
       }
 
-      var intentBatch: OneOf_IntentBatch? = nil
+      var intentBatch: IntentBatchOneOf? = nil
       let intentBatchCheckAndSet = {
         if intentBatch != nil {
           throw DecodingError.dataCorrupted(
@@ -144,7 +144,7 @@
     }
 
     /// The source of the intent batch.
-    public enum OneOf_IntentBatch: Codable, Equatable, Sendable {
+    public enum IntentBatchOneOf: Codable, Equatable, Sendable {
       /// The URI to a Google Cloud Storage file containing intents to update or
       /// create. The file format can either be a serialized proto (of IntentBatch
       /// type) or JSON object. Note: The URI must start with "gs://".

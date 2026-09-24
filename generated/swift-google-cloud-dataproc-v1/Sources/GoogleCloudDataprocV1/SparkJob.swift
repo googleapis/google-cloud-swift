@@ -57,8 +57,8 @@ public struct SparkJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [mainClass][google.cloud.dataproc.v1.SparkJob.main_class].
   ///
   /// [google.cloud.dataproc.v1.SparkJob.jar_file_uris]: <doc:SparkJob/jarFileUris>
-  /// [google.cloud.dataproc.v1.SparkJob.main_class]: <doc:SparkJob/OneOf_Driver/mainClass(_:)>
-  public var driver: OneOf_Driver? = nil
+  /// [google.cloud.dataproc.v1.SparkJob.main_class]: <doc:SparkJob/DriverOneOf/mainClass(_:)>
+  public var driver: DriverOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,7 +126,7 @@ public struct SparkJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
-    var driver: OneOf_Driver? = nil
+    var driver: DriverOneOf? = nil
     let driverCheckAndSet = {
       if driver != nil {
         throw DecodingError.dataCorrupted(
@@ -181,8 +181,8 @@ public struct SparkJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [mainClass][google.cloud.dataproc.v1.SparkJob.main_class].
   ///
   /// [google.cloud.dataproc.v1.SparkJob.jar_file_uris]: <doc:SparkJob/jarFileUris>
-  /// [google.cloud.dataproc.v1.SparkJob.main_class]: <doc:SparkJob/OneOf_Driver/mainClass(_:)>
-  public enum OneOf_Driver: Codable, Equatable, Sendable {
+  /// [google.cloud.dataproc.v1.SparkJob.main_class]: <doc:SparkJob/DriverOneOf/mainClass(_:)>
+  public enum DriverOneOf: Codable, Equatable, Sendable {
     /// The HCFS URI of the jar file that contains the main class.
     case mainJarFileUri(Swift.String)
     /// The name of the driver's main class. The jar file that contains the class

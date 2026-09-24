@@ -24,7 +24,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Summary of what occurred in the actions.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -97,7 +97,7 @@ public struct ActionDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Summary of what occurred in the actions.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Outcome of a de-identification action.
     indirect case deidentifyDetails(DeidentifyDataSourceDetails?)
   }

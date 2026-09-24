@@ -33,7 +33,7 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
   public var skipMessage: Swift.String = Swift.String()
 
   /// The job composition of this Phase.
-  public var jobs: OneOf_Jobs? = nil
+  public var jobs: JobsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
       self.skipMessage = value
     }
 
-    var jobs: OneOf_Jobs? = nil
+    var jobs: JobsOneOf? = nil
     let jobsCheckAndSet = {
       if jobs != nil {
         throw DecodingError.dataCorrupted(
@@ -278,7 +278,7 @@ public struct Phase: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The job composition of this Phase.
-  public enum OneOf_Jobs: Codable, Equatable, Sendable {
+  public enum JobsOneOf: Codable, Equatable, Sendable {
     /// Output only. Deployment job composition.
     indirect case deploymentJobs(DeploymentJobs?)
     /// Output only. ChildRollout job composition.

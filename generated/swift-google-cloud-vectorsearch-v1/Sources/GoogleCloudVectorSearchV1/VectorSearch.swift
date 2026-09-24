@@ -44,7 +44,7 @@ public struct VectorSearch: Codable, Equatable, GoogleWKT._AnyPackable,
   public var distanceMetric: DistanceMetric = DistanceMetric()
 
   /// Specifies the type of vector to use for the query.
-  public var vectorType: OneOf_VectorType? = nil
+  public var vectorType: VectorTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,7 +104,7 @@ public struct VectorSearch: Codable, Equatable, GoogleWKT._AnyPackable,
       self.distanceMetric = value
     }
 
-    var vectorType: OneOf_VectorType? = nil
+    var vectorType: VectorTypeOneOf? = nil
     let vectorTypeCheckAndSet = {
       if vectorType != nil {
         throw DecodingError.dataCorrupted(
@@ -150,7 +150,7 @@ public struct VectorSearch: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the type of vector to use for the query.
-  public enum OneOf_VectorType: Codable, Equatable, Sendable {
+  public enum VectorTypeOneOf: Codable, Equatable, Sendable {
     /// A dense vector for the query.
     indirect case vector(DenseVector?)
     /// A sparse vector for the query.

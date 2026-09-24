@@ -167,7 +167,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public var expiration: OneOf_Expiration? = nil
+  public var expiration: ExpirationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -272,7 +272,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     self.policyMember = try container.decodeIfPresent(
       GoogleIAMV1.ResourcePolicyMember.self, forKey: .policyMember)
 
-    var expiration: OneOf_Expiration? = nil
+    var expiration: ExpirationOneOf? = nil
     let expirationCheckAndSet = {
       if expiration != nil {
         throw DecodingError.dataCorrupted(
@@ -483,7 +483,7 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// [google.cloud.secretmanager.v1.Secret]: <doc:Secret>
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public enum OneOf_Expiration: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// Optional. Timestamp in UTC when the
     /// [Secret][google.cloud.secretmanager.v1.Secret] is scheduled to expire.
     /// This is always provided on output, regardless of what was sent on input.

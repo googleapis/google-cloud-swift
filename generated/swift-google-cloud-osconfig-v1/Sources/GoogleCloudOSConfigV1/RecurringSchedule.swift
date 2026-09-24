@@ -48,7 +48,7 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configurations for this recurring schedule.
   /// Configurations must match frequency.
-  public var scheduleConfig: OneOf_ScheduleConfig? = nil
+  public var scheduleConfig: ScheduleConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
     self.nextExecuteTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .nextExecuteTime)
 
-    var scheduleConfig: OneOf_ScheduleConfig? = nil
+    var scheduleConfig: ScheduleConfigOneOf? = nil
     let scheduleConfigCheckAndSet = {
       if scheduleConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -288,7 +288,7 @@ public struct RecurringSchedule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configurations for this recurring schedule.
   /// Configurations must match frequency.
-  public enum OneOf_ScheduleConfig: Codable, Equatable, Sendable {
+  public enum ScheduleConfigOneOf: Codable, Equatable, Sendable {
     /// Required. Schedule with weekly executions.
     indirect case weekly(WeeklySchedule?)
     /// Required. Schedule with monthly executions.

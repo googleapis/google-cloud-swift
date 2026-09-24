@@ -21,7 +21,7 @@ import Foundation
 public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var implementation: OneOf_Implementation? = nil
+  public var implementation: ImplementationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var implementation: OneOf_Implementation? = nil
+    var implementation: ImplementationOneOf? = nil
     let implementationCheckAndSet = {
       if implementation != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Implementation: Codable, Equatable, Sendable {
+  public enum ImplementationOneOf: Codable, Equatable, Sendable {
     /// Optional. SHA built-in detector.
     indirect case securityHealthAnalyticsModule(SecurityHealthAnalyticsModule?)
     /// Optional. SHA custom detector.

@@ -26,7 +26,7 @@
     public var toolCallInfo: [GeneratorSuggestion.ToolCallInfo] = []
 
     /// The suggestion could be one of the many types
-    public var suggestion: OneOf_Suggestion? = nil
+    public var suggestion: SuggestionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@
         self.toolCallInfo = value
       }
 
-      var suggestion: OneOf_Suggestion? = nil
+      var suggestion: SuggestionOneOf? = nil
       let suggestionCheckAndSet = {
         if suggestion != nil {
           throw DecodingError.dataCorrupted(
@@ -199,7 +199,7 @@
     }
 
     /// The suggestion could be one of the many types
-    public enum OneOf_Suggestion: Codable, Equatable, Sendable {
+    public enum SuggestionOneOf: Codable, Equatable, Sendable {
       /// Optional. Free form suggestion.
       indirect case freeFormSuggestion(FreeFormSuggestion?)
       /// Optional. Suggested summary.

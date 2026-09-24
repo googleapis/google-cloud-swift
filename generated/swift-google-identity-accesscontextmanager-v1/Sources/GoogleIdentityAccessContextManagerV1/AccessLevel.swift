@@ -42,7 +42,7 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Required. Describes the necessary conditions for the level to apply.
-  public var level: OneOf_Level? = nil
+  public var level: LevelOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -103,7 +103,7 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var level: OneOf_Level? = nil
+    var level: LevelOneOf? = nil
     let levelCheckAndSet = {
       if level != nil {
         throw DecodingError.dataCorrupted(
@@ -148,7 +148,7 @@ public struct AccessLevel: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Describes the necessary conditions for the level to apply.
-  public enum OneOf_Level: Codable, Equatable, Sendable {
+  public enum LevelOneOf: Codable, Equatable, Sendable {
     /// A `BasicLevel` composed of `Conditions`.
     indirect case basic(BasicLevel?)
     /// A `CustomLevel` written in the Common Expression Language.

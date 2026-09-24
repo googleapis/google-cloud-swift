@@ -425,7 +425,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     public var jsonOptions: Asset.DiscoverySpec.JsonOptions? = nil
 
     /// Determines when discovery is triggered.
-    public var trigger: OneOf_Trigger? = nil
+    public var trigger: TriggerOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -484,7 +484,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       self.jsonOptions = try container.decodeIfPresent(
         Asset.DiscoverySpec.JsonOptions.self, forKey: .jsonOptions)
 
-      var trigger: OneOf_Trigger? = nil
+      var trigger: TriggerOneOf? = nil
       let triggerCheckAndSet = {
         if trigger != nil {
           throw DecodingError.dataCorrupted(
@@ -703,7 +703,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Determines when discovery is triggered.
-    public enum OneOf_Trigger: Codable, Equatable, Sendable {
+    public enum TriggerOneOf: Codable, Equatable, Sendable {
       /// Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
       /// running discovery periodically. Successive discovery runs must be
       /// scheduled at least 60 minutes apart. The default value is to run

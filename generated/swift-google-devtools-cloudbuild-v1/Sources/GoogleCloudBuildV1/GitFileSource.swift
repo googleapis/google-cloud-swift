@@ -42,11 +42,11 @@ public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,
   public var revision: Swift.String = Swift.String()
 
   /// The source of the SCM repo.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// The resource name of the enterprise config that should be applied
   /// to this source.
-  public var enterpriseConfig: OneOf_EnterpriseConfig? = nil
+  public var enterpriseConfig: EnterpriseConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,7 +104,7 @@ public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.revision = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -119,7 +119,7 @@ public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var enterpriseConfig: OneOf_EnterpriseConfig? = nil
+    var enterpriseConfig: EnterpriseConfigOneOf? = nil
     let enterpriseConfigCheckAndSet = {
       if enterpriseConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -301,7 +301,7 @@ public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the SCM repo.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The fully qualified resource name of the Repos API repository.
     /// Either URI or repository can be specified.
     /// If unspecified, the repo from which the trigger invocation originated is
@@ -311,7 +311,7 @@ public struct GitFileSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The resource name of the enterprise config that should be applied
   /// to this source.
-  public enum OneOf_EnterpriseConfig: Codable, Equatable, Sendable {
+  public enum EnterpriseConfigOneOf: Codable, Equatable, Sendable {
     /// The full resource name of the github enterprise config.
     /// Format:
     /// `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.

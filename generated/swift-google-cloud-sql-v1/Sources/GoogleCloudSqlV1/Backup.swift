@@ -102,7 +102,7 @@
     /// The status is reserved for future use.
     public var satisfiesPzi: GoogleWKT.WKTBoolValue? = nil
 
-    public var expiration: OneOf_Expiration? = nil
+    public var expiration: ExpirationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -239,7 +239,7 @@
       self.satisfiesPzi = try container.decodeIfPresent(
         GoogleWKT.WKTBoolValue.self, forKey: .satisfiesPzi)
 
-      var expiration: OneOf_Expiration? = nil
+      var expiration: ExpirationOneOf? = nil
       let expirationCheckAndSet = {
         if expiration != nil {
           throw DecodingError.dataCorrupted(
@@ -570,7 +570,7 @@
       }
     }
 
-    public enum OneOf_Expiration: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Codable, Equatable, Sendable {
       /// Input only. The time-to-live (TTL) interval for this resource (in days).
       /// For example: ttlDays:7, means 7 days from the current time. The
       /// expiration time can't exceed 365 days from the time that the backup is

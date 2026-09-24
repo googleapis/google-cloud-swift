@@ -31,7 +31,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
   public var disabled: Swift.Bool = Swift.Bool()
 
   /// The type of transform to apply to messages.
-  public var transform: OneOf_Transform? = nil
+  public var transform: TransformOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
       self.disabled = value
     }
 
-    var transform: OneOf_Transform? = nil
+    var transform: TransformOneOf? = nil
     let transformCheckAndSet = {
       if transform != nil {
         throw DecodingError.dataCorrupted(
@@ -122,7 +122,7 @@ public struct MessageTransform: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of transform to apply to messages.
-  public enum OneOf_Transform: Codable, Equatable, Sendable {
+  public enum TransformOneOf: Codable, Equatable, Sendable {
     /// Optional. JavaScript User Defined Function. If multiple JavaScriptUDF's
     /// are specified on a resource, each must have a unique `function_name`.
     indirect case javascriptUdf(JavaScriptUDF?)

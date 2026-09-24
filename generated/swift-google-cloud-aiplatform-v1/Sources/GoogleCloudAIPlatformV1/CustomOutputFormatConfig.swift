@@ -23,7 +23,7 @@
     Sendable
   {
     /// Custom output format configuration.
-    public var customOutputFormatConfig: OneOf_CustomOutputFormatConfig? = nil
+    public var customOutputFormatConfig: CustomOutputFormatConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var customOutputFormatConfig: OneOf_CustomOutputFormatConfig? = nil
+      var customOutputFormatConfig: CustomOutputFormatConfigOneOf? = nil
       let customOutputFormatConfigCheckAndSet = {
         if customOutputFormatConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@
     }
 
     /// Custom output format configuration.
-    public enum OneOf_CustomOutputFormatConfig: Codable, Equatable, Sendable {
+    public enum CustomOutputFormatConfigOneOf: Codable, Equatable, Sendable {
       /// Optional. Whether to return raw output.
       case returnRawOutput(Swift.Bool)
     }

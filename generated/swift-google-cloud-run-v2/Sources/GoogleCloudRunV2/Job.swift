@@ -160,7 +160,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// resource. May be used to detect modification conflict during updates.
   public var etag: Swift.String = Swift.String()
 
-  public var createExecution: OneOf_CreateExecution? = nil
+  public var createExecution: CreateExecutionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -312,7 +312,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var createExecution: OneOf_CreateExecution? = nil
+    var createExecution: CreateExecutionOneOf? = nil
     let createExecutionCheckAndSet = {
       if createExecution != nil {
         throw DecodingError.dataCorrupted(
@@ -379,7 +379,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_CreateExecution: Codable, Equatable, Sendable {
+  public enum CreateExecutionOneOf: Codable, Equatable, Sendable {
     /// A unique string used as a suffix creating a new execution. The Job will
     /// become ready when the execution is successfully started.
     /// The sum of job name and token length must be fewer than 63 characters.

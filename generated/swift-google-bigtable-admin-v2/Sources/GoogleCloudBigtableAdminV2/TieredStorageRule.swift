@@ -22,7 +22,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Rules to specify what data is stored in this tier.
-  public var rule: OneOf_Rule? = nil
+  public var rule: RuleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var rule: OneOf_Rule? = nil
+    var rule: RuleOneOf? = nil
     let ruleCheckAndSet = {
       if rule != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct TieredStorageRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Rules to specify what data is stored in this tier.
-  public enum OneOf_Rule: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Codable, Equatable, Sendable {
     /// Include cells older than the given age.
     /// For the infrequent access tier, this value must be at least 30 days.
     indirect case includeIfOlderThan(GoogleWKT.WKTDuration?)

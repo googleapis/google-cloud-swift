@@ -22,7 +22,7 @@ import Foundation
 /// field returned by BatchTranslateText if at least one sentence is translated
 /// successfully.
 ///
-/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+/// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
 public struct BatchTranslateResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {

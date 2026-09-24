@@ -27,7 +27,7 @@
     public var migratableResource: MigratableResource? = nil
 
     /// After migration, the resource name in Vertex AI.
-    public var migratedResource: OneOf_MigratedResource? = nil
+    public var migratedResource: MigratedResourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@
       self.migratableResource = try container.decodeIfPresent(
         MigratableResource.self, forKey: .migratableResource)
 
-      var migratedResource: OneOf_MigratedResource? = nil
+      var migratedResource: MigratedResourceOneOf? = nil
       let migratedResourceCheckAndSet = {
         if migratedResource != nil {
           throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@
     }
 
     /// After migration, the resource name in Vertex AI.
-    public enum OneOf_MigratedResource: Codable, Equatable, Sendable {
+    public enum MigratedResourceOneOf: Codable, Equatable, Sendable {
       /// Migrated Dataset's resource name.
       case dataset(Swift.String)
       /// Migrated Model's resource name.

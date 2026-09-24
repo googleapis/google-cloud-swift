@@ -22,7 +22,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A oneof that represents the different types for this adjustment.
-  public var adjustment: OneOf_Adjustment? = nil
+  public var adjustment: AdjustmentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var adjustment: OneOf_Adjustment? = nil
+    var adjustment: AdjustmentOneOf? = nil
     let adjustmentCheckAndSet = {
       if adjustment != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A oneof that represents the different types for this adjustment.
-  public enum OneOf_Adjustment: Codable, Equatable, Sendable {
+  public enum AdjustmentOneOf: Codable, Equatable, Sendable {
     /// Flat markup or markdown on an entire bill.
     indirect case percentageAdjustment(PercentageAdjustment?)
   }

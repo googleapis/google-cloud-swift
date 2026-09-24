@@ -43,11 +43,11 @@
     /// imported entity type will be added to the target entity type.
     ///
     /// [google.cloud.dialogflow.cx.v3.EntityType.entities]: <doc:EntityType/entities>
-    /// [google.cloud.dialogflow.cx.v3.ImportEntityTypesRequest.entity_types]: <doc:ImportEntityTypesRequest/OneOf_EntityTypes>
+    /// [google.cloud.dialogflow.cx.v3.ImportEntityTypesRequest.entity_types]: <doc:ImportEntityTypesRequest/EntityTypesOneOf>
     public var targetEntityType: Swift.String = Swift.String()
 
     /// Required. The entity types to import.
-    public var entityTypes: OneOf_EntityTypes? = nil
+    public var entityTypes: EntityTypesOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@
         self.targetEntityType = value
       }
 
-      var entityTypes: OneOf_EntityTypes? = nil
+      var entityTypes: EntityTypesOneOf? = nil
       let entityTypesCheckAndSet = {
         if entityTypes != nil {
           throw DecodingError.dataCorrupted(
@@ -292,7 +292,7 @@
     }
 
     /// Required. The entity types to import.
-    public enum OneOf_EntityTypes: Codable, Equatable, Sendable {
+    public enum EntityTypesOneOf: Codable, Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import entity types from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

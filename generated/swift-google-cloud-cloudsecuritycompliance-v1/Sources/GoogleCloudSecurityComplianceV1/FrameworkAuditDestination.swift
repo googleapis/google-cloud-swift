@@ -22,7 +22,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
   Sendable
 {
   /// The type of destination.
-  public var destinationType: OneOf_DestinationType? = nil
+  public var destinationType: DestinationTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destinationType: OneOf_DestinationType? = nil
+    var destinationType: DestinationTypeOneOf? = nil
     let destinationTypeCheckAndSet = {
       if destinationType != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The type of destination.
-  public enum OneOf_DestinationType: Codable, Equatable, Sendable {
+  public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage bucket destination.
     indirect case bucket(BucketDestination?)
   }

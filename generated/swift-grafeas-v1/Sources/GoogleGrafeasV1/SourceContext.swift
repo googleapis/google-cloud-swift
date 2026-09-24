@@ -26,7 +26,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// A SourceContext can refer any one of the following types of repositories.
-  public var context: OneOf_Context? = nil
+  public var context: ContextOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var context: OneOf_Context? = nil
+    var context: ContextOneOf? = nil
     let contextCheckAndSet = {
       if context != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A SourceContext can refer any one of the following types of repositories.
-  public enum OneOf_Context: Codable, Equatable, Sendable {
+  public enum ContextOneOf: Codable, Equatable, Sendable {
     /// A SourceContext referring to a revision in a Google Cloud Source Repo.
     indirect case cloudRepo(CloudRepoSourceContext?)
     /// A SourceContext referring to a Gerrit project.

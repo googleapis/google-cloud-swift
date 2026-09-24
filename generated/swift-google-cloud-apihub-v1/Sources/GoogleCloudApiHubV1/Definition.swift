@@ -53,7 +53,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The value is the attribute values associated with the resource.
   public var attributes: [Swift.String: AttributeValues] = [:]
 
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -119,7 +119,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
       self.attributes = value
     }
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -269,7 +269,7 @@ public struct Definition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// Output only. The value of a schema definition.
     indirect case schema(Schema?)
   }

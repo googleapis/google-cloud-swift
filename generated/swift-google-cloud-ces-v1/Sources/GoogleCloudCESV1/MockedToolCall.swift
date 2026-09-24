@@ -39,7 +39,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
   public var mockResponse: GoogleWKT.WKTStruct? = nil
 
   /// The identifier of the tool to mock.
-  public var toolIdentifier: OneOf_ToolIdentifier? = nil
+  public var toolIdentifier: ToolIdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     self.mockResponse = try container.decodeIfPresent(
       GoogleWKT.WKTStruct.self, forKey: .mockResponse)
 
-    var toolIdentifier: OneOf_ToolIdentifier? = nil
+    var toolIdentifier: ToolIdentifierOneOf? = nil
     let toolIdentifierCheckAndSet = {
       if toolIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@ public struct MockedToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The identifier of the tool to mock.
-  public enum OneOf_ToolIdentifier: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the tool to mock.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case toolId(Swift.String)

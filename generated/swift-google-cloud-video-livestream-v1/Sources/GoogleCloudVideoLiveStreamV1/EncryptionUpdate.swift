@@ -25,7 +25,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   public var id: Swift.String = Swift.String()
 
   /// Defines where new content keys are stored.
-  public var secretSource: OneOf_SecretSource? = nil
+  public var secretSource: SecretSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.id = value
     }
 
-    var secretSource: OneOf_SecretSource? = nil
+    var secretSource: SecretSourceOneOf? = nil
     let secretSourceCheckAndSet = {
       if secretSource != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct EncryptionUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where new content keys are stored.
-  public enum OneOf_SecretSource: Codable, Equatable, Sendable {
+  public enum SecretSourceOneOf: Codable, Equatable, Sendable {
     /// For keys stored in Google Secret Manager.
     indirect case secretManagerKeySource(Encryption.SecretManagerSource?)
   }

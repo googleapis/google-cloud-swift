@@ -23,7 +23,7 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The means to compute a ratio of `good_service` to `total_service`.
-  public var method: OneOf_Method? = nil
+  public var method: MethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var method: OneOf_Method? = nil
+    var method: MethodOneOf? = nil
     let methodCheckAndSet = {
       if method != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct RequestBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The means to compute a ratio of `good_service` to `total_service`.
-  public enum OneOf_Method: Codable, Equatable, Sendable {
+  public enum MethodOneOf: Codable, Equatable, Sendable {
     /// `good_total_ratio` is used when the ratio of `good_service` to
     /// `total_service` is computed from two `TimeSeries`.
     indirect case goodTotalRatio(TimeSeriesRatio?)

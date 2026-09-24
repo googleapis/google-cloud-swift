@@ -33,7 +33,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var retention: GoogleWKT.WKTDuration? = nil
 
   /// The schedule of automated backups.
-  public var schedule: OneOf_Schedule? = nil
+  public var schedule: ScheduleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.retention = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .retention)
 
-    var schedule: OneOf_Schedule? = nil
+    var schedule: ScheduleOneOf? = nil
     let scheduleCheckAndSet = {
       if schedule != nil {
         throw DecodingError.dataCorrupted(
@@ -304,7 +304,7 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The schedule of automated backups.
-  public enum OneOf_Schedule: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Optional. Trigger automated backups at a fixed frequency.
     indirect case fixedFrequencySchedule(AutomatedBackupConfig.FixedFrequencySchedule?)
   }

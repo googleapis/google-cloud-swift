@@ -22,7 +22,7 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
   Sendable
 {
   /// IAM policy analysis export destination.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -420,7 +420,7 @@ public struct IamPolicyAnalysisOutputConfig: Codable, Equatable, GoogleWKT._AnyP
   }
 
   /// IAM policy analysis export destination.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Destination on Cloud Storage.
     indirect case gcsDestination(IamPolicyAnalysisOutputConfig.GcsDestination?)
     /// Destination on BigQuery.

@@ -28,7 +28,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var ruleActionTypes: [RuleActionType] = []
 
   /// The rule implementation.
-  public var implementation: OneOf_Implementation? = nil
+  public var implementation: ImplementationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.ruleActionTypes = value
     }
 
-    var implementation: OneOf_Implementation? = nil
+    var implementation: ImplementationOneOf? = nil
     let implementationCheckAndSet = {
       if implementation != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule implementation.
-  public enum OneOf_Implementation: Codable, Equatable, Sendable {
+  public enum ImplementationOneOf: Codable, Equatable, Sendable {
     /// The rule's logic expression in Common Expression Language (CEL).
     indirect case celExpression(CELExpression?)
   }

@@ -65,7 +65,7 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: PatchDeployment.State = PatchDeployment.State()
 
   /// Schedule for the patch.
-  public var schedule: OneOf_Schedule? = nil
+  public var schedule: ScheduleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -143,7 +143,7 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var schedule: OneOf_Schedule? = nil
+    var schedule: ScheduleOneOf? = nil
     let scheduleCheckAndSet = {
       if schedule != nil {
         throw DecodingError.dataCorrupted(
@@ -315,7 +315,7 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Schedule for the patch.
-  public enum OneOf_Schedule: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Required. Schedule a one-time execution.
     indirect case oneTimeSchedule(OneTimeSchedule?)
     /// Required. Schedule recurring executions.

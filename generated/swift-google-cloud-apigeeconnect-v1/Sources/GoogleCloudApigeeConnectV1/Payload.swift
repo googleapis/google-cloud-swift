@@ -22,7 +22,7 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The kind of payload.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct Payload: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The kind of payload.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// The HttpRequest proto.
     indirect case httpRequest(HttpRequest?)
     /// The information of stream.

@@ -23,7 +23,7 @@
     Sendable
   {
     /// The output of this Neural Architecture Search (NAS) job.
-    public var output: OneOf_Output? = nil
+    public var output: OutputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var output: OneOf_Output? = nil
+      var output: OutputOneOf? = nil
       let outputCheckAndSet = {
         if output != nil {
           throw DecodingError.dataCorrupted(
@@ -173,7 +173,7 @@
     }
 
     /// The output of this Neural Architecture Search (NAS) job.
-    public enum OneOf_Output: Codable, Equatable, Sendable {
+    public enum OutputOneOf: Codable, Equatable, Sendable {
       /// Output only. The output of this multi-trial Neural Architecture Search
       /// (NAS) job.
       indirect case multiTrialJobOutput(NasJobOutput.MultiTrialJobOutput?)

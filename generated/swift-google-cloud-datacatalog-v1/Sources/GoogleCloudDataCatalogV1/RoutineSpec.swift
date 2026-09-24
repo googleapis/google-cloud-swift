@@ -43,7 +43,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public var definitionBody: Swift.String = Swift.String()
 
   /// Contains fields specific to the source system.
-  public var systemSpec: OneOf_SystemSpec? = nil
+  public var systemSpec: SystemSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -107,7 +107,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       self.definitionBody = value
     }
 
-    var systemSpec: OneOf_SystemSpec? = nil
+    var systemSpec: SystemSpecOneOf? = nil
     let systemSpecCheckAndSet = {
       if systemSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -478,7 +478,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Contains fields specific to the source system.
-  public enum OneOf_SystemSpec: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Fields specific for BigQuery routines.
     indirect case bigqueryRoutineSpec(BigQueryRoutineSpec?)
   }

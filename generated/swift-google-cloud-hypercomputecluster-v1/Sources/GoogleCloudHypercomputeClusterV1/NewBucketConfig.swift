@@ -35,7 +35,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var hierarchicalNamespace: GcsHierarchicalNamespaceConfig? = nil
 
   /// Storage class of the bucket, which can be set automatically or explicitly.
-  public var option: OneOf_Option? = nil
+  public var option: OptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.hierarchicalNamespace = try container.decodeIfPresent(
       GcsHierarchicalNamespaceConfig.self, forKey: .hierarchicalNamespace)
 
-    var option: OneOf_Option? = nil
+    var option: OptionOneOf? = nil
     let optionCheckAndSet = {
       if option != nil {
         throw DecodingError.dataCorrupted(
@@ -259,7 +259,7 @@ public struct NewBucketConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Storage class of the bucket, which can be set automatically or explicitly.
-  public enum OneOf_Option: Codable, Equatable, Sendable {
+  public enum OptionOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that the bucket should use
     /// [Autoclass](https://cloud.google.com/storage/docs/autoclass).
     indirect case autoclass(GcsAutoclassConfig?)

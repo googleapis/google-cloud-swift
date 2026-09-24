@@ -46,15 +46,15 @@
     public var rebuildAnnIndex: Swift.Bool = Swift.Bool()
 
     /// The source of the import.
-    public var importSource: OneOf_ImportSource? = nil
+    public var importSource: ImportSourceOneOf? = nil
 
     /// Optional. If provided, all partial failures are written to the sink.
     /// Deprecated. Prefer to use the `import_result_sink`.
-    public var partialFailureSink: OneOf_PartialFailureSink? = nil
+    public var partialFailureSink: PartialFailureSinkOneOf? = nil
 
     /// Optional. If provided, all successfully imported files and all partial
     /// failures are written to the sink.
-    public var importResultSink: OneOf_ImportResultSink? = nil
+    public var importResultSink: ImportResultSinkOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@
         self.rebuildAnnIndex = value
       }
 
-      var importSource: OneOf_ImportSource? = nil
+      var importSource: ImportSourceOneOf? = nil
       let importSourceCheckAndSet = {
         if importSource != nil {
           throw DecodingError.dataCorrupted(
@@ -161,7 +161,7 @@
       }
       self.importSource = importSource
 
-      var partialFailureSink: OneOf_PartialFailureSink? = nil
+      var partialFailureSink: PartialFailureSinkOneOf? = nil
       let partialFailureSinkCheckAndSet = {
         if partialFailureSink != nil {
           throw DecodingError.dataCorrupted(
@@ -183,7 +183,7 @@
       }
       self.partialFailureSink = partialFailureSink
 
-      var importResultSink: OneOf_ImportResultSink? = nil
+      var importResultSink: ImportResultSinkOneOf? = nil
       let importResultSinkCheckAndSet = {
         if importResultSink != nil {
           throw DecodingError.dataCorrupted(
@@ -259,7 +259,7 @@
     }
 
     /// The source of the import.
-    public enum OneOf_ImportSource: Codable, Equatable, Sendable {
+    public enum ImportSourceOneOf: Codable, Equatable, Sendable {
       /// Google Cloud Storage location. Supports importing individual files as
       /// well as entire Google Cloud Storage directories. Sample formats:
       /// - `gs://bucket_name/my_directory/object_name/my_file.txt`
@@ -278,7 +278,7 @@
 
     /// Optional. If provided, all partial failures are written to the sink.
     /// Deprecated. Prefer to use the `import_result_sink`.
-    public enum OneOf_PartialFailureSink: Codable, Equatable, Sendable {
+    public enum PartialFailureSinkOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage path to write partial failures to.
       /// Deprecated. Prefer to use `import_result_gcs_sink`.
       @available(*, deprecated)
@@ -296,7 +296,7 @@
 
     /// Optional. If provided, all successfully imported files and all partial
     /// failures are written to the sink.
-    public enum OneOf_ImportResultSink: Codable, Equatable, Sendable {
+    public enum ImportResultSinkOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage path to write import result to.
       indirect case importResultGcsSink(GcsDestination?)
       /// The BigQuery destination to write import result to. It should be a

@@ -22,7 +22,7 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A target to match against for Discovery.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@ public struct DiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A target to match against for Discovery.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// BigQuery target for Discovery. The first target to match a table will be
     /// the one applied.
     indirect case bigQueryTarget(BigQueryDiscoveryTarget?)

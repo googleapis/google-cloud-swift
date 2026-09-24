@@ -38,7 +38,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
   public var internalMetadata: Swift.String? = nil
 
   /// The compiled object.
-  public var compiledObject: OneOf_CompiledObject? = nil
+  public var compiledObject: CompiledObjectOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     self.internalMetadata = try container.decodeIfPresent(
       Swift.String.self, forKey: .internalMetadata)
 
-    var compiledObject: OneOf_CompiledObject? = nil
+    var compiledObject: CompiledObjectOneOf? = nil
     let compiledObjectCheckAndSet = {
       if compiledObject != nil {
         throw DecodingError.dataCorrupted(
@@ -1309,7 +1309,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     public var tags: [Swift.String] = []
 
     /// The definition for the data preparation.
-    public var definition: OneOf_Definition? = nil
+    public var definition: DefinitionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1362,7 +1362,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
         self.tags = value
       }
 
-      var definition: OneOf_Definition? = nil
+      var definition: DefinitionOneOf? = nil
       let definitionCheckAndSet = {
         if definition != nil {
           throw DecodingError.dataCorrupted(
@@ -1572,7 +1572,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     }
 
     /// The definition for the data preparation.
-    public enum OneOf_Definition: Codable, Equatable, Sendable {
+    public enum DefinitionOneOf: Codable, Equatable, Sendable {
       /// The data preparation definition, stored as a YAML string.
       case contentsYaml(Swift.String)
       /// SQL definition for a Data Preparation. Contains a SQL query and
@@ -1596,7 +1596,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     Sendable
   {
     /// Load mode
-    public var mode: OneOf_Mode? = nil
+    public var mode: ModeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1638,7 +1638,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var mode: OneOf_Mode? = nil
+      var mode: ModeOneOf? = nil
       let modeCheckAndSet = {
         if mode != nil {
           throw DecodingError.dataCorrupted(
@@ -1696,7 +1696,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
     }
 
     /// Load mode
-    public enum OneOf_Mode: Codable, Equatable, Sendable {
+    public enum ModeOneOf: Codable, Equatable, Sendable {
       /// Replace destination table
       indirect case replace(CompilationResultAction.SimpleLoadMode?)
       /// Append into destination table
@@ -1847,7 +1847,7 @@ public struct CompilationResultAction: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The compiled object.
-  public enum OneOf_CompiledObject: Codable, Equatable, Sendable {
+  public enum CompiledObjectOneOf: Codable, Equatable, Sendable {
     /// The database relation created/updated by this action.
     indirect case relation(CompilationResultAction.Relation?)
     /// The database operations executed by this action.

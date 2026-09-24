@@ -29,7 +29,7 @@
     public var thought: Swift.Bool = Swift.Bool()
 
     /// Contained data.
-    public var data: OneOf_Data? = nil
+    public var data: DataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@
         self.thought = value
       }
 
-      var data: OneOf_Data? = nil
+      var data: DataOneOf? = nil
       let dataCheckAndSet = {
         if data != nil {
           throw DecodingError.dataCorrupted(
@@ -576,7 +576,7 @@
     }
 
     /// Contained data.
-    public enum OneOf_Data: Codable, Equatable, Sendable {
+    public enum DataOneOf: Codable, Equatable, Sendable {
       /// Inline text.
       case text(Swift.String)
       /// Inline binary data.

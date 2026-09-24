@@ -25,7 +25,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The name of the field on which to aggregate.
   public var field: Swift.String = Swift.String()
 
-  public var aggregationFunction: OneOf_AggregationFunction? = nil
+  public var aggregationFunction: AggregationFunctionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.field = value
     }
 
-    var aggregationFunction: OneOf_AggregationFunction? = nil
+    var aggregationFunction: AggregationFunctionOneOf? = nil
     let aggregationFunctionCheckAndSet = {
       if aggregationFunction != nil {
         throw DecodingError.dataCorrupted(
@@ -373,7 +373,7 @@ public struct Aggregation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_AggregationFunction: Codable, Equatable, Sendable {
+  public enum AggregationFunctionOneOf: Codable, Equatable, Sendable {
     /// Count the number of matching objects.
     indirect case count(Aggregation.Count?)
     /// Sum over a numeric field.

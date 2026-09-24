@@ -30,7 +30,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// constraints.
   ///
   /// This takes precedence over the `source_node_type` field.
-  public var sourceNode: OneOf_SourceNode? = nil
+  public var sourceNode: SourceNodeOneOf? = nil
 
   /// Specifies the destination criteria for this edge rule.
   /// An edge rule must define its destination either statically via a specific
@@ -38,7 +38,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// constraints.
   ///
   /// This takes precedence over the `destination_node_type` field.
-  public var destinationNode: OneOf_DestinationNode? = nil
+  public var destinationNode: DestinationNodeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.edgeType = value
     }
 
-    var sourceNode: OneOf_SourceNode? = nil
+    var sourceNode: SourceNodeOneOf? = nil
     let sourceNodeCheckAndSet = {
       if sourceNode != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.sourceNode = sourceNode
 
-    var destinationNode: OneOf_DestinationNode? = nil
+    var destinationNode: DestinationNodeOneOf? = nil
     let destinationNodeCheckAndSet = {
       if destinationNode != nil {
         throw DecodingError.dataCorrupted(
@@ -158,7 +158,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// constraints.
   ///
   /// This takes precedence over the `source_node_type` field.
-  public enum OneOf_SourceNode: Codable, Equatable, Sendable {
+  public enum SourceNodeOneOf: Codable, Equatable, Sendable {
     /// Optional. The specific node type name that acts as the source for this
     /// edge.
     case srcNodeType(Swift.String)
@@ -173,7 +173,7 @@ public struct EdgeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// constraints.
   ///
   /// This takes precedence over the `destination_node_type` field.
-  public enum OneOf_DestinationNode: Codable, Equatable, Sendable {
+  public enum DestinationNodeOneOf: Codable, Equatable, Sendable {
     /// Optional. The specific node type name that acts as the destination for
     /// this edge.
     case destNodeType(Swift.String)

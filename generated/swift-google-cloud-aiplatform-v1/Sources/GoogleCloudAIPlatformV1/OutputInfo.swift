@@ -23,7 +23,7 @@
     Sendable
   {
     /// The output location into which evaluation output is written.
-    public var outputLocation: OneOf_OutputLocation? = nil
+    public var outputLocation: OutputLocationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var outputLocation: OneOf_OutputLocation? = nil
+      var outputLocation: OutputLocationOneOf? = nil
       let outputLocationCheckAndSet = {
         if outputLocation != nil {
           throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@
     }
 
     /// The output location into which evaluation output is written.
-    public enum OneOf_OutputLocation: Codable, Equatable, Sendable {
+    public enum OutputLocationOneOf: Codable, Equatable, Sendable {
       /// Output only. The full path of the Cloud Storage directory created, into
       /// which the evaluation results and aggregation results are written.
       case gcsOutputDirectory(Swift.String)

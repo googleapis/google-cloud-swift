@@ -70,7 +70,7 @@
     public var flagScope: SqlFlagScope = SqlFlagScope()
 
     /// Recommended flag value for UI display.
-    public var recommendedValue: OneOf_RecommendedValue? = nil
+    public var recommendedValue: RecommendedValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,7 +158,7 @@
         self.flagScope = value
       }
 
-      var recommendedValue: OneOf_RecommendedValue? = nil
+      var recommendedValue: RecommendedValueOneOf? = nil
       let recommendedValueCheckAndSet = {
         if recommendedValue != nil {
           throw DecodingError.dataCorrupted(
@@ -213,7 +213,7 @@
     }
 
     /// Recommended flag value for UI display.
-    public enum OneOf_RecommendedValue: Codable, Equatable, Sendable {
+    public enum RecommendedValueOneOf: Codable, Equatable, Sendable {
       /// Recommended string value in string format for UI display.
       case recommendedStringValue(Swift.String)
       /// Recommended int value in integer format for UI display.

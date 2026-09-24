@@ -23,7 +23,7 @@
     Sendable
   {
     /// The tier of the RagManagedDb.
-    public var tier: OneOf_Tier? = nil
+    public var tier: TierOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var tier: OneOf_Tier? = nil
+      var tier: TierOneOf? = nil
       let tierCheckAndSet = {
         if tier != nil {
           throw DecodingError.dataCorrupted(
@@ -297,7 +297,7 @@
     }
 
     /// The tier of the RagManagedDb.
-    public enum OneOf_Tier: Codable, Equatable, Sendable {
+    public enum TierOneOf: Codable, Equatable, Sendable {
       /// Sets the RagManagedDb to the Scaled tier.
       indirect case scaled(RagManagedDbConfig.Scaled?)
       /// Sets the RagManagedDb to the Basic tier.

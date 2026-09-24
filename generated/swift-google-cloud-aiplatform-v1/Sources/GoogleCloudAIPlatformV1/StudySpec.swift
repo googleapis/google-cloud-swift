@@ -44,7 +44,7 @@
     /// configuring at least one condition.
     public var studyStoppingConfig: StudySpec.StudyStoppingConfig? = nil
 
-    public var automatedStoppingSpec: OneOf_AutomatedStoppingSpec? = nil
+    public var automatedStoppingSpec: AutomatedStoppingSpecOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -121,7 +121,7 @@
       self.studyStoppingConfig = try container.decodeIfPresent(
         StudySpec.StudyStoppingConfig.self, forKey: .studyStoppingConfig)
 
-      var automatedStoppingSpec: OneOf_AutomatedStoppingSpec? = nil
+      var automatedStoppingSpec: AutomatedStoppingSpecOneOf? = nil
       let automatedStoppingSpecCheckAndSet = {
         if automatedStoppingSpec != nil {
           throw DecodingError.dataCorrupted(
@@ -490,7 +490,7 @@
       /// must have disjoint parent_value_condition.
       public var conditionalParameterSpecs: [StudySpec.ParameterSpec.ConditionalParameterSpec] = []
 
-      public var parameterValueSpec: OneOf_ParameterValueSpec? = nil
+      public var parameterValueSpec: ParameterValueSpecOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -552,7 +552,7 @@
           self.conditionalParameterSpecs = value
         }
 
-        var parameterValueSpec: OneOf_ParameterValueSpec? = nil
+        var parameterValueSpec: ParameterValueSpecOneOf? = nil
         let parameterValueSpecCheckAndSet = {
           if parameterValueSpec != nil {
             throw DecodingError.dataCorrupted(
@@ -970,7 +970,7 @@
 
         /// A set of parameter values from the parent ParameterSpec's feasible
         /// space.
-        public var parentValueCondition: OneOf_ParentValueCondition? = nil
+        public var parentValueCondition: ParentValueConditionOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1014,7 +1014,7 @@
           self.parameterSpec = try container.decodeIfPresent(
             GoogleWKT.WKTRecursive<StudySpec.ParameterSpec>.self, forKey: .parameterSpec)
 
-          var parentValueCondition: OneOf_ParentValueCondition? = nil
+          var parentValueCondition: ParentValueConditionOneOf? = nil
           let parentValueConditionCheckAndSet = {
             if parentValueCondition != nil {
               throw DecodingError.dataCorrupted(
@@ -1283,7 +1283,7 @@
 
         /// A set of parameter values from the parent ParameterSpec's feasible
         /// space.
-        public enum OneOf_ParentValueCondition: Codable, Equatable, Sendable {
+        public enum ParentValueConditionOneOf: Codable, Equatable, Sendable {
           /// The spec for matching values from a parent parameter of
           /// `DISCRETE` type.
           indirect case parentDiscreteValues(
@@ -1438,7 +1438,7 @@
         }
       }
 
-      public enum OneOf_ParameterValueSpec: Codable, Equatable, Sendable {
+      public enum ParameterValueSpecOneOf: Codable, Equatable, Sendable {
         /// The value spec for a 'DOUBLE' parameter.
         indirect case doubleValueSpec(StudySpec.ParameterSpec.DoubleValueSpec?)
         /// The value spec for an 'INTEGER' parameter.
@@ -2292,7 +2292,7 @@
       }
     }
 
-    public enum OneOf_AutomatedStoppingSpec: Codable, Equatable, Sendable {
+    public enum AutomatedStoppingSpecOneOf: Codable, Equatable, Sendable {
       /// The automated early stopping spec using decay curve rule.
       indirect case decayCurveStoppingSpec(StudySpec.DecayCurveAutomatedStoppingSpec?)
       /// The automated early stopping spec using median rule.

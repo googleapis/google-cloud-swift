@@ -35,7 +35,7 @@
     public var model: AugmentPromptRequest.Model? = nil
 
     /// The data source for retrieving contexts.
-    public var dataSource: OneOf_DataSource? = nil
+    public var dataSource: DataSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@
       }
       self.model = try container.decodeIfPresent(AugmentPromptRequest.Model.self, forKey: .model)
 
-      var dataSource: OneOf_DataSource? = nil
+      var dataSource: DataSourceOneOf? = nil
       let dataSourceCheckAndSet = {
         if dataSource != nil {
           throw DecodingError.dataCorrupted(
@@ -202,7 +202,7 @@
     }
 
     /// The data source for retrieving contexts.
-    public enum OneOf_DataSource: Codable, Equatable, Sendable {
+    public enum DataSourceOneOf: Codable, Equatable, Sendable {
       /// Optional. Retrieves contexts from the Vertex RagStore.
       indirect case vertexRagStore(VertexRagStore?)
     }

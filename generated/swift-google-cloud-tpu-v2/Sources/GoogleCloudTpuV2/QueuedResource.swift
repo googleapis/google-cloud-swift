@@ -41,10 +41,10 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public var reservationName: Swift.String = Swift.String()
 
   /// Resource specification.
-  public var resource: OneOf_Resource? = nil
+  public var resource: ResourceOneOf? = nil
 
   /// Tier specifies the required tier.
-  public var tier: OneOf_Tier? = nil
+  public var tier: TierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.reservationName = value
     }
 
-    var resource: OneOf_Resource? = nil
+    var resource: ResourceOneOf? = nil
     let resourceCheckAndSet = {
       if resource != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.resource = resource
 
-    var tier: OneOf_Tier? = nil
+    var tier: TierOneOf? = nil
     let tierCheckAndSet = {
       if tier != nil {
         throw DecodingError.dataCorrupted(
@@ -245,7 +245,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       public var node: Node? = nil
 
       /// Either a node_id or multislice_params.
-      public var nameStrategy: OneOf_NameStrategy? = nil
+      public var nameStrategy: NameStrategyOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -291,7 +291,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         self.node = try container.decodeIfPresent(Node.self, forKey: .node)
 
-        var nameStrategy: OneOf_NameStrategy? = nil
+        var nameStrategy: NameStrategyOneOf? = nil
         let nameStrategyCheckAndSet = {
           if nameStrategy != nil {
             throw DecodingError.dataCorrupted(
@@ -421,7 +421,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Either a node_id or multislice_params.
-      public enum OneOf_NameStrategy: Codable, Equatable, Sendable {
+      public enum NameStrategyOneOf: Codable, Equatable, Sendable {
         /// Optional. The unqualified resource name. Should follow the
         /// `^[A-Za-z0-9_.~+%-]+$` regex format. This is only specified when
         /// requesting a single node. In case of multislice requests,
@@ -584,7 +584,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Time flexibility specification.
-    public var startTimingConstraints: OneOf_StartTimingConstraints? = nil
+    public var startTimingConstraints: StartTimingConstraintsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -628,7 +628,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var startTimingConstraints: OneOf_StartTimingConstraints? = nil
+      var startTimingConstraints: StartTimingConstraintsOneOf? = nil
       let startTimingConstraintsCheckAndSet = {
         if startTimingConstraints != nil {
           throw DecodingError.dataCorrupted(
@@ -693,7 +693,7 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Time flexibility specification.
-    public enum OneOf_StartTimingConstraints: Codable, Equatable, Sendable {
+    public enum StartTimingConstraintsOneOf: Codable, Equatable, Sendable {
       /// Optional. A relative time after which resources should not be created.
       /// If the request cannot be fulfilled by this time the request will be
       /// failed.
@@ -723,13 +723,13 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Resource specification.
-  public enum OneOf_Resource: Codable, Equatable, Sendable {
+  public enum ResourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Defines a TPU resource.
     indirect case tpu(QueuedResource.Tpu?)
   }
 
   /// Tier specifies the required tier.
-  public enum OneOf_Tier: Codable, Equatable, Sendable {
+  public enum TierOneOf: Codable, Equatable, Sendable {
     /// Optional. The Spot tier.
     indirect case spot(QueuedResource.Spot?)
     /// Optional. The Guaranteed tier

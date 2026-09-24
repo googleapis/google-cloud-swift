@@ -27,7 +27,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
   public var lockUntilTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Metadata about the owner and reason for the lock.
-  public var clientLockInfo: OneOf_ClientLockInfo? = nil
+  public var clientLockInfo: ClientLockInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
     self.lockUntilTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .lockUntilTime)
 
-    var clientLockInfo: OneOf_ClientLockInfo? = nil
+    var clientLockInfo: ClientLockInfoOneOf? = nil
     let clientLockInfoCheckAndSet = {
       if clientLockInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct BackupLock: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Metadata about the owner and reason for the lock.
-  public enum OneOf_ClientLockInfo: Codable, Equatable, Sendable {
+  public enum ClientLockInfoOneOf: Codable, Equatable, Sendable {
     /// If the client is a backup and recovery appliance, this
     /// contains metadata about why the lock exists.
     indirect case backupApplianceLockInfo(BackupApplianceLockInfo?)

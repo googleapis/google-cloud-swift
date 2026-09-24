@@ -29,7 +29,7 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public var parent: Swift.String = Swift.String()
 
   /// Source taxonomies to import.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.parent = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct ImportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Source taxonomies to import.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Inline source taxonomy to import.
     indirect case inlineSource(InlineSource?)
     /// Cross-regional source taxonomy to import.

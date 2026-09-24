@@ -133,7 +133,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
     public var ipConfigs: [CertificateMap.GclbTarget.IpConfig] = []
 
     /// A Target Proxy to which this map is attached to.
-    public var targetProxy: OneOf_TargetProxy? = nil
+    public var targetProxy: TargetProxyOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -178,7 +178,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
         self.ipConfigs = value
       }
 
-      var targetProxy: OneOf_TargetProxy? = nil
+      var targetProxy: TargetProxyOneOf? = nil
       let targetProxyCheckAndSet = {
         if targetProxy != nil {
           throw DecodingError.dataCorrupted(
@@ -301,7 +301,7 @@ public struct CertificateMap: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// A Target Proxy to which this map is attached to.
-    public enum OneOf_TargetProxy: Codable, Equatable, Sendable {
+    public enum TargetProxyOneOf: Codable, Equatable, Sendable {
       /// Output only. This field returns the resource name in the following
       /// format:
       /// `//compute.googleapis.com/projects/*/global/targetHttpsProxies/*`.

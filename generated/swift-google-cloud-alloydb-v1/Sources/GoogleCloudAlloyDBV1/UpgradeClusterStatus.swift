@@ -127,7 +127,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     public var schedule: UpgradeClusterStatus.StageStatus.StageSchedule? = nil
 
     /// Stage specific status information, if any.
-    public var stageSpecificStatus: OneOf_StageSpecificStatus? = nil
+    public var stageSpecificStatus: StageSpecificStatusOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -181,7 +181,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       self.schedule = try container.decodeIfPresent(
         UpgradeClusterStatus.StageStatus.StageSchedule.self, forKey: .schedule)
 
-      var stageSpecificStatus: OneOf_StageSpecificStatus? = nil
+      var stageSpecificStatus: StageSpecificStatusOneOf? = nil
       let stageSpecificStatusCheckAndSet = {
         if stageSpecificStatus != nil {
           throw DecodingError.dataCorrupted(
@@ -316,7 +316,7 @@ public struct UpgradeClusterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Stage specific status information, if any.
-    public enum OneOf_StageSpecificStatus: Codable, Equatable, Sendable {
+    public enum StageSpecificStatusOneOf: Codable, Equatable, Sendable {
       /// Read pool instances upgrade metadata.
       indirect case readPoolInstancesUpgrade(
         UpgradeClusterStatus.ReadPoolInstancesUpgradeStageStatus?)

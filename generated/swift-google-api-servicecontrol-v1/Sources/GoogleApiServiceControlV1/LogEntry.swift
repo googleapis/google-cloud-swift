@@ -61,7 +61,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sourceLocation: LogEntrySourceLocation? = nil
 
   /// The log entry payload, which can be one of multiple types.
-  public var payload: OneOf_Payload? = nil
+  public var payload: PayloadOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -142,7 +142,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     self.sourceLocation = try container.decodeIfPresent(
       LogEntrySourceLocation.self, forKey: .sourceLocation)
 
-    var payload: OneOf_Payload? = nil
+    var payload: PayloadOneOf? = nil
     let payloadCheckAndSet = {
       if payload != nil {
         throw DecodingError.dataCorrupted(
@@ -200,7 +200,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The log entry payload, which can be one of multiple types.
-  public enum OneOf_Payload: Codable, Equatable, Sendable {
+  public enum PayloadOneOf: Codable, Equatable, Sendable {
     /// The log entry payload, represented as a protocol buffer that is
     /// expressed as a JSON object. The only accepted type currently is
     /// [AuditLog][google.cloud.audit.AuditLog].

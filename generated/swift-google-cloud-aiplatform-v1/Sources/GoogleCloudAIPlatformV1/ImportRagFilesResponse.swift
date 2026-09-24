@@ -35,7 +35,7 @@
     public var skippedRagFilesCount: Swift.Int64 = Swift.Int64()
 
     /// The location into which the partial failures were written.
-    public var partialFailureSink: OneOf_PartialFailureSink? = nil
+    public var partialFailureSink: PartialFailureSinkOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@
         self.skippedRagFilesCount = value
       }
 
-      var partialFailureSink: OneOf_PartialFailureSink? = nil
+      var partialFailureSink: PartialFailureSinkOneOf? = nil
       let partialFailureSinkCheckAndSet = {
         if partialFailureSink != nil {
           throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@
     }
 
     /// The location into which the partial failures were written.
-    public enum OneOf_PartialFailureSink: Codable, Equatable, Sendable {
+    public enum PartialFailureSinkOneOf: Codable, Equatable, Sendable {
       /// The Google Cloud Storage path into which the partial failures were
       /// written.
       case partialFailuresGcsPath(Swift.String)

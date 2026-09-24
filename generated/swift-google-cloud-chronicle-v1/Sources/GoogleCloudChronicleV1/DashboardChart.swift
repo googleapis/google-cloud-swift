@@ -2757,7 +2757,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       public var displayName: Swift.String = Swift.String()
 
       /// Drill down settings.
-      public var settings: OneOf_Settings? = nil
+      public var settings: SettingsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2805,7 +2805,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
           self.displayName = value
         }
 
-        var settings: OneOf_Settings? = nil
+        var settings: SettingsOneOf? = nil
         let settingsCheckAndSet = {
           if settings != nil {
             throw DecodingError.dataCorrupted(
@@ -2933,7 +2933,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         public var leftClickColumn: Swift.String = Swift.String()
 
         /// Action to be performed on drill down.
-        public var action: OneOf_Action? = nil
+        public var action: ActionOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2984,7 +2984,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
             self.leftClickColumn = value
           }
 
-          var action: OneOf_Action? = nil
+          var action: ActionOneOf? = nil
           let actionCheckAndSet = {
             if action != nil {
               throw DecodingError.dataCorrupted(
@@ -3347,7 +3347,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Action to be performed on drill down.
-        public enum OneOf_Action: Codable, Equatable, Sendable {
+        public enum ActionOneOf: Codable, Equatable, Sendable {
           /// Drill down query action config.
           indirect case query(
             DashboardChart.DrillDownConfig.DrillDown.CustomDrillDownSettings.DrillDownQuery?)
@@ -3372,7 +3372,7 @@ public struct DashboardChart: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Drill down settings.
-      public enum OneOf_Settings: Codable, Equatable, Sendable {
+      public enum SettingsOneOf: Codable, Equatable, Sendable {
         /// Default drill down settings.
         indirect case defaultSettings(
           DashboardChart.DrillDownConfig.DrillDown.DefaultDrillDownSettings?)

@@ -23,7 +23,7 @@ public struct CharsToIgnore: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Type of characters to skip.
-  public var characters: OneOf_Characters? = nil
+  public var characters: CharactersOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct CharsToIgnore: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var characters: OneOf_Characters? = nil
+    var characters: CharactersOneOf? = nil
     let charactersCheckAndSet = {
       if characters != nil {
         throw DecodingError.dataCorrupted(
@@ -243,7 +243,7 @@ public struct CharsToIgnore: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of characters to skip.
-  public enum OneOf_Characters: Codable, Equatable, Sendable {
+  public enum CharactersOneOf: Codable, Equatable, Sendable {
     /// Characters to not transform when masking.
     case charactersToSkip(Swift.String)
     /// Common characters to not transform when masking. Useful to avoid removing

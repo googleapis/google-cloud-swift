@@ -254,7 +254,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
       .Expressions.LogicalOperator()
 
     /// Expression types.
-    public var type: OneOf_Type? = nil
+    public var type: TypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -297,7 +297,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
         self.logicalOperator = value
       }
 
-      var type: OneOf_Type? = nil
+      var type: TypeOneOf? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -445,7 +445,7 @@ public struct RecordCondition: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Expression types.
-    public enum OneOf_Type: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Conditions to apply to the expression.
       indirect case conditions(RecordCondition.Conditions?)
     }

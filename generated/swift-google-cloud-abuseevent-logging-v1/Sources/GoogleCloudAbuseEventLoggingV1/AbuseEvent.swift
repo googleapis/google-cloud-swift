@@ -34,7 +34,7 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var remediationLink: Swift.String = Swift.String()
 
   /// REQUIRED Contains addiional metadata about the detected abuse event.
-  public var eventType: OneOf_EventType? = nil
+  public var eventType: EventTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.remediationLink = value
     }
 
-    var eventType: OneOf_EventType? = nil
+    var eventType: EventTypeOneOf? = nil
     let eventTypeCheckAndSet = {
       if eventType != nil {
         throw DecodingError.dataCorrupted(
@@ -468,7 +468,7 @@ public struct AbuseEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// REQUIRED Contains addiional metadata about the detected abuse event.
-  public enum OneOf_EventType: Codable, Equatable, Sendable {
+  public enum EventTypeOneOf: Codable, Equatable, Sendable {
     /// Information about a cryptocurrency mining event observed on the monitored
     /// resource.
     indirect case cryptoMiningEvent(CryptoMiningEvent?)

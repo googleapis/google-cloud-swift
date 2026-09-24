@@ -37,7 +37,7 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
   public var comment: Swift.String = Swift.String()
 
   /// Specific details based on the type of account.
-  public var accountDetails: OneOf_AccountDetails? = nil
+  public var accountDetails: AccountDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -107,7 +107,7 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
       self.comment = value
     }
 
-    var accountDetails: OneOf_AccountDetails? = nil
+    var accountDetails: AccountDetailsOneOf? = nil
     let accountDetailsCheckAndSet = {
       if accountDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -195,7 +195,7 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specific details based on the type of account.
-  public enum OneOf_AccountDetails: Codable, Equatable, Sendable {
+  public enum AccountDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Details for a standard user account.
     indirect case userDetails(UserDetails?)
     /// Output only. Details for an account manager account.

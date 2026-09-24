@@ -22,7 +22,7 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Chunk data.
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -162,7 +162,7 @@ public struct Chunk: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Chunk data.
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// Optional. Text data.
     case text(Swift.String)
     /// Optional. Transcript associated with the audio.

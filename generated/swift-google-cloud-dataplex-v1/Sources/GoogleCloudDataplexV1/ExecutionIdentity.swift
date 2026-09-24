@@ -22,7 +22,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The identity to run the datascan.
-  public var identity: OneOf_Identity? = nil
+  public var identity: IdentityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var identity: OneOf_Identity? = nil
+    var identity: IdentityOneOf? = nil
     let identityCheckAndSet = {
       if identity != nil {
         throw DecodingError.dataCorrupted(
@@ -299,7 +299,7 @@ public struct ExecutionIdentity: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The identity to run the datascan.
-  public enum OneOf_Identity: Codable, Equatable, Sendable {
+  public enum IdentityOneOf: Codable, Equatable, Sendable {
     /// Optional. The Dataplex service agent associated with the user's project.
     indirect case dataplexServiceAgent(ExecutionIdentity.DataplexServiceAgent?)
     /// Optional. The credential of the calling user. Supports only ONE_TIME

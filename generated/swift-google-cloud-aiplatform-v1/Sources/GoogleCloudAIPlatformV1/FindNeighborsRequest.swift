@@ -151,7 +151,7 @@
       /// NearestNeighborSearchConfig.TreeAHConfig.fraction_leaf_nodes_to_search.
       public var fractionLeafNodesToSearchOverride: Swift.Double = Swift.Double()
 
-      public var ranking: OneOf_Ranking? = nil
+      public var ranking: RankingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -218,7 +218,7 @@
           self.fractionLeafNodesToSearchOverride = value
         }
 
-        var ranking: OneOf_Ranking? = nil
+        var ranking: RankingOneOf? = nil
         let rankingCheckAndSet = {
           if ranking != nil {
             throw DecodingError.dataCorrupted(
@@ -331,7 +331,7 @@
         }
       }
 
-      public enum OneOf_Ranking: Codable, Equatable, Sendable {
+      public enum RankingOneOf: Codable, Equatable, Sendable {
         /// Optional. Represents RRF algorithm that combines search results.
         indirect case rrf(FindNeighborsRequest.Query.RRF?)
       }

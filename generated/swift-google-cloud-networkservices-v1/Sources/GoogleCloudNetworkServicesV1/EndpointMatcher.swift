@@ -23,7 +23,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Specifies type of the matcher used for this endpoint matcher.
-  public var matcherType: OneOf_MatcherType? = nil
+  public var matcherType: MatcherTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var matcherType: OneOf_MatcherType? = nil
+    var matcherType: MatcherTypeOneOf? = nil
     let matcherTypeCheckAndSet = {
       if matcherType != nil {
         throw DecodingError.dataCorrupted(
@@ -408,7 +408,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies type of the matcher used for this endpoint matcher.
-  public enum OneOf_MatcherType: Codable, Equatable, Sendable {
+  public enum MatcherTypeOneOf: Codable, Equatable, Sendable {
     /// The matcher is based on node metadata presented by xDS clients.
     indirect case metadataLabelMatcher(EndpointMatcher.MetadataLabelMatcher?)
   }

@@ -34,10 +34,10 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public var dataPolicyId: Swift.String = Swift.String()
 
   /// Label that is bound to this data policy.
-  public var matchingLabel: OneOf_MatchingLabel? = nil
+  public var matchingLabel: MatchingLabelOneOf? = nil
 
   /// The policy that is bound to this data policy.
-  public var policy: OneOf_Policy? = nil
+  public var policy: PolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.dataPolicyId = value
     }
 
-    var matchingLabel: OneOf_MatchingLabel? = nil
+    var matchingLabel: MatchingLabelOneOf? = nil
     let matchingLabelCheckAndSet = {
       if matchingLabel != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.matchingLabel = matchingLabel
 
-    var policy: OneOf_Policy? = nil
+    var policy: PolicyOneOf? = nil
     let policyCheckAndSet = {
       if policy != nil {
         throw DecodingError.dataCorrupted(
@@ -272,14 +272,14 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Label that is bound to this data policy.
-  public enum OneOf_MatchingLabel: Codable, Equatable, Sendable {
+  public enum MatchingLabelOneOf: Codable, Equatable, Sendable {
     /// Policy tag resource name, in the format of
     /// `projects/{project_number}/locations/{location_id}/taxonomies/{taxonomy_id}/policyTags/{policyTag_id}`.
     case policyTag(Swift.String)
   }
 
   /// The policy that is bound to this data policy.
-  public enum OneOf_Policy: Codable, Equatable, Sendable {
+  public enum PolicyOneOf: Codable, Equatable, Sendable {
     /// The data masking policy that specifies the data masking rule to use.
     indirect case dataMaskingPolicy(DataMaskingPolicy?)
   }

@@ -28,7 +28,7 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
   public var service: Swift.String = Swift.String()
 
   /// Contains projections (if any) for this category.
-  public var projection: OneOf_Projection? = nil
+  public var projection: ProjectionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
       self.service = value
     }
 
-    var projection: OneOf_Projection? = nil
+    var projection: ProjectionOneOf? = nil
     let projectionCheckAndSet = {
       if projection != nil {
         throw DecodingError.dataCorrupted(
@@ -285,7 +285,7 @@ public struct Impact: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Contains projections (if any) for this category.
-  public enum OneOf_Projection: Codable, Equatable, Sendable {
+  public enum ProjectionOneOf: Codable, Equatable, Sendable {
     /// Use with CategoryType.COST
     indirect case costProjection(CostProjection?)
     /// Use with CategoryType.SECURITY

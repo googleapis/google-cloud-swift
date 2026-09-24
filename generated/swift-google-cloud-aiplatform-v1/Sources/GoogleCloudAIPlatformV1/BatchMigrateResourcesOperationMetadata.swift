@@ -105,7 +105,7 @@
       /// If the resource's migration is ongoing, none of the result will be set.
       /// If the resource's migration is finished, either error or one of the
       /// migrated resource name will be filled.
-      public var result: OneOf_Result? = nil
+      public var result: ResultOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -148,7 +148,7 @@
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.request = try container.decodeIfPresent(MigrateResourceRequest.self, forKey: .request)
 
-        var result: OneOf_Result? = nil
+        var result: ResultOneOf? = nil
         let resultCheckAndSet = {
           if result != nil {
             throw DecodingError.dataCorrupted(
@@ -196,7 +196,7 @@
       /// If the resource's migration is ongoing, none of the result will be set.
       /// If the resource's migration is finished, either error or one of the
       /// migrated resource name will be filled.
-      public enum OneOf_Result: Codable, Equatable, Sendable {
+      public enum ResultOneOf: Codable, Equatable, Sendable {
         /// The error result of the migration request in case of failure.
         indirect case error(GoogleRpc.Status?)
         /// Migrated model resource name.

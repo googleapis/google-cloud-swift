@@ -35,7 +35,7 @@
 
     /// Required. Max human labeling DataItems. The rest part will be labeled by
     /// machine.
-    public var humanLabelingBudget: OneOf_HumanLabelingBudget? = nil
+    public var humanLabelingBudget: HumanLabelingBudgetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@
       self.trainingConfig = try container.decodeIfPresent(
         TrainingConfig.self, forKey: .trainingConfig)
 
-      var humanLabelingBudget: OneOf_HumanLabelingBudget? = nil
+      var humanLabelingBudget: HumanLabelingBudgetOneOf? = nil
       let humanLabelingBudgetCheckAndSet = {
         if humanLabelingBudget != nil {
           throw DecodingError.dataCorrupted(
@@ -127,7 +127,7 @@
 
     /// Required. Max human labeling DataItems. The rest part will be labeled by
     /// machine.
-    public enum OneOf_HumanLabelingBudget: Codable, Equatable, Sendable {
+    public enum HumanLabelingBudgetOneOf: Codable, Equatable, Sendable {
       /// Max number of human labeled DataItems.
       case maxDataItemCount(Swift.Int64)
       /// Max percent of total DataItems for human labeling.

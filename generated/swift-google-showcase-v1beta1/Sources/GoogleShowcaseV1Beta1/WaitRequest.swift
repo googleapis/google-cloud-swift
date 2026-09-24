@@ -22,9 +22,9 @@ public import GoogleRpc
 public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var end: OneOf_End? = nil
+  public var end: EndOneOf? = nil
 
-  public var response: OneOf_Response? = nil
+  public var response: ResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var end: OneOf_End? = nil
+    var end: EndOneOf? = nil
     let endCheckAndSet = {
       if end != nil {
         throw DecodingError.dataCorrupted(
@@ -84,7 +84,7 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.end = end
 
-    var response: OneOf_Response? = nil
+    var response: ResponseOneOf? = nil
     let responseCheckAndSet = {
       if response != nil {
         throw DecodingError.dataCorrupted(
@@ -132,14 +132,14 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_End: Codable, Equatable, Sendable {
+  public enum EndOneOf: Codable, Equatable, Sendable {
     /// The time that this operation will complete.
     indirect case endTime(GoogleWKT.WKTTimestamp?)
     /// The duration of this operation.
     indirect case ttl(GoogleWKT.WKTDuration?)
   }
 
-  public enum OneOf_Response: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// The error that will be returned by the server. If this code is specified
     /// to be the OK rpc code, an empty response will be returned.
     indirect case error(GoogleRpc.Status?)

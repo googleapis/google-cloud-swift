@@ -34,7 +34,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var condition: Condition? = nil
 
   /// An action must be provided.
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.condition = try container.decodeIfPresent(Condition.self, forKey: .condition)
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -1304,7 +1304,7 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// An action must be provided.
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// A boost action.
     indirect case boostAction(Rule.BoostAction?)
     /// Redirects a shopper to a specific page.

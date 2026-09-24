@@ -21,7 +21,7 @@ import Foundation
 public struct Justification: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var justification: OneOf_Justification? = nil
+  public var justification: JustificationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,7 @@ public struct Justification: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var justification: OneOf_Justification? = nil
+    var justification: JustificationOneOf? = nil
     let justificationCheckAndSet = {
       if justification != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct Justification: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Justification: Codable, Equatable, Sendable {
+  public enum JustificationOneOf: Codable, Equatable, Sendable {
     /// A free form textual justification. The system only ensures that this
     /// is not empty. No other kind of validation is performed on the string.
     case unstructuredJustification(Swift.String)

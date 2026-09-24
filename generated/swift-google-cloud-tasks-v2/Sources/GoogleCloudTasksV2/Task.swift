@@ -124,7 +124,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   public var view: Task.View = Task.View()
 
   /// Required. The message to send to the worker.
-  public var messageType: OneOf_MessageType? = nil
+  public var messageType: MessageTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -200,7 +200,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       self.view = value
     }
 
-    var messageType: OneOf_MessageType? = nil
+    var messageType: MessageTypeOneOf? = nil
     let messageTypeCheckAndSet = {
       if messageType != nil {
         throw DecodingError.dataCorrupted(
@@ -393,7 +393,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The message to send to the worker.
-  public enum OneOf_MessageType: Codable, Equatable, Sendable {
+  public enum MessageTypeOneOf: Codable, Equatable, Sendable {
     /// HTTP request that is sent to the App Engine app handler.
     ///
     /// An App Engine task is a task that has

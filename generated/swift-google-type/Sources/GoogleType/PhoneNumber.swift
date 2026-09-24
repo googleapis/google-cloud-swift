@@ -60,7 +60,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.  Either a regular number, or a short code.  New fields may be
   /// added to the oneof below in the future, so clients should ignore phone
   /// numbers for which none of the fields they coded against are set.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -103,7 +103,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
       self.`extension` = value
     }
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -239,7 +239,7 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.  Either a regular number, or a short code.  New fields may be
   /// added to the oneof below in the future, so clients should ignore phone
   /// numbers for which none of the fields they coded against are set.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// The phone number, represented as a leading plus sign ('+'), followed by a
     /// phone number that uses a relaxed ITU E.164 format consisting of the
     /// country calling code (1 to 3 digits) and the subscriber number, with no

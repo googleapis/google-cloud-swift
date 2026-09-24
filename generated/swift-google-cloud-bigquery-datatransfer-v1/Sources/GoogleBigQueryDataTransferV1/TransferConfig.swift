@@ -128,7 +128,7 @@ public struct TransferConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var error: GoogleRpc.Status? = nil
 
   /// The desination of the transfer config.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -249,7 +249,7 @@ public struct TransferConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       EncryptionConfiguration.self, forKey: .encryptionConfiguration)
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -305,7 +305,7 @@ public struct TransferConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The desination of the transfer config.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The BigQuery target dataset id.
     case destinationDatasetId(Swift.String)
   }

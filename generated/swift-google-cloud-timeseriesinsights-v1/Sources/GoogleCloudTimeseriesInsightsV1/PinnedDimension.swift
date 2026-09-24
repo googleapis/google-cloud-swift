@@ -28,7 +28,7 @@ public struct PinnedDimension: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// **NOTE**: The `value` type must match that in the data with the same
   /// `dimension` as name.
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct PinnedDimension: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -115,18 +115,18 @@ public struct PinnedDimension: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// **NOTE**: The `value` type must match that in the data with the same
   /// `dimension` as name.
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// A string value. This can be used for [dimensions][google.cloud.timeseriesinsights.v1.EventDimension], which
     /// have their value field set to [string_val][google.cloud.timeseriesinsights.v1.EventDimension.string_val].
     ///
     /// [google.cloud.timeseriesinsights.v1.EventDimension]: <doc:EventDimension>
-    /// [google.cloud.timeseriesinsights.v1.EventDimension.string_val]: <doc:EventDimension/OneOf_Value/stringVal(_:)>
+    /// [google.cloud.timeseriesinsights.v1.EventDimension.string_val]: <doc:EventDimension/ValueOneOf/stringVal(_:)>
     case stringVal(Swift.String)
     /// A bool value. This can be used for [dimensions][google.cloud.timeseriesinsights.v1.EventDimension], which
     /// have their value field set to [bool_val][google.cloud.timeseriesinsights.v1.EventDimension.bool_val].
     ///
     /// [google.cloud.timeseriesinsights.v1.EventDimension]: <doc:EventDimension>
-    /// [google.cloud.timeseriesinsights.v1.EventDimension.bool_val]: <doc:EventDimension/OneOf_Value/boolVal(_:)>
+    /// [google.cloud.timeseriesinsights.v1.EventDimension.bool_val]: <doc:EventDimension/ValueOneOf/boolVal(_:)>
     case boolVal(Swift.Bool)
   }
 

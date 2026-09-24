@@ -26,7 +26,7 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy etc.
   public var displayName: Swift.String = Swift.String()
 
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
       self.displayName = value
     }
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct MoveAnalysis: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Analysis result of moving the target resource.
     indirect case analysis(MoveAnalysisResult?)
     /// Description of error encountered when performing the analysis.

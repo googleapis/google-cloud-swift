@@ -309,7 +309,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// A `TimeEvent` can contain either an `Annotation` object or a
     /// `MessageEvent` object, but not both.
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -350,7 +350,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.time = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .time)
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -693,7 +693,7 @@ public struct Span: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// A `TimeEvent` can contain either an `Annotation` object or a
     /// `MessageEvent` object, but not both.
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// Text annotation with a set of attributes.
       indirect case annotation(Span.TimeEvent.Annotation?)
       /// An event describing a message sent/received between Spans.

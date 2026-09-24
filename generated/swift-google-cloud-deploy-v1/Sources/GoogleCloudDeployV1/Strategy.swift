@@ -22,7 +22,7 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Deployment strategy details.
-  public var deploymentStrategy: OneOf_DeploymentStrategy? = nil
+  public var deploymentStrategy: DeploymentStrategyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var deploymentStrategy: OneOf_DeploymentStrategy? = nil
+    var deploymentStrategy: DeploymentStrategyOneOf? = nil
     let deploymentStrategyCheckAndSet = {
       if deploymentStrategy != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct Strategy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Deployment strategy details.
-  public enum OneOf_DeploymentStrategy: Codable, Equatable, Sendable {
+  public enum DeploymentStrategyOneOf: Codable, Equatable, Sendable {
     /// Optional. Standard deployment strategy executes a single deploy and
     /// allows verifying the deployment.
     indirect case standard(Standard?)

@@ -38,7 +38,7 @@
     public var examples: [SyntheticExample] = []
 
     /// The generation strategy to use.
-    public var strategy: OneOf_Strategy? = nil
+    public var strategy: StrategyOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@
         self.examples = value
       }
 
-      var strategy: OneOf_Strategy? = nil
+      var strategy: StrategyOneOf? = nil
       let strategyCheckAndSet = {
         if strategy != nil {
           throw DecodingError.dataCorrupted(
@@ -137,7 +137,7 @@
     }
 
     /// The generation strategy to use.
-    public enum OneOf_Strategy: Codable, Equatable, Sendable {
+    public enum StrategyOneOf: Codable, Equatable, Sendable {
       /// Generate data from a high-level task description.
       indirect case taskDescription(TaskDescriptionStrategy?)
     }

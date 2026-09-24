@@ -56,7 +56,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resourceConfig: PluginInstanceAction.ResourceConfig? = nil
 
   /// The status of the plugin action.
-  public var actionStatus: OneOf_ActionStatus? = nil
+  public var actionStatus: ActionStatusOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,7 +126,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
     self.resourceConfig = try container.decodeIfPresent(
       PluginInstanceAction.ResourceConfig.self, forKey: .resourceConfig)
 
-    var actionStatus: OneOf_ActionStatus? = nil
+    var actionStatus: ActionStatusOneOf? = nil
     let actionStatusCheckAndSet = {
       if actionStatus != nil {
         throw DecodingError.dataCorrupted(
@@ -399,7 +399,7 @@ public struct PluginInstanceAction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The status of the plugin action.
-  public enum OneOf_ActionStatus: Codable, Equatable, Sendable {
+  public enum ActionStatusOneOf: Codable, Equatable, Sendable {
     /// Optional. The execution information for the plugin instance action done
     /// corresponding to an API hub instance.
     indirect case hubInstanceAction(ExecutionStatus?)

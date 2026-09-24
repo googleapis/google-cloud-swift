@@ -32,7 +32,7 @@
     public var searchSpaceSpec: Swift.String = Swift.String()
 
     /// The Neural Architecture Search (NAS) algorithm specification.
-    public var nasAlgorithmSpec: OneOf_NasAlgorithmSpec? = nil
+    public var nasAlgorithmSpec: NasAlgorithmSpecOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,7 +78,7 @@
         self.searchSpaceSpec = value
       }
 
-      var nasAlgorithmSpec: OneOf_NasAlgorithmSpec? = nil
+      var nasAlgorithmSpec: NasAlgorithmSpecOneOf? = nil
       let nasAlgorithmSpecCheckAndSet = {
         if nasAlgorithmSpec != nil {
           throw DecodingError.dataCorrupted(
@@ -730,7 +730,7 @@
     }
 
     /// The Neural Architecture Search (NAS) algorithm specification.
-    public enum OneOf_NasAlgorithmSpec: Codable, Equatable, Sendable {
+    public enum NasAlgorithmSpecOneOf: Codable, Equatable, Sendable {
       /// The spec of multi-trial algorithms.
       indirect case multiTrialAlgorithmSpec(NasJobSpec.MultiTrialAlgorithmSpec?)
     }

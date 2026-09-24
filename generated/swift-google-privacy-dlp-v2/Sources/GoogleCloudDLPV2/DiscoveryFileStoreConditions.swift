@@ -32,7 +32,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
   public var minAge: GoogleWKT.WKTDuration? = nil
 
   /// File store specific conditions.
-  public var conditions: OneOf_Conditions? = nil
+  public var conditions: ConditionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
       GoogleWKT.WKTTimestamp.self, forKey: .createdAfter)
     self.minAge = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .minAge)
 
-    var conditions: OneOf_Conditions? = nil
+    var conditions: ConditionsOneOf? = nil
     let conditionsCheckAndSet = {
       if conditions != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct DiscoveryFileStoreConditions: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// File store specific conditions.
-  public enum OneOf_Conditions: Codable, Equatable, Sendable {
+  public enum ConditionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Cloud Storage conditions.
     indirect case cloudStorageConditions(DiscoveryCloudStorageConditions?)
   }

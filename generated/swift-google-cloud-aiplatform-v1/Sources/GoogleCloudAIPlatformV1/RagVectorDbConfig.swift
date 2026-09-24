@@ -29,7 +29,7 @@
     public var ragEmbeddingModelConfig: RagEmbeddingModelConfig? = nil
 
     /// The config for the Vector DB.
-    public var vectorDb: OneOf_VectorDb? = nil
+    public var vectorDb: VectorDbOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@
       self.ragEmbeddingModelConfig = try container.decodeIfPresent(
         RagEmbeddingModelConfig.self, forKey: .ragEmbeddingModelConfig)
 
-      var vectorDb: OneOf_VectorDb? = nil
+      var vectorDb: VectorDbOneOf? = nil
       let vectorDbCheckAndSet = {
         if vectorDb != nil {
           throw DecodingError.dataCorrupted(
@@ -133,7 +133,7 @@
       Sendable
     {
       /// Choice of retrieval strategy.
-      public var retrievalStrategy: OneOf_RetrievalStrategy? = nil
+      public var retrievalStrategy: RetrievalStrategyOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -171,7 +171,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var retrievalStrategy: OneOf_RetrievalStrategy? = nil
+        var retrievalStrategy: RetrievalStrategyOneOf? = nil
         let retrievalStrategyCheckAndSet = {
           if retrievalStrategy != nil {
             throw DecodingError.dataCorrupted(
@@ -366,7 +366,7 @@
       }
 
       /// Choice of retrieval strategy.
-      public enum OneOf_RetrievalStrategy: Codable, Equatable, Sendable {
+      public enum RetrievalStrategyOneOf: Codable, Equatable, Sendable {
         /// Performs a KNN search on RagCorpus.
         /// Default choice if not specified.
         indirect case knn(RagVectorDbConfig.RagManagedDb.KNN?)
@@ -537,7 +537,7 @@
     }
 
     /// The config for the Vector DB.
-    public enum OneOf_VectorDb: Codable, Equatable, Sendable {
+    public enum VectorDbOneOf: Codable, Equatable, Sendable {
       /// The config for the RAG-managed Vector DB.
       indirect case ragManagedDb(RagVectorDbConfig.RagManagedDb?)
       /// The config for the Pinecone.

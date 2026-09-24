@@ -34,7 +34,7 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
   ///  - BOOLEAN
   public var fetchMatchedAnnotations: Swift.Bool = Swift.Bool()
 
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
       self.fetchMatchedAnnotations = value
     }
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -160,7 +160,7 @@ public struct Criteria: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// The text values associated with the field.
     indirect case textArray(StringArray?)
     /// The integer ranges associated with the field.

@@ -25,7 +25,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Metadata discovered during analysis.
-  public var metadata: OneOf_Metadata? = nil
+  public var metadata: MetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
-    var metadata: OneOf_Metadata? = nil
+    var metadata: MetadataOneOf? = nil
     let metadataCheckAndSet = {
       if metadata != nil {
         throw DecodingError.dataCorrupted(
@@ -237,7 +237,7 @@ public struct AnalysisResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Metadata discovered during analysis.
-  public enum OneOf_Metadata: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Call-specific metadata created by the analysis.
     indirect case callAnalysisMetadata(AnalysisResult.CallAnalysisMetadata?)
   }

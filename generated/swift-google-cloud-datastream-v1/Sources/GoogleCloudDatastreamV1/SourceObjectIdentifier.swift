@@ -22,7 +22,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   Sendable
 {
   /// The identifier for an object in the data source.
-  public var sourceIdentifier: OneOf_SourceIdentifier? = nil
+  public var sourceIdentifier: SourceIdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var sourceIdentifier: OneOf_SourceIdentifier? = nil
+    var sourceIdentifier: SourceIdentifierOneOf? = nil
     let sourceIdentifierCheckAndSet = {
       if sourceIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -599,7 +599,7 @@ public struct SourceObjectIdentifier: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The identifier for an object in the data source.
-  public enum OneOf_SourceIdentifier: Codable, Equatable, Sendable {
+  public enum SourceIdentifierOneOf: Codable, Equatable, Sendable {
     /// Oracle data source object identifier.
     indirect case oracleIdentifier(SourceObjectIdentifier.OracleObjectIdentifier?)
     /// Mysql data source object identifier.

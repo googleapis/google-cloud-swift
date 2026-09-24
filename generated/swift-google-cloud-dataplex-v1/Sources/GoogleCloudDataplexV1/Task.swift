@@ -58,7 +58,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   public var executionStatus: Task.ExecutionStatus? = nil
 
   /// Task template specific user-specified config.
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -146,7 +146,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     self.executionStatus = try container.decodeIfPresent(
       Task.ExecutionStatus.self, forKey: .executionStatus)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -203,13 +203,13 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Hardware config.
-    public var resources: OneOf_Resources? = nil
+    public var resources: ResourcesOneOf? = nil
 
     /// Software config.
-    public var runtime: OneOf_Runtime? = nil
+    public var runtime: RuntimeOneOf? = nil
 
     /// Networking config.
-    public var network: OneOf_Network? = nil
+    public var network: NetworkOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -249,7 +249,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var resources: OneOf_Resources? = nil
+      var resources: ResourcesOneOf? = nil
       let resourcesCheckAndSet = {
         if resources != nil {
           throw DecodingError.dataCorrupted(
@@ -266,7 +266,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.resources = resources
 
-      var runtime: OneOf_Runtime? = nil
+      var runtime: RuntimeOneOf? = nil
       let runtimeCheckAndSet = {
         if runtime != nil {
           throw DecodingError.dataCorrupted(
@@ -283,7 +283,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.runtime = runtime
 
-      var network: OneOf_Network? = nil
+      var network: NetworkOneOf? = nil
       let networkCheckAndSet = {
         if network != nil {
           throw DecodingError.dataCorrupted(
@@ -528,7 +528,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       public var networkTags: [Swift.String] = []
 
       /// The Cloud VPC network identifier.
-      public var networkName: OneOf_NetworkName? = nil
+      public var networkName: NetworkNameOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -571,7 +571,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
           self.networkTags = value
         }
 
-        var networkName: OneOf_NetworkName? = nil
+        var networkName: NetworkNameOneOf? = nil
         let networkNameCheckAndSet = {
           if networkName != nil {
             throw DecodingError.dataCorrupted(
@@ -612,7 +612,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The Cloud VPC network identifier.
-      public enum OneOf_NetworkName: Codable, Equatable, Sendable {
+      public enum NetworkNameOneOf: Codable, Equatable, Sendable {
         /// Optional. The Cloud VPC network in which the job is run. By default,
         /// the Cloud VPC network named Default within the project is used.
         case network(Swift.String)
@@ -632,19 +632,19 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Hardware config.
-    public enum OneOf_Resources: Codable, Equatable, Sendable {
+    public enum ResourcesOneOf: Codable, Equatable, Sendable {
       /// Compute resources needed for a Task when using Dataproc Serverless.
       indirect case batch(Task.InfrastructureSpec.BatchComputeResources?)
     }
 
     /// Software config.
-    public enum OneOf_Runtime: Codable, Equatable, Sendable {
+    public enum RuntimeOneOf: Codable, Equatable, Sendable {
       /// Container Image Runtime Configuration.
       indirect case containerImage(Task.InfrastructureSpec.ContainerImageRuntime?)
     }
 
     /// Networking config.
-    public enum OneOf_Network: Codable, Equatable, Sendable {
+    public enum NetworkOneOf: Codable, Equatable, Sendable {
       /// Vpc network.
       indirect case vpcNetwork(Task.InfrastructureSpec.VpcNetwork?)
     }
@@ -682,7 +682,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     public var maxRetries: Swift.Int32 = Swift.Int32()
 
     /// Trigger only applies for RECURRING tasks.
-    public var trigger: OneOf_Trigger? = nil
+    public var trigger: TriggerOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -737,7 +737,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
         self.maxRetries = value
       }
 
-      var trigger: OneOf_Trigger? = nil
+      var trigger: TriggerOneOf? = nil
       let triggerCheckAndSet = {
         if trigger != nil {
           throw DecodingError.dataCorrupted(
@@ -893,7 +893,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Trigger only applies for RECURRING tasks.
-    public enum OneOf_Trigger: Codable, Equatable, Sendable {
+    public enum TriggerOneOf: Codable, Equatable, Sendable {
       /// Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for
       /// running tasks periodically. To explicitly set a timezone to the cron
       /// tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or
@@ -1057,7 +1057,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Required. The specification of the main method to call to drive the
     /// job. Specify either the jar file that contains the main class or the
     /// main class name.
-    public var driver: OneOf_Driver? = nil
+    public var driver: DriverOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1115,7 +1115,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
       self.infrastructureSpec = try container.decodeIfPresent(
         Task.InfrastructureSpec.self, forKey: .infrastructureSpec)
 
-      var driver: OneOf_Driver? = nil
+      var driver: DriverOneOf? = nil
       let driverCheckAndSet = {
         if driver != nil {
           throw DecodingError.dataCorrupted(
@@ -1181,7 +1181,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Required. The specification of the main method to call to drive the
     /// job. Specify either the jar file that contains the main class or the
     /// main class name.
-    public enum OneOf_Driver: Codable, Equatable, Sendable {
+    public enum DriverOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage URI of the jar file that contains the main class.
       /// The execution args are passed in as a sequence of named process
       /// arguments (`--key=value`).
@@ -1392,7 +1392,7 @@ public struct Task: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Task template specific user-specified config.
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Config related to running custom Spark tasks.
     indirect case spark(Task.SparkTaskConfig?)
     /// Config related to running scheduled Notebooks.

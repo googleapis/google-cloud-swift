@@ -87,7 +87,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Source of the file containing sentence pairs.
     /// Supported formats are tab-separated values (.tsv) and Translation Memory
     /// eXchange (.tmx) .
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.usage = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -166,7 +166,7 @@ public struct DatasetInputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Source of the file containing sentence pairs.
     /// Supported formats are tab-separated values (.tsv) and Translation Memory
     /// eXchange (.tmx) .
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Google Cloud Storage file source.
       indirect case gcsSource(GcsInputSource?)
     }

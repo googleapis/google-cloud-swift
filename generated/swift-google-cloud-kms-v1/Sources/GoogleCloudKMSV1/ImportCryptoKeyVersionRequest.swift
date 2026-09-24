@@ -154,7 +154,7 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleWKT._AnyP
   /// instead.
   ///
   /// [google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key]: <doc:ImportCryptoKeyVersionRequest/wrappedKey>
-  public var wrappedKeyMaterial: OneOf_WrappedKeyMaterial? = nil
+  public var wrappedKeyMaterial: WrappedKeyMaterialOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -222,7 +222,7 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleWKT._AnyP
       self.trustedWrappingEnabled = value
     }
 
-    var wrappedKeyMaterial: OneOf_WrappedKeyMaterial? = nil
+    var wrappedKeyMaterial: WrappedKeyMaterialOneOf? = nil
     let wrappedKeyMaterialCheckAndSet = {
       if wrappedKeyMaterial != nil {
         throw DecodingError.dataCorrupted(
@@ -269,7 +269,7 @@ public struct ImportCryptoKeyVersionRequest: Codable, Equatable, GoogleWKT._AnyP
   /// instead.
   ///
   /// [google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key]: <doc:ImportCryptoKeyVersionRequest/wrappedKey>
-  public enum OneOf_WrappedKeyMaterial: Codable, Equatable, Sendable {
+  public enum WrappedKeyMaterialOneOf: Codable, Equatable, Sendable {
     /// Optional. This field has the same meaning as
     /// [wrapped_key][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key].
     /// Prefer to use that field in new work. Either that field or this field

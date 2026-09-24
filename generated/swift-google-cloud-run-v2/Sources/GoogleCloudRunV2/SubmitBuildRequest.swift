@@ -58,10 +58,10 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var client: Swift.String = Swift.String()
 
   /// Location of source.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// Build type must be one of the following.
-  public var buildType: OneOf_BuildType? = nil
+  public var buildType: BuildTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -142,7 +142,7 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.client = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -159,7 +159,7 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var buildType: OneOf_BuildType? = nil
+    var buildType: BuildTypeOneOf? = nil
     let buildTypeCheckAndSet = {
       if buildType != nil {
         throw DecodingError.dataCorrupted(
@@ -416,13 +416,13 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Location of source.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Required. Source for the build.
     indirect case storageSource(StorageSource?)
   }
 
   /// Build type must be one of the following.
-  public enum OneOf_BuildType: Codable, Equatable, Sendable {
+  public enum BuildTypeOneOf: Codable, Equatable, Sendable {
     /// Build the source using Buildpacks.
     indirect case buildpackBuild(SubmitBuildRequest.BuildpacksBuild?)
     /// Build the source using Docker. This means the source has a Dockerfile.

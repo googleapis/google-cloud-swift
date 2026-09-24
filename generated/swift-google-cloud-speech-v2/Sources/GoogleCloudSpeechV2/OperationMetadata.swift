@@ -50,10 +50,10 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var progressPercent: Swift.Int32 = Swift.Int32()
 
   /// The request that spawned the Operation.
-  public var request: OneOf_Request? = nil
+  public var request: RequestOneOf? = nil
 
   /// Specific metadata per RPC.
-  public var metadata: OneOf_Metadata? = nil
+  public var metadata: MetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -153,7 +153,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.progressPercent = value
     }
 
-    var request: OneOf_Request? = nil
+    var request: RequestOneOf? = nil
     let requestCheckAndSet = {
       if request != nil {
         throw DecodingError.dataCorrupted(
@@ -235,7 +235,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.request = request
 
-    var metadata: OneOf_Metadata? = nil
+    var metadata: MetadataOneOf? = nil
     let metadataCheckAndSet = {
       if metadata != nil {
         throw DecodingError.dataCorrupted(
@@ -315,7 +315,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The request that spawned the Operation.
-  public enum OneOf_Request: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Codable, Equatable, Sendable {
     /// The BatchRecognizeRequest that spawned the Operation.
     indirect case batchRecognizeRequest(BatchRecognizeRequest?)
     /// The CreateRecognizerRequest that spawned the Operation.
@@ -348,7 +348,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specific metadata per RPC.
-  public enum OneOf_Metadata: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Metadata specific to the BatchRecognize method.
     indirect case batchRecognizeMetadata(BatchRecognizeMetadata?)
   }

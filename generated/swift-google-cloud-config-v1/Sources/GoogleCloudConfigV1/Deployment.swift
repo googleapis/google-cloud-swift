@@ -127,7 +127,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
   public var providerConfig: ProviderConfig? = nil
 
   /// Blueprint to deploy.
-  public var blueprint: OneOf_Blueprint? = nil
+  public var blueprint: BlueprintOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -269,7 +269,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
     self.providerConfig = try container.decodeIfPresent(
       ProviderConfig.self, forKey: .providerConfig)
 
-    var blueprint: OneOf_Blueprint? = nil
+    var blueprint: BlueprintOneOf? = nil
     let blueprintCheckAndSet = {
       if blueprint != nil {
         throw DecodingError.dataCorrupted(
@@ -784,7 +784,7 @@ public struct Deployment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Blueprint to deploy.
-  public enum OneOf_Blueprint: Codable, Equatable, Sendable {
+  public enum BlueprintOneOf: Codable, Equatable, Sendable {
     /// A blueprint described using Terraform's HashiCorp Configuration Language
     /// as a root module.
     indirect case terraformBlueprint(TerraformBlueprint?)

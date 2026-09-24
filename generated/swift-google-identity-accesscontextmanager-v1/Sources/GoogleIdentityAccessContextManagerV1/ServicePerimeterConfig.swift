@@ -237,7 +237,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// The API method name or Cloud IAM permission name to allow.
-    public var kind: OneOf_Kind? = nil
+    public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -275,7 +275,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var kind: OneOf_Kind? = nil
+      var kind: KindOneOf? = nil
       let kindCheckAndSet = {
         if kind != nil {
           throw DecodingError.dataCorrupted(
@@ -315,7 +315,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// The API method name or Cloud IAM permission name to allow.
-    public enum OneOf_Kind: Codable, Equatable, Sendable {
+    public enum KindOneOf: Codable, Equatable, Sendable {
       /// Value for `method` should be a valid method name for the corresponding
       /// `service_name` in [ApiOperation]
       /// [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.ApiOperation].
@@ -440,7 +440,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// Allowed ingress source. It can be one of [AccessLevel]
     /// [google.identity.accesscontextmanager.v1.AccessLevel] or Google
     /// Cloud resource.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -478,7 +478,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -520,7 +520,7 @@ public struct ServicePerimeterConfig: Codable, Equatable, GoogleWKT._AnyPackable
     /// Allowed ingress source. It can be one of [AccessLevel]
     /// [google.identity.accesscontextmanager.v1.AccessLevel] or Google
     /// Cloud resource.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// An [AccessLevel]
       /// [google.identity.accesscontextmanager.v1.AccessLevel] resource
       /// name that allow resources within the [ServicePerimeters]

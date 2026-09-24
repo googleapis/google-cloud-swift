@@ -495,7 +495,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public var displayName: Swift.String = Swift.String()
 
     /// Only one of the following condition types will be specified.
-    public var condition: OneOf_Condition? = nil
+    public var condition: ConditionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -553,7 +553,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.displayName = value
       }
 
-      var condition: OneOf_Condition? = nil
+      var condition: ConditionOneOf? = nil
       let conditionCheckAndSet = {
         if condition != nil {
           throw DecodingError.dataCorrupted(
@@ -636,7 +636,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// A type of trigger.
-      public var type: OneOf_Type? = nil
+      public var type: TypeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -674,7 +674,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var type: OneOf_Type? = nil
+        var type: TypeOneOf? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -714,7 +714,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A type of trigger.
-      public enum OneOf_Type: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Codable, Equatable, Sendable {
         /// The absolute number of time series that must fail
         /// the predicate for the condition to be triggered.
         case count(Swift.Int32)
@@ -1581,10 +1581,10 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public var query: Swift.String = Swift.String()
 
       /// The schedule indicates how often the query should be run.
-      public var schedule: OneOf_Schedule? = nil
+      public var schedule: ScheduleOneOf? = nil
 
       /// The test to be run against the SQL result set.
-      public var evaluate: OneOf_Evaluate? = nil
+      public var evaluate: EvaluateOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1633,7 +1633,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.query = value
         }
 
-        var schedule: OneOf_Schedule? = nil
+        var schedule: ScheduleOneOf? = nil
         let scheduleCheckAndSet = {
           if schedule != nil {
             throw DecodingError.dataCorrupted(
@@ -1660,7 +1660,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
         self.schedule = schedule
 
-        var evaluate: OneOf_Evaluate? = nil
+        var evaluate: EvaluateOneOf? = nil
         let evaluateCheckAndSet = {
           if evaluate != nil {
             throw DecodingError.dataCorrupted(
@@ -2097,7 +2097,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The schedule indicates how often the query should be run.
-      public enum OneOf_Schedule: Codable, Equatable, Sendable {
+      public enum ScheduleOneOf: Codable, Equatable, Sendable {
         /// Schedule the query to execute every so many minutes.
         indirect case minutes(AlertPolicy.Condition.SqlCondition.Minutes?)
         /// Schedule the query to execute every so many hours.
@@ -2107,7 +2107,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The test to be run against the SQL result set.
-      public enum OneOf_Evaluate: Codable, Equatable, Sendable {
+      public enum EvaluateOneOf: Codable, Equatable, Sendable {
         /// Test the row count against a threshold.
         indirect case rowCountTest(AlertPolicy.Condition.SqlCondition.RowCountTest?)
         /// Test the boolean value in the indicated column.
@@ -2255,7 +2255,7 @@ public struct AlertPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Only one of the following condition types will be specified.
-    public enum OneOf_Condition: Codable, Equatable, Sendable {
+    public enum ConditionOneOf: Codable, Equatable, Sendable {
       /// A condition that compares a time series against a threshold.
       indirect case conditionThreshold(AlertPolicy.Condition.MetricThreshold?)
       /// A condition that checks that a time series continues to

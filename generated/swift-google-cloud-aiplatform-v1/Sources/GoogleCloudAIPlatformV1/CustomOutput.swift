@@ -23,7 +23,7 @@
     Sendable
   {
     /// Custom output.
-    public var customOutput: OneOf_CustomOutput? = nil
+    public var customOutput: CustomOutputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var customOutput: OneOf_CustomOutput? = nil
+      var customOutput: CustomOutputOneOf? = nil
       let customOutputCheckAndSet = {
         if customOutput != nil {
           throw DecodingError.dataCorrupted(
@@ -94,7 +94,7 @@
     }
 
     /// Custom output.
-    public enum OneOf_CustomOutput: Codable, Equatable, Sendable {
+    public enum CustomOutputOneOf: Codable, Equatable, Sendable {
       /// Output only. List of raw output strings.
       indirect case rawOutputs(RawOutput?)
     }

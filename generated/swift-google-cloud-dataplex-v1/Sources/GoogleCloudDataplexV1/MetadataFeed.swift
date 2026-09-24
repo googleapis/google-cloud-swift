@@ -49,7 +49,7 @@ public struct MetadataFeed: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The endpoint defines the where the metadata feed messages are
   /// published.
-  public var endpoint: OneOf_Endpoint? = nil
+  public var endpoint: EndpointOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -115,7 +115,7 @@ public struct MetadataFeed: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var endpoint: OneOf_Endpoint? = nil
+    var endpoint: EndpointOneOf? = nil
     let endpointCheckAndSet = {
       if endpoint != nil {
         throw DecodingError.dataCorrupted(
@@ -478,7 +478,7 @@ public struct MetadataFeed: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The endpoint defines the where the metadata feed messages are
   /// published.
-  public enum OneOf_Endpoint: Codable, Equatable, Sendable {
+  public enum EndpointOneOf: Codable, Equatable, Sendable {
     /// Optional. The pubsub topic that you want the metadata feed messages to
     /// publish to. Please grant Dataplex service account the permission to
     /// publish messages to the topic. The service account is:

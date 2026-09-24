@@ -63,7 +63,7 @@
     public var satisfiesPzi: Swift.Bool? = nil
 
     /// Metrics details.
-    public var metrics: OneOf_Metrics? = nil
+    public var metrics: MetricsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
-      var metrics: OneOf_Metrics? = nil
+      var metrics: MetricsOneOf? = nil
       let metricsCheckAndSet = {
         if metrics != nil {
           throw DecodingError.dataCorrupted(
@@ -182,7 +182,7 @@
     }
 
     /// Metrics details.
-    public enum OneOf_Metrics: Codable, Equatable, Sendable {
+    public enum MetricsOneOf: Codable, Equatable, Sendable {
       /// Output only. Only available when the summarization generator is provided.
       indirect case summarizationMetrics(SummarizationEvaluationMetrics?)
     }

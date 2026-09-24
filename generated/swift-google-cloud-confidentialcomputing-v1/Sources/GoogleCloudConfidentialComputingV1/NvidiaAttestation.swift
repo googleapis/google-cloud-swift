@@ -24,7 +24,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The Confidential Computing feature that the attestation is for.
-  public var ccFeature: OneOf_CcFeature? = nil
+  public var ccFeature: CcFeatureOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var ccFeature: OneOf_CcFeature? = nil
+    var ccFeature: CcFeatureOneOf? = nil
     let ccFeatureCheckAndSet = {
       if ccFeature != nil {
         throw DecodingError.dataCorrupted(
@@ -670,7 +670,7 @@ public struct NvidiaAttestation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The Confidential Computing feature that the attestation is for.
-  public enum OneOf_CcFeature: Codable, Equatable, Sendable {
+  public enum CcFeatureOneOf: Codable, Equatable, Sendable {
     /// Single GPU Passthrough (SPT) attestation.
     indirect case spt(NvidiaAttestation.SinglePassthroughAttestation?)
     /// Protected PCIe (PPCIE) attestation.

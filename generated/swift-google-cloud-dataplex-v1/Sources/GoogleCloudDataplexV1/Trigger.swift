@@ -24,7 +24,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// DataScan scheduling and trigger settings.
   ///
   /// If not specified, the default is `onDemand`.
-  public var mode: OneOf_Mode? = nil
+  public var mode: ModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var mode: OneOf_Mode? = nil
+    var mode: ModeOneOf? = nil
     let modeCheckAndSet = {
       if mode != nil {
         throw DecodingError.dataCorrupted(
@@ -318,7 +318,7 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
   /// DataScan scheduling and trigger settings.
   ///
   /// If not specified, the default is `onDemand`.
-  public enum OneOf_Mode: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Codable, Equatable, Sendable {
     /// The scan runs once via `RunDataScan` API.
     indirect case onDemand(Trigger.OnDemand?)
     /// The scan is scheduled to run periodically.

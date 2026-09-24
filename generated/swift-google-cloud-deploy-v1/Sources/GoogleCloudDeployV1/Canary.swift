@@ -27,7 +27,7 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
   public var runtimeConfig: RuntimeConfig? = nil
 
   /// The mode to use for the canary deployment strategy.
-  public var mode: OneOf_Mode? = nil
+  public var mode: ModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.runtimeConfig = try container.decodeIfPresent(RuntimeConfig.self, forKey: .runtimeConfig)
 
-    var mode: OneOf_Mode? = nil
+    var mode: ModeOneOf? = nil
     let modeCheckAndSet = {
       if mode != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct Canary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The mode to use for the canary deployment strategy.
-  public enum OneOf_Mode: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Codable, Equatable, Sendable {
     /// Optional. Configures the progressive based deployment for a Target.
     indirect case canaryDeployment(CanaryDeployment?)
     /// Optional. Configures the progressive based deployment for a Target, but

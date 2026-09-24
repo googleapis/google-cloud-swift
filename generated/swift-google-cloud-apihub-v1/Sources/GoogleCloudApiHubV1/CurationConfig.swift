@@ -25,7 +25,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var curationType: CurationType = CurationType()
 
   /// The curation information for this plugin instance.
-  public var curationConfig: OneOf_CurationConfig? = nil
+  public var curationConfig: CurationConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.curationType = value
     }
 
-    var curationConfig: OneOf_CurationConfig? = nil
+    var curationConfig: CurationConfigOneOf? = nil
     let curationConfigCheckAndSet = {
       if curationConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -174,7 +174,7 @@ public struct CurationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The curation information for this plugin instance.
-  public enum OneOf_CurationConfig: Codable, Equatable, Sendable {
+  public enum CurationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Custom curation information for this plugin instance.
     indirect case customCuration(CurationConfig.CustomCuration?)
   }

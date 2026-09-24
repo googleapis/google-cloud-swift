@@ -23,7 +23,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A SourceContext can refer any one of the following types of repositories.
-  public var context: OneOf_Context? = nil
+  public var context: ContextOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var context: OneOf_Context? = nil
+    var context: ContextOneOf? = nil
     let contextCheckAndSet = {
       if context != nil {
         throw DecodingError.dataCorrupted(
@@ -119,7 +119,7 @@ public struct SourceContext: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A SourceContext can refer any one of the following types of repositories.
-  public enum OneOf_Context: Codable, Equatable, Sendable {
+  public enum ContextOneOf: Codable, Equatable, Sendable {
     /// A SourceContext referring to a revision in a cloud repo.
     indirect case cloudRepo(CloudRepoSourceContext?)
     /// A SourceContext referring to a snapshot in a cloud workspace.

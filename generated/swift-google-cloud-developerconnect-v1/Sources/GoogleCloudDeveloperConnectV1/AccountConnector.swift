@@ -49,7 +49,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   public var oauthStartUri: Swift.String = Swift.String()
 
   /// The AccountConnector config.
-  public var accountConnectorConfig: OneOf_AccountConnectorConfig? = nil
+  public var accountConnectorConfig: AccountConnectorConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -121,7 +121,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
       self.oauthStartUri = value
     }
 
-    var accountConnectorConfig: OneOf_AccountConnectorConfig? = nil
+    var accountConnectorConfig: AccountConnectorConfigOneOf? = nil
     let accountConnectorConfigCheckAndSet = {
       if accountConnectorConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -165,7 +165,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The AccountConnector config.
-  public enum OneOf_AccountConnectorConfig: Codable, Equatable, Sendable {
+  public enum AccountConnectorConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Provider OAuth config.
     indirect case providerOauthConfig(ProviderOAuthConfig?)
   }

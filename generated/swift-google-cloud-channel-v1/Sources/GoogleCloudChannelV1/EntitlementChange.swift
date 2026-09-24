@@ -53,7 +53,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public var `operator`: Swift.String = Swift.String()
 
   /// The reason the change was made
-  public var changeReason: OneOf_ChangeReason? = nil
+  public var changeReason: ChangeReasonOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
       self.`operator` = value
     }
 
-    var changeReason: OneOf_ChangeReason? = nil
+    var changeReason: ChangeReasonOneOf? = nil
     let changeReasonCheckAndSet = {
       if changeReason != nil {
         throw DecodingError.dataCorrupted(
@@ -799,7 +799,7 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The reason the change was made
-  public enum OneOf_ChangeReason: Codable, Equatable, Sendable {
+  public enum ChangeReasonOneOf: Codable, Equatable, Sendable {
     /// Suspension reason for the Entitlement.
     case suspensionReason(Entitlement.SuspensionReason)
     /// Cancellation reason for the Entitlement.

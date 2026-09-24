@@ -52,7 +52,7 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable
   /// Immutable. The encryption to apply to the image.
   public var encryption: Encryption? = nil
 
-  public var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
+  public var osAdaptationConfig: OsAdaptationConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -129,7 +129,7 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable
     }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
-    var osAdaptationConfig: OneOf_OsAdaptationConfig? = nil
+    var osAdaptationConfig: OsAdaptationConfigOneOf? = nil
     let osAdaptationConfigCheckAndSet = {
       if osAdaptationConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct DiskImageTargetDetails: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum OneOf_OsAdaptationConfig: Codable, Equatable, Sendable {
+  public enum OsAdaptationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Use to set the parameters relevant for the OS adaptation
     /// process.
     indirect case osAdaptationParameters(ImageImportOsAdaptationParameters?)

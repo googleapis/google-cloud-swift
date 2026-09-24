@@ -28,7 +28,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
   public var claims: Claims? = nil
 
   /// Credentials.
-  public var credentials: OneOf_Credentials? = nil
+  public var credentials: CredentialsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.claims = try container.decodeIfPresent(Claims.self, forKey: .claims)
 
-    var credentials: OneOf_Credentials? = nil
+    var credentials: CredentialsOneOf? = nil
     let credentialsCheckAndSet = {
       if credentials != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Credentials.
-  public enum OneOf_Credentials: Codable, Equatable, Sendable {
+  public enum CredentialsOneOf: Codable, Equatable, Sendable {
     /// RS credentials.
     indirect case rsCredentials(RSCredentials?)
   }

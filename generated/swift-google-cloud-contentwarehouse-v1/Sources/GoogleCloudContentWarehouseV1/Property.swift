@@ -30,7 +30,7 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Value of the Property parsed into a specific data type.
   /// Specific type value(s) obtained from Document AIs Property.mention_text
   /// field.
-  public var values: OneOf_Values? = nil
+  public var values: ValuesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var values: OneOf_Values? = nil
+    var values: ValuesOneOf? = nil
     let valuesCheckAndSet = {
       if values != nil {
         throw DecodingError.dataCorrupted(
@@ -167,7 +167,7 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Value of the Property parsed into a specific data type.
   /// Specific type value(s) obtained from Document AIs Property.mention_text
   /// field.
-  public enum OneOf_Values: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Codable, Equatable, Sendable {
     /// Integer property values.
     indirect case integerValues(IntegerArray?)
     /// Float property values.

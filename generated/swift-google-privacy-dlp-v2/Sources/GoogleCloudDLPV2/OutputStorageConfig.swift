@@ -35,7 +35,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output storage types.
   /// *
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.outputSchema = value
     }
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -263,7 +263,7 @@ public struct OutputStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Output storage types.
   /// *
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Store findings in an existing table or a new table in an existing
     /// dataset. If table_id is not set a new one will be generated
     /// for you with the following format:

@@ -582,7 +582,7 @@
     public struct ThresholdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      public var threshold: OneOf_Threshold? = nil
+      public var threshold: ThresholdOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -618,7 +618,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var threshold: OneOf_Threshold? = nil
+        var threshold: ThresholdOneOf? = nil
         let thresholdCheckAndSet = {
           if threshold != nil {
             throw DecodingError.dataCorrupted(
@@ -652,7 +652,7 @@
         }
       }
 
-      public enum OneOf_Threshold: Codable, Equatable, Sendable {
+      public enum ThresholdOneOf: Codable, Equatable, Sendable {
         /// Specify a threshold value that can trigger the alert.
         /// 1. For categorical feature, the distribution distance is calculated by
         /// L-inifinity norm.

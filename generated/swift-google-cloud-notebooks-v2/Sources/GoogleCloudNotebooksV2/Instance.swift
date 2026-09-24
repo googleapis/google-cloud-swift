@@ -79,7 +79,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Setup for the Notebook instance.
-  public var infrastructure: OneOf_Infrastructure? = nil
+  public var infrastructure: InfrastructureOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -183,7 +183,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var infrastructure: OneOf_Infrastructure? = nil
+    var infrastructure: InfrastructureOneOf? = nil
     let infrastructureCheckAndSet = {
       if infrastructure != nil {
         throw DecodingError.dataCorrupted(
@@ -231,7 +231,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Setup for the Notebook instance.
-  public enum OneOf_Infrastructure: Codable, Equatable, Sendable {
+  public enum InfrastructureOneOf: Codable, Equatable, Sendable {
     /// Optional. Compute Engine setup for the notebook. Uses notebook-defined
     /// fields.
     indirect case gceSetup(GceSetup?)

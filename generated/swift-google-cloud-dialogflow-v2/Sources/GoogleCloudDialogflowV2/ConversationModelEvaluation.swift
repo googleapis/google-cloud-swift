@@ -54,7 +54,7 @@
     public var rawHumanEvalTemplateCsv: Swift.String = Swift.String()
 
     /// Metrics details.
-    public var metrics: OneOf_Metrics? = nil
+    public var metrics: MetricsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -115,7 +115,7 @@
         self.rawHumanEvalTemplateCsv = value
       }
 
-      var metrics: OneOf_Metrics? = nil
+      var metrics: MetricsOneOf? = nil
       let metricsCheckAndSet = {
         if metrics != nil {
           throw DecodingError.dataCorrupted(
@@ -157,7 +157,7 @@
     }
 
     /// Metrics details.
-    public enum OneOf_Metrics: Codable, Equatable, Sendable {
+    public enum MetricsOneOf: Codable, Equatable, Sendable {
       /// Output only. Only available when model is for smart reply.
       indirect case smartReplyMetrics(SmartReplyMetrics?)
     }

@@ -49,7 +49,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
 
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
-  public var teeAttestation: OneOf_TeeAttestation? = nil
+  public var teeAttestation: TeeAttestationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     self.nvidiaAttestation = try container.decodeIfPresent(
       NvidiaAttestation.self, forKey: .nvidiaAttestation)
 
-    var teeAttestation: OneOf_TeeAttestation? = nil
+    var teeAttestation: TeeAttestationOneOf? = nil
     let teeAttestationCheckAndSet = {
       if teeAttestation != nil {
         throw DecodingError.dataCorrupted(
@@ -181,7 +181,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     public var signatureType: SignatureType = SignatureType()
 
     /// An optional additional configuration per token type.
-    public var tokenProfileOptions: OneOf_TokenProfileOptions? = nil
+    public var tokenProfileOptions: TokenProfileOptionsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -237,7 +237,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
         self.signatureType = value
       }
 
-      var tokenProfileOptions: OneOf_TokenProfileOptions? = nil
+      var tokenProfileOptions: TokenProfileOptionsOneOf? = nil
       let tokenProfileOptionsCheckAndSet = {
         if tokenProfileOptions != nil {
           throw DecodingError.dataCorrupted(
@@ -278,7 +278,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
     }
 
     /// An optional additional configuration per token type.
-    public enum OneOf_TokenProfileOptions: Codable, Equatable, Sendable {
+    public enum TokenProfileOptionsOneOf: Codable, Equatable, Sendable {
       /// Optional. Options for the AWS token type.
       indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions?)
     }
@@ -297,7 +297,7 @@ public struct VerifyConfidentialSpaceRequest: Codable, Equatable, GoogleWKT._Any
 
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
-  public enum OneOf_TeeAttestation: Codable, Equatable, Sendable {
+  public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
     /// Input only. A TDX with CCEL and RTMR Attestation Quote.
     indirect case tdCcel(TdxCcelAttestation?)
     /// Input only. The TPM-specific data provided by the attesting platform,

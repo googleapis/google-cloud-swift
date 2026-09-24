@@ -59,7 +59,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   public var status: JobTrigger.Status = JobTrigger.Status()
 
   /// The configuration details for the specific type of job to run.
-  public var job: OneOf_Job? = nil
+  public var job: JobOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       self.status = value
     }
 
-    var job: OneOf_Job? = nil
+    var job: JobOneOf? = nil
     let jobCheckAndSet = {
       if job != nil {
         throw DecodingError.dataCorrupted(
@@ -185,7 +185,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// What event needs to occur for a new job to be started.
-    public var trigger: OneOf_Trigger? = nil
+    public var trigger: TriggerOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -223,7 +223,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var trigger: OneOf_Trigger? = nil
+      var trigger: TriggerOneOf? = nil
       let triggerCheckAndSet = {
         if trigger != nil {
           throw DecodingError.dataCorrupted(
@@ -263,7 +263,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// What event needs to occur for a new job to be started.
-    public enum OneOf_Trigger: Codable, Equatable, Sendable {
+    public enum TriggerOneOf: Codable, Equatable, Sendable {
       /// Create a job on a repeating basis based on the elapse of time.
       indirect case schedule(Schedule?)
       /// For use with hybrid jobs. Jobs must be manually created and finished.
@@ -409,7 +409,7 @@ public struct JobTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration details for the specific type of job to run.
-  public enum OneOf_Job: Codable, Equatable, Sendable {
+  public enum JobOneOf: Codable, Equatable, Sendable {
     /// For inspect jobs, a snapshot of the configuration.
     indirect case inspectJob(InspectJobConfig?)
   }

@@ -22,7 +22,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
   Sendable
 {
   /// One of the actions must be set.
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct UpdateObjectCustomContext: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// One of the actions must be set.
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// A collection of updates to apply to specific custom contexts.
     /// Use this to add, update or delete individual contexts by key.
     indirect case customContextUpdates(CustomContextUpdates?)

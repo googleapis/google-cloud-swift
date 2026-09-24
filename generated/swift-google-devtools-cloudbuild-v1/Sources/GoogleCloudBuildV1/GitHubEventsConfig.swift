@@ -37,7 +37,7 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Filter describing the types of events to trigger a build.
   /// Currently supported event types: push, pull_request.
-  public var event: OneOf_Event? = nil
+  public var event: EventOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var event: OneOf_Event? = nil
+    var event: EventOneOf? = nil
     let eventCheckAndSet = {
       if event != nil {
         throw DecodingError.dataCorrupted(
@@ -142,7 +142,7 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Filter describing the types of events to trigger a build.
   /// Currently supported event types: push, pull_request.
-  public enum OneOf_Event: Codable, Equatable, Sendable {
+  public enum EventOneOf: Codable, Equatable, Sendable {
     /// filter to match changes in pull requests.
     indirect case pullRequest(PullRequestFilter?)
     /// filter to match changes in refs like branches, tags.

@@ -71,7 +71,7 @@
     /// Actions are restricted by Vertical and Solution
     ///
     /// Required.
-    public var action: OneOf_Action? = nil
+    public var action: ActionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -147,7 +147,7 @@
         self.conditions = value
       }
 
-      var action: OneOf_Action? = nil
+      var action: ActionOneOf? = nil
       let actionCheckAndSet = {
         if action != nil {
           throw DecodingError.dataCorrupted(
@@ -241,7 +241,7 @@
       public var dataStore: Swift.String = Swift.String()
 
       /// Constant value boost or custom ranking based boost specifications.
-      public var boostSpec: OneOf_BoostSpec? = nil
+      public var boostSpec: BoostSpecOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -297,7 +297,7 @@
           self.dataStore = value
         }
 
-        var boostSpec: OneOf_BoostSpec? = nil
+        var boostSpec: BoostSpecOneOf? = nil
         let boostSpecCheckAndSet = {
           if boostSpec != nil {
             throw DecodingError.dataCorrupted(
@@ -785,7 +785,7 @@
       }
 
       /// Constant value boost or custom ranking based boost specifications.
-      public enum OneOf_BoostSpec: Codable, Equatable, Sendable {
+      public enum BoostSpecOneOf: Codable, Equatable, Sendable {
         /// Optional. Strength of the boost, which should be in [-1, 1]. Negative
         /// boost means demotion. Default is 0.0 (No-op).
         case fixedBoost(Swift.Float)
@@ -1119,7 +1119,7 @@
     /// Actions are restricted by Vertical and Solution
     ///
     /// Required.
-    public enum OneOf_Action: Codable, Equatable, Sendable {
+    public enum ActionOneOf: Codable, Equatable, Sendable {
       /// Defines a boost-type control
       indirect case boostAction(Control.BoostAction?)
       /// Defines a filter-type control

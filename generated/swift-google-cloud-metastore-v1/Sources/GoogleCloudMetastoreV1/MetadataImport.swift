@@ -42,7 +42,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: MetadataImport.State = MetadataImport.State()
 
   /// The metadata to be imported.
-  public var metadata: OneOf_Metadata? = nil
+  public var metadata: MetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,7 +104,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var metadata: OneOf_Metadata? = nil
+    var metadata: MetadataOneOf? = nil
     let metadataCheckAndSet = {
       if metadata != nil {
         throw DecodingError.dataCorrupted(
@@ -498,7 +498,7 @@ public struct MetadataImport: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The metadata to be imported.
-  public enum OneOf_Metadata: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Immutable. A database dump from a pre-existing metastore's database.
     indirect case databaseDump(MetadataImport.DatabaseDump?)
   }

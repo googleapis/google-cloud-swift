@@ -274,7 +274,7 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
   ///
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   ///
   /// @Snippet(path: "ClusterController_DiagnoseCluster")
   public func diagnoseCluster(
@@ -292,7 +292,7 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// [DiagnoseClusterResults](https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#diagnoseclusterresults).
   ///
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   ///
   /// @Snippet(path: "ClusterController_DiagnoseCluster")
   public func diagnoseClusterPollingUntilDone(

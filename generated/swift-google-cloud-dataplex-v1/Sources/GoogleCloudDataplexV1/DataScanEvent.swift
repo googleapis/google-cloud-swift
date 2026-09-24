@@ -63,10 +63,10 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var catalogPublishingStatus: DataScanCatalogPublishingStatus? = nil
 
   /// The result of the data scan job.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   /// The applied configs in the data scan job.
-  public var appliedConfigs: OneOf_AppliedConfigs? = nil
+  public var appliedConfigs: AppliedConfigsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -166,7 +166,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     self.catalogPublishingStatus = try container.decodeIfPresent(
       DataScanCatalogPublishingStatus.self, forKey: .catalogPublishingStatus)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -188,7 +188,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.result = result
 
-    var appliedConfigs: OneOf_AppliedConfigs? = nil
+    var appliedConfigs: AppliedConfigsOneOf? = nil
     let appliedConfigsCheckAndSet = {
       if appliedConfigs != nil {
         throw DecodingError.dataCorrupted(
@@ -1404,7 +1404,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the data scan job.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Data profile result for data profile type data scan.
     indirect case dataProfile(DataScanEvent.DataProfileResult?)
     /// Data quality result for data quality type data scan.
@@ -1412,7 +1412,7 @@ public struct DataScanEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The applied configs in the data scan job.
-  public enum OneOf_AppliedConfigs: Codable, Equatable, Sendable {
+  public enum AppliedConfigsOneOf: Codable, Equatable, Sendable {
     /// Applied configs for data profile type data scan.
     indirect case dataProfileConfigs(DataScanEvent.DataProfileAppliedConfigs?)
     /// Applied configs for data quality type data scan.

@@ -21,7 +21,7 @@ import Foundation
 public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var enrichmentData: OneOf_EnrichmentData? = nil
+  public var enrichmentData: EnrichmentDataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,7 @@ public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var enrichmentData: OneOf_EnrichmentData? = nil
+    var enrichmentData: EnrichmentDataOneOf? = nil
     let enrichmentDataCheckAndSet = {
       if enrichmentData != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct AssetEnrichment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_EnrichmentData: Codable, Equatable, Sendable {
+  public enum EnrichmentDataOneOf: Codable, Equatable, Sendable {
     /// The resource owners for a resource.
     ///
     /// Note that this field only contains the members that have "roles/owner"

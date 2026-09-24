@@ -22,7 +22,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// The result of the data documentation scan.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -953,7 +953,7 @@ public struct DataDocumentationResult: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The result of the data documentation scan.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. Insights for a Dataset resource.
     indirect case datasetResult(DataDocumentationResult.DatasetResult?)
     /// Output only. Insights for a Table resource.

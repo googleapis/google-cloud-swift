@@ -30,7 +30,7 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleWKT._AnyPa
   /// Port for the SSH tunnel, default value is 22.
   public var port: Swift.Int32 = Swift.Int32()
 
-  public var authenticationMethod: OneOf_AuthenticationMethod? = nil
+  public var authenticationMethod: AuthenticationMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleWKT._AnyPa
       self.port = value
     }
 
-    var authenticationMethod: OneOf_AuthenticationMethod? = nil
+    var authenticationMethod: AuthenticationMethodOneOf? = nil
     let authenticationMethodCheckAndSet = {
       if authenticationMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct ForwardSshTunnelConnectivity: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public enum OneOf_AuthenticationMethod: Codable, Equatable, Sendable {
+  public enum AuthenticationMethodOneOf: Codable, Equatable, Sendable {
     /// Input only. SSH password.
     case password(Swift.String)
     /// Input only. SSH private key.

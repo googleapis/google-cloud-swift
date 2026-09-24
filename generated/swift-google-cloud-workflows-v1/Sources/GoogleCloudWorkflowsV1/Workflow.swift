@@ -47,7 +47,7 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// three hexadecimal random characters.
   ///
   /// [google.cloud.workflows.v1.Workflow.service_account]: <doc:Workflow/serviceAccount>
-  /// [google.cloud.workflows.v1.Workflow.source_contents]: <doc:Workflow/OneOf_SourceCode/sourceContents(_:)>
+  /// [google.cloud.workflows.v1.Workflow.source_contents]: <doc:Workflow/SourceCodeOneOf/sourceContents(_:)>
   public var revisionId: Swift.String = Swift.String()
 
   /// Output only. The timestamp for when the workflow was created.
@@ -138,7 +138,7 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Location of the workflow source code.
   /// Modifying this field for an existing workflow results in a new workflow
   /// revision.
-  public var sourceCode: OneOf_SourceCode? = nil
+  public var sourceCode: SourceCodeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -265,7 +265,7 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tags = value
     }
 
-    var sourceCode: OneOf_SourceCode? = nil
+    var sourceCode: SourceCodeOneOf? = nil
     let sourceCodeCheckAndSet = {
       if sourceCode != nil {
         throw DecodingError.dataCorrupted(
@@ -752,7 +752,7 @@ public struct Workflow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Location of the workflow source code.
   /// Modifying this field for an existing workflow results in a new workflow
   /// revision.
-  public enum OneOf_SourceCode: Codable, Equatable, Sendable {
+  public enum SourceCodeOneOf: Codable, Equatable, Sendable {
     /// Workflow code to be executed. The size limit is 128KB.
     case sourceContents(Swift.String)
   }

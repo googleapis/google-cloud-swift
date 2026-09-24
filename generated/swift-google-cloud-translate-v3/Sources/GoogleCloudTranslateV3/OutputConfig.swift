@@ -22,7 +22,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. The destination of output.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The destination of output.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage destination for output content.
     /// For every single input file (for example, gs://a/b/c.[extension]), we
     /// generate at most 2 * n output files. (n is the # of target_language_codes

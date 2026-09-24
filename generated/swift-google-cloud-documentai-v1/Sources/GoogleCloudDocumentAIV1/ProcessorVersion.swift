@@ -281,7 +281,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// The processor version is either a pretrained Google-managed foundation
     /// model or a custom Generative AI model created by the user.
-    public var modelInfo: OneOf_ModelInfo? = nil
+    public var modelInfo: ModelInfoOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -319,7 +319,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var modelInfo: OneOf_ModelInfo? = nil
+      var modelInfo: ModelInfoOneOf? = nil
       let modelInfoCheckAndSet = {
         if modelInfo != nil {
           throw DecodingError.dataCorrupted(
@@ -650,7 +650,7 @@ public struct ProcessorVersion: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The processor version is either a pretrained Google-managed foundation
     /// model or a custom Generative AI model created by the user.
-    public enum OneOf_ModelInfo: Codable, Equatable, Sendable {
+    public enum ModelInfoOneOf: Codable, Equatable, Sendable {
       /// Information for a pretrained Google-managed foundation model.
       indirect case foundationGenAiModelInfo(
         ProcessorVersion.GenAiModelInfo.FoundationGenAiModelInfo?)

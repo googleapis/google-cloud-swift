@@ -42,7 +42,7 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// Languages supported by the glossary.
-  public var languages: OneOf_Languages? = nil
+  public var languages: LanguagesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
       self.displayName = value
     }
 
-    var languages: OneOf_Languages? = nil
+    var languages: LanguagesOneOf? = nil
     let languagesCheckAndSet = {
       if languages != nil {
         throw DecodingError.dataCorrupted(
@@ -304,7 +304,7 @@ public struct Glossary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Languages supported by the glossary.
-  public enum OneOf_Languages: Codable, Equatable, Sendable {
+  public enum LanguagesOneOf: Codable, Equatable, Sendable {
     /// Used with unidirectional glossaries.
     indirect case languagePair(Glossary.LanguageCodePair?)
     /// Used with equivalent term set glossaries.

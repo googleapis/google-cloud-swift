@@ -27,7 +27,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// The location of the SBOM export.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -165,7 +165,7 @@ public struct ExportSBOMRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The location of the SBOM export.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Optional. Empty placeholder to denote that this is a Google Cloud Storage
     /// export request.
     indirect case cloudStorageLocation(ExportSBOMRequest.CloudStorageLocation?)

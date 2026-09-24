@@ -49,7 +49,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
   public var groupRolesMapping: GoldengateGroupToRolesMapping? = nil
 
   /// The Goldengate deployment console password.
-  public var deploymentPasswordOptions: OneOf_DeploymentPasswordOptions? = nil
+  public var deploymentPasswordOptions: DeploymentPasswordOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
     self.groupRolesMapping = try container.decodeIfPresent(
       GoldengateGroupToRolesMapping.self, forKey: .groupRolesMapping)
 
-    var deploymentPasswordOptions: OneOf_DeploymentPasswordOptions? = nil
+    var deploymentPasswordOptions: DeploymentPasswordOptionsOneOf? = nil
     let deploymentPasswordOptionsCheckAndSet = {
       if deploymentPasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -297,7 +297,7 @@ public struct GoldengateOggDeployment: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The Goldengate deployment console password.
-  public enum OneOf_DeploymentPasswordOptions: Codable, Equatable, Sendable {
+  public enum DeploymentPasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. The Goldengate deployment console password in plain text.
     case adminPassword(Swift.String)
     /// Optional. Input only. The Goldengate deployment console password secret

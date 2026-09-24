@@ -146,7 +146,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct QueryContent: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var queryContent: OneOf_QueryContent? = nil
+    public var queryContent: QueryContentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -182,7 +182,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var queryContent: OneOf_QueryContent? = nil
+      var queryContent: QueryContentOneOf? = nil
       let queryContentCheckAndSet = {
         if queryContent != nil {
           throw DecodingError.dataCorrupted(
@@ -218,7 +218,7 @@ public struct SavedQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_QueryContent: Codable, Equatable, Sendable {
+    public enum QueryContentOneOf: Codable, Equatable, Sendable {
       /// An IAM Policy Analysis query, which could be used in
       /// the
       /// [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]

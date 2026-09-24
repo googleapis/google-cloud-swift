@@ -44,7 +44,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Platform-specific settings for this key. The key can only be used on a
   /// platform for which the settings are enabled.
-  public var platformSettings: OneOf_PlatformSettings? = nil
+  public var platformSettings: PlatformSettingsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -115,7 +115,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
       TestingOptions.self, forKey: .testingOptions)
     self.wafSettings = try container.decodeIfPresent(WafSettings.self, forKey: .wafSettings)
 
-    var platformSettings: OneOf_PlatformSettings? = nil
+    var platformSettings: PlatformSettingsOneOf? = nil
     let platformSettingsCheckAndSet = {
       if platformSettings != nil {
         throw DecodingError.dataCorrupted(
@@ -183,7 +183,7 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Platform-specific settings for this key. The key can only be used on a
   /// platform for which the settings are enabled.
-  public enum OneOf_PlatformSettings: Codable, Equatable, Sendable {
+  public enum PlatformSettingsOneOf: Codable, Equatable, Sendable {
     /// Settings for keys that can be used by websites.
     indirect case webSettings(WebKeySettings?)
     /// Settings for keys that can be used by Android apps.

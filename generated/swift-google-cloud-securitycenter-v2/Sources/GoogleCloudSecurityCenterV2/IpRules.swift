@@ -41,7 +41,7 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The list of allow rules specified by this firewall. Each rule specifies a
   /// protocol and port-range tuple that describes a permitted connection.
-  public var rules: OneOf_Rules? = nil
+  public var rules: RulesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -100,7 +100,7 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
       self.exposedServices = value
     }
 
-    var rules: OneOf_Rules? = nil
+    var rules: RulesOneOf? = nil
     let rulesCheckAndSet = {
       if rules != nil {
         throw DecodingError.dataCorrupted(
@@ -263,7 +263,7 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The list of allow rules specified by this firewall. Each rule specifies a
   /// protocol and port-range tuple that describes a permitted connection.
-  public enum OneOf_Rules: Codable, Equatable, Sendable {
+  public enum RulesOneOf: Codable, Equatable, Sendable {
     /// Tuple with allowed rules.
     indirect case allowed(Allowed?)
     /// Tuple with denied rules.

@@ -24,7 +24,7 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Particular type of configuration for this storage resource.
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct StorageResourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of configuration for this storage resource.
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. If set, indicates that a new Filestore instance
     /// should be created.
     indirect case newFilestore(NewFilestoreConfig?)

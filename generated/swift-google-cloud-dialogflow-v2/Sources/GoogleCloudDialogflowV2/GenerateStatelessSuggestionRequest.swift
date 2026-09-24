@@ -53,7 +53,7 @@
     public var securitySettings: Swift.String = Swift.String()
 
     /// Generator.
-    public var generatorResource: OneOf_GeneratorResource? = nil
+    public var generatorResource: GeneratorResourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -117,7 +117,7 @@
         self.securitySettings = value
       }
 
-      var generatorResource: OneOf_GeneratorResource? = nil
+      var generatorResource: GeneratorResourceOneOf? = nil
       let generatorResourceCheckAndSet = {
         if generatorResource != nil {
           throw DecodingError.dataCorrupted(
@@ -164,7 +164,7 @@
     }
 
     /// Generator.
-    public enum OneOf_GeneratorResource: Codable, Equatable, Sendable {
+    public enum GeneratorResourceOneOf: Codable, Equatable, Sendable {
       /// Uncreated generator. It should be a complete generator that includes all
       /// information about the generator.
       indirect case generator(Generator?)

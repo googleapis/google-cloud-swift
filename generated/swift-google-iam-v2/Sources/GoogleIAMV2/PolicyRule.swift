@@ -25,7 +25,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
   /// characters.
   public var description: Swift.String = Swift.String()
 
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct PolicyRule: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// A rule for a deny policy.
     indirect case denyRule(DenyRule?)
   }

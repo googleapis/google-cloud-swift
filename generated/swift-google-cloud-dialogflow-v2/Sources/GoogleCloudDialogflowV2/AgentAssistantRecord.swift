@@ -23,7 +23,7 @@
     Sendable
   {
     /// Output only. The agent assist answer.
-    public var answer: OneOf_Answer? = nil
+    public var answer: AnswerOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var answer: OneOf_Answer? = nil
+      var answer: AnswerOneOf? = nil
       let answerCheckAndSet = {
         if answer != nil {
           throw DecodingError.dataCorrupted(
@@ -121,7 +121,7 @@
     }
 
     /// Output only. The agent assist answer.
-    public enum OneOf_Answer: Codable, Equatable, Sendable {
+    public enum AnswerOneOf: Codable, Equatable, Sendable {
       /// Output only. The article suggestion answer.
       indirect case articleSuggestionAnswer(ArticleAnswer?)
       /// Output only. The FAQ answer.

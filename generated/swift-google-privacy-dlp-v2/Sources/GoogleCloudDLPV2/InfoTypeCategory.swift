@@ -23,7 +23,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Categories of infotypes.
-  public var category: OneOf_Category? = nil
+  public var category: CategoryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var category: OneOf_Category? = nil
+    var category: CategoryOneOf? = nil
     let categoryCheckAndSet = {
       if category != nil {
         throw DecodingError.dataCorrupted(
@@ -872,7 +872,7 @@ public struct InfoTypeCategory: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Categories of infotypes.
-  public enum OneOf_Category: Codable, Equatable, Sendable {
+  public enum CategoryOneOf: Codable, Equatable, Sendable {
     /// The region or country that issued the ID or document represented by the
     /// infoType.
     case locationCategory(InfoTypeCategory.LocationCategory)

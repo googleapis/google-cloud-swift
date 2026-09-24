@@ -47,7 +47,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
   /// `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`.
   public var baseProcessorVersion: Swift.String = Swift.String()
 
-  public var processorFlags: OneOf_ProcessorFlags? = nil
+  public var processorFlags: ProcessorFlagsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
       self.baseProcessorVersion = value
     }
 
-    var processorFlags: OneOf_ProcessorFlags? = nil
+    var processorFlags: ProcessorFlagsOneOf? = nil
     let processorFlagsCheckAndSet = {
       if processorFlags != nil {
         throw DecodingError.dataCorrupted(
@@ -511,7 +511,7 @@ public struct TrainProcessorVersionRequest: Codable, Equatable, GoogleWKT._AnyPa
     }
   }
 
-  public enum OneOf_ProcessorFlags: Codable, Equatable, Sendable {
+  public enum ProcessorFlagsOneOf: Codable, Equatable, Sendable {
     /// Options to control Custom Document Extraction (CDE) Processor.
     indirect case customDocumentExtractionOptions(
       TrainProcessorVersionRequest.CustomDocumentExtractionOptions?)

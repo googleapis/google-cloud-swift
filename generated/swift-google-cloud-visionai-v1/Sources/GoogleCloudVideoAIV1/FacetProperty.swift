@@ -48,7 +48,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Facet bucket type e.g. value, range.
   public var bucketType: FacetBucketType = FacetBucketType()
 
-  public var rangeFacetConfig: OneOf_RangeFacetConfig? = nil
+  public var rangeFacetConfig: RangeFacetConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -108,7 +108,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
       self.bucketType = value
     }
 
-    var rangeFacetConfig: OneOf_RangeFacetConfig? = nil
+    var rangeFacetConfig: RangeFacetConfigOneOf? = nil
     let rangeFacetConfigCheckAndSet = {
       if rangeFacetConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -523,7 +523,7 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_RangeFacetConfig: Codable, Equatable, Sendable {
+  public enum RangeFacetConfigOneOf: Codable, Equatable, Sendable {
     /// Fixed range facet bucket config.
     indirect case fixedRangeBucketSpec(FacetProperty.FixedRangeBucketSpec?)
     /// Custom range facet bucket config.

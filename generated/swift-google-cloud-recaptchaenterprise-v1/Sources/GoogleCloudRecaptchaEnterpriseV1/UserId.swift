@@ -21,7 +21,7 @@ import Foundation
 public struct UserId: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var idOneof: OneOf_IdOneof? = nil
+  public var idOneof: IdOneofOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct UserId: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var idOneof: OneOf_IdOneof? = nil
+    var idOneof: IdOneofOneOf? = nil
     let idOneofCheckAndSet = {
       if idOneof != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct UserId: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_IdOneof: Codable, Equatable, Sendable {
+  public enum IdOneofOneOf: Codable, Equatable, Sendable {
     /// Optional. An email address.
     case email(Swift.String)
     /// Optional. A phone number. Should use the E.164 format.

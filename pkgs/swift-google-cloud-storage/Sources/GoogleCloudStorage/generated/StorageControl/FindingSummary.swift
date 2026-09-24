@@ -144,7 +144,7 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     public var description: Swift.String = Swift.String()
 
     /// The value of the summary.
-    public var magnitude: OneOf_Magnitude? = nil
+    public var magnitude: MagnitudeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -194,7 +194,7 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
         self.description = value
       }
 
-      var magnitude: OneOf_Magnitude? = nil
+      var magnitude: MagnitudeOneOf? = nil
       let magnitudeCheckAndSet = {
         if magnitude != nil {
           throw DecodingError.dataCorrupted(
@@ -353,7 +353,7 @@ public struct FindingSummary: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The value of the summary.
-    public enum OneOf_Magnitude: Codable, Equatable, Sendable {
+    public enum MagnitudeOneOf: Codable, Equatable, Sendable {
       /// The count of impacted resources.
       case count(Swift.Int64)
       /// The percentage of impacted resources.

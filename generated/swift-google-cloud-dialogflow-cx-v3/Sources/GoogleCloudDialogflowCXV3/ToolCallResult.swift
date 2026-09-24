@@ -33,7 +33,7 @@
     public var action: Swift.String = Swift.String()
 
     /// The tool call's result.
-    public var result: OneOf_Result? = nil
+    public var result: ResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@
         self.action = value
       }
 
-      var result: OneOf_Result? = nil
+      var result: ResultOneOf? = nil
       let resultCheckAndSet = {
         if result != nil {
           throw DecodingError.dataCorrupted(
@@ -193,7 +193,7 @@
     }
 
     /// The tool call's result.
-    public enum OneOf_Result: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Codable, Equatable, Sendable {
       /// The tool call's error.
       indirect case error(ToolCallResult.Error?)
       /// The tool call's output parameters.

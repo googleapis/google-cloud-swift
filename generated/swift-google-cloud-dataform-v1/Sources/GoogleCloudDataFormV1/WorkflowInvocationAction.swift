@@ -50,7 +50,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
   public var internalMetadata: Swift.String? = nil
 
   /// The action's details.
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     self.internalMetadata = try container.decodeIfPresent(
       Swift.String.self, forKey: .internalMetadata)
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -352,7 +352,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     public var jobId: Swift.String = Swift.String()
 
     /// The definition for the data preparation.
-    public var definition: OneOf_Definition? = nil
+    public var definition: DefinitionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -400,7 +400,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
         self.jobId = value
       }
 
-      var definition: OneOf_Definition? = nil
+      var definition: DefinitionOneOf? = nil
       let definitionCheckAndSet = {
         if definition != nil {
           throw DecodingError.dataCorrupted(
@@ -614,7 +614,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       Sendable
     {
       /// Load mode
-      public var mode: OneOf_Mode? = nil
+      public var mode: ModeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -656,7 +656,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var mode: OneOf_Mode? = nil
+        var mode: ModeOneOf? = nil
         let modeCheckAndSet = {
           if mode != nil {
             throw DecodingError.dataCorrupted(
@@ -717,7 +717,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       }
 
       /// Load mode
-      public enum OneOf_Mode: Codable, Equatable, Sendable {
+      public enum ModeOneOf: Codable, Equatable, Sendable {
         /// Replace destination table
         indirect case replace(WorkflowInvocationAction.DataPreparationAction.ActionSimpleLoadMode?)
         /// Append into destination table
@@ -872,7 +872,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     }
 
     /// The definition for the data preparation.
-    public enum OneOf_Definition: Codable, Equatable, Sendable {
+    public enum DefinitionOneOf: Codable, Equatable, Sendable {
       /// Output only. YAML representing the contents of the data preparation.
       /// Can be used to show the customer what the input was to their workflow.
       case contentsYaml(Swift.String)
@@ -1041,7 +1041,7 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The action's details.
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Output only. The workflow action's bigquery action details.
     indirect case bigqueryAction(WorkflowInvocationAction.BigQueryAction?)
     /// Output only. The workflow action's notebook action details.

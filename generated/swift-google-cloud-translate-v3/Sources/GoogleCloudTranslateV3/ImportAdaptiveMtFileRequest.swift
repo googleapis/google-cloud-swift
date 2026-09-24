@@ -26,7 +26,7 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
   public var parent: Swift.String = Swift.String()
 
   /// The source for the document.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
       self.parent = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct ImportAdaptiveMtFileRequest: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// The source for the document.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Inline file source.
     indirect case fileInputSource(FileInputSource?)
     /// Google Cloud Storage file source.

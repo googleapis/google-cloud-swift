@@ -22,7 +22,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// The pattern used to filter dataset resources.
-  public var pattern: OneOf_Pattern? = nil
+  public var pattern: PatternOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var pattern: OneOf_Pattern? = nil
+    var pattern: PatternOneOf? = nil
     let patternCheckAndSet = {
       if pattern != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct VertexDatasetCollection: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The pattern used to filter dataset resources.
-  public enum OneOf_Pattern: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Codable, Equatable, Sendable {
     /// The regex used to filter dataset resources.
     indirect case vertexDatasetRegexes(VertexDatasetRegexes?)
   }

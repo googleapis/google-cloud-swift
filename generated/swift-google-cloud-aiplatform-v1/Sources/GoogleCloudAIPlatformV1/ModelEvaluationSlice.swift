@@ -333,7 +333,7 @@
         public struct SliceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           Sendable
         {
-          public var kind: OneOf_Kind? = nil
+          public var kind: KindOneOf? = nil
 
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -373,7 +373,7 @@
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            var kind: OneOf_Kind? = nil
+            var kind: KindOneOf? = nil
             let kindCheckAndSet = {
               if kind != nil {
                 throw DecodingError.dataCorrupted(
@@ -423,7 +423,7 @@
             }
           }
 
-          public enum OneOf_Kind: Codable, Equatable, Sendable {
+          public enum KindOneOf: Codable, Equatable, Sendable {
             /// A unique specific value for a given feature.
             /// Example: `{ "value": { "string_value": "12345" } }`
             indirect case value(ModelEvaluationSlice.Slice.SliceSpec.Value?)
@@ -532,7 +532,7 @@
         public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
           Sendable
         {
-          public var kind: OneOf_Kind? = nil
+          public var kind: KindOneOf? = nil
 
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -570,7 +570,7 @@
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            var kind: OneOf_Kind? = nil
+            var kind: KindOneOf? = nil
             let kindCheckAndSet = {
               if kind != nil {
                 throw DecodingError.dataCorrupted(
@@ -612,7 +612,7 @@
             }
           }
 
-          public enum OneOf_Kind: Codable, Equatable, Sendable {
+          public enum KindOneOf: Codable, Equatable, Sendable {
             /// String type.
             case stringValue(Swift.String)
             /// Float type.

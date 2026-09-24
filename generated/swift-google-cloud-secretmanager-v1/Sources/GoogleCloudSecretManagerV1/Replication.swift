@@ -22,7 +22,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The replication policy for this secret.
-  public var replication: OneOf_Replication? = nil
+  public var replication: ReplicationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var replication: OneOf_Replication? = nil
+    var replication: ReplicationOneOf? = nil
     let replicationCheckAndSet = {
       if replication != nil {
         throw DecodingError.dataCorrupted(
@@ -361,7 +361,7 @@ public struct Replication: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The replication policy for this secret.
-  public enum OneOf_Replication: Codable, Equatable, Sendable {
+  public enum ReplicationOneOf: Codable, Equatable, Sendable {
     /// The [Secret][google.cloud.secretmanager.v1.Secret] will automatically be
     /// replicated without any restrictions.
     ///

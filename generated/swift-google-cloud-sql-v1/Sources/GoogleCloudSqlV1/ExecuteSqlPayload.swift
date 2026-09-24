@@ -49,7 +49,7 @@
     public var application: Swift.String = Swift.String()
 
     /// Credentials for the database connection.
-    public var userPassword: OneOf_UserPassword? = nil
+    public var userPassword: UserPasswordOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -119,7 +119,7 @@
         self.application = value
       }
 
-      var userPassword: OneOf_UserPassword? = nil
+      var userPassword: UserPasswordOneOf? = nil
       let userPasswordCheckAndSet = {
         if userPassword != nil {
           throw DecodingError.dataCorrupted(
@@ -288,7 +288,7 @@
     }
 
     /// Credentials for the database connection.
-    public enum OneOf_UserPassword: Codable, Equatable, Sendable {
+    public enum UserPasswordOneOf: Codable, Equatable, Sendable {
       /// Optional. The resource name of the Secret Manager secret holding the
       /// password for the user to log into the database. The secret should be
       /// created using the regional endpoint (for API) or from the Regional

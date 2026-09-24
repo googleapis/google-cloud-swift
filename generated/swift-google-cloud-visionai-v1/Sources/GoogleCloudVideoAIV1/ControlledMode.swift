@@ -32,7 +32,7 @@ public struct ControlledMode: Codable, Equatable, GoogleWKT._AnyPackable,
   public var fallbackStartingOffset: Swift.String = Swift.String()
 
   /// This is the offset from which to start receiveing.
-  public var startingOffset: OneOf_StartingOffset? = nil
+  public var startingOffset: StartingOffsetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct ControlledMode: Codable, Equatable, GoogleWKT._AnyPackable,
       self.fallbackStartingOffset = value
     }
 
-    var startingOffset: OneOf_StartingOffset? = nil
+    var startingOffset: StartingOffsetOneOf? = nil
     let startingOffsetCheckAndSet = {
       if startingOffset != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct ControlledMode: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// This is the offset from which to start receiveing.
-  public enum OneOf_StartingOffset: Codable, Equatable, Sendable {
+  public enum StartingOffsetOneOf: Codable, Equatable, Sendable {
     /// This can be set to the following logical starting points:
     ///
     /// "begin": This will read from the earliest available message.

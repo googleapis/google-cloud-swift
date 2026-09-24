@@ -30,7 +30,7 @@
     Sendable
   {
     /// Required. The input specification.
-    public var input: OneOf_Input? = nil
+    public var input: InputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var input: OneOf_Input? = nil
+      var input: InputOneOf? = nil
       let inputCheckAndSet = {
         if input != nil {
           throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@
     }
 
     /// Required. The input specification.
-    public enum OneOf_Input: Codable, Equatable, Sendable {
+    public enum InputOneOf: Codable, Equatable, Sendable {
       /// Instructs the speech recognizer how to process the speech audio.
       indirect case audioConfig(InputAudioConfig?)
       /// The natural language text to be processed. Text length must not exceed

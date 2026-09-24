@@ -52,7 +52,7 @@
     public var userId: Swift.String = Swift.String()
 
     /// The expiration of the session.
-    public var expiration: OneOf_Expiration? = nil
+    public var expiration: ExpirationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@
         self.userId = value
       }
 
-      var expiration: OneOf_Expiration? = nil
+      var expiration: ExpirationOneOf? = nil
       let expirationCheckAndSet = {
         if expiration != nil {
           throw DecodingError.dataCorrupted(
@@ -173,7 +173,7 @@
     }
 
     /// The expiration of the session.
-    public enum OneOf_Expiration: Codable, Equatable, Sendable {
+    public enum ExpirationOneOf: Codable, Equatable, Sendable {
       /// Optional. Timestamp of when this session is considered expired.
       /// This is *always* provided on output, regardless of what was sent
       /// on input.

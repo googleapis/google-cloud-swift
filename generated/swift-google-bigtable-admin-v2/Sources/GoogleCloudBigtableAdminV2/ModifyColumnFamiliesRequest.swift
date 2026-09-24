@@ -115,7 +115,7 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
     public var updateMask: GoogleWKT.WKTFieldMask? = nil
 
     /// Column family modifications.
-    public var mod: OneOf_Mod? = nil
+    public var mod: ModOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -164,7 +164,7 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
       self.updateMask = try container.decodeIfPresent(
         GoogleWKT.WKTFieldMask.self, forKey: .updateMask)
 
-      var mod: OneOf_Mod? = nil
+      var mod: ModOneOf? = nil
       let modCheckAndSet = {
         if mod != nil {
           throw DecodingError.dataCorrupted(
@@ -211,7 +211,7 @@ public struct ModifyColumnFamiliesRequest: Codable, Equatable, GoogleWKT._AnyPac
     }
 
     /// Column family modifications.
-    public enum OneOf_Mod: Codable, Equatable, Sendable {
+    public enum ModOneOf: Codable, Equatable, Sendable {
       /// Create a new column family with the specified schema, or fail if
       /// one already exists with the given ID.
       indirect case create(ColumnFamily?)

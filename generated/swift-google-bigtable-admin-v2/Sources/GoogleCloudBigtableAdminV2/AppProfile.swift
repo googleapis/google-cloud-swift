@@ -41,10 +41,10 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The routing policy for all read/write requests that use this app profile.
   /// A value must be explicitly set.
-  public var routingPolicy: OneOf_RoutingPolicy? = nil
+  public var routingPolicy: RoutingPolicyOneOf? = nil
 
   /// Options for isolating this app profile's traffic from other use cases.
-  public var isolation: OneOf_Isolation? = nil
+  public var isolation: IsolationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var routingPolicy: OneOf_RoutingPolicy? = nil
+    var routingPolicy: RoutingPolicyOneOf? = nil
     let routingPolicyCheckAndSet = {
       if routingPolicy != nil {
         throw DecodingError.dataCorrupted(
@@ -128,7 +128,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.routingPolicy = routingPolicy
 
-    var isolation: OneOf_Isolation? = nil
+    var isolation: IsolationOneOf? = nil
     let isolationCheckAndSet = {
       if isolation != nil {
         throw DecodingError.dataCorrupted(
@@ -211,7 +211,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// under *most* circumstances, without sacrificing availability. Consistency
     /// is *not* guaranteed, as requests might still fail over between clusters
     /// in the event of errors or latency.
-    public var affinity: OneOf_Affinity? = nil
+    public var affinity: AffinityOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -252,7 +252,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
         self.clusterIds = value
       }
 
-      var affinity: OneOf_Affinity? = nil
+      var affinity: AffinityOneOf? = nil
       let affinityCheckAndSet = {
         if affinity != nil {
           throw DecodingError.dataCorrupted(
@@ -363,7 +363,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     /// under *most* circumstances, without sacrificing availability. Consistency
     /// is *not* guaranteed, as requests might still fail over between clusters
     /// in the event of errors or latency.
-    public enum OneOf_Affinity: Codable, Equatable, Sendable {
+    public enum AffinityOneOf: Codable, Equatable, Sendable {
       /// Row affinity sticky routing based on the row key of the request.
       /// Requests that span multiple rows are routed non-deterministically.
       indirect case rowAffinity(AppProfile.MultiClusterRoutingUseAny.RowAffinity?)
@@ -913,7 +913,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The routing policy for all read/write requests that use this app profile.
   /// A value must be explicitly set.
-  public enum OneOf_RoutingPolicy: Codable, Equatable, Sendable {
+  public enum RoutingPolicyOneOf: Codable, Equatable, Sendable {
     /// Use a multi-cluster routing policy.
     indirect case multiClusterRoutingUseAny(AppProfile.MultiClusterRoutingUseAny?)
     /// Use a single-cluster routing policy.
@@ -921,7 +921,7 @@ public struct AppProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Options for isolating this app profile's traffic from other use cases.
-  public enum OneOf_Isolation: Codable, Equatable, Sendable {
+  public enum IsolationOneOf: Codable, Equatable, Sendable {
     /// This field has been deprecated in favor of `standard_isolation.priority`.
     /// If you set this field, `standard_isolation.priority` will be set instead.
     ///

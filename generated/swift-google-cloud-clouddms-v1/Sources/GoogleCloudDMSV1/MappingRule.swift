@@ -52,7 +52,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var revisionCreateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The rule specific details.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -145,7 +145,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
     self.revisionCreateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .revisionCreateTime)
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -382,7 +382,7 @@ public struct MappingRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule specific details.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Optional. Rule to specify how a single entity should be renamed.
     indirect case singleEntityRename(SingleEntityRename?)
     /// Optional. Rule to specify how multiple entities should be renamed.

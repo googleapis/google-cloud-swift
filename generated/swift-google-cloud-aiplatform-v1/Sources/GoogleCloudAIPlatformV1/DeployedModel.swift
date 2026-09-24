@@ -142,7 +142,7 @@
     /// Required except for Large Model Deploy use cases.
     ///
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
-    public var predictionResources: OneOf_PredictionResources? = nil
+    public var predictionResources: PredictionResourcesOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -259,7 +259,7 @@
       self.speculativeDecodingSpec = try container.decodeIfPresent(
         SpeculativeDecodingSpec.self, forKey: .speculativeDecodingSpec)
 
-      var predictionResources: OneOf_PredictionResources? = nil
+      var predictionResources: PredictionResourcesOneOf? = nil
       let predictionResourcesCheckAndSet = {
         if predictionResources != nil {
           throw DecodingError.dataCorrupted(
@@ -420,7 +420,7 @@
     /// Required except for Large Model Deploy use cases.
     ///
     /// [google.cloud.aiplatform.v1.Model.supported_deployment_resources_types]: <doc:Model/supportedDeploymentResourcesTypes>
-    public enum OneOf_PredictionResources: Codable, Equatable, Sendable {
+    public enum PredictionResourcesOneOf: Codable, Equatable, Sendable {
       /// A description of resources that are dedicated to the DeployedModel, and
       /// that need a higher degree of manual configuration.
       indirect case dedicatedResources(DedicatedResources?)

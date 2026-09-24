@@ -22,7 +22,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Possible request types from the client.
-  public var request: OneOf_Request? = nil
+  public var request: RequestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var request: OneOf_Request? = nil
+    var request: RequestOneOf? = nil
     let requestCheckAndSet = {
       if request != nil {
         throw DecodingError.dataCorrupted(
@@ -132,7 +132,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     public var writesDoneGracePeriod: GoogleWKT.WKTDuration? = nil
 
     /// The mode in which the consumer reads messages.
-    public var consumerMode: OneOf_ConsumerMode? = nil
+    public var consumerMode: ConsumerModeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -186,7 +186,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.writesDoneGracePeriod = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .writesDoneGracePeriod)
 
-      var consumerMode: OneOf_ConsumerMode? = nil
+      var consumerMode: ConsumerModeOneOf? = nil
       let consumerModeCheckAndSet = {
         if consumerMode != nil {
           throw DecodingError.dataCorrupted(
@@ -234,7 +234,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The mode in which the consumer reads messages.
-    public enum OneOf_ConsumerMode: Codable, Equatable, Sendable {
+    public enum ConsumerModeOneOf: Codable, Equatable, Sendable {
       /// Options for configuring eager mode.
       indirect case eagerReceiveMode(EagerMode?)
       /// Options for configuring controlled mode.
@@ -253,7 +253,7 @@ public struct ReceivePacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Possible request types from the client.
-  public enum OneOf_Request: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Codable, Equatable, Sendable {
     /// The request to setup the initial state of session.
     ///
     /// The client must send and only send this as the first message.

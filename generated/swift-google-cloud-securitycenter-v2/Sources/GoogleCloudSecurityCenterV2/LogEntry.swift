@@ -22,7 +22,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The log entry.
-  public var logEntry: OneOf_LogEntry? = nil
+  public var logEntry: LogEntryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var logEntry: OneOf_LogEntry? = nil
+    var logEntry: LogEntryOneOf? = nil
     let logEntryCheckAndSet = {
       if logEntry != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The log entry.
-  public enum OneOf_LogEntry: Codable, Equatable, Sendable {
+  public enum LogEntryOneOf: Codable, Equatable, Sendable {
     /// An individual entry in a log stored in Cloud Logging.
     indirect case cloudLoggingEntry(CloudLoggingEntry?)
   }

@@ -27,7 +27,7 @@
     /// "/google.cloud.aiplatform.{apiVersion}.DatasetService.CreateDataset"
     public var method: Swift.String = Swift.String()
 
-    public var reference: OneOf_Reference? = nil
+    public var reference: ReferenceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@
         self.method = value
       }
 
-      var reference: OneOf_Reference? = nil
+      var reference: ReferenceOneOf? = nil
       let referenceCheckAndSet = {
         if reference != nil {
           throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@
       }
     }
 
-    public enum OneOf_Reference: Codable, Equatable, Sendable {
+    public enum ReferenceOneOf: Codable, Equatable, Sendable {
       /// For API calls that return a long running operation.
       /// Resource name of the long running operation.
       /// Format:

@@ -30,7 +30,7 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The websites, IP addresses, Android apps, or iOS apps (the clients) that
   /// are allowed to use the key. You can specify only one type of client
   /// restrictions per key.
-  public var clientRestrictions: OneOf_ClientRestrictions? = nil
+  public var clientRestrictions: ClientRestrictionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
       self.apiTargets = value
     }
 
-    var clientRestrictions: OneOf_ClientRestrictions? = nil
+    var clientRestrictions: ClientRestrictionsOneOf? = nil
     let clientRestrictionsCheckAndSet = {
       if clientRestrictions != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct Restrictions: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The websites, IP addresses, Android apps, or iOS apps (the clients) that
   /// are allowed to use the key. You can specify only one type of client
   /// restrictions per key.
-  public enum OneOf_ClientRestrictions: Codable, Equatable, Sendable {
+  public enum ClientRestrictionsOneOf: Codable, Equatable, Sendable {
     /// The HTTP referrers (websites) that are allowed to use the key.
     indirect case browserKeyRestrictions(BrowserKeyRestrictions?)
     /// The IP addresses of callers that are allowed to use the key.

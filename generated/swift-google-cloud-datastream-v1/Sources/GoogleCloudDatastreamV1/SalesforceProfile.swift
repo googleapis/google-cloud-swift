@@ -25,7 +25,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var domain: Swift.String = Swift.String()
 
   /// Credentials for Salesforce connection.
-  public var credentials: OneOf_Credentials? = nil
+  public var credentials: CredentialsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.domain = value
     }
 
-    var credentials: OneOf_Credentials? = nil
+    var credentials: CredentialsOneOf? = nil
     let credentialsCheckAndSet = {
       if credentials != nil {
         throw DecodingError.dataCorrupted(
@@ -324,7 +324,7 @@ public struct SalesforceProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Credentials for Salesforce connection.
-  public enum OneOf_Credentials: Codable, Equatable, Sendable {
+  public enum CredentialsOneOf: Codable, Equatable, Sendable {
     /// User-password authentication.
     indirect case userCredentials(SalesforceProfile.UserCredentials?)
     /// Connected app authentication.

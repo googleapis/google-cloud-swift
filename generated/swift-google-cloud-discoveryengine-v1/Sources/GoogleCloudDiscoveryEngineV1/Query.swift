@@ -26,7 +26,7 @@
     public var queryId: Swift.String = Swift.String()
 
     /// Query content.
-    public var content: OneOf_Content? = nil
+    public var content: ContentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@
         self.queryId = value
       }
 
-      var content: OneOf_Content? = nil
+      var content: ContentOneOf? = nil
       let contentCheckAndSet = {
         if content != nil {
           throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@
     }
 
     /// Query content.
-    public enum OneOf_Content: Codable, Equatable, Sendable {
+    public enum ContentOneOf: Codable, Equatable, Sendable {
       /// Plain text.
       case text(Swift.String)
     }

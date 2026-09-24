@@ -65,7 +65,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
   public var satisfiesPzi: Swift.Bool? = nil
 
   /// Stream backfill strategy.
-  public var backfillStrategy: OneOf_BackfillStrategy? = nil
+  public var backfillStrategy: BackfillStrategyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -159,7 +159,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
-    var backfillStrategy: OneOf_BackfillStrategy? = nil
+    var backfillStrategy: BackfillStrategyOneOf? = nil
     let backfillStrategyCheckAndSet = {
       if backfillStrategy != nil {
         throw DecodingError.dataCorrupted(
@@ -222,7 +222,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// List of objects to exclude.
-    public var excludedObjects: OneOf_ExcludedObjects? = nil
+    public var excludedObjects: ExcludedObjectsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -268,7 +268,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var excludedObjects: OneOf_ExcludedObjects? = nil
+      var excludedObjects: ExcludedObjectsOneOf? = nil
       let excludedObjectsCheckAndSet = {
         if excludedObjects != nil {
           throw DecodingError.dataCorrupted(
@@ -340,7 +340,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// List of objects to exclude.
-    public enum OneOf_ExcludedObjects: Codable, Equatable, Sendable {
+    public enum ExcludedObjectsOneOf: Codable, Equatable, Sendable {
       /// Oracle data source objects to avoid backfilling.
       indirect case oracleExcludedObjects(OracleRdbms?)
       /// MySQL data source objects to avoid backfilling.
@@ -587,7 +587,7 @@ public struct Stream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stream backfill strategy.
-  public enum OneOf_BackfillStrategy: Codable, Equatable, Sendable {
+  public enum BackfillStrategyOneOf: Codable, Equatable, Sendable {
     /// Automatically backfill objects included in the stream source
     /// configuration. Specific objects can be excluded.
     indirect case backfillAll(Stream.BackfillAllStrategy?)

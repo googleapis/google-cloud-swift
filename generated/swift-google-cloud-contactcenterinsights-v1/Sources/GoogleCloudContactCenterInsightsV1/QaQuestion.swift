@@ -182,7 +182,7 @@ public struct QaQuestion: Codable, Equatable, GoogleWKT._AnyPackable,
     public var score: Swift.Double? = nil
 
     /// The answer value may be one of a few different types.
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -232,7 +232,7 @@ public struct QaQuestion: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.score = try container.decodeIfPresent(Swift.Double.self, forKey: .score)
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -284,7 +284,7 @@ public struct QaQuestion: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The answer value may be one of a few different types.
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// String value.
       case strValue(Swift.String)
       /// Numerical value.

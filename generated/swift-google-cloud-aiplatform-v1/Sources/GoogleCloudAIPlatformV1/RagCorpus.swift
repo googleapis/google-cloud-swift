@@ -51,7 +51,7 @@
 
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
-    public var backendConfig: OneOf_BackendConfig? = nil
+    public var backendConfig: BackendConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -119,7 +119,7 @@
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
 
-      var backendConfig: OneOf_BackendConfig? = nil
+      var backendConfig: BackendConfigOneOf? = nil
       let backendConfigCheckAndSet = {
         if backendConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -171,7 +171,7 @@
 
     /// The backend config of the RagCorpus.
     /// It can be data store and/or retrieval engine.
-    public enum OneOf_BackendConfig: Codable, Equatable, Sendable {
+    public enum BackendConfigOneOf: Codable, Equatable, Sendable {
       /// Optional. Immutable. The config for the Vector DBs.
       indirect case vectorDbConfig(RagVectorDbConfig?)
       /// Optional. Immutable. The config for the Vertex AI Search.

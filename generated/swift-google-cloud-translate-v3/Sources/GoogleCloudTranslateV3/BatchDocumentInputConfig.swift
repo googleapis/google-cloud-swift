@@ -22,7 +22,7 @@ public struct BatchDocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackab
   Sendable
 {
   /// Specify the input.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct BatchDocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct BatchDocumentInputConfig: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// Specify the input.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage location for the source input.
     /// This can be a single file (for example,
     /// `gs://translation-test/input.docx`) or a wildcard (for example,

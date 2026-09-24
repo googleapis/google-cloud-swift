@@ -23,7 +23,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
 {
   /// The destination of output. The destination directory provided must exist
   /// and be empty.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -97,7 +97,7 @@ public struct BatchDocumentOutputConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The destination of output. The destination directory provided must exist
   /// and be empty.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage destination for output content.
     /// For every single input document (for example, gs://a/b/c.[extension]), we
     /// generate at most 2 * n output files. (n is the # of target_language_codes

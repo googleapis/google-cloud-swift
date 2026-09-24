@@ -33,7 +33,7 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var jobId: Swift.String = Swift.String()
 
   /// Source of imported entries, e.g. dump stored in a Cloud Storage
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.jobId = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct ImportEntriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Source of imported entries, e.g. dump stored in a Cloud Storage
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Path to a Cloud Storage bucket that contains a dump ready for ingestion.
     case gcsBucketPath(Swift.String)
   }

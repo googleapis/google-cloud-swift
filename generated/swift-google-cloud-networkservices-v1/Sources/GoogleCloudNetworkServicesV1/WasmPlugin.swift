@@ -226,7 +226,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `plugin_config_uri` field.
     public var pluginConfigDigest: Swift.String = Swift.String()
 
-    public var pluginConfigSource: OneOf_PluginConfigSource? = nil
+    public var pluginConfigSource: PluginConfigSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -299,7 +299,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
         self.pluginConfigDigest = value
       }
 
-      var pluginConfigSource: OneOf_PluginConfigSource? = nil
+      var pluginConfigSource: PluginConfigSourceOneOf? = nil
       let pluginConfigSourceCheckAndSet = {
         if pluginConfigSource != nil {
           throw DecodingError.dataCorrupted(
@@ -349,7 +349,7 @@ public struct WasmPlugin: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_PluginConfigSource: Codable, Equatable, Sendable {
+    public enum PluginConfigSourceOneOf: Codable, Equatable, Sendable {
       /// Configuration for the plugin.
       /// The configuration is provided to the plugin at runtime through
       /// the `ON_CONFIGURE` callback. When a new

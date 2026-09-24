@@ -56,7 +56,7 @@ public struct Organization: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The lifetime of the organization and all of its descendants are bound to
   /// the owner. If the owner is deleted, the organization and all its
   /// descendants will be deleted.
-  public var owner: OneOf_Owner? = nil
+  public var owner: OwnerOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@ public struct Organization: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var owner: OneOf_Owner? = nil
+    var owner: OwnerOneOf? = nil
     let ownerCheckAndSet = {
       if owner != nil {
         throw DecodingError.dataCorrupted(
@@ -290,7 +290,7 @@ public struct Organization: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The lifetime of the organization and all of its descendants are bound to
   /// the owner. If the owner is deleted, the organization and all its
   /// descendants will be deleted.
-  public enum OneOf_Owner: Codable, Equatable, Sendable {
+  public enum OwnerOneOf: Codable, Equatable, Sendable {
     /// Immutable. The G Suite / Workspace customer id used in the Directory API.
     case directoryCustomerId(Swift.String)
   }

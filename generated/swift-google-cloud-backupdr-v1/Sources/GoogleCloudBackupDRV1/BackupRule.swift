@@ -38,7 +38,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The schedule that defines the automated backup workloads for this
   /// `BackupRule`.
-  public var backupScheduleOneof: OneOf_BackupScheduleOneof? = nil
+  public var backupScheduleOneof: BackupScheduleOneofOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupRetentionDays = value
     }
 
-    var backupScheduleOneof: OneOf_BackupScheduleOneof? = nil
+    var backupScheduleOneof: BackupScheduleOneofOneOf? = nil
     let backupScheduleOneofCheckAndSet = {
       if backupScheduleOneof != nil {
         throw DecodingError.dataCorrupted(
@@ -124,7 +124,7 @@ public struct BackupRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The schedule that defines the automated backup workloads for this
   /// `BackupRule`.
-  public enum OneOf_BackupScheduleOneof: Codable, Equatable, Sendable {
+  public enum BackupScheduleOneofOneOf: Codable, Equatable, Sendable {
     /// Optional. Defines a schedule that runs within the confines of a defined
     /// window of time.
     indirect case standardSchedule(StandardSchedule?)

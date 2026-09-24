@@ -21,7 +21,7 @@ import Foundation
 public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -162,7 +162,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Cloud Pub/Sub Configuration to receive notifications.
     indirect case pubsubNotification(NotificationConfig.CloudPubSubNotificationConfig?)
   }

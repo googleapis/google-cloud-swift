@@ -61,7 +61,7 @@ public struct Tag: Codable, Equatable, GoogleWKT._AnyPackable,
   /// to that scope.
   ///
   /// These fields cannot be updated after creation.
-  public var scope: OneOf_Scope? = nil
+  public var scope: ScopeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@ public struct Tag: Codable, Equatable, GoogleWKT._AnyPackable,
       self.dataplexTransferStatus = value
     }
 
-    var scope: OneOf_Scope? = nil
+    var scope: ScopeOneOf? = nil
     let scopeCheckAndSet = {
       if scope != nil {
         throw DecodingError.dataCorrupted(
@@ -170,7 +170,7 @@ public struct Tag: Codable, Equatable, GoogleWKT._AnyPackable,
   /// to that scope.
   ///
   /// These fields cannot be updated after creation.
-  public enum OneOf_Scope: Codable, Equatable, Sendable {
+  public enum ScopeOneOf: Codable, Equatable, Sendable {
     /// Resources like entry can have schemas associated with them. This scope
     /// allows you to attach tags to an individual column based on that schema.
     ///

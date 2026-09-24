@@ -52,7 +52,7 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
   public var ssl: SslConfig? = nil
 
   /// Connectivity options used to establish a connection to the database server.
-  public var connectivity: OneOf_Connectivity? = nil
+  public var connectivity: ConnectivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -125,7 +125,7 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
     }
     self.ssl = try container.decodeIfPresent(SslConfig.self, forKey: .ssl)
 
-    var connectivity: OneOf_Connectivity? = nil
+    var connectivity: ConnectivityOneOf? = nil
     let connectivityCheckAndSet = {
       if connectivity != nil {
         throw DecodingError.dataCorrupted(
@@ -183,7 +183,7 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Connectivity options used to establish a connection to the database server.
-  public enum OneOf_Connectivity: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// Static Service IP connectivity.
     indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity?)
     /// Forward SSH tunnel connectivity.

@@ -26,7 +26,7 @@
     public var aggregationMetric: Metric.AggregationMetric = Metric.AggregationMetric()
 
     /// The aggregation result.
-    public var aggregationResult: OneOf_AggregationResult? = nil
+    public var aggregationResult: AggregationResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@
         self.aggregationMetric = value
       }
 
-      var aggregationResult: OneOf_AggregationResult? = nil
+      var aggregationResult: AggregationResultOneOf? = nil
       let aggregationResultCheckAndSet = {
         if aggregationResult != nil {
           throw DecodingError.dataCorrupted(
@@ -143,7 +143,7 @@
     }
 
     /// The aggregation result.
-    public enum OneOf_AggregationResult: Codable, Equatable, Sendable {
+    public enum AggregationResultOneOf: Codable, Equatable, Sendable {
       /// Result for pointwise metric.
       indirect case pointwiseMetricResult(PointwiseMetricResult?)
       /// Result for pairwise metric.

@@ -34,7 +34,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   public var errors: [Error] = []
 
   /// Type of connection.
-  public var properties: OneOf_Properties? = nil
+  public var properties: PropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       self.errors = value
     }
 
-    var properties: OneOf_Properties? = nil
+    var properties: PropertiesOneOf? = nil
     let propertiesCheckAndSet = {
       if properties != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of connection.
-  public enum OneOf_Properties: Codable, Equatable, Sendable {
+  public enum PropertiesOneOf: Codable, Equatable, Sendable {
     /// Connect to a Cloud SQL instance.
     indirect case cloudSql(CloudSqlProperties?)
   }

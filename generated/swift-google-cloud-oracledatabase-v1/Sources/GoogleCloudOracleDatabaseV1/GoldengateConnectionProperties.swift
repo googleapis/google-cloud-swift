@@ -55,7 +55,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   public var ingressIpAddresses: [Swift.String] = []
 
   /// The connection details.
-  public var connectionDetails: OneOf_ConnectionDetails? = nil
+  public var connectionDetails: ConnectionDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -218,7 +218,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
       self.ingressIpAddresses = value
     }
 
-    var connectionDetails: OneOf_ConnectionDetails? = nil
+    var connectionDetails: ConnectionDetailsOneOf? = nil
     let connectionDetailsCheckAndSet = {
       if connectionDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -1062,7 +1062,7 @@ public struct GoldengateConnectionProperties: Codable, Equatable, GoogleWKT._Any
   }
 
   /// The connection details.
-  public enum OneOf_ConnectionDetails: Codable, Equatable, Sendable {
+  public enum ConnectionDetailsOneOf: Codable, Equatable, Sendable {
     /// Properties for an Oracle Database Connection.
     indirect case oracleConnectionProperties(GoldengateOracleConnectionProperties?)
     /// Properties for a Goldengate Connection.

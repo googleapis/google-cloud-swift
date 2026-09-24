@@ -234,7 +234,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The different types of targets that can be bound to a policy.
-    public var target: OneOf_Target? = nil
+    public var target: TargetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -272,7 +272,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var target: OneOf_Target? = nil
+      var target: TargetOneOf? = nil
       let targetCheckAndSet = {
         if target != nil {
           throw DecodingError.dataCorrupted(
@@ -313,7 +313,7 @@ public struct PolicyBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The different types of targets that can be bound to a policy.
-    public enum OneOf_Target: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Codable, Equatable, Sendable {
       /// Immutable. The full resource name that's used for principal access
       /// boundary policy bindings. The principal set must be directly parented
       /// by the policy binding's parent or same as the parent if the target is a

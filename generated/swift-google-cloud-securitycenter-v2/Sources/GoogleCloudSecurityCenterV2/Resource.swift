@@ -56,7 +56,7 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resourcePathString: Swift.String = Swift.String()
 
   /// The metadata associated with the cloud provider.
-  public var cloudProviderMetadata: OneOf_CloudProviderMetadata? = nil
+  public var cloudProviderMetadata: CloudProviderMetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -134,7 +134,7 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.resourcePathString = value
     }
 
-    var cloudProviderMetadata: OneOf_CloudProviderMetadata? = nil
+    var cloudProviderMetadata: CloudProviderMetadataOneOf? = nil
     let cloudProviderMetadataCheckAndSet = {
       if cloudProviderMetadata != nil {
         throw DecodingError.dataCorrupted(
@@ -189,7 +189,7 @@ public struct Resource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The metadata associated with the cloud provider.
-  public enum OneOf_CloudProviderMetadata: Codable, Equatable, Sendable {
+  public enum CloudProviderMetadataOneOf: Codable, Equatable, Sendable {
     /// The GCP metadata associated with the finding.
     indirect case gcpMetadata(GcpMetadata?)
     /// The AWS metadata associated with the finding.

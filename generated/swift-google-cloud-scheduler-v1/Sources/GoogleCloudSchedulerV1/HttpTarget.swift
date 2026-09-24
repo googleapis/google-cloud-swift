@@ -96,7 +96,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// will be overridden.
   ///
   /// [google.cloud.scheduler.v1.HttpTarget.headers]: <doc:HttpTarget/headers>
-  public var authorizationHeader: OneOf_AuthorizationHeader? = nil
+  public var authorizationHeader: AuthorizationHeaderOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -156,7 +156,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
       self.body = value
     }
 
-    var authorizationHeader: OneOf_AuthorizationHeader? = nil
+    var authorizationHeader: AuthorizationHeaderOneOf? = nil
     let authorizationHeaderCheckAndSet = {
       if authorizationHeader != nil {
         throw DecodingError.dataCorrupted(
@@ -206,7 +206,7 @@ public struct HttpTarget: Codable, Equatable, GoogleWKT._AnyPackable,
   /// will be overridden.
   ///
   /// [google.cloud.scheduler.v1.HttpTarget.headers]: <doc:HttpTarget/headers>
-  public enum OneOf_AuthorizationHeader: Codable, Equatable, Sendable {
+  public enum AuthorizationHeaderOneOf: Codable, Equatable, Sendable {
     /// If specified, an
     /// [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
     /// will be generated and attached as an `Authorization` header in the HTTP

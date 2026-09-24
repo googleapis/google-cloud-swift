@@ -23,7 +23,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
   Sendable
 {
   /// Specifies a Synthetic Monitor's execution stack.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -177,7 +177,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Specifies a Synthetic Monitor's execution stack.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Target a Synthetic Monitor GCFv2 instance.
     indirect case cloudFunctionV2(SyntheticMonitorTarget.CloudFunctionV2Target?)
   }

@@ -21,7 +21,7 @@ public import Foundation
 public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var streamingRequest: OneOf_StreamingRequest? = nil
+  public var streamingRequest: StreamingRequestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var streamingRequest: OneOf_StreamingRequest? = nil
+    var streamingRequest: StreamingRequestOneOf? = nil
     let streamingRequestCheckAndSet = {
       if streamingRequest != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// to.
     public var asset: Swift.String = Swift.String()
 
-    public var dataType: OneOf_DataType? = nil
+    public var dataType: DataTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -150,7 +150,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         self.asset = value
       }
 
-      var dataType: OneOf_DataType? = nil
+      var dataType: DataTypeOneOf? = nil
       let dataTypeCheckAndSet = {
         if dataType != nil {
           throw DecodingError.dataCorrupted(
@@ -368,7 +368,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_DataType: Codable, Equatable, Sendable {
+    public enum DataTypeOneOf: Codable, Equatable, Sendable {
       /// Type information for video data.
       indirect case videoType(IngestAssetRequest.Config.VideoType?)
     }
@@ -460,7 +460,7 @@ public struct IngestAssetRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_StreamingRequest: Codable, Equatable, Sendable {
+  public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
     /// Provides information for the data and the asset resource name that the
     /// data belongs to. The first `IngestAssetRequest` message must only contain
     /// a `Config` message.

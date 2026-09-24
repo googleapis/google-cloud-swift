@@ -26,7 +26,7 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleWKT._AnyPackable,
   public var transcriptIndex: Swift.Int32 = Swift.Int32()
 
   /// A detailed boundary, which describes a more specific point.
-  public var detailedBoundary: OneOf_DetailedBoundary? = nil
+  public var detailedBoundary: DetailedBoundaryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleWKT._AnyPackable,
       self.transcriptIndex = value
     }
 
-    var detailedBoundary: OneOf_DetailedBoundary? = nil
+    var detailedBoundary: DetailedBoundaryOneOf? = nil
     let detailedBoundaryCheckAndSet = {
       if detailedBoundary != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A detailed boundary, which describes a more specific point.
-  public enum OneOf_DetailedBoundary: Codable, Equatable, Sendable {
+  public enum DetailedBoundaryOneOf: Codable, Equatable, Sendable {
     /// The word index of this boundary with respect to the first word in the
     /// transcript piece. This index starts at zero.
     case wordIndex(Swift.Int32)

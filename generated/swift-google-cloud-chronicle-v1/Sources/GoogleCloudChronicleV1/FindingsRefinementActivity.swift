@@ -27,7 +27,7 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleWKT._AnyPack
   public var findingsRefinement: Swift.String = Swift.String()
 
   /// The activity for the findings refinement.
-  public var activity: OneOf_Activity? = nil
+  public var activity: ActivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleWKT._AnyPack
       self.findingsRefinement = value
     }
 
-    var activity: OneOf_Activity? = nil
+    var activity: ActivityOneOf? = nil
     let activityCheckAndSet = {
       if activity != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The activity for the findings refinement.
-  public enum OneOf_Activity: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// The activity for the detection exclusion.
     indirect case detectionExclusionActivity(DetectionExclusionActivity?)
   }

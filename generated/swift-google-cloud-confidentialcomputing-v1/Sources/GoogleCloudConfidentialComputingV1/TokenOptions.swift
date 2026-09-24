@@ -34,7 +34,7 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   public var tokenType: TokenType = TokenType()
 
   /// An optional additional configuration per token type.
-  public var tokenTypeOptions: OneOf_TokenTypeOptions? = nil
+  public var tokenTypeOptions: TokenTypeOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tokenType = value
     }
 
-    var tokenTypeOptions: OneOf_TokenTypeOptions? = nil
+    var tokenTypeOptions: TokenTypeOptionsOneOf? = nil
     let tokenTypeOptionsCheckAndSet = {
       if tokenTypeOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct TokenOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// An optional additional configuration per token type.
-  public enum OneOf_TokenTypeOptions: Codable, Equatable, Sendable {
+  public enum TokenTypeOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Options for AWS token type.
     indirect case awsPrincipalTagsOptions(AwsPrincipalTagsOptions?)
   }

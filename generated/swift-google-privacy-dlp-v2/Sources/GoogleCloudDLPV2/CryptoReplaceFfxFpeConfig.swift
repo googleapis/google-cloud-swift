@@ -87,7 +87,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
   public var surrogateInfoType: InfoType? = nil
 
   /// Choose an alphabet which the data being transformed will be made up of.
-  public var alphabet: OneOf_Alphabet? = nil
+  public var alphabet: AlphabetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
     self.surrogateInfoType = try container.decodeIfPresent(
       InfoType.self, forKey: .surrogateInfoType)
 
-    var alphabet: OneOf_Alphabet? = nil
+    var alphabet: AlphabetOneOf? = nil
     let alphabetCheckAndSet = {
       if alphabet != nil {
         throw DecodingError.dataCorrupted(
@@ -322,7 +322,7 @@ public struct CryptoReplaceFfxFpeConfig: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Choose an alphabet which the data being transformed will be made up of.
-  public enum OneOf_Alphabet: Codable, Equatable, Sendable {
+  public enum AlphabetOneOf: Codable, Equatable, Sendable {
     /// Common alphabets.
     case commonAlphabet(CryptoReplaceFfxFpeConfig.FfxCommonNativeAlphabet)
     /// This is supported by mapping these to the alphanumeric characters

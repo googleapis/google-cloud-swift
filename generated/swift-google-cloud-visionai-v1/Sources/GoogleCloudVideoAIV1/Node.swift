@@ -38,7 +38,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
   /// will only have one parent.
   public var parents: [Node.InputEdge] = []
 
-  public var streamOutputConfig: OneOf_StreamOutputConfig? = nil
+  public var streamOutputConfig: StreamOutputConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
       self.parents = value
     }
 
-    var streamOutputConfig: OneOf_StreamOutputConfig? = nil
+    var streamOutputConfig: StreamOutputConfigOneOf? = nil
     let streamOutputConfigCheckAndSet = {
       if streamOutputConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -231,7 +231,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_StreamOutputConfig: Codable, Equatable, Sendable {
+  public enum StreamOutputConfigOneOf: Codable, Equatable, Sendable {
     /// By default, the output of the node will only be available to downstream
     /// nodes. To consume the direct output from the application node, the output
     /// must be sent to Vision AI Streams at first.

@@ -25,7 +25,7 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
   public var enableCloudLogging: Swift.Bool = Swift.Bool()
 
   /// enforcement type for Model Armor filters.
-  public var enforcementType: OneOf_EnforcementType? = nil
+  public var enforcementType: EnforcementTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
       self.enableCloudLogging = value
     }
 
-    var enforcementType: OneOf_EnforcementType? = nil
+    var enforcementType: EnforcementTypeOneOf? = nil
     let enforcementTypeCheckAndSet = {
       if enforcementType != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct AiPlatformFloorSetting: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// enforcement type for Model Armor filters.
-  public enum OneOf_EnforcementType: Codable, Equatable, Sendable {
+  public enum EnforcementTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. If true, Model Armor filters will be run in inspect only mode.
     /// No action will be taken on the request.
     case inspectOnly(Swift.Bool)

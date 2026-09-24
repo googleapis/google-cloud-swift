@@ -470,7 +470,7 @@
       Sendable
     {
       /// Search result content.
-      public var content: OneOf_Content? = nil
+      public var content: ContentOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -510,7 +510,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var content: OneOf_Content? = nil
+        var content: ContentOneOf? = nil
         let contentCheckAndSet = {
           if content != nil {
             throw DecodingError.dataCorrupted(
@@ -1057,7 +1057,7 @@
       }
 
       /// Search result content.
-      public enum OneOf_Content: Codable, Equatable, Sendable {
+      public enum ContentOneOf: Codable, Equatable, Sendable {
         /// Unstructured document information.
         indirect case unstructuredDocumentInfo(Answer.Reference.UnstructuredDocumentInfo?)
         /// Chunk information.
@@ -1169,7 +1169,7 @@
         public var observation: Answer.Step.Action.Observation? = nil
 
         /// The action.
-        public var action: OneOf_Action? = nil
+        public var action: ActionOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1209,7 +1209,7 @@
           self.observation = try container.decodeIfPresent(
             Answer.Step.Action.Observation.self, forKey: .observation)
 
-          var action: OneOf_Action? = nil
+          var action: ActionOneOf? = nil
           let actionCheckAndSet = {
             if action != nil {
               throw DecodingError.dataCorrupted(
@@ -1683,7 +1683,7 @@
         }
 
         /// The action.
-        public enum OneOf_Action: Codable, Equatable, Sendable {
+        public enum ActionOneOf: Codable, Equatable, Sendable {
           /// Search action.
           indirect case searchAction(Answer.Step.Action.SearchAction?)
         }

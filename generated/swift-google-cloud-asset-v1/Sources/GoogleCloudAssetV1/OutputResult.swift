@@ -22,7 +22,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Asset export result.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct OutputResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Asset export result.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Export result on Cloud Storage.
     indirect case gcsResult(GcsOutputResult?)
   }

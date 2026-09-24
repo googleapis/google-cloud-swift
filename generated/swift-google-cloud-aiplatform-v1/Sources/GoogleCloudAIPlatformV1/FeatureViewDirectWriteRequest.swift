@@ -163,7 +163,7 @@
         public var name: Swift.String = Swift.String()
 
         /// Feature value data to write.
-        public var dataOneof: OneOf_DataOneof? = nil
+        public var dataOneof: DataOneofOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -204,7 +204,7 @@
             self.name = value
           }
 
-          var dataOneof: OneOf_DataOneof? = nil
+          var dataOneof: DataOneofOneOf? = nil
           let dataOneofCheckAndSet = {
             if dataOneof != nil {
               throw DecodingError.dataCorrupted(
@@ -240,7 +240,7 @@
         }
 
         /// Feature value data to write.
-        public enum OneOf_DataOneof: Codable, Equatable, Sendable {
+        public enum DataOneofOneOf: Codable, Equatable, Sendable {
           /// Feature value. A user provided timestamp may be set in the
           /// `FeatureValue.metadata.generate_time` field.
           indirect case value(FeatureValue?)

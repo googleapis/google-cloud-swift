@@ -39,7 +39,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// corresponding to
   /// `[Code.CANCELLED][google.rpc.Code.CANCELLED]`.
   ///
-  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/error(_:)
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/error(_:)
   /// [google.rpc.Code.CANCELLED]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Code/cancelled
   /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   public var requestedCancellation: Swift.Bool = Swift.Bool()

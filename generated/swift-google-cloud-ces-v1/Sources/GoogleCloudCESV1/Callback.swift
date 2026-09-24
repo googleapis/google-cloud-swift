@@ -38,7 +38,7 @@ public struct Callback: Codable, Equatable, GoogleWKT._AnyPackable,
   public var proactiveExecutionEnabled: Swift.Bool = Swift.Bool()
 
   /// The callback to execute.
-  public var callback: OneOf_Callback? = nil
+  public var callback: CallbackOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@ public struct Callback: Codable, Equatable, GoogleWKT._AnyPackable,
       self.proactiveExecutionEnabled = value
     }
 
-    var callback: OneOf_Callback? = nil
+    var callback: CallbackOneOf? = nil
     let callbackCheckAndSet = {
       if callback != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct Callback: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The callback to execute.
-  public enum OneOf_Callback: Codable, Equatable, Sendable {
+  public enum CallbackOneOf: Codable, Equatable, Sendable {
     /// Required. The python code to execute for the callback.
     case pythonCode(Swift.String)
   }

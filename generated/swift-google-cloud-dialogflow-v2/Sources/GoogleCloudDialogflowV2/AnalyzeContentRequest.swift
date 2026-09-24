@@ -57,7 +57,7 @@
     public var requestId: Swift.String = Swift.String()
 
     /// Required. The input content.
-    public var input: OneOf_Input? = nil
+    public var input: InputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@
         self.requestId = value
       }
 
-      var input: OneOf_Input? = nil
+      var input: InputOneOf? = nil
       let inputCheckAndSet = {
         if input != nil {
           throw DecodingError.dataCorrupted(
@@ -182,7 +182,7 @@
     }
 
     /// Required. The input content.
-    public enum OneOf_Input: Codable, Equatable, Sendable {
+    public enum InputOneOf: Codable, Equatable, Sendable {
       /// The natural language text to be processed.
       indirect case textInput(TextInput?)
       /// The natural language speech audio to be processed.

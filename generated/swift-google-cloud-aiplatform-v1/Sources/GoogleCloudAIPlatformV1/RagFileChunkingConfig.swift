@@ -23,7 +23,7 @@
     Sendable
   {
     /// Specifies the chunking config for RagFiles.
-    public var chunkingConfig: OneOf_ChunkingConfig? = nil
+    public var chunkingConfig: ChunkingConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var chunkingConfig: OneOf_ChunkingConfig? = nil
+      var chunkingConfig: ChunkingConfigOneOf? = nil
       let chunkingConfigCheckAndSet = {
         if chunkingConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -174,7 +174,7 @@
     }
 
     /// Specifies the chunking config for RagFiles.
-    public enum OneOf_ChunkingConfig: Codable, Equatable, Sendable {
+    public enum ChunkingConfigOneOf: Codable, Equatable, Sendable {
       /// Specifies the fixed length chunking config.
       indirect case fixedLengthChunking(RagFileChunkingConfig.FixedLengthChunking?)
     }

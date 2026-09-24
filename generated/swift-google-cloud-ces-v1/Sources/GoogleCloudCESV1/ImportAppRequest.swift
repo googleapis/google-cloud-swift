@@ -53,7 +53,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var ignoreAppLock: Swift.Bool = Swift.Bool()
 
   /// The app to import.
-  public var app: OneOf_App? = nil
+  public var app: AppOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -115,7 +115,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.ignoreAppLock = value
     }
 
-    var app: OneOf_App? = nil
+    var app: AppOneOf? = nil
     let appCheckAndSet = {
       if app != nil {
         throw DecodingError.dataCorrupted(
@@ -367,7 +367,7 @@ public struct ImportAppRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The app to import.
-  public enum OneOf_App: Codable, Equatable, Sendable {
+  public enum AppOneOf: Codable, Equatable, Sendable {
     /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
     /// from which to import app. The format of this URI must be
     /// `gs://<bucket-name>/<object-name>`.

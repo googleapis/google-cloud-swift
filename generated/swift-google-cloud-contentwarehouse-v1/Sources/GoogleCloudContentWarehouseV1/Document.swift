@@ -96,10 +96,10 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Indicates if the document has a legal hold on it.
   public var legalHold: Swift.Bool = Swift.Bool()
 
-  public var structuredContent: OneOf_StructuredContent? = nil
+  public var structuredContent: StructuredContentOneOf? = nil
 
   /// Raw document file.
-  public var rawDocument: OneOf_RawDocument? = nil
+  public var rawDocument: RawDocumentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -238,7 +238,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       self.legalHold = value
     }
 
-    var structuredContent: OneOf_StructuredContent? = nil
+    var structuredContent: StructuredContentOneOf? = nil
     let structuredContentCheckAndSet = {
       if structuredContent != nil {
         throw DecodingError.dataCorrupted(
@@ -258,7 +258,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.structuredContent = structuredContent
 
-    var rawDocument: OneOf_RawDocument? = nil
+    var rawDocument: RawDocumentOneOf? = nil
     let rawDocumentCheckAndSet = {
       if rawDocument != nil {
         throw DecodingError.dataCorrupted(
@@ -332,7 +332,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_StructuredContent: Codable, Equatable, Sendable {
+  public enum StructuredContentOneOf: Codable, Equatable, Sendable {
     /// Other document format, such as PPTX, XLXS
     case plainText(Swift.String)
     /// Document AI format to save the structured content, including OCR.
@@ -340,7 +340,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Raw document file.
-  public enum OneOf_RawDocument: Codable, Equatable, Sendable {
+  public enum RawDocumentOneOf: Codable, Equatable, Sendable {
     /// Raw document file in Cloud Storage path.
     case rawDocumentPath(Swift.String)
     /// Raw document content.

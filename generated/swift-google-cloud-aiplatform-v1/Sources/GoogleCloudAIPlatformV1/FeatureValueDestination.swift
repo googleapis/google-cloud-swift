@@ -22,7 +22,7 @@
   public struct FeatureValueDestination: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@
       }
     }
 
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Output in BigQuery format.
       /// [BigQueryDestination.output_uri][google.cloud.aiplatform.v1.BigQueryDestination.output_uri]
       /// in
@@ -120,7 +120,7 @@
       /// must refer to a table.
       ///
       /// [google.cloud.aiplatform.v1.BigQueryDestination.output_uri]: <doc:BigQueryDestination/outputUri>
-      /// [google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]: <doc:FeatureValueDestination/OneOf_Destination/bigqueryDestination(_:)>
+      /// [google.cloud.aiplatform.v1.FeatureValueDestination.bigquery_destination]: <doc:FeatureValueDestination/DestinationOneOf/bigqueryDestination(_:)>
       indirect case bigqueryDestination(BigQueryDestination?)
       /// Output in TFRecord format.
       ///

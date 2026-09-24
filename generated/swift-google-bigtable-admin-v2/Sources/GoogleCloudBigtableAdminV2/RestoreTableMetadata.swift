@@ -53,7 +53,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [RestoreTableRequest][google.bigtable.admin.v2.RestoreTableRequest].
   ///
   /// [google.bigtable.admin.v2.RestoreTableRequest]: <doc:RestoreTableRequest>
-  public var sourceInfo: OneOf_SourceInfo? = nil
+  public var sourceInfo: SourceInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.progress = try container.decodeIfPresent(OperationProgress.self, forKey: .progress)
 
-    var sourceInfo: OneOf_SourceInfo? = nil
+    var sourceInfo: SourceInfoOneOf? = nil
     let sourceInfoCheckAndSet = {
       if sourceInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -152,7 +152,7 @@ public struct RestoreTableMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [RestoreTableRequest][google.bigtable.admin.v2.RestoreTableRequest].
   ///
   /// [google.bigtable.admin.v2.RestoreTableRequest]: <doc:RestoreTableRequest>
-  public enum OneOf_SourceInfo: Codable, Equatable, Sendable {
+  public enum SourceInfoOneOf: Codable, Equatable, Sendable {
     indirect case backupInfo(BackupInfo?)
   }
 

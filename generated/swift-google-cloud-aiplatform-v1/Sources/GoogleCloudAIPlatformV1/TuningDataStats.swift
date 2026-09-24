@@ -25,7 +25,7 @@
   public struct TuningDataStats: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var tuningDataStats: OneOf_TuningDataStats? = nil
+    public var tuningDataStats: TuningDataStatsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var tuningDataStats: OneOf_TuningDataStats? = nil
+      var tuningDataStats: TuningDataStatsOneOf? = nil
       let tuningDataStatsCheckAndSet = {
         if tuningDataStats != nil {
           throw DecodingError.dataCorrupted(
@@ -97,7 +97,7 @@
       }
     }
 
-    public enum OneOf_TuningDataStats: Codable, Equatable, Sendable {
+    public enum TuningDataStatsOneOf: Codable, Equatable, Sendable {
       /// The SFT Tuning data stats.
       indirect case supervisedTuningDataStats(SupervisedTuningDataStats?)
     }

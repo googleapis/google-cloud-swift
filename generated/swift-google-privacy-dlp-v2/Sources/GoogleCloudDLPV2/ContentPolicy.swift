@@ -181,7 +181,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct PolicyAction: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var action: OneOf_Action? = nil
+    public var action: ActionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -217,7 +217,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var action: OneOf_Action? = nil
+      var action: ActionOneOf? = nil
       let actionCheckAndSet = {
         if action != nil {
           throw DecodingError.dataCorrupted(
@@ -253,7 +253,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Action: Codable, Equatable, Sendable {
+    public enum ActionOneOf: Codable, Equatable, Sendable {
       /// Optional. If set, the verdict will be returned to the user.
       case returnVerdict(ContentPolicyVerdict)
     }
@@ -343,7 +343,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// A condition.
-      public var condition: OneOf_Condition? = nil
+      public var condition: ConditionOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -379,7 +379,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var condition: OneOf_Condition? = nil
+        var condition: ConditionOneOf? = nil
         let conditionCheckAndSet = {
           if condition != nil {
             throw DecodingError.dataCorrupted(
@@ -426,7 +426,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         public var minCount: Swift.Int64 = Swift.Int64()
 
         /// A condition based on info types.
-        public var infoTypeCondition: OneOf_InfoTypeCondition? = nil
+        public var infoTypeCondition: InfoTypeConditionOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -469,7 +469,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
             self.minCount = value
           }
 
-          var infoTypeCondition: OneOf_InfoTypeCondition? = nil
+          var infoTypeCondition: InfoTypeConditionOneOf? = nil
           let infoTypeConditionCheckAndSet = {
             if infoTypeCondition != nil {
               throw DecodingError.dataCorrupted(
@@ -586,7 +586,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// A condition based on info types.
-        public enum OneOf_InfoTypeCondition: Codable, Equatable, Sendable {
+        public enum InfoTypeConditionOneOf: Codable, Equatable, Sendable {
           /// match any of these info types.
           indirect case infoTypes(
             ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition.InfoTypes?)
@@ -607,7 +607,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A condition.
-      public enum OneOf_Condition: Codable, Equatable, Sendable {
+      public enum ConditionOneOf: Codable, Equatable, Sendable {
         /// A condition based on info types.
         indirect case infoTypeCondition(ContentPolicy.PolicyRule.PolicyCondition.InfoTypeCondition?)
       }
@@ -639,7 +639,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The destination for the action logs.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -675,7 +675,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -800,7 +800,7 @@ public struct ContentPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The destination for the action logs.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Optional. Log the actions taken to a BigQuery table.
       indirect case logToBigQuery(ContentPolicy.LoggingConfig.LogToBigQuery?)
     }

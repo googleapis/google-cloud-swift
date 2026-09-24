@@ -54,7 +54,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Immutable. The encryption configuration for CMEK-protected clusters.
   public var encryptionConfig: Cluster.EncryptionConfig? = nil
 
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,7 +126,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     self.encryptionConfig = try container.decodeIfPresent(
       Cluster.EncryptionConfig.self, forKey: .encryptionConfig)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -647,7 +647,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for this cluster.
     indirect case clusterConfig(Cluster.ClusterConfig?)
   }

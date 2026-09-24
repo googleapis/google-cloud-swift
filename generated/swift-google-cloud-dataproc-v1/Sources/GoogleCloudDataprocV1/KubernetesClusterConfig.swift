@@ -31,7 +31,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Kubernetes.
   public var kubernetesSoftwareConfig: KubernetesSoftwareConfig? = nil
 
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     self.kubernetesSoftwareConfig = try container.decodeIfPresent(
       KubernetesSoftwareConfig.self, forKey: .kubernetesSoftwareConfig)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Required. The configuration for running the Dataproc cluster on GKE.
     indirect case gkeClusterConfig(GkeClusterConfig?)
   }

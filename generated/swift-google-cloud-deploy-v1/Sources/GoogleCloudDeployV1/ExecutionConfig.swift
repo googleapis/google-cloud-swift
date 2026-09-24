@@ -51,7 +51,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var verbose: Swift.Bool = Swift.Bool()
 
   /// Details of the environment.
-  public var executionEnvironment: OneOf_ExecutionEnvironment? = nil
+  public var executionEnvironment: ExecutionEnvironmentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,7 +120,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.verbose = value
     }
 
-    var executionEnvironment: OneOf_ExecutionEnvironment? = nil
+    var executionEnvironment: ExecutionEnvironmentOneOf? = nil
     let executionEnvironmentCheckAndSet = {
       if executionEnvironment != nil {
         throw DecodingError.dataCorrupted(
@@ -304,7 +304,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details of the environment.
-  public enum OneOf_ExecutionEnvironment: Codable, Equatable, Sendable {
+  public enum ExecutionEnvironmentOneOf: Codable, Equatable, Sendable {
     /// Optional. Use default Cloud Build pool.
     indirect case defaultPool(DefaultPool?)
     /// Optional. Use private Cloud Build pool.

@@ -74,7 +74,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// BigQuery table partition info. Leave this empty if the BigQuery table
   /// is not partitioned.
-  public var partition: OneOf_Partition? = nil
+  public var partition: PartitionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.dataSchema = value
     }
 
-    var partition: OneOf_Partition? = nil
+    var partition: PartitionOneOf? = nil
     let partitionCheckAndSet = {
       if partition != nil {
         throw DecodingError.dataCorrupted(
@@ -178,7 +178,7 @@ public struct BigQuerySource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// BigQuery table partition info. Leave this empty if the BigQuery table
   /// is not partitioned.
-  public enum OneOf_Partition: Codable, Equatable, Sendable {
+  public enum PartitionOneOf: Codable, Equatable, Sendable {
     /// BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
     indirect case partitionDate(GoogleType.Date?)
   }

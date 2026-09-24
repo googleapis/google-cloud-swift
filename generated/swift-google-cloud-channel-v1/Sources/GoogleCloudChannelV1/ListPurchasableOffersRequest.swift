@@ -39,7 +39,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
   public var languageCode: Swift.String = Swift.String()
 
   /// Defines the intended purchase.
-  public var purchaseOption: OneOf_PurchaseOption? = nil
+  public var purchaseOption: PurchaseOptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
       self.languageCode = value
     }
 
-    var purchaseOption: OneOf_PurchaseOption? = nil
+    var purchaseOption: PurchaseOptionOneOf? = nil
     let purchaseOptionCheckAndSet = {
       if purchaseOption != nil {
         throw DecodingError.dataCorrupted(
@@ -322,7 +322,7 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Defines the intended purchase.
-  public enum OneOf_PurchaseOption: Codable, Equatable, Sendable {
+  public enum PurchaseOptionOneOf: Codable, Equatable, Sendable {
     /// List Offers for CreateEntitlement purchase.
     indirect case createEntitlementPurchase(ListPurchasableOffersRequest.CreateEntitlementPurchase?)
     /// List Offers for ChangeOffer purchase.

@@ -66,7 +66,7 @@
     public var answerFeedback: AnswerFeedback? = nil
 
     /// The record for this answer.
-    public var record: OneOf_Record? = nil
+    public var record: RecordOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -111,7 +111,7 @@
       self.answerFeedback = try container.decodeIfPresent(
         AnswerFeedback.self, forKey: .answerFeedback)
 
-      var record: OneOf_Record? = nil
+      var record: RecordOneOf? = nil
       let recordCheckAndSet = {
         if record != nil {
           throw DecodingError.dataCorrupted(
@@ -150,7 +150,7 @@
     }
 
     /// The record for this answer.
-    public enum OneOf_Record: Codable, Equatable, Sendable {
+    public enum RecordOneOf: Codable, Equatable, Sendable {
       /// Output only. The record for human agent assistant.
       indirect case agentAssistantRecord(AgentAssistantRecord?)
     }

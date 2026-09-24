@@ -33,7 +33,7 @@
     public var mergeOption: ImportIntentsRequest.MergeOption = ImportIntentsRequest.MergeOption()
 
     /// Required. The intents to import.
-    public var intents: OneOf_Intents? = nil
+    public var intents: IntentsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@
         self.mergeOption = value
       }
 
-      var intents: OneOf_Intents? = nil
+      var intents: IntentsOneOf? = nil
       let intentsCheckAndSet = {
         if intents != nil {
           throw DecodingError.dataCorrupted(
@@ -287,7 +287,7 @@
     }
 
     /// Required. The intents to import.
-    public enum OneOf_Intents: Codable, Equatable, Sendable {
+    public enum IntentsOneOf: Codable, Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import intents from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

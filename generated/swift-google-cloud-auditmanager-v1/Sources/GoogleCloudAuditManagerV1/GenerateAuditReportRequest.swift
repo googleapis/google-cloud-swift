@@ -62,7 +62,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
   public var validateOnly: Swift.Bool = Swift.Bool()
 
   /// Options for the report destination location.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
       self.validateOnly = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -281,7 +281,7 @@ public struct GenerateAuditReportRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Options for the report destination location.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// URL for the Cloud Storage bucket where the report and evidence is
     /// uploaded. You must select a bucket that was provided during the
     /// enrollment process.

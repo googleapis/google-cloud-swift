@@ -39,9 +39,9 @@
     /// Media resolution for the input media.
     public var mediaResolution: Part.MediaResolution? = nil
 
-    public var data: OneOf_Data? = nil
+    public var data: DataOneOf? = nil
 
-    public var metadata: OneOf_Metadata? = nil
+    public var metadata: MetadataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,7 @@
       self.mediaResolution = try container.decodeIfPresent(
         Part.MediaResolution.self, forKey: .mediaResolution)
 
-      var data: OneOf_Data? = nil
+      var data: DataOneOf? = nil
       let dataCheckAndSet = {
         if data != nil {
           throw DecodingError.dataCorrupted(
@@ -146,7 +146,7 @@
       }
       self.data = data
 
-      var metadata: OneOf_Metadata? = nil
+      var metadata: MetadataOneOf? = nil
       let metadataCheckAndSet = {
         if metadata != nil {
           throw DecodingError.dataCorrupted(
@@ -209,7 +209,7 @@
     public struct MediaResolution: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      public var value: OneOf_Value? = nil
+      public var value: ValueOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -245,7 +245,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var value: OneOf_Value? = nil
+        var value: ValueOneOf? = nil
         let valueCheckAndSet = {
           if value != nil {
             throw DecodingError.dataCorrupted(
@@ -413,7 +413,7 @@
         }
       }
 
-      public enum OneOf_Value: Codable, Equatable, Sendable {
+      public enum ValueOneOf: Codable, Equatable, Sendable {
         /// The tokenization quality used for given media.
         case level(Part.MediaResolution.Level)
       }
@@ -429,7 +429,7 @@
       }
     }
 
-    public enum OneOf_Data: Codable, Equatable, Sendable {
+    public enum DataOneOf: Codable, Equatable, Sendable {
       /// Optional. Text part (can be code).
       case text(Swift.String)
       /// Optional. Inlined bytes data.
@@ -451,7 +451,7 @@
       indirect case codeExecutionResult(CodeExecutionResult?)
     }
 
-    public enum OneOf_Metadata: Codable, Equatable, Sendable {
+    public enum MetadataOneOf: Codable, Equatable, Sendable {
       /// Optional. Video metadata. The metadata should only be specified while the
       /// video data is presented in inline_data or file_data.
       indirect case videoMetadata(VideoMetadata?)

@@ -50,7 +50,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Options specified for the table type.
-  public var options: OneOf_Options? = nil
+  public var options: OptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -117,7 +117,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var options: OneOf_Options? = nil
+    var options: OptionsOneOf? = nil
     let optionsCheckAndSet = {
       if options != nil {
         throw DecodingError.dataCorrupted(
@@ -270,7 +270,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Options specified for the table type.
-  public enum OneOf_Options: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Options of a Hive table.
     indirect case hiveOptions(HiveTableOptions?)
   }

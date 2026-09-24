@@ -45,7 +45,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public var lastV2MigrationAttemptTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Additional details of the feed. Depends on the feed type.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -272,7 +272,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     self.lastV2MigrationAttemptTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .lastV2MigrationAttemptTime)
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -1212,7 +1212,7 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details of the feed. Depends on the feed type.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Anomali IOC settings.
     indirect case anomaliSettings(AnomaliIocSettings?)
     /// Azure AD Context settings.

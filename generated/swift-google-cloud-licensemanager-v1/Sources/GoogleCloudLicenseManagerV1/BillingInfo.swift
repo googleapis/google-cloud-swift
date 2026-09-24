@@ -27,7 +27,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. When the billing ends.
   public var endTime: GoogleWKT.WKTTimestamp? = nil
 
-  public var currentBillingInfo: OneOf_CurrentBillingInfo? = nil
+  public var currentBillingInfo: CurrentBillingInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
-    var currentBillingInfo: OneOf_CurrentBillingInfo? = nil
+    var currentBillingInfo: CurrentBillingInfoOneOf? = nil
     let currentBillingInfoCheckAndSet = {
       if currentBillingInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct BillingInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_CurrentBillingInfo: Codable, Equatable, Sendable {
+  public enum CurrentBillingInfoOneOf: Codable, Equatable, Sendable {
     /// Required. This type of billing uses user count for computing total
     /// charge.
     indirect case userCountBilling(UserCountBillingInfo?)

@@ -22,7 +22,7 @@ public struct GcsDestination: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required.
-  public var objectUri: OneOf_ObjectUri? = nil
+  public var objectUri: ObjectUriOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct GcsDestination: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var objectUri: OneOf_ObjectUri? = nil
+    var objectUri: ObjectUriOneOf? = nil
     let objectUriCheckAndSet = {
       if objectUri != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct GcsDestination: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required.
-  public enum OneOf_ObjectUri: Codable, Equatable, Sendable {
+  public enum ObjectUriOneOf: Codable, Equatable, Sendable {
     /// The URI of the Cloud Storage object. It's the same URI that is used by
     /// gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
     /// Editing Object

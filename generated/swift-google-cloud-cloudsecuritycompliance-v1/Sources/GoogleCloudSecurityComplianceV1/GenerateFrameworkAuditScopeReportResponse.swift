@@ -30,7 +30,7 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
   public var complianceFramework: Swift.String = Swift.String()
 
   /// The set of options that the audit scope report is exported in.
-  public var auditReport: OneOf_AuditReport? = nil
+  public var auditReport: AuditReportOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
       self.complianceFramework = value
     }
 
-    var auditReport: OneOf_AuditReport? = nil
+    var auditReport: AuditReportOneOf? = nil
     let auditReportCheckAndSet = {
       if auditReport != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct GenerateFrameworkAuditScopeReportResponse: Codable, Equatable, Goo
   }
 
   /// The set of options that the audit scope report is exported in.
-  public enum OneOf_AuditReport: Codable, Equatable, Sendable {
+  public enum AuditReportOneOf: Codable, Equatable, Sendable {
     /// The audit scope report content in byte format.
     case scopeReportContents(Foundation.Data)
   }

@@ -24,7 +24,7 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackabl
   /// This is system instruction supported only for controllable voice models.
   public var prompt: Swift.String? = nil
 
-  public var inputSource: OneOf_InputSource? = nil
+  public var inputSource: InputSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackabl
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.prompt = try container.decodeIfPresent(Swift.String.self, forKey: .prompt)
 
-    var inputSource: OneOf_InputSource? = nil
+    var inputSource: InputSourceOneOf? = nil
     let inputSourceCheckAndSet = {
       if inputSource != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct StreamingSynthesisInput: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_InputSource: Codable, Equatable, Sendable {
+  public enum InputSourceOneOf: Codable, Equatable, Sendable {
     /// The raw text to be synthesized. It is recommended that each input
     /// contains complete, terminating sentences, which results in better prosody
     /// in the output audio.

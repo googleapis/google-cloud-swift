@@ -111,7 +111,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     Sendable
   {
     /// The operation to perform on the file.
-    public var operation: OneOf_Operation? = nil
+    public var operation: OperationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -149,7 +149,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var operation: OneOf_Operation? = nil
+      var operation: OperationOneOf? = nil
       let operationCheckAndSet = {
         if operation != nil {
           throw DecodingError.dataCorrupted(
@@ -320,7 +320,7 @@ public struct CommitRepositoryChangesRequest: Codable, Equatable, GoogleWKT._Any
     }
 
     /// The operation to perform on the file.
-    public enum OneOf_Operation: Codable, Equatable, Sendable {
+    public enum OperationOneOf: Codable, Equatable, Sendable {
       /// Represents the write operation.
       indirect case writeFile(CommitRepositoryChangesRequest.FileOperation.WriteFile?)
       /// Represents the delete operation.

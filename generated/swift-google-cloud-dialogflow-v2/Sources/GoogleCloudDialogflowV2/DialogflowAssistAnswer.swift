@@ -28,7 +28,7 @@
     public var answerRecord: Swift.String = Swift.String()
 
     /// Result from DetectIntent for one matched intent.
-    public var result: OneOf_Result? = nil
+    public var result: ResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@
         self.answerRecord = value
       }
 
-      var result: OneOf_Result? = nil
+      var result: ResultOneOf? = nil
       let resultCheckAndSet = {
         if result != nil {
           throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@
     }
 
     /// Result from DetectIntent for one matched intent.
-    public enum OneOf_Result: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Codable, Equatable, Sendable {
       /// Result from v2 agent.
       indirect case queryResult(QueryResult?)
       /// An intent suggestion generated from conversation.

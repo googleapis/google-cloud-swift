@@ -461,7 +461,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// lowercased.
   ///
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
-  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/OneOf_Scope/column(_:)>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
   ///
   /// @Snippet(path: "DataCatalog_ListTags")
   @available(*, deprecated)
@@ -1864,7 +1864,7 @@ extension Clients.DataCatalogProtocol {
   /// lowercased.
   ///
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
-  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/OneOf_Scope/column(_:)>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
   ///
   /// @Snippet(path: "DataCatalog_ListTags")
   @available(*, deprecated)

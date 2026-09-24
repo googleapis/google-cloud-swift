@@ -31,7 +31,7 @@
     Sendable
   {
     /// The data of the function response part.
-    public var data: OneOf_Data? = nil
+    public var data: DataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var data: OneOf_Data? = nil
+      var data: DataOneOf? = nil
       let dataCheckAndSet = {
         if data != nil {
           throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@
     }
 
     /// The data of the function response part.
-    public enum OneOf_Data: Codable, Equatable, Sendable {
+    public enum DataOneOf: Codable, Equatable, Sendable {
       /// Inline media bytes.
       indirect case inlineData(FunctionResponseBlob?)
       /// URI based data.

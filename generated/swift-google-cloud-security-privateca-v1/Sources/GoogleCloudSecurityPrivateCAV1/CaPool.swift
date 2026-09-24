@@ -635,7 +635,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
     public struct AllowedKeyType: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      public var keyType: OneOf_KeyType? = nil
+      public var keyType: KeyTypeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -673,7 +673,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var keyType: OneOf_KeyType? = nil
+        var keyType: KeyTypeOneOf? = nil
         let keyTypeCheckAndSet = {
           if keyType != nil {
             throw DecodingError.dataCorrupted(
@@ -1016,7 +1016,7 @@ public struct CaPool: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum OneOf_KeyType: Codable, Equatable, Sendable {
+      public enum KeyTypeOneOf: Codable, Equatable, Sendable {
         /// Represents an allowed RSA key type.
         indirect case rsa(CaPool.IssuancePolicy.AllowedKeyType.RsaKeyType?)
         /// Represents an allowed Elliptic Curve key type.

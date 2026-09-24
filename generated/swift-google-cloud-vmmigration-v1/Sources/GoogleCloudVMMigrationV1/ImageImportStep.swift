@@ -27,7 +27,7 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The time the step has ended.
   public var endTime: GoogleWKT.WKTTimestamp? = nil
 
-  public var step: OneOf_Step? = nil
+  public var step: StepOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
-    var step: OneOf_Step? = nil
+    var step: StepOneOf? = nil
     let stepCheckAndSet = {
       if step != nil {
         throw DecodingError.dataCorrupted(
@@ -132,7 +132,7 @@ public struct ImageImportStep: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Step: Codable, Equatable, Sendable {
+  public enum StepOneOf: Codable, Equatable, Sendable {
     /// Initializing step.
     indirect case initializing(InitializingImageImportStep?)
     /// Loading source files step.

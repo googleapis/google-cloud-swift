@@ -31,7 +31,7 @@ public struct StorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Reference to the storage resource in Google Cloud. Exactly one of these
   /// fields will be populated based on the configured type of storage resource.
-  public var reference: OneOf_Reference? = nil
+  public var reference: ReferenceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct StorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.config = try container.decodeIfPresent(StorageResourceConfig.self, forKey: .config)
 
-    var reference: OneOf_Reference? = nil
+    var reference: ReferenceOneOf? = nil
     let referenceCheckAndSet = {
       if reference != nil {
         throw DecodingError.dataCorrupted(
@@ -121,7 +121,7 @@ public struct StorageResource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Reference to the storage resource in Google Cloud. Exactly one of these
   /// fields will be populated based on the configured type of storage resource.
-  public enum OneOf_Reference: Codable, Equatable, Sendable {
+  public enum ReferenceOneOf: Codable, Equatable, Sendable {
     /// Reference to a Filestore instance. Populated if and only if the storage
     /// resource was configured to use Filestore.
     indirect case filestore(FilestoreReference?)

@@ -39,7 +39,7 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// An optional filter consisting of a single group name.  The filters limit
   /// the groups returned based on their parent-child relationship with the
   /// specified group. If no filter is specified, all groups are returned.
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -94,7 +94,7 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.pageToken = value
     }
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -150,7 +150,7 @@ public struct ListGroupsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// An optional filter consisting of a single group name.  The filters limit
   /// the groups returned based on their parent-child relationship with the
   /// specified group. If no filter is specified, all groups are returned.
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// A group name. The format is:
     ///
     ///     projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]

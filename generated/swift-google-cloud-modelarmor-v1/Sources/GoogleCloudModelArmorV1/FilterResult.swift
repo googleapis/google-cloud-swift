@@ -24,7 +24,7 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Encapsulates one of responsible AI, Sensitive Data Protection, Prompt
   /// Injection and Jailbreak, Malicious URI, CSAM, Virus Scan related filter
   /// results.
-  public var filterResult: OneOf_FilterResult? = nil
+  public var filterResult: FilterResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var filterResult: OneOf_FilterResult? = nil
+    var filterResult: FilterResultOneOf? = nil
     let filterResultCheckAndSet = {
       if filterResult != nil {
         throw DecodingError.dataCorrupted(
@@ -144,7 +144,7 @@ public struct FilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Encapsulates one of responsible AI, Sensitive Data Protection, Prompt
   /// Injection and Jailbreak, Malicious URI, CSAM, Virus Scan related filter
   /// results.
-  public enum OneOf_FilterResult: Codable, Equatable, Sendable {
+  public enum FilterResultOneOf: Codable, Equatable, Sendable {
     /// Responsible AI filter results.
     indirect case raiFilterResult(RaiFilterResult?)
     /// Sensitive Data Protection results.

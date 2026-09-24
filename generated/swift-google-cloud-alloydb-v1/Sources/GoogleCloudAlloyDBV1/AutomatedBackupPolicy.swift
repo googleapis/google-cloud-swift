@@ -60,7 +60,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// If not set, the schedule defaults to a weekly schedule with one backup
   /// per day and a start time chosen arbitrarily.
-  public var schedule: OneOf_Schedule? = nil
+  public var schedule: ScheduleOneOf? = nil
 
   /// The retention policy for automated backups.
   ///
@@ -69,7 +69,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy; the retentions of existing backups remain unchanged.
   ///
   /// If no retention policy is set, a default of 14 days is used.
-  public var retention: OneOf_Retention? = nil
+  public var retention: RetentionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var schedule: OneOf_Schedule? = nil
+    var schedule: ScheduleOneOf? = nil
     let scheduleCheckAndSet = {
       if schedule != nil {
         throw DecodingError.dataCorrupted(
@@ -148,7 +148,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.schedule = schedule
 
-    var retention: OneOf_Retention? = nil
+    var retention: RetentionOneOf? = nil
     let retentionCheckAndSet = {
       if retention != nil {
         throw DecodingError.dataCorrupted(
@@ -442,7 +442,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// If not set, the schedule defaults to a weekly schedule with one backup
   /// per day and a start time chosen arbitrarily.
-  public enum OneOf_Schedule: Codable, Equatable, Sendable {
+  public enum ScheduleOneOf: Codable, Equatable, Sendable {
     /// Weekly schedule for the Backup.
     indirect case weeklySchedule(AutomatedBackupPolicy.WeeklySchedule?)
   }
@@ -454,7 +454,7 @@ public struct AutomatedBackupPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// policy; the retentions of existing backups remain unchanged.
   ///
   /// If no retention policy is set, a default of 14 days is used.
-  public enum OneOf_Retention: Codable, Equatable, Sendable {
+  public enum RetentionOneOf: Codable, Equatable, Sendable {
     /// Time-based Backup retention policy.
     indirect case timeBasedRetention(AutomatedBackupPolicy.TimeBasedRetention?)
     /// Quantity-based Backup retention policy to retain recent backups.

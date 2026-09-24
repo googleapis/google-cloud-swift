@@ -38,7 +38,7 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   public var context: [GoogleWKT.WKTAny] = []
 
   /// The type of the output.
-  public var outputType: OneOf_OutputType? = nil
+  public var outputType: OutputTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
       self.context = value
     }
 
-    var outputType: OneOf_OutputType? = nil
+    var outputType: OutputTypeOneOf? = nil
     let outputTypeCheckAndSet = {
       if outputType != nil {
         throw DecodingError.dataCorrupted(
@@ -252,7 +252,7 @@ public struct SessionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the output.
-  public enum OneOf_OutputType: Codable, Equatable, Sendable {
+  public enum OutputTypeOneOf: Codable, Equatable, Sendable {
     /// Output text from the CES agent.
     case text(Swift.String)
     /// Output audio from the CES agent.

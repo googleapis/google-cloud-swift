@@ -24,7 +24,7 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
   Sendable
 {
   /// The type of the message.
-  public var messageType: OneOf_MessageType? = nil
+  public var messageType: MessageTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var messageType: OneOf_MessageType? = nil
+    var messageType: MessageTypeOneOf? = nil
     let messageTypeCheckAndSet = {
       if messageType != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct BidiSessionClientMessage: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The type of the message.
-  public enum OneOf_MessageType: Codable, Equatable, Sendable {
+  public enum MessageTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. The initial config message for the session.
     indirect case config(SessionConfig?)
     /// Optional. Realtime input for the session.

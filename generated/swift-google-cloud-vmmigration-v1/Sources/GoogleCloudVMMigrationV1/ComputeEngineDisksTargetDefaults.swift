@@ -29,10 +29,10 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleWKT._A
   /// The details of each Persistent Disk to create.
   public var disks: [PersistentDiskDefaults] = []
 
-  public var location: OneOf_Location? = nil
+  public var location: LocationOneOf? = nil
 
   /// Details of the VM to attach the disks to as the target of this migration.
-  public var vmTarget: OneOf_VmTarget? = nil
+  public var vmTarget: VmTargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleWKT._A
       self.disks = value
     }
 
-    var location: OneOf_Location? = nil
+    var location: LocationOneOf? = nil
     let locationCheckAndSet = {
       if location != nil {
         throw DecodingError.dataCorrupted(
@@ -97,7 +97,7 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleWKT._A
     }
     self.location = location
 
-    var vmTarget: OneOf_VmTarget? = nil
+    var vmTarget: VmTargetOneOf? = nil
     let vmTargetCheckAndSet = {
       if vmTarget != nil {
         throw DecodingError.dataCorrupted(
@@ -149,13 +149,13 @@ public struct ComputeEngineDisksTargetDefaults: Codable, Equatable, GoogleWKT._A
     }
   }
 
-  public enum OneOf_Location: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Codable, Equatable, Sendable {
     /// The zone in which to create the Persistent Disks.
     case zone(Swift.String)
   }
 
   /// Details of the VM to attach the disks to as the target of this migration.
-  public enum OneOf_VmTarget: Codable, Equatable, Sendable {
+  public enum VmTargetOneOf: Codable, Equatable, Sendable {
     /// Details of the disk only migration target.
     indirect case disksTargetDefaults(DisksMigrationDisksTargetDefaults?)
     /// Details of the VM migration target.

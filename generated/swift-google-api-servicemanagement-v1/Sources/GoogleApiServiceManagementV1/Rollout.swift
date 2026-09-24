@@ -51,7 +51,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Strategy that defines which versions of service configurations should be
   /// pushed
   /// and how they should be used at runtime.
-  public var strategy: OneOf_Strategy? = nil
+  public var strategy: StrategyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
       self.serviceName = value
     }
 
-    var strategy: OneOf_Strategy? = nil
+    var strategy: StrategyOneOf? = nil
     let strategyCheckAndSet = {
       if strategy != nil {
         throw DecodingError.dataCorrupted(
@@ -470,7 +470,7 @@ public struct Rollout: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Strategy that defines which versions of service configurations should be
   /// pushed
   /// and how they should be used at runtime.
-  public enum OneOf_Strategy: Codable, Equatable, Sendable {
+  public enum StrategyOneOf: Codable, Equatable, Sendable {
     /// Google Service Control selects service configurations based on
     /// traffic percentage.
     indirect case trafficPercentStrategy(Rollout.TrafficPercentStrategy?)

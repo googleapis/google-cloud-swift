@@ -58,7 +58,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// ApiOperation protocol style
-  public var operation: OneOf_Operation? = nil
+  public var operation: OperationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -138,7 +138,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var operation: OneOf_Operation? = nil
+    var operation: OperationOneOf? = nil
     let operationCheckAndSet = {
       if operation != nil {
         throw DecodingError.dataCorrupted(
@@ -373,7 +373,7 @@ public struct DiscoveredApiOperation: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// ApiOperation protocol style
-  public enum OneOf_Operation: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Codable, Equatable, Sendable {
     /// Optional. An HTTP Operation.
     indirect case httpOperation(HttpOperationDetails?)
   }

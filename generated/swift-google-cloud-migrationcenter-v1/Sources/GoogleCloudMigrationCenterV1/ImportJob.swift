@@ -46,7 +46,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var assetSource: Swift.String = Swift.String()
 
   /// Holds the various report types of an import job.
-  public var report: OneOf_Report? = nil
+  public var report: ReportOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,7 +122,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.assetSource = value
     }
 
-    var report: OneOf_Report? = nil
+    var report: ReportOneOf? = nil
     let reportCheckAndSet = {
       if report != nil {
         throw DecodingError.dataCorrupted(
@@ -326,7 +326,7 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Holds the various report types of an import job.
-  public enum OneOf_Report: Codable, Equatable, Sendable {
+  public enum ReportOneOf: Codable, Equatable, Sendable {
     /// Output only. The report with the validation results of the import job.
     indirect case validationReport(ValidationReport?)
     /// Output only. The report with the results of running the import job.

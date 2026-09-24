@@ -25,7 +25,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var enableFakeMode: Swift.Bool = Swift.Bool()
 
   /// The response is either static or it is provided by a python function.
-  public var toolResponse: OneOf_ToolResponse? = nil
+  public var toolResponse: ToolResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.enableFakeMode = value
     }
 
-    var toolResponse: OneOf_ToolResponse? = nil
+    var toolResponse: ToolResponseOneOf? = nil
     let toolResponseCheckAndSet = {
       if toolResponse != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The response is either static or it is provided by a python function.
-  public enum OneOf_ToolResponse: Codable, Equatable, Sendable {
+  public enum ToolResponseOneOf: Codable, Equatable, Sendable {
     /// Optional. Code block which will be executed instead of a real tool call.
     indirect case codeBlock(CodeBlock?)
   }

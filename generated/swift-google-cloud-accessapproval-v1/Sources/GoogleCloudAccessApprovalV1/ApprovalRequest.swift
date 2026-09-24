@@ -51,7 +51,7 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var requestedExpiration: GoogleWKT.WKTTimestamp? = nil
 
   /// The current decision on the approval request.
-  public var decision: OneOf_Decision? = nil
+  public var decision: DecisionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,7 +120,7 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.requestedExpiration = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .requestedExpiration)
 
-    var decision: OneOf_Decision? = nil
+    var decision: DecisionOneOf? = nil
     let decisionCheckAndSet = {
       if decision != nil {
         throw DecodingError.dataCorrupted(
@@ -168,7 +168,7 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The current decision on the approval request.
-  public enum OneOf_Decision: Codable, Equatable, Sendable {
+  public enum DecisionOneOf: Codable, Equatable, Sendable {
     /// Access was approved.
     indirect case approve(ApproveDecision?)
     /// The request was dismissed.

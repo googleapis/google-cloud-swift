@@ -74,7 +74,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var backupPlanRevisionName: Swift.String = Swift.String()
 
   /// Properties of the protected GCP resource.
-  public var resourceProperties: OneOf_ResourceProperties? = nil
+  public var resourceProperties: ResourcePropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -168,7 +168,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupPlanRevisionName = value
     }
 
-    var resourceProperties: OneOf_ResourceProperties? = nil
+    var resourceProperties: ResourcePropertiesOneOf? = nil
     let resourcePropertiesCheckAndSet = {
       if resourceProperties != nil {
         throw DecodingError.dataCorrupted(
@@ -367,7 +367,7 @@ public struct BackupPlanAssociation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Properties of the protected GCP resource.
-  public enum OneOf_ResourceProperties: Codable, Equatable, Sendable {
+  public enum ResourcePropertiesOneOf: Codable, Equatable, Sendable {
     /// Output only. Cloud SQL instance's backup plan association properties.
     indirect case cloudSqlInstanceBackupPlanAssociationProperties(
       CloudSqlInstanceBackupPlanAssociationProperties?)

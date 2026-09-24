@@ -26,7 +26,7 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var detectedUri: Swift.String = Swift.String()
 
   /// Indicates the type of credential leaked.
-  public var credentialType: OneOf_CredentialType? = nil
+  public var credentialType: CredentialTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.detectedUri = value
     }
 
-    var credentialType: OneOf_CredentialType? = nil
+    var credentialType: CredentialTypeOneOf? = nil
     let credentialTypeCheckAndSet = {
       if credentialType != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct LeakedCredentialEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Indicates the type of credential leaked.
-  public enum OneOf_CredentialType: Codable, Equatable, Sendable {
+  public enum CredentialTypeOneOf: Codable, Equatable, Sendable {
     /// Information about leaked service accounts.
     indirect case serviceAccountCredential(ServiceAccountCredential?)
     /// Information about leaked API keys.

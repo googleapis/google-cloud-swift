@@ -22,7 +22,7 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of command.
-  public var commandType: OneOf_CommandType? = nil
+  public var commandType: CommandTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var commandType: OneOf_CommandType? = nil
+    var commandType: CommandTypeOneOf? = nil
     let commandTypeCheckAndSet = {
       if commandType != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of command.
-  public enum OneOf_CommandType: Codable, Equatable, Sendable {
+  public enum CommandTypeOneOf: Codable, Equatable, Sendable {
     /// AgentCommand specifies a one-time executable program for the agent to
     /// run.
     indirect case agentCommand(AgentCommand?)

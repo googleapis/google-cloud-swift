@@ -37,7 +37,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
-  public var toolIdentifier: OneOf_ToolIdentifier? = nil
+  public var toolIdentifier: ToolIdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,7 +88,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.args = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .args)
 
-    var toolIdentifier: OneOf_ToolIdentifier? = nil
+    var toolIdentifier: ToolIdentifierOneOf? = nil
     let toolIdentifierCheckAndSet = {
       if toolIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -132,7 +132,7 @@ public struct ToolCall: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
-  public enum OneOf_ToolIdentifier: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the tool to execute.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)

@@ -48,7 +48,7 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public var version: [Swift.String] = []
 
   /// This SLI can be evaluated on the basis of availability or latency.
-  public var sliCriteria: OneOf_SliCriteria? = nil
+  public var sliCriteria: SliCriteriaOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,7 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
       self.version = value
     }
 
-    var sliCriteria: OneOf_SliCriteria? = nil
+    var sliCriteria: SliCriteriaOneOf? = nil
     let sliCriteriaCheckAndSet = {
       if sliCriteria != nil {
         throw DecodingError.dataCorrupted(
@@ -271,7 +271,7 @@ public struct BasicSli: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// This SLI can be evaluated on the basis of availability or latency.
-  public enum OneOf_SliCriteria: Codable, Equatable, Sendable {
+  public enum SliCriteriaOneOf: Codable, Equatable, Sendable {
     /// Good service is defined to be the count of requests made to this service
     /// that return successfully.
     indirect case availability(BasicSli.AvailabilityCriteria?)

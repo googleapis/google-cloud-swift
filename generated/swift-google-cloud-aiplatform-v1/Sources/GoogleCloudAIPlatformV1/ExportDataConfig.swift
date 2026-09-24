@@ -92,11 +92,11 @@
     public var exportUse: ExportDataConfig.ExportUse = ExportDataConfig.ExportUse()
 
     /// The destination of the output.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     /// The instructions how the export data should be split between the
     /// training, validation and test sets.
-    public var split: OneOf_Split? = nil
+    public var split: SplitOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -159,7 +159,7 @@
         self.exportUse = value
       }
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -176,7 +176,7 @@
       }
       self.destination = destination
 
-      var split: OneOf_Split? = nil
+      var split: SplitOneOf? = nil
       let splitCheckAndSet = {
         if split != nil {
           throw DecodingError.dataCorrupted(
@@ -344,7 +344,7 @@
     }
 
     /// The destination of the output.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// The Google Cloud Storage location where the output is to be written to.
       /// In the given directory a new directory will be created with name:
       /// `export-data-<dataset-display-name>-<timestamp-of-export-call>` where
@@ -359,7 +359,7 @@
 
     /// The instructions how the export data should be split between the
     /// training, validation and test sets.
-    public enum OneOf_Split: Codable, Equatable, Sendable {
+    public enum SplitOneOf: Codable, Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
       indirect case fractionSplit(ExportFractionSplit?)
       /// Split based on the provided filters for each set.

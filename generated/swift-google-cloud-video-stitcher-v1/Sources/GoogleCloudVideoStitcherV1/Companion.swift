@@ -51,7 +51,7 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
   public var events: [Event] = []
 
   /// Ad resource associated with the companion ad.
-  public var adResource: OneOf_AdResource? = nil
+  public var adResource: AdResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,7 +136,7 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
       self.events = value
     }
 
-    var adResource: OneOf_AdResource? = nil
+    var adResource: AdResourceOneOf? = nil
     let adResourceCheckAndSet = {
       if adResource != nil {
         throw DecodingError.dataCorrupted(
@@ -196,7 +196,7 @@ public struct Companion: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Ad resource associated with the companion ad.
-  public enum OneOf_AdResource: Codable, Equatable, Sendable {
+  public enum AdResourceOneOf: Codable, Equatable, Sendable {
     /// The IFrame ad resource associated with the companion ad.
     indirect case iframeAdResource(IframeAdResource?)
     /// The static ad resource associated with the companion ad.

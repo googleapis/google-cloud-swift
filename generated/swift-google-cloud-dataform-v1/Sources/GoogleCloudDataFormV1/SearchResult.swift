@@ -22,7 +22,7 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The entry's contents.
-  public var entry: OneOf_Entry? = nil
+  public var entry: EntryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var entry: OneOf_Entry? = nil
+    var entry: EntryOneOf? = nil
     let entryCheckAndSet = {
       if entry != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct SearchResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The entry's contents.
-  public enum OneOf_Entry: Codable, Equatable, Sendable {
+  public enum EntryOneOf: Codable, Equatable, Sendable {
     /// Details when search result is a file.
     indirect case file(FileSearchResult?)
     /// Details when search result is a directory.

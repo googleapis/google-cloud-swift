@@ -39,7 +39,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
   public var order: Swift.Int32 = Swift.Int32()
 
   /// Required. The value of this field.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -95,7 +95,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
       self.order = value
     }
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -228,7 +228,7 @@ public struct TagField: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The value of this field.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// The value of a tag field with a double type.
     case doubleValue(Swift.Double)
     /// The value of a tag field with a string type.

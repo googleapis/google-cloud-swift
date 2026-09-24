@@ -21,7 +21,7 @@ public import Foundation
 public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var sourceForm: OneOf_SourceForm? = nil
+  public var sourceForm: SourceFormOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var sourceForm: OneOf_SourceForm? = nil
+    var sourceForm: SourceFormOneOf? = nil
     let sourceFormCheckAndSet = {
       if sourceForm != nil {
         throw DecodingError.dataCorrupted(
@@ -238,7 +238,7 @@ public struct AssetSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_SourceForm: Codable, Equatable, Sendable {
+  public enum SourceFormOneOf: Codable, Equatable, Sendable {
     /// The source of the asset is from Cloud Storage.
     indirect case assetGcsSource(AssetSource.AssetGcsSource?)
     /// The source of the asset is from content bytes.

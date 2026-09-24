@@ -30,7 +30,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Job configuration information.
-  public var configuration: OneOf_Configuration? = nil
+  public var configuration: ConfigurationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var configuration: OneOf_Configuration? = nil
+    var configuration: ConfigurationOneOf? = nil
     let configurationCheckAndSet = {
       if configuration != nil {
         throw DecodingError.dataCorrupted(
@@ -581,7 +581,7 @@ public struct JobConfiguration: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Job configuration information.
-  public enum OneOf_Configuration: Codable, Equatable, Sendable {
+  public enum ConfigurationOneOf: Codable, Equatable, Sendable {
     /// Query job information.
     indirect case query(JobConfiguration.Query?)
     /// Load job information.

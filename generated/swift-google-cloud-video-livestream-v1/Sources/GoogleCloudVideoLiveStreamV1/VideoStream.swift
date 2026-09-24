@@ -22,7 +22,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Codec settings.
-  public var codecSettings: OneOf_CodecSettings? = nil
+  public var codecSettings: CodecSettingsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var codecSettings: OneOf_CodecSettings? = nil
+    var codecSettings: CodecSettingsOneOf? = nil
     let codecSettingsCheckAndSet = {
       if codecSettings != nil {
         throw DecodingError.dataCorrupted(
@@ -164,7 +164,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]
     /// if set. The default is 0.
     ///
-    /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]: <doc:VideoStream/H264CodecSettings/OneOf_GopMode/gopFrameCount(_:)>
+    /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_frame_count]: <doc:VideoStream/H264CodecSettings/GopModeOneOf/gopFrameCount(_:)>
     public var bFrameCount: Swift.Int32 = Swift.Int32()
 
     /// Specify the intensity of the adaptive quantizer (AQ). Must be between 0
@@ -201,7 +201,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     public var tune: Swift.String = Swift.String()
 
     /// GOP mode can be either by frame count or duration.
-    public var gopMode: OneOf_GopMode? = nil
+    public var gopMode: GopModeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -304,7 +304,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         self.tune = value
       }
 
-      var gopMode: OneOf_GopMode? = nil
+      var gopMode: GopModeOneOf? = nil
       let gopModeCheckAndSet = {
         if gopMode != nil {
           throw DecodingError.dataCorrupted(
@@ -360,7 +360,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum OneOf_GopMode: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Codable, Equatable, Sendable {
       /// Select the GOP size based on the specified frame count.
       /// If GOP frame count is set instead of GOP duration, GOP duration will be
       /// calculated by `gopFrameCount`/`frameRate`. The calculated GOP duration
@@ -446,7 +446,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [gop_frame_count][google.cloud.video.livestream.v1.VideoStream.H265CodecSettings.gop_frame_count]
     /// if set. The default is 0.
     ///
-    /// [google.cloud.video.livestream.v1.VideoStream.H265CodecSettings.gop_frame_count]: <doc:VideoStream/H265CodecSettings/OneOf_GopMode/gopFrameCount(_:)>
+    /// [google.cloud.video.livestream.v1.VideoStream.H265CodecSettings.gop_frame_count]: <doc:VideoStream/H265CodecSettings/GopModeOneOf/gopFrameCount(_:)>
     public var bFrameCount: Swift.Int32 = Swift.Int32()
 
     /// Optional. Specify the intensity of the adaptive quantizer (AQ). Must be
@@ -456,7 +456,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     public var aqStrength: Swift.Double = Swift.Double()
 
     /// GOP mode can be either by frame count or duration.
-    public var gopMode: OneOf_GopMode? = nil
+    public var gopMode: GopModeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -539,7 +539,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         self.aqStrength = value
       }
 
-      var gopMode: OneOf_GopMode? = nil
+      var gopMode: GopModeOneOf? = nil
       let gopModeCheckAndSet = {
         if gopMode != nil {
           throw DecodingError.dataCorrupted(
@@ -591,7 +591,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum OneOf_GopMode: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Codable, Equatable, Sendable {
       /// Optional. Select the GOP size based on the specified frame count.
       /// If GOP frame count is set instead of GOP duration, GOP duration will be
       /// calculated by `gopFrameCount`/`frameRate`. The calculated GOP duration
@@ -623,7 +623,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Codec settings.
-  public enum OneOf_CodecSettings: Codable, Equatable, Sendable {
+  public enum CodecSettingsOneOf: Codable, Equatable, Sendable {
     /// H264 codec settings.
     indirect case h264(VideoStream.H264CodecSettings?)
     /// H265 codec settings.

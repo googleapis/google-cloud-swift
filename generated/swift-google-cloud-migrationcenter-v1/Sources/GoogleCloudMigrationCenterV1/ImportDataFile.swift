@@ -36,7 +36,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The state of the import data file.
   public var state: ImportDataFile.State = ImportDataFile.State()
 
-  public var fileInfo: OneOf_FileInfo? = nil
+  public var fileInfo: FileInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var fileInfo: OneOf_FileInfo? = nil
+    var fileInfo: FileInfoOneOf? = nil
     let fileInfoCheckAndSet = {
       if fileInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -254,7 +254,7 @@ public struct ImportDataFile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_FileInfo: Codable, Equatable, Sendable {
+  public enum FileInfoOneOf: Codable, Equatable, Sendable {
     /// Information about a file that is uploaded to a storage service.
     indirect case uploadFileInfo(UploadFileInfo?)
   }

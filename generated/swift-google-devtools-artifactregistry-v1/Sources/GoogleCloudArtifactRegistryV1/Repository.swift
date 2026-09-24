@@ -88,11 +88,11 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   public var registryUri: Swift.String = Swift.String()
 
   /// Repository-specific configurations.
-  public var formatConfig: OneOf_FormatConfig? = nil
+  public var formatConfig: FormatConfigOneOf? = nil
 
   /// Repository configuration specific to the Mode value being selected (Remote
   /// or Virtual)
-  public var modeConfig: OneOf_ModeConfig? = nil
+  public var modeConfig: ModeConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -215,7 +215,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
       self.registryUri = value
     }
 
-    var formatConfig: OneOf_FormatConfig? = nil
+    var formatConfig: FormatConfigOneOf? = nil
     let formatConfigCheckAndSet = {
       if formatConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -237,7 +237,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.formatConfig = formatConfig
 
-    var modeConfig: OneOf_ModeConfig? = nil
+    var modeConfig: ModeConfigOneOf? = nil
     let modeConfigCheckAndSet = {
       if modeConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -1233,7 +1233,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Repository-specific configurations.
-  public enum OneOf_FormatConfig: Codable, Equatable, Sendable {
+  public enum FormatConfigOneOf: Codable, Equatable, Sendable {
     /// Maven repository config contains repository level configuration
     /// for the repositories of maven type.
     indirect case mavenConfig(Repository.MavenRepositoryConfig?)
@@ -1244,7 +1244,7 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Repository configuration specific to the Mode value being selected (Remote
   /// or Virtual)
-  public enum OneOf_ModeConfig: Codable, Equatable, Sendable {
+  public enum ModeConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration specific for a Virtual Repository.
     indirect case virtualRepositoryConfig(VirtualRepositoryConfig?)
     /// Configuration specific for a Remote Repository.

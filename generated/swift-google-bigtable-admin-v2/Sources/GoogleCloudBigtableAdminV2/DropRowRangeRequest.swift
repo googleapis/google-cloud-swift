@@ -30,7 +30,7 @@ public struct DropRowRangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Delete all rows or by prefix.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct DropRowRangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct DropRowRangeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Delete all rows or by prefix.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Delete all rows that start with this row key prefix. Prefix cannot be
     /// zero length.
     case rowKeyPrefix(Foundation.Data)

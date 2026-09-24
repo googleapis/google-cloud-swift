@@ -38,7 +38,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
-  public var teeAttestation: OneOf_TeeAttestation? = nil
+  public var teeAttestation: TeeAttestationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
       self.platformType = value
     }
 
-    var teeAttestation: OneOf_TeeAttestation? = nil
+    var teeAttestation: TeeAttestationOneOf? = nil
     let teeAttestationCheckAndSet = {
       if teeAttestation != nil {
         throw DecodingError.dataCorrupted(
@@ -340,7 +340,7 @@ public struct VerifyConfidentialGkeRequest: Codable, Equatable, GoogleWKT._AnyPa
 
   /// Required. A tee attestation report, used to populate hardware rooted
   /// claims.
-  public enum OneOf_TeeAttestation: Codable, Equatable, Sendable {
+  public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
     /// The TPM-specific data provided by the attesting platform, used to
     /// populate any of the claims regarding platform state.
     indirect case tpmAttestation(TpmAttestation?)

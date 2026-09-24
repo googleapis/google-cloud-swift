@@ -22,7 +22,7 @@ public struct DatasetOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. Specify the output.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct DatasetOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct DatasetOutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Specify the output.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage destination to write the output.
     indirect case gcsDestination(GcsOutputDestination?)
   }

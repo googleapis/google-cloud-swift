@@ -102,7 +102,7 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       .DatabaseViewSpec.ViewType()
 
     /// Definition of the view.
-    public var sourceDefinition: OneOf_SourceDefinition? = nil
+    public var sourceDefinition: SourceDefinitionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -147,7 +147,7 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
         self.viewType = value
       }
 
-      var sourceDefinition: OneOf_SourceDefinition? = nil
+      var sourceDefinition: SourceDefinitionOneOf? = nil
       let sourceDefinitionCheckAndSet = {
         if sourceDefinition != nil {
           throw DecodingError.dataCorrupted(
@@ -305,7 +305,7 @@ public struct DatabaseTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Definition of the view.
-    public enum OneOf_SourceDefinition: Codable, Equatable, Sendable {
+    public enum SourceDefinitionOneOf: Codable, Equatable, Sendable {
       /// Name of a singular table this view reflects one to one.
       case baseTable(Swift.String)
       /// SQL query used to generate this view.

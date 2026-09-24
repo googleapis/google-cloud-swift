@@ -48,7 +48,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The error details in case of state FAILED.
   public var error: GoogleRpc.Status? = nil
 
-  public var connectivity: OneOf_Connectivity? = nil
+  public var connectivity: ConnectivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
 
-    var connectivity: OneOf_Connectivity? = nil
+    var connectivity: ConnectivityOneOf? = nil
     let connectivityCheckAndSet = {
       if connectivity != nil {
         throw DecodingError.dataCorrupted(
@@ -303,7 +303,7 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Connectivity: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// VPC peering configuration.
     indirect case vpcPeeringConfig(VpcPeeringConfig?)
   }

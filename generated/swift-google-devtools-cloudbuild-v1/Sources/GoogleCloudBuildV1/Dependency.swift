@@ -23,7 +23,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of dependency to fetch.
-  public var dep: OneOf_Dep? = nil
+  public var dep: DepOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dep: OneOf_Dep? = nil
+    var dep: DepOneOf? = nil
     let depCheckAndSet = {
       if dep != nil {
         throw DecodingError.dataCorrupted(
@@ -223,7 +223,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The type of git source repo (url or dev connect).
-    public var repotype: OneOf_Repotype? = nil
+    public var repotype: RepotypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -261,7 +261,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var repotype: OneOf_Repotype? = nil
+      var repotype: RepotypeOneOf? = nil
       let repotypeCheckAndSet = {
         if repotype != nil {
           throw DecodingError.dataCorrupted(
@@ -303,7 +303,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of git source repo (url or dev connect).
-    public enum OneOf_Repotype: Codable, Equatable, Sendable {
+    public enum RepotypeOneOf: Codable, Equatable, Sendable {
       /// Location of the Git repository.
       case url(Swift.String)
       /// The Developer Connect Git repository link formatted as
@@ -323,7 +323,7 @@ public struct Dependency: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of dependency to fetch.
-  public enum OneOf_Dep: Codable, Equatable, Sendable {
+  public enum DepOneOf: Codable, Equatable, Sendable {
     /// If set to true disable all dependency fetching (ignoring the default
     /// source as well).
     case empty(Swift.Bool)

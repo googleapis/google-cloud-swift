@@ -233,7 +233,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public var id: Swift.String = Swift.String()
 
     /// Resource type.
-    public var resourceType: OneOf_ResourceType? = nil
+    public var resourceType: ResourceTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -280,7 +280,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.id = value
       }
 
-      var resourceType: OneOf_ResourceType? = nil
+      var resourceType: ResourceTypeOneOf? = nil
       let resourceTypeCheckAndSet = {
         if resourceType != nil {
           throw DecodingError.dataCorrupted(
@@ -350,7 +350,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public var allowInsecure: Swift.Bool = Swift.Bool()
 
       /// A specific type of file.
-      public var type: OneOf_Type? = nil
+      public var type: TypeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -395,7 +395,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.allowInsecure = value
         }
 
-        var type: OneOf_Type? = nil
+        var type: TypeOneOf? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -607,7 +607,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A specific type of file.
-      public enum OneOf_Type: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Codable, Equatable, Sendable {
         /// A generic remote file.
         indirect case remote(OSPolicy.Resource.File.Remote?)
         /// A Cloud Storage object.
@@ -636,7 +636,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         .PackageResource.DesiredState()
 
       /// A system package.
-      public var systemPackage: OneOf_SystemPackage? = nil
+      public var systemPackage: SystemPackageOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -691,7 +691,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.desiredState = value
         }
 
-        var systemPackage: OneOf_SystemPackage? = nil
+        var systemPackage: SystemPackageOneOf? = nil
         let systemPackageCheckAndSet = {
           if systemPackage != nil {
             throw DecodingError.dataCorrupted(
@@ -1410,7 +1410,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A system package.
-      public enum OneOf_SystemPackage: Codable, Equatable, Sendable {
+      public enum SystemPackageOneOf: Codable, Equatable, Sendable {
         /// A package managed by Apt.
         indirect case apt(OSPolicy.Resource.PackageResource.APT?)
         /// A deb package file.
@@ -1443,7 +1443,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// A specific type of repository.
-      public var repository: OneOf_Repository? = nil
+      public var repository: RepositoryOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1485,7 +1485,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var repository: OneOf_Repository? = nil
+        var repository: RepositoryOneOf? = nil
         let repositoryCheckAndSet = {
           if repository != nil {
             throw DecodingError.dataCorrupted(
@@ -2055,7 +2055,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A specific type of repository.
-      public enum OneOf_Repository: Codable, Equatable, Sendable {
+      public enum RepositoryOneOf: Codable, Equatable, Sendable {
         /// An Apt Repository.
         indirect case apt(OSPolicy.Resource.RepositoryResource.AptRepository?)
         /// A Yum Repository.
@@ -2191,7 +2191,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         public var outputFilePath: Swift.String = Swift.String()
 
         /// What to execute.
-        public var source: OneOf_Source? = nil
+        public var source: SourceOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2246,7 +2246,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
             self.outputFilePath = value
           }
 
-          var source: OneOf_Source? = nil
+          var source: SourceOneOf? = nil
           let sourceCheckAndSet = {
             if source != nil {
               throw DecodingError.dataCorrupted(
@@ -2418,7 +2418,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// What to execute.
-        public enum OneOf_Source: Codable, Equatable, Sendable {
+        public enum SourceOneOf: Codable, Equatable, Sendable {
           /// A remote or local file.
           indirect case file(OSPolicy.Resource.File?)
           /// An inline script.
@@ -2475,7 +2475,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       public var permissions: Swift.String = Swift.String()
 
       /// The source for the contents of the file.
-      public var source: OneOf_Source? = nil
+      public var source: SourceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2530,7 +2530,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.permissions = value
         }
 
-        var source: OneOf_Source? = nil
+        var source: SourceOneOf? = nil
         let sourceCheckAndSet = {
           if source != nil {
             throw DecodingError.dataCorrupted(
@@ -2698,7 +2698,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The source for the contents of the file.
-      public enum OneOf_Source: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Codable, Equatable, Sendable {
         /// A remote or local source.
         indirect case file(OSPolicy.Resource.File?)
         /// A a file with this content.
@@ -2718,7 +2718,7 @@ public struct OSPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Resource type.
-    public enum OneOf_ResourceType: Codable, Equatable, Sendable {
+    public enum ResourceTypeOneOf: Codable, Equatable, Sendable {
       /// Package resource
       indirect case pkg(OSPolicy.Resource.PackageResource?)
       /// Package repository resource

@@ -435,7 +435,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Type of host to be used for the workstation's runtime.
-    public var config: OneOf_Config? = nil
+    public var config: ConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -471,7 +471,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var config: OneOf_Config? = nil
+      var config: ConfigOneOf? = nil
       let configCheckAndSet = {
         if config != nil {
           throw DecodingError.dataCorrupted(
@@ -1227,7 +1227,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of host to be used for the workstation's runtime.
-    public enum OneOf_Config: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// Specifies a Compute Engine instance as the host.
       indirect case gceInstance(WorkstationConfig.Host.GceInstance?)
     }
@@ -1253,7 +1253,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var mountPath: Swift.String = Swift.String()
 
     /// How a persistent directory should be implemented.
-    public var directoryType: OneOf_DirectoryType? = nil
+    public var directoryType: DirectoryTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1296,7 +1296,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.mountPath = value
       }
 
-      var directoryType: OneOf_DirectoryType? = nil
+      var directoryType: DirectoryTypeOneOf? = nil
       let directoryTypeCheckAndSet = {
         if directoryType != nil {
           throw DecodingError.dataCorrupted(
@@ -1892,7 +1892,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// How a persistent directory should be implemented.
-    public enum OneOf_DirectoryType: Codable, Equatable, Sendable {
+    public enum DirectoryTypeOneOf: Codable, Equatable, Sendable {
       /// A PersistentDirectory backed by a Compute Engine persistent disk.
       indirect case gcePd(WorkstationConfig.PersistentDirectory.GceRegionalPersistentDisk?)
       /// A PersistentDirectory backed by a Compute Engine hyperdisk high
@@ -1922,7 +1922,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var mountPath: Swift.String = Swift.String()
 
     /// How an ephemeral directory should be implemented.
-    public var directoryType: OneOf_DirectoryType? = nil
+    public var directoryType: DirectoryTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1963,7 +1963,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.mountPath = value
       }
 
-      var directoryType: OneOf_DirectoryType? = nil
+      var directoryType: DirectoryTypeOneOf? = nil
       let directoryTypeCheckAndSet = {
         if directoryType != nil {
           throw DecodingError.dataCorrupted(
@@ -2137,7 +2137,7 @@ public struct WorkstationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// How an ephemeral directory should be implemented.
-    public enum OneOf_DirectoryType: Codable, Equatable, Sendable {
+    public enum DirectoryTypeOneOf: Codable, Equatable, Sendable {
       /// An EphemeralDirectory backed by a Compute Engine persistent disk.
       indirect case gcePd(WorkstationConfig.EphemeralDirectory.GcePersistentDisk?)
     }

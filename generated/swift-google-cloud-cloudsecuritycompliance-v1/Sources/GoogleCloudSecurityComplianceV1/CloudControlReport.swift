@@ -64,7 +64,7 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
   public var frameworkMajorRevisionIds: [Swift.Int64] = []
 
   /// The assessment details of the cloud control.
-  public var assessmentDetails: OneOf_AssessmentDetails? = nil
+  public var assessmentDetails: AssessmentDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -178,7 +178,7 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
       self.frameworkMajorRevisionIds = value
     }
 
-    var assessmentDetails: OneOf_AssessmentDetails? = nil
+    var assessmentDetails: AssessmentDetailsOneOf? = nil
     let assessmentDetailsCheckAndSet = {
       if assessmentDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -238,7 +238,7 @@ public struct CloudControlReport: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The assessment details of the cloud control.
-  public enum OneOf_AssessmentDetails: Codable, Equatable, Sendable {
+  public enum AssessmentDetailsOneOf: Codable, Equatable, Sendable {
     /// The details of a manual cloud control assessment.
     indirect case manualCloudControlAssessmentDetails(ManualCloudControlAssessmentDetails?)
     /// The details of a cloud control assessment.

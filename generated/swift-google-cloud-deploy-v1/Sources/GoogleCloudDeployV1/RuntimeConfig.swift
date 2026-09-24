@@ -23,7 +23,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The runtime configuration details.
-  public var runtimeConfig: OneOf_RuntimeConfig? = nil
+  public var runtimeConfig: RuntimeConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var runtimeConfig: OneOf_RuntimeConfig? = nil
+    var runtimeConfig: RuntimeConfigOneOf? = nil
     let runtimeConfigCheckAndSet = {
       if runtimeConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The runtime configuration details.
-  public enum OneOf_RuntimeConfig: Codable, Equatable, Sendable {
+  public enum RuntimeConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Kubernetes runtime configuration.
     indirect case kubernetes(KubernetesConfig?)
     /// Optional. Cloud Run runtime configuration.

@@ -21,7 +21,7 @@ import Foundation
 public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var hashFunction: OneOf_HashFunction? = nil
+  public var hashFunction: HashFunctionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,7 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var hashFunction: OneOf_HashFunction? = nil
+    var hashFunction: HashFunctionOneOf? = nil
     let hashFunctionCheckAndSet = {
       if hashFunction != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct ApplyHash: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_HashFunction: Codable, Equatable, Sendable {
+  public enum HashFunctionOneOf: Codable, Equatable, Sendable {
     /// Optional. Generate UUID from the data's byte array
     indirect case uuidFromBytes(GoogleWKT.WKTEmpty?)
   }

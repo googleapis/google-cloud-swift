@@ -44,7 +44,7 @@ public struct HiveJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Hive queries to execute, specified as either
   /// an HCFS file URI or a list of queries.
-  public var queries: OneOf_Queries? = nil
+  public var queries: QueriesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,7 @@ public struct HiveJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.jarFileUris = value
     }
 
-    var queries: OneOf_Queries? = nil
+    var queries: QueriesOneOf? = nil
     let queriesCheckAndSet = {
       if queries != nil {
         throw DecodingError.dataCorrupted(
@@ -151,7 +151,7 @@ public struct HiveJob: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. The sequence of Hive queries to execute, specified as either
   /// an HCFS file URI or a list of queries.
-  public enum OneOf_Queries: Codable, Equatable, Sendable {
+  public enum QueriesOneOf: Codable, Equatable, Sendable {
     /// The HCFS URI of the script that contains Hive queries.
     case queryFileUri(Swift.String)
     /// A list of queries.

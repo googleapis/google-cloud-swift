@@ -30,7 +30,7 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Stored infotype types.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -131,7 +131,7 @@ public struct StoredInfoTypeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stored infotype types.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// StoredInfoType where findings are defined by a dictionary of phrases.
     indirect case largeCustomDictionary(LargeCustomDictionaryConfig?)
     /// Store dictionary-based CustomInfoType.

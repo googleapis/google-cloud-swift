@@ -24,7 +24,7 @@
     Sendable
   {
     /// Instance for pairwise metric.
-    public var instance: OneOf_Instance? = nil
+    public var instance: InstanceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var instance: OneOf_Instance? = nil
+      var instance: InstanceOneOf? = nil
       let instanceCheckAndSet = {
         if instance != nil {
           throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@
     }
 
     /// Instance for pairwise metric.
-    public enum OneOf_Instance: Codable, Equatable, Sendable {
+    public enum InstanceOneOf: Codable, Equatable, Sendable {
       /// Instance specified as a json string. String key-value pairs are expected
       /// in the json_instance to render
       /// PairwiseMetricSpec.instance_prompt_template.

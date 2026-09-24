@@ -99,7 +99,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   public var allowOnlyMetadataSharing: Swift.Bool? = nil
 
   /// Listing source.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -217,7 +217,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     self.allowOnlyMetadataSharing = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .allowOnlyMetadataSharing)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -392,7 +392,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
     public struct SelectedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      public var resource: OneOf_Resource? = nil
+      public var resource: ResourceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -430,7 +430,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var resource: OneOf_Resource? = nil
+        var resource: ResourceOneOf? = nil
         let resourceCheckAndSet = {
           if resource != nil {
             throw DecodingError.dataCorrupted(
@@ -469,7 +469,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum OneOf_Resource: Codable, Equatable, Sendable {
+      public enum ResourceOneOf: Codable, Equatable, Sendable {
         /// Optional. Format:
         /// For table:
         /// `projects/{projectId}/datasets/{datasetId}/tables/{tableId}`
@@ -1692,7 +1692,7 @@ public struct Listing: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Listing source.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Shared dataset i.e. BigQuery dataset source.
     indirect case bigqueryDataset(Listing.BigQueryDatasetSource?)
     /// Pub/Sub topic source.

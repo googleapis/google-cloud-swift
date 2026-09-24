@@ -25,7 +25,7 @@ public struct DependencyEntityReference: Codable, Equatable, GoogleWKT._AnyPacka
   public var displayName: Swift.String = Swift.String()
 
   /// Required. Unique identifier for the participating entity.
-  public var identifier: OneOf_Identifier? = nil
+  public var identifier: IdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct DependencyEntityReference: Codable, Equatable, GoogleWKT._AnyPacka
       self.displayName = value
     }
 
-    var identifier: OneOf_Identifier? = nil
+    var identifier: IdentifierOneOf? = nil
     let identifierCheckAndSet = {
       if identifier != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct DependencyEntityReference: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Required. Unique identifier for the participating entity.
-  public enum OneOf_Identifier: Codable, Equatable, Sendable {
+  public enum IdentifierOneOf: Codable, Equatable, Sendable {
     /// The resource name of an operation in the API Hub.
     ///
     /// Format:

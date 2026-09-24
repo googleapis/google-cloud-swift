@@ -336,7 +336,7 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
     /// This only contains the key metadata, and no key material.
     public var encryptionKey: EncryptionKey? = nil
 
-    public var backupScope: OneOf_BackupScope? = nil
+    public var backupScope: BackupScopeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -389,7 +389,7 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.encryptionKey = try container.decodeIfPresent(EncryptionKey.self, forKey: .encryptionKey)
 
-      var backupScope: OneOf_BackupScope? = nil
+      var backupScope: BackupScopeOneOf? = nil
       let backupScopeCheckAndSet = {
         if backupScope != nil {
           throw DecodingError.dataCorrupted(
@@ -441,7 +441,7 @@ public struct LoggedBackupPlan: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_BackupScope: Codable, Equatable, Sendable {
+    public enum BackupScopeOneOf: Codable, Equatable, Sendable {
       /// If set to true, backup whole cluster
       case allNamespaces(Swift.Bool)
       /// If set, backup the list of namespaces

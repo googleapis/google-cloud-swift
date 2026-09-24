@@ -27,7 +27,7 @@ public struct PushFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Modified refs to match.
   /// A modified refs are the refs modified by a git push operation.
-  public var gitRef: OneOf_GitRef? = nil
+  public var gitRef: GitRefOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct PushFilter: Codable, Equatable, GoogleWKT._AnyPackable,
       self.invertRegex = value
     }
 
-    var gitRef: OneOf_GitRef? = nil
+    var gitRef: GitRefOneOf? = nil
     let gitRefCheckAndSet = {
       if gitRef != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct PushFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Modified refs to match.
   /// A modified refs are the refs modified by a git push operation.
-  public enum OneOf_GitRef: Codable, Equatable, Sendable {
+  public enum GitRefOneOf: Codable, Equatable, Sendable {
     /// Regexes matching branches to build.
     ///
     /// The syntax of the regular expressions accepted is the syntax accepted by

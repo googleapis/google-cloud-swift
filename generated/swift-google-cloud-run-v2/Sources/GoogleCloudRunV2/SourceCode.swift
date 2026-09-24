@@ -22,7 +22,7 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The source type.
-  public var sourceType: OneOf_SourceType? = nil
+  public var sourceType: SourceTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var sourceType: OneOf_SourceType? = nil
+    var sourceType: SourceTypeOneOf? = nil
     let sourceTypeCheckAndSet = {
       if sourceType != nil {
         throw DecodingError.dataCorrupted(
@@ -181,7 +181,7 @@ public struct SourceCode: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source type.
-  public enum OneOf_SourceType: Codable, Equatable, Sendable {
+  public enum SourceTypeOneOf: Codable, Equatable, Sendable {
     /// The source is a Cloud Storage bucket.
     indirect case cloudStorageSource(SourceCode.CloudStorageSource?)
   }

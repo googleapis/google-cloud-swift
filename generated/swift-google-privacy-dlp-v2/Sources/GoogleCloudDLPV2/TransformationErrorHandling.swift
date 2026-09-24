@@ -29,7 +29,7 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
   Sendable
 {
   /// How transformation errors should be handled.
-  public var mode: OneOf_Mode? = nil
+  public var mode: ModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var mode: OneOf_Mode? = nil
+    var mode: ModeOneOf? = nil
     let modeCheckAndSet = {
       if mode != nil {
         throw DecodingError.dataCorrupted(
@@ -229,7 +229,7 @@ public struct TransformationErrorHandling: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// How transformation errors should be handled.
-  public enum OneOf_Mode: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Codable, Equatable, Sendable {
     /// Throw an error
     indirect case throwError(TransformationErrorHandling.ThrowError?)
     /// Ignore errors

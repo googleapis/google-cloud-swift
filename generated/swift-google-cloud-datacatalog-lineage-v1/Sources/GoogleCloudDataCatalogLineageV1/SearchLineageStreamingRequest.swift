@@ -312,7 +312,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     Sendable
   {
     /// Criteria for the root of the search.
-    public var criteria: OneOf_Criteria? = nil
+    public var criteria: CriteriaOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -348,7 +348,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var criteria: OneOf_Criteria? = nil
+      var criteria: CriteriaOneOf? = nil
       let criteriaCheckAndSet = {
         if criteria != nil {
           throw DecodingError.dataCorrupted(
@@ -385,7 +385,7 @@ public struct SearchLineageStreamingRequest: Codable, Equatable, GoogleWKT._AnyP
     }
 
     /// Criteria for the root of the search.
-    public enum OneOf_Criteria: Codable, Equatable, Sendable {
+    public enum CriteriaOneOf: Codable, Equatable, Sendable {
       /// Optional. The entities to initiate the search from. Entities can be
       /// specified by FQN only, or by FQN and field. To search by FQN and all
       /// available fields for that FQN, use the wildcard `*` as the field value.

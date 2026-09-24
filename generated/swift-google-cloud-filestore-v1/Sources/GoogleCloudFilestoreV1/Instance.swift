@@ -431,7 +431,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct PerformanceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var mode: OneOf_Mode? = nil
+    public var mode: ModeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -469,7 +469,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var mode: OneOf_Mode? = nil
+      var mode: ModeOneOf? = nil
       let modeCheckAndSet = {
         if mode != nil {
           throw DecodingError.dataCorrupted(
@@ -510,7 +510,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Mode: Codable, Equatable, Sendable {
+    public enum ModeOneOf: Codable, Equatable, Sendable {
       /// Provision IOPS dynamically based on the capacity of the instance.
       /// Provisioned IOPS will be calculated by multiplying the capacity of the
       /// instance in TiB by the `iops_per_tb` value. For example, for a 2 TiB

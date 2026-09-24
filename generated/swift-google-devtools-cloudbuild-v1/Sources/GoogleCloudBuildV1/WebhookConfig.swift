@@ -27,7 +27,7 @@ public struct WebhookConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: WebhookConfig.State = WebhookConfig.State()
 
   /// Auth method specifies how the webhook authenticates with GCP.
-  public var authMethod: OneOf_AuthMethod? = nil
+  public var authMethod: AuthMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct WebhookConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var authMethod: OneOf_AuthMethod? = nil
+    var authMethod: AuthMethodOneOf? = nil
     let authMethodCheckAndSet = {
       if authMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -222,7 +222,7 @@ public struct WebhookConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Auth method specifies how the webhook authenticates with GCP.
-  public enum OneOf_AuthMethod: Codable, Equatable, Sendable {
+  public enum AuthMethodOneOf: Codable, Equatable, Sendable {
     /// Required. Resource name for the secret required as a URL parameter.
     case secret(Swift.String)
   }

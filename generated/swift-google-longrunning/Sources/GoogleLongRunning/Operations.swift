@@ -91,7 +91,7 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   /// [google.rpc.Status.code][google.rpc.Status.code] of `1`, corresponding to
   /// `Code.CANCELLED`.
   ///
-  /// [google.longrunning.Operation.error]: <doc:Operation/OneOf_Result/error(_:)>
+  /// [google.longrunning.Operation.error]: <doc:Operation/ResultOneOf/error(_:)>
   /// [google.longrunning.Operations.GetOperation]: <doc:OperationsClient/getOperation(request:options:)>
   /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   ///

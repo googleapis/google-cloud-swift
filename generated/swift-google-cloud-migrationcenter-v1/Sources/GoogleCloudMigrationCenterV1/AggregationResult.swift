@@ -23,7 +23,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   public var field: Swift.String = Swift.String()
 
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
       self.field = value
     }
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -491,7 +491,7 @@ public struct AggregationResult: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     indirect case count(AggregationResult.Count?)
     indirect case sum(AggregationResult.Sum?)
     indirect case histogram(AggregationResult.Histogram?)

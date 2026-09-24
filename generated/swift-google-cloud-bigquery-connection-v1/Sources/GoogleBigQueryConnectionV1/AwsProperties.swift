@@ -22,7 +22,7 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Authentication method chosen at connection creation.
-  public var authenticationMethod: OneOf_AuthenticationMethod? = nil
+  public var authenticationMethod: AuthenticationMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var authenticationMethod: OneOf_AuthenticationMethod? = nil
+    var authenticationMethod: AuthenticationMethodOneOf? = nil
     let authenticationMethodCheckAndSet = {
       if authenticationMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct AwsProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Authentication method chosen at connection creation.
-  public enum OneOf_AuthenticationMethod: Codable, Equatable, Sendable {
+  public enum AuthenticationMethodOneOf: Codable, Equatable, Sendable {
     /// Authentication using Google owned AWS IAM user's access key to assume
     /// into customer's AWS IAM Role.
     /// Deprecated, do not use.

@@ -56,7 +56,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var provider: DatabaseProvider = DatabaseProvider()
 
   /// The connection profile definition.
-  public var connectionProfile: OneOf_ConnectionProfile? = nil
+  public var connectionProfile: ConnectionProfileOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
       self.provider = value
     }
 
-    var connectionProfile: OneOf_ConnectionProfile? = nil
+    var connectionProfile: ConnectionProfileOneOf? = nil
     let connectionProfileCheckAndSet = {
       if connectionProfile != nil {
         throw DecodingError.dataCorrupted(
@@ -357,7 +357,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The connection profile definition.
-  public enum OneOf_ConnectionProfile: Codable, Equatable, Sendable {
+  public enum ConnectionProfileOneOf: Codable, Equatable, Sendable {
     /// A MySQL database connection profile.
     indirect case mysql(MySqlConnectionProfile?)
     /// A PostgreSQL database connection profile.

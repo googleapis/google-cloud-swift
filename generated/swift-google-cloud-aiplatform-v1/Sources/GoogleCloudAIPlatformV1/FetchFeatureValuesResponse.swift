@@ -30,7 +30,7 @@
     /// [FeatureOnlineStoreService.StreamingFetchFeatureValues][] RPCs.
     public var dataKey: FeatureViewDataKey? = nil
 
-    public var format: OneOf_Format? = nil
+    public var format: FormatOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.dataKey = try container.decodeIfPresent(FeatureViewDataKey.self, forKey: .dataKey)
 
-      var format: OneOf_Format? = nil
+      var format: FormatOneOf? = nil
       let formatCheckAndSet = {
         if format != nil {
           throw DecodingError.dataCorrupted(
@@ -184,7 +184,7 @@
         /// Feature short name.
         public var name: Swift.String = Swift.String()
 
-        public var data: OneOf_Data? = nil
+        public var data: DataOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -225,7 +225,7 @@
             self.name = value
           }
 
-          var data: OneOf_Data? = nil
+          var data: DataOneOf? = nil
           let dataCheckAndSet = {
             if data != nil {
               throw DecodingError.dataCorrupted(
@@ -260,7 +260,7 @@
           }
         }
 
-        public enum OneOf_Data: Codable, Equatable, Sendable {
+        public enum DataOneOf: Codable, Equatable, Sendable {
           /// Feature value.
           indirect case value(FeatureValue?)
         }
@@ -289,7 +289,7 @@
       }
     }
 
-    public enum OneOf_Format: Codable, Equatable, Sendable {
+    public enum FormatOneOf: Codable, Equatable, Sendable {
       /// Feature values in KeyValue format.
       indirect case keyValues(FetchFeatureValuesResponse.FeatureNameValuePairList?)
       /// Feature values in proto Struct format.

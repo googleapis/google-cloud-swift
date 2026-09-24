@@ -53,10 +53,10 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var type: DataScanType = DataScanType()
 
   /// Data scan related setting.
-  public var spec: OneOf_Spec? = nil
+  public var spec: SpecOneOf? = nil
 
   /// The result of the data scan.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -147,7 +147,7 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var spec: OneOf_Spec? = nil
+    var spec: SpecOneOf? = nil
     let specCheckAndSet = {
       if spec != nil {
         throw DecodingError.dataCorrupted(
@@ -179,7 +179,7 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.spec = spec
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -411,7 +411,7 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data scan related setting.
-  public enum OneOf_Spec: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Output only. Settings for a data quality scan.
     indirect case dataQualitySpec(DataQualitySpec?)
     /// Output only. Settings for a data profile scan.
@@ -423,7 +423,7 @@ public struct DataScanJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the data scan.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. The result of a data quality scan.
     indirect case dataQualityResult(DataQualityResult?)
     /// Output only. The result of a data profile scan.

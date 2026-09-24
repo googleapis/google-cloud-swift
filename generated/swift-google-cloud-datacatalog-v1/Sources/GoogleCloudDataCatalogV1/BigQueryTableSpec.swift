@@ -25,7 +25,7 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public var tableSourceType: TableSourceType = TableSourceType()
 
   /// Output only.
-  public var typeSpec: OneOf_TypeSpec? = nil
+  public var typeSpec: TypeSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tableSourceType = value
     }
 
-    var typeSpec: OneOf_TypeSpec? = nil
+    var typeSpec: TypeSpecOneOf? = nil
     let typeSpecCheckAndSet = {
       if typeSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct BigQueryTableSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Output only.
-  public enum OneOf_TypeSpec: Codable, Equatable, Sendable {
+  public enum TypeSpecOneOf: Codable, Equatable, Sendable {
     /// Table view specification. Populated only if
     /// the `table_source_type` is `BIGQUERY_VIEW`.
     indirect case viewSpec(ViewSpec?)

@@ -26,7 +26,7 @@ import Foundation
 public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var subordinateConfig: OneOf_SubordinateConfig? = nil
+  public var subordinateConfig: SubordinateConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var subordinateConfig: OneOf_SubordinateConfig? = nil
+    var subordinateConfig: SubordinateConfigOneOf? = nil
     let subordinateConfigCheckAndSet = {
       if subordinateConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -177,7 +177,7 @@ public struct SubordinateConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_SubordinateConfig: Codable, Equatable, Sendable {
+  public enum SubordinateConfigOneOf: Codable, Equatable, Sendable {
     /// Required. This can refer to a
     /// [CertificateAuthority][google.cloud.security.privateca.v1.CertificateAuthority]
     /// that was used to create a subordinate

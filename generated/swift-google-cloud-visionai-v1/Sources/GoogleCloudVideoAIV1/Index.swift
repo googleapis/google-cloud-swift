@@ -62,7 +62,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   /// entire_corpus if unspecified. Behavior in UpdateIndex: if update_mask
   /// includes one of the asset_filter field paths, the index will be rebuilt
   /// with latest assets, including their analyzed data and annotations.
-  public var assetFilter: OneOf_AssetFilter? = nil
+  public var assetFilter: AssetFilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -139,7 +139,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
-    var assetFilter: OneOf_AssetFilter? = nil
+    var assetFilter: AssetFilterOneOf? = nil
     let assetFilterCheckAndSet = {
       if assetFilter != nil {
         throw DecodingError.dataCorrupted(
@@ -311,7 +311,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   /// entire_corpus if unspecified. Behavior in UpdateIndex: if update_mask
   /// includes one of the asset_filter field paths, the index will be rebuilt
   /// with latest assets, including their analyzed data and annotations.
-  public enum OneOf_AssetFilter: Codable, Equatable, Sendable {
+  public enum AssetFilterOneOf: Codable, Equatable, Sendable {
     /// Include all assets under the corpus.
     case entireCorpus(Swift.Bool)
   }

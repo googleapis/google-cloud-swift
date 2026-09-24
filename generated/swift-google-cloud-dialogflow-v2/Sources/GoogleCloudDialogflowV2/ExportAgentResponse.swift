@@ -26,7 +26,7 @@
     Sendable
   {
     /// The exported agent.
-    public var agent: OneOf_Agent? = nil
+    public var agent: AgentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var agent: OneOf_Agent? = nil
+      var agent: AgentOneOf? = nil
       let agentCheckAndSet = {
         if agent != nil {
           throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@
     }
 
     /// The exported agent.
-    public enum OneOf_Agent: Codable, Equatable, Sendable {
+    public enum AgentOneOf: Codable, Equatable, Sendable {
       /// The URI to a file containing the exported agent. This field is populated
       /// only if `agent_uri` is specified in `ExportAgentRequest`.
       case agentUri(Swift.String)

@@ -44,10 +44,10 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   public var satisfiesPzi: Swift.Bool? = nil
 
   /// Connection configuration for the ConnectionProfile.
-  public var profile: OneOf_Profile? = nil
+  public var profile: ProfileOneOf? = nil
 
   /// Connectivity options used to establish a connection to the profile.
-  public var connectivity: OneOf_Connectivity? = nil
+  public var connectivity: ConnectivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,7 +133,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
     self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
-    var profile: OneOf_Profile? = nil
+    var profile: ProfileOneOf? = nil
     let profileCheckAndSet = {
       if profile != nil {
         throw DecodingError.dataCorrupted(
@@ -181,7 +181,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.profile = profile
 
-    var connectivity: OneOf_Connectivity? = nil
+    var connectivity: ConnectivityOneOf? = nil
     let connectivityCheckAndSet = {
       if connectivity != nil {
         throw DecodingError.dataCorrupted(
@@ -260,7 +260,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Connection configuration for the ConnectionProfile.
-  public enum OneOf_Profile: Codable, Equatable, Sendable {
+  public enum ProfileOneOf: Codable, Equatable, Sendable {
     /// Oracle ConnectionProfile configuration.
     indirect case oracleProfile(OracleProfile?)
     /// Cloud Storage ConnectionProfile configuration.
@@ -280,7 +280,7 @@ public struct ConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Connectivity options used to establish a connection to the profile.
-  public enum OneOf_Connectivity: Codable, Equatable, Sendable {
+  public enum ConnectivityOneOf: Codable, Equatable, Sendable {
     /// Static Service IP connectivity.
     indirect case staticServiceIpConnectivity(StaticServiceIpConnectivity?)
     /// Forward SSH tunnel connectivity.

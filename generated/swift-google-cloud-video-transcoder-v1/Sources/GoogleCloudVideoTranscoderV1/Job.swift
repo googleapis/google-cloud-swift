@@ -92,7 +92,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `job_config`, the API selects `templateId`; this template ID is set to
   /// `preset/web-hd` by default. When you use a `template_id` to create a job,
   /// the `Job.config` is populated by the `JobTemplate.config`.<br>
-  public var jobConfig: OneOf_JobConfig? = nil
+  public var jobConfig: JobConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -197,7 +197,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
       self.fillContentGaps = value
     }
 
-    var jobConfig: OneOf_JobConfig? = nil
+    var jobConfig: JobConfigOneOf? = nil
     let jobConfigCheckAndSet = {
       if jobConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -623,7 +623,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `job_config`, the API selects `templateId`; this template ID is set to
   /// `preset/web-hd` by default. When you use a `template_id` to create a job,
   /// the `Job.config` is populated by the `JobTemplate.config`.<br>
-  public enum OneOf_JobConfig: Codable, Equatable, Sendable {
+  public enum JobConfigOneOf: Codable, Equatable, Sendable {
     /// Input only. Specify the `template_id` to use for populating `Job.config`.
     /// The default is `preset/web-hd`, which is the only supported preset.
     ///

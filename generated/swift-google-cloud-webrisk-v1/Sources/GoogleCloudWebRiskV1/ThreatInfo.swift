@@ -95,7 +95,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct Confidence: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,7 +133,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -298,7 +298,7 @@ public struct ThreatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// A decimal representation of confidence in the range of 0
       /// to 1 where 0 indicates no confidence and 1 indicates
       /// complete confidence.

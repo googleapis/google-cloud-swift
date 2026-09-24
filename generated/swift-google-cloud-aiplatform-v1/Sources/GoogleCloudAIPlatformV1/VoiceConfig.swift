@@ -23,7 +23,7 @@
     Sendable
   {
     /// The configuration for the speaker to use.
-    public var voiceConfig: OneOf_VoiceConfig? = nil
+    public var voiceConfig: VoiceConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var voiceConfig: OneOf_VoiceConfig? = nil
+      var voiceConfig: VoiceConfigOneOf? = nil
       let voiceConfigCheckAndSet = {
         if voiceConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@
     }
 
     /// The configuration for the speaker to use.
-    public enum OneOf_VoiceConfig: Codable, Equatable, Sendable {
+    public enum VoiceConfigOneOf: Codable, Equatable, Sendable {
       /// The configuration for a prebuilt voice.
       indirect case prebuiltVoiceConfig(PrebuiltVoiceConfig?)
       /// Optional. The configuration for a replicated voice. This enables users to

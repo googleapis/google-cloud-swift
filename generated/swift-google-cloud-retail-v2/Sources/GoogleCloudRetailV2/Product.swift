@@ -537,7 +537,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [google.cloud.retail.v2.ProductService.RemoveLocalInventories]: <doc:ProductServiceClient/removeLocalInventories(request:options:)>
   public var localInventories: [LocalInventory] = []
 
-  public var expiration: OneOf_Expiration? = nil
+  public var expiration: ExpirationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -729,7 +729,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
       self.localInventories = value
     }
 
-    var expiration: OneOf_Expiration? = nil
+    var expiration: ExpirationOneOf? = nil
     let expirationCheckAndSet = {
       if expiration != nil {
         throw DecodingError.dataCorrupted(
@@ -1099,7 +1099,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Expiration: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// Note that this field is applied in the following ways:
     ///
     /// * If the [Product][google.cloud.retail.v2.Product] is already expired
@@ -1130,7 +1130,7 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
     /// [google.cloud.retail.v2.Product.available_time]: <doc:Product/availableTime>
-    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/OneOf_Expiration/expireTime(_:)>
+    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/ExpirationOneOf/expireTime(_:)>
     /// [google.cloud.retail.v2.Product.publish_time]: <doc:Product/publishTime>
     indirect case expireTime(GoogleWKT.WKTTimestamp?)
     /// Input only. The TTL (time to live) of the product. Note that this is only
@@ -1160,8 +1160,8 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.retail.v2.Product.Type.COLLECTION]: <doc:Product/Type_/collection>
     /// [google.cloud.retail.v2.Product.Type.PRIMARY]: <doc:Product/Type_/primary>
     /// [google.cloud.retail.v2.Product.Type.VARIANT]: <doc:Product/Type_/variant>
-    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/OneOf_Expiration/expireTime(_:)>
-    /// [google.cloud.retail.v2.Product.ttl]: <doc:Product/OneOf_Expiration/ttl(_:)>
+    /// [google.cloud.retail.v2.Product.expire_time]: <doc:Product/ExpirationOneOf/expireTime(_:)>
+    /// [google.cloud.retail.v2.Product.ttl]: <doc:Product/ExpirationOneOf/ttl(_:)>
     /// [google.cloud.retail.v2.ProductService.GetProduct]: <doc:ProductServiceClient/getProduct(request:options:)>
     /// [google.cloud.retail.v2.ProductService.ListProducts]: <doc:ProductServiceClient/listProducts(request:options:)>
     /// [google.cloud.retail.v2.SearchService.Search]: <doc:SearchServiceClient/search(request:options:)>

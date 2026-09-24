@@ -22,7 +22,7 @@ public struct ExportErrorsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required. Errors destination.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct ExportErrorsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct ExportErrorsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Errors destination.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage path for import errors. This must be an empty,
     /// existing Cloud Storage bucket. Export errors will be written to a file in
     /// this bucket, one per line, as a JSON-encoded

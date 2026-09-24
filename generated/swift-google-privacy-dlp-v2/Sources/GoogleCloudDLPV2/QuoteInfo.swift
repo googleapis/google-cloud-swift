@@ -22,7 +22,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Object representation of the quote.
-  public var parsedQuote: OneOf_ParsedQuote? = nil
+  public var parsedQuote: ParsedQuoteOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var parsedQuote: OneOf_ParsedQuote? = nil
+    var parsedQuote: ParsedQuoteOneOf? = nil
     let parsedQuoteCheckAndSet = {
       if parsedQuote != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct QuoteInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Object representation of the quote.
-  public enum OneOf_ParsedQuote: Codable, Equatable, Sendable {
+  public enum ParsedQuoteOneOf: Codable, Equatable, Sendable {
     /// The date time indicated by the quote.
     indirect case dateTime(DateTime?)
   }

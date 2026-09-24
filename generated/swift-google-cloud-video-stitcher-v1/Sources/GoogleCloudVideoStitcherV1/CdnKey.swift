@@ -32,7 +32,7 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public var hostname: Swift.String = Swift.String()
 
   /// Configuration associated with the CDN key.
-  public var cdnKeyConfig: OneOf_CdnKeyConfig? = nil
+  public var cdnKeyConfig: CdnKeyConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
       self.hostname = value
     }
 
-    var cdnKeyConfig: OneOf_CdnKeyConfig? = nil
+    var cdnKeyConfig: CdnKeyConfigOneOf? = nil
     let cdnKeyConfigCheckAndSet = {
       if cdnKeyConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct CdnKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration associated with the CDN key.
-  public enum OneOf_CdnKeyConfig: Codable, Equatable, Sendable {
+  public enum CdnKeyConfigOneOf: Codable, Equatable, Sendable {
     /// The configuration for a Google Cloud CDN key.
     indirect case googleCdnKey(GoogleCdnKey?)
     /// The configuration for an Akamai CDN key.

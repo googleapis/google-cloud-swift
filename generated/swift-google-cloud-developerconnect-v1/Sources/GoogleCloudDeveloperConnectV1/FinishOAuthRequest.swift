@@ -26,7 +26,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var accountConnector: Swift.String = Swift.String()
 
   /// The params returned by OAuth flow redirect.
-  public var params: OneOf_Params? = nil
+  public var params: ParamsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.accountConnector = value
     }
 
-    var params: OneOf_Params? = nil
+    var params: ParamsOneOf? = nil
     let paramsCheckAndSet = {
       if params != nil {
         throw DecodingError.dataCorrupted(
@@ -280,7 +280,7 @@ public struct FinishOAuthRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The params returned by OAuth flow redirect.
-  public enum OneOf_Params: Codable, Equatable, Sendable {
+  public enum ParamsOneOf: Codable, Equatable, Sendable {
     /// The params returned by non-Google OAuth 2.0 flow redirect.
     indirect case oauthParams(FinishOAuthRequest.OAuthParams?)
     /// The params returned by Google OAuth flow redirects.

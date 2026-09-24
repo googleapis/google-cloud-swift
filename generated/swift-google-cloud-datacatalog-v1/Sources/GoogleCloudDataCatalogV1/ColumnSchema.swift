@@ -72,7 +72,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   public var gcRule: Swift.String = Swift.String()
 
   /// Information only applying for columns in Entries from a specific system.
-  public var systemSpec: OneOf_SystemSpec? = nil
+  public var systemSpec: SystemSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -159,7 +159,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       self.gcRule = value
     }
 
-    var systemSpec: OneOf_SystemSpec? = nil
+    var systemSpec: SystemSpecOneOf? = nil
     let systemSpecCheckAndSet = {
       if systemSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -617,7 +617,7 @@ public struct ColumnSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information only applying for columns in Entries from a specific system.
-  public enum OneOf_SystemSpec: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Looker specific column info of this column.
     indirect case lookerColumnSpec(ColumnSchema.LookerColumnSpec?)
   }

@@ -47,16 +47,16 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   public var keyStoreFile: Swift.String = Swift.String()
 
   /// The password to access Schema Registry using basic authentication.
-  public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+  public var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
 
   /// The TrustStore password.
-  public var trustStorePasswordOptions: OneOf_TrustStorePasswordOptions? = nil
+  public var trustStorePasswordOptions: TrustStorePasswordOptionsOneOf? = nil
 
   /// The KeyStore password.
-  public var keyStorePasswordOptions: OneOf_KeyStorePasswordOptions? = nil
+  public var keyStorePasswordOptions: KeyStorePasswordOptionsOneOf? = nil
 
   /// The password for the cert inside the KeyStore.
-  public var sslKeyPasswordOptions: OneOf_SslKeyPasswordOptions? = nil
+  public var sslKeyPasswordOptions: SslKeyPasswordOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -141,7 +141,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
       self.keyStoreFile = value
     }
 
-    var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+    var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
     let connectionPasswordOptionsCheckAndSet = {
       if connectionPasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -161,7 +161,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
     }
     self.connectionPasswordOptions = connectionPasswordOptions
 
-    var trustStorePasswordOptions: OneOf_TrustStorePasswordOptions? = nil
+    var trustStorePasswordOptions: TrustStorePasswordOptionsOneOf? = nil
     let trustStorePasswordOptionsCheckAndSet = {
       if trustStorePasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -184,7 +184,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
     }
     self.trustStorePasswordOptions = trustStorePasswordOptions
 
-    var keyStorePasswordOptions: OneOf_KeyStorePasswordOptions? = nil
+    var keyStorePasswordOptions: KeyStorePasswordOptionsOneOf? = nil
     let keyStorePasswordOptionsCheckAndSet = {
       if keyStorePasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -207,7 +207,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
     }
     self.keyStorePasswordOptions = keyStorePasswordOptions
 
-    var sslKeyPasswordOptions: OneOf_SslKeyPasswordOptions? = nil
+    var sslKeyPasswordOptions: SslKeyPasswordOptionsOneOf? = nil
     let sslKeyPasswordOptionsCheckAndSet = {
       if sslKeyPasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -409,7 +409,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The password to access Schema Registry using basic authentication.
-  public enum OneOf_ConnectionPasswordOptions: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The password to access Schema Registry in plain
     /// text.
     case password(Swift.String)
@@ -421,7 +421,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The TrustStore password.
-  public enum OneOf_TrustStorePasswordOptions: Codable, Equatable, Sendable {
+  public enum TrustStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The TrustStore password in plain text.
     case trustStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -431,7 +431,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The KeyStore password.
-  public enum OneOf_KeyStorePasswordOptions: Codable, Equatable, Sendable {
+  public enum KeyStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The KeyStore password in plain text.
     case keyStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -441,7 +441,7 @@ public struct GoldengateKafkaSchemaRegistryConnectionProperties: Codable, Equata
   }
 
   /// The password for the cert inside the KeyStore.
-  public enum OneOf_SslKeyPasswordOptions: Codable, Equatable, Sendable {
+  public enum SslKeyPasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The password for the cert inside the KeyStore in
     /// plain text.
     case sslKeyPassword(Swift.String)

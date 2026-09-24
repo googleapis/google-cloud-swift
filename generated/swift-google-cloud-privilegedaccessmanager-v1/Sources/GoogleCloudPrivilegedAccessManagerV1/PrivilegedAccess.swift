@@ -21,7 +21,7 @@ import Foundation
 public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var accessType: OneOf_AccessType? = nil
+  public var accessType: AccessTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -57,7 +57,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var accessType: OneOf_AccessType? = nil
+    var accessType: AccessTypeOneOf? = nil
     let accessTypeCheckAndSet = {
       if accessType != nil {
         throw DecodingError.dataCorrupted(
@@ -272,7 +272,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_AccessType: Codable, Equatable, Sendable {
+  public enum AccessTypeOneOf: Codable, Equatable, Sendable {
     /// Access to a Google Cloud resource through IAM.
     indirect case gcpIamAccess(PrivilegedAccess.GcpIamAccess?)
   }

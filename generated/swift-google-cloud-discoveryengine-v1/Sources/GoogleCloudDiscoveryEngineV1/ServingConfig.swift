@@ -198,7 +198,7 @@
     public var promoteControlIds: [Swift.String] = []
 
     /// Industry vertical specific config.
-    public var verticalConfig: OneOf_VerticalConfig? = nil
+    public var verticalConfig: VerticalConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -328,7 +328,7 @@
         self.promoteControlIds = value
       }
 
-      var verticalConfig: OneOf_VerticalConfig? = nil
+      var verticalConfig: VerticalConfigOneOf? = nil
       let verticalConfigCheckAndSet = {
         if verticalConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -433,7 +433,7 @@
       /// Specify the threshold for demoting watched content, the threshold can be
       /// either percentage or minutes value.
       /// This must be set for `media-complete` event type.
-      public var demoteContentWatched: OneOf_DemoteContentWatched? = nil
+      public var demoteContentWatched: DemoteContentWatchedOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -495,7 +495,7 @@
           self.contentFreshnessCutoffDays = value
         }
 
-        var demoteContentWatched: OneOf_DemoteContentWatched? = nil
+        var demoteContentWatched: DemoteContentWatchedOneOf? = nil
         let demoteContentWatchedCheckAndSet = {
           if demoteContentWatched != nil {
             throw DecodingError.dataCorrupted(
@@ -547,7 +547,7 @@
       /// Specify the threshold for demoting watched content, the threshold can be
       /// either percentage or minutes value.
       /// This must be set for `media-complete` event type.
-      public enum OneOf_DemoteContentWatched: Codable, Equatable, Sendable {
+      public enum DemoteContentWatchedOneOf: Codable, Equatable, Sendable {
         /// Specifies the content watched percentage threshold for demotion.
         /// Threshold value must be between [0, 1.0] inclusive.
         case contentWatchedPercentageThreshold(Swift.Float)
@@ -638,7 +638,7 @@
     }
 
     /// Industry vertical specific config.
-    public enum OneOf_VerticalConfig: Codable, Equatable, Sendable {
+    public enum VerticalConfigOneOf: Codable, Equatable, Sendable {
       /// The MediaConfig of the serving configuration.
       indirect case mediaConfig(ServingConfig.MediaConfig?)
       /// The GenericConfig of the serving configuration.

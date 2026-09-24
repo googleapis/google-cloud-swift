@@ -30,7 +30,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
   public var key: Swift.String = Swift.String()
 
   /// The values associated with the config variable.
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
       self.key = value
     }
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -366,7 +366,7 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The values associated with the config variable.
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// Optional. The config variable value in case of config variable of type
     /// string.
     case stringValue(Swift.String)

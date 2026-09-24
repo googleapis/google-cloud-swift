@@ -22,7 +22,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The range of scanned data
-  public var dataRange: OneOf_DataRange? = nil
+  public var dataRange: DataRangeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dataRange: OneOf_DataRange? = nil
+    var dataRange: DataRangeOneOf? = nil
     let dataRangeCheckAndSet = {
       if dataRange != nil {
         throw DecodingError.dataCorrupted(
@@ -182,7 +182,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The range of scanned data
-  public enum OneOf_DataRange: Codable, Equatable, Sendable {
+  public enum DataRangeOneOf: Codable, Equatable, Sendable {
     /// The range denoted by values of an incremental field
     indirect case incrementalField(ScannedData.IncrementalField?)
   }

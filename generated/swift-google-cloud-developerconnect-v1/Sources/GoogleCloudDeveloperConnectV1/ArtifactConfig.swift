@@ -28,10 +28,10 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uri: Swift.String = Swift.String()
 
   /// The storage location of the artifact.
-  public var artifactStorage: OneOf_ArtifactStorage? = nil
+  public var artifactStorage: ArtifactStorageOneOf? = nil
 
   /// The storage location of the artifact metadata.
-  public var artifactMetadataStorage: OneOf_ArtifactMetadataStorage? = nil
+  public var artifactMetadataStorage: ArtifactMetadataStorageOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.uri = value
     }
 
-    var artifactStorage: OneOf_ArtifactStorage? = nil
+    var artifactStorage: ArtifactStorageOneOf? = nil
     let artifactStorageCheckAndSet = {
       if artifactStorage != nil {
         throw DecodingError.dataCorrupted(
@@ -91,7 +91,7 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.artifactStorage = artifactStorage
 
-    var artifactMetadataStorage: OneOf_ArtifactMetadataStorage? = nil
+    var artifactMetadataStorage: ArtifactMetadataStorageOneOf? = nil
     let artifactMetadataStorageCheckAndSet = {
       if artifactMetadataStorage != nil {
         throw DecodingError.dataCorrupted(
@@ -136,13 +136,13 @@ public struct ArtifactConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The storage location of the artifact.
-  public enum OneOf_ArtifactStorage: Codable, Equatable, Sendable {
+  public enum ArtifactStorageOneOf: Codable, Equatable, Sendable {
     /// Optional. Set if the artifact is stored in Artifact registry.
     indirect case googleArtifactRegistry(GoogleArtifactRegistry?)
   }
 
   /// The storage location of the artifact metadata.
-  public enum OneOf_ArtifactMetadataStorage: Codable, Equatable, Sendable {
+  public enum ArtifactMetadataStorageOneOf: Codable, Equatable, Sendable {
     /// Optional. Set if the artifact metadata is stored in Artifact analysis.
     indirect case googleArtifactAnalysis(GoogleArtifactAnalysis?)
   }

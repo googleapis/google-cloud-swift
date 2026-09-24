@@ -31,10 +31,10 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: RuntimeConfig.State = RuntimeConfig.State()
 
   /// The type of the runtime.
-  public var runtime: OneOf_Runtime? = nil
+  public var runtime: RuntimeOneOf? = nil
 
   /// Where the runtime is derived from.
-  public var derivedFrom: OneOf_DerivedFrom? = nil
+  public var derivedFrom: DerivedFromOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var runtime: OneOf_Runtime? = nil
+    var runtime: RuntimeOneOf? = nil
     let runtimeCheckAndSet = {
       if runtime != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.runtime = runtime
 
-    var derivedFrom: OneOf_DerivedFrom? = nil
+    var derivedFrom: DerivedFromOneOf? = nil
     let derivedFromCheckAndSet = {
       if derivedFrom != nil {
         throw DecodingError.dataCorrupted(
@@ -279,7 +279,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the runtime.
-  public enum OneOf_Runtime: Codable, Equatable, Sendable {
+  public enum RuntimeOneOf: Codable, Equatable, Sendable {
     /// Output only. Google Kubernetes Engine runtime.
     indirect case gkeWorkload(GKEWorkload?)
     /// Output only. Cloud Run runtime.
@@ -287,7 +287,7 @@ public struct RuntimeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Where the runtime is derived from.
-  public enum OneOf_DerivedFrom: Codable, Equatable, Sendable {
+  public enum DerivedFromOneOf: Codable, Equatable, Sendable {
     /// Output only. App Hub Workload.
     indirect case appHubWorkload(AppHubWorkload?)
     /// Output only. App Hub Service.

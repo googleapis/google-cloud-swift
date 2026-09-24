@@ -867,7 +867,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.intervals]: <doc:SearchRequest/FacetSpec/FacetKey/intervals>
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.restricted_values]: <doc:SearchRequest/FacetSpec/FacetKey/restrictedValues>
       /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]: <doc:SearchResponse/Facet/FacetValue/count>
-      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/value(_:)>
+      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/FacetValueOneOf/value(_:)>
       /// [google.cloud.retail.v2.SearchResponse.Facet.values]: <doc:SearchResponse/Facet/values>
       public var orderBy: Swift.String = Swift.String()
 
@@ -898,7 +898,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.query]: <doc:SearchRequest/FacetSpec/FacetKey/query>
       /// [google.cloud.retail.v2.SearchRequest.filter]: <doc:SearchRequest/filter>
       /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.count]: <doc:SearchResponse/Facet/FacetValue/count>
-      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/value(_:)>
+      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/FacetValueOneOf/value(_:)>
       public var query: Swift.String = Swift.String()
 
       /// Returns the min and max value for each numerical facet intervals.
@@ -2116,7 +2116,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// This field specifies the type of user answer.
-      public var type: OneOf_Type? = nil
+      public var type: TypeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2154,7 +2154,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var type: OneOf_Type? = nil
+        var type: TypeOneOf? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -2285,7 +2285,7 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// This field specifies the type of user answer.
-      public enum OneOf_Type: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Codable, Equatable, Sendable {
         /// This field specifies the incremental input text from the user during
         /// the conversational search.
         case textAnswer(Swift.String)

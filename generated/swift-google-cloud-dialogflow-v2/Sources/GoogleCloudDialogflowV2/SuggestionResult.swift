@@ -33,7 +33,7 @@
     Sendable
   {
     /// Different type of suggestion response.
-    public var suggestionResponse: OneOf_SuggestionResponse? = nil
+    public var suggestionResponse: SuggestionResponseOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var suggestionResponse: OneOf_SuggestionResponse? = nil
+      var suggestionResponse: SuggestionResponseOneOf? = nil
       let suggestionResponseCheckAndSet = {
         if suggestionResponse != nil {
           throw DecodingError.dataCorrupted(
@@ -153,7 +153,7 @@
     }
 
     /// Different type of suggestion response.
-    public enum OneOf_SuggestionResponse: Codable, Equatable, Sendable {
+    public enum SuggestionResponseOneOf: Codable, Equatable, Sendable {
       /// Error status if the request failed.
       indirect case error(GoogleRpc.Status?)
       /// SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.

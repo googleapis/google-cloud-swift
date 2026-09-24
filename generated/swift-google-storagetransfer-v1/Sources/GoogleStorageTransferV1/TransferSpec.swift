@@ -50,12 +50,12 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sinkAgentPoolName: Swift.String = Swift.String()
 
   /// The write sink for the data.
-  public var dataSink: OneOf_DataSink? = nil
+  public var dataSink: DataSinkOneOf? = nil
 
   /// The read source of the data.
-  public var dataSource: OneOf_DataSource? = nil
+  public var dataSource: DataSourceOneOf? = nil
 
-  public var intermediateDataLocation: OneOf_IntermediateDataLocation? = nil
+  public var intermediateDataLocation: IntermediateDataLocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sinkAgentPoolName = value
     }
 
-    var dataSink: OneOf_DataSink? = nil
+    var dataSink: DataSinkOneOf? = nil
     let dataSinkCheckAndSet = {
       if dataSink != nil {
         throw DecodingError.dataCorrupted(
@@ -151,7 +151,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.dataSink = dataSink
 
-    var dataSource: OneOf_DataSource? = nil
+    var dataSource: DataSourceOneOf? = nil
     let dataSourceCheckAndSet = {
       if dataSource != nil {
         throw DecodingError.dataCorrupted(
@@ -192,7 +192,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.dataSource = dataSource
 
-    var intermediateDataLocation: OneOf_IntermediateDataLocation? = nil
+    var intermediateDataLocation: IntermediateDataLocationOneOf? = nil
     let intermediateDataLocationCheckAndSet = {
       if intermediateDataLocation != nil {
         throw DecodingError.dataCorrupted(
@@ -263,7 +263,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The write sink for the data.
-  public enum OneOf_DataSink: Codable, Equatable, Sendable {
+  public enum DataSinkOneOf: Codable, Equatable, Sendable {
     /// A Cloud Storage data sink.
     indirect case gcsDataSink(GcsData?)
     /// A POSIX Filesystem data sink.
@@ -271,7 +271,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The read source of the data.
-  public enum OneOf_DataSource: Codable, Equatable, Sendable {
+  public enum DataSourceOneOf: Codable, Equatable, Sendable {
     /// A Cloud Storage data source.
     indirect case gcsDataSource(GcsData?)
     /// An AWS S3 data source.
@@ -288,7 +288,7 @@ public struct TransferSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case hdfsDataSource(HdfsData?)
   }
 
-  public enum OneOf_IntermediateDataLocation: Codable, Equatable, Sendable {
+  public enum IntermediateDataLocationOneOf: Codable, Equatable, Sendable {
     /// For transfers between file systems, specifies a Cloud Storage bucket
     /// to be used as an intermediate location through which to transfer data.
     ///

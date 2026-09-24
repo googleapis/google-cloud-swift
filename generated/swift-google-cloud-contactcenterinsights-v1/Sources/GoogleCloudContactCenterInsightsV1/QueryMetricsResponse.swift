@@ -204,7 +204,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       public var interval: GoogleType.Interval? = nil
 
       /// The measure included in this data point.
-      public var measure: OneOf_Measure? = nil
+      public var measure: MeasureOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -243,7 +243,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.interval = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .interval)
 
-        var measure: OneOf_Measure? = nil
+        var measure: MeasureOneOf? = nil
         let measureCheckAndSet = {
           if measure != nil {
             throw DecodingError.dataCorrupted(
@@ -522,7 +522,7 @@ public struct QueryMetricsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The measure included in this data point.
-      public enum OneOf_Measure: Codable, Equatable, Sendable {
+      public enum MeasureOneOf: Codable, Equatable, Sendable {
         /// The measure related to conversations.
         indirect case conversationMeasure(QueryMetricsResponse.Slice.DataPoint.ConversationMeasure?)
       }

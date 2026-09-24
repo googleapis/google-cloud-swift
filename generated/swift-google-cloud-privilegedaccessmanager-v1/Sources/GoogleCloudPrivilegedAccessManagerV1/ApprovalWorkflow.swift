@@ -22,7 +22,7 @@ import Foundation
 public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var approvalWorkflow: OneOf_ApprovalWorkflow? = nil
+  public var approvalWorkflow: ApprovalWorkflowOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var approvalWorkflow: OneOf_ApprovalWorkflow? = nil
+    var approvalWorkflow: ApprovalWorkflowOneOf? = nil
     let approvalWorkflowCheckAndSet = {
       if approvalWorkflow != nil {
         throw DecodingError.dataCorrupted(
@@ -94,7 +94,7 @@ public struct ApprovalWorkflow: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_ApprovalWorkflow: Codable, Equatable, Sendable {
+  public enum ApprovalWorkflowOneOf: Codable, Equatable, Sendable {
     /// An approval workflow where users designated as approvers review and act
     /// on the grants.
     indirect case manualApprovals(ManualApprovals?)

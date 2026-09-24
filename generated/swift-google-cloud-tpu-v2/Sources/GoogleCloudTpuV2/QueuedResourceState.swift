@@ -32,7 +32,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
     QueuedResourceState.StateInitiator()
 
   /// Further data for the state.
-  public var stateData: OneOf_StateData? = nil
+  public var stateData: StateDataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -94,7 +94,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
       self.stateInitiator = value
     }
 
-    var stateData: OneOf_StateData? = nil
+    var stateData: StateDataOneOf? = nil
     let stateDataCheckAndSet = {
       if stateData != nil {
         throw DecodingError.dataCorrupted(
@@ -950,7 +950,7 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Further data for the state.
-  public enum OneOf_StateData: Codable, Equatable, Sendable {
+  public enum StateDataOneOf: Codable, Equatable, Sendable {
     /// Output only. Further data for the creating state.
     indirect case creatingData(QueuedResourceState.CreatingData?)
     /// Output only. Further data for the accepted state.

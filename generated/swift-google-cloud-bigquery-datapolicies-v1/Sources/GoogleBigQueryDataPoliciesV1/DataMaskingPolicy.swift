@@ -22,7 +22,7 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A masking expression to bind to the data masking rule.
-  public var maskingExpression: OneOf_MaskingExpression? = nil
+  public var maskingExpression: MaskingExpressionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var maskingExpression: OneOf_MaskingExpression? = nil
+    var maskingExpression: MaskingExpressionOneOf? = nil
     let maskingExpressionCheckAndSet = {
       if maskingExpression != nil {
         throw DecodingError.dataCorrupted(
@@ -303,7 +303,7 @@ public struct DataMaskingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A masking expression to bind to the data masking rule.
-  public enum OneOf_MaskingExpression: Codable, Equatable, Sendable {
+  public enum MaskingExpressionOneOf: Codable, Equatable, Sendable {
     /// A predefined masking expression.
     case predefinedExpression(DataMaskingPolicy.PredefinedExpression)
     /// The name of the BigQuery routine that contains the custom masking

@@ -22,7 +22,7 @@
   public struct PipelineTaskExecutorDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var details: OneOf_Details? = nil
+    public var details: DetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var details: OneOf_Details? = nil
+      var details: DetailsOneOf? = nil
       let detailsCheckAndSet = {
         if details != nil {
           throw DecodingError.dataCorrupted(
@@ -311,7 +311,7 @@
       }
     }
 
-    public enum OneOf_Details: Codable, Equatable, Sendable {
+    public enum DetailsOneOf: Codable, Equatable, Sendable {
       /// Output only. The detailed info for a container executor.
       indirect case containerDetail(PipelineTaskExecutorDetail.ContainerDetail?)
       /// Output only. The detailed info for a custom job executor.

@@ -81,7 +81,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   public var driverSchedulingConfig: DriverSchedulingConfig? = nil
 
   /// Required. The application/framework-specific portion of the job.
-  public var typeJob: OneOf_TypeJob? = nil
+  public var typeJob: TypeJobOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -191,7 +191,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
     self.driverSchedulingConfig = try container.decodeIfPresent(
       DriverSchedulingConfig.self, forKey: .driverSchedulingConfig)
 
-    var typeJob: OneOf_TypeJob? = nil
+    var typeJob: TypeJobOneOf? = nil
     let typeJobCheckAndSet = {
       if typeJob != nil {
         throw DecodingError.dataCorrupted(
@@ -283,7 +283,7 @@ public struct Job: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The application/framework-specific portion of the job.
-  public enum OneOf_TypeJob: Codable, Equatable, Sendable {
+  public enum TypeJobOneOf: Codable, Equatable, Sendable {
     /// Optional. Job is a Hadoop job.
     indirect case hadoopJob(HadoopJob?)
     /// Optional. Job is a Spark job.

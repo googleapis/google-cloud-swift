@@ -22,10 +22,10 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Each key can be exactly one kind.
-  public var keys: OneOf_Keys? = nil
+  public var keys: KeysOneOf? = nil
 
   /// Each value can be exactly one kind.
-  public var values: OneOf_Values? = nil
+  public var values: ValuesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var keys: OneOf_Keys? = nil
+    var keys: KeysOneOf? = nil
     let keysCheckAndSet = {
       if keys != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.keys = keys
 
-    var values: OneOf_Values? = nil
+    var values: ValuesOneOf? = nil
     let valuesCheckAndSet = {
       if values != nil {
         throw DecodingError.dataCorrupted(
@@ -164,7 +164,7 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Each key can be exactly one kind.
-  public enum OneOf_Keys: Codable, Equatable, Sendable {
+  public enum KeysOneOf: Codable, Equatable, Sendable {
     /// Optional. A list of boolean keys.
     indirect case boolKeys(BoolList?)
     /// Optional. A list of string keys.
@@ -176,7 +176,7 @@ public struct DictValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Each value can be exactly one kind.
-  public enum OneOf_Values: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Codable, Equatable, Sendable {
     /// Optional. A list of boolean values.
     indirect case boolValues(BoolList?)
     /// Optional. A list of string values.

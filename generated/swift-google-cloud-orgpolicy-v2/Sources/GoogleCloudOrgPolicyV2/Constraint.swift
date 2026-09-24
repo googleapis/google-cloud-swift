@@ -73,7 +73,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of restrictions for this `Constraint`.
   ///
   /// Immutable after creation.
-  public var constraintType: OneOf_ConstraintType? = nil
+  public var constraintType: ConstraintTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -148,7 +148,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
       self.supportsSimulation = value
     }
 
-    var constraintType: OneOf_ConstraintType? = nil
+    var constraintType: ConstraintTypeOneOf? = nil
     let constraintTypeCheckAndSet = {
       if constraintType != nil {
         throw DecodingError.dataCorrupted(
@@ -1180,7 +1180,7 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The type of restrictions for this `Constraint`.
   ///
   /// Immutable after creation.
-  public enum OneOf_ConstraintType: Codable, Equatable, Sendable {
+  public enum ConstraintTypeOneOf: Codable, Equatable, Sendable {
     /// Defines this constraint as being a list constraint.
     indirect case listConstraint(Constraint.ListConstraint?)
     /// Defines this constraint as being a boolean constraint.

@@ -22,9 +22,9 @@ import Foundation
 public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,7 +78,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.filter = filter
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -185,7 +185,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Optional. Value is null
     indirect case isNull(GoogleWKT.WKTEmpty?)
     /// Optional. Value is found in the specified list.
@@ -198,7 +198,7 @@ public struct ValueTransformation: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case doubleComparison(DoubleComparisonFilter?)
   }
 
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Optional. Set to null
     indirect case assignNull(GoogleWKT.WKTEmpty?)
     /// Optional. Set to a specific value (value is converted to fit the target

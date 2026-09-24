@@ -33,7 +33,7 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
   public var port: Swift.Int32 = Swift.Int32()
 
   /// Desired expiration or lifetime of the access token.
-  public var expiration: OneOf_Expiration? = nil
+  public var expiration: ExpirationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
       self.port = value
     }
 
-    var expiration: OneOf_Expiration? = nil
+    var expiration: ExpirationOneOf? = nil
     let expirationCheckAndSet = {
       if expiration != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct GenerateAccessTokenRequest: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Desired expiration or lifetime of the access token.
-  public enum OneOf_Expiration: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// Desired expiration time of the access token. This value must
     /// be at most 24 hours in the future. If a value is not specified, the
     /// token's expiration time will be set to a default value of 1 hour in the

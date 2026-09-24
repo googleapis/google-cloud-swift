@@ -672,7 +672,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Specify the video deinterlacing filter. The default is `yadif`.
-    public var deinterlacingFilter: OneOf_DeinterlacingFilter? = nil
+    public var deinterlacingFilter: DeinterlacingFilterOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -710,7 +710,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var deinterlacingFilter: OneOf_DeinterlacingFilter? = nil
+      var deinterlacingFilter: DeinterlacingFilterOneOf? = nil
       let deinterlacingFilterCheckAndSet = {
         if deinterlacingFilter != nil {
           throw DecodingError.dataCorrupted(
@@ -966,7 +966,7 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specify the video deinterlacing filter. The default is `yadif`.
-    public enum OneOf_DeinterlacingFilter: Codable, Equatable, Sendable {
+    public enum DeinterlacingFilterOneOf: Codable, Equatable, Sendable {
       /// Specifies the Yet Another Deinterlacing Filter Configuration.
       indirect case yadif(PreprocessingConfig.Deinterlace.YadifConfig?)
       /// Specifies the Bob Weaver Deinterlacing Filter Configuration.

@@ -111,8 +111,8 @@
     /// [fraction_split][google.cloud.aiplatform.v1.InputDataConfig.fraction_split]
     /// is used by default.
     ///
-    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/OneOf_Split/fractionSplit(_:)>
-    public var split: OneOf_Split? = nil
+    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/SplitOneOf/fractionSplit(_:)>
+    public var split: SplitOneOf? = nil
 
     /// Only applicable to Custom and Hyperparameter Tuning TrainingPipelines.
     ///
@@ -129,7 +129,7 @@
     /// * AIP_TRAINING_DATA_URI : Sharded exported training data uris.
     /// * AIP_VALIDATION_DATA_URI : Sharded exported validation data uris.
     /// * AIP_TEST_DATA_URI : Sharded exported test data uris.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -204,7 +204,7 @@
         self.persistMlUseAssignment = value
       }
 
-      var split: OneOf_Split? = nil
+      var split: SplitOneOf? = nil
       let splitCheckAndSet = {
         if split != nil {
           throw DecodingError.dataCorrupted(
@@ -239,7 +239,7 @@
       }
       self.split = split
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -308,8 +308,8 @@
     /// [fraction_split][google.cloud.aiplatform.v1.InputDataConfig.fraction_split]
     /// is used by default.
     ///
-    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/OneOf_Split/fractionSplit(_:)>
-    public enum OneOf_Split: Codable, Equatable, Sendable {
+    /// [google.cloud.aiplatform.v1.InputDataConfig.fraction_split]: <doc:InputDataConfig/SplitOneOf/fractionSplit(_:)>
+    public enum SplitOneOf: Codable, Equatable, Sendable {
       /// Split based on fractions defining the size of each set.
       indirect case fractionSplit(FractionSplit?)
       /// Split based on the provided filters for each set.
@@ -343,7 +343,7 @@
     /// * AIP_TRAINING_DATA_URI : Sharded exported training data uris.
     /// * AIP_VALIDATION_DATA_URI : Sharded exported validation data uris.
     /// * AIP_TEST_DATA_URI : Sharded exported test data uris.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage location where the training data is to be
       /// written to. In the given directory a new directory is created with
       /// name:

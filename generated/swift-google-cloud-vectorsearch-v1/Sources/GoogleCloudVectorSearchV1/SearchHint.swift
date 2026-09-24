@@ -22,7 +22,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of index to use.
-  public var indexType: OneOf_IndexType? = nil
+  public var indexType: IndexTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var indexType: OneOf_IndexType? = nil
+    var indexType: IndexTypeOneOf? = nil
     let indexTypeCheckAndSet = {
       if indexType != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     public var name: Swift.String = Swift.String()
 
     /// The parameters for the index.
-    public var params: OneOf_Params? = nil
+    public var params: ParamsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -152,7 +152,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
         self.name = value
       }
 
-      var params: OneOf_Params? = nil
+      var params: ParamsOneOf? = nil
       let paramsCheckAndSet = {
         if params != nil {
           throw DecodingError.dataCorrupted(
@@ -259,7 +259,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The parameters for the index.
-    public enum OneOf_Params: Codable, Equatable, Sendable {
+    public enum ParamsOneOf: Codable, Equatable, Sendable {
       /// Optional. Dense ScaNN parameters.
       indirect case denseScannParams(SearchHint.IndexHint.DenseScannParams?)
     }
@@ -334,7 +334,7 @@ public struct SearchHint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of index to use.
-  public enum OneOf_IndexType: Codable, Equatable, Sendable {
+  public enum IndexTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, the search will use the system's default
     /// K-Nearest Neighbor (KNN) index engine.
     indirect case knnHint(SearchHint.KnnHint?)

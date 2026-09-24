@@ -136,10 +136,10 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Bucket locations to include or exclude.
-    public var cloudStorageLocations: OneOf_CloudStorageLocations? = nil
+    public var cloudStorageLocations: CloudStorageLocationsOneOf? = nil
 
     /// Buckets to include or exclude.
-    public var cloudStorageBuckets: OneOf_CloudStorageBuckets? = nil
+    public var cloudStorageBuckets: CloudStorageBucketsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -185,7 +185,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var cloudStorageLocations: OneOf_CloudStorageLocations? = nil
+      var cloudStorageLocations: CloudStorageLocationsOneOf? = nil
       let cloudStorageLocationsCheckAndSet = {
         if cloudStorageLocations != nil {
           throw DecodingError.dataCorrupted(
@@ -211,7 +211,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.cloudStorageLocations = cloudStorageLocations
 
-      var cloudStorageBuckets: OneOf_CloudStorageBuckets? = nil
+      var cloudStorageBuckets: CloudStorageBucketsOneOf? = nil
       let cloudStorageBucketsCheckAndSet = {
         if cloudStorageBuckets != nil {
           throw DecodingError.dataCorrupted(
@@ -414,7 +414,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Bucket locations to include or exclude.
-    public enum OneOf_CloudStorageLocations: Codable, Equatable, Sendable {
+    public enum CloudStorageLocationsOneOf: Codable, Equatable, Sendable {
       /// Bucket locations to include.
       indirect case includedCloudStorageLocations(IntelligenceConfig.Filter.CloudStorageLocations?)
       /// Bucket locations to exclude.
@@ -422,7 +422,7 @@ public struct IntelligenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Buckets to include or exclude.
-    public enum OneOf_CloudStorageBuckets: Codable, Equatable, Sendable {
+    public enum CloudStorageBucketsOneOf: Codable, Equatable, Sendable {
       /// Buckets to include.
       indirect case includedCloudStorageBuckets(IntelligenceConfig.Filter.CloudStorageBuckets?)
       /// Buckets to exclude.

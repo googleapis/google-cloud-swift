@@ -92,7 +92,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
   public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var findingType: OneOf_FindingType? = nil
+    public var findingType: FindingTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var findingType: OneOf_FindingType? = nil
+      var findingType: FindingTypeOneOf? = nil
       let findingTypeCheckAndSet = {
         if findingType != nil {
           throw DecodingError.dataCorrupted(
@@ -238,7 +238,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       }
     }
 
-    public enum OneOf_FindingType: Codable, Equatable, Sendable {
+    public enum FindingTypeOneOf: Codable, Equatable, Sendable {
       /// PAM's service account is being denied access by Cloud IAM.
       indirect case iamAccessDenied(CheckOnboardingStatusResponse.Finding.IAMAccessDenied?)
     }

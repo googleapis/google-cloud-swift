@@ -53,7 +53,7 @@
     /// Maps to Kubernetes probe argument 'initialDelaySeconds'.
     public var initialDelaySeconds: Swift.Int32 = Swift.Int32()
 
-    public var probeType: OneOf_ProbeType? = nil
+    public var probeType: ProbeTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,7 +120,7 @@
         self.initialDelaySeconds = value
       }
 
-      var probeType: OneOf_ProbeType? = nil
+      var probeType: ProbeTypeOneOf? = nil
       let probeTypeCheckAndSet = {
         if probeType != nil {
           throw DecodingError.dataCorrupted(
@@ -597,7 +597,7 @@
       }
     }
 
-    public enum OneOf_ProbeType: Codable, Equatable, Sendable {
+    public enum ProbeTypeOneOf: Codable, Equatable, Sendable {
       /// ExecAction probes the health of a container by executing a command.
       indirect case exec(Probe.ExecAction?)
       /// HttpGetAction probes the health of a container by sending an HTTP GET

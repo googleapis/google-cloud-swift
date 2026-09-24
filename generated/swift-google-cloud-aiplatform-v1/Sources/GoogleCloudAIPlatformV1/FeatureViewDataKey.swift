@@ -22,7 +22,7 @@
   public struct FeatureViewDataKey: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var keyOneof: OneOf_KeyOneof? = nil
+    public var keyOneof: KeyOneofOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var keyOneof: OneOf_KeyOneof? = nil
+      var keyOneof: KeyOneofOneOf? = nil
       let keyOneofCheckAndSet = {
         if keyOneof != nil {
           throw DecodingError.dataCorrupted(
@@ -170,7 +170,7 @@
       }
     }
 
-    public enum OneOf_KeyOneof: Codable, Equatable, Sendable {
+    public enum KeyOneofOneOf: Codable, Equatable, Sendable {
       /// String key to use for lookup.
       case key(Swift.String)
       /// The actual Entity ID will be composed from this struct. This should match

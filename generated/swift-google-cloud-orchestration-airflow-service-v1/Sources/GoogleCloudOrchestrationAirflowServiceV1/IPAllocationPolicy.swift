@@ -31,10 +31,10 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public var useIpAliases: Swift.Bool = Swift.Bool()
 
   /// Configuration of allocating IP addresses for pods in the GKE cluster.
-  public var clusterIpAllocation: OneOf_ClusterIpAllocation? = nil
+  public var clusterIpAllocation: ClusterIpAllocationOneOf? = nil
 
   /// Configuration of allocating IP addresses for services in the GKE cluster.
-  public var servicesIpAllocation: OneOf_ServicesIpAllocation? = nil
+  public var servicesIpAllocation: ServicesIpAllocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.useIpAliases = value
     }
 
-    var clusterIpAllocation: OneOf_ClusterIpAllocation? = nil
+    var clusterIpAllocation: ClusterIpAllocationOneOf? = nil
     let clusterIpAllocationCheckAndSet = {
       if clusterIpAllocation != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.clusterIpAllocation = clusterIpAllocation
 
-    var servicesIpAllocation: OneOf_ServicesIpAllocation? = nil
+    var servicesIpAllocation: ServicesIpAllocationOneOf? = nil
     let servicesIpAllocationCheckAndSet = {
       if servicesIpAllocation != nil {
         throw DecodingError.dataCorrupted(
@@ -157,7 +157,7 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration of allocating IP addresses for pods in the GKE cluster.
-  public enum OneOf_ClusterIpAllocation: Codable, Equatable, Sendable {
+  public enum ClusterIpAllocationOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the GKE cluster's secondary range used to allocate
     /// IP addresses to pods.
     ///
@@ -184,7 +184,7 @@ public struct IPAllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration of allocating IP addresses for services in the GKE cluster.
-  public enum OneOf_ServicesIpAllocation: Codable, Equatable, Sendable {
+  public enum ServicesIpAllocationOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the services' secondary range used to allocate
     /// IP addresses to the GKE cluster.
     ///

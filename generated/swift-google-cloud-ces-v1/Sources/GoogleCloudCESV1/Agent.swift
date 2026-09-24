@@ -118,7 +118,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var validationErrors: [Swift.String] = []
 
   /// The type of agent.
-  public var agentType: OneOf_AgentType? = nil
+  public var agentType: AgentTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -257,7 +257,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.validationErrors = value
     }
 
-    var agentType: OneOf_AgentType? = nil
+    var agentType: AgentTypeOneOf? = nil
     let agentTypeCheckAndSet = {
       if agentType != nil {
         throw DecodingError.dataCorrupted(
@@ -610,7 +610,7 @@ public struct Agent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of agent.
-  public enum OneOf_AgentType: Codable, Equatable, Sendable {
+  public enum AgentTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. The default agent type.
     indirect case llmAgent(Agent.LlmAgent?)
     /// Optional. The remote

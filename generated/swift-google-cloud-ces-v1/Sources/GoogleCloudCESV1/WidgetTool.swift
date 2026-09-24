@@ -45,7 +45,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
   public var textResponseConfig: WidgetTool.TextResponseConfig? = nil
 
   /// The input of the widget tool.
-  public var input: OneOf_Input? = nil
+  public var input: InputOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -107,7 +107,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
     self.textResponseConfig = try container.decodeIfPresent(
       WidgetTool.TextResponseConfig.self, forKey: .textResponseConfig)
 
-    var input: OneOf_Input? = nil
+    var input: InputOneOf? = nil
     let inputCheckAndSet = {
       if input != nil {
         throw DecodingError.dataCorrupted(
@@ -788,7 +788,7 @@ public struct WidgetTool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The input of the widget tool.
-  public enum OneOf_Input: Codable, Equatable, Sendable {
+  public enum InputOneOf: Codable, Equatable, Sendable {
     /// Optional. The input parameters of the widget tool.
     indirect case parameters(Schema?)
   }

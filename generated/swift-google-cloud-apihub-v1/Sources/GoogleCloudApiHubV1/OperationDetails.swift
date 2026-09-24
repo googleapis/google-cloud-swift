@@ -34,7 +34,7 @@ public struct OperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// marked as `true` in the spec.
   public var deprecated: Swift.Bool = Swift.Bool()
 
-  public var operation: OneOf_Operation? = nil
+  public var operation: OperationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct OperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       self.deprecated = value
     }
 
-    var operation: OneOf_Operation? = nil
+    var operation: OperationOneOf? = nil
     let operationCheckAndSet = {
       if operation != nil {
         throw DecodingError.dataCorrupted(
@@ -122,7 +122,7 @@ public struct OperationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Operation: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Codable, Equatable, Sendable {
     /// The HTTP Operation.
     indirect case httpOperation(HttpOperation?)
   }

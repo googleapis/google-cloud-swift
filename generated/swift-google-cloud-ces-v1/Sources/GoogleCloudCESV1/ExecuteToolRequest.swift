@@ -39,10 +39,10 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
-  public var toolIdentifier: OneOf_ToolIdentifier? = nil
+  public var toolIdentifier: ToolIdentifierOneOf? = nil
 
   /// Additional context to be provided for the tool execution
-  public var toolExecutionContext: OneOf_ToolExecutionContext? = nil
+  public var toolExecutionContext: ToolExecutionContextOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -95,7 +95,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.args = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .args)
     self.mockConfig = try container.decodeIfPresent(MockConfig.self, forKey: .mockConfig)
 
-    var toolIdentifier: OneOf_ToolIdentifier? = nil
+    var toolIdentifier: ToolIdentifierOneOf? = nil
     let toolIdentifierCheckAndSet = {
       if toolIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.toolIdentifier = toolIdentifier
 
-    var toolExecutionContext: OneOf_ToolExecutionContext? = nil
+    var toolExecutionContext: ToolExecutionContextOneOf? = nil
     let toolExecutionContextCheckAndSet = {
       if toolExecutionContext != nil {
         throw DecodingError.dataCorrupted(
@@ -167,7 +167,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The identifier of the tool to execute. It could be either a persisted tool
   /// or a tool from a toolset.
-  public enum OneOf_ToolIdentifier: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the tool to execute.
     /// Format:
     /// projects/{project}/locations/{location}/apps/{app}/tools/{tool}
@@ -178,7 +178,7 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional context to be provided for the tool execution
-  public enum OneOf_ToolExecutionContext: Codable, Equatable, Sendable {
+  public enum ToolExecutionContextOneOf: Codable, Equatable, Sendable {
     /// Optional. The variables that are available for the tool execution.
     indirect case variables(GoogleWKT.WKTStruct?)
     /// Optional. The

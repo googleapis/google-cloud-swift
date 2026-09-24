@@ -95,7 +95,7 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Destination to which the Skaffold configuration is applied during a
   /// rollout.
-  public var deploymentTarget: OneOf_DeploymentTarget? = nil
+  public var deploymentTarget: DeploymentTargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -210,7 +210,7 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
       self.deployParameters = value
     }
 
-    var deploymentTarget: OneOf_DeploymentTarget? = nil
+    var deploymentTarget: DeploymentTargetOneOf? = nil
     let deploymentTargetCheckAndSet = {
       if deploymentTarget != nil {
         throw DecodingError.dataCorrupted(
@@ -281,7 +281,7 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Destination to which the Skaffold configuration is applied during a
   /// rollout.
-  public enum OneOf_DeploymentTarget: Codable, Equatable, Sendable {
+  public enum DeploymentTargetOneOf: Codable, Equatable, Sendable {
     /// Optional. Information specifying a GKE Cluster.
     indirect case gke(GkeCluster?)
     /// Optional. Information specifying an Anthos Cluster.

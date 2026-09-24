@@ -22,7 +22,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The action to take.
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -400,7 +400,7 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The action to take.
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Optional. Immediately respond with a preconfigured response.
     indirect case respondImmediately(TriggerAction.RespondImmediately?)
     /// Optional. Transfer the conversation to a different agent.

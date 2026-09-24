@@ -25,7 +25,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// simple Get, List or Delete methods because all significant information
   /// (resource name, number of returned elements for List operations) is already
   /// included in parent audit log message.
-  public var method: OneOf_Method? = nil
+  public var method: MethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var method: OneOf_Method? = nil
+    var method: MethodOneOf? = nil
     let methodCheckAndSet = {
       if method != nil {
         throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
   /// simple Get, List or Delete methods because all significant information
   /// (resource name, number of returned elements for List operations) is already
   /// included in parent audit log message.
-  public enum OneOf_Method: Codable, Equatable, Sendable {
+  public enum MethodOneOf: Codable, Equatable, Sendable {
     /// Detailed information about UpdateService call.
     indirect case updateService(UpdateServiceMethod?)
     /// Detailed information about CreateVersion call.

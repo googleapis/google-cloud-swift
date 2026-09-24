@@ -28,7 +28,7 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   public var endTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The step details.
-  public var step: OneOf_Step? = nil
+  public var step: StepOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
-    var step: OneOf_Step? = nil
+    var step: StepOneOf? = nil
     let stepCheckAndSet = {
       if step != nil {
         throw DecodingError.dataCorrupted(
@@ -127,7 +127,7 @@ public struct DiskMigrationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The step details.
-  public enum OneOf_Step: Codable, Equatable, Sendable {
+  public enum StepOneOf: Codable, Equatable, Sendable {
     /// Creating source disk snapshot step.
     indirect case creatingSourceDiskSnapshot(CreatingSourceDiskSnapshotStep?)
     /// Copying source disk snapshot step.

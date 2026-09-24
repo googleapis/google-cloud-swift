@@ -27,7 +27,7 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleWKT._AnyP
 
   /// Required. The action type supported on a universal action menu item. It
   /// could be either a link to open or an endpoint to execute.
-  public var actionType: OneOf_ActionType? = nil
+  public var actionType: ActionTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleWKT._AnyP
       self.label = value
     }
 
-    var actionType: OneOf_ActionType? = nil
+    var actionType: ActionTypeOneOf? = nil
     let actionTypeCheckAndSet = {
       if actionType != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleWKT._AnyP
 
   /// Required. The action type supported on a universal action menu item. It
   /// could be either a link to open or an endpoint to execute.
-  public enum OneOf_ActionType: Codable, Equatable, Sendable {
+  public enum ActionTypeOneOf: Codable, Equatable, Sendable {
     /// URL to be opened by the UniversalAction.
     case openLink(Swift.String)
     /// Endpoint to be run by the UniversalAction.

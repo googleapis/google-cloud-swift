@@ -75,7 +75,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// The type of parameters is determined by the operation being proposed.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public var approvalParameters: OneOf_ApprovalParameters? = nil
+  public var approvalParameters: ApprovalParametersOneOf? = nil
 
   /// The expiration of the
   /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
@@ -85,13 +85,13 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// time is 5 minutes.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public var expiration: OneOf_Expiration? = nil
+  public var expiration: ExpirationOneOf? = nil
 
   /// The operation to perform on the
   /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  public var operation: OneOf_Operation? = nil
+  public var operation: OperationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -182,7 +182,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
       GoogleWKT.WKTTimestamp.self, forKey: .deleteTime)
     self.purgeTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .purgeTime)
 
-    var approvalParameters: OneOf_ApprovalParameters? = nil
+    var approvalParameters: ApprovalParametersOneOf? = nil
     let approvalParametersCheckAndSet = {
       if approvalParameters != nil {
         throw DecodingError.dataCorrupted(
@@ -206,7 +206,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     }
     self.approvalParameters = approvalParameters
 
-    var expiration: OneOf_Expiration? = nil
+    var expiration: ExpirationOneOf? = nil
     let expirationCheckAndSet = {
       if expiration != nil {
         throw DecodingError.dataCorrupted(
@@ -226,7 +226,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
     }
     self.expiration = expiration
 
-    var operation: OneOf_Operation? = nil
+    var operation: OperationOneOf? = nil
     let operationCheckAndSet = {
       if operation != nil {
         throw DecodingError.dataCorrupted(
@@ -1375,7 +1375,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// The type of parameters is determined by the operation being proposed.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public enum OneOf_ApprovalParameters: Codable, Equatable, Sendable {
+  public enum ApprovalParametersOneOf: Codable, Equatable, Sendable {
     /// Output only. The quorum approval parameters for the
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
     ///
@@ -1398,7 +1398,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// time is 5 minutes.
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
-  public enum OneOf_Expiration: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// The time at which the
     /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
     /// will expire if not approved and executed.
@@ -1417,7 +1417,7 @@ public struct SingleTenantHsmInstanceProposal: Codable, Equatable, GoogleWKT._An
   /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
   ///
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
-  public enum OneOf_Operation: Codable, Equatable, Sendable {
+  public enum OperationOneOf: Codable, Equatable, Sendable {
     /// Register 2FA keys for the
     /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
     /// This operation requires all N Challenges to be signed by 2FA keys. The

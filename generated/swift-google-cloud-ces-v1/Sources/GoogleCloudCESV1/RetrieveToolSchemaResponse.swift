@@ -31,7 +31,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
   public var outputSchema: Schema? = nil
 
   /// The identifier of the tool that the schema is for.
-  public var toolIdentifier: OneOf_ToolIdentifier? = nil
+  public var toolIdentifier: ToolIdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
     self.inputSchema = try container.decodeIfPresent(Schema.self, forKey: .inputSchema)
     self.outputSchema = try container.decodeIfPresent(Schema.self, forKey: .outputSchema)
 
-    var toolIdentifier: OneOf_ToolIdentifier? = nil
+    var toolIdentifier: ToolIdentifierOneOf? = nil
     let toolIdentifierCheckAndSet = {
       if toolIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct RetrieveToolSchemaResponse: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The identifier of the tool that the schema is for.
-  public enum OneOf_ToolIdentifier: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
     /// The name of the tool that the schema is for.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)

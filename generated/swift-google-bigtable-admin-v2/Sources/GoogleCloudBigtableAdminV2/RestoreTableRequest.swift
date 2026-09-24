@@ -35,7 +35,7 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var tableId: Swift.String = Swift.String()
 
   /// Required. The source from which to restore.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.tableId = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -118,7 +118,7 @@ public struct RestoreTableRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The source from which to restore.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Name of the backup from which to restore.  Values are of the form
     /// `projects/<project>/instances/<instance>/clusters/<cluster>/backups/<backup>`.
     case backup(Swift.String)

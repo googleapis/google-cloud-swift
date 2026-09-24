@@ -21,7 +21,7 @@ public import Foundation
 public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var complex: OneOf_Complex? = nil
+  public var complex: ComplexOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var complex: OneOf_Complex? = nil
+    var complex: ComplexOneOf? = nil
     let complexCheckAndSet = {
       if complex != nil {
         throw DecodingError.dataCorrupted(
@@ -354,7 +354,7 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_Complex: Codable, Equatable, Sendable {
+  public enum ComplexOneOf: Codable, Equatable, Sendable {
     case null(GoogleWKT.WKTNullValue)
     case boolValue(Swift.Bool)
     case bytesValue(Foundation.Data)

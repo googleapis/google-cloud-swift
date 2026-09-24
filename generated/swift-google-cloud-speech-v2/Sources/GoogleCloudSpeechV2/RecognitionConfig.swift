@@ -68,7 +68,7 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var denoiserConfig: DenoiserConfig? = nil
 
   /// Decoding parameters for audio being sent for recognition.
-  public var decodingConfig: OneOf_DecodingConfig? = nil
+  public var decodingConfig: DecodingConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -134,7 +134,7 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.denoiserConfig = try container.decodeIfPresent(
       DenoiserConfig.self, forKey: .denoiserConfig)
 
-    var decodingConfig: OneOf_DecodingConfig? = nil
+    var decodingConfig: DecodingConfigOneOf? = nil
     let decodingConfigCheckAndSet = {
       if decodingConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -185,7 +185,7 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Decoding parameters for audio being sent for recognition.
-  public enum OneOf_DecodingConfig: Codable, Equatable, Sendable {
+  public enum DecodingConfigOneOf: Codable, Equatable, Sendable {
     /// Automatically detect decoding parameters.
     /// Preferred for supported formats.
     indirect case autoDecodingConfig(AutoDetectDecodingConfig?)

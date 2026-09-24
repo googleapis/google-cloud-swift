@@ -26,7 +26,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public var nodePoolSoakDuration: GoogleWKT.WKTDuration? = nil
 
   /// The rollout policy controls the general rollout progress of blue-green.
-  public var rolloutPolicy: OneOf_RolloutPolicy? = nil
+  public var rolloutPolicy: RolloutPolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     self.nodePoolSoakDuration = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .nodePoolSoakDuration)
 
-    var rolloutPolicy: OneOf_RolloutPolicy? = nil
+    var rolloutPolicy: RolloutPolicyOneOf? = nil
     let rolloutPolicyCheckAndSet = {
       if rolloutPolicy != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public var batchSoakDuration: GoogleWKT.WKTDuration? = nil
 
     /// Blue pool size to drain in a batch.
-    public var updateBatchSize: OneOf_UpdateBatchSize? = nil
+    public var updateBatchSize: UpdateBatchSizeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -162,7 +162,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       self.batchSoakDuration = try container.decodeIfPresent(
         GoogleWKT.WKTDuration.self, forKey: .batchSoakDuration)
 
-      var updateBatchSize: OneOf_UpdateBatchSize? = nil
+      var updateBatchSize: UpdateBatchSizeOneOf? = nil
       let updateBatchSizeCheckAndSet = {
         if updateBatchSize != nil {
           throw DecodingError.dataCorrupted(
@@ -207,7 +207,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Blue pool size to drain in a batch.
-    public enum OneOf_UpdateBatchSize: Codable, Equatable, Sendable {
+    public enum UpdateBatchSizeOneOf: Codable, Equatable, Sendable {
       /// Percentage of the blue pool nodes to drain in a batch.
       /// The range of this field should be (0.0, 1.0].
       case batchPercentage(Swift.Float)
@@ -297,7 +297,7 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rollout policy controls the general rollout progress of blue-green.
-  public enum OneOf_RolloutPolicy: Codable, Equatable, Sendable {
+  public enum RolloutPolicyOneOf: Codable, Equatable, Sendable {
     /// Standard policy for the blue-green upgrade.
     indirect case standardRolloutPolicy(BlueGreenSettings.StandardRolloutPolicy?)
     /// Autoscaled policy for cluster autoscaler enabled blue-green upgrade.

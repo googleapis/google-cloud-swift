@@ -84,7 +84,7 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
   public var totalResourceErrorCount: Swift.Int32 = Swift.Int32()
 
   /// The details of the task.
-  public var taskDetails: OneOf_TaskDetails? = nil
+  public var taskDetails: TaskDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -184,7 +184,7 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
       self.totalResourceErrorCount = value
     }
 
-    var taskDetails: OneOf_TaskDetails? = nil
+    var taskDetails: TaskDetailsOneOf? = nil
     let taskDetailsCheckAndSet = {
       if taskDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -393,7 +393,7 @@ public struct MigrationTask: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The details of the task.
-  public enum OneOf_TaskDetails: Codable, Equatable, Sendable {
+  public enum TaskDetailsOneOf: Codable, Equatable, Sendable {
     /// Task configuration for Assessment.
     indirect case assessmentTaskDetails(AssessmentTaskDetails?)
     /// Task configuration for CW Batch/Offline SQL Translation.

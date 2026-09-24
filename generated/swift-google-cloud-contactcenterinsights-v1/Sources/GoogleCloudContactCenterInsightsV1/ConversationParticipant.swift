@@ -33,7 +33,7 @@ public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The role of the participant.
   public var role: ConversationParticipant.Role = ConversationParticipant.Role()
 
-  public var participant: OneOf_Participant? = nil
+  public var participant: ParticipantOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackabl
       self.role = value
     }
 
-    var participant: OneOf_Participant? = nil
+    var participant: ParticipantOneOf? = nil
     let participantCheckAndSet = {
       if participant != nil {
         throw DecodingError.dataCorrupted(
@@ -270,7 +270,7 @@ public struct ConversationParticipant: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_Participant: Codable, Equatable, Sendable {
+  public enum ParticipantOneOf: Codable, Equatable, Sendable {
     /// The name of the participant provided by Dialogflow. Format:
     /// projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}
     case dialogflowParticipantName(Swift.String)

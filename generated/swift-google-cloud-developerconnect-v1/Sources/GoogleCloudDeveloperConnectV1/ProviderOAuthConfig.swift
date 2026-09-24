@@ -28,7 +28,7 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// OAuth Provider ID. It could be Developer Connect owned or providers
   /// provided.
-  public var oauthProviderId: OneOf_OauthProviderId? = nil
+  public var oauthProviderId: OauthProviderIdOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.scopes = value
     }
 
-    var oauthProviderId: OneOf_OauthProviderId? = nil
+    var oauthProviderId: OauthProviderIdOneOf? = nil
     let oauthProviderIdCheckAndSet = {
       if oauthProviderId != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct ProviderOAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// OAuth Provider ID. It could be Developer Connect owned or providers
   /// provided.
-  public enum OneOf_OauthProviderId: Codable, Equatable, Sendable {
+  public enum OauthProviderIdOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. Developer Connect provided OAuth.
     case systemProviderId(SystemProvider)
   }

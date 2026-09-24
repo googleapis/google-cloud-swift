@@ -282,7 +282,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
       public var complianceStateReason: Swift.String = Swift.String()
 
       /// Resource specific output.
-      public var output: OneOf_Output? = nil
+      public var output: OutputOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -349,7 +349,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
           self.complianceStateReason = value
         }
 
-        var output: OneOf_Output? = nil
+        var output: OutputOneOf? = nil
         let outputCheckAndSet = {
           if output != nil {
             throw DecodingError.dataCorrupted(
@@ -808,7 +808,7 @@ public struct OSPolicyAssignmentReport: Codable, Equatable, GoogleWKT._AnyPackab
       }
 
       /// Resource specific output.
-      public enum OneOf_Output: Codable, Equatable, Sendable {
+      public enum OutputOneOf: Codable, Equatable, Sendable {
         /// ExecResource specific output.
         indirect case execResourceOutput(
           OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.ExecResourceOutput?

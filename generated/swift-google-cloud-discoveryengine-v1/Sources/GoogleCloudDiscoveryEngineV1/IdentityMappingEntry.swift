@@ -29,7 +29,7 @@
 
     /// Union field identity_provider_id. Identity Provider id can be a user or a
     /// group.
-    public var identityProviderId: OneOf_IdentityProviderId? = nil
+    public var identityProviderId: IdentityProviderIdOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@
         self.externalIdentity = value
       }
 
-      var identityProviderId: OneOf_IdentityProviderId? = nil
+      var identityProviderId: IdentityProviderIdOneOf? = nil
       let identityProviderIdCheckAndSet = {
         if identityProviderId != nil {
           throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@
 
     /// Union field identity_provider_id. Identity Provider id can be a user or a
     /// group.
-    public enum OneOf_IdentityProviderId: Codable, Equatable, Sendable {
+    public enum IdentityProviderIdOneOf: Codable, Equatable, Sendable {
       /// User identifier.
       /// For Google Workspace user account, user_id should be the google workspace
       /// user email.

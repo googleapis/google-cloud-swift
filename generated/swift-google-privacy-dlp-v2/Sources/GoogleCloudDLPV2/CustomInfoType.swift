@@ -53,7 +53,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sensitivityScore: SensitivityScore? = nil
 
   /// Type of custom detector.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -125,7 +125,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     self.sensitivityScore = try container.decodeIfPresent(
       SensitivityScore.self, forKey: .sensitivityScore)
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -224,7 +224,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The potential places the data can be read from.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -262,7 +262,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -376,7 +376,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The potential places the data can be read from.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// List of words or phrases to search for.
       indirect case wordList(CustomInfoType.Dictionary.WordList?)
       /// Newline-delimited file of words in Cloud Storage. Only a single file
@@ -623,7 +623,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The type of file label to detect.
-    public var type: OneOf_Type? = nil
+    public var type: TypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -661,7 +661,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type? = nil
+      var type: TypeOneOf? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -936,7 +936,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The type of file label to detect.
-    public enum OneOf_Type: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Sensitivity labels published by Microsoft.
       indirect case sensitivityLabel(CustomInfoType.FileLabelInfoType.SensitivityLabel?)
       /// Google Drive labels published by Google.
@@ -962,7 +962,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Type of hotword rule.
-    public var type: OneOf_Type? = nil
+    public var type: TypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -998,7 +998,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var type: OneOf_Type? = nil
+      var type: TypeOneOf? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -1122,7 +1122,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// How the likelihood will be modified.
-      public var adjustment: OneOf_Adjustment? = nil
+      public var adjustment: AdjustmentOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1160,7 +1160,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var adjustment: OneOf_Adjustment? = nil
+        var adjustment: AdjustmentOneOf? = nil
         let adjustmentCheckAndSet = {
           if adjustment != nil {
             throw DecodingError.dataCorrupted(
@@ -1204,7 +1204,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// How the likelihood will be modified.
-      public enum OneOf_Adjustment: Codable, Equatable, Sendable {
+      public enum AdjustmentOneOf: Codable, Equatable, Sendable {
         /// Set the likelihood of a finding to a fixed value.
         case fixedLikelihood(Likelihood)
         /// Increase or decrease the likelihood by the specified number of
@@ -1327,7 +1327,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of hotword rule.
-    public enum OneOf_Type: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Codable, Equatable, Sendable {
       /// Hotword-based detection rule.
       indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule?)
     }
@@ -1455,7 +1455,7 @@ public struct CustomInfoType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of custom detector.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// A list of phrases to detect as a CustomInfoType.
     indirect case dictionary(CustomInfoType.Dictionary?)
     /// Regular expression based CustomInfoType.

@@ -22,7 +22,7 @@ public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of the vector.
-  public var vectorType: OneOf_VectorType? = nil
+  public var vectorType: VectorTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var vectorType: OneOf_VectorType? = nil
+    var vectorType: VectorTypeOneOf? = nil
     let vectorTypeCheckAndSet = {
       if vectorType != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct Vector: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the vector.
-  public enum OneOf_VectorType: Codable, Equatable, Sendable {
+  public enum VectorTypeOneOf: Codable, Equatable, Sendable {
     /// A dense vector.
     indirect case dense(DenseVector?)
     /// A sparse vector.

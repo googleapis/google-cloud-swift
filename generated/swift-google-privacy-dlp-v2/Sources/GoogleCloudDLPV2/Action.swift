@@ -25,7 +25,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Extra events to execute after the job has finished.
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -607,7 +607,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     public var fileTypesToTransform: [FileType] = []
 
     /// Where to store the output.
-    public var output: OneOf_Output? = nil
+    public var output: OutputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -657,7 +657,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
         self.fileTypesToTransform = value
       }
 
-      var output: OneOf_Output? = nil
+      var output: OutputOneOf? = nil
       let outputCheckAndSet = {
         if output != nil {
           throw DecodingError.dataCorrupted(
@@ -698,7 +698,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Where to store the output.
-    public enum OneOf_Output: Codable, Equatable, Sendable {
+    public enum OutputOneOf: Codable, Equatable, Sendable {
       /// Required. User settable Cloud Storage bucket and folders to store
       /// de-identified files. This field must be set for Cloud Storage
       /// deidentification. The output Cloud Storage bucket must be different
@@ -840,7 +840,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Extra events to execute after the job has finished.
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Save resulting findings in a provided location.
     indirect case saveFindings(Action.SaveFindings?)
     /// Publish a notification to a Pub/Sub topic.

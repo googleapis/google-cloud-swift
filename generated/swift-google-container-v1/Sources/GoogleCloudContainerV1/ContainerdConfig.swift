@@ -185,7 +185,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// Certificate access config. The following are supported:
       /// - GCPSecretManagerCertificateConfig
-      public var certificateConfig: OneOf_CertificateConfig? = nil
+      public var certificateConfig: CertificateConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -227,7 +227,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
           self.fqdns = value
         }
 
-        var certificateConfig: OneOf_CertificateConfig? = nil
+        var certificateConfig: CertificateConfigOneOf? = nil
         let certificateConfigCheckAndSet = {
           if certificateConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -340,7 +340,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// Certificate access config. The following are supported:
       /// - GCPSecretManagerCertificateConfig
-      public enum OneOf_CertificateConfig: Codable, Equatable, Sendable {
+      public enum CertificateConfigOneOf: Codable, Equatable, Sendable {
         /// Secret Manager certificate configuration.
         indirect case gcpSecretManagerCertificateConfig(
           ContainerdConfig.PrivateRegistryAccessConfig.CertificateAuthorityDomainConfig
@@ -523,7 +523,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// One of the methods to configure the certificate.
-      public var certificate: OneOf_Certificate? = nil
+      public var certificate: CertificateOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -559,7 +559,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var certificate: OneOf_Certificate? = nil
+        var certificate: CertificateOneOf? = nil
         let certificateCheckAndSet = {
           if certificate != nil {
             throw DecodingError.dataCorrupted(
@@ -596,7 +596,7 @@ public struct ContainerdConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// One of the methods to configure the certificate.
-      public enum OneOf_Certificate: Codable, Equatable, Sendable {
+      public enum CertificateOneOf: Codable, Equatable, Sendable {
         /// The URI configures a secret from
         /// [Secret Manager](https://cloud.google.com/secret-manager)
         /// in the format

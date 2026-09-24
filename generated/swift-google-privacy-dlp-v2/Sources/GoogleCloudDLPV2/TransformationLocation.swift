@@ -26,7 +26,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
   public var containerType: TransformationContainerType = TransformationContainerType()
 
   /// Location type.
-  public var locationType: OneOf_LocationType? = nil
+  public var locationType: LocationTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
       self.containerType = value
     }
 
-    var locationType: OneOf_LocationType? = nil
+    var locationType: LocationTypeOneOf? = nil
     let locationTypeCheckAndSet = {
       if locationType != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct TransformationLocation: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Location type.
-  public enum OneOf_LocationType: Codable, Equatable, Sendable {
+  public enum LocationTypeOneOf: Codable, Equatable, Sendable {
     /// For infotype transformations, link to the corresponding findings ID so
     /// that location information does not need to be duplicated. Each findings
     /// ID correlates to an entry in the findings output table, this table only

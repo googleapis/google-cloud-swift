@@ -70,7 +70,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
   public var encryptionId: Swift.String = Swift.String()
 
   /// Specifies the container configuration.
-  public var containerConfig: OneOf_ContainerConfig? = nil
+  public var containerConfig: ContainerConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
       self.encryptionId = value
     }
 
-    var containerConfig: OneOf_ContainerConfig? = nil
+    var containerConfig: ContainerConfigOneOf? = nil
     let containerConfigCheckAndSet = {
       if containerConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -250,7 +250,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the container configuration.
-  public enum OneOf_ContainerConfig: Codable, Equatable, Sendable {
+  public enum ContainerConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. `fmp4` container configuration.
     indirect case fmp4(MuxStream.Fmp4Config?)
   }

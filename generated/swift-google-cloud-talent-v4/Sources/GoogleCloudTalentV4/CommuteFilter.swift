@@ -41,7 +41,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public var allowImpreciseAddresses: Swift.Bool = Swift.Bool()
 
   /// Traffic factor to take into account while searching by commute.
-  public var trafficOption: OneOf_TrafficOption? = nil
+  public var trafficOption: TrafficOptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
       self.allowImpreciseAddresses = value
     }
 
-    var trafficOption: OneOf_TrafficOption? = nil
+    var trafficOption: TrafficOptionOneOf? = nil
     let trafficOptionCheckAndSet = {
       if trafficOption != nil {
         throw DecodingError.dataCorrupted(
@@ -263,7 +263,7 @@ public struct CommuteFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Traffic factor to take into account while searching by commute.
-  public enum OneOf_TrafficOption: Codable, Equatable, Sendable {
+  public enum TrafficOptionOneOf: Codable, Equatable, Sendable {
     /// Specifies the traffic density to use when calculating commute time.
     case roadTraffic(CommuteFilter.RoadTraffic)
     /// The departure time used to calculate traffic impact, represented as

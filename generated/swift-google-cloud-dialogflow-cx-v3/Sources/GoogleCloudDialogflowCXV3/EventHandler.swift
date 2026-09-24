@@ -36,8 +36,8 @@
   /// flow.
   ///
   /// [google.cloud.dialogflow.cx.v3.EventHandler.event]: <doc:EventHandler/event>
-  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_flow]: <doc:EventHandler/OneOf_Target/targetFlow(_:)>
-  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_page]: <doc:EventHandler/OneOf_Target/targetPage(_:)>
+  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_flow]: <doc:EventHandler/TargetOneOf/targetFlow(_:)>
+  /// [google.cloud.dialogflow.cx.v3.EventHandler.target_page]: <doc:EventHandler/TargetOneOf/targetPage(_:)>
   /// [google.cloud.dialogflow.cx.v3.EventHandler.trigger_fulfillment]: <doc:EventHandler/triggerFulfillment>
   public struct EventHandler: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
@@ -60,7 +60,7 @@
     /// another flow in the same agent.
     ///
     /// [google.cloud.dialogflow.cx.v3.TransitionRoute]: <doc:TransitionRoute>
-    public var target: OneOf_Target? = nil
+    public var target: TargetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -114,7 +114,7 @@
       self.triggerFulfillment = try container.decodeIfPresent(
         Fulfillment.self, forKey: .triggerFulfillment)
 
-      var target: OneOf_Target? = nil
+      var target: TargetOneOf? = nil
       let targetCheckAndSet = {
         if target != nil {
           throw DecodingError.dataCorrupted(
@@ -169,7 +169,7 @@
     /// another flow in the same agent.
     ///
     /// [google.cloud.dialogflow.cx.v3.TransitionRoute]: <doc:TransitionRoute>
-    public enum OneOf_Target: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Codable, Equatable, Sendable {
       /// The target page to transition to.
       /// Format:
       /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.

@@ -26,7 +26,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sourceConnectionProfile: Swift.String = Swift.String()
 
   /// Stream configuration that is specific to the data source type.
-  public var sourceStreamConfig: OneOf_SourceStreamConfig? = nil
+  public var sourceStreamConfig: SourceStreamConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sourceConnectionProfile = value
     }
 
-    var sourceStreamConfig: OneOf_SourceStreamConfig? = nil
+    var sourceStreamConfig: SourceStreamConfigOneOf? = nil
     let sourceStreamConfigCheckAndSet = {
       if sourceStreamConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -152,7 +152,7 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stream configuration that is specific to the data source type.
-  public enum OneOf_SourceStreamConfig: Codable, Equatable, Sendable {
+  public enum SourceStreamConfigOneOf: Codable, Equatable, Sendable {
     /// Oracle data source configuration.
     indirect case oracleSourceConfig(OracleSourceConfig?)
     /// MySQL data source configuration.

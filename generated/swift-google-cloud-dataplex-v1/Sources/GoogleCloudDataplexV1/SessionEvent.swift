@@ -46,7 +46,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var unassignedDuration: GoogleWKT.WKTDuration? = nil
 
   /// Additional information about the Query metadata.
-  public var detail: OneOf_Detail? = nil
+  public var detail: DetailOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     self.unassignedDuration = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .unassignedDuration)
 
-    var detail: OneOf_Detail? = nil
+    var detail: DetailOneOf? = nil
     let detailCheckAndSet = {
       if detail != nil {
         throw DecodingError.dataCorrupted(
@@ -520,7 +520,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional information about the Query metadata.
-  public enum OneOf_Detail: Codable, Equatable, Sendable {
+  public enum DetailOneOf: Codable, Equatable, Sendable {
     /// The execution details of the query.
     indirect case query(SessionEvent.QueryDetail?)
   }

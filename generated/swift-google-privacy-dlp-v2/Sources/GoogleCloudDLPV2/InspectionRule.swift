@@ -23,7 +23,7 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Inspection rule types.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct InspectionRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Inspection rule types.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Hotword-based detection rule.
     indirect case hotwordRule(CustomInfoType.DetectionRule.HotwordRule?)
     /// Exclusion rule.

@@ -220,7 +220,7 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct IpRange: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var ipRange: OneOf_IpRange? = nil
+    public var ipRange: IpRangeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -260,7 +260,7 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var ipRange: OneOf_IpRange? = nil
+      var ipRange: IpRangeOneOf? = nil
       let ipRangeCheckAndSet = {
         if ipRange != nil {
           throw DecodingError.dataCorrupted(
@@ -308,7 +308,7 @@ public struct ExternalAccessRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_IpRange: Codable, Equatable, Sendable {
+    public enum IpRangeOneOf: Codable, Equatable, Sendable {
       /// A single IP address. For example: `10.0.0.5`.
       case ipAddress(Swift.String)
       /// An IP address range in the CIDR format. For example: `10.0.0.0/24`.

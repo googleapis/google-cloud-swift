@@ -80,9 +80,9 @@
     /// [json_data][google.cloud.discoveryengine.v1.Document.json_data] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/OneOf_Data/jsonData(_:)>
-    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
-    public var data: OneOf_Data? = nil
+    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/DataOneOf/jsonData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/DataOneOf/structData(_:)>
+    public var data: DataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,7 +158,7 @@
       self.indexStatus = try container.decodeIfPresent(
         Document.IndexStatus.self, forKey: .indexStatus)
 
-      var data: OneOf_Data? = nil
+      var data: DataOneOf? = nil
       let dataCheckAndSet = {
         if data != nil {
           throw DecodingError.dataCorrupted(
@@ -238,7 +238,7 @@
       public var mimeType: Swift.String = Swift.String()
 
       /// The content of the unstructured document.
-      public var content: OneOf_Content? = nil
+      public var content: ContentOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -281,7 +281,7 @@
           self.mimeType = value
         }
 
-        var content: OneOf_Content? = nil
+        var content: ContentOneOf? = nil
         let contentCheckAndSet = {
           if content != nil {
             throw DecodingError.dataCorrupted(
@@ -322,7 +322,7 @@
       }
 
       /// The content of the unstructured document.
-      public enum OneOf_Content: Codable, Equatable, Sendable {
+      public enum ContentOneOf: Codable, Equatable, Sendable {
         /// The content represented as a stream of bytes. The maximum length is
         /// 1,000,000 bytes (1 MB / ~0.95 MiB).
         ///
@@ -649,9 +649,9 @@
     /// [json_data][google.cloud.discoveryengine.v1.Document.json_data] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/OneOf_Data/jsonData(_:)>
-    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
-    public enum OneOf_Data: Codable, Equatable, Sendable {
+    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/DataOneOf/jsonData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/DataOneOf/structData(_:)>
+    public enum DataOneOf: Codable, Equatable, Sendable {
       /// The structured JSON data for the document. It should conform to the
       /// registered [Schema][google.cloud.discoveryengine.v1.Schema] or an
       /// `INVALID_ARGUMENT` error is thrown.

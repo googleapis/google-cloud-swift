@@ -23,7 +23,7 @@
   /// It's preferred to send as [text][google.cloud.aiplatform.v1.Part.text]
   /// directly rather than raw bytes.
   ///
-  /// [google.cloud.aiplatform.v1.Part.text]: <doc:Part/OneOf_Data/text(_:)>
+  /// [google.cloud.aiplatform.v1.Part.text]: <doc:Part/DataOneOf/text(_:)>
   public struct Blob: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {

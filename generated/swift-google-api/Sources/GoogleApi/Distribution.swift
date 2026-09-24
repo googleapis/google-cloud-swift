@@ -262,7 +262,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Exactly one of these three fields must be set.
-    public var options: OneOf_Options? = nil
+    public var options: OptionsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -302,7 +302,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var options: OneOf_Options? = nil
+      var options: OptionsOneOf? = nil
       let optionsCheckAndSet = {
         if options != nil {
           throw DecodingError.dataCorrupted(
@@ -621,7 +621,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Exactly one of these three fields must be set.
-    public enum OneOf_Options: Codable, Equatable, Sendable {
+    public enum OptionsOneOf: Codable, Equatable, Sendable {
       /// The linear bucket.
       indirect case linearBuckets(Distribution.BucketOptions.Linear?)
       /// The exponential buckets.

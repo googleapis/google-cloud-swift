@@ -49,7 +49,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   public var mimeType: Swift.String = Swift.String()
 
   /// Additional format-specific options.
-  public var options: OneOf_Options? = nil
+  public var options: OptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
       self.mimeType = value
     }
 
-    var options: OneOf_Options? = nil
+    var options: OptionsOneOf? = nil
     let optionsCheckAndSet = {
       if options != nil {
         throw DecodingError.dataCorrupted(
@@ -697,7 +697,7 @@ public struct StorageFormat: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional format-specific options.
-  public enum OneOf_Options: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Additional information about CSV formatted data.
     indirect case csv(StorageFormat.CsvOptions?)
     /// Optional. Additional information about CSV formatted data.

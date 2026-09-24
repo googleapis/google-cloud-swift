@@ -24,7 +24,7 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// strategy defines how updates to a resource bundle should be rolled out
   /// across clusters.
-  public var strategy: OneOf_Strategy? = nil
+  public var strategy: StrategyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var strategy: OneOf_Strategy? = nil
+    var strategy: StrategyOneOf? = nil
     let strategyCheckAndSet = {
       if strategy != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct RolloutStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// strategy defines how updates to a resource bundle should be rolled out
   /// across clusters.
-  public enum OneOf_Strategy: Codable, Equatable, Sendable {
+  public enum StrategyOneOf: Codable, Equatable, Sendable {
     /// AllAtOnceStrategy causes all clusters to be updated concurrently.
     indirect case allAtOnce(AllAtOnceStrategy?)
     /// RollingStrategy causes a specified number of clusters to be updated

@@ -32,7 +32,7 @@
     public var doneTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Additional metadata for the Knowledge operation.
-    public var operationMetadata: OneOf_OperationMetadata? = nil
+    public var operationMetadata: OperationMetadataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@
       }
       self.doneTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .doneTime)
 
-      var operationMetadata: OneOf_OperationMetadata? = nil
+      var operationMetadata: OperationMetadataOneOf? = nil
       let operationMetadataCheckAndSet = {
         if operationMetadata != nil {
           throw DecodingError.dataCorrupted(
@@ -247,7 +247,7 @@
     }
 
     /// Additional metadata for the Knowledge operation.
-    public enum OneOf_OperationMetadata: Codable, Equatable, Sendable {
+    public enum OperationMetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata for the Export Data Operation such as the destination of export.
       indirect case exportOperationMetadata(ExportOperationMetadata?)
     }

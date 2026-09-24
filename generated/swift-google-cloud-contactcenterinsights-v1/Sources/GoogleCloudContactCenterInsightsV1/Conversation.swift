@@ -89,13 +89,13 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var obfuscatedUserId: Swift.String = Swift.String()
 
   /// Metadata that applies to the conversation.
-  public var metadata: OneOf_Metadata? = nil
+  public var metadata: MetadataOneOf? = nil
 
   /// A time to live expiration setting, can be either a specified timestamp or a
   /// duration from the time that the conversation creation request was received.
   /// Conversations with an expiration set will be removed up to 24 hours after
   /// the specified time.
-  public var expiration: OneOf_Expiration? = nil
+  public var expiration: ExpirationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -223,7 +223,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.obfuscatedUserId = value
     }
 
-    var metadata: OneOf_Metadata? = nil
+    var metadata: MetadataOneOf? = nil
     let metadataCheckAndSet = {
       if metadata != nil {
         throw DecodingError.dataCorrupted(
@@ -240,7 +240,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.metadata = metadata
 
-    var expiration: OneOf_Expiration? = nil
+    var expiration: ExpirationOneOf? = nil
     let expirationCheckAndSet = {
       if expiration != nil {
         throw DecodingError.dataCorrupted(
@@ -1096,7 +1096,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Metadata that applies to the conversation.
-  public enum OneOf_Metadata: Codable, Equatable, Sendable {
+  public enum MetadataOneOf: Codable, Equatable, Sendable {
     /// Call-specific metadata.
     indirect case callMetadata(Conversation.CallMetadata?)
   }
@@ -1105,7 +1105,7 @@ public struct Conversation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// duration from the time that the conversation creation request was received.
   /// Conversations with an expiration set will be removed up to 24 hours after
   /// the specified time.
-  public enum OneOf_Expiration: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// The time at which this conversation should expire. After this time, the
     /// conversation data and any associated analyses will be deleted.
     indirect case expireTime(GoogleWKT.WKTTimestamp?)

@@ -177,10 +177,10 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Hardware config
-    public var resources: OneOf_Resources? = nil
+    public var resources: ResourcesOneOf? = nil
 
     /// Software config
-    public var runtime: OneOf_Runtime? = nil
+    public var runtime: RuntimeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -218,7 +218,7 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var resources: OneOf_Resources? = nil
+      var resources: ResourcesOneOf? = nil
       let resourcesCheckAndSet = {
         if resources != nil {
           throw DecodingError.dataCorrupted(
@@ -235,7 +235,7 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.resources = resources
 
-      var runtime: OneOf_Runtime? = nil
+      var runtime: RuntimeOneOf? = nil
       let runtimeCheckAndSet = {
         if runtime != nil {
           throw DecodingError.dataCorrupted(
@@ -473,13 +473,13 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Hardware config
-    public enum OneOf_Resources: Codable, Equatable, Sendable {
+    public enum ResourcesOneOf: Codable, Equatable, Sendable {
       /// Optional. Compute resources needed for analyze interactive workloads.
       indirect case compute(Environment.InfrastructureSpec.ComputeResources?)
     }
 
     /// Software config
-    public enum OneOf_Runtime: Codable, Equatable, Sendable {
+    public enum RuntimeOneOf: Codable, Equatable, Sendable {
       /// Required. Software Runtime Configuration for analyze interactive
       /// workloads.
       indirect case osImage(Environment.InfrastructureSpec.OsImageRuntime?)

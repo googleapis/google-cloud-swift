@@ -71,7 +71,7 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// details.
   ///
   /// [google.cloud.backupdr.v1.BackupConfigDetails.type]: <doc:BackupConfigDetails/type>
-  public var planSpecificConfig: OneOf_PlanSpecificConfig? = nil
+  public var planSpecificConfig: PlanSpecificConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -154,7 +154,7 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupLocations = value
     }
 
-    var planSpecificConfig: OneOf_PlanSpecificConfig? = nil
+    var planSpecificConfig: PlanSpecificConfigOneOf? = nil
     let planSpecificConfigCheckAndSet = {
       if planSpecificConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -478,7 +478,7 @@ public struct BackupConfigDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// details.
   ///
   /// [google.cloud.backupdr.v1.BackupConfigDetails.type]: <doc:BackupConfigDetails/type>
-  public enum OneOf_PlanSpecificConfig: Codable, Equatable, Sendable {
+  public enum PlanSpecificConfigOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Backup and DR's Backup Plan specific data.
     indirect case backupDrPlanConfig(BackupDrPlanConfig?)
     /// Google Cloud Backup and DR's Template specific data.

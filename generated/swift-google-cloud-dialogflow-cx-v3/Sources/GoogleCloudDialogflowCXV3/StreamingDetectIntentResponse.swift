@@ -51,7 +51,7 @@
     public var debuggingInfo: CloudConversationDebuggingInfo? = nil
 
     /// The output response.
-    public var response: OneOf_Response? = nil
+    public var response: ResponseOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@
       self.debuggingInfo = try container.decodeIfPresent(
         CloudConversationDebuggingInfo.self, forKey: .debuggingInfo)
 
-      var response: OneOf_Response? = nil
+      var response: ResponseOneOf? = nil
       let responseCheckAndSet = {
         if response != nil {
           throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@
     }
 
     /// The output response.
-    public enum OneOf_Response: Codable, Equatable, Sendable {
+    public enum ResponseOneOf: Codable, Equatable, Sendable {
       /// The result of speech recognition.
       indirect case recognitionResult(StreamingRecognitionResult?)
       /// The response from detect intent.

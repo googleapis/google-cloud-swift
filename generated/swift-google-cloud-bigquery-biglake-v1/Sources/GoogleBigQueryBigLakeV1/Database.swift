@@ -44,7 +44,7 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
   public var type: Database.Type_ = Database.Type_()
 
   /// Options specified for the database type.
-  public var options: OneOf_Options? = nil
+  public var options: OptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,7 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var options: OneOf_Options? = nil
+    var options: OptionsOneOf? = nil
     let optionsCheckAndSet = {
       if options != nil {
         throw DecodingError.dataCorrupted(
@@ -260,7 +260,7 @@ public struct Database: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Options specified for the database type.
-  public enum OneOf_Options: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// Options of a Hive database.
     indirect case hiveOptions(HiveDatabaseOptions?)
   }

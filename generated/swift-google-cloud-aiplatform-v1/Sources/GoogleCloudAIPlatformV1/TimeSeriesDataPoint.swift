@@ -29,7 +29,7 @@
     public var step: Swift.Int64 = Swift.Int64()
 
     /// Value of this time series data point.
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@
         self.step = value
       }
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -124,7 +124,7 @@
     }
 
     /// Value of this time series data point.
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// A scalar value.
       indirect case scalar(Scalar?)
       /// A tensor value.

@@ -26,7 +26,7 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uri: Swift.String = Swift.String()
 
   /// Defines where SRT encryption passphrase are stored.
-  public var passphraseSource: OneOf_PassphraseSource? = nil
+  public var passphraseSource: PassphraseSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
       self.uri = value
     }
 
-    var passphraseSource: OneOf_PassphraseSource? = nil
+    var passphraseSource: PassphraseSourceOneOf? = nil
     let passphraseSourceCheckAndSet = {
       if passphraseSource != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct SrtPushOutputEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where SRT encryption passphrase are stored.
-  public enum OneOf_PassphraseSource: Codable, Equatable, Sendable {
+  public enum PassphraseSourceOneOf: Codable, Equatable, Sendable {
     /// The name of the Secret Version containing the SRT encryption passphrase,
     /// which is stored in Google Secret Manager. It should be in the format of
     /// `projects/{project}/secrets/{secret_id}/versions/{version_number}`.

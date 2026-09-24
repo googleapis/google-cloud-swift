@@ -184,8 +184,8 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [backup_scope][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]
   /// value.
   ///
-  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/OneOf_BackupScope>
-  public var backupScope: OneOf_BackupScope? = nil
+  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/BackupScopeOneOf>
+  public var backupScope: BackupScopeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -353,7 +353,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
       self.satisfiesPzi = value
     }
 
-    var backupScope: OneOf_BackupScope? = nil
+    var backupScope: BackupScopeOneOf? = nil
     let backupScopeCheckAndSet = {
       if backupScope != nil {
         throw DecodingError.dataCorrupted(
@@ -452,7 +452,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     public var backupCrdVersions: [Swift.String: Swift.String] = [:]
 
     /// Platform-specific version
-    public var platformVersion: OneOf_PlatformVersion? = nil
+    public var platformVersion: PlatformVersionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -507,7 +507,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
         self.backupCrdVersions = value
       }
 
-      var platformVersion: OneOf_PlatformVersion? = nil
+      var platformVersion: PlatformVersionOneOf? = nil
       let platformVersionCheckAndSet = {
         if platformVersion != nil {
           throw DecodingError.dataCorrupted(
@@ -552,7 +552,7 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Platform-specific version
-    public enum OneOf_PlatformVersion: Codable, Equatable, Sendable {
+    public enum PlatformVersionOneOf: Codable, Equatable, Sendable {
       /// Output only. GKE version
       case gkeVersion(Swift.String)
       /// Output only. Anthos version
@@ -717,8 +717,8 @@ public struct Backup: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [backup_scope][google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]
   /// value.
   ///
-  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/OneOf_BackupScope>
-  public enum OneOf_BackupScope: Codable, Equatable, Sendable {
+  /// [google.cloud.gkebackup.v1.BackupPlan.BackupConfig.backup_scope]: <doc:BackupPlan/BackupConfig/BackupScopeOneOf>
+  public enum BackupScopeOneOf: Codable, Equatable, Sendable {
     /// Output only. If True, all namespaces were included in the Backup.
     case allNamespaces(Swift.Bool)
     /// Output only. If set, the list of namespaces that were included in the

@@ -34,10 +34,10 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A Cloud Storage URI of a folder to import file data from, in the
   /// form of `gs://<bucket_name>/<path_inside_bucket>/`.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// The destination of the data transfer.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.serviceAccount = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -151,7 +151,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A Cloud Storage URI of a folder to import file data from, in the
   /// form of `gs://<bucket_name>/<path_inside_bucket>/`.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage source bucket and, optionally, path inside the bucket.
     /// If a path inside the bucket is specified, it must end with a forward
     /// slash (`/`).
@@ -159,7 +159,7 @@ public struct ImportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The destination of the data transfer.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Lustre path destination.
     indirect case lustrePath(LustrePath?)
   }

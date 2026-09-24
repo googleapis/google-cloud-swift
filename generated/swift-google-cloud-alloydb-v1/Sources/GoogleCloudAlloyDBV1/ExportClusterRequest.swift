@@ -30,10 +30,10 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var database: Swift.String = Swift.String()
 
   /// Oneof field to support other destinations in future.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   /// Required field to specify export file type and options.
-  public var exportOptions: OneOf_ExportOptions? = nil
+  public var exportOptions: ExportOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.database = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.destination = destination
 
-    var exportOptions: OneOf_ExportOptions? = nil
+    var exportOptions: ExportOptionsOneOf? = nil
     let exportOptionsCheckAndSet = {
       if exportOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -348,13 +348,13 @@ public struct ExportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Oneof field to support other destinations in future.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Required. Option to export data to cloud storage.
     indirect case gcsDestination(GcsDestination?)
   }
 
   /// Required field to specify export file type and options.
-  public enum OneOf_ExportOptions: Codable, Equatable, Sendable {
+  public enum ExportOptionsOneOf: Codable, Equatable, Sendable {
     /// Options for exporting data in CSV format. Required field to be set for
     /// CSV file type.
     indirect case csvExportOptions(ExportClusterRequest.CsvExportOptions?)

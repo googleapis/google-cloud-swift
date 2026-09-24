@@ -31,7 +31,7 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public var vmPort: Swift.Int32 = Swift.Int32()
 
   /// The VM configuration
-  public var vmConfig: OneOf_VmConfig? = nil
+  public var vmConfig: VmConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
       self.vmPort = value
     }
 
-    var vmConfig: OneOf_VmConfig? = nil
+    var vmConfig: VmConfigOneOf? = nil
     let vmConfigCheckAndSet = {
       if vmConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -131,7 +131,7 @@ public struct GenerateSshScriptRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The VM configuration
-  public enum OneOf_VmConfig: Codable, Equatable, Sendable {
+  public enum VmConfigOneOf: Codable, Equatable, Sendable {
     /// The VM creation configuration
     indirect case vmCreationConfig(VmCreationConfig?)
     /// The VM selection configuration

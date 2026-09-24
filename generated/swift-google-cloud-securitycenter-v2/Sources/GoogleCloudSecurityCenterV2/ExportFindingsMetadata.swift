@@ -25,7 +25,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   public var exportStartTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The destination to export findings to.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     self.exportStartTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .exportStartTime)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct ExportFindingsMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The destination to export findings to.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Required. The destination big query dataset to export findings to.
     indirect case bigQueryDestination(BigQueryDestination?)
   }

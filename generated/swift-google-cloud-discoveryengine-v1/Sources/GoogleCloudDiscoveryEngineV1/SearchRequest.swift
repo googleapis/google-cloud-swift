@@ -769,7 +769,7 @@
       Sendable
     {
       /// Specifies the image bytes.
-      public var image: OneOf_Image? = nil
+      public var image: ImageOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -805,7 +805,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var image: OneOf_Image? = nil
+        var image: ImageOneOf? = nil
         let imageCheckAndSet = {
           if image != nil {
             throw DecodingError.dataCorrupted(
@@ -840,7 +840,7 @@
       }
 
       /// Specifies the image bytes.
-      public enum OneOf_Image: Codable, Equatable, Sendable {
+      public enum ImageOneOf: Codable, Equatable, Sendable {
         /// Base64 encoded image bytes. Supported image formats: JPEG, PNG, and
         /// BMP.
         case imageBytes(Swift.String)
@@ -1195,7 +1195,7 @@
         ///
         /// [google.cloud.discoveryengine.v1.SearchRequest.FacetSpec.FacetKey.intervals]: <doc:SearchRequest/FacetSpec/FacetKey/intervals>
         /// [google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue.count]: <doc:SearchResponse/Facet/FacetValue/count>
-        /// [google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/value(_:)>
+        /// [google.cloud.discoveryengine.v1.SearchResponse.Facet.FacetValue.value]: <doc:SearchResponse/Facet/FacetValue/FacetValueOneOf/value(_:)>
         public var orderBy: Swift.String = Swift.String()
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -4608,7 +4608,7 @@
         Sendable
       {
         /// Configures how the relevance threshold is determined.
-        public var relevanceThresholdSpec: OneOf_RelevanceThresholdSpec? = nil
+        public var relevanceThresholdSpec: RelevanceThresholdSpecOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -4647,7 +4647,7 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
 
-          var relevanceThresholdSpec: OneOf_RelevanceThresholdSpec? = nil
+          var relevanceThresholdSpec: RelevanceThresholdSpecOneOf? = nil
           let relevanceThresholdSpecCheckAndSet = {
             if relevanceThresholdSpec != nil {
               throw DecodingError.dataCorrupted(
@@ -4692,7 +4692,7 @@
         }
 
         /// Configures how the relevance threshold is determined.
-        public enum OneOf_RelevanceThresholdSpec: Codable, Equatable, Sendable {
+        public enum RelevanceThresholdSpecOneOf: Codable, Equatable, Sendable {
           /// Pre-defined relevance threshold for the sub-search.
           case relevanceThreshold(SearchRequest.RelevanceThreshold)
           /// Custom relevance threshold for the sub-search.

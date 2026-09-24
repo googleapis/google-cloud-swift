@@ -22,7 +22,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of the value.
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct AttributeValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the value.
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// A string up to 256 bytes long.
     indirect case stringValue(TruncatableString?)
     /// A 64-bit signed integer.

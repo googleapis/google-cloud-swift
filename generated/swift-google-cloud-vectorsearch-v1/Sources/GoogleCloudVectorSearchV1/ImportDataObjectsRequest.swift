@@ -29,7 +29,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public var name: Swift.String = Swift.String()
 
   /// The configuration for the import data and error results.
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       self.name = value
     }
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -199,7 +199,7 @@ public struct ImportDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The configuration for the import data and error results.
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage location of the input content.
     indirect case gcsImport(ImportDataObjectsRequest.GcsImportConfig?)
   }

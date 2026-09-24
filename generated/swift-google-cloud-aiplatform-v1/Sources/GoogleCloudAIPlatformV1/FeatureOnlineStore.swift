@@ -68,7 +68,7 @@
     /// Output only. Reserved for future use.
     public var satisfiesPzi: Swift.Bool = Swift.Bool()
 
-    public var storageType: OneOf_StorageType? = nil
+    public var storageType: StorageTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -154,7 +154,7 @@
         self.satisfiesPzi = value
       }
 
-      var storageType: OneOf_StorageType? = nil
+      var storageType: StorageTypeOneOf? = nil
       let storageTypeCheckAndSet = {
         if storageType != nil {
           throw DecodingError.dataCorrupted(
@@ -771,7 +771,7 @@
       }
     }
 
-    public enum OneOf_StorageType: Codable, Equatable, Sendable {
+    public enum StorageTypeOneOf: Codable, Equatable, Sendable {
       /// Contains settings for the Cloud Bigtable instance that will be created
       /// to serve featureValues for all FeatureViews under this
       /// FeatureOnlineStore.

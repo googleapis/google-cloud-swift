@@ -22,7 +22,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
   Sendable
 {
   /// Location to store the transformation summary.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct TransformationDetailsStorageConfig: Codable, Equatable, GoogleWKT.
   }
 
   /// Location to store the transformation summary.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// The BigQuery table in which to store the output. This may be an existing
     /// table or in a new table in an existing dataset.
     /// If table_id is not set a new one will be generated for you with the

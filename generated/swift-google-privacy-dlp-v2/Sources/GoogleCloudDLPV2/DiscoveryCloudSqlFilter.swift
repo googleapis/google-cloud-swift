@@ -27,7 +27,7 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// other database resources within the location being profiled. The first
   /// filter to match will be applied, regardless of the condition. If none is
   /// set, will default to `others`.
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct DiscoveryCloudSqlFilter: Codable, Equatable, GoogleWKT._AnyPackabl
   /// other database resources within the location being profiled. The first
   /// filter to match will be applied, regardless of the condition. If none is
   /// set, will default to `others`.
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// A specific set of database resources for this filter to apply to.
     indirect case collection(DatabaseResourceCollection?)
     /// Catch-all. This should always be the last target in the list because

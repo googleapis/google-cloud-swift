@@ -25,7 +25,7 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   public var contentMetadata: ContentMetadata? = nil
 
   /// Data of the item either in the byte array or UTF-8 string form, or table.
-  public var dataItem: OneOf_DataItem? = nil
+  public var dataItem: DataItemOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     self.contentMetadata = try container.decodeIfPresent(
       ContentMetadata.self, forKey: .contentMetadata)
 
-    var dataItem: OneOf_DataItem? = nil
+    var dataItem: DataItemOneOf? = nil
     let dataItemCheckAndSet = {
       if dataItem != nil {
         throw DecodingError.dataCorrupted(
@@ -131,7 +131,7 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data of the item either in the byte array or UTF-8 string form, or table.
-  public enum OneOf_DataItem: Codable, Equatable, Sendable {
+  public enum DataItemOneOf: Codable, Equatable, Sendable {
     /// String data to inspect or redact.
     case value(Swift.String)
     /// Structured content for inspection. See

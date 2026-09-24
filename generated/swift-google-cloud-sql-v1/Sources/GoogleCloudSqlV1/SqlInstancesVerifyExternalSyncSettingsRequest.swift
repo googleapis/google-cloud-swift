@@ -53,7 +53,7 @@
     /// this field is empty, then migrate all objects.
     public var selectedObjects: [ExternalSyncSelectedObject] = []
 
-    public var syncConfig: OneOf_SyncConfig? = nil
+    public var syncConfig: SyncConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -138,7 +138,7 @@
         self.selectedObjects = value
       }
 
-      var syncConfig: OneOf_SyncConfig? = nil
+      var syncConfig: SyncConfigOneOf? = nil
       let syncConfigCheckAndSet = {
         if syncConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -417,7 +417,7 @@
       }
     }
 
-    public enum OneOf_SyncConfig: Codable, Equatable, Sendable {
+    public enum SyncConfigOneOf: Codable, Equatable, Sendable {
       /// Optional. MySQL-specific settings for start external sync.
       indirect case mysqlSyncConfig(MySqlSyncConfig?)
     }

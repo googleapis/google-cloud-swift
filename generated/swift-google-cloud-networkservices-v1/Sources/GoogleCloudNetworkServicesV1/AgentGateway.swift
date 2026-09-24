@@ -62,7 +62,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Deployment mode of the network proxy. Exactly one of the fields in this
   /// `oneof` must be set.
-  public var deploymentMode: OneOf_DeploymentMode? = nil
+  public var deploymentMode: DeploymentModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -151,7 +151,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
     self.agentGatewayCard = try container.decodeIfPresent(
       AgentGateway.AgentGatewayOutputCard.self, forKey: .agentGatewayCard)
 
-    var deploymentMode: OneOf_DeploymentMode? = nil
+    var deploymentMode: DeploymentModeOneOf? = nil
     let deploymentModeCheckAndSet = {
       if deploymentMode != nil {
         throw DecodingError.dataCorrupted(
@@ -999,7 +999,7 @@ public struct AgentGateway: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Deployment mode of the network proxy. Exactly one of the fields in this
   /// `oneof` must be set.
-  public enum OneOf_DeploymentMode: Codable, Equatable, Sendable {
+  public enum DeploymentModeOneOf: Codable, Equatable, Sendable {
     /// Optional. Proxy is orchestrated and managed by GoogleCloud in a tenant
     /// project.
     indirect case googleManaged(AgentGateway.GoogleManaged?)

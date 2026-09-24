@@ -67,7 +67,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Resource labels.
   public var labels: [Swift.String: Swift.String] = [:]
 
-  public var transport: OneOf_Transport? = nil
+  public var transport: TransportOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -152,7 +152,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var transport: OneOf_Transport? = nil
+    var transport: TransportOneOf? = nil
     let transportCheckAndSet = {
       if transport != nil {
         throw DecodingError.dataCorrupted(
@@ -333,7 +333,7 @@ public struct Channel: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Transport: Codable, Equatable, Sendable {
+  public enum TransportOneOf: Codable, Equatable, Sendable {
     /// Output only. The name of the Pub/Sub topic created and managed by
     /// Eventarc system as a transport for the event delivery. Format:
     /// `projects/{project}/topics/{topic_id}`.

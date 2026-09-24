@@ -95,10 +95,10 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The settings are required and immutable. After you configure the settings
   /// for one type of data scan, you can't change the data scan to a different
   /// type of data scan.
-  public var spec: OneOf_Spec? = nil
+  public var spec: SpecOneOf? = nil
 
   /// The result of the data scan.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -207,7 +207,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     self.executionIdentity = try container.decodeIfPresent(
       ExecutionIdentity.self, forKey: .executionIdentity)
 
-    var spec: OneOf_Spec? = nil
+    var spec: SpecOneOf? = nil
     let specCheckAndSet = {
       if spec != nil {
         throw DecodingError.dataCorrupted(
@@ -239,7 +239,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.spec = spec
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -337,7 +337,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     /// When an option is selected for incremental scan, it cannot be unset or
     /// changed. If not specified, a data scan will run for all data in the
     /// table.
-    public var incremental: OneOf_Incremental? = nil
+    public var incremental: IncrementalOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -376,7 +376,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.trigger = try container.decodeIfPresent(Trigger.self, forKey: .trigger)
 
-      var incremental: OneOf_Incremental? = nil
+      var incremental: IncrementalOneOf? = nil
       let incrementalCheckAndSet = {
         if incremental != nil {
           throw DecodingError.dataCorrupted(
@@ -416,7 +416,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
     /// When an option is selected for incremental scan, it cannot be unset or
     /// changed. If not specified, a data scan will run for all data in the
     /// table.
-    public enum OneOf_Incremental: Codable, Equatable, Sendable {
+    public enum IncrementalOneOf: Codable, Equatable, Sendable {
       /// Immutable. The unnested field (of type *Date* or *Timestamp*) that
       /// contains values which monotonically increase over time.
       ///
@@ -522,7 +522,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The settings are required and immutable. After you configure the settings
   /// for one type of data scan, you can't change the data scan to a different
   /// type of data scan.
-  public enum OneOf_Spec: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Settings for a data quality scan.
     indirect case dataQualitySpec(DataQualitySpec?)
     /// Settings for a data profile scan.
@@ -534,7 +534,7 @@ public struct DataScan: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the data scan.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. The result of a data quality scan.
     indirect case dataQualityResult(DataQualityResult?)
     /// Output only. The result of a data profile scan.

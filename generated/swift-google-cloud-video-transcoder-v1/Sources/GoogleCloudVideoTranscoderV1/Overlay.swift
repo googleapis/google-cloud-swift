@@ -497,7 +497,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Animations can be static or fade, or they can end the previous animation.
-    public var animationType: OneOf_AnimationType? = nil
+    public var animationType: AnimationTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -537,7 +537,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var animationType: OneOf_AnimationType? = nil
+      var animationType: AnimationTypeOneOf? = nil
       let animationTypeCheckAndSet = {
         if animationType != nil {
           throw DecodingError.dataCorrupted(
@@ -588,7 +588,7 @@ public struct Overlay: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Animations can be static or fade, or they can end the previous animation.
-    public enum OneOf_AnimationType: Codable, Equatable, Sendable {
+    public enum AnimationTypeOneOf: Codable, Equatable, Sendable {
       /// Display static overlay object.
       indirect case animationStatic(Overlay.AnimationStatic?)
       /// Display overlay object with fade animation.

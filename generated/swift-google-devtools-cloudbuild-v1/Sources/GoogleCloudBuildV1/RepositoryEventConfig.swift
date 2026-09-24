@@ -30,7 +30,7 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     RepositoryEventConfig.RepositoryType()
 
   /// The types of filter to trigger a build.
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -80,7 +80,7 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.repositoryType = value
     }
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -248,7 +248,7 @@ public struct RepositoryEventConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The types of filter to trigger a build.
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Filter to match changes in pull requests.
     indirect case pullRequest(PullRequestFilter?)
     /// Filter to match changes in refs like branches, tags.

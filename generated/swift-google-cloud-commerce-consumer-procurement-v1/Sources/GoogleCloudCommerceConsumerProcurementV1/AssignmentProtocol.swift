@@ -22,7 +22,7 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The type of assignment protocol.
-  public var assignmentType: OneOf_AssignmentType? = nil
+  public var assignmentType: AssignmentTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var assignmentType: OneOf_AssignmentType? = nil
+    var assignmentType: AssignmentTypeOneOf? = nil
     let assignmentTypeCheckAndSet = {
       if assignmentType != nil {
         throw DecodingError.dataCorrupted(
@@ -232,7 +232,7 @@ public struct AssignmentProtocol: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of assignment protocol.
-  public enum OneOf_AssignmentType: Codable, Equatable, Sendable {
+  public enum AssignmentTypeOneOf: Codable, Equatable, Sendable {
     /// Allow manual assignments triggered by administrative operations only.
     indirect case manualAssignmentType(AssignmentProtocol.ManualAssignmentType?)
     /// Allow automatic assignments triggered by data plane operations.

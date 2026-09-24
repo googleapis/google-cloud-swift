@@ -41,7 +41,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Specifies the day(s) on which the exclusion window takes
   /// effect. Exactly one of the fields MUST be specified.
-  public var recurrence: OneOf_Recurrence? = nil
+  public var recurrence: RecurrenceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,7 +87,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(GoogleType.TimeOfDay.self, forKey: .startTime)
     self.duration = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .duration)
 
-    var recurrence: OneOf_Recurrence? = nil
+    var recurrence: RecurrenceOneOf? = nil
     let recurrenceCheckAndSet = {
       if recurrence != nil {
         throw DecodingError.dataCorrupted(
@@ -208,7 +208,7 @@ public struct ExclusionWindow: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Specifies the day(s) on which the exclusion window takes
   /// effect. Exactly one of the fields MUST be specified.
-  public enum OneOf_Recurrence: Codable, Equatable, Sendable {
+  public enum RecurrenceOneOf: Codable, Equatable, Sendable {
     /// No recurrence. The exclusion window occurs only once and on this
     /// date in UTC.
     indirect case singleOccurrenceDate(GoogleType.Date?)

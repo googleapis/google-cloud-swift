@@ -22,7 +22,7 @@ public struct AzureAuth: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Type of auth used with Azure.
-  public var authType: OneOf_AuthType? = nil
+  public var authType: AuthTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct AzureAuth: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var authType: OneOf_AuthType? = nil
+    var authType: AuthTypeOneOf? = nil
     let authTypeCheckAndSet = {
       if authType != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct AzureAuth: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of auth used with Azure.
-  public enum OneOf_AuthType: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Shared Key.
     case sharedKey(Swift.String)
     /// SAS Token.

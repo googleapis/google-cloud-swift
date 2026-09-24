@@ -69,7 +69,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   public var stateHistory: [Batch.StateHistory] = []
 
   /// The application/framework-specific portion of the batch configuration.
-  public var batchConfig: OneOf_BatchConfig? = nil
+  public var batchConfig: BatchConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -171,7 +171,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
       self.stateHistory = value
     }
 
-    var batchConfig: OneOf_BatchConfig? = nil
+    var batchConfig: BatchConfigOneOf? = nil
     let batchConfigCheckAndSet = {
       if batchConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -473,7 +473,7 @@ public struct Batch: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The application/framework-specific portion of the batch configuration.
-  public enum OneOf_BatchConfig: Codable, Equatable, Sendable {
+  public enum BatchConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. PySpark batch config.
     indirect case pysparkBatch(PySparkBatch?)
     /// Optional. Spark batch config.

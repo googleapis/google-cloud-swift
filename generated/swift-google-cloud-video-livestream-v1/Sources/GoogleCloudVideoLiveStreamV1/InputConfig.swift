@@ -100,7 +100,7 @@ public struct InputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [AutomaticFailover][google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover]
     /// field is ignored.
     ///
-    /// [google.cloud.video.livestream.v1.Event.input_switch]: <doc:Event/OneOf_Task/inputSwitch(_:)>
+    /// [google.cloud.video.livestream.v1.Event.input_switch]: <doc:Event/TaskOneOf/inputSwitch(_:)>
     /// [google.cloud.video.livestream.v1.InputAttachment.AutomaticFailover]: <doc:InputAttachment/AutomaticFailover>
     case manual
     /// Encodes an unknown integer value.

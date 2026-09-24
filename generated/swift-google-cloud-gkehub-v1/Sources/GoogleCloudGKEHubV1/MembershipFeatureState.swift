@@ -26,7 +26,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
   /// The high-level state of this Feature for a single membership.
   public var state: FeatureState? = nil
 
-  public var featureState: OneOf_FeatureState? = nil
+  public var featureState: FeatureStateOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.state = try container.decodeIfPresent(FeatureState.self, forKey: .state)
 
-    var featureState: OneOf_FeatureState? = nil
+    var featureState: FeatureStateOneOf? = nil
     let featureStateCheckAndSet = {
       if featureState != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct MembershipFeatureState: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum OneOf_FeatureState: Codable, Equatable, Sendable {
+  public enum FeatureStateOneOf: Codable, Equatable, Sendable {
     /// Config Management-specific state.
     indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipState?)
   }

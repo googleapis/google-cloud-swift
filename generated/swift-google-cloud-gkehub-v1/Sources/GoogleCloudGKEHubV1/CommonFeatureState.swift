@@ -25,7 +25,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. The "running state" of the Feature in this Fleet.
   public var state: FeatureState? = nil
 
-  public var featureState: OneOf_FeatureState? = nil
+  public var featureState: FeatureStateOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.state = try container.decodeIfPresent(FeatureState.self, forKey: .state)
 
-    var featureState: OneOf_FeatureState? = nil
+    var featureState: FeatureStateOneOf? = nil
     let featureStateCheckAndSet = {
       if featureState != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct CommonFeatureState: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_FeatureState: Codable, Equatable, Sendable {
+  public enum FeatureStateOneOf: Codable, Equatable, Sendable {
     /// RBAC Role Binding Actuation feature state
     indirect case rbacrolebindingactuation(
       GoogleCloudGKEHubRBACRoleBindingActuationV1.FeatureState?)

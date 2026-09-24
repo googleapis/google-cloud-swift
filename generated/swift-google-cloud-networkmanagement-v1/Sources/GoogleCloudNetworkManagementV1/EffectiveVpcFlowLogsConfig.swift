@@ -74,7 +74,7 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPack
   /// which traffic is logged. The target resource must belong to the same
   /// project as the configuration.
   /// This field is not supported for organization level configurations.
-  public var targetResource: OneOf_TargetResource? = nil
+  public var targetResource: TargetResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -151,7 +151,7 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPack
     self.scope = try container.decodeIfPresent(
       EffectiveVpcFlowLogsConfig.Scope.self, forKey: .scope)
 
-    var targetResource: OneOf_TargetResource? = nil
+    var targetResource: TargetResourceOneOf? = nil
     let targetResourceCheckAndSet = {
       if targetResource != nil {
         throw DecodingError.dataCorrupted(
@@ -361,7 +361,7 @@ public struct EffectiveVpcFlowLogsConfig: Codable, Equatable, GoogleWKT._AnyPack
   /// which traffic is logged. The target resource must belong to the same
   /// project as the configuration.
   /// This field is not supported for organization level configurations.
-  public enum OneOf_TargetResource: Codable, Equatable, Sendable {
+  public enum TargetResourceOneOf: Codable, Equatable, Sendable {
     /// Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments
     /// within the network.
     /// Format: projects/{project_id}/global/networks/{name}

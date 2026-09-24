@@ -50,7 +50,7 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configuration for server access.
   /// If this is set, it must match the value in the `access_type` field.
-  public var accessConfig: OneOf_AccessConfig? = nil
+  public var accessConfig: AccessConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -132,7 +132,7 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
       self.serviceAgent = value
     }
 
-    var accessConfig: OneOf_AccessConfig? = nil
+    var accessConfig: AccessConfigOneOf? = nil
     let accessConfigCheckAndSet = {
       if accessConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -463,7 +463,7 @@ public struct Server: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Configuration for server access.
   /// If this is set, it must match the value in the `access_type` field.
-  public enum OneOf_AccessConfig: Codable, Equatable, Sendable {
+  public enum AccessConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for external access.
     indirect case externalConfig(ExternalServerConfig?)
     /// Configuration for internal access.

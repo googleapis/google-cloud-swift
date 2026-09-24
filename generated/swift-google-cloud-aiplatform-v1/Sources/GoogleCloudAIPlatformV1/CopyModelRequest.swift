@@ -51,7 +51,7 @@
     public var customServiceAccount: Swift.String = Swift.String()
 
     /// If both fields are unset, a new Model will be created with a generated ID.
-    public var destinationModel: OneOf_DestinationModel? = nil
+    public var destinationModel: DestinationModelOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@
         self.customServiceAccount = value
       }
 
-      var destinationModel: OneOf_DestinationModel? = nil
+      var destinationModel: DestinationModelOneOf? = nil
       let destinationModelCheckAndSet = {
         if destinationModel != nil {
           throw DecodingError.dataCorrupted(
@@ -153,7 +153,7 @@
     }
 
     /// If both fields are unset, a new Model will be created with a generated ID.
-    public enum OneOf_DestinationModel: Codable, Equatable, Sendable {
+    public enum DestinationModelOneOf: Codable, Equatable, Sendable {
       /// Optional. Copy source_model into a new Model with this ID. The ID will
       /// become the final component of the model resource name.
       ///

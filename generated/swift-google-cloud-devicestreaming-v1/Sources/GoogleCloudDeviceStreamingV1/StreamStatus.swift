@@ -25,7 +25,7 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   public var streamId: Swift.Int32 = Swift.Int32()
 
   /// The result of the stream. Either "Okay" for success or "Fail" for failure.
-  public var status: OneOf_Status? = nil
+  public var status: StatusOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       self.streamId = value
     }
 
-    var status: OneOf_Status? = nil
+    var status: StatusOneOf? = nil
     let statusCheckAndSet = {
       if status != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct StreamStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The result of the stream. Either "Okay" for success or "Fail" for failure.
-  public enum OneOf_Status: Codable, Equatable, Sendable {
+  public enum StatusOneOf: Codable, Equatable, Sendable {
     /// Okay for success.
     indirect case okay(Okay?)
     /// Fail for failure.

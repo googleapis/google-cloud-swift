@@ -44,7 +44,7 @@
     public var modelId: Swift.String = Swift.String()
 
     /// Model training input.
-    public var trainingInput: OneOf_TrainingInput? = nil
+    public var trainingInput: TrainingInputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@
         self.modelId = value
       }
 
-      var trainingInput: OneOf_TrainingInput? = nil
+      var trainingInput: TrainingInputOneOf? = nil
       let trainingInputCheckAndSet = {
         if trainingInput != nil {
           throw DecodingError.dataCorrupted(
@@ -256,7 +256,7 @@
     }
 
     /// Model training input.
-    public enum OneOf_TrainingInput: Codable, Equatable, Sendable {
+    public enum TrainingInputOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage training input.
       indirect case gcsTrainingInput(TrainCustomModelRequest.GcsTrainingInput?)
     }

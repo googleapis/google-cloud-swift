@@ -82,7 +82,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var debugQueries: [DataQualityRule.DebugQuery] = []
 
   /// The rule-specific configuration.
-  public var ruleType: OneOf_RuleType? = nil
+  public var ruleType: RuleTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -189,7 +189,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.debugQueries = value
     }
 
-    var ruleType: OneOf_RuleType? = nil
+    var ruleType: RuleTypeOneOf? = nil
     let ruleTypeCheckAndSet = {
       if ruleType != nil {
         throw DecodingError.dataCorrupted(
@@ -1373,7 +1373,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// The source type of the rule.
-      public var sourceType: OneOf_SourceType? = nil
+      public var sourceType: SourceTypeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1411,7 +1411,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var sourceType: OneOf_SourceType? = nil
+        var sourceType: SourceTypeOneOf? = nil
         let sourceTypeCheckAndSet = {
           if sourceType != nil {
             throw DecodingError.dataCorrupted(
@@ -1627,7 +1627,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The source type of the rule.
-      public enum OneOf_SourceType: Codable, Equatable, Sendable {
+      public enum SourceTypeOneOf: Codable, Equatable, Sendable {
         /// Output only. Entry source represents information about the related
         /// source entry.
         indirect case entrySource(DataQualityRule.RuleSource.RulePathElement.EntrySource?)
@@ -1758,7 +1758,7 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The rule-specific configuration.
-  public enum OneOf_RuleType: Codable, Equatable, Sendable {
+  public enum RuleTypeOneOf: Codable, Equatable, Sendable {
     /// Row-level rule which evaluates whether each column value lies between a
     /// specified range.
     indirect case rangeExpectation(DataQualityRule.RangeExpectation?)

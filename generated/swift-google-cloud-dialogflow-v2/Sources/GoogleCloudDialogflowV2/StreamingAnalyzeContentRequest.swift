@@ -58,15 +58,15 @@
   ///
   ///  After you sent all input, you must half-close or abort the request stream.
   ///
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/audioConfig(_:)>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input]: <doc:StreamingAnalyzeContentRequest/OneOf_Input>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_audio]: <doc:StreamingAnalyzeContentRequest/OneOf_Input/inputAudio(_:)>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_text]: <doc:StreamingAnalyzeContentRequest/OneOf_Input/inputText(_:)>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.audio_config]: <doc:StreamingAnalyzeContentRequest/ConfigOneOf/audioConfig(_:)>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.config]: <doc:StreamingAnalyzeContentRequest/ConfigOneOf>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input]: <doc:StreamingAnalyzeContentRequest/InputOneOf>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_audio]: <doc:StreamingAnalyzeContentRequest/InputOneOf/inputAudio(_:)>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.input_text]: <doc:StreamingAnalyzeContentRequest/InputOneOf/inputText(_:)>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.participant]: <doc:StreamingAnalyzeContentRequest/participant>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.query_params]: <doc:StreamingAnalyzeContentRequest/queryParams>
   /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.reply_audio_config]: <doc:StreamingAnalyzeContentRequest/replyAudioConfig>
-  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config]: <doc:StreamingAnalyzeContentRequest/OneOf_Config/textConfig(_:)>
+  /// [google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.text_config]: <doc:StreamingAnalyzeContentRequest/ConfigOneOf/textConfig(_:)>
   public struct StreamingAnalyzeContentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
@@ -138,10 +138,10 @@
     public var enableDebuggingInfo: Swift.Bool = Swift.Bool()
 
     /// The input config.
-    public var config: OneOf_Config? = nil
+    public var config: ConfigOneOf? = nil
 
     /// The input.
-    public var input: OneOf_Input? = nil
+    public var input: InputOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -232,7 +232,7 @@
         self.enableDebuggingInfo = value
       }
 
-      var config: OneOf_Config? = nil
+      var config: ConfigOneOf? = nil
       let configCheckAndSet = {
         if config != nil {
           throw DecodingError.dataCorrupted(
@@ -253,7 +253,7 @@
       }
       self.config = config
 
-      var input: OneOf_Input? = nil
+      var input: InputOneOf? = nil
       let inputCheckAndSet = {
         if input != nil {
           throw DecodingError.dataCorrupted(
@@ -319,7 +319,7 @@
     }
 
     /// The input config.
-    public enum OneOf_Config: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// Instructs the speech recognizer how to process the speech audio.
       indirect case audioConfig(InputAudioConfig?)
       /// The natural language text to be processed.
@@ -327,7 +327,7 @@
     }
 
     /// The input.
-    public enum OneOf_Input: Codable, Equatable, Sendable {
+    public enum InputOneOf: Codable, Equatable, Sendable {
       /// The input audio content to be recognized. Must be sent if `audio_config`
       /// is set in the first message. The complete audio over all streaming
       /// messages must not exceed 1 minute.

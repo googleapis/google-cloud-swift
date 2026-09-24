@@ -32,7 +32,7 @@ public struct SegmentSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the same manifest must have the same segment duration.
   ///
   /// [google.cloud.video.livestream.v1.Manifest.mux_streams]: <doc:Manifest/muxStreams>
-  /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration]: <doc:VideoStream/H264CodecSettings/OneOf_GopMode/gopDuration(_:)>
+  /// [google.cloud.video.livestream.v1.VideoStream.H264CodecSettings.gop_duration]: <doc:VideoStream/H264CodecSettings/GopModeOneOf/gopDuration(_:)>
   public var segmentDuration: GoogleWKT.WKTDuration? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

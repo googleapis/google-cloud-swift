@@ -32,10 +32,10 @@
     public var answerRecord: Swift.String = Swift.String()
 
     /// Specifies the source of this tool call.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     /// The tool call's result.
-    public var result: OneOf_Result? = nil
+    public var result: ResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@
         self.answerRecord = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -121,7 +121,7 @@
       }
       self.source = source
 
-      var result: OneOf_Result? = nil
+      var result: ResultOneOf? = nil
       let resultCheckAndSet = {
         if result != nil {
           throw DecodingError.dataCorrupted(
@@ -250,7 +250,7 @@
     }
 
     /// Specifies the source of this tool call.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Optional. The [tool][google.cloud.dialogflow.v2.Tool] associated with
       /// this call. Format:
       /// `projects/<ProjectID>/locations/<LocationID>/tools/<ToolID>`.
@@ -272,7 +272,7 @@
     }
 
     /// The tool call's result.
-    public enum OneOf_Result: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Codable, Equatable, Sendable {
       /// Optional. The tool call's error.
       indirect case error(ToolCallResult.Error?)
       /// Optional. Only populated if the response content is not utf-8 encoded.

@@ -33,10 +33,10 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var serviceAccount: Swift.String = Swift.String()
 
   /// The source of the data transfer.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// The destination of the data transfer.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,7 +89,7 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.serviceAccount = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -149,14 +149,14 @@ public struct ExportDataRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the data transfer.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The root directory path to the Managed Lustre file system. Must start
     /// with `/`. Default is `/`.
     indirect case lustrePath(LustrePath?)
   }
 
   /// The destination of the data transfer.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The URI to a Cloud Storage bucket, or a path within a bucket, using
     /// the format `gs://<bucket_name>/<optional_path_inside_bucket>/`. If a
     /// path inside the bucket is specified, it must end with a forward slash

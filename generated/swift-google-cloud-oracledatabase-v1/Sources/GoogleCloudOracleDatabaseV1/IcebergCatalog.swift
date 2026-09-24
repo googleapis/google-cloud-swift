@@ -25,7 +25,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   public var catalogType: IcebergCatalog.CatalogType = IcebergCatalog.CatalogType()
 
   /// The type of Iceberg catalog.
-  public var catalogDetails: OneOf_CatalogDetails? = nil
+  public var catalogDetails: CatalogDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       self.catalogType = value
     }
 
-    var catalogDetails: OneOf_CatalogDetails? = nil
+    var catalogDetails: CatalogDetailsOneOf? = nil
     let catalogDetailsCheckAndSet = {
       if catalogDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -271,7 +271,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of Iceberg catalog.
-  public enum OneOf_CatalogDetails: Codable, Equatable, Sendable {
+  public enum CatalogDetailsOneOf: Codable, Equatable, Sendable {
     /// The Glue Iceberg catalog.
     indirect case glueIcebergCatalog(GlueIcebergCatalog?)
     /// The Nessie Iceberg catalog.

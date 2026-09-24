@@ -30,7 +30,7 @@ public struct CloudStorageDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPac
   public var conditions: DiscoveryFileStoreConditions? = nil
 
   /// How often and when to update profiles.
-  public var cadence: OneOf_Cadence? = nil
+  public var cadence: CadenceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct CloudStorageDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPac
     self.conditions = try container.decodeIfPresent(
       DiscoveryFileStoreConditions.self, forKey: .conditions)
 
-    var cadence: OneOf_Cadence? = nil
+    var cadence: CadenceOneOf? = nil
     let cadenceCheckAndSet = {
       if cadence != nil {
         throw DecodingError.dataCorrupted(
@@ -119,7 +119,7 @@ public struct CloudStorageDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPac
   }
 
   /// How often and when to update profiles.
-  public enum OneOf_Cadence: Codable, Equatable, Sendable {
+  public enum CadenceOneOf: Codable, Equatable, Sendable {
     /// Optional. How often and when to update profiles. New buckets that match
     /// both the filter and conditions are scanned as quickly as possible
     /// depending on system capacity.

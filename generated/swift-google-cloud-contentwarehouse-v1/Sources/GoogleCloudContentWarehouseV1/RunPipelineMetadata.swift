@@ -35,7 +35,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var individualDocumentStatuses: [RunPipelineMetadata.IndividualDocumentStatus] = []
 
   /// The pipeline metadata.
-  public var pipelineMetadata: OneOf_PipelineMetadata? = nil
+  public var pipelineMetadata: PipelineMetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.individualDocumentStatuses = value
     }
 
-    var pipelineMetadata: OneOf_PipelineMetadata? = nil
+    var pipelineMetadata: PipelineMetadataOneOf? = nil
     let pipelineMetadataCheckAndSet = {
       if pipelineMetadata != nil {
         throw DecodingError.dataCorrupted(
@@ -463,7 +463,7 @@ public struct RunPipelineMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The pipeline metadata.
-  public enum OneOf_PipelineMetadata: Codable, Equatable, Sendable {
+  public enum PipelineMetadataOneOf: Codable, Equatable, Sendable {
     /// The pipeline metadata for GcsIngest pipeline.
     indirect case gcsIngestPipelineMetadata(RunPipelineMetadata.GcsIngestPipelineMetadata?)
     /// The pipeline metadata for Export-to-CDW pipeline.

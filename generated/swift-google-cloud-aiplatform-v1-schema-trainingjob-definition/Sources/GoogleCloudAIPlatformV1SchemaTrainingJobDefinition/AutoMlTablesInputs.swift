@@ -103,7 +103,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional optimization objective configuration. Required for
   /// `maximize-precision-at-recall` and `maximize-recall-at-precision`,
   /// otherwise unused.
-  public var additionalOptimizationObjectiveConfig: OneOf_AdditionalOptimizationObjectiveConfig? =
+  public var additionalOptimizationObjectiveConfig: AdditionalOptimizationObjectiveConfigOneOf? =
     nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
@@ -196,7 +196,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       self.additionalExperiments = value
     }
 
-    var additionalOptimizationObjectiveConfig: OneOf_AdditionalOptimizationObjectiveConfig? = nil
+    var additionalOptimizationObjectiveConfig: AdditionalOptimizationObjectiveConfigOneOf? = nil
     let additionalOptimizationObjectiveConfigCheckAndSet = {
       if additionalOptimizationObjectiveConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -257,7 +257,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// The transformation that the training pipeline will apply to the input
     /// columns.
-    public var transformationDetail: OneOf_TransformationDetail? = nil
+    public var transformationDetail: TransformationDetailOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -307,7 +307,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var transformationDetail: OneOf_TransformationDetail? = nil
+      var transformationDetail: TransformationDetailOneOf? = nil
       let transformationDetailCheckAndSet = {
         if transformationDetail != nil {
           throw DecodingError.dataCorrupted(
@@ -1048,7 +1048,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The transformation that the training pipeline will apply to the input
     /// columns.
-    public enum OneOf_TransformationDetail: Codable, Equatable, Sendable {
+    public enum TransformationDetailOneOf: Codable, Equatable, Sendable {
       indirect case auto(AutoMlTablesInputs.Transformation.AutoTransformation?)
       indirect case numeric(AutoMlTablesInputs.Transformation.NumericTransformation?)
       indirect case categorical(AutoMlTablesInputs.Transformation.CategoricalTransformation?)
@@ -1075,7 +1075,7 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Additional optimization objective configuration. Required for
   /// `maximize-precision-at-recall` and `maximize-recall-at-precision`,
   /// otherwise unused.
-  public enum OneOf_AdditionalOptimizationObjectiveConfig: Codable, Equatable, Sendable {
+  public enum AdditionalOptimizationObjectiveConfigOneOf: Codable, Equatable, Sendable {
     /// Required when optimization_objective is "maximize-precision-at-recall".
     /// Must be between 0 and 1, inclusive.
     case optimizationObjectiveRecallValue(Swift.Float)

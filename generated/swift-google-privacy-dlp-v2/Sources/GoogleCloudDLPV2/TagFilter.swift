@@ -23,7 +23,7 @@ public struct TagFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Tag filter formats. Tags refer to Resource Manager tags bound to the
   /// resource or its ancestors.
-  public var format: OneOf_Format? = nil
+  public var format: FormatOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct TagFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var format: OneOf_Format? = nil
+    var format: FormatOneOf? = nil
     let formatCheckAndSet = {
       if format != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct TagFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Tag filter formats. Tags refer to Resource Manager tags bound to the
   /// resource or its ancestors.
-  public enum OneOf_Format: Codable, Equatable, Sendable {
+  public enum FormatOneOf: Codable, Equatable, Sendable {
     /// The namespaced name for the tag value. Must be in the format
     /// `{parent_id}/{tag_key_short_name}/{short_name}`, for example,
     /// "123456/environment/prod" for an organization parent, or

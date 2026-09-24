@@ -181,7 +181,7 @@
       /// Matcher for the [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s.
       ///
       /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
-      public var matcher: OneOf_Matcher? = nil
+      public var matcher: MatcherOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -217,7 +217,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var matcher: OneOf_Matcher? = nil
+        var matcher: MatcherOneOf? = nil
         let matcherCheckAndSet = {
           if matcher != nil {
             throw DecodingError.dataCorrupted(
@@ -256,7 +256,7 @@
       /// Matcher for the [Sitemap][google.cloud.discoveryengine.v1.Sitemap]s.
       ///
       /// [google.cloud.discoveryengine.v1.Sitemap]: <doc:Sitemap>
-      public enum OneOf_Matcher: Codable, Equatable, Sendable {
+      public enum MatcherOneOf: Codable, Equatable, Sendable {
         /// Matcher by sitemap URIs.
         indirect case urisMatcher(FetchSitemapsRequest.UrisMatcher?)
       }

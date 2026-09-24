@@ -28,7 +28,7 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
 
   /// The requested time specification - this can be a time range or a specific
   /// run_time.
-  public var time: OneOf_Time? = nil
+  public var time: TimeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
       self.parent = value
     }
 
-    var time: OneOf_Time? = nil
+    var time: TimeOneOf? = nil
     let timeCheckAndSet = {
       if time != nil {
         throw DecodingError.dataCorrupted(
@@ -199,7 +199,7 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
 
   /// The requested time specification - this can be a time range or a specific
   /// run_time.
-  public enum OneOf_Time: Codable, Equatable, Sendable {
+  public enum TimeOneOf: Codable, Equatable, Sendable {
     /// A time_range start and end timestamp for historical data files or reports
     /// that are scheduled to be transferred by the scheduled transfer run.
     /// requested_time_range must be a past time and cannot include future time

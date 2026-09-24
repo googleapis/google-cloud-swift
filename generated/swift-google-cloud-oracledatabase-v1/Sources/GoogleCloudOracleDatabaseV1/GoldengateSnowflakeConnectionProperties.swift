@@ -43,7 +43,7 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
   public var privateKeyPassphraseSecret: Swift.String = Swift.String()
 
   /// The password Oracle Goldengate uses to connect to Snowflake platform.
-  public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+  public var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -115,7 +115,7 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
       self.privateKeyPassphraseSecret = value
     }
 
-    var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+    var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
     let connectionPasswordOptionsCheckAndSet = {
       if connectionPasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -280,7 +280,7 @@ public struct GoldengateSnowflakeConnectionProperties: Codable, Equatable, Googl
   }
 
   /// The password Oracle Goldengate uses to connect to Snowflake platform.
-  public enum OneOf_ConnectionPasswordOptions: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses to connect to
     /// Snowflake platform in plain text.
     case password(Swift.String)

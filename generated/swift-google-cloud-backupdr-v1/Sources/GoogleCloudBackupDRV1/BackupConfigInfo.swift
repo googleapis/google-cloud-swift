@@ -34,7 +34,7 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var lastBackupError: GoogleRpc.Status? = nil
 
   /// Configuration Info has the resource format-specific configuration.
-  public var backupConfig: OneOf_BackupConfig? = nil
+  public var backupConfig: BackupConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,7 +88,7 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     self.lastBackupError = try container.decodeIfPresent(
       GoogleRpc.Status.self, forKey: .lastBackupError)
 
-    var backupConfig: OneOf_BackupConfig? = nil
+    var backupConfig: BackupConfigOneOf? = nil
     let backupConfigCheckAndSet = {
       if backupConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -269,7 +269,7 @@ public struct BackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration Info has the resource format-specific configuration.
-  public enum OneOf_BackupConfig: Codable, Equatable, Sendable {
+  public enum BackupConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for a Google Cloud resource.
     indirect case gcpBackupConfig(GcpBackupConfig?)
     /// Configuration for an application backed up by a Backup Appliance.

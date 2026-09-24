@@ -46,7 +46,7 @@ public struct UrlMap: Codable, Equatable, GoogleWKT._AnyPackable,
     UrlMap.RedirectHttpResponseCode()
 
   /// Type of handler for this URL pattern.
-  public var handlerType: OneOf_HandlerType? = nil
+  public var handlerType: HandlerTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct UrlMap: Codable, Equatable, GoogleWKT._AnyPackable,
       self.redirectHttpResponseCode = value
     }
 
-    var handlerType: OneOf_HandlerType? = nil
+    var handlerType: HandlerTypeOneOf? = nil
     let handlerTypeCheckAndSet = {
       if handlerType != nil {
         throw DecodingError.dataCorrupted(
@@ -302,7 +302,7 @@ public struct UrlMap: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of handler for this URL pattern.
-  public enum OneOf_HandlerType: Codable, Equatable, Sendable {
+  public enum HandlerTypeOneOf: Codable, Equatable, Sendable {
     /// Returns the contents of a file, such as an image, as the response.
     indirect case staticFiles(StaticFilesHandler?)
     /// Executes a script to handle the requests that match this URL

@@ -24,7 +24,7 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// A single report value.
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -134,7 +134,7 @@ public struct ReportValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A single report value.
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// A value of type `string`.
     case stringValue(Swift.String)
     /// A value of type `int`.

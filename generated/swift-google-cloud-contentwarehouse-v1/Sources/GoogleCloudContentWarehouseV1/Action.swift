@@ -24,7 +24,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   /// ID of the action. Managed internally.
   public var actionId: Swift.String = Swift.String()
 
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       self.actionId = value
     }
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -154,7 +154,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Action triggering access control operations.
     indirect case accessControl(AccessControlAction?)
     /// Action triggering data validation operations.

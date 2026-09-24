@@ -26,7 +26,7 @@
     Sendable
   {
     /// The exported playbook.
-    public var playbook: OneOf_Playbook? = nil
+    public var playbook: PlaybookOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var playbook: OneOf_Playbook? = nil
+      var playbook: PlaybookOneOf? = nil
       let playbookCheckAndSet = {
         if playbook != nil {
           throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@
     }
 
     /// The exported playbook.
-    public enum OneOf_Playbook: Codable, Equatable, Sendable {
+    public enum PlaybookOneOf: Codable, Equatable, Sendable {
       /// The URI to a file containing the exported playbook. This field is
       /// populated only if `playbook_uri` is specified in
       /// [ExportPlaybookRequest][google.cloud.dialogflow.cx.v3.ExportPlaybookRequest].

@@ -26,7 +26,7 @@
     Sendable
   {
     /// Exported entity types can be either in cloud storage or local download.
-    public var exportedEntityTypes: OneOf_ExportedEntityTypes? = nil
+    public var exportedEntityTypes: ExportedEntityTypesOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var exportedEntityTypes: OneOf_ExportedEntityTypes? = nil
+      var exportedEntityTypes: ExportedEntityTypesOneOf? = nil
       let exportedEntityTypesCheckAndSet = {
         if exportedEntityTypes != nil {
           throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@
     }
 
     /// Exported entity types can be either in cloud storage or local download.
-    public enum OneOf_ExportedEntityTypes: Codable, Equatable, Sendable {
+    public enum ExportedEntityTypesOneOf: Codable, Equatable, Sendable {
       /// The URI to a file containing the exported entity types. This field is
       /// populated only if `entity_types_uri` is specified in
       /// [ExportEntityTypesRequest][google.cloud.dialogflow.cx.v3.ExportEntityTypesRequest].

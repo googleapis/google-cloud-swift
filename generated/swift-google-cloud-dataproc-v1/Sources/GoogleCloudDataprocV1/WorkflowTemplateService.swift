@@ -88,7 +88,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [Empty][google.protobuf.Empty].
   ///
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
@@ -120,7 +120,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [Empty][google.protobuf.Empty].
   ///
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
@@ -177,7 +177,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
   /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
@@ -217,7 +217,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// [google.cloud.dataproc.v1.WorkflowTemplateService.DeleteWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/deleteWorkflowTemplate(request:options:)>
   /// [google.cloud.dataproc.v1.WorkflowTemplateService.InstantiateWorkflowTemplate]: <doc:WorkflowTemplateServiceClient/instantiateWorkflowTemplate(request:options:)>
   /// [google.longrunning.Operation.metadata]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/metadata
-  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/response(_:)
+  /// [google.longrunning.Operation.response]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/response(_:)
   /// [google.protobuf.Empty]: https://www.google.com/search?q=Swift+google.protobuf+GoogleWKT.WKTEmpty
   ///
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")

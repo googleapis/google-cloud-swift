@@ -37,7 +37,7 @@ public struct RuleExecutionError: Codable, Equatable, GoogleWKT._AnyPackable,
   public var timeRange: GoogleType.Interval? = nil
 
   /// The resource name of the source that generated the rule execution error.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@ public struct RuleExecutionError: Codable, Equatable, GoogleWKT._AnyPackable,
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
     self.timeRange = try container.decodeIfPresent(GoogleType.Interval.self, forKey: .timeRange)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct RuleExecutionError: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The resource name of the source that generated the rule execution error.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. The resource name of the rule that generated the rule
     /// execution error.
     case rule(Swift.String)

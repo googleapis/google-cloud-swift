@@ -721,7 +721,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     public var weight: Swift.Int32? = nil
 
     /// Specifies the kind of destination to which traffic will be routed.
-    public var destinationType: OneOf_DestinationType? = nil
+    public var destinationType: DestinationTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -760,7 +760,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.weight = try container.decodeIfPresent(Swift.Int32.self, forKey: .weight)
 
-      var destinationType: OneOf_DestinationType? = nil
+      var destinationType: DestinationTypeOneOf? = nil
       let destinationTypeCheckAndSet = {
         if destinationType != nil {
           throw DecodingError.dataCorrupted(
@@ -796,7 +796,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specifies the kind of destination to which traffic will be routed.
-    public enum OneOf_DestinationType: Codable, Equatable, Sendable {
+    public enum DestinationTypeOneOf: Codable, Equatable, Sendable {
       /// Required. The URL of a destination service to which to route traffic.
       /// Must refer to either a BackendService or ServiceDirectoryService.
       case serviceName(Swift.String)

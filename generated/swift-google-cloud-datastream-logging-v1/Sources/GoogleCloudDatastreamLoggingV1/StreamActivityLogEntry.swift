@@ -28,7 +28,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
   /// A free-text message describing the event.
   public var eventMessage: Swift.String = Swift.String()
 
-  public var eventPayload: OneOf_EventPayload? = nil
+  public var eventPayload: EventPayloadOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
       self.eventMessage = value
     }
 
-    var eventPayload: OneOf_EventPayload? = nil
+    var eventPayload: EventPayloadOneOf? = nil
     let eventPayloadCheckAndSet = {
       if eventPayload != nil {
         throw DecodingError.dataCorrupted(
@@ -184,7 +184,7 @@ public struct StreamActivityLogEntry: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum OneOf_EventPayload: Codable, Equatable, Sendable {
+  public enum EventPayloadOneOf: Codable, Equatable, Sendable {
     /// A payload for a change in the state of a stream.
     indirect case streamStateChange(StreamActivityLogEntry.StreamStateChange?)
   }

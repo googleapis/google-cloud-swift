@@ -27,7 +27,7 @@ public struct BinaryAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
   /// https://cloud.google.com/binary-authorization/docs/using-breakglass
   public var breakglassJustification: Swift.String = Swift.String()
 
-  public var binauthzMethod: OneOf_BinauthzMethod? = nil
+  public var binauthzMethod: BinauthzMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct BinaryAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
       self.breakglassJustification = value
     }
 
-    var binauthzMethod: OneOf_BinauthzMethod? = nil
+    var binauthzMethod: BinauthzMethodOneOf? = nil
     let binauthzMethodCheckAndSet = {
       if binauthzMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct BinaryAuthorization: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_BinauthzMethod: Codable, Equatable, Sendable {
+  public enum BinauthzMethodOneOf: Codable, Equatable, Sendable {
     /// Optional. If True, indicates to use the default project's binary
     /// authorization policy. If False, binary authorization will be disabled.
     case useDefault(Swift.Bool)

@@ -45,7 +45,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// specified by the 'datacontenttype' attribute (e.g. application/json), and
   /// adheres to the dataschema format when those respective attributes are
   /// present.
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -112,7 +112,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.attributes = value
     }
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -166,7 +166,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The value of the attribute.
-    public var attr: OneOf_Attr? = nil
+    public var attr: AttrOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -214,7 +214,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var attr: OneOf_Attr? = nil
+      var attr: AttrOneOf? = nil
       let attrCheckAndSet = {
         if attr != nil {
           throw DecodingError.dataCorrupted(
@@ -281,7 +281,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The value of the attribute.
-    public enum OneOf_Attr: Codable, Equatable, Sendable {
+    public enum AttrOneOf: Codable, Equatable, Sendable {
       /// Boolean value.
       case ceBoolean(Swift.Bool)
       /// Integer value.
@@ -314,7 +314,7 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// specified by the 'datacontenttype' attribute (e.g. application/json), and
   /// adheres to the dataschema format when those respective attributes are
   /// present.
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// Optional. Binary data.
     case binaryData(Foundation.Data)
     /// Optional. Text data.

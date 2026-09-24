@@ -23,7 +23,7 @@ public struct RepairPhase: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The `RepairPhase` type and the information for that type.
-  public var repairPhase: OneOf_RepairPhase? = nil
+  public var repairPhase: RepairPhaseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct RepairPhase: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var repairPhase: OneOf_RepairPhase? = nil
+    var repairPhase: RepairPhaseOneOf? = nil
     let repairPhaseCheckAndSet = {
       if repairPhase != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct RepairPhase: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The `RepairPhase` type and the information for that type.
-  public enum OneOf_RepairPhase: Codable, Equatable, Sendable {
+  public enum RepairPhaseOneOf: Codable, Equatable, Sendable {
     /// Output only. Records of the retry attempts for retry repair mode.
     indirect case retry(RetryPhase?)
     /// Output only. Rollback attempt for rollback repair mode .

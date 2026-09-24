@@ -128,9 +128,9 @@
     /// Output only. Evaluation runs for the Tuning Job.
     public var evaluateDatasetRuns: [EvaluateDatasetRun] = []
 
-    public var sourceModel: OneOf_SourceModel? = nil
+    public var sourceModel: SourceModelOneOf? = nil
 
-    public var tuningSpec: OneOf_TuningSpec? = nil
+    public var tuningSpec: TuningSpecOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -245,7 +245,7 @@
         self.evaluateDatasetRuns = value
       }
 
-      var sourceModel: OneOf_SourceModel? = nil
+      var sourceModel: SourceModelOneOf? = nil
       let sourceModelCheckAndSet = {
         if sourceModel != nil {
           throw DecodingError.dataCorrupted(
@@ -265,7 +265,7 @@
       }
       self.sourceModel = sourceModel
 
-      var tuningSpec: OneOf_TuningSpec? = nil
+      var tuningSpec: TuningSpecOneOf? = nil
       let tuningSpecCheckAndSet = {
         if tuningSpec != nil {
           throw DecodingError.dataCorrupted(
@@ -326,7 +326,7 @@
       }
     }
 
-    public enum OneOf_SourceModel: Codable, Equatable, Sendable {
+    public enum SourceModelOneOf: Codable, Equatable, Sendable {
       /// The base model that is being tuned. See [Supported
       /// models](https://cloud.google.com/vertex-ai/generative-ai/docs/model-reference/tuning#supported_models).
       case baseModel(Swift.String)
@@ -334,7 +334,7 @@
       indirect case preTunedModel(PreTunedModel?)
     }
 
-    public enum OneOf_TuningSpec: Codable, Equatable, Sendable {
+    public enum TuningSpecOneOf: Codable, Equatable, Sendable {
       /// Tuning Spec for Supervised Fine Tuning.
       indirect case supervisedTuningSpec(SupervisedTuningSpec?)
     }

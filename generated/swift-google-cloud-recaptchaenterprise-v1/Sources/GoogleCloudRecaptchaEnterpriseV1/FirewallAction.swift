@@ -22,7 +22,7 @@ import Foundation
 public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var firewallActionOneof: OneOf_FirewallActionOneof? = nil
+  public var firewallActionOneof: FirewallActionOneofOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var firewallActionOneof: OneOf_FirewallActionOneof? = nil
+    var firewallActionOneof: FirewallActionOneofOneOf? = nil
     let firewallActionOneofCheckAndSet = {
       if firewallActionOneof != nil {
         throw DecodingError.dataCorrupted(
@@ -521,7 +521,7 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_FirewallActionOneof: Codable, Equatable, Sendable {
+  public enum FirewallActionOneofOneOf: Codable, Equatable, Sendable {
     /// The user request did not match any policy and should be allowed
     /// access to the requested resource.
     indirect case allow(FirewallAction.AllowAction?)

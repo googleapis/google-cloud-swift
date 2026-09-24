@@ -73,7 +73,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
   public var suspended: Swift.Bool = Swift.Bool()
 
   /// The ordering configuration of the `DeliveryPipeline`.
-  public var pipeline: OneOf_Pipeline? = nil
+  public var pipeline: PipelineOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,7 +158,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       self.suspended = value
     }
 
-    var pipeline: OneOf_Pipeline? = nil
+    var pipeline: PipelineOneOf? = nil
     let pipelineCheckAndSet = {
       if pipeline != nil {
         throw DecodingError.dataCorrupted(
@@ -205,7 +205,7 @@ public struct DeliveryPipeline: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The ordering configuration of the `DeliveryPipeline`.
-  public enum OneOf_Pipeline: Codable, Equatable, Sendable {
+  public enum PipelineOneOf: Codable, Equatable, Sendable {
     /// Optional. SerialPipeline defines a sequential set of stages for a
     /// `DeliveryPipeline`.
     indirect case serialPipeline(SerialPipeline?)

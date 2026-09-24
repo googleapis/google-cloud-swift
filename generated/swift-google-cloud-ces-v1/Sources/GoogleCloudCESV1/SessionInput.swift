@@ -33,7 +33,7 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
   public var willContinue: Swift.Bool = Swift.Bool()
 
   /// The type of the input.
-  public var inputType: OneOf_InputType? = nil
+  public var inputType: InputTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,7 +88,7 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
       self.willContinue = value
     }
 
-    var inputType: OneOf_InputType? = nil
+    var inputType: InputTypeOneOf? = nil
     let inputTypeCheckAndSet = {
       if inputType != nil {
         throw DecodingError.dataCorrupted(
@@ -162,7 +162,7 @@ public struct SessionInput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of the input.
-  public enum OneOf_InputType: Codable, Equatable, Sendable {
+  public enum InputTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Text data from the end user.
     case text(Swift.String)
     /// Optional. DTMF digits from the end user.

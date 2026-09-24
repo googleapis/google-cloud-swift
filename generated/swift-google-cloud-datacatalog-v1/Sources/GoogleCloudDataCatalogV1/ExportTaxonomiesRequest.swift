@@ -32,7 +32,7 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public var taxonomies: [Swift.String] = []
 
   /// Required. Export destination for taxonomies.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,7 +78,7 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.taxonomies = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Required. Export destination for taxonomies.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Serialized export taxonomies that contain all the policy
     /// tags as nested protocol buffers.
     case serializedTaxonomies(Swift.Bool)

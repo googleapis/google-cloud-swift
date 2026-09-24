@@ -63,7 +63,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the namespaced resources to restore from the Backup.
   /// Only one of the entries may be specified. If not specified, NO namespaced
   /// resources will be restored.
-  public var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
+  public var namespacedResourceRestoreScope: NamespacedResourceRestoreScopeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -148,7 +148,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.transformationRules = value
     }
 
-    var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
+    var namespacedResourceRestoreScope: NamespacedResourceRestoreScopeOneOf? = nil
     let namespacedResourceRestoreScopeCheckAndSet = {
       if namespacedResourceRestoreScope != nil {
         throw DecodingError.dataCorrupted(
@@ -1448,7 +1448,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Specifies the namespaced resources to restore from the Backup.
   /// Only one of the entries may be specified. If not specified, NO namespaced
   /// resources will be restored.
-  public enum OneOf_NamespacedResourceRestoreScope: Codable, Equatable, Sendable {
+  public enum NamespacedResourceRestoreScopeOneOf: Codable, Equatable, Sendable {
     /// Restore all namespaced resources in the Backup if set to "True".
     /// Specifying this field to "False" is an error.
     case allNamespaces(Swift.Bool)

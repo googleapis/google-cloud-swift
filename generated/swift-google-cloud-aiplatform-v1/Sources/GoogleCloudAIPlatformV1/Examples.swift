@@ -26,9 +26,9 @@
     /// The number of neighbors to return when querying for examples.
     public var neighborCount: Swift.Int32 = Swift.Int32()
 
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
-    public var config: OneOf_Config? = nil
+    public var config: ConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@
         self.neighborCount = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -91,7 +91,7 @@
       }
       self.source = source
 
-      var config: OneOf_Config? = nil
+      var config: ConfigOneOf? = nil
       let configCheckAndSet = {
         if config != nil {
           throw DecodingError.dataCorrupted(
@@ -329,12 +329,12 @@
       }
     }
 
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage input instances.
       indirect case exampleGcsSource(Examples.ExampleGcsSource?)
     }
 
-    public enum OneOf_Config: Codable, Equatable, Sendable {
+    public enum ConfigOneOf: Codable, Equatable, Sendable {
       /// The full configuration for the generated index, the semantics are the
       /// same as [metadata][google.cloud.aiplatform.v1.Index.metadata] and should
       /// match

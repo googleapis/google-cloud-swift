@@ -57,7 +57,7 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   public var connectionType: ConnectionType = ConnectionType()
 
   /// Ports of the exposed endpoint.
-  public var ports: OneOf_Ports? = nil
+  public var ports: PortsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
       self.connectionType = value
     }
 
-    var ports: OneOf_Ports? = nil
+    var ports: PortsOneOf? = nil
     let portsCheckAndSet = {
       if ports != nil {
         throw DecodingError.dataCorrupted(
@@ -178,7 +178,7 @@ public struct PscAutoConnection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Ports of the exposed endpoint.
-  public enum OneOf_Ports: Codable, Equatable, Sendable {
+  public enum PortsOneOf: Codable, Equatable, Sendable {
     /// Optional. port will only be set for Primary/Reader or Discovery endpoint.
     case port(Swift.Int32)
   }

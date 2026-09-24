@@ -25,7 +25,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
   Sendable
 {
   /// The type of resource regex to use.
-  public var resourceRegex: OneOf_ResourceRegex? = nil
+  public var resourceRegex: ResourceRegexOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var resourceRegex: OneOf_ResourceRegex? = nil
+    var resourceRegex: ResourceRegexOneOf? = nil
     let resourceRegexCheckAndSet = {
       if resourceRegex != nil {
         throw DecodingError.dataCorrupted(
@@ -98,7 +98,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The type of resource regex to use.
-  public enum OneOf_ResourceRegex: Codable, Equatable, Sendable {
+  public enum ResourceRegexOneOf: Codable, Equatable, Sendable {
     /// Regex for Amazon S3 buckets.
     indirect case amazonS3BucketRegex(AmazonS3BucketRegex?)
   }

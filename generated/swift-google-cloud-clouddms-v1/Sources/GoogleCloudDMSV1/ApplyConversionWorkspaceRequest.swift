@@ -40,7 +40,7 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._An
   public var autoCommit: Swift.Bool = Swift.Bool()
 
   /// Which destination to use when applying the conversion workspace.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._An
       self.autoCommit = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -137,7 +137,7 @@ public struct ApplyConversionWorkspaceRequest: Codable, Equatable, GoogleWKT._An
   }
 
   /// Which destination to use when applying the conversion workspace.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Optional. Fully qualified (Uri) name of the destination connection
     /// profile.
     case connectionProfile(Swift.String)

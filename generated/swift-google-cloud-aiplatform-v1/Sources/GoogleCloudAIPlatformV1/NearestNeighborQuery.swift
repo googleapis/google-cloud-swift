@@ -41,7 +41,7 @@
     /// Optional. Parameters that can be set to tune query on the fly.
     public var parameters: NearestNeighborQuery.Parameters? = nil
 
-    public var instance: OneOf_Instance? = nil
+    public var instance: InstanceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -110,7 +110,7 @@
       self.parameters = try container.decodeIfPresent(
         NearestNeighborQuery.Parameters.self, forKey: .parameters)
 
-      var instance: OneOf_Instance? = nil
+      var instance: InstanceOneOf? = nil
       let instanceCheckAndSet = {
         if instance != nil {
           throw DecodingError.dataCorrupted(
@@ -338,7 +338,7 @@
 
       /// The type of Value must be consistent for all datapoints with a given
       /// name.  This is verified at runtime.
-      public var value: OneOf_Value? = nil
+      public var value: ValueOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -387,7 +387,7 @@
         self.op = try container.decodeIfPresent(
           NearestNeighborQuery.NumericFilter.Operator.self, forKey: .op)
 
-        var value: OneOf_Value? = nil
+        var value: ValueOneOf? = nil
         let valueCheckAndSet = {
           if value != nil {
             throw DecodingError.dataCorrupted(
@@ -582,7 +582,7 @@
 
       /// The type of Value must be consistent for all datapoints with a given
       /// name.  This is verified at runtime.
-      public enum OneOf_Value: Codable, Equatable, Sendable {
+      public enum ValueOneOf: Codable, Equatable, Sendable {
         /// int value type.
         case valueInt(Swift.Int64)
         /// float value type.
@@ -691,7 +691,7 @@
       }
     }
 
-    public enum OneOf_Instance: Codable, Equatable, Sendable {
+    public enum InstanceOneOf: Codable, Equatable, Sendable {
       /// Optional. The entity id whose similar entities should be searched for.
       /// If embedding is set, search will use embedding instead of
       /// entity_id.

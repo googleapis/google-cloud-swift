@@ -22,7 +22,7 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleWKT._AnyPa
   Sendable
 {
   /// Possible control messages.
-  public var control: OneOf_Control? = nil
+  public var control: ControlOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleWKT._AnyPa
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var control: OneOf_Control? = nil
+    var control: ControlOneOf? = nil
     let controlCheckAndSet = {
       if control != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct ReceiveEventsControlResponse: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Possible control messages.
-  public enum OneOf_Control: Codable, Equatable, Sendable {
+  public enum ControlOneOf: Codable, Equatable, Sendable {
     /// A server heartbeat.
     case heartbeat(Swift.Bool)
     /// A request to the receiver to complete any final writes followed by a

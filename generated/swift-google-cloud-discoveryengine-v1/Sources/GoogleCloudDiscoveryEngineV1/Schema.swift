@@ -34,9 +34,9 @@
     /// [json_schema][google.cloud.discoveryengine.v1.Schema.json_schema] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/OneOf_Schema/jsonSchema(_:)>
-    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
-    public var schema: OneOf_Schema? = nil
+    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/SchemaOneOf/jsonSchema(_:)>
+    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/SchemaOneOf/structSchema(_:)>
+    public var schema: SchemaOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@
         self.name = value
       }
 
-      var schema: OneOf_Schema? = nil
+      var schema: SchemaOneOf? = nil
       let schemaCheckAndSet = {
         if schema != nil {
           throw DecodingError.dataCorrupted(
@@ -126,9 +126,9 @@
     /// [json_schema][google.cloud.discoveryengine.v1.Schema.json_schema] should be
     /// provided otherwise an `INVALID_ARGUMENT` error is thrown.
     ///
-    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/OneOf_Schema/jsonSchema(_:)>
-    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/OneOf_Schema/structSchema(_:)>
-    public enum OneOf_Schema: Codable, Equatable, Sendable {
+    /// [google.cloud.discoveryengine.v1.Schema.json_schema]: <doc:Schema/SchemaOneOf/jsonSchema(_:)>
+    /// [google.cloud.discoveryengine.v1.Schema.struct_schema]: <doc:Schema/SchemaOneOf/structSchema(_:)>
+    public enum SchemaOneOf: Codable, Equatable, Sendable {
       /// The structured representation of the schema.
       indirect case structSchema(GoogleWKT.WKTStruct?)
       /// The JSON representation of the schema.

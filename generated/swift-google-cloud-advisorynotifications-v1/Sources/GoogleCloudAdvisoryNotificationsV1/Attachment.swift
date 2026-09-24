@@ -25,7 +25,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// Data type of the attachment.
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
       self.displayName = value
     }
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct Attachment: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data type of the attachment.
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// A CSV file attachment. Max size is 10 MB.
     indirect case csv(Csv?)
   }

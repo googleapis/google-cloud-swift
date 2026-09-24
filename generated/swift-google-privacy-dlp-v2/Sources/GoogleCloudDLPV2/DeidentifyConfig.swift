@@ -26,7 +26,7 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var transformationErrorHandling: TransformationErrorHandling? = nil
 
   /// Type of transformation
-  public var transformation: OneOf_Transformation? = nil
+  public var transformation: TransformationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.transformationErrorHandling = try container.decodeIfPresent(
       TransformationErrorHandling.self, forKey: .transformationErrorHandling)
 
-    var transformation: OneOf_Transformation? = nil
+    var transformation: TransformationOneOf? = nil
     let transformationCheckAndSet = {
       if transformation != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct DeidentifyConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of transformation
-  public enum OneOf_Transformation: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Treat the dataset as free-form text and apply the same free text
     /// transformation everywhere.
     indirect case infoTypeTransformations(InfoTypeTransformations?)

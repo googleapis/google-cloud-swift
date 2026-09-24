@@ -22,7 +22,7 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Either of Sensitive Data Protection basic or advanced configuration.
-  public var sdpConfiguration: OneOf_SdpConfiguration? = nil
+  public var sdpConfiguration: SdpConfigurationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var sdpConfiguration: OneOf_SdpConfiguration? = nil
+    var sdpConfiguration: SdpConfigurationOneOf? = nil
     let sdpConfigurationCheckAndSet = {
       if sdpConfiguration != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct SdpFilterSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Either of Sensitive Data Protection basic or advanced configuration.
-  public enum OneOf_SdpConfiguration: Codable, Equatable, Sendable {
+  public enum SdpConfigurationOneOf: Codable, Equatable, Sendable {
     /// Optional. Basic Sensitive Data Protection configuration inspects the
     /// content for sensitive data using a fixed set of six info-types. Sensitive
     /// Data Protection templates cannot be used with basic configuration. Only

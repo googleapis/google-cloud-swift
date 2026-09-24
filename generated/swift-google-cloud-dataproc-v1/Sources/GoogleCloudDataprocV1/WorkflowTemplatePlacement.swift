@@ -25,7 +25,7 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleWKT._AnyPacka
 {
   /// Required. Specifies where workflow executes; either on a managed
   /// cluster or an existing cluster chosen by labels.
-  public var placement: OneOf_Placement? = nil
+  public var placement: PlacementOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var placement: OneOf_Placement? = nil
+    var placement: PlacementOneOf? = nil
     let placementCheckAndSet = {
       if placement != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct WorkflowTemplatePlacement: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// Required. Specifies where workflow executes; either on a managed
   /// cluster or an existing cluster chosen by labels.
-  public enum OneOf_Placement: Codable, Equatable, Sendable {
+  public enum PlacementOneOf: Codable, Equatable, Sendable {
     /// A cluster that is managed by the workflow.
     indirect case managedCluster(ManagedCluster?)
     /// Optional. A selector that chooses target cluster for jobs based

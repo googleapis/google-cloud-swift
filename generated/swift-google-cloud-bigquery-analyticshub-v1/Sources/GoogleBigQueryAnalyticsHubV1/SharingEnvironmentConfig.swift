@@ -22,7 +22,7 @@ import Foundation
 public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var environment: OneOf_Environment? = nil
+  public var environment: EnvironmentOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var environment: OneOf_Environment? = nil
+    var environment: EnvironmentOneOf? = nil
     let environmentCheckAndSet = {
       if environment != nil {
         throw DecodingError.dataCorrupted(
@@ -251,7 +251,7 @@ public struct SharingEnvironmentConfig: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public enum OneOf_Environment: Codable, Equatable, Sendable {
+  public enum EnvironmentOneOf: Codable, Equatable, Sendable {
     /// Default Analytics Hub data exchange, used for secured data sharing.
     indirect case defaultExchangeConfig(SharingEnvironmentConfig.DefaultExchangeConfig?)
     /// Data Clean Room (DCR), used for privacy-safe and secured data sharing.

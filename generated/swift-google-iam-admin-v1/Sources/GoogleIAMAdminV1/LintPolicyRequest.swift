@@ -34,7 +34,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var fullResourceName: Swift.String = Swift.String()
 
   /// Required. The Cloud IAM object to be linted.
-  public var lintObject: OneOf_LintObject? = nil
+  public var lintObject: LintObjectOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.fullResourceName = value
     }
 
-    var lintObject: OneOf_LintObject? = nil
+    var lintObject: LintObjectOneOf? = nil
     let lintObjectCheckAndSet = {
       if lintObject != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct LintPolicyRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The Cloud IAM object to be linted.
-  public enum OneOf_LintObject: Codable, Equatable, Sendable {
+  public enum LintObjectOneOf: Codable, Equatable, Sendable {
     /// [google.iam.v1.Binding.condition] [google.iam.v1.Binding.condition] object to be linted.
     indirect case condition(GoogleType.Expr?)
   }

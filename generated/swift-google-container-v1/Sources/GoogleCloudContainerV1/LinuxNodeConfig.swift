@@ -511,7 +511,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Optional. Defines the backing storage for the swap space.
     /// If omitted, defaults to the 'boot_disk_profile'.
-    public var performanceProfile: OneOf_PerformanceProfile? = nil
+    public var performanceProfile: PerformanceProfileOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -558,7 +558,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.encryptionConfig = try container.decodeIfPresent(
         LinuxNodeConfig.SwapConfig.EncryptionConfig.self, forKey: .encryptionConfig)
 
-      var performanceProfile: OneOf_PerformanceProfile? = nil
+      var performanceProfile: PerformanceProfileOneOf? = nil
       let performanceProfileCheckAndSet = {
         if performanceProfile != nil {
           throw DecodingError.dataCorrupted(
@@ -683,7 +683,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     {
       /// Optional. Specifies the size of the swap space. If omitted, GKE
       /// determines an optimal size based on node memory.
-      public var swapSize: OneOf_SwapSize? = nil
+      public var swapSize: SwapSizeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -721,7 +721,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var swapSize: OneOf_SwapSize? = nil
+        var swapSize: SwapSizeOneOf? = nil
         let swapSizeCheckAndSet = {
           if swapSize != nil {
             throw DecodingError.dataCorrupted(
@@ -764,7 +764,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// Optional. Specifies the size of the swap space. If omitted, GKE
       /// determines an optimal size based on node memory.
-      public enum OneOf_SwapSize: Codable, Equatable, Sendable {
+      public enum SwapSizeOneOf: Codable, Equatable, Sendable {
         /// Specifies the size of the swap space in gibibytes (GiB).
         case swapSizeGib(Swift.Int64)
         /// Specifies the size of the swap space as a percentage of the boot disk
@@ -788,7 +788,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Specifies the size of the swap space to be provisioned.
-      public var swapSize: OneOf_SwapSize? = nil
+      public var swapSize: SwapSizeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -826,7 +826,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var swapSize: OneOf_SwapSize? = nil
+        var swapSize: SwapSizeOneOf? = nil
         let swapSizeCheckAndSet = {
           if swapSize != nil {
             throw DecodingError.dataCorrupted(
@@ -868,7 +868,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Specifies the size of the swap space to be provisioned.
-      public enum OneOf_SwapSize: Codable, Equatable, Sendable {
+      public enum SwapSizeOneOf: Codable, Equatable, Sendable {
         /// Specifies the size of the swap space in gibibytes (GiB).
         case swapSizeGib(Swift.Int64)
         /// Specifies the size of the swap space as a percentage of the ephemeral
@@ -959,7 +959,7 @@ public struct LinuxNodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Optional. Defines the backing storage for the swap space.
     /// If omitted, defaults to the 'boot_disk_profile'.
-    public enum OneOf_PerformanceProfile: Codable, Equatable, Sendable {
+    public enum PerformanceProfileOneOf: Codable, Equatable, Sendable {
       /// Swap on the node's boot disk.
       indirect case bootDiskProfile(LinuxNodeConfig.SwapConfig.BootDiskProfile?)
       /// Swap on the local SSD shared with pod ephemeral storage.

@@ -42,7 +42,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
   /// failed after having succeeded. Defaults to 3. Minimum value is 1.
   public var failureThreshold: Swift.Int32 = Swift.Int32()
 
-  public var probeType: OneOf_ProbeType? = nil
+  public var probeType: ProbeTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
       self.failureThreshold = value
     }
 
-    var probeType: OneOf_ProbeType? = nil
+    var probeType: ProbeTypeOneOf? = nil
     let probeTypeCheckAndSet = {
       if probeType != nil {
         throw DecodingError.dataCorrupted(
@@ -150,7 +150,7 @@ public struct Probe: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_ProbeType: Codable, Equatable, Sendable {
+  public enum ProbeTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. HTTPGet specifies the http request to perform.
     /// Exactly one of httpGet, tcpSocket, or grpc must be specified.
     indirect case httpGet(HTTPGetAction?)

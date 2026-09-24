@@ -43,7 +43,7 @@
     public var displayTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Normally, detail feedback is provided when answer is not fully correct.
-    public var detailFeedback: OneOf_DetailFeedback? = nil
+    public var detailFeedback: DetailFeedbackOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@
       self.displayTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .displayTime)
 
-      var detailFeedback: OneOf_DetailFeedback? = nil
+      var detailFeedback: DetailFeedbackOneOf? = nil
       let detailFeedbackCheckAndSet = {
         if detailFeedback != nil {
           throw DecodingError.dataCorrupted(
@@ -271,7 +271,7 @@
     }
 
     /// Normally, detail feedback is provided when answer is not fully correct.
-    public enum OneOf_DetailFeedback: Codable, Equatable, Sendable {
+    public enum DetailFeedbackOneOf: Codable, Equatable, Sendable {
       /// Detail feedback of agent assist suggestions.
       indirect case agentAssistantDetailFeedback(AgentAssistantFeedback?)
     }

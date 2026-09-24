@@ -28,7 +28,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
   ///
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public var replicationStatus: OneOf_ReplicationStatus? = nil
+  public var replicationStatus: ReplicationStatusOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var replicationStatus: OneOf_ReplicationStatus? = nil
+    var replicationStatus: ReplicationStatusOneOf? = nil
     let replicationStatusCheckAndSet = {
       if replicationStatus != nil {
         throw DecodingError.dataCorrupted(
@@ -360,7 +360,7 @@ public struct ReplicationStatus: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
   ///
   /// [google.cloud.secretmanager.v1.SecretVersion]: <doc:SecretVersion>
-  public enum OneOf_ReplicationStatus: Codable, Equatable, Sendable {
+  public enum ReplicationStatusOneOf: Codable, Equatable, Sendable {
     /// Describes the replication status of a
     /// [SecretVersion][google.cloud.secretmanager.v1.SecretVersion] with
     /// automatic replication.

@@ -67,7 +67,7 @@
 
     /// CMEK options for the DataStore. Setting this field will override the
     /// default CmekConfig if one is set for the project.
-    public var cmekOptions: OneOf_CmekOptions? = nil
+    public var cmekOptions: CmekOptionsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -132,7 +132,7 @@
         self.skipDefaultSchemaCreation = value
       }
 
-      var cmekOptions: OneOf_CmekOptions? = nil
+      var cmekOptions: CmekOptionsOneOf? = nil
       let cmekOptionsCheckAndSet = {
         if cmekOptions != nil {
           throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@
 
     /// CMEK options for the DataStore. Setting this field will override the
     /// default CmekConfig if one is set for the project.
-    public enum OneOf_CmekOptions: Codable, Equatable, Sendable {
+    public enum CmekOptionsOneOf: Codable, Equatable, Sendable {
       /// Resource name of the CmekConfig to use for protecting this DataStore.
       case cmekConfigName(Swift.String)
       /// DataStore without CMEK protections. If a default CmekConfig is set for

@@ -85,7 +85,7 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var emailPreferences: EmailPreferences? = nil
 
   /// Data transfer destination.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -180,7 +180,7 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
     self.emailPreferences = try container.decodeIfPresent(
       EmailPreferences.self, forKey: .emailPreferences)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -231,7 +231,7 @@ public struct TransferRun: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Data transfer destination.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Output only. The BigQuery target dataset id.
     case destinationDatasetId(Swift.String)
   }

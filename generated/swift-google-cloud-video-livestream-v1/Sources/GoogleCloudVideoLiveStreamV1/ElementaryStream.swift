@@ -29,7 +29,7 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
   public var key: Swift.String = Swift.String()
 
   /// Required. Encoding of an audio, video, or text track.
-  public var elementaryStream: OneOf_ElementaryStream? = nil
+  public var elementaryStream: ElementaryStreamOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
       self.key = value
     }
 
-    var elementaryStream: OneOf_ElementaryStream? = nil
+    var elementaryStream: ElementaryStreamOneOf? = nil
     let elementaryStreamCheckAndSet = {
       if elementaryStream != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct ElementaryStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Encoding of an audio, video, or text track.
-  public enum OneOf_ElementaryStream: Codable, Equatable, Sendable {
+  public enum ElementaryStreamOneOf: Codable, Equatable, Sendable {
     /// Encoding of a video stream.
     indirect case videoStream(VideoStream?)
     /// Encoding of an audio stream.

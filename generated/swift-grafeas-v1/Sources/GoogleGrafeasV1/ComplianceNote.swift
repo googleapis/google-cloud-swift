@@ -38,10 +38,10 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Serialized scan instructions with a predefined format.
   public var scanInstructions: Foundation.Data = Foundation.Data()
 
-  public var complianceType: OneOf_ComplianceType? = nil
+  public var complianceType: ComplianceTypeOneOf? = nil
 
   /// Potential impact of the suggested remediation
-  public var potentialImpact: OneOf_PotentialImpact? = nil
+  public var potentialImpact: PotentialImpactOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
       self.scanInstructions = value
     }
 
-    var complianceType: OneOf_ComplianceType? = nil
+    var complianceType: ComplianceTypeOneOf? = nil
     let complianceTypeCheckAndSet = {
       if complianceType != nil {
         throw DecodingError.dataCorrupted(
@@ -126,7 +126,7 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.complianceType = complianceType
 
-    var potentialImpact: OneOf_PotentialImpact? = nil
+    var potentialImpact: PotentialImpactOneOf? = nil
     let potentialImpactCheckAndSet = {
       if potentialImpact != nil {
         throw DecodingError.dataCorrupted(
@@ -248,12 +248,12 @@ public struct ComplianceNote: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_ComplianceType: Codable, Equatable, Sendable {
+  public enum ComplianceTypeOneOf: Codable, Equatable, Sendable {
     indirect case cisBenchmark(ComplianceNote.CisBenchmark?)
   }
 
   /// Potential impact of the suggested remediation
-  public enum OneOf_PotentialImpact: Codable, Equatable, Sendable {
+  public enum PotentialImpactOneOf: Codable, Equatable, Sendable {
     case impact(Swift.String)
   }
 

@@ -22,7 +22,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
   Sendable
 {
   /// Destination for the exported data.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct ExportNativeDashboardsResponse: Codable, Equatable, GoogleWKT._Any
   }
 
   /// Destination for the exported data.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// The data for the exported dashboards included directly in the response.
     indirect case inlineDestination(InlineDestination?)
   }

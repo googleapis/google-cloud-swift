@@ -53,10 +53,10 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   public var scope: SupportedDatabaseFlag.Scope = SupportedDatabaseFlag.Scope()
 
   /// The restrictions on the flag value per type.
-  public var restrictions: OneOf_Restrictions? = nil
+  public var restrictions: RestrictionsOneOf? = nil
 
   /// The recommended value for the flag by type, if applicable.
-  public var recommendedValue: OneOf_RecommendedValue? = nil
+  public var recommendedValue: RecommendedValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
       self.scope = value
     }
 
-    var restrictions: OneOf_Restrictions? = nil
+    var restrictions: RestrictionsOneOf? = nil
     let restrictionsCheckAndSet = {
       if restrictions != nil {
         throw DecodingError.dataCorrupted(
@@ -159,7 +159,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.restrictions = restrictions
 
-    var recommendedValue: OneOf_RecommendedValue? = nil
+    var recommendedValue: RecommendedValueOneOf? = nil
     let recommendedValueCheckAndSet = {
       if recommendedValue != nil {
         throw DecodingError.dataCorrupted(
@@ -611,7 +611,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The restrictions on the flag value per type.
-  public enum OneOf_Restrictions: Codable, Equatable, Sendable {
+  public enum RestrictionsOneOf: Codable, Equatable, Sendable {
     /// Restriction on STRING type value.
     indirect case stringRestrictions(SupportedDatabaseFlag.StringRestrictions?)
     /// Restriction on INTEGER type value.
@@ -619,7 +619,7 @@ public struct SupportedDatabaseFlag: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The recommended value for the flag by type, if applicable.
-  public enum OneOf_RecommendedValue: Codable, Equatable, Sendable {
+  public enum RecommendedValueOneOf: Codable, Equatable, Sendable {
     /// The recommended value for a STRING flag.
     case recommendedStringValue(Swift.String)
     /// The recommended value for an INTEGER flag.

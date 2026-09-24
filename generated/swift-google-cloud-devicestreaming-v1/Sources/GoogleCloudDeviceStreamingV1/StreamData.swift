@@ -26,7 +26,7 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The data of the stream, either bytes or "Close", indicating that the stream
   /// is done.
-  public var contents: OneOf_Contents? = nil
+  public var contents: ContentsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
       self.streamId = value
     }
 
-    var contents: OneOf_Contents? = nil
+    var contents: ContentsOneOf? = nil
     let contentsCheckAndSet = {
       if contents != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct StreamData: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The data of the stream, either bytes or "Close", indicating that the stream
   /// is done.
-  public enum OneOf_Contents: Codable, Equatable, Sendable {
+  public enum ContentsOneOf: Codable, Equatable, Sendable {
     /// Data in the stream.
     case data(Foundation.Data)
     /// The stream is closing. EOF.

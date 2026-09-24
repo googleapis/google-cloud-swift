@@ -100,10 +100,10 @@
       public var fileId: Swift.String = Swift.String()
 
       /// The SharePoint folder source. If not provided, uses "root".
-      public var folderSource: OneOf_FolderSource? = nil
+      public var folderSource: FolderSourceOneOf? = nil
 
       /// The SharePoint drive source.
-      public var driveSource: OneOf_DriveSource? = nil
+      public var driveSource: DriveSourceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -170,7 +170,7 @@
           self.fileId = value
         }
 
-        var folderSource: OneOf_FolderSource? = nil
+        var folderSource: FolderSourceOneOf? = nil
         let folderSourceCheckAndSet = {
           if folderSource != nil {
             throw DecodingError.dataCorrupted(
@@ -192,7 +192,7 @@
         }
         self.folderSource = folderSource
 
-        var driveSource: OneOf_DriveSource? = nil
+        var driveSource: DriveSourceOneOf? = nil
         let driveSourceCheckAndSet = {
           if driveSource != nil {
             throw DecodingError.dataCorrupted(
@@ -246,7 +246,7 @@
       }
 
       /// The SharePoint folder source. If not provided, uses "root".
-      public enum OneOf_FolderSource: Codable, Equatable, Sendable {
+      public enum FolderSourceOneOf: Codable, Equatable, Sendable {
         /// The path of the SharePoint folder to download from.
         case sharepointFolderPath(Swift.String)
         /// The ID of the SharePoint folder to download from.
@@ -254,7 +254,7 @@
       }
 
       /// The SharePoint drive source.
-      public enum OneOf_DriveSource: Codable, Equatable, Sendable {
+      public enum DriveSourceOneOf: Codable, Equatable, Sendable {
         /// The name of the drive to download from.
         case driveName(Swift.String)
         /// The ID of the drive to download from.

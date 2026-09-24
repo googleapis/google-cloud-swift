@@ -65,7 +65,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   public var observationPeriod: GoogleType.Interval? = nil
 
   /// The specific details of the `IntelligenceFinding`.
-  public var intelligenceFindingDetails: OneOf_IntelligenceFindingDetails? = nil
+  public var intelligenceFindingDetails: IntelligenceFindingDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -156,7 +156,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     self.observationPeriod = try container.decodeIfPresent(
       GoogleType.Interval.self, forKey: .observationPeriod)
 
-    var intelligenceFindingDetails: OneOf_IntelligenceFindingDetails? = nil
+    var intelligenceFindingDetails: IntelligenceFindingDetailsOneOf? = nil
     let intelligenceFindingDetailsCheckAndSet = {
       if intelligenceFindingDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -325,7 +325,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public var details: OneOf_Details? = nil
+      public var details: DetailsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -381,7 +381,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           self.totalOperationsCount = value
         }
 
-        var details: OneOf_Details? = nil
+        var details: DetailsOneOf? = nil
         let detailsCheckAndSet = {
           if details != nil {
             throw DecodingError.dataCorrupted(
@@ -599,7 +599,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum OneOf_Details: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.ColdlineAndArchivalStorageOperationsSpike.BucketContribution
@@ -732,7 +732,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public var details: OneOf_Details? = nil
+      public var details: DetailsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -786,7 +786,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           self.percentageIncrease = value
         }
 
-        var details: OneOf_Details? = nil
+        var details: DetailsOneOf? = nil
         let detailsCheckAndSet = {
           if details != nil {
             throw DecodingError.dataCorrupted(
@@ -1006,7 +1006,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum OneOf_Details: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.CrossRegionEgressSpike.BucketContribution.Contribution?)
@@ -1136,7 +1136,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public var details: OneOf_Details? = nil
+      public var details: DetailsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1190,7 +1190,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           self.percentageIncrease = value
         }
 
-        var details: OneOf_Details? = nil
+        var details: DetailsOneOf? = nil
         let detailsCheckAndSet = {
           if details != nil {
             throw DecodingError.dataCorrupted(
@@ -1408,7 +1408,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum OneOf_Details: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The details about the contribution of the bucket.
         indirect case contribution(
           IntelligenceFinding.ThrottledRequestSpike.BucketContribution.Contribution?)
@@ -1537,7 +1537,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public var details: OneOf_Details? = nil
+      public var details: DetailsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1591,7 +1591,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
           self.percentageIncrease = value
         }
 
-        var details: OneOf_Details? = nil
+        var details: DetailsOneOf? = nil
         let detailsCheckAndSet = {
           if details != nil {
             throw DecodingError.dataCorrupted(
@@ -1630,7 +1630,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       /// The details of the bucket's contribution towards the
       /// `IntelligenceFinding`.
-      public enum OneOf_Details: Codable, Equatable, Sendable {
+      public enum DetailsOneOf: Codable, Equatable, Sendable {
         /// Output only. The error related to accessing the details about the
         /// contribution of the bucket.
         indirect case error(GoogleRpc.Status?)
@@ -1661,7 +1661,7 @@ public struct IntelligenceFinding: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific details of the `IntelligenceFinding`.
-  public enum OneOf_IntelligenceFindingDetails: Codable, Equatable, Sendable {
+  public enum IntelligenceFindingDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. `IntelligenceFinding` about a spike in Class A/B operations
     /// on Coldline or Archive Cloud Storage objects.
     indirect case coldlineAndArchivalStorageOperationsSpike(

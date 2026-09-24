@@ -38,7 +38,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. The encryption to apply to the boot disk.
   public var encryption: Encryption? = nil
 
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -200,7 +200,7 @@ public struct BootDiskDefaults: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The image to use when creating the disk.
     indirect case image(BootDiskDefaults.DiskImageDefaults?)
   }

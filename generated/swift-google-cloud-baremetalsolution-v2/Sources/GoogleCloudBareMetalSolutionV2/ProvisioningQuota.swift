@@ -37,10 +37,10 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
   public var availableCount: Swift.Int32 = Swift.Int32()
 
   /// The quota of one asset type.
-  public var quota: OneOf_Quota? = nil
+  public var quota: QuotaOneOf? = nil
 
   /// Available quantity based on asset type.
-  public var availability: OneOf_Availability? = nil
+  public var availability: AvailabilityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
       self.availableCount = value
     }
 
-    var quota: OneOf_Quota? = nil
+    var quota: QuotaOneOf? = nil
     let quotaCheckAndSet = {
       if quota != nil {
         throw DecodingError.dataCorrupted(
@@ -126,7 +126,7 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.quota = quota
 
-    var availability: OneOf_Availability? = nil
+    var availability: AvailabilityOneOf? = nil
     let availabilityCheckAndSet = {
       if availability != nil {
         throw DecodingError.dataCorrupted(
@@ -309,13 +309,13 @@ public struct ProvisioningQuota: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The quota of one asset type.
-  public enum OneOf_Quota: Codable, Equatable, Sendable {
+  public enum QuotaOneOf: Codable, Equatable, Sendable {
     /// Instance quota.
     indirect case instanceQuota(InstanceQuota?)
   }
 
   /// Available quantity based on asset type.
-  public enum OneOf_Availability: Codable, Equatable, Sendable {
+  public enum AvailabilityOneOf: Codable, Equatable, Sendable {
     /// Server count.
     case serverCount(Swift.Int64)
     /// Network bandwidth, Gbps

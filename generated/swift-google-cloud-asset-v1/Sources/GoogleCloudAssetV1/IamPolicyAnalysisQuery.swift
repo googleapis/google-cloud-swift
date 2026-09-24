@@ -573,7 +573,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// The IAM conditions time context.
-    public var timeContext: OneOf_TimeContext? = nil
+    public var timeContext: TimeContextOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -609,7 +609,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var timeContext: OneOf_TimeContext? = nil
+      var timeContext: TimeContextOneOf? = nil
       let timeContextCheckAndSet = {
         if timeContext != nil {
           throw DecodingError.dataCorrupted(
@@ -646,7 +646,7 @@ public struct IamPolicyAnalysisQuery: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// The IAM conditions time context.
-    public enum OneOf_TimeContext: Codable, Equatable, Sendable {
+    public enum TimeContextOneOf: Codable, Equatable, Sendable {
       /// The hypothetical access timestamp to evaluate IAM conditions. Note that
       /// this value must not be earlier than the current time; otherwise, an
       /// INVALID_ARGUMENT error will be returned.

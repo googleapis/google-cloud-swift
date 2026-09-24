@@ -29,7 +29,7 @@
 
     /// Evaluation results will be served in the same order as presented in
     /// EvaluationRequest.instances.
-    public var evaluationResults: OneOf_EvaluationResults? = nil
+    public var evaluationResults: EvaluationResultsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@
         self.metricResults = value
       }
 
-      var evaluationResults: OneOf_EvaluationResults? = nil
+      var evaluationResults: EvaluationResultsOneOf? = nil
       let evaluationResultsCheckAndSet = {
         if evaluationResults != nil {
           throw DecodingError.dataCorrupted(
@@ -339,7 +339,7 @@
 
     /// Evaluation results will be served in the same order as presented in
     /// EvaluationRequest.instances.
-    public enum OneOf_EvaluationResults: Codable, Equatable, Sendable {
+    public enum EvaluationResultsOneOf: Codable, Equatable, Sendable {
       /// Auto metric evaluation results.
       /// Results for exact match metric.
       indirect case exactMatchResults(ExactMatchResults?)

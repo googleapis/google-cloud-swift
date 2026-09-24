@@ -24,7 +24,7 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Specifies the Pub/Sub event provided to the partners.
   /// This is a required field.
-  public var event: OneOf_Event? = nil
+  public var event: EventOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var event: OneOf_Event? = nil
+    var event: EventOneOf? = nil
     let eventCheckAndSet = {
       if event != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct SubscriberEvent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Specifies the Pub/Sub event provided to the partners.
   /// This is a required field.
-  public enum OneOf_Event: Codable, Equatable, Sendable {
+  public enum EventOneOf: Codable, Equatable, Sendable {
     /// Customer event sent as part of Pub/Sub event to partners.
     indirect case customerEvent(CustomerEvent?)
     /// Entitlement event sent as part of Pub/Sub event to partners.

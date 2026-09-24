@@ -51,7 +51,7 @@
     /// Timestamp, if present, must not have higher than millisecond precision.
     public var startTime: GoogleWKT.WKTTimestamp? = nil
 
-    public var readOption: OneOf_ReadOption? = nil
+    public var readOption: ReadOptionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -116,7 +116,7 @@
       self.startTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .startTime)
 
-      var readOption: OneOf_ReadOption? = nil
+      var readOption: ReadOptionOneOf? = nil
       let readOptionCheckAndSet = {
         if readOption != nil {
           throw DecodingError.dataCorrupted(
@@ -332,7 +332,7 @@
       }
     }
 
-    public enum OneOf_ReadOption: Codable, Equatable, Sendable {
+    public enum ReadOptionOneOf: Codable, Equatable, Sendable {
       /// Each read instance consists of exactly one read timestamp and one or more
       /// entity IDs identifying entities of the corresponding EntityTypes whose
       /// Features are requested.

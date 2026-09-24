@@ -57,7 +57,7 @@ public struct CloneJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public var steps: [CloneStep] = []
 
   /// Details of the VM to create as the target of this clone job.
-  public var targetVmDetails: OneOf_TargetVmDetails? = nil
+  public var targetVmDetails: TargetVmDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@ public struct CloneJob: Codable, Equatable, GoogleWKT._AnyPackable,
       self.steps = value
     }
 
-    var targetVmDetails: OneOf_TargetVmDetails? = nil
+    var targetVmDetails: TargetVmDetailsOneOf? = nil
     let targetVmDetailsCheckAndSet = {
       if targetVmDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -329,7 +329,7 @@ public struct CloneJob: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details of the VM to create as the target of this clone job.
-  public enum OneOf_TargetVmDetails: Codable, Equatable, Sendable {
+  public enum TargetVmDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Details of the target VM in Compute Engine.
     indirect case computeEngineTargetDetails(ComputeEngineTargetDetails?)
     /// Output only. Details of the target Persistent Disks in Compute Engine.

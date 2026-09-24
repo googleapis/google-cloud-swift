@@ -25,7 +25,7 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var timespanConfig: StorageConfig.TimespanConfig? = nil
 
   /// Type of storage system to inspect.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.timespanConfig = try container.decodeIfPresent(
       StorageConfig.TimespanConfig.self, forKey: .timespanConfig)
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -274,7 +274,7 @@ public struct StorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of storage system to inspect.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Datastore options.
     indirect case datastoreOptions(DatastoreOptions?)
     /// Cloud Storage options.

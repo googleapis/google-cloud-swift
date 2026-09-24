@@ -21,7 +21,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Required.
-  public var typeDecl: OneOf_TypeDecl? = nil
+  public var typeDecl: TypeDeclOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var typeDecl: OneOf_TypeDecl? = nil
+    var typeDecl: TypeDeclOneOf? = nil
     let typeDeclCheckAndSet = {
       if typeDecl != nil {
         throw DecodingError.dataCorrupted(
@@ -386,7 +386,7 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required.
-  public enum OneOf_TypeDecl: Codable, Equatable, Sendable {
+  public enum TypeDeclOneOf: Codable, Equatable, Sendable {
     /// Primitive types, such as string, boolean, etc.
     case primitiveType(FieldType.PrimitiveType)
     /// An enum type.

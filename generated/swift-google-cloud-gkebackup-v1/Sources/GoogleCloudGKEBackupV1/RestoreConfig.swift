@@ -81,8 +81,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [all_namespaces][google.cloud.gkebackup.v1.RestoreConfig.all_namespaces] is
   /// selected. Listing them explicitly will result in an error.
   ///
-  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/OneOf_NamespacedResourceRestoreScope/allNamespaces(_:)>
-  public var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
+  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/NamespacedResourceRestoreScopeOneOf/allNamespaces(_:)>
+  public var namespacedResourceRestoreScope: NamespacedResourceRestoreScopeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -179,7 +179,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.restoreOrder = try container.decodeIfPresent(
       RestoreConfig.RestoreOrder.self, forKey: .restoreOrder)
 
-    var namespacedResourceRestoreScope: OneOf_NamespacedResourceRestoreScope? = nil
+    var namespacedResourceRestoreScope: NamespacedResourceRestoreScopeOneOf? = nil
     let namespacedResourceRestoreScopeCheckAndSet = {
       if namespacedResourceRestoreScope != nil {
         throw DecodingError.dataCorrupted(
@@ -1060,7 +1060,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var policy: RestoreConfig.VolumeDataRestorePolicy =
       RestoreConfig.VolumeDataRestorePolicy()
 
-    public var scope: OneOf_Scope? = nil
+    public var scope: ScopeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1103,7 +1103,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.policy = value
       }
 
-      var scope: OneOf_Scope? = nil
+      var scope: ScopeOneOf? = nil
       let scopeCheckAndSet = {
         if scope != nil {
           throw DecodingError.dataCorrupted(
@@ -1140,7 +1140,7 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Scope: Codable, Equatable, Sendable {
+    public enum ScopeOneOf: Codable, Equatable, Sendable {
       /// The volume type, as determined by the PVC's bound PV,
       /// to apply the policy to.
       case volumeType(VolumeTypeEnum.VolumeType)
@@ -1747,8 +1747,8 @@ public struct RestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [all_namespaces][google.cloud.gkebackup.v1.RestoreConfig.all_namespaces] is
   /// selected. Listing them explicitly will result in an error.
   ///
-  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/OneOf_NamespacedResourceRestoreScope/allNamespaces(_:)>
-  public enum OneOf_NamespacedResourceRestoreScope: Codable, Equatable, Sendable {
+  /// [google.cloud.gkebackup.v1.RestoreConfig.all_namespaces]: <doc:RestoreConfig/NamespacedResourceRestoreScopeOneOf/allNamespaces(_:)>
+  public enum NamespacedResourceRestoreScopeOneOf: Codable, Equatable, Sendable {
     /// Restore all namespaced resources in the Backup if set to "True".
     /// Specifying this field to "False" is an error.
     case allNamespaces(Swift.Bool)

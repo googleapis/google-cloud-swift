@@ -88,7 +88,7 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     public var hashes: [Hash] = []
 
     /// The destination the file was exported to.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -134,7 +134,7 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleWKT._AnyPackable
         self.hashes = value
       }
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -173,7 +173,7 @@ public struct ExportArtifactMetadata: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// The destination the file was exported to.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage Object path of the exported file. Examples:
       /// `dst_bucket/file1`, `dst_bucket/sub_dir/file1`
       case gcsObjectPath(Swift.String)

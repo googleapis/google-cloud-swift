@@ -52,7 +52,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
   public var clientInfo: ClientInfo? = nil
 
   /// The amount of time that a device will be initially allocated for.
-  public var expiration: OneOf_Expiration? = nil
+  public var expiration: ExpirationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
     self.androidDevice = try container.decodeIfPresent(AndroidDevice.self, forKey: .androidDevice)
     self.clientInfo = try container.decodeIfPresent(ClientInfo.self, forKey: .clientInfo)
 
-    var expiration: OneOf_Expiration? = nil
+    var expiration: ExpirationOneOf? = nil
     let expirationCheckAndSet = {
       if expiration != nil {
         throw DecodingError.dataCorrupted(
@@ -431,7 +431,7 @@ public struct DeviceSession: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The amount of time that a device will be initially allocated for.
-  public enum OneOf_Expiration: Codable, Equatable, Sendable {
+  public enum ExpirationOneOf: Codable, Equatable, Sendable {
     /// Optional. The amount of time that a device will be initially allocated
     /// for. This can eventually be extended with the UpdateDeviceSession RPC.
     /// Default: 15 minutes.

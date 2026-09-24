@@ -40,7 +40,7 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var documentSchema: DocumentSchema? = nil
 
   /// The document payload.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.documentSchema = try container.decodeIfPresent(
       DocumentSchema.self, forKey: .documentSchema)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -247,7 +247,7 @@ public struct ReviewDocumentRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The document payload.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// An inline document proto.
     indirect case inlineDocument(Document?)
   }

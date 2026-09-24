@@ -31,7 +31,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The different data for the glossary types (Unidirectional, Equivalent term
   /// sets).
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -270,7 +270,7 @@ public struct GlossaryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The different data for the glossary types (Unidirectional, Equivalent term
   /// sets).
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// Used for an unidirectional glossary.
     indirect case termsPair(GlossaryEntry.GlossaryTermsPair?)
     /// Used for an equivalent term sets glossary.

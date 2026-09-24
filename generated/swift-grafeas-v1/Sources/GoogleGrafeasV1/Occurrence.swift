@@ -53,7 +53,7 @@ public struct Occurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Immutable. Describes the details of the note kind found on this
   /// resource.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -147,7 +147,7 @@ public struct Occurrence: Codable, Equatable, GoogleWKT._AnyPackable,
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
     self.envelope = try container.decodeIfPresent(Envelope.self, forKey: .envelope)
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -259,7 +259,7 @@ public struct Occurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Required. Immutable. Describes the details of the note kind found on this
   /// resource.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Describes a security vulnerability.
     indirect case vulnerability(VulnerabilityOccurrence?)
     /// Describes a verifiable build.

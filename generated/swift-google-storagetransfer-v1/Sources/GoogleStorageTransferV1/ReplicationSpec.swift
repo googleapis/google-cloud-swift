@@ -38,10 +38,10 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public var transferOptions: TransferOptions? = nil
 
   /// The data source to be replicated.
-  public var dataSource: OneOf_DataSource? = nil
+  public var dataSource: DataSourceOneOf? = nil
 
   /// The destination for replicated objects.
-  public var dataSink: OneOf_DataSink? = nil
+  public var dataSink: DataSinkOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,7 +87,7 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     self.transferOptions = try container.decodeIfPresent(
       TransferOptions.self, forKey: .transferOptions)
 
-    var dataSource: OneOf_DataSource? = nil
+    var dataSource: DataSourceOneOf? = nil
     let dataSourceCheckAndSet = {
       if dataSource != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.dataSource = dataSource
 
-    var dataSink: OneOf_DataSink? = nil
+    var dataSink: DataSinkOneOf? = nil
     let dataSinkCheckAndSet = {
       if dataSink != nil {
         throw DecodingError.dataCorrupted(
@@ -146,13 +146,13 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data source to be replicated.
-  public enum OneOf_DataSource: Codable, Equatable, Sendable {
+  public enum DataSourceOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage bucket from which to replicate objects.
     indirect case gcsDataSource(GcsData?)
   }
 
   /// The destination for replicated objects.
-  public enum OneOf_DataSink: Codable, Equatable, Sendable {
+  public enum DataSinkOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage bucket to which to replicate objects.
     indirect case gcsDataSink(GcsData?)
   }

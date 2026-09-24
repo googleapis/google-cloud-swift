@@ -114,7 +114,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   public var providerConfig: ProviderConfig? = nil
 
   /// Blueprint to preview.
-  public var blueprint: OneOf_Blueprint? = nil
+  public var blueprint: BlueprintOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -244,7 +244,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
     self.providerConfig = try container.decodeIfPresent(
       ProviderConfig.self, forKey: .providerConfig)
 
-    var blueprint: OneOf_Blueprint? = nil
+    var blueprint: BlueprintOneOf? = nil
     let blueprintCheckAndSet = {
       if blueprint != nil {
         throw DecodingError.dataCorrupted(
@@ -727,7 +727,7 @@ public struct Preview: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Blueprint to preview.
-  public enum OneOf_Blueprint: Codable, Equatable, Sendable {
+  public enum BlueprintOneOf: Codable, Equatable, Sendable {
     /// The terraform blueprint to preview.
     indirect case terraformBlueprint(TerraformBlueprint?)
   }

@@ -29,7 +29,7 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
   /// otherwise.
   public var hasCredential: Swift.Bool = Swift.Bool()
 
-  public var connectionSpec: OneOf_ConnectionSpec? = nil
+  public var connectionSpec: ConnectionSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
       self.hasCredential = value
     }
 
-    var connectionSpec: OneOf_ConnectionSpec? = nil
+    var connectionSpec: ConnectionSpecOneOf? = nil
     let connectionSpecCheckAndSet = {
       if connectionSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -225,7 +225,7 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum OneOf_ConnectionSpec: Codable, Equatable, Sendable {
+  public enum ConnectionSpecOneOf: Codable, Equatable, Sendable {
     /// Specification for the BigQuery connection to a Cloud SQL instance.
     indirect case cloudSql(CloudSqlBigQueryConnectionSpec?)
   }

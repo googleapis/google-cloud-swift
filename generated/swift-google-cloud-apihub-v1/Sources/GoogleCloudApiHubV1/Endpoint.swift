@@ -26,7 +26,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The details of the endpoint to be triggered for curation.
-  public var endpointDetails: OneOf_EndpointDetails? = nil
+  public var endpointDetails: EndpointDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var endpointDetails: OneOf_EndpointDetails? = nil
+    var endpointDetails: EndpointDetailsOneOf? = nil
     let endpointDetailsCheckAndSet = {
       if endpointDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct Endpoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The details of the endpoint to be triggered for curation.
-  public enum OneOf_EndpointDetails: Codable, Equatable, Sendable {
+  public enum EndpointDetailsOneOf: Codable, Equatable, Sendable {
     /// Required. The details of the Application Integration endpoint to be
     /// triggered for curation.
     indirect case applicationIntegrationEndpointDetails(ApplicationIntegrationEndpointDetails?)

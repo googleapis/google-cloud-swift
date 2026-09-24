@@ -69,7 +69,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [QueryAssets] API call.
   public var outputConfig: QueryAssetsOutputConfig? = nil
 
-  public var query: OneOf_Query? = nil
+  public var query: QueryOneOf? = nil
 
   /// Specifies what time period or point in time to query asset metadata at.
   /// * unset - query asset metadata as it is right now
@@ -78,7 +78,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// * [read_time] - query asset metadata as it was at that point in time.
   /// If data for the timestamp/date range selected does not exist,
   /// it will simply return a valid response with no rows.
-  public var time: OneOf_Time? = nil
+  public var time: TimeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -142,7 +142,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.outputConfig = try container.decodeIfPresent(
       QueryAssetsOutputConfig.self, forKey: .outputConfig)
 
-    var query: OneOf_Query? = nil
+    var query: QueryOneOf? = nil
     let queryCheckAndSet = {
       if query != nil {
         throw DecodingError.dataCorrupted(
@@ -160,7 +160,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.query = query
 
-    var time: OneOf_Time? = nil
+    var time: TimeOneOf? = nil
     let timeCheckAndSet = {
       if time != nil {
         throw DecodingError.dataCorrupted(
@@ -215,7 +215,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Query: Codable, Equatable, Sendable {
+  public enum QueryOneOf: Codable, Equatable, Sendable {
     /// Optional. A SQL statement that's compatible with [BigQuery
     /// SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
     case statement(Swift.String)
@@ -231,7 +231,7 @@ public struct QueryAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// * [read_time] - query asset metadata as it was at that point in time.
   /// If data for the timestamp/date range selected does not exist,
   /// it will simply return a valid response with no rows.
-  public enum OneOf_Time: Codable, Equatable, Sendable {
+  public enum TimeOneOf: Codable, Equatable, Sendable {
     /// Optional. [start_time] is required. [start_time] must be less than
     /// [end_time] Defaults [end_time] to now if [start_time] is set and
     /// [end_time] isn't. Maximum permitted time range is 7 days.

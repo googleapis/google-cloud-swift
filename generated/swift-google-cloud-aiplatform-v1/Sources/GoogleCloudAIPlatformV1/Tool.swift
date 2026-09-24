@@ -38,8 +38,8 @@
     /// will generate the final response back to the user. Maximum 128 function
     /// declarations can be provided.
     ///
-    /// [google.cloud.aiplatform.v1.Part.function_call]: <doc:Part/OneOf_Data/functionCall(_:)>
-    /// [google.cloud.aiplatform.v1.Part.function_response]: <doc:Part/OneOf_Data/functionResponse(_:)>
+    /// [google.cloud.aiplatform.v1.Part.function_call]: <doc:Part/DataOneOf/functionCall(_:)>
+    /// [google.cloud.aiplatform.v1.Part.function_response]: <doc:Part/DataOneOf/functionResponse(_:)>
     public var functionDeclarations: [FunctionDeclaration] = []
 
     /// Optional. Retrieval tool type.

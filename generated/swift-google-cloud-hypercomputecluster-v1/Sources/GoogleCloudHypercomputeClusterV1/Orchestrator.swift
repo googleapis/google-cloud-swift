@@ -24,7 +24,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Particular type of orchestrator to use in this cluster.
-  public var option: OneOf_Option? = nil
+  public var option: OptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var option: OneOf_Option? = nil
+    var option: OptionOneOf? = nil
     let optionCheckAndSet = {
       if option != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct Orchestrator: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Particular type of orchestrator to use in this cluster.
-  public enum OneOf_Option: Codable, Equatable, Sendable {
+  public enum OptionOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, indicates that the cluster should use Slurm as the
     /// orchestrator.
     indirect case slurm(SlurmOrchestrator?)

@@ -26,7 +26,7 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// Defines the source of the migration.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct StartMigrationRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the source of the migration.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Required. Configuration for migrating from a self-managed Valkey/Redis
     /// instance
     indirect case selfManagedSource(SelfManagedSource?)

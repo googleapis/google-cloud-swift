@@ -69,7 +69,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var serviceAccountEmail: Swift.String = Swift.String()
 
   /// Defaults to text format.
-  public var outputFormat: OneOf_OutputFormat? = nil
+  public var outputFormat: OutputFormatOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -147,7 +147,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.serviceAccountEmail = value
     }
 
-    var outputFormat: OneOf_OutputFormat? = nil
+    var outputFormat: OutputFormatOneOf? = nil
     let outputFormatCheckAndSet = {
       if outputFormat != nil {
         throw DecodingError.dataCorrupted(
@@ -344,7 +344,7 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defaults to text format.
-  public enum OneOf_OutputFormat: Codable, Equatable, Sendable {
+  public enum OutputFormatOneOf: Codable, Equatable, Sendable {
     /// Optional. If set, message data will be written to Cloud Storage in text
     /// format.
     indirect case textConfig(CloudStorageConfig.TextConfig?)

@@ -23,7 +23,7 @@
     Sendable
   {
     /// Chunk type.
-    public var chunkType: OneOf_ChunkType? = nil
+    public var chunkType: ChunkTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var chunkType: OneOf_ChunkType? = nil
+      var chunkType: ChunkTypeOneOf? = nil
       let chunkTypeCheckAndSet = {
         if chunkType != nil {
           throw DecodingError.dataCorrupted(
@@ -200,7 +200,7 @@
       public var documentName: Swift.String? = nil
 
       /// Tool-specific details about the retrieved context.
-      public var contextDetails: OneOf_ContextDetails? = nil
+      public var contextDetails: ContextDetailsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -248,7 +248,7 @@
         self.text = try container.decodeIfPresent(Swift.String.self, forKey: .text)
         self.documentName = try container.decodeIfPresent(Swift.String.self, forKey: .documentName)
 
-        var contextDetails: OneOf_ContextDetails? = nil
+        var contextDetails: ContextDetailsOneOf? = nil
         let contextDetailsCheckAndSet = {
           if contextDetails != nil {
             throw DecodingError.dataCorrupted(
@@ -287,7 +287,7 @@
       }
 
       /// Tool-specific details about the retrieved context.
-      public enum OneOf_ContextDetails: Codable, Equatable, Sendable {
+      public enum ContextDetailsOneOf: Codable, Equatable, Sendable {
         /// Additional context for the RAG retrieval result. This is only populated
         /// when using the RAG retrieval tool.
         indirect case ragChunk(RagChunk?)
@@ -657,7 +657,7 @@
     }
 
     /// Chunk type.
-    public enum OneOf_ChunkType: Codable, Equatable, Sendable {
+    public enum ChunkTypeOneOf: Codable, Equatable, Sendable {
       /// Grounding chunk from the web.
       indirect case web(GroundingChunk.Web?)
       /// Grounding chunk from context retrieved by the retrieval tools.

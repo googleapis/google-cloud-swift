@@ -28,7 +28,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resource: Resource? = nil
 
   /// Notification Event.
-  public var event: OneOf_Event? = nil
+  public var event: EventOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.resource = try container.decodeIfPresent(Resource.self, forKey: .resource)
 
-    var event: OneOf_Event? = nil
+    var event: EventOneOf? = nil
     let eventCheckAndSet = {
       if event != nil {
         throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@ public struct NotificationMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Notification Event.
-  public enum OneOf_Event: Codable, Equatable, Sendable {
+  public enum EventOneOf: Codable, Equatable, Sendable {
     /// If it's a Finding based notification config, this field will be
     /// populated.
     indirect case finding(Finding?)

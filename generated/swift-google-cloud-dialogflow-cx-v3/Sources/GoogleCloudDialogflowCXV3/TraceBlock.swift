@@ -42,7 +42,7 @@
     public var endState: OutputState = OutputState()
 
     /// Metadata of the trace.
-    public var traceMetadata: OneOf_TraceMetadata? = nil
+    public var traceMetadata: TraceMetadataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -108,7 +108,7 @@
         self.endState = value
       }
 
-      var traceMetadata: OneOf_TraceMetadata? = nil
+      var traceMetadata: TraceMetadataOneOf? = nil
       let traceMetadataCheckAndSet = {
         if traceMetadata != nil {
           throw DecodingError.dataCorrupted(
@@ -165,7 +165,7 @@
     }
 
     /// Metadata of the trace.
-    public enum OneOf_TraceMetadata: Codable, Equatable, Sendable {
+    public enum TraceMetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata of the playbook trace.
       indirect case playbookTraceMetadata(PlaybookTraceMetadata?)
       /// Metadata of the flow trace.

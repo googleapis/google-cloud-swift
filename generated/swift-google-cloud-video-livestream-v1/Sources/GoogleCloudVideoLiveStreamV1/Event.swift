@@ -64,7 +64,7 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
   public var error: GoogleRpc.Status? = nil
 
   /// Required. Operation to be executed by this event.
-  public var task: OneOf_Task? = nil
+  public var task: TaskOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -148,7 +148,7 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.error = try container.decodeIfPresent(GoogleRpc.Status.self, forKey: .error)
 
-    var task: OneOf_Task? = nil
+    var task: TaskOneOf? = nil
     let taskCheckAndSet = {
       if task != nil {
         throw DecodingError.dataCorrupted(
@@ -843,7 +843,7 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Operation to be executed by this event.
-  public enum OneOf_Task: Codable, Equatable, Sendable {
+  public enum TaskOneOf: Codable, Equatable, Sendable {
     /// Switches to another input stream.
     indirect case inputSwitch(Event.InputSwitchTask?)
     /// Inserts a new ad opportunity.

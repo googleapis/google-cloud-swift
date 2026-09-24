@@ -31,7 +31,7 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public var sideOfRoad: Swift.Bool = Swift.Bool()
 
   /// Different ways to represent a location.
-  public var locationType: OneOf_LocationType? = nil
+  public var locationType: LocationTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sideOfRoad = value
     }
 
-    var locationType: OneOf_LocationType? = nil
+    var locationType: LocationTypeOneOf? = nil
     let locationTypeCheckAndSet = {
       if locationType != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct Waypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Different ways to represent a location.
-  public enum OneOf_LocationType: Codable, Equatable, Sendable {
+  public enum LocationTypeOneOf: Codable, Equatable, Sendable {
     /// A point specified using geographic coordinates, including an optional
     /// heading.
     indirect case location(Location?)

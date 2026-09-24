@@ -27,7 +27,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public var experiment: Swift.String = Swift.String()
 
   /// Information associated with the specific experiment entity being recorded.
-  public var experimentMetadata: OneOf_ExperimentMetadata? = nil
+  public var experimentMetadata: ExperimentMetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       self.experiment = value
     }
 
-    var experimentMetadata: OneOf_ExperimentMetadata? = nil
+    var experimentMetadata: ExperimentMetadataOneOf? = nil
     let experimentMetadataCheckAndSet = {
       if experimentMetadata != nil {
         throw DecodingError.dataCorrupted(
@@ -195,7 +195,7 @@ public struct ExperimentInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information associated with the specific experiment entity being recorded.
-  public enum OneOf_ExperimentMetadata: Codable, Equatable, Sendable {
+  public enum ExperimentMetadataOneOf: Codable, Equatable, Sendable {
     /// A/B test between existing Cloud Retail Search
     /// [ServingConfig][google.cloud.retail.v2.ServingConfig]s.
     ///

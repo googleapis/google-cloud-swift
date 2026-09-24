@@ -28,7 +28,7 @@
 
     /// Details about the source data, including the location of the storage and
     /// the format.
-    public var entityIdsSource: OneOf_EntityIdsSource? = nil
+    public var entityIdsSource: EntityIdsSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@
         self.entityIdField = value
       }
 
-      var entityIdsSource: OneOf_EntityIdsSource? = nil
+      var entityIdsSource: EntityIdsSourceOneOf? = nil
       let entityIdsSourceCheckAndSet = {
         if entityIdsSource != nil {
           throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@
 
     /// Details about the source data, including the location of the storage and
     /// the format.
-    public enum OneOf_EntityIdsSource: Codable, Equatable, Sendable {
+    public enum EntityIdsSourceOneOf: Codable, Equatable, Sendable {
       /// Source of Csv
       indirect case csvSource(CsvSource?)
     }

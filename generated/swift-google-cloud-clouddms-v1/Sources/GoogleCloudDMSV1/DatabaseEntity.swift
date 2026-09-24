@@ -52,7 +52,7 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
   public var issues: [EntityIssue] = []
 
   /// The specific body for each entity type.
-  public var entityBody: OneOf_EntityBody? = nil
+  public var entityBody: EntityBodyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -143,7 +143,7 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
       self.issues = value
     }
 
-    var entityBody: OneOf_EntityBody? = nil
+    var entityBody: EntityBodyOneOf? = nil
     let entityBodyCheckAndSet = {
       if entityBody != nil {
         throw DecodingError.dataCorrupted(
@@ -368,7 +368,7 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific body for each entity type.
-  public enum OneOf_EntityBody: Codable, Equatable, Sendable {
+  public enum EntityBodyOneOf: Codable, Equatable, Sendable {
     /// Database.
     indirect case database(DatabaseInstanceEntity?)
     /// Schema.

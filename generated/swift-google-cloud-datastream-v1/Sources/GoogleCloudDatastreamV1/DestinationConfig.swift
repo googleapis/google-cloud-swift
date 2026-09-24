@@ -26,7 +26,7 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var destinationConnectionProfile: Swift.String = Swift.String()
 
   /// Stream configuration that is specific to the data destination type.
-  public var destinationStreamConfig: OneOf_DestinationStreamConfig? = nil
+  public var destinationStreamConfig: DestinationStreamConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.destinationConnectionProfile = value
     }
 
-    var destinationStreamConfig: OneOf_DestinationStreamConfig? = nil
+    var destinationStreamConfig: DestinationStreamConfigOneOf? = nil
     let destinationStreamConfigCheckAndSet = {
       if destinationStreamConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Stream configuration that is specific to the data destination type.
-  public enum OneOf_DestinationStreamConfig: Codable, Equatable, Sendable {
+  public enum DestinationStreamConfigOneOf: Codable, Equatable, Sendable {
     /// A configuration for how data should be loaded to Cloud Storage.
     indirect case gcsDestinationConfig(GcsDestinationConfig?)
     /// BigQuery destination configuration.

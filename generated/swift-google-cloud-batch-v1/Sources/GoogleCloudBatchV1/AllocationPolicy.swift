@@ -293,7 +293,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     public var diskInterface: Swift.String = Swift.String()
 
     /// A data source from which a PD will be created.
-    public var dataSource: OneOf_DataSource? = nil
+    public var dataSource: DataSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -346,7 +346,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.diskInterface = value
       }
 
-      var dataSource: OneOf_DataSource? = nil
+      var dataSource: DataSourceOneOf? = nil
       let dataSourceCheckAndSet = {
         if dataSource != nil {
           throw DecodingError.dataCorrupted(
@@ -389,7 +389,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// A data source from which a PD will be created.
-    public enum OneOf_DataSource: Codable, Equatable, Sendable {
+    public enum DataSourceOneOf: Codable, Equatable, Sendable {
       /// URL for a VM image to use as the data source for this disk.
       /// For example, the following are all valid URLs:
       ///
@@ -432,7 +432,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// match the device_name field in volumes.
     public var deviceName: Swift.String = Swift.String()
 
-    public var attached: OneOf_Attached? = nil
+    public var attached: AttachedOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -475,7 +475,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.deviceName = value
       }
 
-      var attached: OneOf_Attached? = nil
+      var attached: AttachedOneOf? = nil
       let attachedCheckAndSet = {
         if attached != nil {
           throw DecodingError.dataCorrupted(
@@ -517,7 +517,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Attached: Codable, Equatable, Sendable {
+    public enum AttachedOneOf: Codable, Equatable, Sendable {
       indirect case newDisk(AllocationPolicy.Disk?)
       /// Name of an existing PD.
       case existingDisk(Swift.String)
@@ -824,7 +824,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     /// https://cloud.google.com/compute/docs/connect/restrict-ssh-keys#block-keys
     public var blockProjectSshKeys: Swift.Bool = Swift.Bool()
 
-    public var policyTemplate: OneOf_PolicyTemplate? = nil
+    public var policyTemplate: PolicyTemplateOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -877,7 +877,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         self.blockProjectSshKeys = value
       }
 
-      var policyTemplate: OneOf_PolicyTemplate? = nil
+      var policyTemplate: PolicyTemplateOneOf? = nil
       let policyTemplateCheckAndSet = {
         if policyTemplate != nil {
           throw DecodingError.dataCorrupted(
@@ -923,7 +923,7 @@ public struct AllocationPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_PolicyTemplate: Codable, Equatable, Sendable {
+    public enum PolicyTemplateOneOf: Codable, Equatable, Sendable {
       /// InstancePolicy.
       indirect case policy(AllocationPolicy.InstancePolicy?)
       /// Name of an instance template used to create VMs.

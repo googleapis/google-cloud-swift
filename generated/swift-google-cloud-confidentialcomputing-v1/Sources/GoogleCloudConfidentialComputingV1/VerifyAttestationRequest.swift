@@ -53,10 +53,10 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// An optional tee attestation report, used to populate hardware rooted
   /// claims.
-  public var teeAttestation: OneOf_TeeAttestation? = nil
+  public var teeAttestation: TeeAttestationOneOf? = nil
 
   /// An optional device attestation report.
-  public var deviceAttestation: OneOf_DeviceAttestation? = nil
+  public var deviceAttestation: DeviceAttestationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,7 +126,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
       self.instance = value
     }
 
-    var teeAttestation: OneOf_TeeAttestation? = nil
+    var teeAttestation: TeeAttestationOneOf? = nil
     let teeAttestationCheckAndSet = {
       if teeAttestation != nil {
         throw DecodingError.dataCorrupted(
@@ -146,7 +146,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
     }
     self.teeAttestation = teeAttestation
 
-    var deviceAttestation: OneOf_DeviceAttestation? = nil
+    var deviceAttestation: DeviceAttestationOneOf? = nil
     let deviceAttestationCheckAndSet = {
       if deviceAttestation != nil {
         throw DecodingError.dataCorrupted(
@@ -200,7 +200,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
 
   /// An optional tee attestation report, used to populate hardware rooted
   /// claims.
-  public enum OneOf_TeeAttestation: Codable, Equatable, Sendable {
+  public enum TeeAttestationOneOf: Codable, Equatable, Sendable {
     /// Optional. A TDX with CCEL and RTMR Attestation Quote.
     indirect case tdCcel(TdxCcelAttestation?)
     /// Optional. An SEV-SNP Attestation Report.
@@ -208,7 +208,7 @@ public struct VerifyAttestationRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// An optional device attestation report.
-  public enum OneOf_DeviceAttestation: Codable, Equatable, Sendable {
+  public enum DeviceAttestationOneOf: Codable, Equatable, Sendable {
     /// Optional. An Nvidia attestation report for GPU and NVSwitch devices.
     indirect case nvidiaAttestation(NvidiaAttestation?)
   }

@@ -250,7 +250,7 @@
       public var steps: [Playbook.Step] = []
 
       /// Instruction on how to execute current step.
-      public var instruction: OneOf_Instruction? = nil
+      public var instruction: InstructionOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -291,7 +291,7 @@
           self.steps = value
         }
 
-        var instruction: OneOf_Instruction? = nil
+        var instruction: InstructionOneOf? = nil
         let instructionCheckAndSet = {
           if instruction != nil {
             throw DecodingError.dataCorrupted(
@@ -327,7 +327,7 @@
       }
 
       /// Instruction on how to execute current step.
-      public enum OneOf_Instruction: Codable, Equatable, Sendable {
+      public enum InstructionOneOf: Codable, Equatable, Sendable {
         /// Step instruction in text format.
         case text(Swift.String)
       }

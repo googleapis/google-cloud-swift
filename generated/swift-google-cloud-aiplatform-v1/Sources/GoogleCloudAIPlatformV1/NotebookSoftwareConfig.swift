@@ -31,7 +31,7 @@
     public var postStartupScriptConfig: PostStartupScriptConfig? = nil
 
     /// The image to be used by the notebook runtime.
-    public var runtimeImage: OneOf_RuntimeImage? = nil
+    public var runtimeImage: RuntimeImageOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@
       self.postStartupScriptConfig = try container.decodeIfPresent(
         PostStartupScriptConfig.self, forKey: .postStartupScriptConfig)
 
-      var runtimeImage: OneOf_RuntimeImage? = nil
+      var runtimeImage: RuntimeImageOneOf? = nil
       let runtimeImageCheckAndSet = {
         if runtimeImage != nil {
           throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@
     }
 
     /// The image to be used by the notebook runtime.
-    public enum OneOf_RuntimeImage: Codable, Equatable, Sendable {
+    public enum RuntimeImageOneOf: Codable, Equatable, Sendable {
       /// Optional. Google-managed NotebookRuntime colab image.
       indirect case colabImage(ColabImage?)
     }

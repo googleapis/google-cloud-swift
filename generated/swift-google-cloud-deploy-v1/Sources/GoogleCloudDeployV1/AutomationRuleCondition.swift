@@ -26,7 +26,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
   public var targetsPresentCondition: TargetsPresentCondition? = nil
 
   /// Details specific to the automation rule type.
-  public var ruleTypeCondition: OneOf_RuleTypeCondition? = nil
+  public var ruleTypeCondition: RuleTypeConditionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
     self.targetsPresentCondition = try container.decodeIfPresent(
       TargetsPresentCondition.self, forKey: .targetsPresentCondition)
 
-    var ruleTypeCondition: OneOf_RuleTypeCondition? = nil
+    var ruleTypeCondition: RuleTypeConditionOneOf? = nil
     let ruleTypeConditionCheckAndSet = {
       if ruleTypeCondition != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct AutomationRuleCondition: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Details specific to the automation rule type.
-  public enum OneOf_RuleTypeCondition: Codable, Equatable, Sendable {
+  public enum RuleTypeConditionOneOf: Codable, Equatable, Sendable {
     /// Optional. TimedPromoteReleaseCondition contains rule conditions specific
     /// to a an Automation with a timed promote release rule defined.
     indirect case timedPromoteReleaseCondition(TimedPromoteReleaseCondition?)

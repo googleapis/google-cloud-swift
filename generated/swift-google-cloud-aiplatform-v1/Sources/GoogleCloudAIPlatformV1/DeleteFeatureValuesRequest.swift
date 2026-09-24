@@ -32,7 +32,7 @@
     public var entityType: Swift.String = Swift.String()
 
     /// Defines options to select feature values to be deleted.
-    public var deleteOption: OneOf_DeleteOption? = nil
+    public var deleteOption: DeleteOptionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@
         self.entityType = value
       }
 
-      var deleteOption: OneOf_DeleteOption? = nil
+      var deleteOption: DeleteOptionOneOf? = nil
       let deleteOptionCheckAndSet = {
         if deleteOption != nil {
           throw DecodingError.dataCorrupted(
@@ -287,7 +287,7 @@
     }
 
     /// Defines options to select feature values to be deleted.
-    public enum OneOf_DeleteOption: Codable, Equatable, Sendable {
+    public enum DeleteOptionOneOf: Codable, Equatable, Sendable {
       /// Select feature values to be deleted by specifying entities.
       indirect case selectEntity(DeleteFeatureValuesRequest.SelectEntity?)
       /// Select feature values to be deleted by specifying time range and

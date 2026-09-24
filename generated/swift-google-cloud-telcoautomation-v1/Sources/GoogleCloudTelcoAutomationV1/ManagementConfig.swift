@@ -23,7 +23,7 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// The configuration can be one of StandardManagementConfig
   /// and FullManagementConfig
-  public var oneofConfig: OneOf_OneofConfig? = nil
+  public var oneofConfig: OneofConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var oneofConfig: OneOf_OneofConfig? = nil
+    var oneofConfig: OneofConfigOneOf? = nil
     let oneofConfigCheckAndSet = {
       if oneofConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct ManagementConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The configuration can be one of StandardManagementConfig
   /// and FullManagementConfig
-  public enum OneOf_OneofConfig: Codable, Equatable, Sendable {
+  public enum OneofConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration of the standard (GKE) cluster management
     indirect case standardManagementConfig(StandardManagementConfig?)
     /// Configuration of the full (Autopilot) cluster management. Full cluster

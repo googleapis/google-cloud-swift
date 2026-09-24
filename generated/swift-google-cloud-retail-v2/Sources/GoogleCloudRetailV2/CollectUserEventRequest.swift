@@ -48,7 +48,7 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// The rule that can convert the raw_json to a user event. It is needed
   /// only when the raw_json is set.
-  public var conversionRule: OneOf_ConversionRule? = nil
+  public var conversionRule: ConversionRuleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -109,7 +109,7 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.rawJson = value
     }
 
-    var conversionRule: OneOf_ConversionRule? = nil
+    var conversionRule: ConversionRuleOneOf? = nil
     let conversionRuleCheckAndSet = {
       if conversionRule != nil {
         throw DecodingError.dataCorrupted(
@@ -150,7 +150,7 @@ public struct CollectUserEventRequest: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// The rule that can convert the raw_json to a user event. It is needed
   /// only when the raw_json is set.
-  public enum OneOf_ConversionRule: Codable, Equatable, Sendable {
+  public enum ConversionRuleOneOf: Codable, Equatable, Sendable {
     /// The prebuilt rule name that can convert a specific type of raw_json.
     /// For example: "ga4_bq" rule for the GA4 user event schema.
     case prebuiltRule(Swift.String)

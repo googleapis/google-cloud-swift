@@ -35,11 +35,11 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the image adaptation for Compute Engine.
   public var encryption: Encryption? = nil
 
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// The configuration of the resources that will be created in GCP as a result
   /// of the ImageImport.
-  public var targetDefaults: OneOf_TargetDefaults? = nil
+  public var targetDefaults: TargetDefaultsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.source = source
 
-    var targetDefaults: OneOf_TargetDefaults? = nil
+    var targetDefaults: TargetDefaultsOneOf? = nil
     let targetDefaultsCheckAndSet = {
       if targetDefaults != nil {
         throw DecodingError.dataCorrupted(
@@ -169,7 +169,7 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Immutable. The path to the Cloud Storage file from which the image should
     /// be imported.
     case cloudStorageUri(Swift.String)
@@ -177,7 +177,7 @@ public struct ImageImport: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The configuration of the resources that will be created in GCP as a result
   /// of the ImageImport.
-  public enum OneOf_TargetDefaults: Codable, Equatable, Sendable {
+  public enum TargetDefaultsOneOf: Codable, Equatable, Sendable {
     /// Immutable. Target details for importing a disk image, will be used by
     /// ImageImportJob.
     indirect case diskImageTargetDefaults(DiskImageTargetDetails?)

@@ -35,7 +35,7 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public var type: Swift.String = Swift.String()
 
   /// gcp_Properties has properties of the Google Cloud Resource.
-  public var gcpResourceProperties: OneOf_GcpResourceProperties? = nil
+  public var gcpResourceProperties: GcpResourcePropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -95,7 +95,7 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var gcpResourceProperties: OneOf_GcpResourceProperties? = nil
+    var gcpResourceProperties: GcpResourcePropertiesOneOf? = nil
     let gcpResourcePropertiesCheckAndSet = {
       if gcpResourceProperties != nil {
         throw DecodingError.dataCorrupted(
@@ -159,7 +159,7 @@ public struct DataSourceGcpResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// gcp_Properties has properties of the Google Cloud Resource.
-  public enum OneOf_GcpResourceProperties: Codable, Equatable, Sendable {
+  public enum GcpResourcePropertiesOneOf: Codable, Equatable, Sendable {
     /// ComputeInstanceDataSourceProperties has a subset of Compute Instance
     /// properties that are useful at the Datasource level.
     indirect case computeInstanceDatasourceProperties(ComputeInstanceDataSourceProperties?)

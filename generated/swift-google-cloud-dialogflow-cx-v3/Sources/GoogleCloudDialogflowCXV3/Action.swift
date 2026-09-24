@@ -23,7 +23,7 @@
     Sendable
   {
     /// Action details.
-    public var action: OneOf_Action? = nil
+    public var action: ActionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var action: OneOf_Action? = nil
+      var action: ActionOneOf? = nil
       let actionCheckAndSet = {
         if action != nil {
           throw DecodingError.dataCorrupted(
@@ -148,7 +148,7 @@
     }
 
     /// Action details.
-    public enum OneOf_Action: Codable, Equatable, Sendable {
+    public enum ActionOneOf: Codable, Equatable, Sendable {
       /// Optional. Agent obtained a message from the customer.
       indirect case userUtterance(UserUtterance?)
       /// Optional. Action performed by the agent as a message.

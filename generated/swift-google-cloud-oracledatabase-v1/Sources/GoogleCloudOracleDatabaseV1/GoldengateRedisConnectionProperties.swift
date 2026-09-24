@@ -53,13 +53,13 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
 
   /// The password Oracle Goldengate uses to connect the associated system of
   /// the given technology.
-  public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+  public var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
 
   /// The TrustStore password.
-  public var trustStorePasswordOptions: OneOf_TrustStorePasswordOptions? = nil
+  public var trustStorePasswordOptions: TrustStorePasswordOptionsOneOf? = nil
 
   /// The KeyStore password.
-  public var keyStorePasswordOptions: OneOf_KeyStorePasswordOptions? = nil
+  public var keyStorePasswordOptions: KeyStorePasswordOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -151,7 +151,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
       self.keyStoreFile = value
     }
 
-    var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+    var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
     let connectionPasswordOptionsCheckAndSet = {
       if connectionPasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -171,7 +171,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
     }
     self.connectionPasswordOptions = connectionPasswordOptions
 
-    var trustStorePasswordOptions: OneOf_TrustStorePasswordOptions? = nil
+    var trustStorePasswordOptions: TrustStorePasswordOptionsOneOf? = nil
     let trustStorePasswordOptionsCheckAndSet = {
       if trustStorePasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -194,7 +194,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
     }
     self.trustStorePasswordOptions = trustStorePasswordOptions
 
-    var keyStorePasswordOptions: OneOf_KeyStorePasswordOptions? = nil
+    var keyStorePasswordOptions: KeyStorePasswordOptionsOneOf? = nil
     let keyStorePasswordOptionsCheckAndSet = {
       if keyStorePasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -507,7 +507,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
 
   /// The password Oracle Goldengate uses to connect the associated system of
   /// the given technology.
-  public enum OneOf_ConnectionPasswordOptions: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The password Oracle Goldengate uses for Redis
     /// connection in plain text.
     case password(Swift.String)
@@ -519,7 +519,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The TrustStore password.
-  public enum OneOf_TrustStorePasswordOptions: Codable, Equatable, Sendable {
+  public enum TrustStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The TrustStore password in plain text.
     case trustStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret
@@ -529,7 +529,7 @@ public struct GoldengateRedisConnectionProperties: Codable, Equatable, GoogleWKT
   }
 
   /// The KeyStore password.
-  public enum OneOf_KeyStorePasswordOptions: Codable, Equatable, Sendable {
+  public enum KeyStorePasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The KeyStore password in plain text.
     case keyStorePassword(Swift.String)
     /// Optional. Input only. The resource name of a secret version in Secret

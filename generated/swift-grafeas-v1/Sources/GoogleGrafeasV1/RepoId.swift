@@ -23,7 +23,7 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// A cloud repo can be identified by either its project ID and repository name
   /// combination, or its globally unique identifier.
-  public var id: OneOf_Id? = nil
+  public var id: IdOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var id: OneOf_Id? = nil
+    var id: IdOneOf? = nil
     let idCheckAndSet = {
       if id != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct RepoId: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A cloud repo can be identified by either its project ID and repository name
   /// combination, or its globally unique identifier.
-  public enum OneOf_Id: Codable, Equatable, Sendable {
+  public enum IdOneOf: Codable, Equatable, Sendable {
     /// A combination of a project ID and a repo name.
     indirect case projectRepoId(ProjectRepoId?)
     /// A server-assigned, globally unique identifier.

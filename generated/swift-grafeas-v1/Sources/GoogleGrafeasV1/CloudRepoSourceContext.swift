@@ -27,7 +27,7 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// A revision in a Cloud Repo can be identified by either its revision ID or
   /// its alias.
-  public var revision: OneOf_Revision? = nil
+  public var revision: RevisionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleWKT._AnyPackable
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.repoId = try container.decodeIfPresent(RepoId.self, forKey: .repoId)
 
-    var revision: OneOf_Revision? = nil
+    var revision: RevisionOneOf? = nil
     let revisionCheckAndSet = {
       if revision != nil {
         throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@ public struct CloudRepoSourceContext: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// A revision in a Cloud Repo can be identified by either its revision ID or
   /// its alias.
-  public enum OneOf_Revision: Codable, Equatable, Sendable {
+  public enum RevisionOneOf: Codable, Equatable, Sendable {
     /// A revision ID.
     case revisionId(Swift.String)
     /// An alias, which may be a branch or tag.

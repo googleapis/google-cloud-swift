@@ -23,7 +23,7 @@ public import GoogleCloudGKEHubConfigManagementV1
 public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var featureSpec: OneOf_FeatureSpec? = nil
+  public var featureSpec: FeatureSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var featureSpec: OneOf_FeatureSpec? = nil
+    var featureSpec: FeatureSpecOneOf? = nil
     let featureSpecCheckAndSet = {
       if featureSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct MembershipFeatureSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_FeatureSpec: Codable, Equatable, Sendable {
+  public enum FeatureSpecOneOf: Codable, Equatable, Sendable {
     /// Config Management-specific spec.
     indirect case configmanagement(GoogleCloudGKEHubConfigManagementV1.MembershipSpec?)
   }

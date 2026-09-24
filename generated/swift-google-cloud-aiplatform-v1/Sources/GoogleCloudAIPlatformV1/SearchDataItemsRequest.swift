@@ -102,7 +102,7 @@
     /// [google.cloud.aiplatform.v1.SearchDataItemsResponse.next_page_token]: <doc:SearchDataItemsResponse/nextPageToken>
     public var pageToken: Swift.String = Swift.String()
 
-    public var order: OneOf_Order? = nil
+    public var order: OrderOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -198,7 +198,7 @@
         self.pageToken = value
       }
 
-      var order: OneOf_Order? = nil
+      var order: OrderOneOf? = nil
       let orderCheckAndSet = {
         if order != nil {
           throw DecodingError.dataCorrupted(
@@ -336,7 +336,7 @@
       }
     }
 
-    public enum OneOf_Order: Codable, Equatable, Sendable {
+    public enum OrderOneOf: Codable, Equatable, Sendable {
       /// A comma-separated list of data item fields to order by, sorted in
       /// ascending order. Use "desc" after a field name for descending.
       case orderByDataItem(Swift.String)

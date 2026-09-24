@@ -51,7 +51,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Guardrail type.
-  public var guardrailType: OneOf_GuardrailType? = nil
+  public var guardrailType: GuardrailTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var guardrailType: OneOf_GuardrailType? = nil
+    var guardrailType: GuardrailTypeOneOf? = nil
     let guardrailTypeCheckAndSet = {
       if guardrailType != nil {
         throw DecodingError.dataCorrupted(
@@ -457,7 +457,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Defines the security configuration mode.
     /// The user must choose one of the following configurations.
-    public var securityConfig: OneOf_SecurityConfig? = nil
+    public var securityConfig: SecurityConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -500,7 +500,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
         self.failOpen = value
       }
 
-      var securityConfig: OneOf_SecurityConfig? = nil
+      var securityConfig: SecurityConfigOneOf? = nil
       let securityConfigCheckAndSet = {
         if securityConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -619,7 +619,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Defines the security configuration mode.
     /// The user must choose one of the following configurations.
-    public enum OneOf_SecurityConfig: Codable, Equatable, Sendable {
+    public enum SecurityConfigOneOf: Codable, Equatable, Sendable {
       /// Optional. Use the system's predefined default security settings.
       /// To select this mode, include an empty 'default_settings' message
       /// in the request. The 'default_prompt_template' field within
@@ -1430,7 +1430,7 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Guardrail type.
-  public enum OneOf_GuardrailType: Codable, Equatable, Sendable {
+  public enum GuardrailTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Guardrail that bans certain content from being used in the
     /// conversation.
     indirect case contentFilter(Guardrail.ContentFilter?)

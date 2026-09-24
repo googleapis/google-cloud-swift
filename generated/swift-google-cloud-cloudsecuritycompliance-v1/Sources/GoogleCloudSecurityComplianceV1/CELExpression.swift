@@ -27,7 +27,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
   public var expression: Swift.String = Swift.String()
 
   /// The criteria of the CEL expression.
-  public var criteria: OneOf_Criteria? = nil
+  public var criteria: CriteriaOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
       self.expression = value
     }
 
-    var criteria: OneOf_Criteria? = nil
+    var criteria: CriteriaOneOf? = nil
     let criteriaCheckAndSet = {
       if criteria != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct CELExpression: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The criteria of the CEL expression.
-  public enum OneOf_Criteria: Codable, Equatable, Sendable {
+  public enum CriteriaOneOf: Codable, Equatable, Sendable {
     /// The resource instance types on which this expression is defined.
     /// The format is `<SERVICE_NAME>/<type>`.
     /// For example: `compute.googleapis.com/Instance`

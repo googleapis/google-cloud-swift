@@ -43,7 +43,7 @@
     public var force: Swift.Bool = Swift.Bool()
 
     /// The desired input source for the purging documents based on document IDs.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@
         self.force = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -221,7 +221,7 @@
     }
 
     /// The desired input source for the purging documents based on document IDs.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage location for the input content.
       /// Supported `data_schema`:
       /// * `document_id`: One valid

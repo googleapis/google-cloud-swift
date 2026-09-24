@@ -31,10 +31,10 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   public var drmSystems: Encryption.DrmSystems? = nil
 
   /// Defines where content keys are stored.
-  public var secretSource: OneOf_SecretSource? = nil
+  public var secretSource: SecretSourceOneOf? = nil
 
   /// Encryption modes for HLS and MPEG-Dash.
-  public var encryptionMode: OneOf_EncryptionMode? = nil
+  public var encryptionMode: EncryptionModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.drmSystems = try container.decodeIfPresent(Encryption.DrmSystems.self, forKey: .drmSystems)
 
-    var secretSource: OneOf_SecretSource? = nil
+    var secretSource: SecretSourceOneOf? = nil
     let secretSourceCheckAndSet = {
       if secretSource != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.secretSource = secretSource
 
-    var encryptionMode: OneOf_EncryptionMode? = nil
+    var encryptionMode: EncryptionModeOneOf? = nil
     let encryptionModeCheckAndSet = {
       if encryptionMode != nil {
         throw DecodingError.dataCorrupted(
@@ -730,13 +730,13 @@ public struct Encryption: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines where content keys are stored.
-  public enum OneOf_SecretSource: Codable, Equatable, Sendable {
+  public enum SecretSourceOneOf: Codable, Equatable, Sendable {
     /// For keys stored in Google Secret Manager.
     indirect case secretManagerKeySource(Encryption.SecretManagerSource?)
   }
 
   /// Encryption modes for HLS and MPEG-Dash.
-  public enum OneOf_EncryptionMode: Codable, Equatable, Sendable {
+  public enum EncryptionModeOneOf: Codable, Equatable, Sendable {
     /// Configuration for HLS AES-128 encryption.
     indirect case aes128(Encryption.Aes128Encryption?)
     /// Configuration for HLS SAMPLE-AES encryption.

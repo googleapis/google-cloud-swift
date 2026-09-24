@@ -46,7 +46,7 @@ public struct DataAccessLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   /// The definition of the data access label that determines which
   /// data gets tagged with this label.
-  public var definition: OneOf_Definition? = nil
+  public var definition: DefinitionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -115,7 +115,7 @@ public struct DataAccessLabel: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var definition: OneOf_Definition? = nil
+    var definition: DefinitionOneOf? = nil
     let definitionCheckAndSet = {
       if definition != nil {
         throw DecodingError.dataCorrupted(
@@ -159,7 +159,7 @@ public struct DataAccessLabel: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   /// The definition of the data access label that determines which
   /// data gets tagged with this label.
-  public enum OneOf_Definition: Codable, Equatable, Sendable {
+  public enum DefinitionOneOf: Codable, Equatable, Sendable {
     /// A UDM query over event data.
     case udmQuery(Swift.String)
   }

@@ -34,7 +34,7 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Ambient noise to be played with the synthesized agent response, to
   /// enhance the naturalness of the conversation.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -82,7 +82,7 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.volumeGainDb = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -260,7 +260,7 @@ public struct AmbientSoundConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Ambient noise to be played with the synthesized agent response, to
   /// enhance the naturalness of the conversation.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Deprecated: `prebuilt_ambient_noise` is deprecated in favor of
     /// `prebuilt_ambient_sound`.
     @available(*, deprecated)

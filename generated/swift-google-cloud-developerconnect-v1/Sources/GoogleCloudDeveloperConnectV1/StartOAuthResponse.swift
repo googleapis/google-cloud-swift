@@ -41,7 +41,7 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public var authUri: Swift.String = Swift.String()
 
   /// The ID of the service provider.
-  public var id: OneOf_Id? = nil
+  public var id: IdOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -107,7 +107,7 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       self.authUri = value
     }
 
-    var id: OneOf_Id? = nil
+    var id: IdOneOf? = nil
     let idCheckAndSet = {
       if id != nil {
         throw DecodingError.dataCorrupted(
@@ -149,7 +149,7 @@ public struct StartOAuthResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The ID of the service provider.
-  public enum OneOf_Id: Codable, Equatable, Sendable {
+  public enum IdOneOf: Codable, Equatable, Sendable {
     /// The ID of the system provider.
     case systemProviderId(SystemProvider)
   }

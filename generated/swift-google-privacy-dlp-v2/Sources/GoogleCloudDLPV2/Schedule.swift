@@ -22,7 +22,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Type of schedule.
-  public var option: OneOf_Option? = nil
+  public var option: OptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var option: OneOf_Option? = nil
+    var option: OptionOneOf? = nil
     let optionCheckAndSet = {
       if option != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct Schedule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of schedule.
-  public enum OneOf_Option: Codable, Equatable, Sendable {
+  public enum OptionOneOf: Codable, Equatable, Sendable {
     /// With this option a job is started on a regular periodic basis. For
     /// example: every day (86400 seconds).
     ///

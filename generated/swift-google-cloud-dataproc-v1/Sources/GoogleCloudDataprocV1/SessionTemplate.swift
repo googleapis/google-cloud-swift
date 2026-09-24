@@ -56,7 +56,7 @@ public struct SessionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   public var uuid: Swift.String = Swift.String()
 
   /// The session configuration.
-  public var sessionConfig: OneOf_SessionConfig? = nil
+  public var sessionConfig: SessionConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -135,7 +135,7 @@ public struct SessionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
       self.uuid = value
     }
 
-    var sessionConfig: OneOf_SessionConfig? = nil
+    var sessionConfig: SessionConfigOneOf? = nil
     let sessionConfigCheckAndSet = {
       if sessionConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -188,7 +188,7 @@ public struct SessionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The session configuration.
-  public enum OneOf_SessionConfig: Codable, Equatable, Sendable {
+  public enum SessionConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. Jupyter session config.
     indirect case jupyterSession(JupyterConfig?)
     /// Optional. Spark connect session config.

@@ -175,7 +175,7 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public var executionTime: GoogleWKT.WKTTimestamp? = nil
 
     /// The result of this execution attempt.
-    public var result: OneOf_Result? = nil
+    public var result: ResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -217,7 +217,7 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.executionTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .executionTime)
 
-      var result: OneOf_Result? = nil
+      var result: ResultOneOf? = nil
       let resultCheckAndSet = {
         if result != nil {
           throw DecodingError.dataCorrupted(
@@ -262,7 +262,7 @@ public struct WorkflowConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The result of this execution attempt.
-    public enum OneOf_Result: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Codable, Equatable, Sendable {
       /// The name of the created workflow invocation, if one was successfully
       /// created. Must be in the format
       /// `projects/*/locations/*/repositories/*/workflowInvocations/*`.

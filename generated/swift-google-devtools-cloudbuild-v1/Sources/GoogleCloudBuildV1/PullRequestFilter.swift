@@ -37,7 +37,7 @@ public struct PullRequestFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Target refs to match.
   /// A target ref is the git reference where the pull request will be applied.
-  public var gitRef: OneOf_GitRef? = nil
+  public var gitRef: GitRefOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct PullRequestFilter: Codable, Equatable, GoogleWKT._AnyPackable,
       self.invertRegex = value
     }
 
-    var gitRef: OneOf_GitRef? = nil
+    var gitRef: GitRefOneOf? = nil
     let gitRefCheckAndSet = {
       if gitRef != nil {
         throw DecodingError.dataCorrupted(
@@ -261,7 +261,7 @@ public struct PullRequestFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Target refs to match.
   /// A target ref is the git reference where the pull request will be applied.
-  public enum OneOf_GitRef: Codable, Equatable, Sendable {
+  public enum GitRefOneOf: Codable, Equatable, Sendable {
     /// Regex of branches to match.
     ///
     /// The syntax of the regular expressions accepted is the syntax accepted by

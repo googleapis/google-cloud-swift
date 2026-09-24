@@ -249,7 +249,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Output only. The time (as recorded at server) when this event occurred.
       public var eventTime: GoogleWKT.WKTTimestamp? = nil
 
-      public var event: OneOf_Event? = nil
+      public var event: EventOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -309,7 +309,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         self.eventTime = try container.decodeIfPresent(
           GoogleWKT.WKTTimestamp.self, forKey: .eventTime)
 
-        var event: OneOf_Event? = nil
+        var event: EventOneOf? = nil
         let eventCheckAndSet = {
           if event != nil {
             throw DecodingError.dataCorrupted(
@@ -1150,7 +1150,7 @@ public struct Grant: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum OneOf_Event: Codable, Equatable, Sendable {
+      public enum EventOneOf: Codable, Equatable, Sendable {
         /// The grant was requested.
         indirect case requested(Grant.Timeline.Event.Requested?)
         /// The grant was approved.

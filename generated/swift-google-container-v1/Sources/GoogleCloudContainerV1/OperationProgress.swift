@@ -117,7 +117,7 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
     public var name: Swift.String = Swift.String()
 
     /// Strictly one of the values is required.
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -162,7 +162,7 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
         self.name = value
       }
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -208,7 +208,7 @@ public struct OperationProgress: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Strictly one of the values is required.
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// For metrics with integer value.
       case intValue(Swift.Int64)
       /// For metrics with floating point value.

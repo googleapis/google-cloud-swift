@@ -22,7 +22,7 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
   Sendable
 {
   /// The configuration that's required to create the target resource.
-  public var resourceCreationConfig: OneOf_ResourceCreationConfig? = nil
+  public var resourceCreationConfig: ResourceCreationConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var resourceCreationConfig: OneOf_ResourceCreationConfig? = nil
+    var resourceCreationConfig: ResourceCreationConfigOneOf? = nil
     let resourceCreationConfigCheckAndSet = {
       if resourceCreationConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// The configuration that's required to create the target resource.
-  public enum OneOf_ResourceCreationConfig: Codable, Equatable, Sendable {
+  public enum ResourceCreationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. The configuration that's required to create a folder.
     indirect case folderCreationConfig(FolderCreationConfig?)
     /// Optional. The configuration that's required to create a project.

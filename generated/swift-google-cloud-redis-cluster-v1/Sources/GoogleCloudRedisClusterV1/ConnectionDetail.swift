@@ -25,7 +25,7 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Connectivity Automation (auto-registered connection) during the cluster
   /// creation, or it could be created by customer themselves (user-registered
   /// connection).
-  public var connection: OneOf_Connection? = nil
+  public var connection: ConnectionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var connection: OneOf_Connection? = nil
+    var connection: ConnectionOneOf? = nil
     let connectionCheckAndSet = {
       if connection != nil {
         throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Connectivity Automation (auto-registered connection) during the cluster
   /// creation, or it could be created by customer themselves (user-registered
   /// connection).
-  public enum OneOf_Connection: Codable, Equatable, Sendable {
+  public enum ConnectionOneOf: Codable, Equatable, Sendable {
     /// Detailed information of a PSC connection that is created through
     /// service connectivity automation.
     indirect case pscAutoConnection(PscAutoConnection?)

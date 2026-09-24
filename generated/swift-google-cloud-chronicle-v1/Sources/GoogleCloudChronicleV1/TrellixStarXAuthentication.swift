@@ -23,7 +23,7 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
   Sendable
 {
   /// One of multiple potential auth types.
-  public var authType: OneOf_AuthType? = nil
+  public var authType: AuthTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var authType: OneOf_AuthType? = nil
+    var authType: AuthTypeOneOf? = nil
     let authTypeCheckAndSet = {
       if authType != nil {
         throw DecodingError.dataCorrupted(
@@ -112,7 +112,7 @@ public struct TrellixStarXAuthentication: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// One of multiple potential auth types.
-  public enum OneOf_AuthType: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Input only. MssoAuthentication auth type.
     indirect case msso(MssoAuthentication?)
     /// Input only. TrellixIAMAuthentication auth type.

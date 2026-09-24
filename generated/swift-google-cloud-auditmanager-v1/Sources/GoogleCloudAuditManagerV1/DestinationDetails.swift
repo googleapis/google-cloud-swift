@@ -22,7 +22,7 @@ public struct DestinationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The specific destination where the audit report and evidence are stored.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct DestinationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct DestinationDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The specific destination where the audit report and evidence are stored.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// URI for the Cloud Storage bucket, in the format
     /// `gs://{bucket_name}`.
     case gcsBucketUri(Swift.String)

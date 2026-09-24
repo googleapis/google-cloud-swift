@@ -132,7 +132,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Description the nested structure, or composition of an entity.
     public var properties: [DocumentSchema.EntityType.Property] = []
 
-    public var valueSource: OneOf_ValueSource? = nil
+    public var valueSource: ValueSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -190,7 +190,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
         self.properties = value
       }
 
-      var valueSource: OneOf_ValueSource? = nil
+      var valueSource: ValueSourceOneOf? = nil
       let valueSourceCheckAndSet = {
         if valueSource != nil {
           throw DecodingError.dataCorrupted(
@@ -671,7 +671,7 @@ public struct DocumentSchema: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_ValueSource: Codable, Equatable, Sendable {
+    public enum ValueSourceOneOf: Codable, Equatable, Sendable {
       /// If specified, lists all the possible values for this entity.  This
       /// should not be more than a handful of values.  If the number of values
       /// is >10 or could change frequently use the `EntityType.value_ontology`

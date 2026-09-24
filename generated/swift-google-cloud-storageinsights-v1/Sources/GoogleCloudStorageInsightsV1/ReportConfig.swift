@@ -47,10 +47,10 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var displayName: Swift.String = Swift.String()
 
   /// Format in which report will be published.
-  public var reportFormat: OneOf_ReportFormat? = nil
+  public var reportFormat: ReportFormatOneOf? = nil
 
   /// Configuration options for report contents.
-  public var reportKind: OneOf_ReportKind? = nil
+  public var reportKind: ReportKindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,7 +118,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.displayName = value
     }
 
-    var reportFormat: OneOf_ReportFormat? = nil
+    var reportFormat: ReportFormatOneOf? = nil
     let reportFormatCheckAndSet = {
       if reportFormat != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.reportFormat = reportFormat
 
-    var reportKind: OneOf_ReportKind? = nil
+    var reportKind: ReportKindOneOf? = nil
     let reportKindCheckAndSet = {
       if reportKind != nil {
         throw DecodingError.dataCorrupted(
@@ -190,7 +190,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Format in which report will be published.
-  public enum OneOf_ReportFormat: Codable, Equatable, Sendable {
+  public enum ReportFormatOneOf: Codable, Equatable, Sendable {
     /// Options for CSV formatted reports.
     indirect case csvOptions(CSVOptions?)
     /// Options for Parquet formatted reports.
@@ -198,7 +198,7 @@ public struct ReportConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration options for report contents.
-  public enum OneOf_ReportKind: Codable, Equatable, Sendable {
+  public enum ReportKindOneOf: Codable, Equatable, Sendable {
     /// Report for exporting object metadata.
     indirect case objectMetadataReportOptions(ObjectMetadataReportOptions?)
   }

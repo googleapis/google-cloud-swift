@@ -43,7 +43,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var pageToken: Swift.String = Swift.String()
 
   /// The asset for which you want to retrieve links.
-  public var criteria: OneOf_Criteria? = nil
+  public var criteria: CriteriaOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -100,7 +100,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.pageToken = value
     }
 
-    var criteria: OneOf_Criteria? = nil
+    var criteria: CriteriaOneOf? = nil
     let criteriaCheckAndSet = {
       if criteria != nil {
         throw DecodingError.dataCorrupted(
@@ -155,7 +155,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The asset for which you want to retrieve links.
-  public enum OneOf_Criteria: Codable, Equatable, Sendable {
+  public enum CriteriaOneOf: Codable, Equatable, Sendable {
     /// Optional. Send asset information in the **source** field to retrieve all
     /// links that lead from the specified asset to downstream assets.
     indirect case source(EntityReference?)
@@ -170,7 +170,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// All entities within the `MultipleEntityReference` must have the same
     /// `fully_qualified_name`.
     ///
-    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]: <doc:SearchLinksRequest/OneOf_Criteria/source(_:)>
+    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.source]: <doc:SearchLinksRequest/CriteriaOneOf/source(_:)>
     indirect case sources(MultipleEntityReference?)
     /// Optional. Send a list of asset information in the **targets** field to
     /// retrieve all links that lead from upstream assets to the specified
@@ -180,7 +180,7 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     /// All entities within the `MultipleEntityReference` must have the same
     /// `fully_qualified_name`.
     ///
-    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]: <doc:SearchLinksRequest/OneOf_Criteria/target(_:)>
+    /// [google.cloud.datacatalog.lineage.v1.SearchLinksRequest.target]: <doc:SearchLinksRequest/CriteriaOneOf/target(_:)>
     indirect case targets(MultipleEntityReference?)
   }
 

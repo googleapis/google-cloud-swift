@@ -24,7 +24,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The auth configuration.
-  public var authConfig: OneOf_AuthConfig? = nil
+  public var authConfig: AuthConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var authConfig: OneOf_AuthConfig? = nil
+    var authConfig: AuthConfigOneOf? = nil
     let authConfigCheckAndSet = {
       if authConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -264,7 +264,7 @@ public struct EndUserAuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The auth configuration.
-  public enum OneOf_AuthConfig: Codable, Equatable, Sendable {
+  public enum AuthConfigOneOf: Codable, Equatable, Sendable {
     /// Oauth 2.0 Authorization Code authentication.
     indirect case oauth2AuthCodeConfig(EndUserAuthConfig.Oauth2AuthCodeConfig?)
     /// JWT Profile Oauth 2.0 Authorization Grant authentication.

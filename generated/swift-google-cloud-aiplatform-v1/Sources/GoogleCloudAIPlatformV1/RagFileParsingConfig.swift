@@ -23,7 +23,7 @@
     Sendable
   {
     /// The parser to use for RagFiles.
-    public var parser: OneOf_Parser? = nil
+    public var parser: ParserOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var parser: OneOf_Parser? = nil
+      var parser: ParserOneOf? = nil
       let parserCheckAndSet = {
         if parser != nil {
           throw DecodingError.dataCorrupted(
@@ -290,7 +290,7 @@
     }
 
     /// The parser to use for RagFiles.
-    public enum OneOf_Parser: Codable, Equatable, Sendable {
+    public enum ParserOneOf: Codable, Equatable, Sendable {
       /// The Layout Parser to use for RagFiles.
       indirect case layoutParser(RagFileParsingConfig.LayoutParser?)
       /// The LLM Parser to use for RagFiles.

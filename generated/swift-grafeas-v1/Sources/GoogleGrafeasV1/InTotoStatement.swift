@@ -32,7 +32,7 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `https://slsa.dev/provenance/v0.1` for SlsaProvenance.
   public var predicateType: Swift.String = Swift.String()
 
-  public var predicate: OneOf_Predicate? = nil
+  public var predicate: PredicateOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,7 +87,7 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
       self.predicateType = value
     }
 
-    var predicate: OneOf_Predicate? = nil
+    var predicate: PredicateOneOf? = nil
     let predicateCheckAndSet = {
       if predicate != nil {
         throw DecodingError.dataCorrupted(
@@ -138,7 +138,7 @@ public struct InTotoStatement: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Predicate: Codable, Equatable, Sendable {
+  public enum PredicateOneOf: Codable, Equatable, Sendable {
     indirect case provenance(InTotoProvenance?)
     indirect case slsaProvenance(SlsaProvenance?)
     indirect case slsaProvenanceZeroTwo(SlsaProvenanceZeroTwo?)

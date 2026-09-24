@@ -42,7 +42,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// value with a [google.rpc.Status.code][google.rpc.Status.code] of `1`,
   /// corresponding to `Code.CANCELLED`.
   ///
-  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/OneOf_Result/error(_:)
+  /// [google.longrunning.Operation.error]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation/ResultOneOf/error(_:)
   /// [google.rpc.Status.code]: https://www.google.com/search?q=Swift+google.rpc+GoogleRpc.Status/code
   public var requestedCancellation: Swift.Bool = Swift.Bool()
 
@@ -51,7 +51,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Ephemeral metadata about the state of an operation for a particular
   /// resource.
-  public var resourceMetadata: OneOf_ResourceMetadata? = nil
+  public var resourceMetadata: ResourceMetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.apiVersion = value
     }
 
-    var resourceMetadata: OneOf_ResourceMetadata? = nil
+    var resourceMetadata: ResourceMetadataOneOf? = nil
     let resourceMetadataCheckAndSet = {
       if resourceMetadata != nil {
         throw DecodingError.dataCorrupted(
@@ -184,7 +184,7 @@ public struct OperationMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Ephemeral metadata about the state of an operation for a particular
   /// resource.
-  public enum OneOf_ResourceMetadata: Codable, Equatable, Sendable {
+  public enum ResourceMetadataOneOf: Codable, Equatable, Sendable {
     /// Output only. Metadata about the deployment operation state.
     indirect case deploymentMetadata(DeploymentOperationMetadata?)
     /// Output only. Metadata about the preview operation state.

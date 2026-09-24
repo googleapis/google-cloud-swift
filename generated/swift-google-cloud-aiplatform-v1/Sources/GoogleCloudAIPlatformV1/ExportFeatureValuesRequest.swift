@@ -40,7 +40,7 @@
     public var settings: [DestinationFeatureSetting] = []
 
     /// Required. The mode in which Feature values are exported.
-    public var mode: OneOf_Mode? = nil
+    public var mode: ModeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@
         self.settings = value
       }
 
-      var mode: OneOf_Mode? = nil
+      var mode: ModeOneOf? = nil
       let modeCheckAndSet = {
         if mode != nil {
           throw DecodingError.dataCorrupted(
@@ -307,7 +307,7 @@
     }
 
     /// Required. The mode in which Feature values are exported.
-    public enum OneOf_Mode: Codable, Equatable, Sendable {
+    public enum ModeOneOf: Codable, Equatable, Sendable {
       /// Exports the latest Feature values of all entities of the EntityType
       /// within a time range.
       indirect case snapshotExport(ExportFeatureValuesRequest.SnapshotExport?)

@@ -23,7 +23,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// The source is required and immutable. Once it is set, it cannot be change
   /// to others.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source is required and immutable. Once it is set, it cannot be change
   /// to others.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Immutable. The Dataplex Universal Catalog entity that represents the data
     /// source (e.g. BigQuery table) for DataScan, of the form:
     /// `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{entity_id}`.

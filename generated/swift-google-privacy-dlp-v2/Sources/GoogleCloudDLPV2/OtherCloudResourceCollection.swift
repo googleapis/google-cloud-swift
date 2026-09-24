@@ -22,7 +22,7 @@ public struct OtherCloudResourceCollection: Codable, Equatable, GoogleWKT._AnyPa
   Sendable
 {
   /// The first filter containing a pattern that matches a resource will be used.
-  public var pattern: OneOf_Pattern? = nil
+  public var pattern: PatternOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct OtherCloudResourceCollection: Codable, Equatable, GoogleWKT._AnyPa
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var pattern: OneOf_Pattern? = nil
+    var pattern: PatternOneOf? = nil
     let patternCheckAndSet = {
       if pattern != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct OtherCloudResourceCollection: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// The first filter containing a pattern that matches a resource will be used.
-  public enum OneOf_Pattern: Codable, Equatable, Sendable {
+  public enum PatternOneOf: Codable, Equatable, Sendable {
     /// A collection of regular expressions to match a resource against.
     indirect case includeRegexes(OtherCloudResourceRegexes?)
   }

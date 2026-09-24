@@ -40,7 +40,7 @@
     public var alternativePhrases: [Swift.String] = []
 
     /// Ranking metrics of this suggestion.
-    public var rankingInfo: OneOf_RankingInfo? = nil
+    public var rankingInfo: RankingInfoOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -104,7 +104,7 @@
         self.alternativePhrases = value
       }
 
-      var rankingInfo: OneOf_RankingInfo? = nil
+      var rankingInfo: RankingInfoOneOf? = nil
       let rankingInfoCheckAndSet = {
         if rankingInfo != nil {
           throw DecodingError.dataCorrupted(
@@ -149,7 +149,7 @@
     }
 
     /// Ranking metrics of this suggestion.
-    public enum OneOf_RankingInfo: Codable, Equatable, Sendable {
+    public enum RankingInfoOneOf: Codable, Equatable, Sendable {
       /// Global score of this suggestion. Control how this suggestion would be
       /// scored / ranked.
       case globalScore(Swift.Double)

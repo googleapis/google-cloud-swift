@@ -22,7 +22,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Codec settings can be h264, h265, or vp9.
-  public var codecSettings: OneOf_CodecSettings? = nil
+  public var codecSettings: CodecSettingsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var codecSettings: OneOf_CodecSettings? = nil
+    var codecSettings: CodecSettingsOneOf? = nil
     let codecSettingsCheckAndSet = {
       if codecSettings != nil {
         throw DecodingError.dataCorrupted(
@@ -328,7 +328,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [H264CodecSettings.gop_frame_count][google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]
     /// if set. The default is 0.
     ///
-    /// [google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]: <doc:VideoStream/H264CodecSettings/OneOf_GopMode/gopFrameCount(_:)>
+    /// [google.cloud.video.transcoder.v1.VideoStream.H264CodecSettings.gop_frame_count]: <doc:VideoStream/H264CodecSettings/GopModeOneOf/gopFrameCount(_:)>
     public var bFrameCount: Swift.Int32 = Swift.Int32()
 
     /// Specify the intensity of the adaptive quantizer (AQ). Must be between 0
@@ -366,10 +366,10 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     public var preset: Swift.String = Swift.String()
 
     /// GOP mode can be either by frame count or duration.
-    public var gopMode: OneOf_GopMode? = nil
+    public var gopMode: GopModeOneOf? = nil
 
     /// Color format can be sdr or hlg.
-    public var colorFormat: OneOf_ColorFormat? = nil
+    public var colorFormat: ColorFormatOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -509,7 +509,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         self.preset = value
       }
 
-      var gopMode: OneOf_GopMode? = nil
+      var gopMode: GopModeOneOf? = nil
       let gopModeCheckAndSet = {
         if gopMode != nil {
           throw DecodingError.dataCorrupted(
@@ -530,7 +530,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.gopMode = gopMode
 
-      var colorFormat: OneOf_ColorFormat? = nil
+      var colorFormat: ColorFormatOneOf? = nil
       let colorFormatCheckAndSet = {
         if colorFormat != nil {
           throw DecodingError.dataCorrupted(
@@ -600,7 +600,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum OneOf_GopMode: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Codable, Equatable, Sendable {
       /// Select the GOP size based on the specified frame count. Must be greater
       /// than zero.
       case gopFrameCount(Swift.Int32)
@@ -613,7 +613,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Color format can be sdr or hlg.
-    public enum OneOf_ColorFormat: Codable, Equatable, Sendable {
+    public enum ColorFormatOneOf: Codable, Equatable, Sendable {
       /// Optional. SDR color format setting for H264.
       indirect case sdr(VideoStream.H264ColorFormatSDR?)
       /// Optional. HLG color format setting for H264.
@@ -897,7 +897,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [H265CodecSettings.gop_frame_count][google.cloud.video.transcoder.v1.VideoStream.H265CodecSettings.gop_frame_count]
     /// if set. The default is 0.
     ///
-    /// [google.cloud.video.transcoder.v1.VideoStream.H265CodecSettings.gop_frame_count]: <doc:VideoStream/H265CodecSettings/OneOf_GopMode/gopFrameCount(_:)>
+    /// [google.cloud.video.transcoder.v1.VideoStream.H265CodecSettings.gop_frame_count]: <doc:VideoStream/H265CodecSettings/GopModeOneOf/gopFrameCount(_:)>
     public var bFrameCount: Swift.Int32 = Swift.Int32()
 
     /// Specify the intensity of the adaptive quantizer (AQ). Must be between 0
@@ -950,10 +950,10 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     public var preset: Swift.String = Swift.String()
 
     /// GOP mode can be either by frame count or duration.
-    public var gopMode: OneOf_GopMode? = nil
+    public var gopMode: GopModeOneOf? = nil
 
     /// Color format can be sdr, hlg, hdr10.
-    public var colorFormat: OneOf_ColorFormat? = nil
+    public var colorFormat: ColorFormatOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1090,7 +1090,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         self.preset = value
       }
 
-      var gopMode: OneOf_GopMode? = nil
+      var gopMode: GopModeOneOf? = nil
       let gopModeCheckAndSet = {
         if gopMode != nil {
           throw DecodingError.dataCorrupted(
@@ -1111,7 +1111,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.gopMode = gopMode
 
-      var colorFormat: OneOf_ColorFormat? = nil
+      var colorFormat: ColorFormatOneOf? = nil
       let colorFormatCheckAndSet = {
         if colorFormat != nil {
           throw DecodingError.dataCorrupted(
@@ -1187,7 +1187,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum OneOf_GopMode: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Codable, Equatable, Sendable {
       /// Select the GOP size based on the specified frame count. Must be greater
       /// than zero.
       case gopFrameCount(Swift.Int32)
@@ -1200,7 +1200,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Color format can be sdr, hlg, hdr10.
-    public enum OneOf_ColorFormat: Codable, Equatable, Sendable {
+    public enum ColorFormatOneOf: Codable, Equatable, Sendable {
       /// Optional. SDR color format setting for H265.
       indirect case sdr(VideoStream.H265ColorFormatSDR?)
       /// Optional. HLG color format setting for H265.
@@ -1415,10 +1415,10 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     public var profile: Swift.String = Swift.String()
 
     /// GOP mode can be either by frame count or duration.
-    public var gopMode: OneOf_GopMode? = nil
+    public var gopMode: GopModeOneOf? = nil
 
     /// Color format can be sdr or hlg.
-    public var colorFormat: OneOf_ColorFormat? = nil
+    public var colorFormat: ColorFormatOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1508,7 +1508,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
         self.profile = value
       }
 
-      var gopMode: OneOf_GopMode? = nil
+      var gopMode: GopModeOneOf? = nil
       let gopModeCheckAndSet = {
         if gopMode != nil {
           throw DecodingError.dataCorrupted(
@@ -1529,7 +1529,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
       }
       self.gopMode = gopMode
 
-      var colorFormat: OneOf_ColorFormat? = nil
+      var colorFormat: ColorFormatOneOf? = nil
       let colorFormatCheckAndSet = {
         if colorFormat != nil {
           throw DecodingError.dataCorrupted(
@@ -1589,7 +1589,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// GOP mode can be either by frame count or duration.
-    public enum OneOf_GopMode: Codable, Equatable, Sendable {
+    public enum GopModeOneOf: Codable, Equatable, Sendable {
       /// Select the GOP size based on the specified frame count. Must be greater
       /// than zero.
       case gopFrameCount(Swift.Int32)
@@ -1602,7 +1602,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Color format can be sdr or hlg.
-    public enum OneOf_ColorFormat: Codable, Equatable, Sendable {
+    public enum ColorFormatOneOf: Codable, Equatable, Sendable {
       /// Optional. SDR color format setting for VP9.
       indirect case sdr(VideoStream.Vp9ColorFormatSDR?)
       /// Optional. HLG color format setting for VP9.
@@ -1745,7 +1745,7 @@ public struct VideoStream: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Codec settings can be h264, h265, or vp9.
-  public enum OneOf_CodecSettings: Codable, Equatable, Sendable {
+  public enum CodecSettingsOneOf: Codable, Equatable, Sendable {
     /// H264 codec settings.
     indirect case h264(VideoStream.H264CodecSettings?)
     /// H265 codec settings.

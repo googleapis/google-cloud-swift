@@ -34,7 +34,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   public var location: Swift.String = Swift.String()
 
   /// The properties of the GCP resource.
-  public var resourceProperties: OneOf_ResourceProperties? = nil
+  public var resourceProperties: ResourcePropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
       self.location = value
     }
 
-    var resourceProperties: OneOf_ResourceProperties? = nil
+    var resourceProperties: ResourcePropertiesOneOf? = nil
     let resourcePropertiesCheckAndSet = {
       if resourceProperties != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct DataSourceGcpResourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The properties of the GCP resource.
-  public enum OneOf_ResourceProperties: Codable, Equatable, Sendable {
+  public enum ResourcePropertiesOneOf: Codable, Equatable, Sendable {
     /// Output only. The properties of the Cloud SQL instance.
     indirect case cloudSqlInstanceProperties(CloudSqlInstanceDataSourceReferenceProperties?)
   }

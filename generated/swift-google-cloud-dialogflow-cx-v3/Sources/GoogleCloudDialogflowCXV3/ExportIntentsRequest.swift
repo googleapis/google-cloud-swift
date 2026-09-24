@@ -39,7 +39,7 @@
     public var dataFormat: ExportIntentsRequest.DataFormat = ExportIntentsRequest.DataFormat()
 
     /// The destination to export.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -94,7 +94,7 @@
         self.dataFormat = value
       }
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -263,7 +263,7 @@
     }
 
     /// The destination to export.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Optional. The [Google Cloud
       /// Storage](https://cloud.google.com/storage/docs/) URI to export the
       /// intents to. The format of this URI must be

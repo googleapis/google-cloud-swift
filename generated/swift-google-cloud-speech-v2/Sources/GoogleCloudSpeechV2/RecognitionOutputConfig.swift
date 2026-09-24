@@ -25,7 +25,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
   /// If unspecified transcripts will be written in the `NATIVE` format only.
   public var outputFormatConfig: OutputFormatConfig? = nil
 
-  public var output: OneOf_Output? = nil
+  public var output: OutputOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     self.outputFormatConfig = try container.decodeIfPresent(
       OutputFormatConfig.self, forKey: .outputFormatConfig)
 
-    var output: OneOf_Output? = nil
+    var output: OutputOneOf? = nil
     let outputCheckAndSet = {
       if output != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct RecognitionOutputConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_Output: Codable, Equatable, Sendable {
+  public enum OutputOneOf: Codable, Equatable, Sendable {
     /// If this message is populated, recognition results are written to the
     /// provided Google Cloud Storage URI.
     indirect case gcsOutputConfig(GcsOutputConfig?)

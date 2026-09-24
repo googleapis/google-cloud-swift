@@ -331,7 +331,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// Name of the input binding, unique within the processor.
     public var name: Swift.String = Swift.String()
 
-    public var resourceType: OneOf_ResourceType? = nil
+    public var resourceType: ResourceTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -374,7 +374,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
         self.name = value
       }
 
-      var resourceType: OneOf_ResourceType? = nil
+      var resourceType: ResourceTypeOneOf? = nil
       let resourceTypeCheckAndSet = {
         if resourceType != nil {
           throw DecodingError.dataCorrupted(
@@ -418,7 +418,7 @@ public struct ProcessorIOSpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_ResourceType: Codable, Equatable, Sendable {
+    public enum ResourceTypeOneOf: Codable, Equatable, Sendable {
       /// The configuration proto that includes the Googleapis resources. I.e.
       /// type.googleapis.com/google.cloud.vision.v1.StreamWithAnnotation
       case configTypeUri(Swift.String)

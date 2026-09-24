@@ -41,7 +41,7 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public var googleSearchSuggestions: GoogleSearchSuggestions? = nil
 
   /// The identifier of the tool that got executed.
-  public var toolIdentifier: OneOf_ToolIdentifier? = nil
+  public var toolIdentifier: ToolIdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     self.googleSearchSuggestions = try container.decodeIfPresent(
       GoogleSearchSuggestions.self, forKey: .googleSearchSuggestions)
 
-    var toolIdentifier: OneOf_ToolIdentifier? = nil
+    var toolIdentifier: ToolIdentifierOneOf? = nil
     let toolIdentifierCheckAndSet = {
       if toolIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -136,7 +136,7 @@ public struct ExecuteToolResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The identifier of the tool that got executed.
-  public enum OneOf_ToolIdentifier: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
     /// The name of the tool that got executed.
     /// Format: `projects/{project}/locations/{location}/apps/{app}/tools/{tool}`
     case tool(Swift.String)

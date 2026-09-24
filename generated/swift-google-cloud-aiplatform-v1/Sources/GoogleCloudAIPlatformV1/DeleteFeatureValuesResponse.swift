@@ -27,7 +27,7 @@
   {
     /// Response based on which delete option is specified in the
     /// request
-    public var response: OneOf_Response? = nil
+    public var response: ResponseOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var response: OneOf_Response? = nil
+      var response: ResponseOneOf? = nil
       let responseCheckAndSet = {
         if response != nil {
           throw DecodingError.dataCorrupted(
@@ -305,7 +305,7 @@
 
     /// Response based on which delete option is specified in the
     /// request
-    public enum OneOf_Response: Codable, Equatable, Sendable {
+    public enum ResponseOneOf: Codable, Equatable, Sendable {
       /// Response for request specifying the entities to delete
       indirect case selectEntity(DeleteFeatureValuesResponse.SelectEntity?)
       /// Response for request specifying time range and feature

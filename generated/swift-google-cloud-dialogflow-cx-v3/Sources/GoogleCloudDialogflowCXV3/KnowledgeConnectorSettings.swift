@@ -45,7 +45,7 @@
     /// or another flow in the same agent.
     ///
     /// [google.cloud.dialogflow.cx.v3.KnowledgeConnectorSettings]: <doc:KnowledgeConnectorSettings>
-    public var target: OneOf_Target? = nil
+    public var target: TargetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@
         self.dataStoreConnections = value
       }
 
-      var target: OneOf_Target? = nil
+      var target: TargetOneOf? = nil
       let targetCheckAndSet = {
         if target != nil {
           throw DecodingError.dataCorrupted(
@@ -147,7 +147,7 @@
     /// or another flow in the same agent.
     ///
     /// [google.cloud.dialogflow.cx.v3.KnowledgeConnectorSettings]: <doc:KnowledgeConnectorSettings>
-    public enum OneOf_Target: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Codable, Equatable, Sendable {
       /// The target page to transition to.
       /// Format:
       /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.

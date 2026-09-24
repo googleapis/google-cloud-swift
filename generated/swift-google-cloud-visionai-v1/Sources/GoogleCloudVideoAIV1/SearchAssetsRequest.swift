@@ -60,7 +60,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Sorting specification. If this field is not specified, by default:
   /// - STREAM_VIDEO: search results are sorted by the start time.
-  public var sortSpec: OneOf_SortSpec? = nil
+  public var sortSpec: SortSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,7 +136,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.searchQuery = value
     }
 
-    var sortSpec: OneOf_SortSpec? = nil
+    var sortSpec: SortSpecOneOf? = nil
     let sortSpecCheckAndSet = {
       if sortSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -182,7 +182,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Sorting specification. If this field is not specified, by default:
   /// - STREAM_VIDEO: search results are sorted by the start time.
-  public enum OneOf_SortSpec: Codable, Equatable, Sendable {
+  public enum SortSpecOneOf: Codable, Equatable, Sendable {
     /// Sort by the value under the data schema key.
     indirect case schemaKeySortingStrategy(SchemaKeySortingStrategy?)
   }

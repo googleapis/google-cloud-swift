@@ -22,7 +22,7 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// auth type for S3.
-  public var authType: OneOf_AuthType? = nil
+  public var authType: AuthTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var authType: OneOf_AuthType? = nil
+    var authType: AuthTypeOneOf? = nil
     let authTypeCheckAndSet = {
       if authType != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct S3AuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// auth type for S3.
-  public enum OneOf_AuthType: Codable, Equatable, Sendable {
+  public enum AuthTypeOneOf: Codable, Equatable, Sendable {
     /// Access Key ID and Secret Access Key for an AWS account.
     indirect case accessKeySecretAuth(S3V2AccessKeySecretAuth?)
     /// AWS IAM Role Auth for Identity Federation.

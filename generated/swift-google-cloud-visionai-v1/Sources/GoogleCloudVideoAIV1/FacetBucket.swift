@@ -28,7 +28,7 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Bucket associated with a facet. For example, bucket of facet “team”
   /// can be "49ers", "patriots", etc; bucket of facet "player" can be "tom
   /// brady", "drew brees", etc.
-  public var bucketValue: OneOf_BucketValue? = nil
+  public var bucketValue: BucketValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
       self.selected = value
     }
 
-    var bucketValue: OneOf_BucketValue? = nil
+    var bucketValue: BucketValueOneOf? = nil
     let bucketValueCheckAndSet = {
       if bucketValue != nil {
         throw DecodingError.dataCorrupted(
@@ -187,7 +187,7 @@ public struct FacetBucket: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Bucket associated with a facet. For example, bucket of facet “team”
   /// can be "49ers", "patriots", etc; bucket of facet "player" can be "tom
   /// brady", "drew brees", etc.
-  public enum OneOf_BucketValue: Codable, Equatable, Sendable {
+  public enum BucketValueOneOf: Codable, Equatable, Sendable {
     /// Singular value.
     indirect case value(FacetValue?)
     /// Range value.

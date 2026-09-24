@@ -53,7 +53,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
   public var userLabels: [Swift.String: Swift.String] = [:]
 
   /// The time period over which the objective will be evaluated.
-  public var period: OneOf_Period? = nil
+  public var period: PeriodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -117,7 +117,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
       self.userLabels = value
     }
 
-    var period: OneOf_Period? = nil
+    var period: PeriodOneOf? = nil
     let periodCheckAndSet = {
       if period != nil {
         throw DecodingError.dataCorrupted(
@@ -290,7 +290,7 @@ public struct ServiceLevelObjective: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The time period over which the objective will be evaluated.
-  public enum OneOf_Period: Codable, Equatable, Sendable {
+  public enum PeriodOneOf: Codable, Equatable, Sendable {
     /// A rolling time period, semantically "in the past `<rolling_period>`".
     /// Must be an integer multiple of 1 day no larger than 30 days.
     indirect case rollingPeriod(GoogleWKT.WKTDuration?)

@@ -32,7 +32,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
   /// Additional location details that may be provided for some types of
   /// profiles. At this time, only findings for table data profiles include such
   /// details.
-  public var locationExtraDetails: OneOf_LocationExtraDetails? = nil
+  public var locationExtraDetails: LocationExtraDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
       self.containerName = value
     }
 
-    var locationExtraDetails: OneOf_LocationExtraDetails? = nil
+    var locationExtraDetails: LocationExtraDetailsOneOf? = nil
     let locationExtraDetailsCheckAndSet = {
       if locationExtraDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct DataProfileFindingLocation: Codable, Equatable, GoogleWKT._AnyPack
   /// Additional location details that may be provided for some types of
   /// profiles. At this time, only findings for table data profiles include such
   /// details.
-  public enum OneOf_LocationExtraDetails: Codable, Equatable, Sendable {
+  public enum LocationExtraDetailsOneOf: Codable, Equatable, Sendable {
     /// Location of a finding within a resource that produces a table data
     /// profile.
     indirect case dataProfileFindingRecordLocation(DataProfileFindingRecordLocation?)

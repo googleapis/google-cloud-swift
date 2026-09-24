@@ -22,7 +22,7 @@ public struct ReceivePacketsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   Sendable
 {
   /// Possible response types.
-  public var response: OneOf_Response? = nil
+  public var response: ResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ReceivePacketsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var response: OneOf_Response? = nil
+    var response: ResponseOneOf? = nil
     let responseCheckAndSet = {
       if response != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct ReceivePacketsResponse: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Possible response types.
-  public enum OneOf_Response: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// A genuine data payload originating from the sender.
     indirect case packet(Packet?)
     /// A control message from the server.

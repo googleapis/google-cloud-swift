@@ -479,7 +479,7 @@
       Sendable
     {
       /// One of decomposition details.
-      public var decomposition: OneOf_Decomposition? = nil
+      public var decomposition: DecompositionOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -517,7 +517,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var decomposition: OneOf_Decomposition? = nil
+        var decomposition: DecompositionOneOf? = nil
         let decompositionCheckAndSet = {
           if decomposition != nil {
             throw DecodingError.dataCorrupted(
@@ -562,7 +562,7 @@
       }
 
       /// One of decomposition details.
-      public enum OneOf_Decomposition: Codable, Equatable, Sendable {
+      public enum DecompositionOneOf: Codable, Equatable, Sendable {
         /// only available for accuracy metric.
         indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition?)
         /// only available for adherence metric.
@@ -587,7 +587,7 @@
       Sendable
     {
       /// One of evaluation result details.
-      public var result: OneOf_Result? = nil
+      public var result: ResultOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -627,7 +627,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var result: OneOf_Result? = nil
+        var result: ResultOneOf? = nil
         let resultCheckAndSet = {
           if result != nil {
             throw DecodingError.dataCorrupted(
@@ -678,7 +678,7 @@
       }
 
       /// One of evaluation result details.
-      public enum OneOf_Result: Codable, Equatable, Sendable {
+      public enum ResultOneOf: Codable, Equatable, Sendable {
         /// Only available for accuracy metric.
         indirect case accuracyDecomposition(SummarizationEvaluationMetrics.AccuracyDecomposition?)
         /// Only available for adherence metric.

@@ -234,7 +234,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// One of Protobuf, Avro, and JSON supported.
     /// This allows specification of what specific format
     /// messages are sent and received.
-    public var kind: OneOf_Kind? = nil
+    public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -274,7 +274,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var kind: OneOf_Kind? = nil
+      var kind: KindOneOf? = nil
       let kindCheckAndSet = {
         if kind != nil {
           throw DecodingError.dataCorrupted(
@@ -524,7 +524,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     /// One of Protobuf, Avro, and JSON supported.
     /// This allows specification of what specific format
     /// messages are sent and received.
-    public enum OneOf_Kind: Codable, Equatable, Sendable {
+    public enum KindOneOf: Codable, Equatable, Sendable {
       /// Optional. Protobuf format.
       indirect case protobuf(Pipeline.MessagePayloadFormat.ProtobufFormat?)
       /// Optional. Avro format.
@@ -566,7 +566,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     public var outputPayloadFormat: Pipeline.MessagePayloadFormat? = nil
 
     /// The destination identifier to which the request should be routed to.
-    public var destinationDescriptor: OneOf_DestinationDescriptor? = nil
+    public var destinationDescriptor: DestinationDescriptorOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -620,7 +620,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       self.outputPayloadFormat = try container.decodeIfPresent(
         Pipeline.MessagePayloadFormat.self, forKey: .outputPayloadFormat)
 
-      var destinationDescriptor: OneOf_DestinationDescriptor? = nil
+      var destinationDescriptor: DestinationDescriptorOneOf? = nil
       let destinationDescriptorCheckAndSet = {
         if destinationDescriptor != nil {
           throw DecodingError.dataCorrupted(
@@ -999,7 +999,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// The type of authentication method.
-      public var authenticationMethodDescriptor: OneOf_AuthenticationMethodDescriptor? = nil
+      public var authenticationMethodDescriptor: AuthenticationMethodDescriptorOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1037,7 +1037,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var authenticationMethodDescriptor: OneOf_AuthenticationMethodDescriptor? = nil
+        var authenticationMethodDescriptor: AuthenticationMethodDescriptorOneOf? = nil
         let authenticationMethodDescriptorCheckAndSet = {
           if authenticationMethodDescriptor != nil {
             throw DecodingError.dataCorrupted(
@@ -1260,7 +1260,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The type of authentication method.
-      public enum OneOf_AuthenticationMethodDescriptor: Codable, Equatable, Sendable {
+      public enum AuthenticationMethodDescriptorOneOf: Codable, Equatable, Sendable {
         /// Optional. This authenticate method will apply Google OIDC tokens
         /// signed by a Google Cloud service account to the requests.
         indirect case googleOidc(Pipeline.Destination.AuthenticationConfig.OidcToken?)
@@ -1287,7 +1287,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The destination identifier to which the request should be routed to.
-    public enum OneOf_DestinationDescriptor: Codable, Equatable, Sendable {
+    public enum DestinationDescriptorOneOf: Codable, Equatable, Sendable {
       /// Optional. An HTTP endpoint destination described by an URI.
       /// If a DNS FQDN is provided as the endpoint, Pipeline will create a
       /// peering zone to the consumer VPC and forward DNS requests to the VPC
@@ -1326,7 +1326,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// The config of mediation.
-    public var mediationDescriptor: OneOf_MediationDescriptor? = nil
+    public var mediationDescriptor: MediationDescriptorOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1362,7 +1362,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var mediationDescriptor: OneOf_MediationDescriptor? = nil
+      var mediationDescriptor: MediationDescriptorOneOf? = nil
       let mediationDescriptorCheckAndSet = {
         if mediationDescriptor != nil {
           throw DecodingError.dataCorrupted(
@@ -1544,7 +1544,7 @@ public struct Pipeline: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// The config of mediation.
-    public enum OneOf_MediationDescriptor: Codable, Equatable, Sendable {
+    public enum MediationDescriptorOneOf: Codable, Equatable, Sendable {
       /// Optional. How the Pipeline is to transform messages
       indirect case transformation(Pipeline.Mediation.Transformation?)
     }

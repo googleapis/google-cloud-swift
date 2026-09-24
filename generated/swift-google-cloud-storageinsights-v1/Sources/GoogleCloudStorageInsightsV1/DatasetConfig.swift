@@ -78,13 +78,13 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var description: Swift.String = Swift.String()
 
   /// Defines the options for providing source identifiers for the dataset.
-  public var sourceOptions: OneOf_SourceOptions? = nil
+  public var sourceOptions: SourceOptionsOneOf? = nil
 
   /// Cloud Storage locations to include or exclude.
-  public var cloudStorageLocations: OneOf_CloudStorageLocations? = nil
+  public var cloudStorageLocations: CloudStorageLocationsOneOf? = nil
 
   /// Cloud Storage buckets to include or exclude.
-  public var cloudStorageBuckets: OneOf_CloudStorageBuckets? = nil
+  public var cloudStorageBuckets: CloudStorageBucketsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -208,7 +208,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var sourceOptions: OneOf_SourceOptions? = nil
+    var sourceOptions: SourceOptionsOneOf? = nil
     let sourceOptionsCheckAndSet = {
       if sourceOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -240,7 +240,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.sourceOptions = sourceOptions
 
-    var cloudStorageLocations: OneOf_CloudStorageLocations? = nil
+    var cloudStorageLocations: CloudStorageLocationsOneOf? = nil
     let cloudStorageLocationsCheckAndSet = {
       if cloudStorageLocations != nil {
         throw DecodingError.dataCorrupted(
@@ -264,7 +264,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.cloudStorageLocations = cloudStorageLocations
 
-    var cloudStorageBuckets: OneOf_CloudStorageBuckets? = nil
+    var cloudStorageBuckets: CloudStorageBucketsOneOf? = nil
     let cloudStorageBucketsCheckAndSet = {
       if cloudStorageBuckets != nil {
         throw DecodingError.dataCorrupted(
@@ -611,7 +611,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public struct CloudStorageBucket: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      public var cloudStorageBucket: OneOf_CloudStorageBucket? = nil
+      public var cloudStorageBucket: CloudStorageBucketOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -649,7 +649,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var cloudStorageBucket: OneOf_CloudStorageBucket? = nil
+        var cloudStorageBucket: CloudStorageBucketOneOf? = nil
         let cloudStorageBucketCheckAndSet = {
           if cloudStorageBucket != nil {
             throw DecodingError.dataCorrupted(
@@ -690,7 +690,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum OneOf_CloudStorageBucket: Codable, Equatable, Sendable {
+      public enum CloudStorageBucketOneOf: Codable, Equatable, Sendable {
         /// Cloud Storage bucket name.
         case bucketName(Swift.String)
         /// A regex pattern for bucket names matching the regex. Regex should
@@ -987,7 +987,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The destination project check result. It indicates whether the project
     /// is in the correct organization or if an internal error occurred during
     /// the check.
-    public var destinationProjectCheckResult: OneOf_DestinationProjectCheckResult? = nil
+    public var destinationProjectCheckResult: DestinationProjectCheckResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1073,7 +1073,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.internalErrorCount = try container.decodeIfPresent(
         Swift.Int64.self, forKey: .internalErrorCount)
 
-      var destinationProjectCheckResult: OneOf_DestinationProjectCheckResult? = nil
+      var destinationProjectCheckResult: DestinationProjectCheckResultOneOf? = nil
       let destinationProjectCheckResultCheckAndSet = {
         if destinationProjectCheckResult != nil {
           throw DecodingError.dataCorrupted(
@@ -1139,7 +1139,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The destination project check result. It indicates whether the project
     /// is in the correct organization or if an internal error occurred during
     /// the check.
-    public enum OneOf_DestinationProjectCheckResult: Codable, Equatable, Sendable {
+    public enum DestinationProjectCheckResultOneOf: Codable, Equatable, Sendable {
       /// Optional. Indicates if the destination project resides within the same
       /// organization as the source project.
       case destinationProjectOrgError(Swift.Bool)
@@ -1371,7 +1371,7 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the options for providing source identifiers for the dataset.
-  public enum OneOf_SourceOptions: Codable, Equatable, Sendable {
+  public enum SourceOptionsOneOf: Codable, Equatable, Sendable {
     /// Defines the options for providing source projects for the dataset.
     indirect case sourceProjects(DatasetConfig.SourceProjects?)
     /// Defines the options for providing source folders for the dataset.
@@ -1394,13 +1394,13 @@ public struct DatasetConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Cloud Storage locations to include or exclude.
-  public enum OneOf_CloudStorageLocations: Codable, Equatable, Sendable {
+  public enum CloudStorageLocationsOneOf: Codable, Equatable, Sendable {
     indirect case includeCloudStorageLocations(DatasetConfig.CloudStorageLocations?)
     indirect case excludeCloudStorageLocations(DatasetConfig.CloudStorageLocations?)
   }
 
   /// Cloud Storage buckets to include or exclude.
-  public enum OneOf_CloudStorageBuckets: Codable, Equatable, Sendable {
+  public enum CloudStorageBucketsOneOf: Codable, Equatable, Sendable {
     indirect case includeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets?)
     indirect case excludeCloudStorageBuckets(DatasetConfig.CloudStorageBuckets?)
   }

@@ -22,7 +22,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The service definition configuration.
-  public var serviceDefinition: OneOf_ServiceDefinition? = nil
+  public var serviceDefinition: ServiceDefinitionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var serviceDefinition: OneOf_ServiceDefinition? = nil
+    var serviceDefinition: ServiceDefinitionOneOf? = nil
     let serviceDefinitionCheckAndSet = {
       if serviceDefinition != nil {
         throw DecodingError.dataCorrupted(
@@ -421,7 +421,7 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The service definition configuration.
-  public enum OneOf_ServiceDefinition: Codable, Equatable, Sendable {
+  public enum ServiceDefinitionOneOf: Codable, Equatable, Sendable {
     /// Optional. Kubernetes Gateway API service mesh configuration.
     indirect case gatewayServiceMesh(KubernetesConfig.GatewayServiceMesh?)
     /// Optional. Kubernetes Service networking configuration.

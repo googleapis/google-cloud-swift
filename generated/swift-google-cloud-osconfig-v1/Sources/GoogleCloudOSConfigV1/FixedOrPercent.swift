@@ -23,7 +23,7 @@ public struct FixedOrPercent: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Type of the value.
-  public var mode: OneOf_Mode? = nil
+  public var mode: ModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct FixedOrPercent: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var mode: OneOf_Mode? = nil
+    var mode: ModeOneOf? = nil
     let modeCheckAndSet = {
       if mode != nil {
         throw DecodingError.dataCorrupted(
@@ -101,7 +101,7 @@ public struct FixedOrPercent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of the value.
-  public enum OneOf_Mode: Codable, Equatable, Sendable {
+  public enum ModeOneOf: Codable, Equatable, Sendable {
     /// Specifies a fixed value.
     case fixed(Swift.Int32)
     /// Specifies the relative value defined as a percentage, which will be

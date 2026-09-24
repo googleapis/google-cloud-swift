@@ -32,7 +32,7 @@
     public var outputGcsBucketPath: Swift.String = Swift.String()
 
     /// Feature used for evaluation.
-    public var evaluationFeatureConfig: OneOf_EvaluationFeatureConfig? = nil
+    public var evaluationFeatureConfig: EvaluationFeatureConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -78,7 +78,7 @@
         self.outputGcsBucketPath = value
       }
 
-      var evaluationFeatureConfig: OneOf_EvaluationFeatureConfig? = nil
+      var evaluationFeatureConfig: EvaluationFeatureConfigOneOf? = nil
       let evaluationFeatureConfigCheckAndSet = {
         if evaluationFeatureConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -297,7 +297,7 @@
           GeneratorEvaluationConfig.InputDataConfig.SummaryGenerationOption()
 
       /// The source specific config for the input data.
-      public var sourceSpecificConfig: OneOf_SourceSpecificConfig? = nil
+      public var sourceSpecificConfig: SourceSpecificConfigOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -374,7 +374,7 @@
           self.summaryGenerationOption = value
         }
 
-        var sourceSpecificConfig: OneOf_SourceSpecificConfig? = nil
+        var sourceSpecificConfig: SourceSpecificConfigOneOf? = nil
         let sourceSpecificConfigCheckAndSet = {
           if sourceSpecificConfig != nil {
             throw DecodingError.dataCorrupted(
@@ -553,7 +553,7 @@
       }
 
       /// The source specific config for the input data.
-      public enum OneOf_SourceSpecificConfig: Codable, Equatable, Sendable {
+      public enum SourceSpecificConfigOneOf: Codable, Equatable, Sendable {
         /// The distinctive configs for Agent Assist conversations as the
         /// conversation source.
         indirect case agentAssistInputDataConfig(
@@ -824,7 +824,7 @@
     }
 
     /// Feature used for evaluation.
-    public enum OneOf_EvaluationFeatureConfig: Codable, Equatable, Sendable {
+    public enum EvaluationFeatureConfigOneOf: Codable, Equatable, Sendable {
       /// Evaluation configs for summarization generator.
       indirect case summarizationConfig(GeneratorEvaluationConfig.SummarizationConfig?)
     }

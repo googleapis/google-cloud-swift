@@ -93,7 +93,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct AdaptationPhraseSet: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -172,7 +172,7 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// The name of an existing PhraseSet resource. The user must have read
       /// access to the resource and it must not be deleted.
       case phraseSet(Swift.String)

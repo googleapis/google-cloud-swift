@@ -25,7 +25,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
   public var taskOutputs: [Swift.String: TaskOutput] = [:]
 
   /// Details specific to the task type.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
       self.taskOutputs = value
     }
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details specific to the task type.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details specific to translation task types.
     indirect case translationTaskResult(TranslationTaskResult?)
   }

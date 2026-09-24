@@ -122,7 +122,7 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Refer to https://developers.google.com/identity/protocols/OpenIDConnect for
   /// JWT ID token.
-  public var authentication: OneOf_Authentication? = nil
+  public var authentication: AuthenticationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -212,7 +212,7 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.loadBalancingPolicy = value
     }
 
-    var authentication: OneOf_Authentication? = nil
+    var authentication: AuthenticationOneOf? = nil
     let authenticationCheckAndSet = {
       if authentication != nil {
         throw DecodingError.dataCorrupted(
@@ -439,7 +439,7 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Refer to https://developers.google.com/identity/protocols/OpenIDConnect for
   /// JWT ID token.
-  public enum OneOf_Authentication: Codable, Equatable, Sendable {
+  public enum AuthenticationOneOf: Codable, Equatable, Sendable {
     /// The JWT audience is used when generating a JWT ID token for the backend.
     /// This ID token will be added in the HTTP "authorization" header, and sent
     /// to the backend.

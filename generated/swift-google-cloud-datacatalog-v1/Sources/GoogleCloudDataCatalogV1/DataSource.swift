@@ -32,7 +32,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Data Catalog entry name, if applicable.
   public var sourceEntry: Swift.String = Swift.String()
 
-  public var properties: OneOf_Properties? = nil
+  public var properties: PropertiesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.sourceEntry = value
     }
 
-    var properties: OneOf_Properties? = nil
+    var properties: PropertiesOneOf? = nil
     let propertiesCheckAndSet = {
       if properties != nil {
         throw DecodingError.dataCorrupted(
@@ -239,7 +239,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Properties: Codable, Equatable, Sendable {
+  public enum PropertiesOneOf: Codable, Equatable, Sendable {
     /// Detailed properties of the underlying storage.
     indirect case storageProperties(StorageProperties?)
   }

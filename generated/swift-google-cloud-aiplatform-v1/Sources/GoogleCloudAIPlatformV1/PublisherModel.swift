@@ -167,7 +167,7 @@
     public struct ResourceReference: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
-      public var reference: OneOf_Reference? = nil
+      public var reference: ReferenceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -212,7 +212,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var reference: OneOf_Reference? = nil
+        var reference: ReferenceOneOf? = nil
         let referenceCheckAndSet = {
           if reference != nil {
             throw DecodingError.dataCorrupted(
@@ -267,7 +267,7 @@
         }
       }
 
-      public enum OneOf_Reference: Codable, Equatable, Sendable {
+      public enum ReferenceOneOf: Codable, Equatable, Sendable {
         /// The URI of the resource.
         case uri(Swift.String)
         /// The resource name of the Google Cloud resource.
@@ -897,7 +897,7 @@
 
         /// The prediction (for example, the machine) resources that the
         /// DeployedModel uses.
-        public var predictionResources: OneOf_PredictionResources? = nil
+        public var predictionResources: PredictionResourcesOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -976,7 +976,7 @@
             self.publicArtifactUri = value
           }
 
-          var predictionResources: OneOf_PredictionResources? = nil
+          var predictionResources: PredictionResourcesOneOf? = nil
           let predictionResourcesCheckAndSet = {
             if predictionResources != nil {
               throw DecodingError.dataCorrupted(
@@ -1119,7 +1119,7 @@
 
         /// The prediction (for example, the machine) resources that the
         /// DeployedModel uses.
-        public enum OneOf_PredictionResources: Codable, Equatable, Sendable {
+        public enum PredictionResourcesOneOf: Codable, Equatable, Sendable {
           /// A description of resources that are dedicated to the DeployedModel,
           /// and that need a higher degree of manual configuration.
           indirect case dedicatedResources(DedicatedResources?)

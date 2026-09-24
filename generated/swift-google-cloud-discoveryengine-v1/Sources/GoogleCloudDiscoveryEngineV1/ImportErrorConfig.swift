@@ -23,7 +23,7 @@
     Sendable
   {
     /// Required. Errors destination.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -94,7 +94,7 @@
     }
 
     /// Required. Errors destination.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage prefix for import errors. This must be an empty,
       /// existing Cloud Storage directory. Import errors are written to
       /// sharded files in this directory, one per line, as a JSON-encoded

@@ -31,7 +31,7 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var force: Swift.Bool = Swift.Bool()
 
   /// The Products to delete.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.force = value
     }
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct PurgeProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The Products to delete.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Specify which ProductSet contains the Products to be deleted.
     indirect case productSetPurgeConfig(ProductSetPurgeConfig?)
     /// If delete_orphan_products is true, all Products that are not in any

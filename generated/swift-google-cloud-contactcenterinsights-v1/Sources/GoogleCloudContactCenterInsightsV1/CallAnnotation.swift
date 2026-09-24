@@ -32,7 +32,7 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var annotationEndBoundary: AnnotationBoundary? = nil
 
   /// The data in the annotation.
-  public var data: OneOf_Data? = nil
+  public var data: DataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -95,7 +95,7 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
     self.annotationEndBoundary = try container.decodeIfPresent(
       AnnotationBoundary.self, forKey: .annotationEndBoundary)
 
-    var data: OneOf_Data? = nil
+    var data: DataOneOf? = nil
     let dataCheckAndSet = {
       if data != nil {
         throw DecodingError.dataCorrupted(
@@ -180,7 +180,7 @@ public struct CallAnnotation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The data in the annotation.
-  public enum OneOf_Data: Codable, Equatable, Sendable {
+  public enum DataOneOf: Codable, Equatable, Sendable {
     /// Data specifying an interruption.
     indirect case interruptionData(InterruptionData?)
     /// Data specifying sentiment.

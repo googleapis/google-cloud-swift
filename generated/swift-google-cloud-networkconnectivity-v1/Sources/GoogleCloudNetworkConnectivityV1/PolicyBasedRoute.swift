@@ -69,9 +69,9 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Target specifies network endpoints that this policy-based route applies to.
   /// If no target is specified, the PBR will be installed on all network
   /// endpoints (e.g. VMs, VPNs, and Interconnects) in the VPC.
-  public var target: OneOf_Target? = nil
+  public var target: TargetOneOf? = nil
 
-  public var nextHop: OneOf_NextHop? = nil
+  public var nextHop: NextHopOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -167,7 +167,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       self.kind = value
     }
 
-    var target: OneOf_Target? = nil
+    var target: TargetOneOf? = nil
     let targetCheckAndSet = {
       if target != nil {
         throw DecodingError.dataCorrupted(
@@ -189,7 +189,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.target = target
 
-    var nextHop: OneOf_NextHop? = nil
+    var nextHop: NextHopOneOf? = nil
     let nextHopCheckAndSet = {
       if nextHop != nil {
         throw DecodingError.dataCorrupted(
@@ -934,7 +934,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Target specifies network endpoints that this policy-based route applies to.
   /// If no target is specified, the PBR will be installed on all network
   /// endpoints (e.g. VMs, VPNs, and Interconnects) in the VPC.
-  public enum OneOf_Target: Codable, Equatable, Sendable {
+  public enum TargetOneOf: Codable, Equatable, Sendable {
     /// Optional. VM instances that this policy-based route applies to.
     indirect case virtualMachine(PolicyBasedRoute.VirtualMachine?)
     /// Optional. The interconnect attachments that this policy-based route
@@ -942,7 +942,7 @@ public struct PolicyBasedRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     indirect case interconnectAttachment(PolicyBasedRoute.InterconnectAttachment?)
   }
 
-  public enum OneOf_NextHop: Codable, Equatable, Sendable {
+  public enum NextHopOneOf: Codable, Equatable, Sendable {
     /// Optional. The IP address of a global-access-enabled L4 ILB that is the
     /// next hop for matching packets. For this version, only nextHopIlbIp is
     /// supported.

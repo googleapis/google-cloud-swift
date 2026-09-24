@@ -411,7 +411,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
     /// [google.cloud.asset.v1.AnalyzerOrgPolicy.attached_resource]: <doc:AnalyzerOrgPolicy/attachedResource>
     public var policyBundle: [AnalyzerOrgPolicy] = []
 
-    public var governedAsset: OneOf_GovernedAsset? = nil
+    public var governedAsset: GovernedAssetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -459,7 +459,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
         self.policyBundle = value
       }
 
-      var governedAsset: OneOf_GovernedAsset? = nil
+      var governedAsset: GovernedAssetOneOf? = nil
       let governedAssetCheckAndSet = {
         if governedAsset != nil {
           throw DecodingError.dataCorrupted(
@@ -504,7 +504,7 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       }
     }
 
-    public enum OneOf_GovernedAsset: Codable, Equatable, Sendable {
+    public enum GovernedAssetOneOf: Codable, Equatable, Sendable {
       /// A Google Cloud resource governed by the organization
       /// policies of the
       /// [AnalyzeOrgPolicyGovernedAssetsRequest.constraint][google.cloud.asset.v1.AnalyzeOrgPolicyGovernedAssetsRequest.constraint].

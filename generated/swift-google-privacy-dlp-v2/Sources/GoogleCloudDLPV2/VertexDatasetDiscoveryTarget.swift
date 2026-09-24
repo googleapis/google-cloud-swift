@@ -30,7 +30,7 @@ public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPa
   public var conditions: DiscoveryVertexDatasetConditions? = nil
 
   /// Type of schedule.
-  public var cadence: OneOf_Cadence? = nil
+  public var cadence: CadenceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPa
     self.conditions = try container.decodeIfPresent(
       DiscoveryVertexDatasetConditions.self, forKey: .conditions)
 
-    var cadence: OneOf_Cadence? = nil
+    var cadence: CadenceOneOf? = nil
     let cadenceCheckAndSet = {
       if cadence != nil {
         throw DecodingError.dataCorrupted(
@@ -119,7 +119,7 @@ public struct VertexDatasetDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Type of schedule.
-  public enum OneOf_Cadence: Codable, Equatable, Sendable {
+  public enum CadenceOneOf: Codable, Equatable, Sendable {
     /// How often and when to update profiles. New datasets that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.

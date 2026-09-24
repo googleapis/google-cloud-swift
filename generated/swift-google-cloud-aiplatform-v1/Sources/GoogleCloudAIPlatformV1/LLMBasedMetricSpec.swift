@@ -35,7 +35,7 @@
     public var additionalConfig: GoogleWKT.WKTStruct? = nil
 
     /// Source of the rubrics to be used for evaluation.
-    public var rubricsSource: OneOf_RubricsSource? = nil
+    public var rubricsSource: RubricsSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@
       self.additionalConfig = try container.decodeIfPresent(
         GoogleWKT.WKTStruct.self, forKey: .additionalConfig)
 
-      var rubricsSource: OneOf_RubricsSource? = nil
+      var rubricsSource: RubricsSourceOneOf? = nil
       let rubricsSourceCheckAndSet = {
         if rubricsSource != nil {
           throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@
     }
 
     /// Source of the rubrics to be used for evaluation.
-    public enum OneOf_RubricsSource: Codable, Equatable, Sendable {
+    public enum RubricsSourceOneOf: Codable, Equatable, Sendable {
       /// Use a pre-defined group of rubrics associated with the input.
       /// Refers to a key in the rubric_groups map of EvaluationInstance.
       case rubricGroupKey(Swift.String)

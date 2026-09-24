@@ -83,7 +83,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var resourceManagerTags: [Swift.String: Swift.String] = [:]
 
   /// Network configuration for workload execution.
-  public var network: OneOf_Network? = nil
+  public var network: NetworkOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,7 +158,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.resourceManagerTags = value
     }
 
-    var network: OneOf_Network? = nil
+    var network: NetworkOneOf? = nil
     let networkCheckAndSet = {
       if network != nil {
         throw DecodingError.dataCorrupted(
@@ -207,7 +207,7 @@ public struct ExecutionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Network configuration for workload execution.
-  public enum OneOf_Network: Codable, Equatable, Sendable {
+  public enum NetworkOneOf: Codable, Equatable, Sendable {
     /// Optional. Network URI to connect workload to.
     case networkUri(Swift.String)
     /// Optional. Subnetwork URI to connect workload to.

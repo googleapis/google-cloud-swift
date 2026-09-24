@@ -25,7 +25,7 @@ public struct BlockRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The amount of time to block before returning a response.
   public var responseDelay: GoogleWKT.WKTDuration? = nil
 
-  public var response: OneOf_Response? = nil
+  public var response: ResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct BlockRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.responseDelay = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .responseDelay)
 
-    var response: OneOf_Response? = nil
+    var response: ResponseOneOf? = nil
     let responseCheckAndSet = {
       if response != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct BlockRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Response: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// The error that will be returned by the server. If this code is specified
     /// to be the OK rpc code, an empty response will be returned.
     indirect case error(GoogleRpc.Status?)

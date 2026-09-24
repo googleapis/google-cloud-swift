@@ -31,7 +31,7 @@
     public var createTime: GoogleWKT.WKTTimestamp? = nil
 
     /// Supported feed sources.
-    public var feed: OneOf_Feed? = nil
+    public var feed: FeedOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@
       self.createTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
 
-      var feed: OneOf_Feed? = nil
+      var feed: FeedOneOf? = nil
       let feedCheckAndSet = {
         if feed != nil {
           throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@
     }
 
     /// Supported feed sources.
-    public enum OneOf_Feed: Codable, Equatable, Sendable {
+    public enum FeedOneOf: Codable, Equatable, Sendable {
       /// Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.
       case uri(Swift.String)
     }

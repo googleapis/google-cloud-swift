@@ -35,7 +35,7 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   /// [QueryAssetsResponse.job_reference].
   public var done: Swift.Bool = Swift.Bool()
 
-  public var response: OneOf_Response? = nil
+  public var response: ResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       self.done = value
     }
 
-    var response: OneOf_Response? = nil
+    var response: ResponseOneOf? = nil
     let responseCheckAndSet = {
       if response != nil {
         throw DecodingError.dataCorrupted(
@@ -133,7 +133,7 @@ public struct QueryAssetsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Response: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// Error status.
     indirect case error(GoogleRpc.Status?)
     /// Result of the query.

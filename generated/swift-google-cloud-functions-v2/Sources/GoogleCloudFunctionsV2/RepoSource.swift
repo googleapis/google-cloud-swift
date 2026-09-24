@@ -41,7 +41,7 @@ public struct RepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A revision within the Cloud Source Repository must be specified in
   /// one of these ways.
-  public var revision: OneOf_Revision? = nil
+  public var revision: RevisionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,7 @@ public struct RepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.invertRegex = value
     }
 
-    var revision: OneOf_Revision? = nil
+    var revision: RevisionOneOf? = nil
     let revisionCheckAndSet = {
       if revision != nil {
         throw DecodingError.dataCorrupted(
@@ -151,7 +151,7 @@ public struct RepoSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A revision within the Cloud Source Repository must be specified in
   /// one of these ways.
-  public enum OneOf_Revision: Codable, Equatable, Sendable {
+  public enum RevisionOneOf: Codable, Equatable, Sendable {
     /// Regex matching branches to build.
     ///
     /// The syntax of the regular expressions accepted is the syntax accepted by

@@ -22,7 +22,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   Sendable
 {
   /// The data object that has been enriched by the discover API call.
-  public var dataObject: OneOf_DataObject? = nil
+  public var dataObject: DataObjectOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dataObject: OneOf_DataObject? = nil
+    var dataObject: DataObjectOneOf? = nil
     let dataObjectCheckAndSet = {
       if dataObject != nil {
         throw DecodingError.dataCorrupted(
@@ -136,7 +136,7 @@ public struct DiscoverConnectionProfileResponse: Codable, Equatable, GoogleWKT._
   }
 
   /// The data object that has been enriched by the discover API call.
-  public enum OneOf_DataObject: Codable, Equatable, Sendable {
+  public enum DataObjectOneOf: Codable, Equatable, Sendable {
     /// Enriched Oracle RDBMS object.
     indirect case oracleRdbms(OracleRdbms?)
     /// Enriched MySQL RDBMS object.

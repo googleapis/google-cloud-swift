@@ -56,7 +56,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   public var dataLocations: [Swift.String] = []
 
   /// Additional details about the action based on the action category.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -145,7 +145,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
       self.dataLocations = value
     }
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -1172,7 +1172,7 @@ public struct Action: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details about the action based on the action category.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details for issues related to invalid or unsupported data formats.
     indirect case invalidDataFormat(Action.InvalidDataFormat?)
     /// Details for issues related to incompatible schemas detected within data.

@@ -31,7 +31,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var absentTags: [Tag] = []
 
   /// Required. Entry to be ingested.
-  public var entry: OneOf_Entry? = nil
+  public var entry: EntryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       self.absentTags = value
     }
 
-    var entry: OneOf_Entry? = nil
+    var entry: EntryOneOf? = nil
     let entryCheckAndSet = {
       if entry != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct TaggedEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. Entry to be ingested.
-  public enum OneOf_Entry: Codable, Equatable, Sendable {
+  public enum EntryOneOf: Codable, Equatable, Sendable {
     /// Non-encrypted Data Catalog v1 Entry.
     indirect case v1Entry(Entry?)
   }

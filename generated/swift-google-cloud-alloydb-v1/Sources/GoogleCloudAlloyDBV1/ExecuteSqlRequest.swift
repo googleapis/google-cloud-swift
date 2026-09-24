@@ -45,7 +45,7 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Oneof field to support other credential mechanisms in future like
   /// SecretManager etc.
-  public var userCredential: OneOf_UserCredential? = nil
+  public var userCredential: UserCredentialOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -106,7 +106,7 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.validateOnly = value
     }
 
-    var userCredential: OneOf_UserCredential? = nil
+    var userCredential: UserCredentialOneOf? = nil
     let userCredentialCheckAndSet = {
       if userCredential != nil {
         throw DecodingError.dataCorrupted(
@@ -147,7 +147,7 @@ public struct ExecuteSqlRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Oneof field to support other credential mechanisms in future like
   /// SecretManager etc.
-  public enum OneOf_UserCredential: Codable, Equatable, Sendable {
+  public enum UserCredentialOneOf: Codable, Equatable, Sendable {
     /// Optional. The database native user’s password.
     case password(Swift.String)
   }

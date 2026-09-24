@@ -23,7 +23,7 @@
     Sendable
   {
     /// The model config to use.
-    public var modelConfig: OneOf_ModelConfig? = nil
+    public var modelConfig: ModelConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var modelConfig: OneOf_ModelConfig? = nil
+      var modelConfig: ModelConfigOneOf? = nil
       let modelConfigCheckAndSet = {
         if modelConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -191,7 +191,7 @@
     }
 
     /// The model config to use.
-    public enum OneOf_ModelConfig: Codable, Equatable, Sendable {
+    public enum ModelConfigOneOf: Codable, Equatable, Sendable {
       /// The Vertex AI Prediction Endpoint that either refers to a publisher model
       /// or an endpoint that is hosting a 1P fine-tuned text embedding model.
       /// Endpoints hosting non-1P fine-tuned text embedding models are

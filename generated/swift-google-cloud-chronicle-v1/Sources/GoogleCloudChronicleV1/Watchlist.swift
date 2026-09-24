@@ -155,7 +155,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Ways to populate entities in watchlist.
     /// Currently, only manual is supported.
-    public var mechanism: OneOf_Mechanism? = nil
+    public var mechanism: MechanismOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -191,7 +191,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var mechanism: OneOf_Mechanism? = nil
+      var mechanism: MechanismOneOf? = nil
       let mechanismCheckAndSet = {
         if mechanism != nil {
           throw DecodingError.dataCorrupted(
@@ -287,7 +287,7 @@ public struct Watchlist: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Ways to populate entities in watchlist.
     /// Currently, only manual is supported.
-    public enum OneOf_Mechanism: Codable, Equatable, Sendable {
+    public enum MechanismOneOf: Codable, Equatable, Sendable {
       /// Optional. Entities are added manually.
       indirect case manual(Watchlist.EntityPopulationMechanism.Manual?)
     }

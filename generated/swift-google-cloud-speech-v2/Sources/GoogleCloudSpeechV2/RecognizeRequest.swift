@@ -64,7 +64,7 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The audio source, which is either inline content or a Google Cloud
   /// Storage URI.
-  public var audioSource: OneOf_AudioSource? = nil
+  public var audioSource: AudioSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -114,7 +114,7 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     self.configMask = try container.decodeIfPresent(
       GoogleWKT.WKTFieldMask.self, forKey: .configMask)
 
-    var audioSource: OneOf_AudioSource? = nil
+    var audioSource: AudioSourceOneOf? = nil
     let audioSourceCheckAndSet = {
       if audioSource != nil {
         throw DecodingError.dataCorrupted(
@@ -158,7 +158,7 @@ public struct RecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The audio source, which is either inline content or a Google Cloud
   /// Storage URI.
-  public enum OneOf_AudioSource: Codable, Equatable, Sendable {
+  public enum AudioSourceOneOf: Codable, Equatable, Sendable {
     /// The audio data bytes encoded as specified in
     /// [RecognitionConfig][google.cloud.speech.v2.RecognitionConfig]. As
     /// with all bytes fields, proto buffers use a pure binary representation,

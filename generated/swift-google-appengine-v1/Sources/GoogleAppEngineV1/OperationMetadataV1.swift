@@ -60,7 +60,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Metadata specific to the type of operation in progress.
   /// @OutputOnly
-  public var methodMetadata: OneOf_MethodMetadata? = nil
+  public var methodMetadata: MethodMetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
       self.warning = value
     }
 
-    var methodMetadata: OneOf_MethodMetadata? = nil
+    var methodMetadata: MethodMetadataOneOf? = nil
     let methodMetadataCheckAndSet = {
       if methodMetadata != nil {
         throw DecodingError.dataCorrupted(
@@ -173,7 +173,7 @@ public struct OperationMetadataV1: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Metadata specific to the type of operation in progress.
   /// @OutputOnly
-  public enum OneOf_MethodMetadata: Codable, Equatable, Sendable {
+  public enum MethodMetadataOneOf: Codable, Equatable, Sendable {
     indirect case createVersionMetadata(CreateVersionMetadataV1?)
   }
 

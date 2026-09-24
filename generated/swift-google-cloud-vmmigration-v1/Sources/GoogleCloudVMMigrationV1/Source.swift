@@ -41,7 +41,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the service.
   public var encryption: Encryption? = nil
 
-  public var sourceDetails: OneOf_SourceDetails? = nil
+  public var sourceDetails: SourceDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -108,7 +108,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.encryption = try container.decodeIfPresent(Encryption.self, forKey: .encryption)
 
-    var sourceDetails: OneOf_SourceDetails? = nil
+    var sourceDetails: SourceDetailsOneOf? = nil
     let sourceDetailsCheckAndSet = {
       if sourceDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -158,7 +158,7 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_SourceDetails: Codable, Equatable, Sendable {
+  public enum SourceDetailsOneOf: Codable, Equatable, Sendable {
     /// Vmware type source details.
     indirect case vmware(VmwareSourceDetails?)
     /// AWS type source details.

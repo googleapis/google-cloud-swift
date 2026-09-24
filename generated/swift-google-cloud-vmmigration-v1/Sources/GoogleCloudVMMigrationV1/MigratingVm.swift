@@ -105,10 +105,10 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The default configuration of the target VM that will be created in Google
   /// Cloud as a result of the migration.
-  public var targetVmDefaults: OneOf_TargetVmDefaults? = nil
+  public var targetVmDefaults: TargetVmDefaultsOneOf? = nil
 
   /// Details about the source VM.
-  public var sourceVmDetails: OneOf_SourceVmDetails? = nil
+  public var sourceVmDetails: SourceVmDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -235,7 +235,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     self.expiration = try container.decodeIfPresent(
       MigratingVm.Expiration.self, forKey: .expiration)
 
-    var targetVmDefaults: OneOf_TargetVmDefaults? = nil
+    var targetVmDefaults: TargetVmDefaultsOneOf? = nil
     let targetVmDefaultsCheckAndSet = {
       if targetVmDefaults != nil {
         throw DecodingError.dataCorrupted(
@@ -258,7 +258,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.targetVmDefaults = targetVmDefaults
 
-    var sourceVmDetails: OneOf_SourceVmDetails? = nil
+    var sourceVmDetails: SourceVmDetailsOneOf? = nil
     let sourceVmDetailsCheckAndSet = {
       if sourceVmDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -626,7 +626,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The default configuration of the target VM that will be created in Google
   /// Cloud as a result of the migration.
-  public enum OneOf_TargetVmDefaults: Codable, Equatable, Sendable {
+  public enum TargetVmDefaultsOneOf: Codable, Equatable, Sendable {
     /// Details of the target VM in Compute Engine.
     indirect case computeEngineTargetDefaults(ComputeEngineTargetDefaults?)
     /// Details of the target Persistent Disks in Compute Engine.
@@ -634,7 +634,7 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Details about the source VM.
-  public enum OneOf_SourceVmDetails: Codable, Equatable, Sendable {
+  public enum SourceVmDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Details of the VM from a Vmware source.
     indirect case vmwareSourceVmDetails(VmwareSourceVmDetails?)
     /// Output only. Details of the VM from an AWS source.

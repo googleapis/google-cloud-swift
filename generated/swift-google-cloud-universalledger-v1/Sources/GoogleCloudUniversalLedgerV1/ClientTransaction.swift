@@ -65,7 +65,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   public var chainedUnit: Swift.Bool = Swift.Bool()
 
   /// The client transaction-specific message.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -203,7 +203,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
       self.chainedUnit = value
     }
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -433,7 +433,7 @@ public struct ClientTransaction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The client transaction-specific message.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// Optional. Deprecated: Use one of the message specific fields instead.
     /// A client transaction-specific message. Should be any one of:
     ///

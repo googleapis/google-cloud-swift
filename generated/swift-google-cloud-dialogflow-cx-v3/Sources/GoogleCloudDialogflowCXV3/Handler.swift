@@ -24,7 +24,7 @@
     Sendable
   {
     /// Specifies the type of handler to invoke.
-    public var handler: OneOf_Handler? = nil
+    public var handler: HandlerOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var handler: OneOf_Handler? = nil
+      var handler: HandlerOneOf? = nil
       let handlerCheckAndSet = {
         if handler != nil {
           throw DecodingError.dataCorrupted(
@@ -285,7 +285,7 @@
     }
 
     /// Specifies the type of handler to invoke.
-    public enum OneOf_Handler: Codable, Equatable, Sendable {
+    public enum HandlerOneOf: Codable, Equatable, Sendable {
       /// A handler triggered by event.
       indirect case eventHandler(Handler.EventHandler?)
       /// A handler triggered during specific lifecycle of the playbook execution.

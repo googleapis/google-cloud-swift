@@ -177,7 +177,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public var migrationConfig: MigrationConfig? = nil
 
   /// The source to import from.
-  public var importSources: OneOf_ImportSources? = nil
+  public var importSources: ImportSourcesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -422,7 +422,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     self.migrationConfig = try container.decodeIfPresent(
       MigrationConfig.self, forKey: .migrationConfig)
 
-    var importSources: OneOf_ImportSources? = nil
+    var importSources: ImportSourcesOneOf? = nil
     let importSourcesCheckAndSet = {
       if importSources != nil {
         throw DecodingError.dataCorrupted(
@@ -519,7 +519,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct StateInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var info: OneOf_Info? = nil
+    public var info: InfoOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -555,7 +555,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var info: OneOf_Info? = nil
+      var info: InfoOneOf? = nil
       let infoCheckAndSet = {
         if info != nil {
           throw DecodingError.dataCorrupted(
@@ -682,7 +682,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Info: Codable, Equatable, Sendable {
+    public enum InfoOneOf: Codable, Equatable, Sendable {
       /// Output only. Describes ongoing update when instance state is UPDATING.
       indirect case updateInfo(Instance.StateInfo.UpdateInfo?)
     }
@@ -920,7 +920,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A PSC connection to an instance could either be created through Service
     /// Connectivity Automation (auto connection) during the cluster creation,
     /// or it could be created by customer themeslves (user-created connection).
-    public var connection: OneOf_Connection? = nil
+    public var connection: ConnectionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -958,7 +958,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var connection: OneOf_Connection? = nil
+      var connection: ConnectionOneOf? = nil
       let connectionCheckAndSet = {
         if connection != nil {
           throw DecodingError.dataCorrupted(
@@ -1004,7 +1004,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     /// A PSC connection to an instance could either be created through Service
     /// Connectivity Automation (auto connection) during the cluster creation,
     /// or it could be created by customer themeslves (user-created connection).
-    public enum OneOf_Connection: Codable, Equatable, Sendable {
+    public enum ConnectionOneOf: Codable, Equatable, Sendable {
       /// Immutable. Detailed information of a PSC connection that is created
       /// through service connectivity automation.
       indirect case pscAutoConnection(PscAutoConnection?)
@@ -1843,7 +1843,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source to import from.
-  public enum OneOf_ImportSources: Codable, Equatable, Sendable {
+  public enum ImportSourcesOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. Backups that stored in Cloud Storage buckets.
     /// The Cloud Storage buckets need to be the same region as the instances.
     /// Read permission is required to import from the provided Cloud Storage

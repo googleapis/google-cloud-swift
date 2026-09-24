@@ -46,7 +46,7 @@
     /// Reloading from a new document source is allowed for smart messaging
     /// documents only. If you want to update the source for other document types,
     /// please delete the existing document and create a new one instead.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -102,7 +102,7 @@
         self.smartMessagingPartialUpdate = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -147,7 +147,7 @@
     /// Reloading from a new document source is allowed for smart messaging
     /// documents only. If you want to update the source for other document types,
     /// please delete the existing document and create a new one instead.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Optional. The path of gcs source file for reloading document content. For
       /// now, only gcs uri is supported.
       ///

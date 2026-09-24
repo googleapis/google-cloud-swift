@@ -21,7 +21,7 @@ public import Foundation
 public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var image: OneOf_Image? = nil
+  public var image: ImageOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var image: OneOf_Image? = nil
+    var image: ImageOneOf? = nil
     let imageCheckAndSet = {
       if image != nil {
         throw DecodingError.dataCorrupted(
@@ -98,7 +98,7 @@ public struct ImageQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Image: Codable, Equatable, Sendable {
+  public enum ImageOneOf: Codable, Equatable, Sendable {
     /// Input image in raw bytes.
     case inputImage(Foundation.Data)
     /// Resource name of the asset. Only supported in IMAGE corpus type.

@@ -60,12 +60,12 @@
     public var cesAppSpecs: [CesAppSpec] = []
 
     /// Required. Input context of the generator.
-    public var context: OneOf_Context? = nil
+    public var context: ContextOneOf? = nil
 
     /// The foundation model to use for generating suggestions. If a foundation
     /// model isn't specified here, a model specifically tuned for the feature
     /// type (and version when applicable) will be used.
-    public var foundationModel: OneOf_FoundationModel? = nil
+    public var foundationModel: FoundationModelOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -158,7 +158,7 @@
         self.cesAppSpecs = value
       }
 
-      var context: OneOf_Context? = nil
+      var context: ContextOneOf? = nil
       let contextCheckAndSet = {
         if context != nil {
           throw DecodingError.dataCorrupted(
@@ -185,7 +185,7 @@
       }
       self.context = context
 
-      var foundationModel: OneOf_FoundationModel? = nil
+      var foundationModel: FoundationModelOneOf? = nil
       let foundationModelCheckAndSet = {
         if foundationModel != nil {
           throw DecodingError.dataCorrupted(
@@ -245,7 +245,7 @@
     }
 
     /// Required. Input context of the generator.
-    public enum OneOf_Context: Codable, Equatable, Sendable {
+    public enum ContextOneOf: Codable, Equatable, Sendable {
       /// Input of free from generator to LLM.
       indirect case freeFormContext(FreeFormContext?)
       /// Input of prebuilt Agent Coaching feature.
@@ -257,7 +257,7 @@
     /// The foundation model to use for generating suggestions. If a foundation
     /// model isn't specified here, a model specifically tuned for the feature
     /// type (and version when applicable) will be used.
-    public enum OneOf_FoundationModel: Codable, Equatable, Sendable {
+    public enum FoundationModelOneOf: Codable, Equatable, Sendable {
       /// Optional. The published Large Language Model name.
       /// * To use the latest model version, specify the model name without version
       ///   number. Example: `text-bison`

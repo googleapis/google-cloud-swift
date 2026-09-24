@@ -55,10 +55,10 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   public var storeFields: [Swift.String] = []
 
   /// The infrastructure type of the index.
-  public var infraType: OneOf_InfraType? = nil
+  public var infraType: InfraTypeOneOf? = nil
 
   /// The type of the index.
-  public var indexType: OneOf_IndexType? = nil
+  public var indexType: IndexTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -145,7 +145,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
       self.storeFields = value
     }
 
-    var infraType: OneOf_InfraType? = nil
+    var infraType: InfraTypeOneOf? = nil
     let infraTypeCheckAndSet = {
       if infraType != nil {
         throw DecodingError.dataCorrupted(
@@ -162,7 +162,7 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.infraType = infraType
 
-    var indexType: OneOf_IndexType? = nil
+    var indexType: IndexTypeOneOf? = nil
     let indexTypeCheckAndSet = {
       if indexType != nil {
         throw DecodingError.dataCorrupted(
@@ -214,13 +214,13 @@ public struct Index: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The infrastructure type of the index.
-  public enum OneOf_InfraType: Codable, Equatable, Sendable {
+  public enum InfraTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Dedicated infrastructure for the index.
     indirect case dedicatedInfrastructure(DedicatedInfrastructure?)
   }
 
   /// The type of the index.
-  public enum OneOf_IndexType: Codable, Equatable, Sendable {
+  public enum IndexTypeOneOf: Codable, Equatable, Sendable {
     /// Optional. Dense ScaNN index.
     indirect case denseScann(DenseScannIndex?)
   }

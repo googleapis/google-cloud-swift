@@ -45,7 +45,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var muxStreams: [Swift.String] = []
 
   /// Specifies the manifest configuration.
-  public var manifestConfig: OneOf_ManifestConfig? = nil
+  public var manifestConfig: ManifestConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.muxStreams = value
     }
 
-    var manifestConfig: OneOf_ManifestConfig? = nil
+    var manifestConfig: ManifestConfigOneOf? = nil
     let manifestConfigCheckAndSet = {
       if manifestConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -465,7 +465,7 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies the manifest configuration.
-  public enum OneOf_ManifestConfig: Codable, Equatable, Sendable {
+  public enum ManifestConfigOneOf: Codable, Equatable, Sendable {
     /// `DASH` manifest configuration.
     indirect case dash(Manifest.DashConfig?)
   }

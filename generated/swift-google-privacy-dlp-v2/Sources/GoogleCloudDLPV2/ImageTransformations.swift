@@ -85,7 +85,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
     public var redactionColor: Color? = nil
 
     /// Part of the image to transform.
-    public var target: OneOf_Target? = nil
+    public var target: TargetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.redactionColor = try container.decodeIfPresent(Color.self, forKey: .redactionColor)
 
-      var target: OneOf_Target? = nil
+      var target: TargetOneOf? = nil
       let targetCheckAndSet = {
         if target != nil {
           throw DecodingError.dataCorrupted(
@@ -366,7 +366,7 @@ public struct ImageTransformations: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Part of the image to transform.
-    public enum OneOf_Target: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Codable, Equatable, Sendable {
       /// Apply transformation to the selected info_types.
       indirect case selectedInfoTypes(ImageTransformations.ImageTransformation.SelectedInfoTypes?)
       /// Apply transformation to all findings not specified in other

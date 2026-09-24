@@ -168,7 +168,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     /// }
     public var parameters: GoogleWKT.WKTStruct? = nil
 
-    public var kind: OneOf_Kind? = nil
+    public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -216,7 +216,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       self.condition = try container.decodeIfPresent(GoogleType.Expr.self, forKey: .condition)
       self.parameters = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .parameters)
 
-      var kind: OneOf_Kind? = nil
+      var kind: KindOneOf? = nil
       let kindCheckAndSet = {
         if kind != nil {
           throw DecodingError.dataCorrupted(
@@ -362,7 +362,7 @@ public struct PolicySpec: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Kind: Codable, Equatable, Sendable {
+    public enum KindOneOf: Codable, Equatable, Sendable {
       /// List of values to be used for this policy rule. This field can be set
       /// only in policies for list constraints.
       indirect case values(PolicySpec.PolicyRule.StringValues?)

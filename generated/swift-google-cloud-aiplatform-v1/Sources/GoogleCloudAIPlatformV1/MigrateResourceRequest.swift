@@ -23,7 +23,7 @@
   public struct MigrateResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var request: OneOf_Request? = nil
+    public var request: RequestOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var request: OneOf_Request? = nil
+      var request: RequestOneOf? = nil
       let requestCheckAndSet = {
         if request != nil {
           throw DecodingError.dataCorrupted(
@@ -567,7 +567,7 @@
       }
     }
 
-    public enum OneOf_Request: Codable, Equatable, Sendable {
+    public enum RequestOneOf: Codable, Equatable, Sendable {
       /// Config for migrating Version in ml.googleapis.com to Vertex AI's Model.
       indirect case migrateMlEngineModelVersionConfig(
         MigrateResourceRequest.MigrateMlEngineModelVersionConfig?)

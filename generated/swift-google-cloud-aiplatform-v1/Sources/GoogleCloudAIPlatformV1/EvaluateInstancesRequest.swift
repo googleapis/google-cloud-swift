@@ -27,7 +27,7 @@
     public var location: Swift.String = Swift.String()
 
     /// Instances and specs for evaluation
-    public var metricInputs: OneOf_MetricInputs? = nil
+    public var metricInputs: MetricInputsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@
         self.location = value
       }
 
-      var metricInputs: OneOf_MetricInputs? = nil
+      var metricInputs: MetricInputsOneOf? = nil
       let metricInputsCheckAndSet = {
         if metricInputs != nil {
           throw DecodingError.dataCorrupted(
@@ -325,7 +325,7 @@
     }
 
     /// Instances and specs for evaluation
-    public enum OneOf_MetricInputs: Codable, Equatable, Sendable {
+    public enum MetricInputsOneOf: Codable, Equatable, Sendable {
       /// Auto metric instances.
       /// Instances and metric spec for exact match metric.
       indirect case exactMatchInput(ExactMatchInput?)

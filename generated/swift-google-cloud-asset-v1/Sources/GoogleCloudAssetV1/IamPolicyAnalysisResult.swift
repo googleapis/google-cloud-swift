@@ -216,7 +216,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
     /// The analysis state of this access.
     public var analysisState: IamPolicyAnalysisState? = nil
 
-    public var oneofAccess: OneOf_OneofAccess? = nil
+    public var oneofAccess: OneofAccessOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -258,7 +258,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       self.analysisState = try container.decodeIfPresent(
         IamPolicyAnalysisState.self, forKey: .analysisState)
 
-      var oneofAccess: OneOf_OneofAccess? = nil
+      var oneofAccess: OneofAccessOneOf? = nil
       let oneofAccessCheckAndSet = {
         if oneofAccess != nil {
           throw DecodingError.dataCorrupted(
@@ -298,7 +298,7 @@ public struct IamPolicyAnalysisResult: Codable, Equatable, GoogleWKT._AnyPackabl
       }
     }
 
-    public enum OneOf_OneofAccess: Codable, Equatable, Sendable {
+    public enum OneofAccessOneOf: Codable, Equatable, Sendable {
       /// The role.
       case role(Swift.String)
       /// The permission.

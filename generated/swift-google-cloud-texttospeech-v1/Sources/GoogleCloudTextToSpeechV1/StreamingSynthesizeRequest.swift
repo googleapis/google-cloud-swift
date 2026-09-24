@@ -27,7 +27,7 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
 {
   /// The request to be sent, either a StreamingSynthesizeConfig or
   /// StreamingSynthesisInput.
-  public var streamingRequest: OneOf_StreamingRequest? = nil
+  public var streamingRequest: StreamingRequestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var streamingRequest: OneOf_StreamingRequest? = nil
+    var streamingRequest: StreamingRequestOneOf? = nil
     let streamingRequestCheckAndSet = {
       if streamingRequest != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct StreamingSynthesizeRequest: Codable, Equatable, GoogleWKT._AnyPack
 
   /// The request to be sent, either a StreamingSynthesizeConfig or
   /// StreamingSynthesisInput.
-  public enum OneOf_StreamingRequest: Codable, Equatable, Sendable {
+  public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
     /// StreamingSynthesizeConfig to be used in this streaming attempt. Only
     /// specified in the first message sent in a `StreamingSynthesize` call.
     indirect case streamingConfig(StreamingSynthesizeConfig?)

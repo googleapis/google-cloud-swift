@@ -22,7 +22,7 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Defines validators for parameter values.
-  public var constraint: OneOf_Constraint? = nil
+  public var constraint: ConstraintOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -62,7 +62,7 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var constraint: OneOf_Constraint? = nil
+    var constraint: ConstraintOneOf? = nil
     let constraintCheckAndSet = {
       if constraint != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct Validation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines validators for parameter values.
-  public enum OneOf_Constraint: Codable, Equatable, Sendable {
+  public enum ConstraintOneOf: Codable, Equatable, Sendable {
     /// The permitted set of values for the parameter.
     indirect case allowedValues(AllowedValues?)
     /// The permitted range for numeric parameters.

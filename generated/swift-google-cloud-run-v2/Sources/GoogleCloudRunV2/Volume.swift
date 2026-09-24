@@ -24,7 +24,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required. Volume's name.
   public var name: Swift.String = Swift.String()
 
-  public var volumeType: OneOf_VolumeType? = nil
+  public var volumeType: VolumeTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var volumeType: OneOf_VolumeType? = nil
+    var volumeType: VolumeTypeOneOf? = nil
     let volumeTypeCheckAndSet = {
       if volumeType != nil {
         throw DecodingError.dataCorrupted(
@@ -130,7 +130,7 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_VolumeType: Codable, Equatable, Sendable {
+  public enum VolumeTypeOneOf: Codable, Equatable, Sendable {
     /// Secret represents a secret that should populate this volume.
     indirect case secret(SecretVolumeSource?)
     /// For Cloud SQL volumes, contains the specific instances that should be

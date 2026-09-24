@@ -186,7 +186,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// source can be a directly pushed `ResourceBundle` or
     /// `CloudBuildRepository` containing the kubernetes configuration.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -224,7 +224,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -269,7 +269,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// source can be a directly pushed `ResourceBundle` or
     /// `CloudBuildRepository` containing the kubernetes configuration.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// Information specifying `ResourceBundle`.
       indirect case resourceBundle(FleetPackage.ResourceBundleTag?)
       /// Information specifying `CloudBuildRepository`.
@@ -392,7 +392,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// variants_pattern is the configuration for how to read the repository
     /// to find variants.
-    public var variants: OneOf_Variants? = nil
+    public var variants: VariantsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -448,7 +448,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
         self.serviceAccount = value
       }
 
-      var variants: OneOf_Variants? = nil
+      var variants: VariantsOneOf? = nil
       let variantsCheckAndSet = {
         if variants != nil {
           throw DecodingError.dataCorrupted(
@@ -490,7 +490,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// variants_pattern is the configuration for how to read the repository
     /// to find variants.
-    public enum OneOf_Variants: Codable, Equatable, Sendable {
+    public enum VariantsOneOf: Codable, Equatable, Sendable {
       /// Optional. variants_pattern is a glob pattern that will be used to find
       /// variants in the repository. Examples: `variants/*.yaml`, `us-*`
       case variantsPattern(Swift.String)
@@ -512,7 +512,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// target for the fleet package.
-    public var target: OneOf_Target? = nil
+    public var target: TargetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -548,7 +548,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var target: OneOf_Target? = nil
+      var target: TargetOneOf? = nil
       let targetCheckAndSet = {
         if target != nil {
           throw DecodingError.dataCorrupted(
@@ -583,7 +583,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// target for the fleet package.
-    public enum OneOf_Target: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Codable, Equatable, Sendable {
       /// The GKE fleet information.
       indirect case fleet(Fleet?)
     }
@@ -605,7 +605,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// strategy for selecting a variant.
-    public var strategy: OneOf_Strategy? = nil
+    public var strategy: StrategyOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -641,7 +641,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var strategy: OneOf_Strategy? = nil
+      var strategy: StrategyOneOf? = nil
       let strategyCheckAndSet = {
         if strategy != nil {
           throw DecodingError.dataCorrupted(
@@ -678,7 +678,7 @@ public struct FleetPackage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// strategy for selecting a variant.
-    public enum OneOf_Strategy: Codable, Equatable, Sendable {
+    public enum StrategyOneOf: Codable, Equatable, Sendable {
       /// Required. variant_name_template is a template that can refer to
       /// variables containing cluster membership metadata such as location,
       /// name, and labels to generate the name of the variant for a target

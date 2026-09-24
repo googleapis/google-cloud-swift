@@ -25,7 +25,7 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
   /// characters.
   public var name: Swift.String = Swift.String()
 
-  public var values: OneOf_Values? = nil
+  public var values: ValuesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var values: OneOf_Values? = nil
+    var values: ValuesOneOf? = nil
     let valuesCheckAndSet = {
       if values != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct EnvVar: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Values: Codable, Equatable, Sendable {
+  public enum ValuesOneOf: Codable, Equatable, Sendable {
     /// Literal value of the environment variable.
     /// Defaults to "", and the maximum length is 32768 bytes.
     /// Variable references are not supported in Cloud Run.

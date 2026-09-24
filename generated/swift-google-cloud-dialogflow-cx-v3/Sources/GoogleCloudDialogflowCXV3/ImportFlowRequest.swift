@@ -37,7 +37,7 @@
     public var flowImportStrategy: FlowImportStrategy? = nil
 
     /// Required. The flow to import.
-    public var flow: OneOf_Flow? = nil
+    public var flow: FlowOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@
       self.flowImportStrategy = try container.decodeIfPresent(
         FlowImportStrategy.self, forKey: .flowImportStrategy)
 
-      var flow: OneOf_Flow? = nil
+      var flow: FlowOneOf? = nil
       let flowCheckAndSet = {
         if flow != nil {
           throw DecodingError.dataCorrupted(
@@ -256,7 +256,7 @@
     }
 
     /// Required. The flow to import.
-    public enum OneOf_Flow: Codable, Equatable, Sendable {
+    public enum FlowOneOf: Codable, Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to import flow from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

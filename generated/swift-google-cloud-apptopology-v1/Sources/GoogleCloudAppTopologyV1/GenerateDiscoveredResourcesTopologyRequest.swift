@@ -35,7 +35,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
 
   /// Query the topology by building a graph pattern filter or pre-defined
   /// topology view.
-  public var query: OneOf_Query? = nil
+  public var query: QueryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
       self.topologyDomains = value
     }
 
-    var query: OneOf_Query? = nil
+    var query: QueryOneOf? = nil
     let queryCheckAndSet = {
       if query != nil {
         throw DecodingError.dataCorrupted(
@@ -119,7 +119,7 @@ public struct GenerateDiscoveredResourcesTopologyRequest: Codable, Equatable, Go
 
   /// Query the topology by building a graph pattern filter or pre-defined
   /// topology view.
-  public enum OneOf_Query: Codable, Equatable, Sendable {
+  public enum QueryOneOf: Codable, Equatable, Sendable {
     /// Filters for the topology nodes and edges; Detail format see GraphPattern
     /// proto. A separate 'LookupSchema' method will be added that will return
     /// the necessary information to be able to construct these filters.

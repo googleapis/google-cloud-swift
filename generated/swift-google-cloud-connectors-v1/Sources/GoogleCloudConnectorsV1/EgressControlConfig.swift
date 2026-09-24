@@ -25,7 +25,7 @@ import Foundation
 public struct EgressControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var oneofBackends: OneOf_OneofBackends? = nil
+  public var oneofBackends: OneofBackendsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct EgressControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var oneofBackends: OneOf_OneofBackends? = nil
+    var oneofBackends: OneofBackendsOneOf? = nil
     let oneofBackendsCheckAndSet = {
       if oneofBackends != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct EgressControlConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_OneofBackends: Codable, Equatable, Sendable {
+  public enum OneofBackendsOneOf: Codable, Equatable, Sendable {
     /// Static Comma separated backends which are common for all Connection
     /// resources. Supported formats for each backend are host:port or just
     /// host (host can be ip address or domain name).

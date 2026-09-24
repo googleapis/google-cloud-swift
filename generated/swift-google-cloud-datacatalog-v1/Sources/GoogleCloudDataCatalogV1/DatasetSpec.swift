@@ -23,7 +23,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Fields specific to the source system.
-  public var systemSpec: OneOf_SystemSpec? = nil
+  public var systemSpec: SystemSpecOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var systemSpec: OneOf_SystemSpec? = nil
+    var systemSpec: SystemSpecOneOf? = nil
     let systemSpecCheckAndSet = {
       if systemSpec != nil {
         throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@ public struct DatasetSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Fields specific to the source system.
-  public enum OneOf_SystemSpec: Codable, Equatable, Sendable {
+  public enum SystemSpecOneOf: Codable, Equatable, Sendable {
     /// Vertex AI Dataset specific fields
     indirect case vertexDatasetSpec(VertexDatasetSpec?)
   }

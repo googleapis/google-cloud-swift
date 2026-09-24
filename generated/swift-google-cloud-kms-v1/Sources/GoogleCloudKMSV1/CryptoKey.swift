@@ -162,7 +162,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public var keyAccessJustificationsPolicy: KeyAccessJustificationsPolicy? = nil
 
   /// Controls the rate of automatic rotation.
-  public var rotationSchedule: OneOf_RotationSchedule? = nil
+  public var rotationSchedule: RotationScheduleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -249,7 +249,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     self.keyAccessJustificationsPolicy = try container.decodeIfPresent(
       KeyAccessJustificationsPolicy.self, forKey: .keyAccessJustificationsPolicy)
 
-    var rotationSchedule: OneOf_RotationSchedule? = nil
+    var rotationSchedule: RotationScheduleOneOf? = nil
     let rotationScheduleCheckAndSet = {
       if rotationSchedule != nil {
         throw DecodingError.dataCorrupted(
@@ -501,7 +501,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Controls the rate of automatic rotation.
-  public enum OneOf_RotationSchedule: Codable, Equatable, Sendable {
+  public enum RotationScheduleOneOf: Codable, Equatable, Sendable {
     /// [next_rotation_time][google.cloud.kms.v1.CryptoKey.next_rotation_time]
     /// will be advanced by this period when the service automatically rotates a
     /// key. Must be at least 24 hours and at most 876,000 hours.
@@ -518,7 +518,7 @@ public struct CryptoKey: Codable, Equatable, GoogleWKT._AnyPackable,
     /// [google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT]: <doc:CryptoKey/CryptoKeyPurpose/encryptDecrypt>
     /// [google.cloud.kms.v1.CryptoKey.next_rotation_time]: <doc:CryptoKey/nextRotationTime>
     /// [google.cloud.kms.v1.CryptoKey.purpose]: <doc:CryptoKey/purpose>
-    /// [google.cloud.kms.v1.CryptoKey.rotation_period]: <doc:CryptoKey/OneOf_RotationSchedule/rotationPeriod(_:)>
+    /// [google.cloud.kms.v1.CryptoKey.rotation_period]: <doc:CryptoKey/RotationScheduleOneOf/rotationPeriod(_:)>
     indirect case rotationPeriod(GoogleWKT.WKTDuration?)
   }
 

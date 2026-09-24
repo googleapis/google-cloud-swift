@@ -72,7 +72,7 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Configuration for the `WorkerPool`.
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -152,7 +152,7 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -336,7 +336,7 @@ public struct WorkerPool: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration for the `WorkerPool`.
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Private Pool configuration.
     indirect case privatePoolV1Config(PrivatePoolV1Config?)
   }

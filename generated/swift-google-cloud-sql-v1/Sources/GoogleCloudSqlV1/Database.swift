@@ -49,7 +49,7 @@
     /// apps domain is prefixed if applicable.
     public var project: Swift.String = Swift.String()
 
-    public var databaseDetails: OneOf_DatabaseDetails? = nil
+    public var databaseDetails: DatabaseDetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -125,7 +125,7 @@
         self.project = value
       }
 
-      var databaseDetails: OneOf_DatabaseDetails? = nil
+      var databaseDetails: DatabaseDetailsOneOf? = nil
       let databaseDetailsCheckAndSet = {
         if databaseDetails != nil {
           throw DecodingError.dataCorrupted(
@@ -169,7 +169,7 @@
       }
     }
 
-    public enum OneOf_DatabaseDetails: Codable, Equatable, Sendable {
+    public enum DatabaseDetailsOneOf: Codable, Equatable, Sendable {
       indirect case sqlserverDatabaseDetails(SqlServerDatabaseDetails?)
     }
 

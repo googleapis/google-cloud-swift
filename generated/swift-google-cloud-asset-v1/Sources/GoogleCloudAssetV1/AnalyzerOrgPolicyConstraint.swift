@@ -21,7 +21,7 @@ import Foundation
 public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var constraintDefinition: OneOf_ConstraintDefinition? = nil
+  public var constraintDefinition: ConstraintDefinitionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var constraintDefinition: OneOf_ConstraintDefinition? = nil
+    var constraintDefinition: ConstraintDefinitionOneOf? = nil
     let constraintDefinitionCheckAndSet = {
       if constraintDefinition != nil {
         throw DecodingError.dataCorrupted(
@@ -126,7 +126,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     /// The type of restrictions for this `Constraint`.
     ///
     /// Immutable after creation.
-    public var constraintType: OneOf_ConstraintType? = nil
+    public var constraintType: ConstraintTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -186,7 +186,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
         self.constraintDefault = value
       }
 
-      var constraintType: OneOf_ConstraintType? = nil
+      var constraintType: ConstraintTypeOneOf? = nil
       let constraintTypeCheckAndSet = {
         if constraintType != nil {
           throw DecodingError.dataCorrupted(
@@ -503,7 +503,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     /// The type of restrictions for this `Constraint`.
     ///
     /// Immutable after creation.
-    public enum OneOf_ConstraintType: Codable, Equatable, Sendable {
+    public enum ConstraintTypeOneOf: Codable, Equatable, Sendable {
       /// Defines this constraint as being a ListConstraint.
       indirect case listConstraint(AnalyzerOrgPolicyConstraint.Constraint.ListConstraint?)
       /// Defines this constraint as being a BooleanConstraint.
@@ -916,7 +916,7 @@ public struct AnalyzerOrgPolicyConstraint: Codable, Equatable, GoogleWKT._AnyPac
     }
   }
 
-  public enum OneOf_ConstraintDefinition: Codable, Equatable, Sendable {
+  public enum ConstraintDefinitionOneOf: Codable, Equatable, Sendable {
     /// The definition of the canned constraint defined by Google.
     indirect case googleDefinedConstraint(AnalyzerOrgPolicyConstraint.Constraint?)
     /// The definition of the custom constraint.

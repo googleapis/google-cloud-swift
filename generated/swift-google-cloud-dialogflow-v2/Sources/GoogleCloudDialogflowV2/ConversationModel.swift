@@ -57,7 +57,7 @@
     /// Required.
     /// The model metadata that is specific to the problem type.
     /// Must match the metadata type of the dataset used to train the model.
-    public var modelMetadata: OneOf_ModelMetadata? = nil
+    public var modelMetadata: ModelMetadataOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@
       self.satisfiesPzs = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzs)
       self.satisfiesPzi = try container.decodeIfPresent(Swift.Bool.self, forKey: .satisfiesPzi)
 
-      var modelMetadata: OneOf_ModelMetadata? = nil
+      var modelMetadata: ModelMetadataOneOf? = nil
       let modelMetadataCheckAndSet = {
         if modelMetadata != nil {
           throw DecodingError.dataCorrupted(
@@ -465,7 +465,7 @@
     /// Required.
     /// The model metadata that is specific to the problem type.
     /// Must match the metadata type of the dataset used to train the model.
-    public enum OneOf_ModelMetadata: Codable, Equatable, Sendable {
+    public enum ModelMetadataOneOf: Codable, Equatable, Sendable {
       /// Metadata for article suggestion models.
       indirect case articleSuggestionModelMetadata(ArticleSuggestionModelMetadata?)
       /// Metadata for smart reply models.

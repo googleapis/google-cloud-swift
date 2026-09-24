@@ -84,7 +84,7 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source system of the entry. Applicable only when the
   /// `search_result_type` is `ENTRY`.
-  public var system: OneOf_System? = nil
+  public var system: SystemOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -161,7 +161,7 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleWKT._AnyPackable,
       self.description = value
     }
 
-    var system: OneOf_System? = nil
+    var system: SystemOneOf? = nil
     let systemCheckAndSet = {
       if system != nil {
         throw DecodingError.dataCorrupted(
@@ -214,7 +214,7 @@ public struct SearchCatalogResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source system of the entry. Applicable only when the
   /// `search_result_type` is `ENTRY`.
-  public enum OneOf_System: Codable, Equatable, Sendable {
+  public enum SystemOneOf: Codable, Equatable, Sendable {
     /// Output only. The source system that Data Catalog automatically integrates
     /// with, such as BigQuery, Cloud Pub/Sub, or Dataproc Metastore.
     case integratedSystem(IntegratedSystem)

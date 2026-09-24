@@ -478,7 +478,7 @@
       public var instancesFormat: Swift.String = Swift.String()
 
       /// Required. The source of the input.
-      public var source: OneOf_Source? = nil
+      public var source: SourceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -524,7 +524,7 @@
           self.instancesFormat = value
         }
 
-        var source: OneOf_Source? = nil
+        var source: SourceOneOf? = nil
         let sourceCheckAndSet = {
           if source != nil {
             throw DecodingError.dataCorrupted(
@@ -574,7 +574,7 @@
       }
 
       /// Required. The source of the input.
-      public enum OneOf_Source: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Codable, Equatable, Sendable {
         /// The Cloud Storage location for the input instances.
         indirect case gcsSource(GcsSource?)
         /// The BigQuery location of the input table.
@@ -808,7 +808,7 @@
       public var predictionsFormat: Swift.String = Swift.String()
 
       /// Required. The destination of the output.
-      public var destination: OneOf_Destination? = nil
+      public var destination: DestinationOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -855,7 +855,7 @@
           self.predictionsFormat = value
         }
 
-        var destination: OneOf_Destination? = nil
+        var destination: DestinationOneOf? = nil
         let destinationCheckAndSet = {
           if destination != nil {
             throw DecodingError.dataCorrupted(
@@ -908,7 +908,7 @@
       }
 
       /// Required. The destination of the output.
-      public enum OneOf_Destination: Codable, Equatable, Sendable {
+      public enum DestinationOneOf: Codable, Equatable, Sendable {
         /// The Cloud Storage location of the directory where the output is
         /// to be written to. In the given directory a new directory is created.
         /// Its name is `prediction-<model-display-name>-<job-create-time>`,
@@ -993,7 +993,7 @@
       public var bigqueryOutputTable: Swift.String = Swift.String()
 
       /// The output location into which prediction output is written.
-      public var outputLocation: OneOf_OutputLocation? = nil
+      public var outputLocation: OutputLocationOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1041,7 +1041,7 @@
           self.bigqueryOutputTable = value
         }
 
-        var outputLocation: OneOf_OutputLocation? = nil
+        var outputLocation: OutputLocationOneOf? = nil
         let outputLocationCheckAndSet = {
           if outputLocation != nil {
             throw DecodingError.dataCorrupted(
@@ -1093,7 +1093,7 @@
       }
 
       /// The output location into which prediction output is written.
-      public enum OneOf_OutputLocation: Codable, Equatable, Sendable {
+      public enum OutputLocationOneOf: Codable, Equatable, Sendable {
         /// Output only. The full path of the Cloud Storage directory created, into
         /// which the prediction output is written.
         case gcsOutputDirectory(Swift.String)

@@ -26,7 +26,7 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public var name: Swift.String = Swift.String()
 
   /// Resulting destination of the listing that you subscribed to.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.name = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// Resulting destination of the listing that you subscribed to.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Input only. BigQuery destination dataset to create for the subscriber.
     indirect case destinationDataset(DestinationDataset?)
     /// Input only. Destination Pub/Sub subscription to create for the

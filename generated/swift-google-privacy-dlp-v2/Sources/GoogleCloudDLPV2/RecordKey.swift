@@ -26,7 +26,7 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public var idValues: [Swift.String] = []
 
   /// Type of key
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
       self.idValues = value
     }
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -110,7 +110,7 @@ public struct RecordKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of key
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// BigQuery key
     indirect case datastoreKey(DatastoreKey?)
     /// Datastore key

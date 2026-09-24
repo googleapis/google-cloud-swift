@@ -22,7 +22,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Select the specific paging mechanism the third-party API requires.
-  public var paginationStrategy: OneOf_PaginationStrategy? = nil
+  public var paginationStrategy: PaginationStrategyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var paginationStrategy: OneOf_PaginationStrategy? = nil
+    var paginationStrategy: PaginationStrategyOneOf? = nil
     let paginationStrategyCheckAndSet = {
       if paginationStrategy != nil {
         throw DecodingError.dataCorrupted(
@@ -478,7 +478,7 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Select the specific paging mechanism the third-party API requires.
-  public enum OneOf_PaginationStrategy: Codable, Equatable, Sendable {
+  public enum PaginationStrategyOneOf: Codable, Equatable, Sendable {
     /// Fetch data in a single request without paging.
     indirect case `none`(CustomAPIPagination.NonePagination?)
     /// Use tokens (custom keys) to get the next page of data.

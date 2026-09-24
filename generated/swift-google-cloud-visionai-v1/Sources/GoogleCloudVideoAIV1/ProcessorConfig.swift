@@ -25,7 +25,7 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// processor parameters.
   public var experimentalConfig: GoogleWKT.WKTStruct? = nil
 
-  public var processorConfig: OneOf_ProcessorConfig? = nil
+  public var processorConfig: ProcessorConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.experimentalConfig = try container.decodeIfPresent(
       GoogleWKT.WKTStruct.self, forKey: .experimentalConfig)
 
-    var processorConfig: OneOf_ProcessorConfig? = nil
+    var processorConfig: ProcessorConfigOneOf? = nil
     let processorConfigCheckAndSet = {
       if processorConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -242,7 +242,7 @@ public struct ProcessorConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_ProcessorConfig: Codable, Equatable, Sendable {
+  public enum ProcessorConfigOneOf: Codable, Equatable, Sendable {
     /// Configs of stream input processor.
     indirect case videoStreamInputConfig(VideoStreamInputConfig?)
     /// Config of AI-enabled input devices.

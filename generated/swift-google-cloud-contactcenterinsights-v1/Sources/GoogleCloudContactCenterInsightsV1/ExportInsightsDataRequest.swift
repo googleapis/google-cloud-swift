@@ -38,7 +38,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
     ExportInsightsDataRequest.WriteDisposition()
 
   /// Exporter destination.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
       self.writeDisposition = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -348,7 +348,7 @@ public struct ExportInsightsDataRequest: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Exporter destination.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Specified if sink is a BigQuery table.
     indirect case bigQueryDestination(ExportInsightsDataRequest.BigQueryDestination?)
   }

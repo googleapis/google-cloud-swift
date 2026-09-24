@@ -28,7 +28,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// start time.
   public var endTime: GoogleWKT.WKTTimestamp? = nil
 
-  public var options: OneOf_Options? = nil
+  public var options: OptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     self.startTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .startTime)
     self.endTime = try container.decodeIfPresent(GoogleWKT.WKTTimestamp.self, forKey: .endTime)
 
-    var options: OneOf_Options? = nil
+    var options: OptionsOneOf? = nil
     let optionsCheckAndSet = {
       if options != nil {
         throw DecodingError.dataCorrupted(
@@ -108,7 +108,7 @@ public struct TimeWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Options: Codable, Equatable, Sendable {
+  public enum OptionsOneOf: Codable, Equatable, Sendable {
     /// MaintenanceExclusionOptions provides maintenance exclusion related
     /// options.
     indirect case maintenanceExclusionOptions(MaintenanceExclusionOptions?)

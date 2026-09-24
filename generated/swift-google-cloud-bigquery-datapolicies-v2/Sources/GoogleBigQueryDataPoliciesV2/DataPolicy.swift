@@ -59,7 +59,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public var version: DataPolicy.Version = DataPolicy.Version()
 
   /// The policy that is bound to this data policy.
-  public var policy: OneOf_Policy? = nil
+  public var policy: PolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.version = value
     }
 
-    var policy: OneOf_Policy? = nil
+    var policy: PolicyOneOf? = nil
     let policyCheckAndSet = {
       if policy != nil {
         throw DecodingError.dataCorrupted(
@@ -418,7 +418,7 @@ public struct DataPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The policy that is bound to this data policy.
-  public enum OneOf_Policy: Codable, Equatable, Sendable {
+  public enum PolicyOneOf: Codable, Equatable, Sendable {
     /// Optional. The data masking policy that specifies the data masking rule to
     /// use. It must be set if the data policy type is DATA_MASKING_POLICY.
     indirect case dataMaskingPolicy(DataMaskingPolicy?)

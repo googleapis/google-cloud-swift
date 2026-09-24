@@ -41,7 +41,7 @@
     /// Dialogflow performs a read operation for the Cloud Storage object
     /// on the caller's behalf, so your request authentication must
     /// have read permissions for the object. For more information, see
-    public var playbook: OneOf_Playbook? = nil
+    public var playbook: PlaybookOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -88,7 +88,7 @@
       self.importStrategy = try container.decodeIfPresent(
         PlaybookImportStrategy.self, forKey: .importStrategy)
 
-      var playbook: OneOf_Playbook? = nil
+      var playbook: PlaybookOneOf? = nil
       let playbookCheckAndSet = {
         if playbook != nil {
           throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@
     /// Dialogflow performs a read operation for the Cloud Storage object
     /// on the caller's behalf, so your request authentication must
     /// have read permissions for the object. For more information, see
-    public enum OneOf_Playbook: Codable, Equatable, Sendable {
+    public enum PlaybookOneOf: Codable, Equatable, Sendable {
       /// [Dialogflow access
       /// control]
       /// (https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).

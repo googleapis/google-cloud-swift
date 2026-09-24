@@ -77,20 +77,20 @@
     public var encryptionSpec: EncryptionSpec? = nil
 
     /// The input notebook.
-    public var notebookSource: OneOf_NotebookSource? = nil
+    public var notebookSource: NotebookSourceOneOf? = nil
 
     /// The compute config to use for an execution job.
-    public var environmentSpec: OneOf_EnvironmentSpec? = nil
+    public var environmentSpec: EnvironmentSpecOneOf? = nil
 
     /// The location to store the notebook execution result.
-    public var executionSink: OneOf_ExecutionSink? = nil
+    public var executionSink: ExecutionSinkOneOf? = nil
 
     /// The identity to run the execution as.
-    public var executionIdentity: OneOf_ExecutionIdentity? = nil
+    public var executionIdentity: ExecutionIdentityOneOf? = nil
 
     /// Runtime environment for the notebook execution job. If unspecified, the
     /// default runtime of Colab is used.
-    public var runtimeEnvironment: OneOf_RuntimeEnvironment? = nil
+    public var runtimeEnvironment: RuntimeEnvironmentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -195,7 +195,7 @@
       self.encryptionSpec = try container.decodeIfPresent(
         EncryptionSpec.self, forKey: .encryptionSpec)
 
-      var notebookSource: OneOf_NotebookSource? = nil
+      var notebookSource: NotebookSourceOneOf? = nil
       let notebookSourceCheckAndSet = {
         if notebookSource != nil {
           throw DecodingError.dataCorrupted(
@@ -222,7 +222,7 @@
       }
       self.notebookSource = notebookSource
 
-      var environmentSpec: OneOf_EnvironmentSpec? = nil
+      var environmentSpec: EnvironmentSpecOneOf? = nil
       let environmentSpecCheckAndSet = {
         if environmentSpec != nil {
           throw DecodingError.dataCorrupted(
@@ -245,7 +245,7 @@
       }
       self.environmentSpec = environmentSpec
 
-      var executionSink: OneOf_ExecutionSink? = nil
+      var executionSink: ExecutionSinkOneOf? = nil
       let executionSinkCheckAndSet = {
         if executionSink != nil {
           throw DecodingError.dataCorrupted(
@@ -261,7 +261,7 @@
       }
       self.executionSink = executionSink
 
-      var executionIdentity: OneOf_ExecutionIdentity? = nil
+      var executionIdentity: ExecutionIdentityOneOf? = nil
       let executionIdentityCheckAndSet = {
         if executionIdentity != nil {
           throw DecodingError.dataCorrupted(
@@ -283,7 +283,7 @@
       }
       self.executionIdentity = executionIdentity
 
-      var runtimeEnvironment: OneOf_RuntimeEnvironment? = nil
+      var runtimeEnvironment: RuntimeEnvironmentOneOf? = nil
       let runtimeEnvironmentCheckAndSet = {
         if runtimeEnvironment != nil {
           throw DecodingError.dataCorrupted(
@@ -741,7 +741,7 @@
     }
 
     /// The input notebook.
-    public enum OneOf_NotebookSource: Codable, Equatable, Sendable {
+    public enum NotebookSourceOneOf: Codable, Equatable, Sendable {
       /// The Dataform Repository pointing to a single file notebook repository.
       indirect case dataformRepositorySource(NotebookExecutionJob.DataformRepositorySource?)
       /// The Cloud Storage url pointing to the ipynb file. Format:
@@ -752,7 +752,7 @@
     }
 
     /// The compute config to use for an execution job.
-    public enum OneOf_EnvironmentSpec: Codable, Equatable, Sendable {
+    public enum EnvironmentSpecOneOf: Codable, Equatable, Sendable {
       /// The NotebookRuntimeTemplate to source compute configuration from.
       case notebookRuntimeTemplateResourceName(Swift.String)
       /// The custom compute configuration for an execution job.
@@ -760,14 +760,14 @@
     }
 
     /// The location to store the notebook execution result.
-    public enum OneOf_ExecutionSink: Codable, Equatable, Sendable {
+    public enum ExecutionSinkOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage location to upload the result to. Format:
       /// `gs://bucket-name`
       case gcsOutputUri(Swift.String)
     }
 
     /// The identity to run the execution as.
-    public enum OneOf_ExecutionIdentity: Codable, Equatable, Sendable {
+    public enum ExecutionIdentityOneOf: Codable, Equatable, Sendable {
       /// The user email to run the execution as. Only supported by Colab runtimes.
       case executionUser(Swift.String)
       /// The service account to run the execution as.
@@ -776,7 +776,7 @@
 
     /// Runtime environment for the notebook execution job. If unspecified, the
     /// default runtime of Colab is used.
-    public enum OneOf_RuntimeEnvironment: Codable, Equatable, Sendable {
+    public enum RuntimeEnvironmentOneOf: Codable, Equatable, Sendable {
       /// The Workbench runtime configuration to use for the notebook execution.
       indirect case workbenchRuntime(NotebookExecutionJob.WorkbenchRuntime?)
     }

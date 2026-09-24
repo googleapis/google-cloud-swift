@@ -46,7 +46,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// committed after a successful completion of the job.
   public var requestAutocommit: Swift.Bool = Swift.Bool()
 
-  public var jobDetails: OneOf_JobDetails? = nil
+  public var jobDetails: JobDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,7 +122,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       self.requestAutocommit = value
     }
 
-    var jobDetails: OneOf_JobDetails? = nil
+    var jobDetails: JobDetailsOneOf? = nil
     let jobDetailsCheckAndSet = {
       if jobDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -596,7 +596,7 @@ public struct BackgroundJobLogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_JobDetails: Codable, Equatable, Sendable {
+  public enum JobDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Seed job details.
     indirect case seedJobDetails(BackgroundJobLogEntry.SeedJobDetails?)
     /// Output only. Import rules job details.

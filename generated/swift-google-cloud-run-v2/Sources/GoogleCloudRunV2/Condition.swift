@@ -43,7 +43,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The reason for this condition. Depending on the condition type,
   /// it will populate one of these fields.
   /// Successful conditions cannot have a reason.
-  public var reasons: OneOf_Reasons? = nil
+  public var reasons: ReasonsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -107,7 +107,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
       self.severity = value
     }
 
-    var reasons: OneOf_Reasons? = nil
+    var reasons: ReasonsOneOf? = nil
     let reasonsCheckAndSet = {
       if reasons != nil {
         throw DecodingError.dataCorrupted(
@@ -972,7 +972,7 @@ public struct Condition: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The reason for this condition. Depending on the condition type,
   /// it will populate one of these fields.
   /// Successful conditions cannot have a reason.
-  public enum OneOf_Reasons: Codable, Equatable, Sendable {
+  public enum ReasonsOneOf: Codable, Equatable, Sendable {
     /// Output only. A common (service-level) reason for this condition.
     case reason(Condition.CommonReason)
     /// Output only. A reason for the revision condition.

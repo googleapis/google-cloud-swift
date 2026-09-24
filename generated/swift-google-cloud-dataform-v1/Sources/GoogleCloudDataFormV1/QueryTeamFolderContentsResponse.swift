@@ -92,7 +92,7 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
     Sendable
   {
     /// The content entry.
-    public var entry: OneOf_Entry? = nil
+    public var entry: EntryOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var entry: OneOf_Entry? = nil
+      var entry: EntryOneOf? = nil
       let entryCheckAndSet = {
         if entry != nil {
           throw DecodingError.dataCorrupted(
@@ -170,7 +170,7 @@ public struct QueryTeamFolderContentsResponse: Codable, Equatable, GoogleWKT._An
     }
 
     /// The content entry.
-    public enum OneOf_Entry: Codable, Equatable, Sendable {
+    public enum EntryOneOf: Codable, Equatable, Sendable {
       /// A subfolder.
       indirect case folder(Folder?)
       /// A repository.

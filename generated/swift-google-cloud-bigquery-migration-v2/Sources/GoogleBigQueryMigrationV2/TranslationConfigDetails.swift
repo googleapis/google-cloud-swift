@@ -41,14 +41,14 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
   public var targetTypes: [Swift.String] = []
 
   /// The chosen path where the source for input files will be found.
-  public var sourceLocation: OneOf_SourceLocation? = nil
+  public var sourceLocation: SourceLocationOneOf? = nil
 
   /// The chosen path where the destination for output files will be found.
-  public var targetLocation: OneOf_TargetLocation? = nil
+  public var targetLocation: TargetLocationOneOf? = nil
 
   /// The mapping of full SQL object names from their current state to the
   /// desired output.
-  public var outputNameMapping: OneOf_OutputNameMapping? = nil
+  public var outputNameMapping: OutputNameMappingOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -107,7 +107,7 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
       self.targetTypes = value
     }
 
-    var sourceLocation: OneOf_SourceLocation? = nil
+    var sourceLocation: SourceLocationOneOf? = nil
     let sourceLocationCheckAndSet = {
       if sourceLocation != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
     }
     self.sourceLocation = sourceLocation
 
-    var targetLocation: OneOf_TargetLocation? = nil
+    var targetLocation: TargetLocationOneOf? = nil
     let targetLocationCheckAndSet = {
       if targetLocation != nil {
         throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
     }
     self.targetLocation = targetLocation
 
-    var outputNameMapping: OneOf_OutputNameMapping? = nil
+    var outputNameMapping: OutputNameMappingOneOf? = nil
     let outputNameMappingCheckAndSet = {
       if outputNameMapping != nil {
         throw DecodingError.dataCorrupted(
@@ -195,20 +195,20 @@ public struct TranslationConfigDetails: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The chosen path where the source for input files will be found.
-  public enum OneOf_SourceLocation: Codable, Equatable, Sendable {
+  public enum SourceLocationOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage path for a directory of files to translate in a task.
     case gcsSourcePath(Swift.String)
   }
 
   /// The chosen path where the destination for output files will be found.
-  public enum OneOf_TargetLocation: Codable, Equatable, Sendable {
+  public enum TargetLocationOneOf: Codable, Equatable, Sendable {
     /// The Cloud Storage path to write back the corresponding input files to.
     case gcsTargetPath(Swift.String)
   }
 
   /// The mapping of full SQL object names from their current state to the
   /// desired output.
-  public enum OneOf_OutputNameMapping: Codable, Equatable, Sendable {
+  public enum OutputNameMappingOneOf: Codable, Equatable, Sendable {
     /// The mapping of objects to their desired output names in list form.
     indirect case nameMappingList(ObjectNameMappingList?)
   }

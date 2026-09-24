@@ -22,7 +22,7 @@ public struct ValueMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// To be used for full regex matching.
-  public var matchVariant: OneOf_MatchVariant? = nil
+  public var matchVariant: MatchVariantOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct ValueMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var matchVariant: OneOf_MatchVariant? = nil
+    var matchVariant: MatchVariantOneOf? = nil
     let matchVariantCheckAndSet = {
       if matchVariant != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct ValueMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// To be used for full regex matching.
-  public enum OneOf_MatchVariant: Codable, Equatable, Sendable {
+  public enum MatchVariantOneOf: Codable, Equatable, Sendable {
     /// To be used for full regex matching. The regular expression is using the
     /// Google RE2 syntax (https://github.com/google/re2/wiki/Syntax), so to be
     /// used with RE2::FullMatch

@@ -72,7 +72,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Defines the `CustomTargetType` renderer and deployer.
-  public var definition: OneOf_Definition? = nil
+  public var definition: DefinitionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -154,7 +154,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var definition: OneOf_Definition? = nil
+    var definition: DefinitionOneOf? = nil
     let definitionCheckAndSet = {
       if definition != nil {
         throw DecodingError.dataCorrupted(
@@ -200,7 +200,7 @@ public struct CustomTargetType: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Defines the `CustomTargetType` renderer and deployer.
-  public enum OneOf_Definition: Codable, Equatable, Sendable {
+  public enum DefinitionOneOf: Codable, Equatable, Sendable {
     /// Optional. Configures render and deploy for the `CustomTargetType` using
     /// Skaffold custom actions.
     indirect case customActions(CustomTargetSkaffoldActions?)

@@ -22,7 +22,7 @@ import Foundation
 public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var request: OneOf_Request? = nil
+  public var request: RequestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var request: OneOf_Request? = nil
+    var request: RequestOneOf? = nil
     let requestCheckAndSet = {
       if request != nil {
         throw DecodingError.dataCorrupted(
@@ -168,7 +168,7 @@ public struct ConnectRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Request: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Codable, Equatable, Sendable {
     /// Provides information that specifies how to process subsequent requests.
     /// The first `ConnectRequest` message must contain a `config`  message.
     indirect case config(ConnectRequest.ConnectConfig?)

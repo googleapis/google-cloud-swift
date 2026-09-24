@@ -34,12 +34,12 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The latest timestamp at which the blurb was updated.
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  public var content: OneOf_Content? = nil
+  public var content: ContentOneOf? = nil
 
   /// (-- aip.dev/not-precedent: This is designed for testing non-slash
   ///     resource patterns. Ordinarily, non-slash separators are discouraged.
   ///     --)
-  public var legacyId: OneOf_LegacyId? = nil
+  public var legacyId: LegacyIdOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var content: OneOf_Content? = nil
+    var content: ContentOneOf? = nil
     let contentCheckAndSet = {
       if content != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.content = content
 
-    var legacyId: OneOf_LegacyId? = nil
+    var legacyId: LegacyIdOneOf? = nil
     let legacyIdCheckAndSet = {
       if legacyId != nil {
         throw DecodingError.dataCorrupted(
@@ -169,7 +169,7 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Content: Codable, Equatable, Sendable {
+  public enum ContentOneOf: Codable, Equatable, Sendable {
     /// The textual content of this blurb.
     case text(Swift.String)
     /// The image content of this blurb.
@@ -179,7 +179,7 @@ public struct Blurb: Codable, Equatable, GoogleWKT._AnyPackable,
   /// (-- aip.dev/not-precedent: This is designed for testing non-slash
   ///     resource patterns. Ordinarily, non-slash separators are discouraged.
   ///     --)
-  public enum OneOf_LegacyId: Codable, Equatable, Sendable {
+  public enum LegacyIdOneOf: Codable, Equatable, Sendable {
     /// The legacy id of the room. This field is used to signal
     /// the use of the compound resource pattern
     /// `rooms/{room}/blurbs/legacy/{legacy_room}.{blurb}`

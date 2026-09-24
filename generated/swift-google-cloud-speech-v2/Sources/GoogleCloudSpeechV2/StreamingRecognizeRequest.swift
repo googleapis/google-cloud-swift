@@ -40,9 +40,9 @@ public import Foundation
 ///
 /// [google.cloud.speech.v2.Recognizer]: <doc:Recognizer>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest]: <doc:StreamingRecognizeRequest>
-/// [google.cloud.speech.v2.StreamingRecognizeRequest.audio]: <doc:StreamingRecognizeRequest/OneOf_StreamingRequest/audio(_:)>
+/// [google.cloud.speech.v2.StreamingRecognizeRequest.audio]: <doc:StreamingRecognizeRequest/StreamingRequestOneOf/audio(_:)>
 /// [google.cloud.speech.v2.StreamingRecognizeRequest.recognizer]: <doc:StreamingRecognizeRequest/recognizer>
-/// [google.cloud.speech.v2.StreamingRecognizeRequest.streaming_config]: <doc:StreamingRecognizeRequest/OneOf_StreamingRequest/streamingConfig(_:)>
+/// [google.cloud.speech.v2.StreamingRecognizeRequest.streaming_config]: <doc:StreamingRecognizeRequest/StreamingRequestOneOf/streamingConfig(_:)>
 public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
@@ -52,7 +52,7 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
   /// {recognizer} segment may be set to `_` to use an empty implicit Recognizer.
   public var recognizer: Swift.String = Swift.String()
 
-  public var streamingRequest: OneOf_StreamingRequest? = nil
+  public var streamingRequest: StreamingRequestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -95,7 +95,7 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
       self.recognizer = value
     }
 
-    var streamingRequest: OneOf_StreamingRequest? = nil
+    var streamingRequest: StreamingRequestOneOf? = nil
     let streamingRequestCheckAndSet = {
       if streamingRequest != nil {
         throw DecodingError.dataCorrupted(
@@ -137,7 +137,7 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OneOf_StreamingRequest: Codable, Equatable, Sendable {
+  public enum StreamingRequestOneOf: Codable, Equatable, Sendable {
     /// StreamingRecognitionConfig to be used in this recognition attempt.
     /// If provided, it will override the default RecognitionConfig stored in the
     /// Recognizer.

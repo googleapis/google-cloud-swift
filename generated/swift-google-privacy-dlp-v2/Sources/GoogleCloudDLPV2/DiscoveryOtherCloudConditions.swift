@@ -27,7 +27,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
   public var minAge: GoogleWKT.WKTDuration? = nil
 
   /// The conditions to apply.
-  public var conditions: OneOf_Conditions? = nil
+  public var conditions: ConditionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.minAge = try container.decodeIfPresent(GoogleWKT.WKTDuration.self, forKey: .minAge)
 
-    var conditions: OneOf_Conditions? = nil
+    var conditions: ConditionsOneOf? = nil
     let conditionsCheckAndSet = {
       if conditions != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct DiscoveryOtherCloudConditions: Codable, Equatable, GoogleWKT._AnyP
   }
 
   /// The conditions to apply.
-  public enum OneOf_Conditions: Codable, Equatable, Sendable {
+  public enum ConditionsOneOf: Codable, Equatable, Sendable {
     /// Amazon S3 bucket conditions.
     indirect case amazonS3BucketConditions(AmazonS3BucketConditions?)
   }

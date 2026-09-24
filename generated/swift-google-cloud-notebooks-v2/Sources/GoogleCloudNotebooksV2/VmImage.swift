@@ -27,7 +27,7 @@ public struct VmImage: Codable, Equatable, GoogleWKT._AnyPackable,
   public var project: Swift.String = Swift.String()
 
   /// The reference to an external Compute Engine VM image.
-  public var image: OneOf_Image? = nil
+  public var image: ImageOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct VmImage: Codable, Equatable, GoogleWKT._AnyPackable,
       self.project = value
     }
 
-    var image: OneOf_Image? = nil
+    var image: ImageOneOf? = nil
     let imageCheckAndSet = {
       if image != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct VmImage: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The reference to an external Compute Engine VM image.
-  public enum OneOf_Image: Codable, Equatable, Sendable {
+  public enum ImageOneOf: Codable, Equatable, Sendable {
     /// Optional. Use VM image name to find the image.
     case name(Swift.String)
     /// Optional. Use this VM image family to find the image; the newest image in

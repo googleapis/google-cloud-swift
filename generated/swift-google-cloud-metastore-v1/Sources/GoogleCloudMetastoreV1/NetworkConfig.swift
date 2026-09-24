@@ -92,7 +92,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     /// `projects/{project}/locations/{location}`.
     public var endpointLocation: Swift.String = Swift.String()
 
-    public var vpcResource: OneOf_VpcResource? = nil
+    public var vpcResource: VpcResourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -138,7 +138,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
         self.endpointLocation = value
       }
 
-      var vpcResource: OneOf_VpcResource? = nil
+      var vpcResource: VpcResourceOneOf? = nil
       let vpcResourceCheckAndSet = {
         if vpcResource != nil {
           throw DecodingError.dataCorrupted(
@@ -174,7 +174,7 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_VpcResource: Codable, Equatable, Sendable {
+    public enum VpcResourceOneOf: Codable, Equatable, Sendable {
       /// Immutable. The subnetwork of the customer project from which an IP
       /// address is reserved and used as the Dataproc Metastore service's
       /// endpoint. It is accessible to hosts in the subnet and to all

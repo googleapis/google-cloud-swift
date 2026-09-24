@@ -103,7 +103,7 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// It is non-empty only for specific type class codecs. Needed only when the
     /// type string alone is not enough to disambiguate the specific type.
-    public var typeDetails: OneOf_TypeDetails? = nil
+    public var typeDetails: TypeDetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -146,7 +146,7 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
         self.type = value
       }
 
-      var typeDetails: OneOf_TypeDetails? = nil
+      var typeDetails: TypeDetailsOneOf? = nil
       let typeDetailsCheckAndSet = {
         if typeDetails != nil {
           throw DecodingError.dataCorrupted(
@@ -194,7 +194,7 @@ public struct PacketType: Codable, Equatable, GoogleWKT._AnyPackable,
     ///
     /// It is non-empty only for specific type class codecs. Needed only when the
     /// type string alone is not enough to disambiguate the specific type.
-    public enum OneOf_TypeDetails: Codable, Equatable, Sendable {
+    public enum TypeDetailsOneOf: Codable, Equatable, Sendable {
       /// GstreamerBufferDescriptor is the descriptor for gstreamer buffer type.
       indirect case gstreamerBufferDescriptor(GstreamerBufferDescriptor?)
       /// RawImageDescriptor is the descriptor for the raw image type.

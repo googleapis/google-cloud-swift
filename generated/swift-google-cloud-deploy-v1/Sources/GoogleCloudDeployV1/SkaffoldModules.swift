@@ -25,7 +25,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
   public var configs: [Swift.String] = []
 
   /// The source that contains the Skaffold Config modules.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
       self.configs = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -376,7 +376,7 @@ public struct SkaffoldModules: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source that contains the Skaffold Config modules.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Remote git repository containing the Skaffold Config modules.
     indirect case git(SkaffoldModules.SkaffoldGitSource?)
     /// Optional. Cloud Storage bucket containing the Skaffold Config modules.

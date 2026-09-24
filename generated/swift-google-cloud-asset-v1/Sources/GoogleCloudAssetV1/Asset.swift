@@ -100,7 +100,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A representation of an [access
   /// policy](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
-  public var accessContextPolicy: OneOf_AccessContextPolicy? = nil
+  public var accessContextPolicy: AccessContextPolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -185,7 +185,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
       self.ancestors = value
     }
 
-    var accessContextPolicy: OneOf_AccessContextPolicy? = nil
+    var accessContextPolicy: AccessContextPolicyOneOf? = nil
     let accessContextPolicyCheckAndSet = {
       if accessContextPolicy != nil {
         throw DecodingError.dataCorrupted(
@@ -250,7 +250,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// A representation of an [access
   /// policy](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
-  public enum OneOf_AccessContextPolicy: Codable, Equatable, Sendable {
+  public enum AccessContextPolicyOneOf: Codable, Equatable, Sendable {
     /// Also refer to the [access policy user
     /// guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
     indirect case accessPolicy(GoogleIdentityAccessContextManagerV1.AccessPolicy?)

@@ -27,7 +27,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   public var name: Swift.String = Swift.String()
 
   /// server ca information
-  public var serverCa: OneOf_ServerCa? = nil
+  public var serverCa: ServerCaOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       self.name = value
     }
 
-    var serverCa: OneOf_ServerCa? = nil
+    var serverCa: ServerCaOneOf? = nil
     let serverCaCheckAndSet = {
       if serverCa != nil {
         throw DecodingError.dataCorrupted(
@@ -245,7 +245,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// server ca information
-  public enum OneOf_ServerCa: Codable, Equatable, Sendable {
+  public enum ServerCaOneOf: Codable, Equatable, Sendable {
     indirect case managedServerCa(CertificateAuthority.ManagedCertificateAuthority?)
   }
 

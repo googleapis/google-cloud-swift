@@ -28,11 +28,11 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
   public var aiPlatformNotebookRuntimeTemplate: Swift.String = Swift.String()
 
   /// The location to store the notebook execution result.
-  public var executionSink: OneOf_ExecutionSink? = nil
+  public var executionSink: ExecutionSinkOneOf? = nil
 
   /// The destination of the snapshot of repository files to be available for
   /// read-only access inside a notebook runtime
-  public var repositorySnapshotStorage: OneOf_RepositorySnapshotStorage? = nil
+  public var repositorySnapshotStorage: RepositorySnapshotStorageOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
       self.aiPlatformNotebookRuntimeTemplate = value
     }
 
-    var executionSink: OneOf_ExecutionSink? = nil
+    var executionSink: ExecutionSinkOneOf? = nil
     let executionSinkCheckAndSet = {
       if executionSink != nil {
         throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
     }
     self.executionSink = executionSink
 
-    var repositorySnapshotStorage: OneOf_RepositorySnapshotStorage? = nil
+    var repositorySnapshotStorage: RepositorySnapshotStorageOneOf? = nil
     let repositorySnapshotStorageCheckAndSet = {
       if repositorySnapshotStorage != nil {
         throw DecodingError.dataCorrupted(
@@ -143,7 +143,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// The location to store the notebook execution result.
-  public enum OneOf_ExecutionSink: Codable, Equatable, Sendable {
+  public enum ExecutionSinkOneOf: Codable, Equatable, Sendable {
     /// Optional. The Google Cloud Storage location to upload the result to.
     /// Format: `gs://bucket-name`.
     case gcsOutputBucket(Swift.String)
@@ -151,7 +151,7 @@ public struct NotebookRuntimeOptions: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// The destination of the snapshot of repository files to be available for
   /// read-only access inside a notebook runtime
-  public enum OneOf_RepositorySnapshotStorage: Codable, Equatable, Sendable {
+  public enum RepositorySnapshotStorageOneOf: Codable, Equatable, Sendable {
     /// Optional. The Google Cloud Storage destination to upload the snapshot to.
     /// For empty URI it defaults to the provided gcs_output_bucket.
     /// Format: `gs://bucket-name/path/`.

@@ -23,7 +23,7 @@ public struct ScalingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 {
   /// Represents either a predetermined instance size or a numeric
   /// scaling factor.
-  public var scalingModel: OneOf_ScalingModel? = nil
+  public var scalingModel: ScalingModelOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct ScalingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var scalingModel: OneOf_ScalingModel? = nil
+    var scalingModel: ScalingModelOneOf? = nil
     let scalingModelCheckAndSet = {
       if scalingModel != nil {
         throw DecodingError.dataCorrupted(
@@ -242,7 +242,7 @@ public struct ScalingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Represents either a predetermined instance size or a numeric
   /// scaling factor.
-  public enum OneOf_ScalingModel: Codable, Equatable, Sendable {
+  public enum ScalingModelOneOf: Codable, Equatable, Sendable {
     /// An enum of readable instance sizes, with each instance size mapping to a
     /// float value (e.g. InstanceSize.EXTRA_SMALL = scaling_factor(0.1))
     case instanceSize(ScalingConfig.InstanceSize)

@@ -60,7 +60,7 @@ public struct ListTransferableSkusRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// Specifies the identity of transferred customer.
   /// Either a cloud_identity_id of the customer or the customer name is
   /// required to look up transferable SKUs.
-  public var transferredCustomerIdentity: OneOf_TransferredCustomerIdentity? = nil
+  public var transferredCustomerIdentity: TransferredCustomerIdentityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -123,7 +123,7 @@ public struct ListTransferableSkusRequest: Codable, Equatable, GoogleWKT._AnyPac
       self.languageCode = value
     }
 
-    var transferredCustomerIdentity: OneOf_TransferredCustomerIdentity? = nil
+    var transferredCustomerIdentity: TransferredCustomerIdentityOneOf? = nil
     let transferredCustomerIdentityCheckAndSet = {
       if transferredCustomerIdentity != nil {
         throw DecodingError.dataCorrupted(
@@ -172,7 +172,7 @@ public struct ListTransferableSkusRequest: Codable, Equatable, GoogleWKT._AnyPac
   /// Specifies the identity of transferred customer.
   /// Either a cloud_identity_id of the customer or the customer name is
   /// required to look up transferable SKUs.
-  public enum OneOf_TransferredCustomerIdentity: Codable, Equatable, Sendable {
+  public enum TransferredCustomerIdentityOneOf: Codable, Equatable, Sendable {
     /// Customer's Cloud Identity ID
     case cloudIdentityId(Swift.String)
     /// A reseller is required to create a customer and use the resource name of

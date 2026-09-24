@@ -87,7 +87,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// lower bound of the smallest finite bucket; the lower bound of the
   /// overflow bucket is equal to the upper bound of the largest finite
   /// bucket.
-  public var bucketOption: OneOf_BucketOption? = nil
+  public var bucketOption: BucketOptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -165,7 +165,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
       self.exemplars = value
     }
 
-    var bucketOption: OneOf_BucketOption? = nil
+    var bucketOption: BucketOptionOneOf? = nil
     let bucketOptionCheckAndSet = {
       if bucketOption != nil {
         throw DecodingError.dataCorrupted(
@@ -514,7 +514,7 @@ public struct Distribution: Codable, Equatable, GoogleWKT._AnyPackable,
   /// lower bound of the smallest finite bucket; the lower bound of the
   /// overflow bucket is equal to the upper bound of the largest finite
   /// bucket.
-  public enum OneOf_BucketOption: Codable, Equatable, Sendable {
+  public enum BucketOptionOneOf: Codable, Equatable, Sendable {
     /// Buckets with constant width.
     indirect case linearBuckets(Distribution.LinearBuckets?)
     /// Buckets with exponentially growing width.

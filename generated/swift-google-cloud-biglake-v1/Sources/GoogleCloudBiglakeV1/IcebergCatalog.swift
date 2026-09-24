@@ -531,7 +531,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     public var refreshStatus: IcebergCatalog.FederatedCatalogOptions.RefreshStatus? = nil
 
     /// Info specific to a remote Iceberg REST catalog.
-    public var remoteCatalogInfo: OneOf_RemoteCatalogInfo? = nil
+    public var remoteCatalogInfo: RemoteCatalogInfoOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -586,7 +586,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
       self.refreshStatus = try container.decodeIfPresent(
         IcebergCatalog.FederatedCatalogOptions.RefreshStatus.self, forKey: .refreshStatus)
 
-      var remoteCatalogInfo: OneOf_RemoteCatalogInfo? = nil
+      var remoteCatalogInfo: RemoteCatalogInfoOneOf? = nil
       let remoteCatalogInfoCheckAndSet = {
         if remoteCatalogInfo != nil {
           throw DecodingError.dataCorrupted(
@@ -1232,7 +1232,7 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Info specific to a remote Iceberg REST catalog.
-    public enum OneOf_RemoteCatalogInfo: Codable, Equatable, Sendable {
+    public enum RemoteCatalogInfoOneOf: Codable, Equatable, Sendable {
       /// Optional. Info specific to a Unity Catalog by Databricks.
       indirect case unityCatalogInfo(IcebergCatalog.FederatedCatalogOptions.UnityCatalogInfo?)
       /// Optional. Info specific to an AWS Glue Catalog.

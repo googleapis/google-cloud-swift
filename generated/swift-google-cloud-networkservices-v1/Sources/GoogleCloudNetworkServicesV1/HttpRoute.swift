@@ -204,7 +204,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// value is set to false.
     public var invertMatch: Swift.Bool = Swift.Bool()
 
-    public var matchType: OneOf_MatchType? = nil
+    public var matchType: MatchTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -260,7 +260,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         self.invertMatch = value
       }
 
-      var matchType: OneOf_MatchType? = nil
+      var matchType: MatchTypeOneOf? = nil
       let matchTypeCheckAndSet = {
         if matchType != nil {
           throw DecodingError.dataCorrupted(
@@ -401,7 +401,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_MatchType: Codable, Equatable, Sendable {
+    public enum MatchTypeOneOf: Codable, Equatable, Sendable {
       /// The value of the header should match exactly the content of
       /// exact_match.
       case exactMatch(Swift.String)
@@ -439,7 +439,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// The name of the query parameter to match.
     public var queryParameter: Swift.String = Swift.String()
 
-    public var matchType: OneOf_MatchType? = nil
+    public var matchType: MatchTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -484,7 +484,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         self.queryParameter = value
       }
 
-      var matchType: OneOf_MatchType? = nil
+      var matchType: MatchTypeOneOf? = nil
       let matchTypeCheckAndSet = {
         if matchType != nil {
           throw DecodingError.dataCorrupted(
@@ -529,7 +529,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_MatchType: Codable, Equatable, Sendable {
+    public enum MatchTypeOneOf: Codable, Equatable, Sendable {
       /// The value of the query parameter must exactly match the contents of
       /// exact_match.
       ///
@@ -578,7 +578,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     /// parameters must be matched.
     public var queryParameters: [HttpRoute.QueryParameterMatch] = []
 
-    public var pathMatch: OneOf_PathMatch? = nil
+    public var pathMatch: PathMatchOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -635,7 +635,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         self.queryParameters = value
       }
 
-      var pathMatch: OneOf_PathMatch? = nil
+      var pathMatch: PathMatchOneOf? = nil
       let pathMatchCheckAndSet = {
         if pathMatch != nil {
           throw DecodingError.dataCorrupted(
@@ -684,7 +684,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_PathMatch: Codable, Equatable, Sendable {
+    public enum PathMatchOneOf: Codable, Equatable, Sendable {
       /// The HTTP request path value should exactly match this value.
       ///
       /// Only one of full_path_match, prefix_match, or regex_match should be
@@ -1942,7 +1942,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     public var status: Swift.Int32 = Swift.Int32()
 
     /// Body to return as part of HTTP Response.
-    public var httpBody: OneOf_HttpBody? = nil
+    public var httpBody: HttpBodyOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1985,7 +1985,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
         self.status = value
       }
 
-      var httpBody: OneOf_HttpBody? = nil
+      var httpBody: HttpBodyOneOf? = nil
       let httpBodyCheckAndSet = {
         if httpBody != nil {
           throw DecodingError.dataCorrupted(
@@ -2026,7 +2026,7 @@ public struct HttpRoute: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Body to return as part of HTTP Response.
-    public enum OneOf_HttpBody: Codable, Equatable, Sendable {
+    public enum HttpBodyOneOf: Codable, Equatable, Sendable {
       /// Optional. Response body as a string. Maximum body length is 1024
       /// characters.
       case stringBody(Swift.String)

@@ -22,7 +22,7 @@
   public struct StudyTimeConstraint: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var constraint: OneOf_Constraint? = nil
+    public var constraint: ConstraintOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var constraint: OneOf_Constraint? = nil
+      var constraint: ConstraintOneOf? = nil
       let constraintCheckAndSet = {
         if constraint != nil {
           throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@
       }
     }
 
-    public enum OneOf_Constraint: Codable, Equatable, Sendable {
+    public enum ConstraintOneOf: Codable, Equatable, Sendable {
       /// Counts the wallclock time passed since the creation of this Study.
       indirect case maxDuration(GoogleWKT.WKTDuration?)
       /// Compares the wallclock time to this time. Must use UTC timezone.

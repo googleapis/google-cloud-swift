@@ -42,7 +42,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   public var databaseEngine: CloudSqlProperties.DatabaseEngine = CloudSqlProperties.DatabaseEngine()
 
   /// How to authenticate to the instance.
-  public var credential: OneOf_Credential? = nil
+  public var credential: CredentialOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
       self.databaseEngine = value
     }
 
-    var credential: OneOf_Credential? = nil
+    var credential: CredentialOneOf? = nil
     let credentialCheckAndSet = {
       if credential != nil {
         throw DecodingError.dataCorrupted(
@@ -262,7 +262,7 @@ public struct CloudSqlProperties: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// How to authenticate to the instance.
-  public enum OneOf_Credential: Codable, Equatable, Sendable {
+  public enum CredentialOneOf: Codable, Equatable, Sendable {
     /// A username and password stored in Secret Manager.
     indirect case usernamePassword(SecretManagerCredential?)
     /// Built-in IAM authentication (must be configured in Cloud SQL).

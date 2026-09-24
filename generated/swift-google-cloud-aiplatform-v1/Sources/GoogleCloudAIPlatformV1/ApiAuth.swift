@@ -23,7 +23,7 @@
     Sendable
   {
     /// The auth config.
-    public var authConfig: OneOf_AuthConfig? = nil
+    public var authConfig: AuthConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var authConfig: OneOf_AuthConfig? = nil
+      var authConfig: AuthConfigOneOf? = nil
       let authConfigCheckAndSet = {
         if authConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -167,7 +167,7 @@
     }
 
     /// The auth config.
-    public enum OneOf_AuthConfig: Codable, Equatable, Sendable {
+    public enum AuthConfigOneOf: Codable, Equatable, Sendable {
       /// The API secret.
       indirect case apiKeyConfig(ApiAuth.ApiKeyConfig?)
     }

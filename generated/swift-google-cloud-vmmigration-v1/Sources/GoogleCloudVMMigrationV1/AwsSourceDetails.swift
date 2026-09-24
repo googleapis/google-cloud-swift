@@ -50,7 +50,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// source will originate from this IP.
   public var publicIp: Swift.String = Swift.String()
 
-  public var credentialsType: OneOf_CredentialsType? = nil
+  public var credentialsType: CredentialsTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -125,7 +125,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       self.publicIp = value
     }
 
-    var credentialsType: OneOf_CredentialsType? = nil
+    var credentialsType: CredentialsTypeOneOf? = nil
     let credentialsTypeCheckAndSet = {
       if credentialsType != nil {
         throw DecodingError.dataCorrupted(
@@ -460,7 +460,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_CredentialsType: Codable, Equatable, Sendable {
+  public enum CredentialsTypeOneOf: Codable, Equatable, Sendable {
     /// AWS Credentials using access key id and secret.
     indirect case accessKeyCreds(AwsSourceDetails.AccessKeyCredentials?)
   }

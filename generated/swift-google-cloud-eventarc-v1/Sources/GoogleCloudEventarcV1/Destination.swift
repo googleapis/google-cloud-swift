@@ -26,7 +26,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This should only be used with HttpEndpoint destination type.
   public var networkConfig: NetworkConfig? = nil
 
-  public var descriptor: OneOf_Descriptor? = nil
+  public var descriptor: DescriptorOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.networkConfig = try container.decodeIfPresent(NetworkConfig.self, forKey: .networkConfig)
 
-    var descriptor: OneOf_Descriptor? = nil
+    var descriptor: DescriptorOneOf? = nil
     let descriptorCheckAndSet = {
       if descriptor != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Descriptor: Codable, Equatable, Sendable {
+  public enum DescriptorOneOf: Codable, Equatable, Sendable {
     /// Cloud Run fully-managed resource that receives the events. The resource
     /// should be in the same project as the trigger.
     indirect case cloudRun(CloudRun?)

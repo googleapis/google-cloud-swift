@@ -53,7 +53,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// Configuration for the connection depending on the type of provider.
-  public var connectionConfig: OneOf_ConnectionConfig? = nil
+  public var connectionConfig: ConnectionConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -136,7 +136,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var connectionConfig: OneOf_ConnectionConfig? = nil
+    var connectionConfig: ConnectionConfigOneOf? = nil
     let connectionConfigCheckAndSet = {
       if connectionConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -205,7 +205,7 @@ public struct Connection: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Configuration for the connection depending on the type of provider.
-  public enum OneOf_ConnectionConfig: Codable, Equatable, Sendable {
+  public enum ConnectionConfigOneOf: Codable, Equatable, Sendable {
     /// Configuration for connections to github.com.
     indirect case githubConfig(GitHubConfig?)
     /// Configuration for connections to an instance of GitHub Enterprise.

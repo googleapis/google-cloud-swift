@@ -22,7 +22,7 @@ public struct TargetResource: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Minimum details to identify the restored resource.
-  public var targetResourceInfo: OneOf_TargetResourceInfo? = nil
+  public var targetResourceInfo: TargetResourceInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct TargetResource: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var targetResourceInfo: OneOf_TargetResourceInfo? = nil
+    var targetResourceInfo: TargetResourceInfoOneOf? = nil
     let targetResourceInfoCheckAndSet = {
       if targetResourceInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct TargetResource: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Minimum details to identify the restored resource.
-  public enum OneOf_TargetResourceInfo: Codable, Equatable, Sendable {
+  public enum TargetResourceInfoOneOf: Codable, Equatable, Sendable {
     /// Details of the native Google Cloud resource created as part of restore.
     indirect case gcpResource(GcpResource?)
   }

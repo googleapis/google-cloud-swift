@@ -65,7 +65,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source resource that is represented by this DataSource. It can be a
   /// Google Cloud resource, or one backed up by a Backup Appliance.
-  public var sourceResource: OneOf_SourceResource? = nil
+  public var sourceResource: SourceResourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -155,7 +155,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupBlockedByVaultAccessRestriction = value
     }
 
-    var sourceResource: OneOf_SourceResource? = nil
+    var sourceResource: SourceResourceOneOf? = nil
     let sourceResourceCheckAndSet = {
       if sourceResource != nil {
         throw DecodingError.dataCorrupted(
@@ -344,7 +344,7 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The source resource that is represented by this DataSource. It can be a
   /// Google Cloud resource, or one backed up by a Backup Appliance.
-  public enum OneOf_SourceResource: Codable, Equatable, Sendable {
+  public enum SourceResourceOneOf: Codable, Equatable, Sendable {
     /// The backed up resource is a Google Cloud resource.
     /// The word 'DataSource' was included in the names to indicate that this is
     /// the representation of the Google Cloud resource used within the

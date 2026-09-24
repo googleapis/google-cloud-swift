@@ -33,7 +33,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   public var activityTime: GoogleWKT.WKTTimestamp? = nil
 
   /// Oneof for the different logging activities in a pipeline.
-  public var activity: OneOf_Activity? = nil
+  public var activity: ActivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     self.activityTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .activityTime)
 
-    var activity: OneOf_Activity? = nil
+    var activity: ActivityOneOf? = nil
     let activityCheckAndSet = {
       if activity != nil {
         throw DecodingError.dataCorrupted(
@@ -864,7 +864,7 @@ public struct PipelineActivity: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Oneof for the different logging activities in a pipeline.
-  public enum OneOf_Activity: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logging when a message is received in this Pipeline (or an error
     /// encountered).
     indirect case messageReceived(PipelineActivity.MessageReceived?)

@@ -27,7 +27,7 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
   /// other buckets within the location being profiled. The first
   /// filter to match will be applied, regardless of the condition. If none is
   /// set, will default to `others`.
-  public var filter: OneOf_Filter? = nil
+  public var filter: FilterOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var filter: OneOf_Filter? = nil
+    var filter: FilterOneOf? = nil
     let filterCheckAndSet = {
       if filter != nil {
         throw DecodingError.dataCorrupted(
@@ -120,7 +120,7 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
   /// other buckets within the location being profiled. The first
   /// filter to match will be applied, regardless of the condition. If none is
   /// set, will default to `others`.
-  public enum OneOf_Filter: Codable, Equatable, Sendable {
+  public enum FilterOneOf: Codable, Equatable, Sendable {
     /// Optional. A specific set of buckets for this filter to apply to.
     indirect case collection(FileStoreCollection?)
     /// Optional. The bucket to scan. Targets including this can only include one

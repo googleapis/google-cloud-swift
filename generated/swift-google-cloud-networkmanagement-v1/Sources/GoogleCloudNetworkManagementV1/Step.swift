@@ -39,7 +39,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
   /// has no permission to view the configuration in this step, for non-final
   /// states a special state is populated (VIEWER_PERMISSION_MISSING), and for
   /// final state the configuration is cleared.
-  public var stepInfo: OneOf_StepInfo? = nil
+  public var stepInfo: StepInfoOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -173,7 +173,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
       self.projectId = value
     }
 
-    var stepInfo: OneOf_StepInfo? = nil
+    var stepInfo: StepInfoOneOf? = nil
     let stepInfoCheckAndSet = {
       if stepInfo != nil {
         throw DecodingError.dataCorrupted(
@@ -934,7 +934,7 @@ public struct Step: Codable, Equatable, GoogleWKT._AnyPackable,
   /// has no permission to view the configuration in this step, for non-final
   /// states a special state is populated (VIEWER_PERMISSION_MISSING), and for
   /// final state the configuration is cleared.
-  public enum OneOf_StepInfo: Codable, Equatable, Sendable {
+  public enum StepInfoOneOf: Codable, Equatable, Sendable {
     /// Display information of a Compute Engine instance.
     indirect case instance(InstanceInfo?)
     /// Display information of a Compute Engine firewall rule.

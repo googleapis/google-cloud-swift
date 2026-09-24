@@ -119,7 +119,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// be overridden.
   ///
   /// [google.cloud.tasks.v2.HttpRequest.headers]: <doc:HttpRequest/headers>
-  public var authorizationHeader: OneOf_AuthorizationHeader? = nil
+  public var authorizationHeader: AuthorizationHeaderOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -179,7 +179,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.body = value
     }
 
-    var authorizationHeader: OneOf_AuthorizationHeader? = nil
+    var authorizationHeader: AuthorizationHeaderOneOf? = nil
     let authorizationHeaderCheckAndSet = {
       if authorizationHeader != nil {
         throw DecodingError.dataCorrupted(
@@ -229,7 +229,7 @@ public struct HttpRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// be overridden.
   ///
   /// [google.cloud.tasks.v2.HttpRequest.headers]: <doc:HttpRequest/headers>
-  public enum OneOf_AuthorizationHeader: Codable, Equatable, Sendable {
+  public enum AuthorizationHeaderOneOf: Codable, Equatable, Sendable {
     /// If specified, an
     /// [OAuth token](https://developers.google.com/identity/protocols/OAuth2)
     /// will be generated and attached as an `Authorization` header in the HTTP

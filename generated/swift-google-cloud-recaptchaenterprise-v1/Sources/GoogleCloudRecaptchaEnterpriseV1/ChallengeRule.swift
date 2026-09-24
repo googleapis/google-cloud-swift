@@ -40,7 +40,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public var condition: Swift.String = Swift.String()
 
   /// Required. The outcome to apply when this challenge rule matches.
-  public var outcome: OneOf_Outcome? = nil
+  public var outcome: OutcomeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
       self.condition = value
     }
 
-    var outcome: OneOf_Outcome? = nil
+    var outcome: OutcomeOneOf? = nil
     let outcomeCheckAndSet = {
       if outcome != nil {
         throw DecodingError.dataCorrupted(
@@ -261,7 +261,7 @@ public struct ChallengeRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The outcome to apply when this challenge rule matches.
-  public enum OneOf_Outcome: Codable, Equatable, Sendable {
+  public enum OutcomeOneOf: Codable, Equatable, Sendable {
     /// Do not present a challenge to the user.
     indirect case noChallenge(ChallengeRule.NoChallengeOutcome?)
     /// Present a challenge to the user.

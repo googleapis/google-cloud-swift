@@ -32,7 +32,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of the container within the file with location of the finding. This
   /// may be extended to include other container types like audio, video, etc in
   /// future.
-  public var location: OneOf_Location? = nil
+  public var location: LocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.containerName = value
     }
 
-    var location: OneOf_Location? = nil
+    var location: LocationOneOf? = nil
     let locationCheckAndSet = {
       if location != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct SdpContentLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Type of the container within the file with location of the finding. This
   /// may be extended to include other container types like audio, video, etc in
   /// future.
-  public enum OneOf_Location: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Codable, Equatable, Sendable {
     /// Location within an image's pixels.
     indirect case imageFindingLocation(SdpImageFindingLocation?)
   }

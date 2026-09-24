@@ -27,7 +27,7 @@
 
     /// The spec for the metric.
     /// It would be either a pre-defined metric, or a inline metric spec.
-    public var metricSpec: OneOf_MetricSpec? = nil
+    public var metricSpec: MetricSpecOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@
         self.aggregationMetrics = value
       }
 
-      var metricSpec: OneOf_MetricSpec? = nil
+      var metricSpec: MetricSpecOneOf? = nil
       let metricSpecCheckAndSet = {
         if metricSpec != nil {
           throw DecodingError.dataCorrupted(
@@ -342,7 +342,7 @@
 
     /// The spec for the metric.
     /// It would be either a pre-defined metric, or a inline metric spec.
-    public enum OneOf_MetricSpec: Codable, Equatable, Sendable {
+    public enum MetricSpecOneOf: Codable, Equatable, Sendable {
       /// The spec for a pre-defined metric.
       indirect case predefinedMetricSpec(PredefinedMetricSpec?)
       /// Spec for a computation based metric.

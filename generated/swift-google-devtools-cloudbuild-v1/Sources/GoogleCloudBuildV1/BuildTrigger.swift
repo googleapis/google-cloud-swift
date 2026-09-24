@@ -123,7 +123,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Template describing the Build request to make when the trigger is matched.
   /// At least one of the template fields must be provided.
-  public var buildTemplate: OneOf_BuildTemplate? = nil
+  public var buildTemplate: BuildTemplateOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -245,7 +245,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     self.repositoryEventConfig = try container.decodeIfPresent(
       RepositoryEventConfig.self, forKey: .repositoryEventConfig)
 
-    var buildTemplate: OneOf_BuildTemplate? = nil
+    var buildTemplate: BuildTemplateOneOf? = nil
     let buildTemplateCheckAndSet = {
       if buildTemplate != nil {
         throw DecodingError.dataCorrupted(
@@ -316,7 +316,7 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Template describing the Build request to make when the trigger is matched.
   /// At least one of the template fields must be provided.
-  public enum OneOf_BuildTemplate: Codable, Equatable, Sendable {
+  public enum BuildTemplateOneOf: Codable, Equatable, Sendable {
     /// Autodetect build configuration.  The following precedence is used (case
     /// insensitive):
     ///

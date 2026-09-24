@@ -42,7 +42,7 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public var user: Swift.String = Swift.String()
 
   /// oneof field to support various import formats like SQL and CSV.
-  public var importOptions: OneOf_ImportOptions? = nil
+  public var importOptions: ImportOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -100,7 +100,7 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.user = value
     }
 
-    var importOptions: OneOf_ImportOptions? = nil
+    var importOptions: ImportOptionsOneOf? = nil
     let importOptionsCheckAndSet = {
       if importOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -317,7 +317,7 @@ public struct ImportClusterRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// oneof field to support various import formats like SQL and CSV.
-  public enum OneOf_ImportOptions: Codable, Equatable, Sendable {
+  public enum ImportOptionsOneOf: Codable, Equatable, Sendable {
     /// Options for importing data in SQL format.
     indirect case sqlImportOptions(ImportClusterRequest.SqlImportOptions?)
     /// Options for importing data in CSV format.

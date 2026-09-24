@@ -26,7 +26,7 @@
     Sendable
   {
     /// The exported intents.
-    public var intents: OneOf_Intents? = nil
+    public var intents: IntentsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var intents: OneOf_Intents? = nil
+      var intents: IntentsOneOf? = nil
       let intentsCheckAndSet = {
         if intents != nil {
           throw DecodingError.dataCorrupted(
@@ -106,7 +106,7 @@
     }
 
     /// The exported intents.
-    public enum OneOf_Intents: Codable, Equatable, Sendable {
+    public enum IntentsOneOf: Codable, Equatable, Sendable {
       /// The URI to a file containing the exported intents. This field is
       /// populated only if `intents_uri` is specified in
       /// [ExportIntentsRequest][google.cloud.dialogflow.cx.v3.ExportIntentsRequest].

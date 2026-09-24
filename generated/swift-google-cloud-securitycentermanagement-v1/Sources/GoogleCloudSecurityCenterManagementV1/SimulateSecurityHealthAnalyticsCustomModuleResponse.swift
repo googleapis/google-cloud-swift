@@ -83,7 +83,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
     Sendable
   {
     /// The result of the simulation.
-    public var result: OneOf_Result? = nil
+    public var result: ResultOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -123,7 +123,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var result: OneOf_Result? = nil
+      var result: ResultOneOf? = nil
       let resultCheckAndSet = {
         if result != nil {
           throw DecodingError.dataCorrupted(
@@ -170,7 +170,7 @@ public struct SimulateSecurityHealthAnalyticsCustomModuleResponse: Codable, Equa
     }
 
     /// The result of the simulation.
-    public enum OneOf_Result: Codable, Equatable, Sendable {
+    public enum ResultOneOf: Codable, Equatable, Sendable {
       /// Finding that would be published for the test case if a violation is
       /// detected.
       indirect case finding(SimulatedFinding?)

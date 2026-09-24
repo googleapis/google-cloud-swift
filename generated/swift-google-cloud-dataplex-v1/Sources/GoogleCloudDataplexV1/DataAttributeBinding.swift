@@ -66,7 +66,7 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference to the resource that is associated to attributes, or
   /// the query to match resources and associate attributes.
-  public var resourceReference: OneOf_ResourceReference? = nil
+  public var resourceReference: ResourceReferenceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -151,7 +151,7 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.paths = value
     }
 
-    var resourceReference: OneOf_ResourceReference? = nil
+    var resourceReference: ResourceReferenceOneOf? = nil
     let resourceReferenceCheckAndSet = {
       if resourceReference != nil {
         throw DecodingError.dataCorrupted(
@@ -279,7 +279,7 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The reference to the resource that is associated to attributes, or
   /// the query to match resources and associate attributes.
-  public enum OneOf_ResourceReference: Codable, Equatable, Sendable {
+  public enum ResourceReferenceOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. The resource name of the resource that is associated
     /// to attributes. Presently, only entity resource is supported in the form:
     /// projects/{project}/locations/{location}/lakes/{lake}/zones/{zone}/entities/{entity_id}

@@ -37,7 +37,7 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var maxConcurrentBackfillTasks: Swift.Int32 = Swift.Int32()
 
   /// The CDC method to use for the stream.
-  public var cdcMethod: OneOf_CdcMethod? = nil
+  public var cdcMethod: CdcMethodOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maxConcurrentBackfillTasks = value
     }
 
-    var cdcMethod: OneOf_CdcMethod? = nil
+    var cdcMethod: CdcMethodOneOf? = nil
     let cdcMethodCheckAndSet = {
       if cdcMethod != nil {
         throw DecodingError.dataCorrupted(
@@ -253,7 +253,7 @@ public struct MysqlSourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The CDC method to use for the stream.
-  public enum OneOf_CdcMethod: Codable, Equatable, Sendable {
+  public enum CdcMethodOneOf: Codable, Equatable, Sendable {
     /// Use Binary log position based replication.
     indirect case binaryLogPosition(MysqlSourceConfig.BinaryLogPosition?)
     /// Use GTID based replication.

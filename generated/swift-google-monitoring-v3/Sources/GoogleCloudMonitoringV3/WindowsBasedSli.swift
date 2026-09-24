@@ -28,7 +28,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   public var windowPeriod: GoogleWKT.WKTDuration? = nil
 
   /// The criterion to use for evaluating window goodness.
-  public var windowCriterion: OneOf_WindowCriterion? = nil
+  public var windowCriterion: WindowCriterionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
     self.windowPeriod = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .windowPeriod)
 
-    var windowCriterion: OneOf_WindowCriterion? = nil
+    var windowCriterion: WindowCriterionOneOf? = nil
     let windowCriterionCheckAndSet = {
       if windowCriterion != nil {
         throw DecodingError.dataCorrupted(
@@ -142,7 +142,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The means, either a request-based SLI or a basic SLI, by which to compute
     /// performance over a window.
-    public var type: OneOf_Type? = nil
+    public var type: TypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -185,7 +185,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
         self.threshold = value
       }
 
-      var type: OneOf_Type? = nil
+      var type: TypeOneOf? = nil
       let typeCheckAndSet = {
         if type != nil {
           throw DecodingError.dataCorrupted(
@@ -231,7 +231,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// The means, either a request-based SLI or a basic SLI, by which to compute
     /// performance over a window.
-    public enum OneOf_Type: Codable, Equatable, Sendable {
+    public enum TypeOneOf: Codable, Equatable, Sendable {
       /// `RequestBasedSli` to evaluate to judge window quality.
       indirect case performance(RequestBasedSli?)
       /// `BasicSli` to evaluate to judge window quality.
@@ -330,7 +330,7 @@ public struct WindowsBasedSli: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The criterion to use for evaluating window goodness.
-  public enum OneOf_WindowCriterion: Codable, Equatable, Sendable {
+  public enum WindowCriterionOneOf: Codable, Equatable, Sendable {
     /// A [monitoring filter](https://cloud.google.com/monitoring/api/v3/filters)
     /// specifying a `TimeSeries` with `ValueType = BOOL`. The window is good if
     /// any `true` values appear in the window.

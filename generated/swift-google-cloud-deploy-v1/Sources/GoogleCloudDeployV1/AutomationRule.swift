@@ -22,7 +22,7 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The configuration of the Automation rule.
-  public var rule: OneOf_Rule? = nil
+  public var rule: RuleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var rule: OneOf_Rule? = nil
+    var rule: RuleOneOf? = nil
     let ruleCheckAndSet = {
       if rule != nil {
         throw DecodingError.dataCorrupted(
@@ -122,7 +122,7 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configuration of the Automation rule.
-  public enum OneOf_Rule: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Codable, Equatable, Sendable {
     /// Optional. `PromoteReleaseRule` will automatically promote a release from
     /// the current target to a specified target.
     indirect case promoteReleaseRule(PromoteReleaseRule?)

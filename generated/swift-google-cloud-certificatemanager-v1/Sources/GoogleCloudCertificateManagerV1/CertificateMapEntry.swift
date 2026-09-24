@@ -46,7 +46,7 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. A serving state of this Certificate Map Entry.
   public var state: ServingState = ServingState()
 
-  public var match: OneOf_Match? = nil
+  public var match: MatchOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,7 +118,7 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var match: OneOf_Match? = nil
+    var match: MatchOneOf? = nil
     let matchCheckAndSet = {
       if match != nil {
         throw DecodingError.dataCorrupted(
@@ -278,7 +278,7 @@ public struct CertificateMapEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Match: Codable, Equatable, Sendable {
+  public enum MatchOneOf: Codable, Equatable, Sendable {
     /// A Hostname (FQDN, e.g. `example.com`) or a wildcard hostname expression
     /// (`*.example.com`) for a set of hostnames with common suffix. Used as
     /// Server Name Indication (SNI) for selecting a proper certificate.

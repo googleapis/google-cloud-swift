@@ -46,7 +46,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   ///
   /// The detail information of a specific event type.
-  public var event: OneOf_Event? = nil
+  public var event: EventOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.eventNotes = value
     }
 
-    var event: OneOf_Event? = nil
+    var event: EventOneOf? = nil
     let eventCheckAndSet = {
       if event != nil {
         throw DecodingError.dataCorrupted(
@@ -142,7 +142,7 @@ public struct ClientEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Required.
   ///
   /// The detail information of a specific event type.
-  public enum OneOf_Event: Codable, Equatable, Sendable {
+  public enum EventOneOf: Codable, Equatable, Sendable {
     /// An event issued when a job seeker interacts with the application that
     /// implements Cloud Talent Solution.
     indirect case jobEvent(JobEvent?)

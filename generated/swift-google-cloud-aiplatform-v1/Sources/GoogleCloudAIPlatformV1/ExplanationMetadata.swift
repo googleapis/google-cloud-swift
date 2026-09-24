@@ -229,8 +229,8 @@
       /// An encoded tensor is generated if the input tensor is encoded by a lookup
       /// table.
       ///
-      /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
-      /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/OneOf_Method/xraiAttribution(_:)>
+      /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/MethodOneOf/integratedGradientsAttribution(_:)>
+      /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/MethodOneOf/xraiAttribution(_:)>
       public var encodedTensorName: Swift.String = Swift.String()
 
       /// A list of baselines for the encoded tensor.
@@ -496,7 +496,7 @@
         /// OUTLINES shows regions of attribution, while PIXELS shows per-pixel
         /// attribution. Defaults to OUTLINES.
         ///
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/MethodOneOf/integratedGradientsAttribution(_:)>
         public var type: ExplanationMetadata.InputMetadata.Visualization.Type_ = ExplanationMetadata
           .InputMetadata.Visualization.Type_()
 
@@ -518,8 +518,8 @@
         /// which highlights the most influential regions in yellow and the least
         /// influential in blue.
         ///
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/OneOf_Method/xraiAttribution(_:)>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/MethodOneOf/integratedGradientsAttribution(_:)>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.xrai_attribution]: <doc:ExplanationParameters/MethodOneOf/xraiAttribution(_:)>
         public var colorMap: ExplanationMetadata.InputMetadata.Visualization.ColorMap =
           ExplanationMetadata.InputMetadata.Visualization.ColorMap()
 
@@ -636,7 +636,7 @@
         /// [Integrated Gradients
         /// attribution][google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution].
         ///
-        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/OneOf_Method/integratedGradientsAttribution(_:)>
+        /// [google.cloud.aiplatform.v1.ExplanationParameters.integrated_gradients_attribution]: <doc:ExplanationParameters/MethodOneOf/integratedGradientsAttribution(_:)>
         ///
         /// - Note: Adding cases to this enumeration is not considered a breaking change.
         ///   Always include an `@unknown default:` case when switching over this type.
@@ -1399,7 +1399,7 @@
       ///
       /// [google.cloud.aiplatform.v1.Attribution.output_display_name]: <doc:Attribution/outputDisplayName>
       /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
-      public var displayNameMapping: OneOf_DisplayNameMapping? = nil
+      public var displayNameMapping: DisplayNameMappingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1442,7 +1442,7 @@
           self.outputTensorName = value
         }
 
-        var displayNameMapping: OneOf_DisplayNameMapping? = nil
+        var displayNameMapping: DisplayNameMappingOneOf? = nil
         let displayNameMappingCheckAndSet = {
           if displayNameMapping != nil {
             throw DecodingError.dataCorrupted(
@@ -1497,7 +1497,7 @@
       ///
       /// [google.cloud.aiplatform.v1.Attribution.output_display_name]: <doc:Attribution/outputDisplayName>
       /// [google.cloud.aiplatform.v1.Attribution.output_index]: <doc:Attribution/outputIndex>
-      public enum OneOf_DisplayNameMapping: Codable, Equatable, Sendable {
+      public enum DisplayNameMappingOneOf: Codable, Equatable, Sendable {
         /// Static mapping between the index and display name.
         ///
         /// Use this if the outputs are a deterministic n-dimensional array, e.g. a

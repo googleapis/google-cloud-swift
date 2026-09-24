@@ -55,7 +55,7 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A customer's cloud_identity_id or domain is required to look up the
   /// customer's Cloud Identity. For Team customers, only the cloud_identity_id
   /// option is valid.
-  public var customerIdentity: OneOf_CustomerIdentity? = nil
+  public var customerIdentity: CustomerIdentityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -120,7 +120,7 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.customer = value
     }
 
-    var customerIdentity: OneOf_CustomerIdentity? = nil
+    var customerIdentity: CustomerIdentityOneOf? = nil
     let customerIdentityCheckAndSet = {
       if customerIdentity != nil {
         throw DecodingError.dataCorrupted(
@@ -177,7 +177,7 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// A customer's cloud_identity_id or domain is required to look up the
   /// customer's Cloud Identity. For Team customers, only the cloud_identity_id
   /// option is valid.
-  public enum OneOf_CustomerIdentity: Codable, Equatable, Sendable {
+  public enum CustomerIdentityOneOf: Codable, Equatable, Sendable {
     /// Required. Customer domain.
     case domain(Swift.String)
     /// Required. Customer's Cloud Identity ID

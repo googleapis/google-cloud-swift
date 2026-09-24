@@ -25,7 +25,7 @@
     /// Output only. Message creation timestamp.
     public var createTime: GoogleWKT.WKTTimestamp? = nil
 
-    public var message: OneOf_Message? = nil
+    public var message: MessageOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@
       self.createTime = try container.decodeIfPresent(
         GoogleWKT.WKTTimestamp.self, forKey: .createTime)
 
-      var message: OneOf_Message? = nil
+      var message: MessageOneOf? = nil
       let messageCheckAndSet = {
         if message != nil {
           throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@
       }
     }
 
-    public enum OneOf_Message: Codable, Equatable, Sendable {
+    public enum MessageOneOf: Codable, Equatable, Sendable {
       /// User text input.
       indirect case userInput(TextInput?)
       /// Search reply.

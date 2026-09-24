@@ -41,8 +41,8 @@
     ///    page][TransitionRoute.target_page] in transition routes that point to
     ///    this page will be cleared).
     ///
-    /// [EventHandler.target_page]: <doc:EventHandler/OneOf_Target/targetPage(_:)>
-    /// [TransitionRoute.target_page]: <doc:TransitionRoute/OneOf_Target/targetPage(_:)>
+    /// [EventHandler.target_page]: <doc:EventHandler/TargetOneOf/targetPage(_:)>
+    /// [TransitionRoute.target_page]: <doc:TransitionRoute/TargetOneOf/targetPage(_:)>
     public var force: Swift.Bool = Swift.Bool()
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()

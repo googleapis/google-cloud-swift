@@ -43,7 +43,7 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
   public var customPronunciations: CustomPronunciations? = nil
 
   /// The input source, which is either plain text or SSML.
-  public var inputSource: OneOf_InputSource? = nil
+  public var inputSource: InputSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -92,7 +92,7 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
     self.customPronunciations = try container.decodeIfPresent(
       CustomPronunciations.self, forKey: .customPronunciations)
 
-    var inputSource: OneOf_InputSource? = nil
+    var inputSource: InputSourceOneOf? = nil
     let inputSourceCheckAndSet = {
       if inputSource != nil {
         throw DecodingError.dataCorrupted(
@@ -146,7 +146,7 @@ public struct SynthesisInput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The input source, which is either plain text or SSML.
-  public enum OneOf_InputSource: Codable, Equatable, Sendable {
+  public enum InputSourceOneOf: Codable, Equatable, Sendable {
     /// The raw text to be synthesized.
     case text(Swift.String)
     /// Markup for Chirp 3: HD voices specifically. This field may not be used

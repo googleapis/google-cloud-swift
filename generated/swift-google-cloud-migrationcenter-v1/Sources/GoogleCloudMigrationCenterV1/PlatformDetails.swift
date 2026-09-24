@@ -21,7 +21,7 @@ import Foundation
 public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var vendorDetails: OneOf_VendorDetails? = nil
+  public var vendorDetails: VendorDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var vendorDetails: OneOf_VendorDetails? = nil
+    var vendorDetails: VendorDetailsOneOf? = nil
     let vendorDetailsCheckAndSet = {
       if vendorDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct PlatformDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_VendorDetails: Codable, Equatable, Sendable {
+  public enum VendorDetailsOneOf: Codable, Equatable, Sendable {
     /// VMware specific details.
     indirect case vmwareDetails(VmwarePlatformDetails?)
     /// AWS EC2 specific details.

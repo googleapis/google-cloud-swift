@@ -35,7 +35,7 @@
     public var output: GeneratorSuggestion? = nil
 
     /// Instruction list of this few_shot example.
-    public var instructionList: OneOf_InstructionList? = nil
+    public var instructionList: InstructionListOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@
       }
       self.output = try container.decodeIfPresent(GeneratorSuggestion.self, forKey: .output)
 
-      var instructionList: OneOf_InstructionList? = nil
+      var instructionList: InstructionListOneOf? = nil
       let instructionListCheckAndSet = {
         if instructionList != nil {
           throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@
     }
 
     /// Instruction list of this few_shot example.
-    public enum OneOf_InstructionList: Codable, Equatable, Sendable {
+    public enum InstructionListOneOf: Codable, Equatable, Sendable {
       /// Summarization sections.
       indirect case summarizationSectionList(SummarizationSectionList?)
     }

@@ -30,7 +30,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
   public var step: MigrationStep = MigrationStep()
 
   /// Details about this step.
-  public var stepDetails: OneOf_StepDetails? = nil
+  public var stepDetails: StepDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
       self.step = value
     }
 
-    var stepDetails: OneOf_StepDetails? = nil
+    var stepDetails: StepDetailsOneOf? = nil
     let stepDetailsCheckAndSet = {
       if stepDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -387,7 +387,7 @@ public struct MigrationProgressEvent: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Details about this step.
-  public enum OneOf_StepDetails: Codable, Equatable, Sendable {
+  public enum StepDetailsOneOf: Codable, Equatable, Sendable {
     /// Details for the `PREPARE` step.
     indirect case prepareStepDetails(MigrationProgressEvent.PrepareStepDetails?)
     /// Details for the `REDIRECT_WRITES` step.

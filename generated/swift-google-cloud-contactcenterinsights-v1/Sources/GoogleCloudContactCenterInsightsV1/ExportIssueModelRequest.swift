@@ -24,7 +24,7 @@ public struct ExportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Required. The issue model to export.
   public var name: Swift.String = Swift.String()
 
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct ExportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.name = value
     }
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -171,7 +171,7 @@ public struct ExportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage URI to export the issue model to.
     indirect case gcsDestination(ExportIssueModelRequest.GcsDestination?)
   }

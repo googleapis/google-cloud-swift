@@ -23,7 +23,7 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
   Sendable
 {
   /// Data profile type.
-  public var dataProfile: OneOf_DataProfile? = nil
+  public var dataProfile: DataProfileOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dataProfile: OneOf_DataProfile? = nil
+    var dataProfile: DataProfileOneOf? = nil
     let dataProfileCheckAndSet = {
       if dataProfile != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct DataProfileBigQueryRowSchema: Codable, Equatable, GoogleWKT._AnyPa
   }
 
   /// Data profile type.
-  public enum OneOf_DataProfile: Codable, Equatable, Sendable {
+  public enum DataProfileOneOf: Codable, Equatable, Sendable {
     /// Table data profile column
     indirect case tableProfile(TableDataProfile?)
     /// Column data profile column

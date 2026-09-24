@@ -25,7 +25,7 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleWKT._An
   /// scope.
   public var policy: RestoreConfig.VolumeDataRestorePolicy = RestoreConfig.VolumeDataRestorePolicy()
 
-  public var scope: OneOf_Scope? = nil
+  public var scope: ScopeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleWKT._An
       self.policy = value
     }
 
-    var scope: OneOf_Scope? = nil
+    var scope: ScopeOneOf? = nil
     let scopeCheckAndSet = {
       if scope != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct VolumeDataRestorePolicyOverride: Codable, Equatable, GoogleWKT._An
     }
   }
 
-  public enum OneOf_Scope: Codable, Equatable, Sendable {
+  public enum ScopeOneOf: Codable, Equatable, Sendable {
     /// A list of PVCs to apply the policy override to.
     indirect case selectedPvcs(NamespacedNames?)
   }

@@ -27,7 +27,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Specifies the contribution of this discount component to the total
   /// discount.
-  public var discountValue: OneOf_DiscountValue? = nil
+  public var discountValue: DiscountValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.discountType = value
     }
 
-    var discountValue: OneOf_DiscountValue? = nil
+    var discountValue: DiscountValueOneOf? = nil
     let discountValueCheckAndSet = {
       if discountValue != nil {
         throw DecodingError.dataCorrupted(
@@ -116,7 +116,7 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Specifies the contribution of this discount component to the total
   /// discount.
-  public enum OneOf_DiscountValue: Codable, Equatable, Sendable {
+  public enum DiscountValueOneOf: Codable, Equatable, Sendable {
     /// Discount percentage, represented as decimal.
     /// For example, a 20% discount will be represented as 0.2.
     case discountPercentage(Swift.Double)

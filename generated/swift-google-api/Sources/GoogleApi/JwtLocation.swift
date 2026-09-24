@@ -31,7 +31,7 @@ public struct JwtLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   /// value_prefix="Bearer " with a space at the end.
   public var valuePrefix: Swift.String = Swift.String()
 
-  public var `in`: OneOf_In? = nil
+  public var `in`: InOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct JwtLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.valuePrefix = value
     }
 
-    var `in`: OneOf_In? = nil
+    var `in`: InOneOf? = nil
     let inCheckAndSet = {
       if `in` != nil {
         throw DecodingError.dataCorrupted(
@@ -121,7 +121,7 @@ public struct JwtLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_In: Codable, Equatable, Sendable {
+  public enum InOneOf: Codable, Equatable, Sendable {
     /// Specifies HTTP header name to extract JWT token.
     case header(Swift.String)
     /// Specifies URL query parameter name to extract JWT token.

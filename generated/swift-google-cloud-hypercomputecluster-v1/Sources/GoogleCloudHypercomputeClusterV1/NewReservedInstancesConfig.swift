@@ -27,7 +27,7 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleWKT._AnyPack
   Sendable
 {
   /// Source of the reservation
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleWKT._AnyPack
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -98,7 +98,7 @@ public struct NewReservedInstancesConfig: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// Source of the reservation
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Immutable. Name of the reservation from which VM instances
     /// should be created, in the format
     /// `projects/{project}/zones/{zone}/reservations/{reservation}`.

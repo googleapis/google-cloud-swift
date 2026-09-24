@@ -46,7 +46,7 @@
     public var filter: Swift.String = Swift.String()
 
     /// The destination to export.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@
         self.filter = value
       }
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -254,7 +254,7 @@
     }
 
     /// The destination to export.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to
       /// export the test cases to. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`. If unspecified, the serialized test

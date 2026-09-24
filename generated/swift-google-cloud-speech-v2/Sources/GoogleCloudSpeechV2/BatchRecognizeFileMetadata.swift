@@ -54,7 +54,7 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
   public var configMask: GoogleWKT.WKTFieldMask? = nil
 
   /// The audio source, which is a Google Cloud Storage URI.
-  public var audioSource: OneOf_AudioSource? = nil
+  public var audioSource: AudioSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
     self.configMask = try container.decodeIfPresent(
       GoogleWKT.WKTFieldMask.self, forKey: .configMask)
 
-    var audioSource: OneOf_AudioSource? = nil
+    var audioSource: AudioSourceOneOf? = nil
     let audioSourceCheckAndSet = {
       if audioSource != nil {
         throw DecodingError.dataCorrupted(
@@ -134,7 +134,7 @@ public struct BatchRecognizeFileMetadata: Codable, Equatable, GoogleWKT._AnyPack
   }
 
   /// The audio source, which is a Google Cloud Storage URI.
-  public enum OneOf_AudioSource: Codable, Equatable, Sendable {
+  public enum AudioSourceOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage URI for the audio file.
     case uri(Swift.String)
   }

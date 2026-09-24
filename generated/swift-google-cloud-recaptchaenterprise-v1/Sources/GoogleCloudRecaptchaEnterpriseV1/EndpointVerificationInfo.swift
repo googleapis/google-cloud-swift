@@ -29,7 +29,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
   /// endpoint, if any.
   public var lastVerificationTime: GoogleWKT.WKTTimestamp? = nil
 
-  public var endpoint: OneOf_Endpoint? = nil
+  public var endpoint: EndpointOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
     self.lastVerificationTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .lastVerificationTime)
 
-    var endpoint: OneOf_Endpoint? = nil
+    var endpoint: EndpointOneOf? = nil
     let endpointCheckAndSet = {
       if endpoint != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public enum OneOf_Endpoint: Codable, Equatable, Sendable {
+  public enum EndpointOneOf: Codable, Equatable, Sendable {
     /// Email address for which to trigger a verification request.
     case emailAddress(Swift.String)
     /// Phone number for which to trigger a verification request. Should be given

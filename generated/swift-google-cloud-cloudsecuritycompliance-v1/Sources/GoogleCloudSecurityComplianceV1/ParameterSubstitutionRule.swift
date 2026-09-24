@@ -22,7 +22,7 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
   Sendable
 {
   /// The type of substitution.
-  public var substitutionType: OneOf_SubstitutionType? = nil
+  public var substitutionType: SubstitutionTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var substitutionType: OneOf_SubstitutionType? = nil
+    var substitutionType: SubstitutionTypeOneOf? = nil
     let substitutionTypeCheckAndSet = {
       if substitutionType != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct ParameterSubstitutionRule: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The type of substitution.
-  public enum OneOf_SubstitutionType: Codable, Equatable, Sendable {
+  public enum SubstitutionTypeOneOf: Codable, Equatable, Sendable {
     /// The placeholder substitution rule.
     indirect case placeholderSubstitutionRule(PlaceholderSubstitutionRule?)
     /// The attribute substitution rule.

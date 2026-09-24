@@ -22,7 +22,7 @@ public struct Entrypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The command to run.
-  public var command: OneOf_Command? = nil
+  public var command: CommandOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct Entrypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var command: OneOf_Command? = nil
+    var command: CommandOneOf? = nil
     let commandCheckAndSet = {
       if command != nil {
         throw DecodingError.dataCorrupted(
@@ -93,7 +93,7 @@ public struct Entrypoint: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The command to run.
-  public enum OneOf_Command: Codable, Equatable, Sendable {
+  public enum CommandOneOf: Codable, Equatable, Sendable {
     /// The format should be a shell command that can be fed to `bash -c`.
     case shell(Swift.String)
   }

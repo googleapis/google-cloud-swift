@@ -49,7 +49,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// MongoDB connection format.
   /// Must specify either srv_connection_format or standard_connection_format.
-  public var mongodbConnectionFormat: OneOf_MongodbConnectionFormat? = nil
+  public var mongodbConnectionFormat: MongodbConnectionFormatOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -117,7 +117,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.sslConfig = try container.decodeIfPresent(MongodbSslConfig.self, forKey: .sslConfig)
 
-    var mongodbConnectionFormat: OneOf_MongodbConnectionFormat? = nil
+    var mongodbConnectionFormat: MongodbConnectionFormatOneOf? = nil
     let mongodbConnectionFormatCheckAndSet = {
       if mongodbConnectionFormat != nil {
         throw DecodingError.dataCorrupted(
@@ -168,7 +168,7 @@ public struct MongodbProfile: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// MongoDB connection format.
   /// Must specify either srv_connection_format or standard_connection_format.
-  public enum OneOf_MongodbConnectionFormat: Codable, Equatable, Sendable {
+  public enum MongodbConnectionFormatOneOf: Codable, Equatable, Sendable {
     /// Srv connection format.
     indirect case srvConnectionFormat(SrvConnectionFormat?)
     /// Standard connection format.

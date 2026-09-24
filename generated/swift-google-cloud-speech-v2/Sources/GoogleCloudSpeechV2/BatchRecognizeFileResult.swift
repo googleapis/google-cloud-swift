@@ -35,7 +35,7 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
   @available(*, deprecated)
   public var transcript: BatchRecognizeResults? = nil
 
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -91,7 +91,7 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
     self.transcript = try container.decodeIfPresent(BatchRecognizeResults.self, forKey: .transcript)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -139,7 +139,7 @@ public struct BatchRecognizeFileResult: Codable, Equatable, GoogleWKT._AnyPackab
     }
   }
 
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Recognition results written to Cloud Storage. This is
     /// populated only when
     /// [GcsOutputConfig][google.cloud.speech.v2.GcsOutputConfig] is set in

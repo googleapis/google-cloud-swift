@@ -29,7 +29,7 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public var value: Swift.String = Swift.String()
 
   /// The attribute type for the attribute and value pair.
-  public var attributeType: OneOf_AttributeType? = nil
+  public var attributeType: AttributeTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
       self.value = value
     }
 
-    var attributeType: OneOf_AttributeType? = nil
+    var attributeType: AttributeTypeOneOf? = nil
     let attributeTypeCheckAndSet = {
       if attributeType != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct AttributeTypeAndValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The attribute type for the attribute and value pair.
-  public enum OneOf_AttributeType: Codable, Equatable, Sendable {
+  public enum AttributeTypeOneOf: Codable, Equatable, Sendable {
     /// The attribute type of the attribute and value pair.
     case type(AttributeType)
     /// Object ID for an attribute type of an attribute and value pair.

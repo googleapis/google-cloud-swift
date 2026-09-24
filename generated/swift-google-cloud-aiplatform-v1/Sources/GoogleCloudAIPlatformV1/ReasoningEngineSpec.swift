@@ -61,7 +61,7 @@
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
-    public var deploymentSource: OneOf_DeploymentSource? = nil
+    public var deploymentSource: DeploymentSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -134,7 +134,7 @@
       self.buildSpec = try container.decodeIfPresent(
         ReasoningEngineSpec.BuildSpec.self, forKey: .buildSpec)
 
-      var deploymentSource: OneOf_DeploymentSource? = nil
+      var deploymentSource: DeploymentSourceOneOf? = nil
       let deploymentSourceCheckAndSet = {
         if deploymentSource != nil {
           throw DecodingError.dataCorrupted(
@@ -428,11 +428,11 @@
       Sendable
     {
       /// Specifies where the source code is located.
-      public var source: OneOf_Source? = nil
+      public var source: SourceOneOf? = nil
 
       /// Specifies the language-specific configuration for building and running
       /// the code.
-      public var languageSpec: OneOf_LanguageSpec? = nil
+      public var languageSpec: LanguageSpecOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -474,7 +474,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var source: OneOf_Source? = nil
+        var source: SourceOneOf? = nil
         let sourceCheckAndSet = {
           if source != nil {
             throw DecodingError.dataCorrupted(
@@ -497,7 +497,7 @@
         }
         self.source = source
 
-        var languageSpec: OneOf_LanguageSpec? = nil
+        var languageSpec: LanguageSpecOneOf? = nil
         let languageSpecCheckAndSet = {
           if languageSpec != nil {
             throw DecodingError.dataCorrupted(
@@ -968,7 +968,7 @@
       }
 
       /// Specifies where the source code is located.
-      public enum OneOf_Source: Codable, Equatable, Sendable {
+      public enum SourceOneOf: Codable, Equatable, Sendable {
         /// Source code is provided directly in the request.
         indirect case inlineSource(ReasoningEngineSpec.SourceCodeSpec.InlineSource?)
         /// Source code is in a Git repository managed by Developer Connect.
@@ -978,7 +978,7 @@
 
       /// Specifies the language-specific configuration for building and running
       /// the code.
-      public enum OneOf_LanguageSpec: Codable, Equatable, Sendable {
+      public enum LanguageSpecOneOf: Codable, Equatable, Sendable {
         /// Configuration for a Python application.
         indirect case pythonSpec(ReasoningEngineSpec.SourceCodeSpec.PythonSpec?)
         /// Optional. Configuration for building an image with custom config file.
@@ -1277,7 +1277,7 @@
     /// Defines the source for the deployment.
     /// The `package_spec` field should not be set if `deployment_source` is
     /// specified.
-    public enum OneOf_DeploymentSource: Codable, Equatable, Sendable {
+    public enum DeploymentSourceOneOf: Codable, Equatable, Sendable {
       /// Deploy from source code files with a defined entrypoint.
       indirect case sourceCodeSpec(ReasoningEngineSpec.SourceCodeSpec?)
       /// Deploy from a container image with a defined entrypoint and commands.

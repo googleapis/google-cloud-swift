@@ -26,7 +26,7 @@
     Sendable
   {
     /// The exported test cases.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@
     }
 
     /// The exported test cases.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// The URI to a file containing the exported test cases. This field is
       ///  populated only if `gcs_uri` is specified in
       /// [ExportTestCasesRequest][google.cloud.dialogflow.cx.v3.ExportTestCasesRequest].

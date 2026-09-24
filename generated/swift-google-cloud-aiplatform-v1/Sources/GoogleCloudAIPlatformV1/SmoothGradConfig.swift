@@ -36,7 +36,7 @@
     /// Represents the standard deviation of the gaussian kernel
     /// that will be used to add noise to the interpolated inputs
     /// prior to computing gradients.
-    public var gradientNoiseSigma: OneOf_GradientNoiseSigma? = nil
+    public var gradientNoiseSigma: GradientNoiseSigmaOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@
         self.noisySampleCount = value
       }
 
-      var gradientNoiseSigma: OneOf_GradientNoiseSigma? = nil
+      var gradientNoiseSigma: GradientNoiseSigmaOneOf? = nil
       let gradientNoiseSigmaCheckAndSet = {
         if gradientNoiseSigma != nil {
           throw DecodingError.dataCorrupted(
@@ -124,7 +124,7 @@
     /// Represents the standard deviation of the gaussian kernel
     /// that will be used to add noise to the interpolated inputs
     /// prior to computing gradients.
-    public enum OneOf_GradientNoiseSigma: Codable, Equatable, Sendable {
+    public enum GradientNoiseSigmaOneOf: Codable, Equatable, Sendable {
       /// This is a single float value and will be used to add noise to all the
       /// features. Use this field when all features are normalized to have the
       /// same distribution: scale to range [0, 1], [-1, 1] or z-scoring, where
@@ -139,7 +139,7 @@
       /// [feature_noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]
       /// instead for each feature.
       ///
-      /// [google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]: <doc:SmoothGradConfig/OneOf_GradientNoiseSigma/featureNoiseSigma(_:)>
+      /// [google.cloud.aiplatform.v1.SmoothGradConfig.feature_noise_sigma]: <doc:SmoothGradConfig/GradientNoiseSigmaOneOf/featureNoiseSigma(_:)>
       case noiseSigma(Swift.Float)
       /// This is similar to
       /// [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma],
@@ -150,7 +150,7 @@
       /// [noise_sigma][google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]
       /// will be used for all features.
       ///
-      /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/OneOf_GradientNoiseSigma/noiseSigma(_:)>
+      /// [google.cloud.aiplatform.v1.SmoothGradConfig.noise_sigma]: <doc:SmoothGradConfig/GradientNoiseSigmaOneOf/noiseSigma(_:)>
       indirect case featureNoiseSigma(FeatureNoiseSigma?)
     }
 

@@ -69,7 +69,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
   public var labels: [Swift.String: Swift.String] = [:]
 
   /// Required. The script, container, or barrier for this runnable to execute.
-  public var executable: OneOf_Executable? = nil
+  public var executable: ExecutableOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -141,7 +141,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var executable: OneOf_Executable? = nil
+    var executable: ExecutableOneOf? = nil
     let executableCheckAndSet = {
       if executable != nil {
         throw DecodingError.dataCorrupted(
@@ -402,7 +402,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Required. The source code for this script runnable.
-    public var command: OneOf_Command? = nil
+    public var command: CommandOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -440,7 +440,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var command: OneOf_Command? = nil
+      var command: CommandOneOf? = nil
       let commandCheckAndSet = {
         if command != nil {
           throw DecodingError.dataCorrupted(
@@ -480,7 +480,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Required. The source code for this script runnable.
-    public enum OneOf_Command: Codable, Equatable, Sendable {
+    public enum CommandOneOf: Codable, Equatable, Sendable {
       /// The path to a script file that is accessible from the host VM(s).
       ///
       /// Unless the script file supports the default `#!/bin/sh` shell
@@ -585,7 +585,7 @@ public struct Runnable: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Required. The script, container, or barrier for this runnable to execute.
-  public enum OneOf_Executable: Codable, Equatable, Sendable {
+  public enum ExecutableOneOf: Codable, Equatable, Sendable {
     /// Container runnable.
     indirect case container(Runnable.Container?)
     /// Script runnable.

@@ -22,7 +22,7 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The possible dialect options that this message represents.
-  public var dialectValue: OneOf_DialectValue? = nil
+  public var dialectValue: DialectValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dialectValue: OneOf_DialectValue? = nil
+    var dialectValue: DialectValueOneOf? = nil
     let dialectValueCheckAndSet = {
       if dialectValue != nil {
         throw DecodingError.dataCorrupted(
@@ -235,7 +235,7 @@ public struct Dialect: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The possible dialect options that this message represents.
-  public enum OneOf_DialectValue: Codable, Equatable, Sendable {
+  public enum DialectValueOneOf: Codable, Equatable, Sendable {
     /// The BigQuery dialect
     indirect case bigqueryDialect(BigQueryDialect?)
     /// The HiveQL dialect

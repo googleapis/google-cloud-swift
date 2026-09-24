@@ -268,7 +268,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     public var type: Inventory.Item.Type_ = Inventory.Item.Type_()
 
     /// Specific details of this inventory item based on its type.
-    public var details: OneOf_Details? = nil
+    public var details: DetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -331,7 +331,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
         self.type = value
       }
 
-      var details: OneOf_Details? = nil
+      var details: DetailsOneOf? = nil
       let detailsCheckAndSet = {
         if details != nil {
           throw DecodingError.dataCorrupted(
@@ -608,7 +608,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specific details of this inventory item based on its type.
-    public enum OneOf_Details: Codable, Equatable, Sendable {
+    public enum DetailsOneOf: Codable, Equatable, Sendable {
       /// Software package present on the VM instance.
       indirect case installedPackage(Inventory.SoftwarePackage?)
       /// Software package available to be installed on the VM instance.
@@ -631,7 +631,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Information about the different types of software packages.
-    public var details: OneOf_Details? = nil
+    public var details: DetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -683,7 +683,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var details: OneOf_Details? = nil
+      var details: DetailsOneOf? = nil
       let detailsCheckAndSet = {
         if details != nil {
           throw DecodingError.dataCorrupted(
@@ -776,7 +776,7 @@ public struct Inventory: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Information about the different types of software packages.
-    public enum OneOf_Details: Codable, Equatable, Sendable {
+    public enum DetailsOneOf: Codable, Equatable, Sendable {
       /// Yum package info.
       /// For details about the yum package manager, see
       /// https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum.

@@ -48,10 +48,10 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: BucketOperation.State = BucketOperation.State()
 
   /// Specifies objects to be transformed in the BucketOperation.
-  public var objectConfiguration: OneOf_ObjectConfiguration? = nil
+  public var objectConfiguration: ObjectConfigurationOneOf? = nil
 
   /// Action to be performed on the objects.
-  public var transformation: OneOf_Transformation? = nil
+  public var transformation: TransformationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -133,7 +133,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var objectConfiguration: OneOf_ObjectConfiguration? = nil
+    var objectConfiguration: ObjectConfigurationOneOf? = nil
     let objectConfigurationCheckAndSet = {
       if objectConfiguration != nil {
         throw DecodingError.dataCorrupted(
@@ -151,7 +151,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.objectConfiguration = objectConfiguration
 
-    var transformation: OneOf_Transformation? = nil
+    var transformation: TransformationOneOf? = nil
     let transformationCheckAndSet = {
       if transformation != nil {
         throw DecodingError.dataCorrupted(
@@ -367,7 +367,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specifies objects to be transformed in the BucketOperation.
-  public enum OneOf_ObjectConfiguration: Codable, Equatable, Sendable {
+  public enum ObjectConfigurationOneOf: Codable, Equatable, Sendable {
     /// Specifies objects matching a prefix set.
     indirect case prefixList(PrefixList?)
     /// Specifies objects in a manifest file.
@@ -375,7 +375,7 @@ public struct BucketOperation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Action to be performed on the objects.
-  public enum OneOf_Transformation: Codable, Equatable, Sendable {
+  public enum TransformationOneOf: Codable, Equatable, Sendable {
     /// Changes object hold status.
     indirect case putObjectHold(PutObjectHold?)
     /// Delete objects.

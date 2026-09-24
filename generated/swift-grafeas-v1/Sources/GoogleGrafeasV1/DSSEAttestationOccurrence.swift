@@ -26,7 +26,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
   /// this metadata.
   public var envelope: Envelope? = nil
 
-  public var decodedPayload: OneOf_DecodedPayload? = nil
+  public var decodedPayload: DecodedPayloadOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.envelope = try container.decodeIfPresent(Envelope.self, forKey: .envelope)
 
-    var decodedPayload: OneOf_DecodedPayload? = nil
+    var decodedPayload: DecodedPayloadOneOf? = nil
     let decodedPayloadCheckAndSet = {
       if decodedPayload != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct DSSEAttestationOccurrence: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OneOf_DecodedPayload: Codable, Equatable, Sendable {
+  public enum DecodedPayloadOneOf: Codable, Equatable, Sendable {
     indirect case statement(InTotoStatement?)
   }
 

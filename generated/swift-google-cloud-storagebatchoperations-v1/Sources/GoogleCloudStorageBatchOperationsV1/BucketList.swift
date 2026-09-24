@@ -85,7 +85,7 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
     public var bucket: Swift.String = Swift.String()
 
     /// Specifies objects to be transformed.
-    public var objectConfiguration: OneOf_ObjectConfiguration? = nil
+    public var objectConfiguration: ObjectConfigurationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
         self.bucket = value
       }
 
-      var objectConfiguration: OneOf_ObjectConfiguration? = nil
+      var objectConfiguration: ObjectConfigurationOneOf? = nil
       let objectConfigurationCheckAndSet = {
         if objectConfiguration != nil {
           throw DecodingError.dataCorrupted(
@@ -169,7 +169,7 @@ public struct BucketList: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Specifies objects to be transformed.
-    public enum OneOf_ObjectConfiguration: Codable, Equatable, Sendable {
+    public enum ObjectConfigurationOneOf: Codable, Equatable, Sendable {
       /// Specifies objects matching a prefix set.
       indirect case prefixList(PrefixList?)
       /// Specifies objects in a manifest file.

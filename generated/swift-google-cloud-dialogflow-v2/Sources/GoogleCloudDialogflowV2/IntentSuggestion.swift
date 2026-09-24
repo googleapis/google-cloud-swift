@@ -30,7 +30,7 @@
     public var description: Swift.String = Swift.String()
 
     /// The name of the intent.
-    public var intent: OneOf_Intent? = nil
+    public var intent: IntentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@
         self.description = value
       }
 
-      var intent: OneOf_Intent? = nil
+      var intent: IntentOneOf? = nil
       let intentCheckAndSet = {
         if intent != nil {
           throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@
     }
 
     /// The name of the intent.
-    public enum OneOf_Intent: Codable, Equatable, Sendable {
+    public enum IntentOneOf: Codable, Equatable, Sendable {
       /// The unique identifier of this
       /// [intent][google.cloud.dialogflow.v2.Intent]. Format: `projects/<Project
       /// ID>/locations/<Location ID>/agent/intents/<Intent ID>`.

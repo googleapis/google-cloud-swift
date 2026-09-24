@@ -35,7 +35,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// One of the activities that can be logged during the processing of a Google
   /// API event.
-  public var activity: OneOf_Activity? = nil
+  public var activity: ActivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -87,7 +87,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
     self.activityTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .activityTime)
 
-    var activity: OneOf_Activity? = nil
+    var activity: ActivityOneOf? = nil
     let activityCheckAndSet = {
       if activity != nil {
         throw DecodingError.dataCorrupted(
@@ -223,7 +223,7 @@ public struct GoogleApiSourceActivity: Codable, Equatable, GoogleWKT._AnyPackabl
 
   /// One of the activities that can be logged during the processing of a Google
   /// API event.
-  public enum OneOf_Activity: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logged when an event is published to a message bus.
     indirect case published(GoogleApiSourceActivity.Published?)
   }

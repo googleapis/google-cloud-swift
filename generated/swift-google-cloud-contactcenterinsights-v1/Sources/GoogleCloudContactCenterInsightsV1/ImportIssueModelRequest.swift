@@ -29,7 +29,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   /// Otherwise, replaces an existing model with the same ID as the file.
   public var createNewModel: Swift.Bool = Swift.Bool()
 
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
       self.createNewModel = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -182,7 +182,7 @@ public struct ImportIssueModelRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     }
   }
 
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Google Cloud Storage source message.
     indirect case gcsSource(ImportIssueModelRequest.GcsSource?)
   }

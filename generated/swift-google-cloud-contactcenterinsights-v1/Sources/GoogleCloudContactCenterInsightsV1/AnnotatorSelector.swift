@@ -200,7 +200,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Summarization must use either a preexisting conversation profile or one
     /// of the supported default models.
-    public var modelSource: OneOf_ModelSource? = nil
+    public var modelSource: ModelSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -238,7 +238,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var modelSource: OneOf_ModelSource? = nil
+      var modelSource: ModelSourceOneOf? = nil
       let modelSourceCheckAndSet = {
         if modelSource != nil {
           throw DecodingError.dataCorrupted(
@@ -400,7 +400,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Summarization must use either a preexisting conversation profile or one
     /// of the supported default models.
-    public enum OneOf_ModelSource: Codable, Equatable, Sendable {
+    public enum ModelSourceOneOf: Codable, Equatable, Sendable {
       /// Resource name of the Dialogflow conversation profile.
       /// Format:
       /// projects/{project}/locations/{location}/conversationProfiles/{conversation_profile}
@@ -426,7 +426,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Which scorecards should be scored.
-    public var scorecardSource: OneOf_ScorecardSource? = nil
+    public var scorecardSource: ScorecardSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -462,7 +462,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var scorecardSource: OneOf_ScorecardSource? = nil
+      var scorecardSource: ScorecardSourceOneOf? = nil
       let scorecardSourceCheckAndSet = {
         if scorecardSource != nil {
           throw DecodingError.dataCorrupted(
@@ -570,7 +570,7 @@ public struct AnnotatorSelector: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Which scorecards should be scored.
-    public enum OneOf_ScorecardSource: Codable, Equatable, Sendable {
+    public enum ScorecardSourceOneOf: Codable, Equatable, Sendable {
       /// A manual list of scorecards to score.
       indirect case scorecardList(AnnotatorSelector.QaConfig.ScorecardList?)
     }

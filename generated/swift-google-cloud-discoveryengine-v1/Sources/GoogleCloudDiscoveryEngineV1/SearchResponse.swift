@@ -883,7 +883,7 @@
         public var count: Swift.Int64 = Swift.Int64()
 
         /// A facet value which contains values.
-        public var facetValue: OneOf_FacetValue? = nil
+        public var facetValue: FacetValueOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -926,7 +926,7 @@
             self.count = value
           }
 
-          var facetValue: OneOf_FacetValue? = nil
+          var facetValue: FacetValueOneOf? = nil
           let facetValueCheckAndSet = {
             if facetValue != nil {
               throw DecodingError.dataCorrupted(
@@ -967,7 +967,7 @@
         }
 
         /// A facet value which contains values.
-        public enum OneOf_FacetValue: Codable, Equatable, Sendable {
+        public enum FacetValueOneOf: Codable, Equatable, Sendable {
           /// Text value of a facet, such as "Black" for facet "colors".
           case value(Swift.String)
           /// Interval value for a facet, such as [10, 20) for facet "price". It
@@ -2729,7 +2729,7 @@
           Sendable
         {
           /// The expression type.
-          public var expr: OneOf_Expr? = nil
+          public var expr: ExprOneOf? = nil
 
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2773,7 +2773,7 @@
           public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
-            var expr: OneOf_Expr? = nil
+            var expr: ExprOneOf? = nil
             let exprCheckAndSet = {
               if expr != nil {
                 throw DecodingError.dataCorrupted(
@@ -2843,7 +2843,7 @@
           }
 
           /// The expression type.
-          public enum OneOf_Expr: Codable, Equatable, Sendable {
+          public enum ExprOneOf: Codable, Equatable, Sendable {
             /// String constraint expression.
             indirect case stringConstraint(
               SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter

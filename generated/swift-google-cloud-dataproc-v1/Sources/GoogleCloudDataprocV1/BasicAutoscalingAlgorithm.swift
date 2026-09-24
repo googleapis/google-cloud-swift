@@ -27,7 +27,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
   /// Bounds: [2m, 1d]. Default: 2m.
   public var cooldownPeriod: GoogleWKT.WKTDuration? = nil
 
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -67,7 +67,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
     self.cooldownPeriod = try container.decodeIfPresent(
       GoogleWKT.WKTDuration.self, forKey: .cooldownPeriod)
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -104,7 +104,7 @@ public struct BasicAutoscalingAlgorithm: Codable, Equatable, GoogleWKT._AnyPacka
     }
   }
 
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Required. YARN autoscaling configuration.
     indirect case yarnConfig(BasicYarnAutoscalingConfig?)
   }

@@ -25,7 +25,7 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
   /// occur in these windows.
   public var maintenanceExclusions: [Swift.String: TimeWindow] = [:]
 
-  public var policy: OneOf_Policy? = nil
+  public var policy: PolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
       self.maintenanceExclusions = value
     }
 
-    var policy: OneOf_Policy? = nil
+    var policy: PolicyOneOf? = nil
     let policyCheckAndSet = {
       if policy != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Policy: Codable, Equatable, Sendable {
+  public enum PolicyOneOf: Codable, Equatable, Sendable {
     /// DailyMaintenanceWindow specifies a daily maintenance operation window.
     indirect case dailyMaintenanceWindow(DailyMaintenanceWindow?)
     /// RecurringWindow specifies some number of recurring time periods for

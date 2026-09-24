@@ -22,7 +22,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The location of the finding within a conversation.
-  public var location: OneOf_Location? = nil
+  public var location: LocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var location: OneOf_Location? = nil
+    var location: LocationOneOf? = nil
     let locationCheckAndSet = {
       if location != nil {
         throw DecodingError.dataCorrupted(
@@ -160,7 +160,7 @@ public struct ConversationLocation: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The location of the finding within a conversation.
-  public enum OneOf_Location: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Codable, Equatable, Sendable {
     /// Matches an index of a message in the conversation provided in the
     /// request.
     case messageIndex(Swift.Int32)

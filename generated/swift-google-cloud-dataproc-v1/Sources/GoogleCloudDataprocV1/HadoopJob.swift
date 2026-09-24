@@ -58,7 +58,7 @@ public struct HadoopJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// either the jar file that contains the main class or the main class name.
   /// To specify both, add the jar file to `jar_file_uris`, and then specify
   /// the main class name in this property.
-  public var driver: OneOf_Driver? = nil
+  public var driver: DriverOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,7 +126,7 @@ public struct HadoopJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
-    var driver: OneOf_Driver? = nil
+    var driver: DriverOneOf? = nil
     let driverCheckAndSet = {
       if driver != nil {
         throw DecodingError.dataCorrupted(
@@ -177,7 +177,7 @@ public struct HadoopJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// either the jar file that contains the main class or the main class name.
   /// To specify both, add the jar file to `jar_file_uris`, and then specify
   /// the main class name in this property.
-  public enum OneOf_Driver: Codable, Equatable, Sendable {
+  public enum DriverOneOf: Codable, Equatable, Sendable {
     /// The HCFS URI of the jar file containing the main class.
     /// Examples:
     ///     'gs://foo-bucket/analytics-binaries/extract-useful-metrics-mr.jar'

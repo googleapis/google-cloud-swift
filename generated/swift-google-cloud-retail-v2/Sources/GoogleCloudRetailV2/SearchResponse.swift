@@ -549,7 +549,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       /// is true.
       ///
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]: <doc:SearchRequest/FacetSpec/FacetKey/returnMinMax>
-      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/interval(_:)>
+      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/FacetValueOneOf/interval(_:)>
       public var minValue: Swift.Double = Swift.Double()
 
       /// The maximum value in the
@@ -559,11 +559,11 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       /// is true.
       ///
       /// [google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]: <doc:SearchRequest/FacetSpec/FacetKey/returnMinMax>
-      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/OneOf_FacetValue/interval(_:)>
+      /// [google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval]: <doc:SearchResponse/Facet/FacetValue/FacetValueOneOf/interval(_:)>
       public var maxValue: Swift.Double = Swift.Double()
 
       /// A facet value which contains values.
-      public var facetValue: OneOf_FacetValue? = nil
+      public var facetValue: FacetValueOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -616,7 +616,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
           self.maxValue = value
         }
 
-        var facetValue: OneOf_FacetValue? = nil
+        var facetValue: FacetValueOneOf? = nil
         let facetValueCheckAndSet = {
           if facetValue != nil {
             throw DecodingError.dataCorrupted(
@@ -659,7 +659,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// A facet value which contains values.
-      public enum OneOf_FacetValue: Codable, Equatable, Sendable {
+      public enum FacetValueOneOf: Codable, Equatable, Sendable {
         /// Text value of a facet, such as "Black" for facet "colorFamilies".
         case value(Swift.String)
         /// Interval value for a facet, such as [10, 20) for facet "price".
@@ -794,7 +794,7 @@ public struct SearchResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     /// is `red color`, which does not match any product attribute value filters,
     /// the refined query will be `dress, red color`.
     ///
-    /// [google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer]: <doc:SearchRequest/ConversationalSearchSpec/UserAnswer/OneOf_Type/textAnswer(_:)>
+    /// [google.cloud.retail.v2.SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer]: <doc:SearchRequest/ConversationalSearchSpec/UserAnswer/TypeOneOf/textAnswer(_:)>
     /// [google.cloud.retail.v2.SearchRequest.query]: <doc:SearchRequest/query>
     public var refinedQuery: Swift.String = Swift.String()
 

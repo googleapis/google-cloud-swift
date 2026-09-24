@@ -43,7 +43,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var hwAddress: Swift.String = Swift.String()
 
   /// Additional details for specific platforms.
-  public var platformSpecific: OneOf_PlatformSpecific? = nil
+  public var platformSpecific: PlatformSpecificOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -114,7 +114,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
       self.hwAddress = value
     }
 
-    var platformSpecific: OneOf_PlatformSpecific? = nil
+    var platformSpecific: PlatformSpecificOneOf? = nil
     let platformSpecificCheckAndSet = {
       if platformSpecific != nil {
         throw DecodingError.dataCorrupted(
@@ -308,7 +308,7 @@ public struct DiskEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details for specific platforms.
-  public enum OneOf_PlatformSpecific: Codable, Equatable, Sendable {
+  public enum PlatformSpecificOneOf: Codable, Equatable, Sendable {
     /// VMware disk details.
     indirect case vmware(VmwareDiskConfig?)
   }

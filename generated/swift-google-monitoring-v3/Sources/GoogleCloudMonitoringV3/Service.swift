@@ -51,7 +51,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   public var userLabels: [Swift.String: Swift.String] = [:]
 
   /// REQUIRED. Service-identifying atoms specifying the underlying service.
-  public var identifier: OneOf_Identifier? = nil
+  public var identifier: IdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -129,7 +129,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
       self.userLabels = value
     }
 
-    var identifier: OneOf_Identifier? = nil
+    var identifier: IdentifierOneOf? = nil
     let identifierCheckAndSet = {
       if identifier != nil {
         throw DecodingError.dataCorrupted(
@@ -1282,7 +1282,7 @@ public struct Service: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// REQUIRED. Service-identifying atoms specifying the underlying service.
-  public enum OneOf_Identifier: Codable, Equatable, Sendable {
+  public enum IdentifierOneOf: Codable, Equatable, Sendable {
     /// Custom service type.
     indirect case custom(Service.Custom?)
     /// Type used for App Engine services.

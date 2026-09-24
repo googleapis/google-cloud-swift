@@ -43,7 +43,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public var type: DiscoveryEvent.EventType = DiscoveryEvent.EventType()
 
   /// Additional details about the event.
-  public var details: OneOf_Details? = nil
+  public var details: DetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,7 +122,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var details: OneOf_Details? = nil
+    var details: DetailsOneOf? = nil
     let detailsCheckAndSet = {
       if details != nil {
         throw DecodingError.dataCorrupted(
@@ -1020,7 +1020,7 @@ public struct DiscoveryEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Additional details about the event.
-  public enum OneOf_Details: Codable, Equatable, Sendable {
+  public enum DetailsOneOf: Codable, Equatable, Sendable {
     /// Details about discovery configuration in effect.
     indirect case config(DiscoveryEvent.ConfigDetails?)
     /// Details about the entity associated with the event.

@@ -34,7 +34,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// One of the activities that can be logged during the processing of an event
   /// published to a message bus.
-  public var activity: OneOf_Activity? = nil
+  public var activity: ActivityOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
     self.activityTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .activityTime)
 
-    var activity: OneOf_Activity? = nil
+    var activity: ActivityOneOf? = nil
     let activityCheckAndSet = {
       if activity != nil {
         throw DecodingError.dataCorrupted(
@@ -203,7 +203,7 @@ public struct MessageBusActivity: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// One of the activities that can be logged during the processing of an event
   /// published to a message bus.
-  public enum OneOf_Activity: Codable, Equatable, Sendable {
+  public enum ActivityOneOf: Codable, Equatable, Sendable {
     /// Logged when an event is received by a message bus.
     indirect case received(MessageBusActivity.Received?)
   }

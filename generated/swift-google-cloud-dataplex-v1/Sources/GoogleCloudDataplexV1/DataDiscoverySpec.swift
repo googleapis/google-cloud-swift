@@ -25,7 +25,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public var bigqueryPublishingConfig: DataDiscoverySpec.BigQueryPublishingConfig? = nil
 
   /// The configurations of the data discovery scan resource.
-  public var resourceConfig: OneOf_ResourceConfig? = nil
+  public var resourceConfig: ResourceConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     self.bigqueryPublishingConfig = try container.decodeIfPresent(
       DataDiscoverySpec.BigQueryPublishingConfig.self, forKey: .bigqueryPublishingConfig)
 
-    var resourceConfig: OneOf_ResourceConfig? = nil
+    var resourceConfig: ResourceConfigOneOf? = nil
     let resourceConfigCheckAndSet = {
       if resourceConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -727,7 +727,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The configurations of the data discovery scan resource.
-  public enum OneOf_ResourceConfig: Codable, Equatable, Sendable {
+  public enum ResourceConfigOneOf: Codable, Equatable, Sendable {
     /// Cloud Storage related configurations.
     indirect case storageConfig(DataDiscoverySpec.StorageConfig?)
   }

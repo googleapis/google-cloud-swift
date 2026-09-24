@@ -199,7 +199,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   {
     /// Required.
     /// Authentication configuration
-    public var authentication: OneOf_Authentication? = nil
+    public var authentication: AuthenticationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -242,7 +242,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var authentication: OneOf_Authentication? = nil
+      var authentication: AuthenticationOneOf? = nil
       let authenticationCheckAndSet = {
         if authentication != nil {
           throw DecodingError.dataCorrupted(
@@ -468,7 +468,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Identity-Aware-Proxy (IAP) Authentication Configuration
-      public var iapCredentials: OneOf_IapCredentials? = nil
+      public var iapCredentials: IapCredentialsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -504,7 +504,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var iapCredentials: OneOf_IapCredentials? = nil
+        var iapCredentials: IapCredentialsOneOf? = nil
         let iapCredentialsCheckAndSet = {
           if iapCredentials != nil {
             throw DecodingError.dataCorrupted(
@@ -615,7 +615,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Identity-Aware-Proxy (IAP) Authentication Configuration
-      public enum OneOf_IapCredentials: Codable, Equatable, Sendable {
+      public enum IapCredentialsOneOf: Codable, Equatable, Sendable {
         /// Authentication configuration when Web-Security-Scanner service
         /// account is added in Identity-Aware-Proxy (IAP) access policies.
         indirect case iapTestServiceAccountInfo(
@@ -636,7 +636,7 @@ public struct ScanConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     /// Required.
     /// Authentication configuration
-    public enum OneOf_Authentication: Codable, Equatable, Sendable {
+    public enum AuthenticationOneOf: Codable, Equatable, Sendable {
       /// Authentication using a Google account.
       @available(*, deprecated)
       indirect case googleAccount(ScanConfig.Authentication.GoogleAccount?)

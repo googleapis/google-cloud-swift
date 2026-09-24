@@ -46,9 +46,9 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Output only. Metadata job status.
   public var status: MetadataJob.Status? = nil
 
-  public var spec: OneOf_Spec? = nil
+  public var spec: SpecOneOf? = nil
 
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -122,7 +122,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.status = try container.decodeIfPresent(MetadataJob.Status.self, forKey: .status)
 
-    var spec: OneOf_Spec? = nil
+    var spec: SpecOneOf? = nil
     let specCheckAndSet = {
       if spec != nil {
         throw DecodingError.dataCorrupted(
@@ -144,7 +144,7 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.spec = spec
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -1605,14 +1605,14 @@ public struct MetadataJob: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Spec: Codable, Equatable, Sendable {
+  public enum SpecOneOf: Codable, Equatable, Sendable {
     /// Import job specification.
     indirect case importSpec(MetadataJob.ImportJobSpec?)
     /// Export job specification.
     indirect case exportSpec(MetadataJob.ExportJobSpec?)
   }
 
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// Output only. Import job result.
     indirect case importResult(MetadataJob.ImportJobResult?)
     /// Output only. Export job result.

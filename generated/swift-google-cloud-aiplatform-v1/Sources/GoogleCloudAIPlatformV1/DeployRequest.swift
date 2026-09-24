@@ -42,7 +42,7 @@
     public var deployConfig: DeployRequest.DeployConfig? = nil
 
     /// The artifacts to deploy.
-    public var artifacts: OneOf_Artifacts? = nil
+    public var artifacts: ArtifactsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@
       self.deployConfig = try container.decodeIfPresent(
         DeployRequest.DeployConfig.self, forKey: .deployConfig)
 
-      var artifacts: OneOf_Artifacts? = nil
+      var artifacts: ArtifactsOneOf? = nil
       let artifactsCheckAndSet = {
         if artifacts != nil {
           throw DecodingError.dataCorrupted(
@@ -502,7 +502,7 @@
     }
 
     /// The artifacts to deploy.
-    public enum OneOf_Artifacts: Codable, Equatable, Sendable {
+    public enum ArtifactsOneOf: Codable, Equatable, Sendable {
       /// The Model Garden model to deploy.
       /// Format:
       /// `publishers/{publisher}/models/{publisher_model}@{version_id}`, or

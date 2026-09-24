@@ -42,7 +42,7 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public var pageToken: Swift.String = Swift.String()
 
   /// The query to search for.
-  public var searchType: OneOf_SearchType? = nil
+  public var searchType: SearchTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
       self.pageToken = value
     }
 
-    var searchType: OneOf_SearchType? = nil
+    var searchType: SearchTypeOneOf? = nil
     let searchTypeCheckAndSet = {
       if searchType != nil {
         throw DecodingError.dataCorrupted(
@@ -147,7 +147,7 @@ public struct SearchDataObjectsRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The query to search for.
-  public enum OneOf_SearchType: Codable, Equatable, Sendable {
+  public enum SearchTypeOneOf: Codable, Equatable, Sendable {
     /// A vector search operation.
     indirect case vectorSearch(VectorSearch?)
     /// A semantic search operation.

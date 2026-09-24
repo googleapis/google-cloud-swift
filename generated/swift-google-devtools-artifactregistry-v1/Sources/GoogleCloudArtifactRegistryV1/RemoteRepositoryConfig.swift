@@ -32,7 +32,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public var disableUpstreamValidation: Swift.Bool = Swift.Bool()
 
   /// Settings specific to the remote repository.
-  public var remoteSource: OneOf_RemoteSource? = nil
+  public var remoteSource: RemoteSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       self.disableUpstreamValidation = value
     }
 
-    var remoteSource: OneOf_RemoteSource? = nil
+    var remoteSource: RemoteSourceOneOf? = nil
     let remoteSourceCheckAndSet = {
       if remoteSource != nil {
         throw DecodingError.dataCorrupted(
@@ -181,7 +181,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
   public struct UpstreamCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var credentials: OneOf_Credentials? = nil
+    public var credentials: CredentialsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -218,7 +218,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var credentials: OneOf_Credentials? = nil
+      var credentials: CredentialsOneOf? = nil
       let credentialsCheckAndSet = {
         if credentials != nil {
           throw DecodingError.dataCorrupted(
@@ -337,7 +337,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
       }
     }
 
-    public enum OneOf_Credentials: Codable, Equatable, Sendable {
+    public enum CredentialsOneOf: Codable, Equatable, Sendable {
       /// Use username and password to access the remote repository.
       indirect case usernamePasswordCredentials(
         RemoteRepositoryConfig.UpstreamCredentials.UsernamePasswordCredentials?)
@@ -360,7 +360,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// Address of the remote repository.
-    public var upstream: OneOf_Upstream? = nil
+    public var upstream: UpstreamOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -398,7 +398,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var upstream: OneOf_Upstream? = nil
+      var upstream: UpstreamOneOf? = nil
       let upstreamCheckAndSet = {
         if upstream != nil {
           throw DecodingError.dataCorrupted(
@@ -623,7 +623,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum OneOf_Upstream: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Docker repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.DockerRepository.PublicRepository)
@@ -648,7 +648,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// Address of the remote repository.
-    public var upstream: OneOf_Upstream? = nil
+    public var upstream: UpstreamOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -686,7 +686,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var upstream: OneOf_Upstream? = nil
+      var upstream: UpstreamOneOf? = nil
       let upstreamCheckAndSet = {
         if upstream != nil {
           throw DecodingError.dataCorrupted(
@@ -911,7 +911,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum OneOf_Upstream: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Maven repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.MavenRepository.PublicRepository)
@@ -936,7 +936,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// Address of the remote repository
-    public var upstream: OneOf_Upstream? = nil
+    public var upstream: UpstreamOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -974,7 +974,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var upstream: OneOf_Upstream? = nil
+      var upstream: UpstreamOneOf? = nil
       let upstreamCheckAndSet = {
         if upstream != nil {
           throw DecodingError.dataCorrupted(
@@ -1198,7 +1198,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository
-    public enum OneOf_Upstream: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Npm repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.NpmRepository.PublicRepository)
@@ -1223,7 +1223,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// Address of the remote repository.
-    public var upstream: OneOf_Upstream? = nil
+    public var upstream: UpstreamOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1261,7 +1261,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var upstream: OneOf_Upstream? = nil
+      var upstream: UpstreamOneOf? = nil
       let upstreamCheckAndSet = {
         if upstream != nil {
           throw DecodingError.dataCorrupted(
@@ -1485,7 +1485,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum OneOf_Upstream: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Python repositories supported by Artifact
       /// Registry.
       case publicRepository(RemoteRepositoryConfig.PythonRepository.PublicRepository)
@@ -1510,7 +1510,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// Address of the remote repository.
-    public var upstream: OneOf_Upstream? = nil
+    public var upstream: UpstreamOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1548,7 +1548,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var upstream: OneOf_Upstream? = nil
+      var upstream: UpstreamOneOf? = nil
       let upstreamCheckAndSet = {
         if upstream != nil {
           throw DecodingError.dataCorrupted(
@@ -1870,7 +1870,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum OneOf_Upstream: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Apt repositories supported by Artifact
       /// Registry.
       indirect case publicRepository(RemoteRepositoryConfig.AptRepository.PublicRepository?)
@@ -1895,7 +1895,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     Sendable
   {
     /// Address of the remote repository.
-    public var upstream: OneOf_Upstream? = nil
+    public var upstream: UpstreamOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1933,7 +1933,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var upstream: OneOf_Upstream? = nil
+      var upstream: UpstreamOneOf? = nil
       let upstreamCheckAndSet = {
         if upstream != nil {
           throw DecodingError.dataCorrupted(
@@ -2276,7 +2276,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
     }
 
     /// Address of the remote repository.
-    public enum OneOf_Upstream: Codable, Equatable, Sendable {
+    public enum UpstreamOneOf: Codable, Equatable, Sendable {
       /// One of the publicly available Yum repositories supported by Artifact
       /// Registry.
       indirect case publicRepository(RemoteRepositoryConfig.YumRepository.PublicRepository?)
@@ -2366,7 +2366,7 @@ public struct RemoteRepositoryConfig: Codable, Equatable, GoogleWKT._AnyPackable
   }
 
   /// Settings specific to the remote repository.
-  public enum OneOf_RemoteSource: Codable, Equatable, Sendable {
+  public enum RemoteSourceOneOf: Codable, Equatable, Sendable {
     /// Specific settings for a Docker remote repository.
     indirect case dockerRepository(RemoteRepositoryConfig.DockerRepository?)
     /// Specific settings for a Maven remote repository.

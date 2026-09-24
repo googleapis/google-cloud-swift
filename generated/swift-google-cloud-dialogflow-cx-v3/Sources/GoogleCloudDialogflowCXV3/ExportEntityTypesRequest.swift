@@ -54,7 +54,7 @@
     public var languageCode: Swift.String = Swift.String()
 
     /// The destination to export.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -114,7 +114,7 @@
         self.languageCode = value
       }
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -279,7 +279,7 @@
     }
 
     /// The destination to export.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Optional. The [Google Cloud
       /// Storage](https://cloud.google.com/storage/docs/) URI to export the entity
       /// types to. The format of this URI must be

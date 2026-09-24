@@ -23,7 +23,7 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// One day in a month.
-  public var dayOfMonth: OneOf_DayOfMonth? = nil
+  public var dayOfMonth: DayOfMonthOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var dayOfMonth: OneOf_DayOfMonth? = nil
+    var dayOfMonth: DayOfMonthOneOf? = nil
     let dayOfMonthCheckAndSet = {
       if dayOfMonth != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct MonthlySchedule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// One day in a month.
-  public enum OneOf_DayOfMonth: Codable, Equatable, Sendable {
+  public enum DayOfMonthOneOf: Codable, Equatable, Sendable {
     /// Required. Week day in a month.
     indirect case weekDayOfMonth(WeekDayOfMonth?)
     /// Required. One day of the month. 1-31 indicates the 1st to the 31st day.

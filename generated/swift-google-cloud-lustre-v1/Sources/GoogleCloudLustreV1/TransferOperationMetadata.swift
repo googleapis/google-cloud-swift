@@ -31,10 +31,10 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   public var errorSummaries: [ErrorSummary] = []
 
   /// The source of transfer operation.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   /// The destination of transfer operation.
-  public var destination: OneOf_Destination? = nil
+  public var destination: DestinationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,7 +89,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
       self.errorSummaries = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
     }
     self.source = source
 
-    var destination: OneOf_Destination? = nil
+    var destination: DestinationOneOf? = nil
     let destinationCheckAndSet = {
       if destination != nil {
         throw DecodingError.dataCorrupted(
@@ -165,7 +165,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The source of transfer operation.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. Lustre source.
     indirect case sourceLustrePath(LustrePath?)
     /// Output only. Cloud Storage source.
@@ -173,7 +173,7 @@ public struct TransferOperationMetadata: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The destination of transfer operation.
-  public enum OneOf_Destination: Codable, Equatable, Sendable {
+  public enum DestinationOneOf: Codable, Equatable, Sendable {
     /// Output only. Cloud Storage destination.
     indirect case destinationGcsPath(GcsPath?)
     /// Output only. Lustre destination.

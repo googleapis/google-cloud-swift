@@ -30,7 +30,7 @@ public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   public var processingError: GoogleRpc.ErrorInfo? = nil
 
   /// The detailed output of the task.
-  public var output: OneOf_Output? = nil
+  public var output: OutputOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,
     self.processingError = try container.decodeIfPresent(
       GoogleRpc.ErrorInfo.self, forKey: .processingError)
 
-    var output: OneOf_Output? = nil
+    var output: OutputOneOf? = nil
     let outputCheckAndSet = {
       if output != nil {
         throw DecodingError.dataCorrupted(
@@ -240,7 +240,7 @@ public struct TaskOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The detailed output of the task.
-  public enum OneOf_Output: Codable, Equatable, Sendable {
+  public enum OutputOneOf: Codable, Equatable, Sendable {
     /// The output of the task with output type "LINEAGE".
     indirect case lineageOutput(LineageOutput?)
   }

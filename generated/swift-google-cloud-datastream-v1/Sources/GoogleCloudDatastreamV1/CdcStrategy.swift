@@ -24,7 +24,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The position to start reading from when starting, resuming, or recovering
   /// the stream.
   /// If not set, the system's default value will be used.
-  public var startPosition: OneOf_StartPosition? = nil
+  public var startPosition: StartPositionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var startPosition: OneOf_StartPosition? = nil
+    var startPosition: StartPositionOneOf? = nil
     let startPositionCheckAndSet = {
       if startPosition != nil {
         throw DecodingError.dataCorrupted(
@@ -234,7 +234,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct SpecificStartPosition: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var position: OneOf_Position? = nil
+    public var position: PositionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -276,7 +276,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var position: OneOf_Position? = nil
+      var position: PositionOneOf? = nil
       let positionCheckAndSet = {
         if position != nil {
           throw DecodingError.dataCorrupted(
@@ -333,7 +333,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Position: Codable, Equatable, Sendable {
+    public enum PositionOneOf: Codable, Equatable, Sendable {
       /// MySQL specific log position to start replicating from.
       indirect case mysqlLogPosition(MysqlLogPosition?)
       /// Oracle SCN to start replicating from.
@@ -358,7 +358,7 @@ public struct CdcStrategy: Codable, Equatable, GoogleWKT._AnyPackable,
   /// The position to start reading from when starting, resuming, or recovering
   /// the stream.
   /// If not set, the system's default value will be used.
-  public enum OneOf_StartPosition: Codable, Equatable, Sendable {
+  public enum StartPositionOneOf: Codable, Equatable, Sendable {
     /// Optional. Start replicating from the most recent position in the source.
     indirect case mostRecentStartPosition(CdcStrategy.MostRecentStartPosition?)
     /// Optional. Resume replication from the next available position in the

@@ -23,7 +23,7 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
 {
   /// The source. Make sure that the caller of the API has storage.objects.get
   /// access to the buckets.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct BatchDocumentsInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The source. Make sure that the caller of the API has storage.objects.get
   /// access to the buckets.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// The set of documents that match the specified Cloud Storage `gcs_prefix`.
     indirect case gcsPrefix(GcsPrefix?)
     /// The set of documents individually specified on Cloud Storage.

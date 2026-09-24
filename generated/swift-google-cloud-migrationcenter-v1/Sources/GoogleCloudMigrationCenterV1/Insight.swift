@@ -21,7 +21,7 @@ import Foundation
 public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var insight: OneOf_Insight? = nil
+  public var insight: InsightOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var insight: OneOf_Insight? = nil
+    var insight: InsightOneOf? = nil
     let insightCheckAndSet = {
       if insight != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct Insight: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Insight: Codable, Equatable, Sendable {
+  public enum InsightOneOf: Codable, Equatable, Sendable {
     /// Output only. An insight about potential migrations for an asset.
     indirect case migrationInsight(MigrationInsight?)
     /// Output only. A generic insight about an asset

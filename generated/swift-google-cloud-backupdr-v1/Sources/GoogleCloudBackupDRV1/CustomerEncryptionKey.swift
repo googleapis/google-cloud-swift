@@ -27,7 +27,7 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleWKT._AnyPackable,
   public var kmsKeyServiceAccount: Swift.String? = nil
 
   /// The key to use for encryption.
-  public var key: OneOf_Key? = nil
+  public var key: KeyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleWKT._AnyPackable,
     self.kmsKeyServiceAccount = try container.decodeIfPresent(
       Swift.String.self, forKey: .kmsKeyServiceAccount)
 
-    var key: OneOf_Key? = nil
+    var key: KeyOneOf? = nil
     let keyCheckAndSet = {
       if key != nil {
         throw DecodingError.dataCorrupted(
@@ -119,7 +119,7 @@ public struct CustomerEncryptionKey: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The key to use for encryption.
-  public enum OneOf_Key: Codable, Equatable, Sendable {
+  public enum KeyOneOf: Codable, Equatable, Sendable {
     /// Optional. Specifies a 256-bit customer-supplied
     /// encryption key.
     case rawKey(Swift.String)

@@ -30,7 +30,7 @@ public struct RetrieveToolSchemaRequest: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The identifier of the tool to retrieve the schema for. It could be either a
   /// persisted tool or a tool from a toolset.
-  public var toolIdentifier: OneOf_ToolIdentifier? = nil
+  public var toolIdentifier: ToolIdentifierOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct RetrieveToolSchemaRequest: Codable, Equatable, GoogleWKT._AnyPacka
       self.parent = value
     }
 
-    var toolIdentifier: OneOf_ToolIdentifier? = nil
+    var toolIdentifier: ToolIdentifierOneOf? = nil
     let toolIdentifierCheckAndSet = {
       if toolIdentifier != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct RetrieveToolSchemaRequest: Codable, Equatable, GoogleWKT._AnyPacka
 
   /// The identifier of the tool to retrieve the schema for. It could be either a
   /// persisted tool or a tool from a toolset.
-  public enum OneOf_ToolIdentifier: Codable, Equatable, Sendable {
+  public enum ToolIdentifierOneOf: Codable, Equatable, Sendable {
     /// Optional. The name of the tool to retrieve the schema for.
     /// Format:
     /// projects/{project}/locations/{location}/apps/{app}/tools/{tool}

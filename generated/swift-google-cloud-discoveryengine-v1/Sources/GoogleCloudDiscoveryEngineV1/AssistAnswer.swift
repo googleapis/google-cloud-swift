@@ -115,7 +115,7 @@
       Sendable
     {
       /// Alternatives for the assistant reply.
-      public var reply: OneOf_Reply? = nil
+      public var reply: ReplyOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -151,7 +151,7 @@
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var reply: OneOf_Reply? = nil
+        var reply: ReplyOneOf? = nil
         let replyCheckAndSet = {
           if reply != nil {
             throw DecodingError.dataCorrupted(
@@ -188,7 +188,7 @@
       }
 
       /// Alternatives for the assistant reply.
-      public enum OneOf_Reply: Codable, Equatable, Sendable {
+      public enum ReplyOneOf: Codable, Equatable, Sendable {
         /// Possibly grounded response text or media from the assistant.
         indirect case groundedContent(AssistantGroundedContent?)
       }

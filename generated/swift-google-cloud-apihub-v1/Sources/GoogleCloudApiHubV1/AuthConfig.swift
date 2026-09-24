@@ -25,7 +25,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var authType: AuthType = AuthType()
 
   /// Supported auth types.
-  public var config: OneOf_Config? = nil
+  public var config: ConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -73,7 +73,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.authType = value
     }
 
-    var config: OneOf_Config? = nil
+    var config: ConfigOneOf? = nil
     let configCheckAndSet = {
       if config != nil {
         throw DecodingError.dataCorrupted(
@@ -519,7 +519,7 @@ public struct AuthConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Supported auth types.
-  public enum OneOf_Config: Codable, Equatable, Sendable {
+  public enum ConfigOneOf: Codable, Equatable, Sendable {
     /// Google Service Account.
     indirect case googleServiceAccountConfig(GoogleServiceAccountConfig?)
     /// User Password.

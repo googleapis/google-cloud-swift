@@ -26,7 +26,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
   public var fit: FitDescriptor? = nil
 
   /// A target for the migration.
-  public var migrationTarget: OneOf_MigrationTarget? = nil
+  public var migrationTarget: MigrationTargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.fit = try container.decodeIfPresent(FitDescriptor.self, forKey: .fit)
 
-    var migrationTarget: OneOf_MigrationTarget? = nil
+    var migrationTarget: MigrationTargetOneOf? = nil
     let migrationTargetCheckAndSet = {
       if migrationTarget != nil {
         throw DecodingError.dataCorrupted(
@@ -103,7 +103,7 @@ public struct MigrationInsight: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// A target for the migration.
-  public enum OneOf_MigrationTarget: Codable, Equatable, Sendable {
+  public enum MigrationTargetOneOf: Codable, Equatable, Sendable {
     /// Output only. A Google Compute Engine target.
     indirect case computeEngineTarget(ComputeEngineMigrationTarget?)
   }

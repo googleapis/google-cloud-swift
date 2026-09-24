@@ -34,7 +34,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   public var originalResourceUpdateTime: GoogleWKT.WKTTimestamp? = nil
 
   /// The source of the resource.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -90,7 +90,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     self.originalResourceUpdateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .originalResourceUpdateTime)
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -322,7 +322,7 @@ public struct SourceMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source of the resource.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Output only. The source of the resource is a plugin instance action.
     indirect case pluginInstanceActionSource(SourceMetadata.PluginInstanceActionSource?)
   }

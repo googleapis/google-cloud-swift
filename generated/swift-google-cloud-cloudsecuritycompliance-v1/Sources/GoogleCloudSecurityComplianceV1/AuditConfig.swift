@@ -83,7 +83,7 @@ public struct AuditConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
     /// Set of options for the report destination location.
-    public var cmEligibleDestinations: OneOf_CmEligibleDestinations? = nil
+    public var cmEligibleDestinations: CmEligibleDestinationsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -119,7 +119,7 @@ public struct AuditConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var cmEligibleDestinations: OneOf_CmEligibleDestinations? = nil
+      var cmEligibleDestinations: CmEligibleDestinationsOneOf? = nil
       let cmEligibleDestinationsCheckAndSet = {
         if cmEligibleDestinations != nil {
           throw DecodingError.dataCorrupted(
@@ -154,7 +154,7 @@ public struct AuditConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Set of options for the report destination location.
-    public enum OneOf_CmEligibleDestinations: Codable, Equatable, Sendable {
+    public enum CmEligibleDestinationsOneOf: Codable, Equatable, Sendable {
       /// The Cloud Storage bucket where audit reports and evidences can be
       /// uploaded. The format is `gs://{bucket_name}`.
       case gcsBucket(Swift.String)

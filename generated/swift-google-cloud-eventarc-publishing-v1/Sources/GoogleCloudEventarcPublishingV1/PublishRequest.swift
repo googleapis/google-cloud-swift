@@ -25,7 +25,7 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// `projects/{project}/locations/{location}/messageBuses/{messageBus}`.
   public var messageBus: Swift.String = Swift.String()
 
-  public var format: OneOf_Format? = nil
+  public var format: FormatOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       self.messageBus = value
     }
 
-    var format: OneOf_Format? = nil
+    var format: FormatOneOf? = nil
     let formatCheckAndSet = {
       if format != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct PublishRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Format: Codable, Equatable, Sendable {
+  public enum FormatOneOf: Codable, Equatable, Sendable {
     /// The Protobuf format of the CloudEvent being published. Specification can
     /// be found here:
     /// https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/protobuf-format.md

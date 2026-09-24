@@ -37,7 +37,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   public var modelSchema: CustomProcessorSourceInfo.ModelSchema? = nil
 
   /// The path where App Platform loads the artifacts for the custom processor.
-  public var artifactPath: OneOf_ArtifactPath? = nil
+  public var artifactPath: ArtifactPathOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
     self.modelSchema = try container.decodeIfPresent(
       CustomProcessorSourceInfo.ModelSchema.self, forKey: .modelSchema)
 
-    var artifactPath: OneOf_ArtifactPath? = nil
+    var artifactPath: ArtifactPathOneOf? = nil
     let artifactPathCheckAndSet = {
       if artifactPath != nil {
         throw DecodingError.dataCorrupted(
@@ -433,7 +433,7 @@ public struct CustomProcessorSourceInfo: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// The path where App Platform loads the artifacts for the custom processor.
-  public enum OneOf_ArtifactPath: Codable, Equatable, Sendable {
+  public enum ArtifactPathOneOf: Codable, Equatable, Sendable {
     /// The resource name original model hosted in the vertex AI platform.
     case vertexModel(Swift.String)
     /// Artifact for product recognizer.

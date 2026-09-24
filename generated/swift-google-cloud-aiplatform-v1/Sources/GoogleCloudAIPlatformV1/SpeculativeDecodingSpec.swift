@@ -26,7 +26,7 @@
     public var speculativeTokenCount: Swift.Int32 = Swift.Int32()
 
     /// The type of speculation method to use.
-    public var speculation: OneOf_Speculation? = nil
+    public var speculation: SpeculationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@
         self.speculativeTokenCount = value
       }
 
-      var speculation: OneOf_Speculation? = nil
+      var speculation: SpeculationOneOf? = nil
       let speculationCheckAndSet = {
         if speculation != nil {
           throw DecodingError.dataCorrupted(
@@ -259,7 +259,7 @@
     }
 
     /// The type of speculation method to use.
-    public enum OneOf_Speculation: Codable, Equatable, Sendable {
+    public enum SpeculationOneOf: Codable, Equatable, Sendable {
       /// draft model speculation.
       indirect case draftModelSpeculation(SpeculativeDecodingSpec.DraftModelSpeculation?)
       /// N-Gram speculation.

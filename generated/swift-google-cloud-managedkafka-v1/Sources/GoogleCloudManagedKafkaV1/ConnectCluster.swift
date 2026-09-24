@@ -51,7 +51,7 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public var config: [Swift.String: Swift.String] = [:]
 
   /// Platform specific configuration properties for a Kafka Connect cluster.
-  public var platformConfig: OneOf_PlatformConfig? = nil
+  public var platformConfig: PlatformConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -126,7 +126,7 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
       self.config = value
     }
 
-    var platformConfig: OneOf_PlatformConfig? = nil
+    var platformConfig: PlatformConfigOneOf? = nil
     let platformConfigCheckAndSet = {
       if platformConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -293,7 +293,7 @@ public struct ConnectCluster: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Platform specific configuration properties for a Kafka Connect cluster.
-  public enum OneOf_PlatformConfig: Codable, Equatable, Sendable {
+  public enum PlatformConfigOneOf: Codable, Equatable, Sendable {
     /// Required. Configuration properties for a Kafka Connect cluster deployed
     /// to Google Cloud Platform.
     indirect case gcpConfig(ConnectGcpConfig?)

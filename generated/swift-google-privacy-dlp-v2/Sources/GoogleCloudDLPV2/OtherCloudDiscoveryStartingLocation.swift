@@ -22,7 +22,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
   Sendable
 {
   /// The other cloud starting location for discovery.
-  public var location: OneOf_Location? = nil
+  public var location: LocationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var location: OneOf_Location? = nil
+    var location: LocationOneOf? = nil
     let locationCheckAndSet = {
       if location != nil {
         throw DecodingError.dataCorrupted(
@@ -99,7 +99,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     Sendable
   {
     /// The scope of this starting location.
-    public var scope: OneOf_Scope? = nil
+    public var scope: ScopeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -137,7 +137,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var scope: OneOf_Scope? = nil
+      var scope: ScopeOneOf? = nil
       let scopeCheckAndSet = {
         if scope != nil {
           throw DecodingError.dataCorrupted(
@@ -179,7 +179,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     }
 
     /// The scope of this starting location.
-    public enum OneOf_Scope: Codable, Equatable, Sendable {
+    public enum ScopeOneOf: Codable, Equatable, Sendable {
       /// The AWS account ID that this discovery config applies to.
       /// Within an AWS organization, you can find the AWS account ID inside an
       /// AWS account ARN. Example:
@@ -203,7 +203,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
   }
 
   /// The other cloud starting location for discovery.
-  public enum OneOf_Location: Codable, Equatable, Sendable {
+  public enum LocationOneOf: Codable, Equatable, Sendable {
     /// The AWS starting location for discovery.
     indirect case awsLocation(OtherCloudDiscoveryStartingLocation.AwsDiscoveryStartingLocation?)
   }

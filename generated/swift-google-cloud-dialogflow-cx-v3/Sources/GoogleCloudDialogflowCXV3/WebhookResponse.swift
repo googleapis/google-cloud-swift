@@ -43,7 +43,7 @@
     /// The target to transition to. This can be set optionally to indicate an
     /// immediate transition to a different page in the same host flow, or a
     /// different flow in the same agent.
-    public var transition: OneOf_Transition? = nil
+    public var transition: TransitionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -94,7 +94,7 @@
       self.sessionInfo = try container.decodeIfPresent(SessionInfo.self, forKey: .sessionInfo)
       self.payload = try container.decodeIfPresent(GoogleWKT.WKTStruct.self, forKey: .payload)
 
-      var transition: OneOf_Transition? = nil
+      var transition: TransitionOneOf? = nil
       let transitionCheckAndSet = {
         if transition != nil {
           throw DecodingError.dataCorrupted(
@@ -340,7 +340,7 @@
     /// The target to transition to. This can be set optionally to indicate an
     /// immediate transition to a different page in the same host flow, or a
     /// different flow in the same agent.
-    public enum OneOf_Transition: Codable, Equatable, Sendable {
+    public enum TransitionOneOf: Codable, Equatable, Sendable {
       /// The target page to transition to.
       /// Format:
       /// `projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/flows/<FlowID>/pages/<PageID>`.

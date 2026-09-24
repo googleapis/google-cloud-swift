@@ -22,7 +22,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Type of action to execute when a profile is generated.
-  public var action: OneOf_Action? = nil
+  public var action: ActionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var action: OneOf_Action? = nil
+    var action: ActionOneOf? = nil
     let actionCheckAndSet = {
       if action != nil {
         throw DecodingError.dataCorrupted(
@@ -773,7 +773,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       public var tag: DataProfileAction.TagResources.TagValue? = nil
 
       /// The type of condition on which attaching the tag will be predicated.
-      public var type: OneOf_Type? = nil
+      public var type: TypeOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -813,7 +813,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
         self.tag = try container.decodeIfPresent(
           DataProfileAction.TagResources.TagValue.self, forKey: .tag)
 
-        var type: OneOf_Type? = nil
+        var type: TypeOneOf? = nil
         let typeCheckAndSet = {
           if type != nil {
             throw DecodingError.dataCorrupted(
@@ -851,7 +851,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The type of condition on which attaching the tag will be predicated.
-      public enum OneOf_Type: Codable, Equatable, Sendable {
+      public enum TypeOneOf: Codable, Equatable, Sendable {
         /// Conditions attaching the tag to a resource on its profile having this
         /// sensitivity score.
         indirect case sensitivityScore(SensitivityScore?)
@@ -874,7 +874,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// The format of the tag value.
-      public var format: OneOf_Format? = nil
+      public var format: FormatOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -910,7 +910,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var format: OneOf_Format? = nil
+        var format: FormatOneOf? = nil
         let formatCheckAndSet = {
           if format != nil {
             throw DecodingError.dataCorrupted(
@@ -947,7 +947,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// The format of the tag value.
-      public enum OneOf_Format: Codable, Equatable, Sendable {
+      public enum FormatOneOf: Codable, Equatable, Sendable {
         /// The namespaced name for the tag value to attach to resources. Must be
         /// in the format `{parent_id}/{tag_key_short_name}/{short_name}`, for
         /// example, "123456/environment/prod" for an organization parent, or
@@ -1111,7 +1111,7 @@ public struct DataProfileAction: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Type of action to execute when a profile is generated.
-  public enum OneOf_Action: Codable, Equatable, Sendable {
+  public enum ActionOneOf: Codable, Equatable, Sendable {
     /// Export data profiles into a provided location.
     indirect case exportData(DataProfileAction.Export?)
     /// Publish a message into the Pub/Sub topic.

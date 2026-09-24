@@ -27,14 +27,14 @@
     ///
     /// This field must be not larger than max.
     /// Otherwise, an `INVALID_ARGUMENT` error is returned.
-    public var min: OneOf_Min? = nil
+    public var min: MinOneOf? = nil
 
     /// The upper bound of the interval. If neither of the max fields are
     /// set, then the upper bound is positive infinity.
     ///
     /// This field must be not smaller than min.
     /// Otherwise, an `INVALID_ARGUMENT` error is returned.
-    public var max: OneOf_Max? = nil
+    public var max: MaxOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -76,7 +76,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var min: OneOf_Min? = nil
+      var min: MinOneOf? = nil
       let minCheckAndSet = {
         if min != nil {
           throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@
       }
       self.min = min
 
-      var max: OneOf_Max? = nil
+      var max: MaxOneOf? = nil
       let maxCheckAndSet = {
         if max != nil {
           throw DecodingError.dataCorrupted(
@@ -151,7 +151,7 @@
     ///
     /// This field must be not larger than max.
     /// Otherwise, an `INVALID_ARGUMENT` error is returned.
-    public enum OneOf_Min: Codable, Equatable, Sendable {
+    public enum MinOneOf: Codable, Equatable, Sendable {
       /// Inclusive lower bound.
       case minimum(Swift.Double)
       /// Exclusive lower bound.
@@ -163,7 +163,7 @@
     ///
     /// This field must be not smaller than min.
     /// Otherwise, an `INVALID_ARGUMENT` error is returned.
-    public enum OneOf_Max: Codable, Equatable, Sendable {
+    public enum MaxOneOf: Codable, Equatable, Sendable {
       /// Inclusive upper bound.
       case maximum(Swift.Double)
       /// Exclusive upper bound.

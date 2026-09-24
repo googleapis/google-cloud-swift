@@ -31,9 +31,9 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   public var blmtConfig: BigQueryDestinationConfig.BlmtConfig? = nil
 
   /// Target dataset(s) configuration.
-  public var datasetConfig: OneOf_DatasetConfig? = nil
+  public var datasetConfig: DatasetConfigOneOf? = nil
 
-  public var writeMode: OneOf_WriteMode? = nil
+  public var writeMode: WriteModeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     self.blmtConfig = try container.decodeIfPresent(
       BigQueryDestinationConfig.BlmtConfig.self, forKey: .blmtConfig)
 
-    var datasetConfig: OneOf_DatasetConfig? = nil
+    var datasetConfig: DatasetConfigOneOf? = nil
     let datasetConfigCheckAndSet = {
       if datasetConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     }
     self.datasetConfig = datasetConfig
 
-    var writeMode: OneOf_WriteMode? = nil
+    var writeMode: WriteModeOneOf? = nil
     let writeModeCheckAndSet = {
       if writeMode != nil {
         throw DecodingError.dataCorrupted(
@@ -854,14 +854,14 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
   }
 
   /// Target dataset(s) configuration.
-  public enum OneOf_DatasetConfig: Codable, Equatable, Sendable {
+  public enum DatasetConfigOneOf: Codable, Equatable, Sendable {
     /// Single destination dataset.
     indirect case singleTargetDataset(BigQueryDestinationConfig.SingleTargetDataset?)
     /// Source hierarchy datasets.
     indirect case sourceHierarchyDatasets(BigQueryDestinationConfig.SourceHierarchyDatasets?)
   }
 
-  public enum OneOf_WriteMode: Codable, Equatable, Sendable {
+  public enum WriteModeOneOf: Codable, Equatable, Sendable {
     /// The standard mode
     indirect case merge(BigQueryDestinationConfig.Merge?)
     /// Append only mode

@@ -26,7 +26,7 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
   public var disks: [PersistentDisk] = []
 
   /// Details of the VM the disks are attached to.
-  public var vmTarget: OneOf_VmTarget? = nil
+  public var vmTarget: VmTargetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
       self.disks = value
     }
 
-    var vmTarget: OneOf_VmTarget? = nil
+    var vmTarget: VmTargetOneOf? = nil
     let vmTargetCheckAndSet = {
       if vmTarget != nil {
         throw DecodingError.dataCorrupted(
@@ -114,7 +114,7 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
   }
 
   /// Details of the VM the disks are attached to.
-  public enum OneOf_VmTarget: Codable, Equatable, Sendable {
+  public enum VmTargetOneOf: Codable, Equatable, Sendable {
     /// Details of the disks-only migration target.
     indirect case disksTargetDetails(DisksMigrationDisksTargetDetails?)
     /// Details for the VM the migrated data disks are attached to.

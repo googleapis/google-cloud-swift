@@ -54,7 +54,7 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   public var etag: Swift.String = Swift.String()
 
   /// The `JobRun` type and the information for that type.
-  public var jobRun: OneOf_JobRun? = nil
+  public var jobRun: JobRunOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -140,7 +140,7 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var jobRun: OneOf_JobRun? = nil
+    var jobRun: JobRunOneOf? = nil
     let jobRunCheckAndSet = {
       if jobRun != nil {
         throw DecodingError.dataCorrupted(
@@ -355,7 +355,7 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The `JobRun` type and the information for that type.
-  public enum OneOf_JobRun: Codable, Equatable, Sendable {
+  public enum JobRunOneOf: Codable, Equatable, Sendable {
     /// Output only. Information specific to a deploy `JobRun`.
     indirect case deployJobRun(DeployJobRun?)
     /// Output only. Information specific to a verify `JobRun`.

@@ -26,7 +26,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
   public var dimensionKey: Dimension.DimensionKey = Dimension.DimensionKey()
 
   /// Output-only metadata about the dimension.
-  public var dimensionMetadata: OneOf_DimensionMetadata? = nil
+  public var dimensionMetadata: DimensionMetadataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
       self.dimensionKey = value
     }
 
-    var dimensionMetadata: OneOf_DimensionMetadata? = nil
+    var dimensionMetadata: DimensionMetadataOneOf? = nil
     let dimensionMetadataCheckAndSet = {
       if dimensionMetadata != nil {
         throw DecodingError.dataCorrupted(
@@ -646,7 +646,7 @@ public struct Dimension: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Output-only metadata about the dimension.
-  public enum OneOf_DimensionMetadata: Codable, Equatable, Sendable {
+  public enum DimensionMetadataOneOf: Codable, Equatable, Sendable {
     /// Output only. Metadata about the issue dimension.
     indirect case issueDimensionMetadata(Dimension.IssueDimensionMetadata?)
     /// Output only. Metadata about the agent dimension.

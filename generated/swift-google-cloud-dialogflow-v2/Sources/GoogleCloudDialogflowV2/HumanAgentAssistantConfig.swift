@@ -627,7 +627,7 @@
       public var contextSize: Swift.Int32 = Swift.Int32()
 
       /// Source of query.
-      public var querySource: OneOf_QuerySource? = nil
+      public var querySource: QuerySourceOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -692,7 +692,7 @@
           self.contextSize = value
         }
 
-        var querySource: OneOf_QuerySource? = nil
+        var querySource: QuerySourceOneOf? = nil
         let querySourceCheckAndSet = {
           if querySource != nil {
             throw DecodingError.dataCorrupted(
@@ -1386,7 +1386,7 @@
       }
 
       /// Source of query.
-      public enum OneOf_QuerySource: Codable, Equatable, Sendable {
+      public enum QuerySourceOneOf: Codable, Equatable, Sendable {
         /// Query from knowledgebase. It is used by:
         /// ARTICLE_SUGGESTION, FAQ.
         indirect case knowledgeBaseQuerySource(
@@ -1612,7 +1612,7 @@
       /// [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
       ///
       /// [google.cloud.dialogflow.v2.AnalyzeContentResponse.message]: <doc:AnalyzeContentResponse/message>
-      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/OneOf_Payload/newMessagePayload(_:)>
+      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/PayloadOneOf/newMessagePayload(_:)>
       /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:options:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
       /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>
@@ -1643,7 +1643,7 @@
       /// [ConversationEvent.new_message_payload.SentimentAnalysisResult][google.cloud.dialogflow.v2.ConversationEvent.new_message_payload].
       ///
       /// [google.cloud.dialogflow.v2.AnalyzeContentResponse.message]: <doc:AnalyzeContentResponse/message>
-      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/OneOf_Payload/newMessagePayload(_:)>
+      /// [google.cloud.dialogflow.v2.ConversationEvent.new_message_payload]: <doc:ConversationEvent/PayloadOneOf/newMessagePayload(_:)>
       /// [google.cloud.dialogflow.v2.Conversations.ListMessages]: <doc:ConversationsClient/listMessages(request:options:)>
       /// [google.cloud.dialogflow.v2.ListMessagesResponse.messages]: <doc:ListMessagesResponse/messages>
       /// [google.cloud.dialogflow.v2.Participants.AnalyzeContent]: <doc:ParticipantsClient/analyzeContent(request:options:)>

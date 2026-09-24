@@ -34,7 +34,7 @@
       RestoreAgentRequest.RestoreOption()
 
     /// Required. The agent to restore.
-    public var agent: OneOf_Agent? = nil
+    public var agent: AgentOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -86,7 +86,7 @@
         self.restoreOption = value
       }
 
-      var agent: OneOf_Agent? = nil
+      var agent: AgentOneOf? = nil
       let agentCheckAndSet = {
         if agent != nil {
           throw DecodingError.dataCorrupted(
@@ -325,7 +325,7 @@
     }
 
     /// Required. The agent to restore.
-    public enum OneOf_Agent: Codable, Equatable, Sendable {
+    public enum AgentOneOf: Codable, Equatable, Sendable {
       /// The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI
       /// to restore agent from. The format of this URI must be
       /// `gs://<bucket-name>/<object-name>`.

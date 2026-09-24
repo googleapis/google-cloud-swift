@@ -25,7 +25,7 @@ public struct DirectoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   public var metadata: FilesystemEntryMetadata? = nil
 
   /// The entry's contents.
-  public var entry: OneOf_Entry? = nil
+  public var entry: EntryOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct DirectoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     let container = try decoder.container(keyedBy: CodingKeys.self)
     self.metadata = try container.decodeIfPresent(FilesystemEntryMetadata.self, forKey: .metadata)
 
-    var entry: OneOf_Entry? = nil
+    var entry: EntryOneOf? = nil
     let entryCheckAndSet = {
       if entry != nil {
         throw DecodingError.dataCorrupted(
@@ -107,7 +107,7 @@ public struct DirectoryEntry: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The entry's contents.
-  public enum OneOf_Entry: Codable, Equatable, Sendable {
+  public enum EntryOneOf: Codable, Equatable, Sendable {
     /// A file in the directory. The path is returned including the full
     /// folder structure from the root.
     case file(Swift.String)

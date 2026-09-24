@@ -36,7 +36,7 @@
     public var deleteUnassignedUserLicenses: Swift.Bool = Swift.Bool()
 
     /// Required. The source of the input.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -85,7 +85,7 @@
         self.deleteUnassignedUserLicenses = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -206,7 +206,7 @@
     }
 
     /// Required. The source of the input.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// The inline source for the input content for document embeddings.
       indirect case inlineSource(BatchUpdateUserLicensesRequest.InlineSource?)
     }

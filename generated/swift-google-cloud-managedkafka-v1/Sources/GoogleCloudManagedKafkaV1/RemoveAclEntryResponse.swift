@@ -23,7 +23,7 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
 {
   /// The result of removing the acl entry, depending on whether the acl was
   /// deleted as a result of removing the acl entry.
-  public var result: OneOf_Result? = nil
+  public var result: ResultOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var result: OneOf_Result? = nil
+    var result: ResultOneOf? = nil
     let resultCheckAndSet = {
       if result != nil {
         throw DecodingError.dataCorrupted(
@@ -102,7 +102,7 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
   /// The result of removing the acl entry, depending on whether the acl was
   /// deleted as a result of removing the acl entry.
-  public enum OneOf_Result: Codable, Equatable, Sendable {
+  public enum ResultOneOf: Codable, Equatable, Sendable {
     /// The updated acl. Returned if the removed acl entry was not the last entry
     /// in the acl.
     indirect case acl(Acl?)

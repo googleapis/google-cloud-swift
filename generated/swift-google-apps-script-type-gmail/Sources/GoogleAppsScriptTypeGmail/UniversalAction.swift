@@ -28,7 +28,7 @@ public struct UniversalAction: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of the action determines the behavior of Gmail when the user
   /// invokes the action.
-  public var actionType: OneOf_ActionType? = nil
+  public var actionType: ActionTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -71,7 +71,7 @@ public struct UniversalAction: Codable, Equatable, GoogleWKT._AnyPackable,
       self.text = value
     }
 
-    var actionType: OneOf_ActionType? = nil
+    var actionType: ActionTypeOneOf? = nil
     let actionTypeCheckAndSet = {
       if actionType != nil {
         throw DecodingError.dataCorrupted(
@@ -113,7 +113,7 @@ public struct UniversalAction: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of the action determines the behavior of Gmail when the user
   /// invokes the action.
-  public enum OneOf_ActionType: Codable, Equatable, Sendable {
+  public enum ActionTypeOneOf: Codable, Equatable, Sendable {
     /// A link that is opened by Gmail when the user triggers the action.
     case openLink(Swift.String)
     /// An endpoint that is called when the user triggers the

@@ -25,7 +25,7 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
   public var storageType: IcebergStorage.StorageType = IcebergStorage.StorageType()
 
   /// The type of Iceberg storage.
-  public var storageDetails: OneOf_StorageDetails? = nil
+  public var storageDetails: StorageDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -74,7 +74,7 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
       self.storageType = value
     }
 
-    var storageDetails: OneOf_StorageDetails? = nil
+    var storageDetails: StorageDetailsOneOf? = nil
     let storageDetailsCheckAndSet = {
       if storageDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -252,7 +252,7 @@ public struct IcebergStorage: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The type of Iceberg storage.
-  public enum OneOf_StorageDetails: Codable, Equatable, Sendable {
+  public enum StorageDetailsOneOf: Codable, Equatable, Sendable {
     /// The Amazon S3 Iceberg storage.
     indirect case amazonS3IcebergStorage(AmazonS3IcebergStorage?)
     /// The Google Cloud Storage Iceberg storage.

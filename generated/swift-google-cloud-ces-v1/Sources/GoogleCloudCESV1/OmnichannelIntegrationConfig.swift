@@ -104,7 +104,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     Sendable
   {
     /// The config for the app.
-    public var channelConfig: OneOf_ChannelConfig? = nil
+    public var channelConfig: ChannelConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -140,7 +140,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var channelConfig: OneOf_ChannelConfig? = nil
+      var channelConfig: ChannelConfigOneOf? = nil
       let channelConfigCheckAndSet = {
         if channelConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -177,7 +177,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     }
 
     /// The config for the app.
-    public enum OneOf_ChannelConfig: Codable, Equatable, Sendable {
+    public enum ChannelConfigOneOf: Codable, Equatable, Sendable {
       /// WhatsApp config.
       indirect case whatsappConfig(OmnichannelIntegrationConfig.WhatsappConfig?)
     }
@@ -320,7 +320,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     Sendable
   {
     /// The config for the subscriber.
-    public var subscriberConfig: OneOf_SubscriberConfig? = nil
+    public var subscriberConfig: SubscriberConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -356,7 +356,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var subscriberConfig: OneOf_SubscriberConfig? = nil
+      var subscriberConfig: SubscriberConfigOneOf? = nil
       let subscriberConfigCheckAndSet = {
         if subscriberConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -393,7 +393,7 @@ public struct OmnichannelIntegrationConfig: Codable, Equatable, GoogleWKT._AnyPa
     }
 
     /// The config for the subscriber.
-    public enum OneOf_SubscriberConfig: Codable, Equatable, Sendable {
+    public enum SubscriberConfigOneOf: Codable, Equatable, Sendable {
       /// Ces app config.
       indirect case cesAppConfig(OmnichannelIntegrationConfig.CesAppConfig?)
     }

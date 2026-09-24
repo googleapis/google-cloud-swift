@@ -30,7 +30,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For EMBEDDED_TIMECODE source only.
   /// Used to interpret the embedded timecode (which contains only the time part
   /// and no date). We assume all inputs are live.
-  public var timeOffset: OneOf_TimeOffset? = nil
+  public var timeOffset: TimeOffsetOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.source = value
     }
 
-    var timeOffset: OneOf_TimeOffset? = nil
+    var timeOffset: TimeOffsetOneOf? = nil
     let timeOffsetCheckAndSet = {
       if timeOffset != nil {
         throw DecodingError.dataCorrupted(
@@ -237,7 +237,7 @@ public struct TimecodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// For EMBEDDED_TIMECODE source only.
   /// Used to interpret the embedded timecode (which contains only the time part
   /// and no date). We assume all inputs are live.
-  public enum OneOf_TimeOffset: Codable, Equatable, Sendable {
+  public enum TimeOffsetOneOf: Codable, Equatable, Sendable {
     /// UTC offset. Must be whole seconds, between -18 hours and +18 hours.
     indirect case utcOffset(GoogleWKT.WKTDuration?)
     /// Time zone e.g. "America/Los_Angeles".

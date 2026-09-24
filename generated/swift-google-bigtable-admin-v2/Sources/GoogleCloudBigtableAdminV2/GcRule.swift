@@ -22,7 +22,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Garbage collection rules.
-  public var rule: OneOf_Rule? = nil
+  public var rule: RuleOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var rule: OneOf_Rule? = nil
+    var rule: RuleOneOf? = nil
     let ruleCheckAndSet = {
       if rule != nil {
         throw DecodingError.dataCorrupted(
@@ -253,7 +253,7 @@ public struct GcRule: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Garbage collection rules.
-  public enum OneOf_Rule: Codable, Equatable, Sendable {
+  public enum RuleOneOf: Codable, Equatable, Sendable {
     /// Delete all cells in a column except the most recent N.
     case maxNumVersions(Swift.Int32)
     /// Delete cells in a column older than the given age.

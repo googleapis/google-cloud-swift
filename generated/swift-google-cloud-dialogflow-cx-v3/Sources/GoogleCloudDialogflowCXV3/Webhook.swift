@@ -49,7 +49,7 @@
     public var disabled: Swift.Bool = Swift.Bool()
 
     /// Required. The webhook configuration.
-    public var webhook: OneOf_Webhook? = nil
+    public var webhook: WebhookOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@
         self.disabled = value
       }
 
-      var webhook: OneOf_Webhook? = nil
+      var webhook: WebhookOneOf? = nil
       let webhookCheckAndSet = {
         if webhook != nil {
           throw DecodingError.dataCorrupted(
@@ -1146,7 +1146,7 @@
     }
 
     /// Required. The webhook configuration.
-    public enum OneOf_Webhook: Codable, Equatable, Sendable {
+    public enum WebhookOneOf: Codable, Equatable, Sendable {
       /// Configuration for a generic web service.
       indirect case genericWebService(Webhook.GenericWebService?)
       /// Configuration for a [Service

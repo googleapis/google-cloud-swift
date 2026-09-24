@@ -39,7 +39,7 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Configuration of auxiliary services used by this cluster.
   public var auxiliaryServicesConfig: AuxiliaryServicesConfig? = nil
 
-  public var infrastructureConfig: OneOf_InfrastructureConfig? = nil
+  public var infrastructureConfig: InfrastructureConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     self.auxiliaryServicesConfig = try container.decodeIfPresent(
       AuxiliaryServicesConfig.self, forKey: .auxiliaryServicesConfig)
 
-    var infrastructureConfig: OneOf_InfrastructureConfig? = nil
+    var infrastructureConfig: InfrastructureConfigOneOf? = nil
     let infrastructureConfigCheckAndSet = {
       if infrastructureConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -122,7 +122,7 @@ public struct VirtualClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_InfrastructureConfig: Codable, Equatable, Sendable {
+  public enum InfrastructureConfigOneOf: Codable, Equatable, Sendable {
     /// Required. The configuration for running the Dataproc cluster on
     /// Kubernetes.
     indirect case kubernetesClusterConfig(KubernetesClusterConfig?)

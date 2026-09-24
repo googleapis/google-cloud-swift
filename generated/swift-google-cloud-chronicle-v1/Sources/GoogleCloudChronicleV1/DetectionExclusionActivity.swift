@@ -94,7 +94,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
     /// excluded detections and non-excluded detections.
     public var totalDetectionCount: Swift.Int64 = Swift.Int64()
 
-    public var detectorName: OneOf_DetectorName? = nil
+    public var detectorName: DetectorNameOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -148,7 +148,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
         self.totalDetectionCount = value
       }
 
-      var detectorName: OneOf_DetectorName? = nil
+      var detectorName: DetectorNameOneOf? = nil
       let detectorNameCheckAndSet = {
         if detectorName != nil {
           throw DecodingError.dataCorrupted(
@@ -203,7 +203,7 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
       }
     }
 
-    public enum OneOf_DetectorName: Codable, Equatable, Sendable {
+    public enum DetectorNameOneOf: Codable, Equatable, Sendable {
       /// Full resource name for the curated rule this activity corresponds to.
       /// Format:
       /// projects/{project}/locations/{location}/instances/{instance}/curatedRules/{rule}

@@ -25,7 +25,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This captures various SSL mode supported by PostgreSQL, which includes
   /// TLS encryption with server verification, TLS encryption with both server
   /// and client verification and no TLS encryption.
-  public var encryptionSetting: OneOf_EncryptionSetting? = nil
+  public var encryptionSetting: EncryptionSettingOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -63,7 +63,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var encryptionSetting: OneOf_EncryptionSetting? = nil
+    var encryptionSetting: EncryptionSettingOneOf? = nil
     let encryptionSettingCheckAndSet = {
       if encryptionSetting != nil {
         throw DecodingError.dataCorrupted(
@@ -304,7 +304,7 @@ public struct PostgresqlSslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   /// This captures various SSL mode supported by PostgreSQL, which includes
   /// TLS encryption with server verification, TLS encryption with both server
   /// and client verification and no TLS encryption.
-  public enum OneOf_EncryptionSetting: Codable, Equatable, Sendable {
+  public enum EncryptionSettingOneOf: Codable, Equatable, Sendable {
     ///  If this field is set, the communication will be encrypted with TLS
     ///  encryption and the server identity will be authenticated.
     indirect case serverVerification(PostgresqlSslConfig.ServerVerification?)

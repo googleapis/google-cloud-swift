@@ -26,7 +26,7 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Label of the piece of metadata containing the finding, for example -
   /// latitude, author, caption.
-  public var label: OneOf_Label? = nil
+  public var label: LabelOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -69,7 +69,7 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
       self.type = value
     }
 
-    var label: OneOf_Label? = nil
+    var label: LabelOneOf? = nil
     let labelCheckAndSet = {
       if label != nil {
         throw DecodingError.dataCorrupted(
@@ -115,7 +115,7 @@ public struct MetadataLocation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Label of the piece of metadata containing the finding, for example -
   /// latitude, author, caption.
-  public enum OneOf_Label: Codable, Equatable, Sendable {
+  public enum LabelOneOf: Codable, Equatable, Sendable {
     /// Storage metadata.
     indirect case storageLabel(StorageMetadataLabel?)
     /// Metadata key that contains the finding.

@@ -36,7 +36,7 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
   /// documentation on `public_key` cases below for details.
   public var id: Swift.String = Swift.String()
 
-  public var publicKey: OneOf_PublicKey? = nil
+  public var publicKey: PublicKeyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
       self.id = value
     }
 
-    var publicKey: OneOf_PublicKey? = nil
+    var publicKey: PublicKeyOneOf? = nil
     let publicKeyCheckAndSet = {
       if publicKey != nil {
         throw DecodingError.dataCorrupted(
@@ -129,7 +129,7 @@ public struct AttestorPublicKey: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_PublicKey: Codable, Equatable, Sendable {
+  public enum PublicKeyOneOf: Codable, Equatable, Sendable {
     /// ASCII-armored representation of a PGP public key, as the entire output by
     /// the command `gpg --export --armor foo@example.com` (either LF or CRLF
     /// line endings).

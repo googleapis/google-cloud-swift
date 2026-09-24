@@ -42,7 +42,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
 
   /// The resources which the findings refinement is applied to. Corresponds to
   /// the type of the findings refinement.
-  public var findingsRefinementApplication: OneOf_FindingsRefinementApplication? = nil
+  public var findingsRefinementApplication: FindingsRefinementApplicationOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -98,7 +98,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var findingsRefinementApplication: OneOf_FindingsRefinementApplication? = nil
+    var findingsRefinementApplication: FindingsRefinementApplicationOneOf? = nil
     let findingsRefinementApplicationCheckAndSet = {
       if findingsRefinementApplication != nil {
         throw DecodingError.dataCorrupted(
@@ -141,7 +141,7 @@ public struct FindingsRefinementDeployment: Codable, Equatable, GoogleWKT._AnyPa
 
   /// The resources which the findings refinement is applied to. Corresponds to
   /// the type of the findings refinement.
-  public enum OneOf_FindingsRefinementApplication: Codable, Equatable, Sendable {
+  public enum FindingsRefinementApplicationOneOf: Codable, Equatable, Sendable {
     /// The resources which the detection exclusion is applied to.
     indirect case detectionExclusionApplication(DetectionExclusionApplication?)
   }

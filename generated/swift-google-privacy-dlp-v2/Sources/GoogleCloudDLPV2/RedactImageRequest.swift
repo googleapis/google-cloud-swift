@@ -174,7 +174,7 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     public var redactionColor: Color? = nil
 
     /// Type of information to redact from images.
-    public var target: OneOf_Target? = nil
+    public var target: TargetOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -215,7 +215,7 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.redactionColor = try container.decodeIfPresent(Color.self, forKey: .redactionColor)
 
-      var target: OneOf_Target? = nil
+      var target: TargetOneOf? = nil
       let targetCheckAndSet = {
         if target != nil {
           throw DecodingError.dataCorrupted(
@@ -257,7 +257,7 @@ public struct RedactImageRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Type of information to redact from images.
-    public enum OneOf_Target: Codable, Equatable, Sendable {
+    public enum TargetOneOf: Codable, Equatable, Sendable {
       /// Only one per info_type should be provided per request. If not
       /// specified, and redact_all_text is false, the DLP API will redact all
       /// text that it matches against all info_types that are found, but not

@@ -130,7 +130,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
   /// columns names or types) is currently unsupported.
   public var rowKeySchema: Type_.Struct? = nil
 
-  public var automatedBackupConfig: OneOf_AutomatedBackupConfig? = nil
+  public var automatedBackupConfig: AutomatedBackupConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -211,7 +211,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
       TieredStorageConfig.self, forKey: .tieredStorageConfig)
     self.rowKeySchema = try container.decodeIfPresent(Type_.Struct.self, forKey: .rowKeySchema)
 
-    var automatedBackupConfig: OneOf_AutomatedBackupConfig? = nil
+    var automatedBackupConfig: AutomatedBackupConfigOneOf? = nil
     let automatedBackupConfigCheckAndSet = {
       if automatedBackupConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -833,7 +833,7 @@ public struct Table: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_AutomatedBackupConfig: Codable, Equatable, Sendable {
+  public enum AutomatedBackupConfigOneOf: Codable, Equatable, Sendable {
     /// If specified, automated backups are enabled for this table.
     /// Otherwise, automated backups are disabled.
     indirect case automatedBackupPolicy(Table.AutomatedBackupPolicy?)

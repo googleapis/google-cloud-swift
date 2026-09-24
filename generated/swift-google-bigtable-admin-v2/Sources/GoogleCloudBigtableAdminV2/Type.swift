@@ -43,7 +43,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The kind of type that this represents.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -269,7 +269,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
-      public var encoding: OneOf_Encoding? = nil
+      public var encoding: EncodingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -305,7 +305,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var encoding: OneOf_Encoding? = nil
+        var encoding: EncodingOneOf? = nil
         let encodingCheckAndSet = {
           if encoding != nil {
             throw DecodingError.dataCorrupted(
@@ -401,7 +401,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum OneOf_Encoding: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `Raw` encoding.
         indirect case raw(Type_.Bytes.Encoding.Raw?)
       }
@@ -489,7 +489,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
-      public var encoding: OneOf_Encoding? = nil
+      public var encoding: EncodingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -530,7 +530,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var encoding: OneOf_Encoding? = nil
+        var encoding: EncodingOneOf? = nil
         let encodingCheckAndSet = {
           if encoding != nil {
             throw DecodingError.dataCorrupted(
@@ -704,7 +704,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum OneOf_Encoding: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Deprecated: if set, converts to an empty `utf8_bytes`.
         @available(*, deprecated)
         indirect case utf8Raw(Type_.String.Encoding.Utf8Raw?)
@@ -795,7 +795,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
-      public var encoding: OneOf_Encoding? = nil
+      public var encoding: EncodingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -833,7 +833,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var encoding: OneOf_Encoding? = nil
+        var encoding: EncodingOneOf? = nil
         let encodingCheckAndSet = {
           if encoding != nil {
             throw DecodingError.dataCorrupted(
@@ -1022,7 +1022,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum OneOf_Encoding: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `BigEndianBytes` encoding.
         indirect case bigEndianBytes(Type_.Int64.Encoding.BigEndianBytes?)
         /// Use `OrderedCodeBytes` encoding.
@@ -1287,7 +1287,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
-      public var encoding: OneOf_Encoding? = nil
+      public var encoding: EncodingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1323,7 +1323,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var encoding: OneOf_Encoding? = nil
+        var encoding: EncodingOneOf? = nil
         let encodingCheckAndSet = {
           if encoding != nil {
             throw DecodingError.dataCorrupted(
@@ -1360,7 +1360,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum OneOf_Encoding: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Encodes the number of microseconds since the Unix epoch using the
         /// given `Int64` encoding. Values must be microsecond-aligned.
         ///
@@ -1598,7 +1598,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       Sendable
     {
       /// Which encoding to use.
-      public var encoding: OneOf_Encoding? = nil
+      public var encoding: EncodingOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -1638,7 +1638,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var encoding: OneOf_Encoding? = nil
+        var encoding: EncodingOneOf? = nil
         let encodingCheckAndSet = {
           if encoding != nil {
             throw DecodingError.dataCorrupted(
@@ -1929,7 +1929,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       }
 
       /// Which encoding to use.
-      public enum OneOf_Encoding: Codable, Equatable, Sendable {
+      public enum EncodingOneOf: Codable, Equatable, Sendable {
         /// Use `Singleton` encoding.
         indirect case singleton(Type_.Struct.Encoding.Singleton?)
         /// Use `DelimitedBytes` encoding.
@@ -2287,7 +2287,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     public var stateType: GoogleWKT.WKTRecursive<Type_>? = nil
 
     /// Which aggregator function to use. The configured types must match.
-    public var aggregator: OneOf_Aggregator? = nil
+    public var aggregator: AggregatorOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2337,7 +2337,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
       self.stateType = try container.decodeIfPresent(
         GoogleWKT.WKTRecursive<Type_>.self, forKey: .stateType)
 
-      var aggregator: OneOf_Aggregator? = nil
+      var aggregator: AggregatorOneOf? = nil
       let aggregatorCheckAndSet = {
         if aggregator != nil {
           throw DecodingError.dataCorrupted(
@@ -2632,7 +2632,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Which aggregator function to use. The configured types must match.
-    public enum OneOf_Aggregator: Codable, Equatable, Sendable {
+    public enum AggregatorOneOf: Codable, Equatable, Sendable {
       /// Sum aggregator.
       indirect case sum(Type_.Aggregate.Sum?)
       /// HyperLogLogPlusPlusUniqueCount aggregator.
@@ -2655,7 +2655,7 @@ public struct Type_: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The kind of type that this represents.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// Bytes
     indirect case bytesType(Type_.Bytes?)
     /// String

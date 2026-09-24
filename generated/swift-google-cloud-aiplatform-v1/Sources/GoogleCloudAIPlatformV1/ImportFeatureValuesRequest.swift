@@ -57,11 +57,11 @@
 
     /// Details about the source data, including the location of the storage and
     /// the format.
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     /// Source of Feature timestamp for all Feature values of each entity.
     /// Timestamps must be millisecond-aligned.
-    public var featureTimeSource: OneOf_FeatureTimeSource? = nil
+    public var featureTimeSource: FeatureTimeSourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -139,7 +139,7 @@
         self.disableIngestionAnalysis = value
       }
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -162,7 +162,7 @@
       }
       self.source = source
 
-      var featureTimeSource: OneOf_FeatureTimeSource? = nil
+      var featureTimeSource: FeatureTimeSourceOneOf? = nil
       let featureTimeSourceCheckAndSet = {
         if featureTimeSource != nil {
           throw DecodingError.dataCorrupted(
@@ -304,7 +304,7 @@
 
     /// Details about the source data, including the location of the storage and
     /// the format.
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       indirect case avroSource(AvroSource?)
       indirect case bigquerySource(BigQuerySource?)
       indirect case csvSource(CsvSource?)
@@ -312,7 +312,7 @@
 
     /// Source of Feature timestamp for all Feature values of each entity.
     /// Timestamps must be millisecond-aligned.
-    public enum OneOf_FeatureTimeSource: Codable, Equatable, Sendable {
+    public enum FeatureTimeSourceOneOf: Codable, Equatable, Sendable {
       /// Source column that holds the Feature timestamp for all Feature
       /// values in each entity.
       case featureTimeField(Swift.String)

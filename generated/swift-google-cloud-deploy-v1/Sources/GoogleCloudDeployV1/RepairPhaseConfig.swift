@@ -22,7 +22,7 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The repair phase to perform.
-  public var repairPhase: OneOf_RepairPhase? = nil
+  public var repairPhase: RepairPhaseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -60,7 +60,7 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var repairPhase: OneOf_RepairPhase? = nil
+    var repairPhase: RepairPhaseOneOf? = nil
     let repairPhaseCheckAndSet = {
       if repairPhase != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct RepairPhaseConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The repair phase to perform.
-  public enum OneOf_RepairPhase: Codable, Equatable, Sendable {
+  public enum RepairPhaseOneOf: Codable, Equatable, Sendable {
     /// Optional. Retries a failed job.
     indirect case retry(Retry?)
     /// Optional. Rolls back a `Rollout`.

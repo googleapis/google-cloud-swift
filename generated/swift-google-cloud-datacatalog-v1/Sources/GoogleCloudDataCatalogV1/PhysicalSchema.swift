@@ -22,7 +22,7 @@ import Foundation
 public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var schema: OneOf_Schema? = nil
+  public var schema: SchemaOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var schema: OneOf_Schema? = nil
+    var schema: SchemaOneOf? = nil
     let schemaCheckAndSet = {
       if schema != nil {
         throw DecodingError.dataCorrupted(
@@ -508,7 +508,7 @@ public struct PhysicalSchema: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Schema: Codable, Equatable, Sendable {
+  public enum SchemaOneOf: Codable, Equatable, Sendable {
     /// Schema in Avro JSON format.
     indirect case avro(PhysicalSchema.AvroSchema?)
     /// Schema in Thrift format.

@@ -22,7 +22,7 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The list of possible parameter value types.
-  public var kind: OneOf_Kind? = nil
+  public var kind: KindOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -66,7 +66,7 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var kind: OneOf_Kind? = nil
+    var kind: KindOneOf? = nil
     let kindCheckAndSet = {
       if kind != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct ParamValue: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The list of possible parameter value types.
-  public enum OneOf_Kind: Codable, Equatable, Sendable {
+  public enum KindOneOf: Codable, Equatable, Sendable {
     /// Optional. A string value.
     case stringValue(Swift.String)
     /// Optional. A boolean value.

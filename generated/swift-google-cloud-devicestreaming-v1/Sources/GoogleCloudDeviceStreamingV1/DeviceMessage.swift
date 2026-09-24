@@ -21,7 +21,7 @@ import Foundation
 public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var contents: OneOf_Contents? = nil
+  public var contents: ContentsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var contents: OneOf_Contents? = nil
+    var contents: ContentsOneOf? = nil
     let contentsCheckAndSet = {
       if contents != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct DeviceMessage: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Contents: Codable, Equatable, Sendable {
+  public enum ContentsOneOf: Codable, Equatable, Sendable {
     /// Information about the device's state.
     indirect case statusUpdate(StatusUpdate?)
     /// The result of a device stream from ADB.

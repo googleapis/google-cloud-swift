@@ -34,7 +34,7 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   public var lockReason: Swift.String = Swift.String()
 
   /// The information about this lock.
-  public var lockSource: OneOf_LockSource? = nil
+  public var lockSource: LockSourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -89,7 +89,7 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleWKT._AnyPackabl
       self.lockReason = value
     }
 
-    var lockSource: OneOf_LockSource? = nil
+    var lockSource: LockSourceOneOf? = nil
     let lockSourceCheckAndSet = {
       if lockSource != nil {
         throw DecodingError.dataCorrupted(
@@ -137,7 +137,7 @@ public struct BackupApplianceLockInfo: Codable, Equatable, GoogleWKT._AnyPackabl
   }
 
   /// The information about this lock.
-  public enum OneOf_LockSource: Codable, Equatable, Sendable {
+  public enum LockSourceOneOf: Codable, Equatable, Sendable {
     /// The job name on the backup/recovery appliance that created this lock.
     case jobName(Swift.String)
     /// The image name that depends on this Backup.

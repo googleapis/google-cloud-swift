@@ -42,7 +42,7 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   /// Optional. Whether the column is a repeated values column.
   public var repeatedValues: Swift.Bool = Swift.Bool()
 
-  public var pathOrType: OneOf_PathOrType? = nil
+  public var pathOrType: PathOrTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -100,7 +100,7 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleWKT._AnyPackable,
       self.repeatedValues = value
     }
 
-    var pathOrType: OneOf_PathOrType? = nil
+    var pathOrType: PathOrTypeOneOf? = nil
     let pathOrTypeCheckAndSet = {
       if pathOrType != nil {
         throw DecodingError.dataCorrupted(
@@ -279,7 +279,7 @@ public struct DataTableColumnInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_PathOrType: Codable, Equatable, Sendable {
+  public enum PathOrTypeOneOf: Codable, Equatable, Sendable {
     /// Entity proto field path that the column is mapped to
     case mappedColumnPath(Swift.String)
     /// Column type can be STRING, CIDR (Ex- 10.1.1.0/24), REGEX

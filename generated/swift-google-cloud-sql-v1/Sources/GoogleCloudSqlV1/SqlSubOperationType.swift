@@ -23,7 +23,7 @@
     Sendable
   {
     /// Sub operation details corresponding to the operation type.
-    public var subOperationDetails: OneOf_SubOperationDetails? = nil
+    public var subOperationDetails: SubOperationDetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var subOperationDetails: OneOf_SubOperationDetails? = nil
+      var subOperationDetails: SubOperationDetailsOneOf? = nil
       let subOperationDetailsCheckAndSet = {
         if subOperationDetails != nil {
           throw DecodingError.dataCorrupted(
@@ -96,7 +96,7 @@
     }
 
     /// Sub operation details corresponding to the operation type.
-    public enum OneOf_SubOperationDetails: Codable, Equatable, Sendable {
+    public enum SubOperationDetailsOneOf: Codable, Equatable, Sendable {
       /// The type of maintenance to be performed on the instance.
       case maintenanceType(SqlMaintenanceType)
     }

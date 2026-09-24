@@ -28,7 +28,7 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
   /// is from the cache).
   public var updateTime: GoogleWKT.WKTTimestamp? = nil
 
-  public var sourceVms: OneOf_SourceVms? = nil
+  public var sourceVms: SourceVmsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -72,7 +72,7 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
     self.updateTime = try container.decodeIfPresent(
       GoogleWKT.WKTTimestamp.self, forKey: .updateTime)
 
-    var sourceVms: OneOf_SourceVms? = nil
+    var sourceVms: SourceVmsOneOf? = nil
     let sourceVmsCheckAndSet = {
       if sourceVms != nil {
         throw DecodingError.dataCorrupted(
@@ -117,7 +117,7 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
     }
   }
 
-  public enum OneOf_SourceVms: Codable, Equatable, Sendable {
+  public enum SourceVmsOneOf: Codable, Equatable, Sendable {
     /// The description of the VMs in a Source of type Vmware.
     indirect case vmwareVms(VmwareVmsDetails?)
     /// The description of the VMs in a Source of type AWS.

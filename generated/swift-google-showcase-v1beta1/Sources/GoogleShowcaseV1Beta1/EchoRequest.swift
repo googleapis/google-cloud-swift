@@ -40,7 +40,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   /// To facilitate testing of https://google.aip.dev/client-libraries/4235
   public var otherRequestId: Swift.String? = nil
 
-  public var response: OneOf_Response? = nil
+  public var response: ResponseOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -101,7 +101,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.otherRequestId = try container.decodeIfPresent(Swift.String.self, forKey: .otherRequestId)
 
-    var response: OneOf_Response? = nil
+    var response: ResponseOneOf? = nil
     let responseCheckAndSet = {
       if response != nil {
         throw DecodingError.dataCorrupted(
@@ -145,7 +145,7 @@ public struct EchoRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Response: Codable, Equatable, Sendable {
+  public enum ResponseOneOf: Codable, Equatable, Sendable {
     /// The content to be echoed by the server.
     case content(Swift.String)
     /// The error to be thrown by the server.

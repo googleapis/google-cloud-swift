@@ -378,7 +378,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       /// input string ``Data`` and ``data`` if set to true.
       public var ignoreCase: Swift.Bool = Swift.Bool()
 
-      public var matchPattern: OneOf_MatchPattern? = nil
+      public var matchPattern: MatchPatternOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -425,7 +425,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
           self.ignoreCase = value
         }
 
-        var matchPattern: OneOf_MatchPattern? = nil
+        var matchPattern: MatchPatternOneOf? = nil
         let matchPatternCheckAndSet = {
           if matchPattern != nil {
             throw DecodingError.dataCorrupted(
@@ -475,7 +475,7 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum OneOf_MatchPattern: Codable, Equatable, Sendable {
+      public enum MatchPatternOneOf: Codable, Equatable, Sendable {
         /// The input string must match exactly the string specified here.
         ///
         /// Examples:

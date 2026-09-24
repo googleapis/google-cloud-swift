@@ -29,7 +29,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of trigger determines the conditions Gmail uses to show the
   /// add-on.
-  public var trigger: OneOf_Trigger? = nil
+  public var trigger: TriggerOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -70,7 +70,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
       self.onTriggerFunction = value
     }
 
-    var trigger: OneOf_Trigger? = nil
+    var trigger: TriggerOneOf? = nil
     let triggerCheckAndSet = {
       if trigger != nil {
         throw DecodingError.dataCorrupted(
@@ -109,7 +109,7 @@ public struct ContextualTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The type of trigger determines the conditions Gmail uses to show the
   /// add-on.
-  public enum OneOf_Trigger: Codable, Equatable, Sendable {
+  public enum TriggerOneOf: Codable, Equatable, Sendable {
     /// UnconditionalTriggers are executed when any mail message is opened.
     indirect case unconditional(UnconditionalTrigger?)
   }

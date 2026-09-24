@@ -108,7 +108,7 @@
     /// or
     /// [Sessions.StreamingDetectIntent][google.cloud.dialogflow.cx.v3.Sessions.StreamingDetectIntent].
     ///
-    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/OneOf_DataRetention/retentionStrategy(_:)>
+    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/DataRetentionOneOf/retentionStrategy(_:)>
     /// [google.cloud.dialogflow.cx.v3.Sessions.DetectIntent]: <doc:SessionsClient/detectIntent(request:options:)>
     public var audioExportSettings: SecuritySettings.AudioExportSettings? = nil
 
@@ -120,13 +120,13 @@
     /// is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter
     /// what you configure here.
     ///
-    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/OneOf_DataRetention/retentionStrategy(_:)>
+    /// [google.cloud.dialogflow.cx.v3.SecuritySettings.retention_strategy]: <doc:SecuritySettings/DataRetentionOneOf/retentionStrategy(_:)>
     public var insightsExportSettings: SecuritySettings.InsightsExportSettings? = nil
 
     /// Specifies how data is retained. Note that even if the data is
     /// purged due to retention policy, we may still hold it in backup storage for
     /// a few days without allowing direct readings.
-    public var dataRetention: OneOf_DataRetention? = nil
+    public var dataRetention: DataRetentionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -213,7 +213,7 @@
       self.insightsExportSettings = try container.decodeIfPresent(
         SecuritySettings.InsightsExportSettings.self, forKey: .insightsExportSettings)
 
-      var dataRetention: OneOf_DataRetention? = nil
+      var dataRetention: DataRetentionOneOf? = nil
       let dataRetentionCheckAndSet = {
         if dataRetention != nil {
           throw DecodingError.dataCorrupted(
@@ -1031,7 +1031,7 @@
     /// Specifies how data is retained. Note that even if the data is
     /// purged due to retention policy, we may still hold it in backup storage for
     /// a few days without allowing direct readings.
-    public enum OneOf_DataRetention: Codable, Equatable, Sendable {
+    public enum DataRetentionOneOf: Codable, Equatable, Sendable {
       /// Retains the data for the specified number of days.
       /// User must set a value lower than Dialogflow's default 365d TTL (30 days
       /// for Agent Assist traffic), higher value will be ignored and use default.

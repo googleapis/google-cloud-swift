@@ -39,7 +39,7 @@
     public var smartMessagingPartialUpdate: Swift.Bool = Swift.Bool()
 
     /// Required. The destination for the export.
-    public var destination: OneOf_Destination? = nil
+    public var destination: DestinationOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -93,7 +93,7 @@
         self.smartMessagingPartialUpdate = value
       }
 
-      var destination: OneOf_Destination? = nil
+      var destination: DestinationOneOf? = nil
       let destinationCheckAndSet = {
         if destination != nil {
           throw DecodingError.dataCorrupted(
@@ -133,7 +133,7 @@
     }
 
     /// Required. The destination for the export.
-    public enum OneOf_Destination: Codable, Equatable, Sendable {
+    public enum DestinationOneOf: Codable, Equatable, Sendable {
       /// Cloud Storage file path to export the document.
       indirect case gcsDestination(GcsDestination?)
     }

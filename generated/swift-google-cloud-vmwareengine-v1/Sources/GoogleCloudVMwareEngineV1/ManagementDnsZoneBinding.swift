@@ -50,7 +50,7 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleWKT._AnyPackab
   /// Required. The relative resource name of the network to bind to the
   /// management DNS zone. This network can be a consumer VPC network or a
   /// VMware engine network.
-  public var bindNetwork: OneOf_BindNetwork? = nil
+  public var bindNetwork: BindNetworkOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -118,7 +118,7 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleWKT._AnyPackab
       self.uid = value
     }
 
-    var bindNetwork: OneOf_BindNetwork? = nil
+    var bindNetwork: BindNetworkOneOf? = nil
     let bindNetworkCheckAndSet = {
       if bindNetwork != nil {
         throw DecodingError.dataCorrupted(
@@ -307,7 +307,7 @@ public struct ManagementDnsZoneBinding: Codable, Equatable, GoogleWKT._AnyPackab
   /// Required. The relative resource name of the network to bind to the
   /// management DNS zone. This network can be a consumer VPC network or a
   /// VMware engine network.
-  public enum OneOf_BindNetwork: Codable, Equatable, Sendable {
+  public enum BindNetworkOneOf: Codable, Equatable, Sendable {
     /// Network to bind is a standard consumer VPC.
     /// Specify the name in the following form for consumer
     /// VPC network: `projects/{project}/global/networks/{network_id}`.

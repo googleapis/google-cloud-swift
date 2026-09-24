@@ -22,7 +22,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The details of the event.
-  public var eventDetails: OneOf_EventDetails? = nil
+  public var eventDetails: EventDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -58,7 +58,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var eventDetails: OneOf_EventDetails? = nil
+    var eventDetails: EventDetailsOneOf? = nil
     let eventDetailsCheckAndSet = {
       if eventDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -95,7 +95,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The details of the event.
-  public enum OneOf_EventDetails: Codable, Equatable, Sendable {
+  public enum EventDetailsOneOf: Codable, Equatable, Sendable {
     /// Output only. Additional details for an execution event.
     indirect case executionDetails(ExecutionDetails?)
   }

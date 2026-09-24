@@ -51,7 +51,7 @@
     /// databases proposed, an error will be returned.
     public var replicaOverwriteEnabled: Swift.Bool = Swift.Bool()
 
-    public var syncConfig: OneOf_SyncConfig? = nil
+    public var syncConfig: SyncConfigOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -130,7 +130,7 @@
         self.replicaOverwriteEnabled = value
       }
 
-      var syncConfig: OneOf_SyncConfig? = nil
+      var syncConfig: SyncConfigOneOf? = nil
       let syncConfigCheckAndSet = {
         if syncConfig != nil {
           throw DecodingError.dataCorrupted(
@@ -173,7 +173,7 @@
       }
     }
 
-    public enum OneOf_SyncConfig: Codable, Equatable, Sendable {
+    public enum SyncConfigOneOf: Codable, Equatable, Sendable {
       /// MySQL-specific settings for start external sync.
       indirect case mysqlSyncConfig(MySqlSyncConfig?)
     }

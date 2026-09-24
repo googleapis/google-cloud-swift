@@ -433,7 +433,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct KeyVersionSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var keyVersion: OneOf_KeyVersion? = nil
+    public var keyVersion: KeyVersionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -471,7 +471,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var keyVersion: OneOf_KeyVersion? = nil
+      var keyVersion: KeyVersionOneOf? = nil
       let keyVersionCheckAndSet = {
         if keyVersion != nil {
           throw DecodingError.dataCorrupted(
@@ -514,7 +514,7 @@ public struct CertificateAuthority: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_KeyVersion: Codable, Equatable, Sendable {
+    public enum KeyVersionOneOf: Codable, Equatable, Sendable {
       /// The resource name for an existing Cloud KMS CryptoKeyVersion in the
       /// format
       /// `projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*`.

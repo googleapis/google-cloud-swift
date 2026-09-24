@@ -107,7 +107,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   public var entitiesRevisionId: Swift.String = Swift.String()
 
   /// Original source document from the user.
-  public var source: OneOf_Source? = nil
+  public var source: SourceOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -230,7 +230,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       self.entitiesRevisionId = value
     }
 
-    var source: OneOf_Source? = nil
+    var source: SourceOneOf? = nil
     let sourceCheckAndSet = {
       if source != nil {
         throw DecodingError.dataCorrupted(
@@ -3287,7 +3287,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Must match entity type defined in schema if
       /// known. If this field is present, the `text` field could also be
       /// populated.
-      public var structuredValue: OneOf_StructuredValue? = nil
+      public var structuredValue: StructuredValueOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -3342,7 +3342,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           self.text = value
         }
 
-        var structuredValue: OneOf_StructuredValue? = nil
+        var structuredValue: StructuredValueOneOf? = nil
         let structuredValueCheckAndSet = {
           if structuredValue != nil {
             throw DecodingError.dataCorrupted(
@@ -3427,7 +3427,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Must match entity type defined in schema if
       /// known. If this field is present, the `text` field could also be
       /// populated.
-      public enum OneOf_StructuredValue: Codable, Equatable, Sendable {
+      public enum StructuredValueOneOf: Codable, Equatable, Sendable {
         /// Money value. See also:
         /// https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
         indirect case moneyValue(GoogleType.Money?)
@@ -4642,7 +4642,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     public var humanReview: Document.Revision.HumanReview? = nil
 
     /// Who/what made the change
-    public var source: OneOf_Source? = nil
+    public var source: SourceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -4706,7 +4706,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       self.humanReview = try container.decodeIfPresent(
         Document.Revision.HumanReview.self, forKey: .humanReview)
 
-      var source: OneOf_Source? = nil
+      var source: SourceOneOf? = nil
       let sourceCheckAndSet = {
         if source != nil {
           throw DecodingError.dataCorrupted(
@@ -4832,7 +4832,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Who/what made the change
-    public enum OneOf_Source: Codable, Equatable, Sendable {
+    public enum SourceOneOf: Codable, Equatable, Sendable {
       /// If the change was made by a person specify the name or id of that
       /// person.
       case agent(Swift.String)
@@ -5093,7 +5093,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       /// Identifies the bounding box for the block.
       public var boundingBox: BoundingPoly? = nil
 
-      public var block: OneOf_Block? = nil
+      public var block: BlockOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -5147,7 +5147,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           Document.DocumentLayout.DocumentLayoutBlock.LayoutPageSpan.self, forKey: .pageSpan)
         self.boundingBox = try container.decodeIfPresent(BoundingPoly.self, forKey: .boundingBox)
 
-        var block: OneOf_Block? = nil
+        var block: BlockOneOf? = nil
         let blockCheckAndSet = {
           if block != nil {
             throw DecodingError.dataCorrupted(
@@ -5814,7 +5814,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         public var annotations: Document.Annotations? = nil
 
         /// Source of the image.
-        public var imageSource: OneOf_ImageSource? = nil
+        public var imageSource: ImageSourceOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -5868,7 +5868,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           self.annotations = try container.decodeIfPresent(
             Document.Annotations.self, forKey: .annotations)
 
-          var imageSource: OneOf_ImageSource? = nil
+          var imageSource: ImageSourceOneOf? = nil
           let imageSourceCheckAndSet = {
             if imageSource != nil {
               throw DecodingError.dataCorrupted(
@@ -5918,7 +5918,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Source of the image.
-        public enum OneOf_ImageSource: Codable, Equatable, Sendable {
+        public enum ImageSourceOneOf: Codable, Equatable, Sendable {
           /// Optional. Asset id of the inline image. If set, find the image
           /// content in the blob_assets field.
           case blobAssetId(Swift.String)
@@ -5944,7 +5944,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
       }
 
-      public enum OneOf_Block: Codable, Equatable, Sendable {
+      public enum BlockOneOf: Codable, Equatable, Sendable {
         /// Block consisting of text content.
         indirect case textBlock(Document.DocumentLayout.DocumentLayoutBlock.LayoutTextBlock?)
         /// Block consisting of table content/structure.
@@ -6393,7 +6393,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         public var annotations: Document.Annotations? = nil
 
         /// Source of the image.
-        public var imageSource: OneOf_ImageSource? = nil
+        public var imageSource: ImageSourceOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -6437,7 +6437,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           self.annotations = try container.decodeIfPresent(
             Document.Annotations.self, forKey: .annotations)
 
-          var imageSource: OneOf_ImageSource? = nil
+          var imageSource: ImageSourceOneOf? = nil
           let imageSourceCheckAndSet = {
             if imageSource != nil {
               throw DecodingError.dataCorrupted(
@@ -6485,7 +6485,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// Source of the image.
-        public enum OneOf_ImageSource: Codable, Equatable, Sendable {
+        public enum ImageSourceOneOf: Codable, Equatable, Sendable {
           /// Optional. Asset id of the inline image. If set, find the image
           /// content in the blob_assets field.
           case blobAssetId(Swift.String)
@@ -6585,7 +6585,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         Sendable
       {
         /// The type of the chunk field.
-        public var fieldType: OneOf_FieldType? = nil
+        public var fieldType: FieldTypeOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -6623,7 +6623,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
 
-          var fieldType: OneOf_FieldType? = nil
+          var fieldType: FieldTypeOneOf? = nil
           let fieldTypeCheckAndSet = {
             if fieldType != nil {
               throw DecodingError.dataCorrupted(
@@ -6667,7 +6667,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         }
 
         /// The type of the chunk field.
-        public enum OneOf_FieldType: Codable, Equatable, Sendable {
+        public enum FieldTypeOneOf: Codable, Equatable, Sendable {
           /// The image chunk field in the chunk.
           indirect case imageChunkField(Document.ChunkedDocument.Chunk.ImageChunkField?)
           /// The table chunk field in the chunk.
@@ -7198,7 +7198,7 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Original source document from the user.
-  public enum OneOf_Source: Codable, Equatable, Sendable {
+  public enum SourceOneOf: Codable, Equatable, Sendable {
     /// Optional. Currently supports Google Cloud Storage URI of the form
     /// `gs://bucket_name/object_name`. Object versioning is not supported.
     /// For more information, refer to [Google Cloud Storage Request

@@ -63,15 +63,15 @@
     ///
     /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
     /// [google.cloud.discoveryengine.v1.Document.id]: <doc:Document/id>
-    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/OneOf_Data/jsonData(_:)>
-    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/OneOf_Data/structData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.json_data]: <doc:Document/DataOneOf/jsonData(_:)>
+    /// [google.cloud.discoveryengine.v1.Document.struct_data]: <doc:Document/DataOneOf/structData(_:)>
     /// [google.cloud.discoveryengine.v1.Schema]: <doc:Schema>
     /// [google.cloud.discoveryengine.v1.UserEvent]: <doc:UserEvent>
     public var dataSchema: Swift.String = Swift.String()
 
     /// BigQuery table partition info. Leave this empty if the BigQuery table
     /// is not partitioned.
-    public var partition: OneOf_Partition? = nil
+    public var partition: PartitionOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -132,7 +132,7 @@
         self.dataSchema = value
       }
 
-      var partition: OneOf_Partition? = nil
+      var partition: PartitionOneOf? = nil
       let partitionCheckAndSet = {
         if partition != nil {
           throw DecodingError.dataCorrupted(
@@ -175,7 +175,7 @@
 
     /// BigQuery table partition info. Leave this empty if the BigQuery table
     /// is not partitioned.
-    public enum OneOf_Partition: Codable, Equatable, Sendable {
+    public enum PartitionOneOf: Codable, Equatable, Sendable {
       /// BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format.
       indirect case partitionDate(GoogleType.Date?)
     }

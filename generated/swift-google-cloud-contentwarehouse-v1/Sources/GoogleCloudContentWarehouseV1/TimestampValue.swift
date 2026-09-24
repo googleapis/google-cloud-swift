@@ -21,7 +21,7 @@ import Foundation
 public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
-  public var value: OneOf_Value? = nil
+  public var value: ValueOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -59,7 +59,7 @@ public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var value: OneOf_Value? = nil
+    var value: ValueOneOf? = nil
     let valueCheckAndSet = {
       if value != nil {
         throw DecodingError.dataCorrupted(
@@ -100,7 +100,7 @@ public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Value: Codable, Equatable, Sendable {
+  public enum ValueOneOf: Codable, Equatable, Sendable {
     /// Timestamp value
     indirect case timestampValue(GoogleWKT.WKTTimestamp?)
     /// The string must represent a valid instant in UTC and is parsed using

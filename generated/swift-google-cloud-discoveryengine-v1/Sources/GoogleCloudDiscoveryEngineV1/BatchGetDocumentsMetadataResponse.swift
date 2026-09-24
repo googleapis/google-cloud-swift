@@ -199,7 +199,7 @@
         /// [Document][google.cloud.discoveryengine.v1.Document].
         ///
         /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-        public var matcherValue: OneOf_MatcherValue? = nil
+        public var matcherValue: MatcherValueOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -237,7 +237,7 @@
         public init(from decoder: Decoder) throws {
           let container = try decoder.container(keyedBy: CodingKeys.self)
 
-          var matcherValue: OneOf_MatcherValue? = nil
+          var matcherValue: MatcherValueOneOf? = nil
           let matcherValueCheckAndSet = {
             if matcherValue != nil {
               throw DecodingError.dataCorrupted(
@@ -282,7 +282,7 @@
         /// [Document][google.cloud.discoveryengine.v1.Document].
         ///
         /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
-        public enum OneOf_MatcherValue: Codable, Equatable, Sendable {
+        public enum MatcherValueOneOf: Codable, Equatable, Sendable {
           /// If match by URI, the URI of the
           /// [Document][google.cloud.discoveryengine.v1.Document].
           ///

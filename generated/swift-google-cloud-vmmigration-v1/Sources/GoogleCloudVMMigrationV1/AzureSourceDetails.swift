@@ -47,7 +47,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   /// related to the migration process of this source.
   public var resourceGroupId: Swift.String = Swift.String()
 
-  public var credentialsType: OneOf_CredentialsType? = nil
+  public var credentialsType: CredentialsTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -113,7 +113,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
       self.resourceGroupId = value
     }
 
-    var credentialsType: OneOf_CredentialsType? = nil
+    var credentialsType: CredentialsTypeOneOf? = nil
     let credentialsTypeCheckAndSet = {
       if credentialsType != nil {
         throw DecodingError.dataCorrupted(
@@ -369,7 +369,7 @@ public struct AzureSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_CredentialsType: Codable, Equatable, Sendable {
+  public enum CredentialsTypeOneOf: Codable, Equatable, Sendable {
     /// Azure Credentials using tenant ID, client ID and secret.
     indirect case clientSecretCreds(AzureSourceDetails.ClientSecretCredentials?)
   }

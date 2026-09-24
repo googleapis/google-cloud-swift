@@ -92,7 +92,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
     Sendable
   {
     /// The content entry.
-    public var entry: OneOf_Entry? = nil
+    public var entry: EntryOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var entry: OneOf_Entry? = nil
+      var entry: EntryOneOf? = nil
       let entryCheckAndSet = {
         if entry != nil {
           throw DecodingError.dataCorrupted(
@@ -163,7 +163,7 @@ public struct SearchTeamFoldersResponse: Codable, Equatable, GoogleWKT._AnyPacka
     }
 
     /// The content entry.
-    public enum OneOf_Entry: Codable, Equatable, Sendable {
+    public enum EntryOneOf: Codable, Equatable, Sendable {
       /// A TeamFolder resource that is in the project / location.
       indirect case teamFolder(TeamFolder?)
     }

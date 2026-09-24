@@ -52,7 +52,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Principal that is be authorized in the cluster (at least of one the oneof
   /// is required). Updating one will unset the other automatically.
-  public var principal: OneOf_Principal? = nil
+  public var principal: PrincipalOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -124,7 +124,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
       self.labels = value
     }
 
-    var principal: OneOf_Principal? = nil
+    var principal: PrincipalOneOf? = nil
     let principalCheckAndSet = {
       if principal != nil {
         throw DecodingError.dataCorrupted(
@@ -386,7 +386,7 @@ public struct RBACRoleBinding: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// Principal that is be authorized in the cluster (at least of one the oneof
   /// is required). Updating one will unset the other automatically.
-  public enum OneOf_Principal: Codable, Equatable, Sendable {
+  public enum PrincipalOneOf: Codable, Equatable, Sendable {
     /// user is the name of the user as seen by the kubernetes cluster, example
     /// "alice" or "alice@domain.tld"
     case user(Swift.String)

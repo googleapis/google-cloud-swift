@@ -25,7 +25,7 @@ public struct Literal: Codable, Equatable, GoogleWKT._AnyPackable,
   public var relativePath: Swift.String = Swift.String()
 
   /// The literal SQL contents.
-  public var literalData: OneOf_LiteralData? = nil
+  public var literalData: LiteralDataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -68,7 +68,7 @@ public struct Literal: Codable, Equatable, GoogleWKT._AnyPackable,
       self.relativePath = value
     }
 
-    var literalData: OneOf_LiteralData? = nil
+    var literalData: LiteralDataOneOf? = nil
     let literalDataCheckAndSet = {
       if literalData != nil {
         throw DecodingError.dataCorrupted(
@@ -111,7 +111,7 @@ public struct Literal: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The literal SQL contents.
-  public enum OneOf_LiteralData: Codable, Equatable, Sendable {
+  public enum LiteralDataOneOf: Codable, Equatable, Sendable {
     /// Literal string data.
     case literalString(Swift.String)
     /// Literal byte data.

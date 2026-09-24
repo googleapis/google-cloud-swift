@@ -61,7 +61,7 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   public var clusterType: AutoscalingPolicy.ClusterType = AutoscalingPolicy.ClusterType()
 
   /// Autoscaling algorithm for policy.
-  public var algorithm: OneOf_Algorithm? = nil
+  public var algorithm: AlgorithmOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -128,7 +128,7 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
       self.clusterType = value
     }
 
-    var algorithm: OneOf_Algorithm? = nil
+    var algorithm: AlgorithmOneOf? = nil
     let algorithmCheckAndSet = {
       if algorithm != nil {
         throw DecodingError.dataCorrupted(
@@ -290,7 +290,7 @@ public struct AutoscalingPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Autoscaling algorithm for policy.
-  public enum OneOf_Algorithm: Codable, Equatable, Sendable {
+  public enum AlgorithmOneOf: Codable, Equatable, Sendable {
     indirect case basicAlgorithm(BasicAutoscalingAlgorithm?)
   }
 

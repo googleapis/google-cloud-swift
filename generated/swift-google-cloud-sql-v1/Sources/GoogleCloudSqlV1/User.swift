@@ -77,7 +77,7 @@
     public var serverRoles: [Swift.String] = []
 
     /// User details for specific database type
-    public var userDetails: OneOf_UserDetails? = nil
+    public var userDetails: UserDetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -179,7 +179,7 @@
         self.serverRoles = value
       }
 
-      var userDetails: OneOf_UserDetails? = nil
+      var userDetails: UserDetailsOneOf? = nil
       let userDetailsCheckAndSet = {
         if userDetails != nil {
           throw DecodingError.dataCorrupted(
@@ -631,7 +631,7 @@
     }
 
     /// User details for specific database type
-    public enum OneOf_UserDetails: Codable, Equatable, Sendable {
+    public enum UserDetailsOneOf: Codable, Equatable, Sendable {
       indirect case sqlserverUserDetails(SqlServerUserDetails?)
     }
 

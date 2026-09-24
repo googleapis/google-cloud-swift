@@ -26,7 +26,7 @@
     public var metadata: FeatureValue.Metadata? = nil
 
     /// Value for the feature.
-    public var value: OneOf_Value? = nil
+    public var value: ValueOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -83,7 +83,7 @@
       let container = try decoder.container(keyedBy: CodingKeys.self)
       self.metadata = try container.decodeIfPresent(FeatureValue.Metadata.self, forKey: .metadata)
 
-      var value: OneOf_Value? = nil
+      var value: ValueOneOf? = nil
       let valueCheckAndSet = {
         if value != nil {
           throw DecodingError.dataCorrupted(
@@ -246,7 +246,7 @@
     }
 
     /// Value for the feature.
-    public enum OneOf_Value: Codable, Equatable, Sendable {
+    public enum ValueOneOf: Codable, Equatable, Sendable {
       /// Bool type feature value.
       case boolValue(Swift.Bool)
       /// Double type feature value.

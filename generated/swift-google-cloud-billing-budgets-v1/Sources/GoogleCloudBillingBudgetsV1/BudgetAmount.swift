@@ -23,7 +23,7 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// Specification for what amount to use as the budget.
-  public var budgetAmount: OneOf_BudgetAmount? = nil
+  public var budgetAmount: BudgetAmountOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -61,7 +61,7 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var budgetAmount: OneOf_BudgetAmount? = nil
+    var budgetAmount: BudgetAmountOneOf? = nil
     let budgetAmountCheckAndSet = {
       if budgetAmount != nil {
         throw DecodingError.dataCorrupted(
@@ -105,7 +105,7 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Specification for what amount to use as the budget.
-  public enum OneOf_BudgetAmount: Codable, Equatable, Sendable {
+  public enum BudgetAmountOneOf: Codable, Equatable, Sendable {
     /// A specified amount to use as the budget.
     /// `currency_code` is optional. If specified when creating a budget, it must
     /// match the currency of the billing account. If specified when updating a
@@ -118,8 +118,8 @@ public struct BudgetAmount: Codable, Equatable, GoogleWKT._AnyPackable,
     /// It cannot be set in combination with
     /// [Filter.custom_period][google.cloud.billing.budgets.v1.Filter.custom_period].
     ///
-    /// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/OneOf_UsagePeriod/calendarPeriod(_:)>
-    /// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/OneOf_UsagePeriod/customPeriod(_:)>
+    /// [google.cloud.billing.budgets.v1.Filter.calendar_period]: <doc:Filter/UsagePeriodOneOf/calendarPeriod(_:)>
+    /// [google.cloud.billing.budgets.v1.Filter.custom_period]: <doc:Filter/UsagePeriodOneOf/customPeriod(_:)>
     indirect case lastPeriodAmount(LastPeriodAmount?)
   }
 

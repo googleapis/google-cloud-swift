@@ -139,7 +139,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public var rotateServerCertificate: Swift.Bool? = nil
 
   /// The source to import from.
-  public var importSources: OneOf_ImportSources? = nil
+  public var importSources: ImportSourcesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -321,7 +321,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     self.rotateServerCertificate = try container.decodeIfPresent(
       Swift.Bool.self, forKey: .rotateServerCertificate)
 
-    var importSources: OneOf_ImportSources? = nil
+    var importSources: ImportSourcesOneOf? = nil
     let importSourcesCheckAndSet = {
       if importSources != nil {
         throw DecodingError.dataCorrupted(
@@ -403,7 +403,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct StateInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var info: OneOf_Info? = nil
+    public var info: InfoOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -439,7 +439,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var info: OneOf_Info? = nil
+      var info: InfoOneOf? = nil
       let infoCheckAndSet = {
         if info != nil {
           throw DecodingError.dataCorrupted(
@@ -550,7 +550,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Info: Codable, Equatable, Sendable {
+    public enum InfoOneOf: Codable, Equatable, Sendable {
       /// Describes ongoing update on the cluster when cluster state is UPDATING.
       indirect case updateInfo(Cluster.StateInfo.UpdateInfo?)
     }
@@ -841,7 +841,7 @@ public struct Cluster: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The source to import from.
-  public enum OneOf_ImportSources: Codable, Equatable, Sendable {
+  public enum ImportSourcesOneOf: Codable, Equatable, Sendable {
     /// Optional. Backups stored in Cloud Storage buckets.
     /// The Cloud Storage buckets need to be the same region as the clusters.
     /// Read permission is required to import from the provided Cloud Storage

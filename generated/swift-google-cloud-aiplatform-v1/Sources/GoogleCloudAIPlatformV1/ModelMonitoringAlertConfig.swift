@@ -36,7 +36,7 @@
     /// `projects/<project_id_or_number>/notificationChannels/<channel_id>`
     public var notificationChannels: [Swift.String] = []
 
-    public var alert: OneOf_Alert? = nil
+    public var alert: AlertOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -84,7 +84,7 @@
         self.notificationChannels = value
       }
 
-      var alert: OneOf_Alert? = nil
+      var alert: AlertOneOf? = nil
       let alertCheckAndSet = {
         if alert != nil {
           throw DecodingError.dataCorrupted(
@@ -191,7 +191,7 @@
       }
     }
 
-    public enum OneOf_Alert: Codable, Equatable, Sendable {
+    public enum AlertOneOf: Codable, Equatable, Sendable {
       /// Email alert config.
       indirect case emailAlertConfig(ModelMonitoringAlertConfig.EmailAlertConfig?)
     }

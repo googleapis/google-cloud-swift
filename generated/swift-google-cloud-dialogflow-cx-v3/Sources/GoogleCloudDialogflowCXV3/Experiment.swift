@@ -215,7 +215,7 @@
 
       /// The variants of the experiment. We currently only support single variant
       /// experiment.
-      public var variants: OneOf_Variants? = nil
+      public var variants: VariantsOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -256,7 +256,7 @@
           self.condition = value
         }
 
-        var variants: OneOf_Variants? = nil
+        var variants: VariantsOneOf? = nil
         let variantsCheckAndSet = {
           if variants != nil {
             throw DecodingError.dataCorrupted(
@@ -295,7 +295,7 @@
 
       /// The variants of the experiment. We currently only support single variant
       /// experiment.
-      public enum OneOf_Variants: Codable, Equatable, Sendable {
+      public enum VariantsOneOf: Codable, Equatable, Sendable {
         /// The flow versions as the variants of this experiment.
         indirect case versionVariants(VersionVariants?)
       }
@@ -497,7 +497,7 @@
         public var confidenceInterval: Experiment.Result.ConfidenceInterval? = nil
 
         /// The actual value of the metric.
-        public var value: OneOf_Value? = nil
+        public var value: ValueOneOf? = nil
 
         @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -553,7 +553,7 @@
           self.confidenceInterval = try container.decodeIfPresent(
             Experiment.Result.ConfidenceInterval.self, forKey: .confidenceInterval)
 
-          var value: OneOf_Value? = nil
+          var value: ValueOneOf? = nil
           let valueCheckAndSet = {
             if value != nil {
               throw DecodingError.dataCorrupted(
@@ -596,7 +596,7 @@
         }
 
         /// The actual value of the metric.
-        public enum OneOf_Value: Codable, Equatable, Sendable {
+        public enum ValueOneOf: Codable, Equatable, Sendable {
           /// Ratio value of a metric.
           case ratio(Swift.Double)
           /// Count value of a metric.

@@ -38,7 +38,7 @@
     public var diskSpec: DiskSpec? = nil
 
     /// The custom task to be executed in this worker pool.
-    public var task: OneOf_Task? = nil
+    public var task: TaskOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -97,7 +97,7 @@
       }
       self.diskSpec = try container.decodeIfPresent(DiskSpec.self, forKey: .diskSpec)
 
-      var task: OneOf_Task? = nil
+      var task: TaskOneOf? = nil
       let taskCheckAndSet = {
         if task != nil {
           throw DecodingError.dataCorrupted(
@@ -146,7 +146,7 @@
     }
 
     /// The custom task to be executed in this worker pool.
-    public enum OneOf_Task: Codable, Equatable, Sendable {
+    public enum TaskOneOf: Codable, Equatable, Sendable {
       /// The custom container task.
       indirect case containerSpec(ContainerSpec?)
       /// The Python packaged task.

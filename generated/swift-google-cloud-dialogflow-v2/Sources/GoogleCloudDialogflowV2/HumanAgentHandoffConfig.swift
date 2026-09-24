@@ -27,7 +27,7 @@
     Sendable
   {
     /// Required. Specifies which agent service to connect for human agent handoff.
-    public var agentService: OneOf_AgentService? = nil
+    public var agentService: AgentServiceOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -65,7 +65,7 @@
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var agentService: OneOf_AgentService? = nil
+      var agentService: AgentServiceOneOf? = nil
       let agentServiceCheckAndSet = {
         if agentService != nil {
           throw DecodingError.dataCorrupted(
@@ -278,7 +278,7 @@
     }
 
     /// Required. Specifies which agent service to connect for human agent handoff.
-    public enum OneOf_AgentService: Codable, Equatable, Sendable {
+    public enum AgentServiceOneOf: Codable, Equatable, Sendable {
       /// Uses [LivePerson](https://www.liveperson.com).
       indirect case livePersonConfig(HumanAgentHandoffConfig.LivePersonConfig?)
       /// Uses Salesforce Live Agent.

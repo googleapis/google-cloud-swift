@@ -834,7 +834,7 @@
       public var platform: Intent.Message.Platform = Intent.Message.Platform()
 
       /// Required. The rich response message.
-      public var message: OneOf_Message? = nil
+      public var message: MessageOneOf? = nil
 
       @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -903,7 +903,7 @@
           self.platform = value
         }
 
-        var message: OneOf_Message? = nil
+        var message: MessageOneOf? = nil
         let messageCheckAndSet = {
           if message != nil {
             throw DecodingError.dataCorrupted(
@@ -2562,7 +2562,7 @@
           public var contentUrl: Swift.String = Swift.String()
 
           /// Image to show with the media card.
-          public var image: OneOf_Image? = nil
+          public var image: ImageOneOf? = nil
 
           @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -2615,7 +2615,7 @@
               self.contentUrl = value
             }
 
-            var image: OneOf_Image? = nil
+            var image: ImageOneOf? = nil
             let imageCheckAndSet = {
               if image != nil {
                 throw DecodingError.dataCorrupted(
@@ -2660,7 +2660,7 @@
           }
 
           /// Image to show with the media card.
-          public enum OneOf_Image: Codable, Equatable, Sendable {
+          public enum ImageOneOf: Codable, Equatable, Sendable {
             /// Optional. Image to display above media content.
             indirect case largeImage(Intent.Message.Image?)
             /// Optional. Icon to display above media content.
@@ -3984,7 +3984,7 @@
       }
 
       /// Required. The rich response message.
-      public enum OneOf_Message: Codable, Equatable, Sendable {
+      public enum MessageOneOf: Codable, Equatable, Sendable {
         /// The text response.
         indirect case text(Intent.Message.Text?)
         /// The image response.

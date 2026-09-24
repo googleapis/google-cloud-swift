@@ -52,7 +52,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   public var privateServiceConnectEnabled: Swift.Bool = Swift.Bool()
 
   /// Information that is specific to a particular blockchain type.
-  public var blockchainTypeDetails: OneOf_BlockchainTypeDetails? = nil
+  public var blockchainTypeDetails: BlockchainTypeDetailsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -131,7 +131,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       self.privateServiceConnectEnabled = value
     }
 
-    var blockchainTypeDetails: OneOf_BlockchainTypeDetails? = nil
+    var blockchainTypeDetails: BlockchainTypeDetailsOneOf? = nil
     let blockchainTypeDetailsCheckAndSet = {
       if blockchainTypeDetails != nil {
         throw DecodingError.dataCorrupted(
@@ -373,7 +373,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     public var validatorConfig: BlockchainNode.EthereumDetails.ValidatorConfig? = nil
 
     /// Options for the execution client.
-    public var executionClientDetails: OneOf_ExecutionClientDetails? = nil
+    public var executionClientDetails: ExecutionClientDetailsOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -439,7 +439,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       self.validatorConfig = try container.decodeIfPresent(
         BlockchainNode.EthereumDetails.ValidatorConfig.self, forKey: .validatorConfig)
 
-      var executionClientDetails: OneOf_ExecutionClientDetails? = nil
+      var executionClientDetails: ExecutionClientDetailsOneOf? = nil
       let executionClientDetailsCheckAndSet = {
         if executionClientDetails != nil {
           throw DecodingError.dataCorrupted(
@@ -1413,7 +1413,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     }
 
     /// Options for the execution client.
-    public enum OneOf_ExecutionClientDetails: Codable, Equatable, Sendable {
+    public enum ExecutionClientDetailsOneOf: Codable, Equatable, Sendable {
       /// Details for the Geth execution client.
       indirect case gethDetails(BlockchainNode.EthereumDetails.GethDetails?)
     }
@@ -1701,7 +1701,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Information that is specific to a particular blockchain type.
-  public enum OneOf_BlockchainTypeDetails: Codable, Equatable, Sendable {
+  public enum BlockchainTypeDetailsOneOf: Codable, Equatable, Sendable {
     /// Ethereum-specific blockchain node details.
     indirect case ethereumDetails(BlockchainNode.EthereumDetails?)
   }

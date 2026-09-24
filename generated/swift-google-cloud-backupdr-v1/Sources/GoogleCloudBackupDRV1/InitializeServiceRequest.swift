@@ -47,7 +47,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
   public var requestId: Swift.String = Swift.String()
 
   /// The configuration for initializing the resource.
-  public var initializationConfig: OneOf_InitializationConfig? = nil
+  public var initializationConfig: InitializationConfigOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -99,7 +99,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
       self.requestId = value
     }
 
-    var initializationConfig: OneOf_InitializationConfig? = nil
+    var initializationConfig: InitializationConfigOneOf? = nil
     let initializationConfigCheckAndSet = {
       if initializationConfig != nil {
         throw DecodingError.dataCorrupted(
@@ -140,7 +140,7 @@ public struct InitializeServiceRequest: Codable, Equatable, GoogleWKT._AnyPackab
   }
 
   /// The configuration for initializing the resource.
-  public enum OneOf_InitializationConfig: Codable, Equatable, Sendable {
+  public enum InitializationConfigOneOf: Codable, Equatable, Sendable {
     /// Optional. The configuration for initializing a Cloud SQL instance.
     indirect case cloudSqlInstanceInitializationConfig(CloudSqlInstanceInitializationConfig?)
   }

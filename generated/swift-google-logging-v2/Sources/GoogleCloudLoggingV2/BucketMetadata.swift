@@ -30,7 +30,7 @@ public struct BucketMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
   /// State of an operation.
   public var state: OperationState = OperationState()
 
-  public var request: OneOf_Request? = nil
+  public var request: RequestOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -79,7 +79,7 @@ public struct BucketMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var request: OneOf_Request? = nil
+    var request: RequestOneOf? = nil
     let requestCheckAndSet = {
       if request != nil {
         throw DecodingError.dataCorrupted(
@@ -125,7 +125,7 @@ public struct BucketMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_Request: Codable, Equatable, Sendable {
+  public enum RequestOneOf: Codable, Equatable, Sendable {
     /// LongRunningCreateBucket RPC request.
     indirect case createBucketRequest(CreateBucketRequest?)
     /// LongRunningUpdateBucket RPC request.

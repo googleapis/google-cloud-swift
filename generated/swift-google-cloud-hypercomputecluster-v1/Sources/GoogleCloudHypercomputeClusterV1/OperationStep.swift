@@ -26,7 +26,7 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   public var state: OperationStep.State = OperationStep.State()
 
   /// Step of the operation.
-  public var type: OneOf_Type? = nil
+  public var type: TypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -111,7 +111,7 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
       self.state = value
     }
 
-    var type: OneOf_Type? = nil
+    var type: TypeOneOf? = nil
     let typeCheckAndSet = {
       if type != nil {
         throw DecodingError.dataCorrupted(
@@ -427,7 +427,7 @@ public struct OperationStep: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// Step of the operation.
-  public enum OneOf_Type: Codable, Equatable, Sendable {
+  public enum TypeOneOf: Codable, Equatable, Sendable {
     /// Output only. If set, indicates that new network creation is part of the
     /// operation.
     indirect case createNetwork(CreateNetwork?)

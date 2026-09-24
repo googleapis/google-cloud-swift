@@ -48,7 +48,7 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
 
   /// The password used to connect to Databricks.
   /// Only applicable for authentication_type == PERSONAL_ACCESS_TOKEN.
-  public var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+  public var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -119,7 +119,7 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
       self.storageCredential = value
     }
 
-    var connectionPasswordOptions: OneOf_ConnectionPasswordOptions? = nil
+    var connectionPasswordOptions: ConnectionPasswordOptionsOneOf? = nil
     let connectionPasswordOptionsCheckAndSet = {
       if connectionPasswordOptions != nil {
         throw DecodingError.dataCorrupted(
@@ -285,7 +285,7 @@ public struct GoldengateDatabricksConnectionProperties: Codable, Equatable, Goog
 
   /// The password used to connect to Databricks.
   /// Only applicable for authentication_type == PERSONAL_ACCESS_TOKEN.
-  public enum OneOf_ConnectionPasswordOptions: Codable, Equatable, Sendable {
+  public enum ConnectionPasswordOptionsOneOf: Codable, Equatable, Sendable {
     /// Optional. Input only. The password used to connect to Databricks in plain
     /// text.
     case password(Swift.String)

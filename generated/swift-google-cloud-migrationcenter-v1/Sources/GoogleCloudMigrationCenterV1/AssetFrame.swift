@@ -40,7 +40,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The internal data of the frame is a oneof field depending on the type
   /// of asset information in the frame.
-  public var frameData: OneOf_FrameData? = nil
+  public var frameData: FrameDataOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -105,7 +105,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
       self.traceToken = value
     }
 
-    var frameData: OneOf_FrameData? = nil
+    var frameData: FrameDataOneOf? = nil
     let frameDataCheckAndSet = {
       if frameData != nil {
         throw DecodingError.dataCorrupted(
@@ -148,7 +148,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
 
   /// The internal data of the frame is a oneof field depending on the type
   /// of asset information in the frame.
-  public enum OneOf_FrameData: Codable, Equatable, Sendable {
+  public enum FrameDataOneOf: Codable, Equatable, Sendable {
     /// Asset information specific for virtual machines.
     indirect case machineDetails(MachineDetails?)
   }

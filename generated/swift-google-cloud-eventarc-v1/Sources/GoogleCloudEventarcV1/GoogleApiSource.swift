@@ -70,7 +70,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Users need the eventarc.googleApiSource.create permission on the entire org
   /// in order to create a resource with these settings.
-  public var wideScopeSubscription: OneOf_WideScopeSubscription? = nil
+  public var wideScopeSubscription: WideScopeSubscriptionOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -162,7 +162,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.loggingConfig = try container.decodeIfPresent(LoggingConfig.self, forKey: .loggingConfig)
 
-    var wideScopeSubscription: OneOf_WideScopeSubscription? = nil
+    var wideScopeSubscription: WideScopeSubscriptionOneOf? = nil
     let wideScopeSubscriptionCheckAndSet = {
       if wideScopeSubscription != nil {
         throw DecodingError.dataCorrupted(
@@ -361,7 +361,7 @@ public struct GoogleApiSource: Codable, Equatable, GoogleWKT._AnyPackable,
   ///
   /// Users need the eventarc.googleApiSource.create permission on the entire org
   /// in order to create a resource with these settings.
-  public enum OneOf_WideScopeSubscription: Codable, Equatable, Sendable {
+  public enum WideScopeSubscriptionOneOf: Codable, Equatable, Sendable {
     /// Optional. Config to enable subscribing to events from all projects in the
     /// GoogleApiSource's org.
     indirect case organizationSubscription(GoogleApiSource.OrganizationSubscription?)

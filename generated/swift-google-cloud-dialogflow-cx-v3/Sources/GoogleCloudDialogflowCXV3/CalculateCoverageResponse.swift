@@ -30,7 +30,7 @@
     public var agent: Swift.String = Swift.String()
 
     /// The type of coverage requested.
-    public var coverageType: OneOf_CoverageType? = nil
+    public var coverageType: CoverageTypeOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -75,7 +75,7 @@
         self.agent = value
       }
 
-      var coverageType: OneOf_CoverageType? = nil
+      var coverageType: CoverageTypeOneOf? = nil
       let coverageTypeCheckAndSet = {
         if coverageType != nil {
           throw DecodingError.dataCorrupted(
@@ -127,7 +127,7 @@
     }
 
     /// The type of coverage requested.
-    public enum OneOf_CoverageType: Codable, Equatable, Sendable {
+    public enum CoverageTypeOneOf: Codable, Equatable, Sendable {
       /// Intent coverage.
       indirect case intentCoverage(IntentCoverage?)
       /// Transition (excluding transition route groups) coverage.

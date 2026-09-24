@@ -142,7 +142,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct TrustAnchor: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var kind: OneOf_Kind? = nil
+    public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -178,7 +178,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var kind: OneOf_Kind? = nil
+      var kind: KindOneOf? = nil
       let kindCheckAndSet = {
         if kind != nil {
           throw DecodingError.dataCorrupted(
@@ -214,7 +214,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Kind: Codable, Equatable, Sendable {
+    public enum KindOneOf: Codable, Equatable, Sendable {
       /// PEM root certificate of the PKI used for validation.
       ///
       /// Each certificate provided in PEM format may occupy up to 5kB.
@@ -236,7 +236,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public struct IntermediateCA: Codable, Equatable, GoogleWKT._AnyPackable,
     Sendable
   {
-    public var kind: OneOf_Kind? = nil
+    public var kind: KindOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -272,7 +272,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public init(from decoder: Decoder) throws {
       let container = try decoder.container(keyedBy: CodingKeys.self)
 
-      var kind: OneOf_Kind? = nil
+      var kind: KindOneOf? = nil
       let kindCheckAndSet = {
         if kind != nil {
           throw DecodingError.dataCorrupted(
@@ -308,7 +308,7 @@ public struct TrustConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       }
     }
 
-    public enum OneOf_Kind: Codable, Equatable, Sendable {
+    public enum KindOneOf: Codable, Equatable, Sendable {
       /// PEM intermediate certificate used for building up paths
       /// for validation.
       ///

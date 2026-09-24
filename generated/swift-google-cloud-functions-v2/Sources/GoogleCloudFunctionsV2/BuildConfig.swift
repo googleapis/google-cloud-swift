@@ -94,7 +94,7 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   public var serviceAccount: Swift.String = Swift.String()
 
   /// This controls when security patches are applied to the runtime environment.
-  public var runtimeUpdatePolicy: OneOf_RuntimeUpdatePolicy? = nil
+  public var runtimeUpdatePolicy: RuntimeUpdatePolicyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -186,7 +186,7 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       self.serviceAccount = value
     }
 
-    var runtimeUpdatePolicy: OneOf_RuntimeUpdatePolicy? = nil
+    var runtimeUpdatePolicy: RuntimeUpdatePolicyOneOf? = nil
     let runtimeUpdatePolicyCheckAndSet = {
       if runtimeUpdatePolicy != nil {
         throw DecodingError.dataCorrupted(
@@ -365,7 +365,7 @@ public struct BuildConfig: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// This controls when security patches are applied to the runtime environment.
-  public enum OneOf_RuntimeUpdatePolicy: Codable, Equatable, Sendable {
+  public enum RuntimeUpdatePolicyOneOf: Codable, Equatable, Sendable {
     indirect case automaticUpdatePolicy(AutomaticUpdatePolicy?)
     indirect case onDeployUpdatePolicy(OnDeployUpdatePolicy?)
   }

@@ -35,7 +35,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
   /// The type of BigQuery tables to scan. If nothing is set the default
   /// behavior is to scan only tables of type TABLE and to give errors
   /// for all unsupported tables.
-  public var includedTypes: OneOf_IncludedTypes? = nil
+  public var includedTypes: IncludedTypesOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -81,7 +81,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
     self.orConditions = try container.decodeIfPresent(
       DiscoveryBigQueryConditions.OrConditions.self, forKey: .orConditions)
 
-    var includedTypes: OneOf_IncludedTypes? = nil
+    var includedTypes: IncludedTypesOneOf? = nil
     let includedTypesCheckAndSet = {
       if includedTypes != nil {
         throw DecodingError.dataCorrupted(
@@ -205,7 +205,7 @@ public struct DiscoveryBigQueryConditions: Codable, Equatable, GoogleWKT._AnyPac
   /// The type of BigQuery tables to scan. If nothing is set the default
   /// behavior is to scan only tables of type TABLE and to give errors
   /// for all unsupported tables.
-  public enum OneOf_IncludedTypes: Codable, Equatable, Sendable {
+  public enum IncludedTypesOneOf: Codable, Equatable, Sendable {
     /// Restrict discovery to specific table types.
     indirect case types(BigQueryTableTypes?)
     /// Restrict discovery to categories of table types.

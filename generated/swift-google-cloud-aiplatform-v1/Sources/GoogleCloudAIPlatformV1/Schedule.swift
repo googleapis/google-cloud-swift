@@ -106,12 +106,12 @@
 
     /// Required.
     /// The time specification to launch scheduled runs.
-    public var timeSpecification: OneOf_TimeSpecification? = nil
+    public var timeSpecification: TimeSpecificationOneOf? = nil
 
     /// Required.
     /// The API request template to launch the scheduled runs.
     /// User-specified ID is not supported in the request template.
-    public var request: OneOf_Request? = nil
+    public var request: RequestOneOf? = nil
 
     @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -232,7 +232,7 @@
       self.lastScheduledRunResponse = try container.decodeIfPresent(
         Schedule.RunResponse.self, forKey: .lastScheduledRunResponse)
 
-      var timeSpecification: OneOf_TimeSpecification? = nil
+      var timeSpecification: TimeSpecificationOneOf? = nil
       let timeSpecificationCheckAndSet = {
         if timeSpecification != nil {
           throw DecodingError.dataCorrupted(
@@ -247,7 +247,7 @@
       }
       self.timeSpecification = timeSpecification
 
-      var request: OneOf_Request? = nil
+      var request: RequestOneOf? = nil
       let requestCheckAndSet = {
         if request != nil {
           throw DecodingError.dataCorrupted(
@@ -522,7 +522,7 @@
 
     /// Required.
     /// The time specification to launch scheduled runs.
-    public enum OneOf_TimeSpecification: Codable, Equatable, Sendable {
+    public enum TimeSpecificationOneOf: Codable, Equatable, Sendable {
       /// Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled
       /// runs. To explicitly set a timezone to the cron tab, apply a prefix in the
       /// cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or "TZ=${IANA_TIME_ZONE}".
@@ -535,7 +535,7 @@
     /// Required.
     /// The API request template to launch the scheduled runs.
     /// User-specified ID is not supported in the request template.
-    public enum OneOf_Request: Codable, Equatable, Sendable {
+    public enum RequestOneOf: Codable, Equatable, Sendable {
       /// Request for
       /// [PipelineService.CreatePipelineJob][google.cloud.aiplatform.v1.PipelineService.CreatePipelineJob].
       /// CreatePipelineJobRequest.parent field is required (format:

@@ -41,7 +41,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
   /// to update it. See https://google.aip.dev/154.
   public var etag: Swift.String = Swift.String()
 
-  public var attestorType: OneOf_AttestorType? = nil
+  public var attestorType: AttestorTypeOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -96,7 +96,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
       self.etag = value
     }
 
-    var attestorType: OneOf_AttestorType? = nil
+    var attestorType: AttestorTypeOneOf? = nil
     let attestorTypeCheckAndSet = {
       if attestorType != nil {
         throw DecodingError.dataCorrupted(
@@ -136,7 +136,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
     }
   }
 
-  public enum OneOf_AttestorType: Codable, Equatable, Sendable {
+  public enum AttestorTypeOneOf: Codable, Equatable, Sendable {
     /// This specifies how an attestation will be read, and how it will be used
     /// during policy enforcement.
     indirect case userOwnedGrafeasNote(UserOwnedGrafeasNote?)

@@ -22,11 +22,11 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
 {
   /// The ranking method to use.
-  public var ranker: OneOf_Ranker? = nil
+  public var ranker: RankerOneOf? = nil
 
   /// The reranker to use for final ranking of the results combined by the
   /// ranker.
-  public var reranker: OneOf_Reranker? = nil
+  public var reranker: RerankerOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -64,7 +64,7 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
   public init(from decoder: Decoder) throws {
     let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    var ranker: OneOf_Ranker? = nil
+    var ranker: RankerOneOf? = nil
     let rankerCheckAndSet = {
       if ranker != nil {
         throw DecodingError.dataCorrupted(
@@ -79,7 +79,7 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
     }
     self.ranker = ranker
 
-    var reranker: OneOf_Reranker? = nil
+    var reranker: RerankerOneOf? = nil
     let rerankerCheckAndSet = {
       if reranker != nil {
         throw DecodingError.dataCorrupted(
@@ -121,14 +121,14 @@ public struct Ranker: Codable, Equatable, GoogleWKT._AnyPackable,
   }
 
   /// The ranking method to use.
-  public enum OneOf_Ranker: Codable, Equatable, Sendable {
+  public enum RankerOneOf: Codable, Equatable, Sendable {
     /// Reciprocal Rank Fusion ranking.
     indirect case rrf(ReciprocalRankFusion?)
   }
 
   /// The reranker to use for final ranking of the results combined by the
   /// ranker.
-  public enum OneOf_Reranker: Codable, Equatable, Sendable {
+  public enum RerankerOneOf: Codable, Equatable, Sendable {
     /// Optional. Vertex AI ranking.
     indirect case vertexRanker(VertexRanker?)
   }

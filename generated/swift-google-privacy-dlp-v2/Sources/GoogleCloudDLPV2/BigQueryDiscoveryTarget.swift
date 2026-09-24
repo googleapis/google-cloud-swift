@@ -32,7 +32,7 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The generation rule includes the logic on how frequently
   /// to update the data profiles. If not specified, discovery will re-run and
   /// update no more than once a month if new columns appear in the table.
-  public var frequency: OneOf_Frequency? = nil
+  public var frequency: FrequencyOneOf? = nil
 
   @_spi(GoogleCloudInternal) public var _unknownFields: GoogleWKT._UnknownFields = .init()
 
@@ -77,7 +77,7 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
     self.conditions = try container.decodeIfPresent(
       DiscoveryBigQueryConditions.self, forKey: .conditions)
 
-    var frequency: OneOf_Frequency? = nil
+    var frequency: FrequencyOneOf? = nil
     let frequencyCheckAndSet = {
       if frequency != nil {
         throw DecodingError.dataCorrupted(
@@ -123,7 +123,7 @@ public struct BigQueryDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
   /// The generation rule includes the logic on how frequently
   /// to update the data profiles. If not specified, discovery will re-run and
   /// update no more than once a month if new columns appear in the table.
-  public enum OneOf_Frequency: Codable, Equatable, Sendable {
+  public enum FrequencyOneOf: Codable, Equatable, Sendable {
     /// How often and when to update profiles. New tables that match both the
     /// filter and conditions are scanned as quickly as possible depending on
     /// system capacity.
