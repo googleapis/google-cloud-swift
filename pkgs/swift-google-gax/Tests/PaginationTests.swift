@@ -44,7 +44,7 @@ import Testing
     }
   }
 
-  class PaginatedService {
+  final class PaginatedService: @unchecked Sendable {
     public var mockResponses: [ListItemsResponse] = []
     init(mockResponses: [ListItemsResponse]) {
       self.mockResponses = mockResponses
@@ -59,7 +59,7 @@ import Testing
     public func listItemsByItems(request: ListItemsRequest) -> PaginatedResponseSequence<
       Item, ListItemsResponse
     > {
-      let listRpc = { (token: String) async throws -> ListItemsResponse in
+      let listRpc = { @Sendable (token: String) async throws -> ListItemsResponse in
         var request = request
         request.pageToken = token
         return try await self.listItems(request: request)

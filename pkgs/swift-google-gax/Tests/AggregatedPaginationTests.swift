@@ -44,7 +44,7 @@ import GoogleRpc
     }
   }
 
-  class Service {
+  final class Service: @unchecked Sendable {
     public var mockResponses: [Response] = []
 
     public init(_ responses: [Response]) {
@@ -63,7 +63,7 @@ import GoogleRpc
     public func aggregatedListItemsByItems(request: Request) -> PaginatedResponseSequence<
       (String, Item), Response
     > {
-      let listRpc = { (token: String) async throws -> Response in
+      let listRpc = { @Sendable (token: String) async throws -> Response in
         var request = request
         request.pageToken = token
         return try await self.aggregatedListItems(request: request)

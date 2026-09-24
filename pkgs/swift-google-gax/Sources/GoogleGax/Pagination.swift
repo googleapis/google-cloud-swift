@@ -15,7 +15,7 @@
 /// For internal use only. This protocol identifies response messages that adhere to the
 /// [AIP-158 pagination](https://google.aip.dev/158) standard.
 @_spi(GoogleCloudInternal)
-public protocol _PaginatedResponse<Item> {
+public protocol _PaginatedResponse<Item>: Sendable {
   associatedtype Item
 
   func _nextPageToken() -> String
@@ -24,13 +24,13 @@ public protocol _PaginatedResponse<Item> {
 }
 
 /// A sequence that manages cursor-based pagination automatically.
-public final class PaginatedResponseSequence<Item, ResponseType>:
-  AsyncSequence
+public struct PaginatedResponseSequence<Item, ResponseType>:
+  AsyncSequence, Sendable
 {
   public typealias Element = Item
-  public typealias ListRpc = (String) async throws -> ResponseType
+  public typealias ListRpc = @Sendable (String) async throws -> ResponseType
 
-  private let fetchPage: (String) async throws -> (items: [Item], nextToken: String)
+  private let fetchPage: @Sendable (String) async throws -> (items: [Item], nextToken: String)
 
   // Creates a new paginated response sequence.
   @_spi(GoogleCloudInternal)
@@ -45,17 +45,18 @@ public final class PaginatedResponseSequence<Item, ResponseType>:
     _ItemIterator(fetchPage: fetchPage)
   }
 
-  public final class _ItemIterator: AsyncIteratorProtocol {
-    private let fetchPage: (String) async throws -> (items: [Item], nextToken: String)
+  public struct _ItemIterator: AsyncIteratorProtocol {
+    private let fetchPage: @Sendable (String) async throws -> (items: [Item], nextToken: String)
     private var buffer: [Item] = []
     private var nextToken: String = String()
     private var hasReachedEnd = false
 
-    init(fetchPage: @escaping (String) async throws -> (items: [Item], nextToken: String)) {
+    init(fetchPage: @escaping @Sendable (String) async throws -> (items: [Item], nextToken: String))
+    {
       self.fetchPage = fetchPage
     }
 
-    public func next() async throws -> Item? {
+    public mutating func next() async throws -> Item? {
       // Continue fetching pages until we have items to return or there are no more pages.
       // According to AIP-158, intermediate pages may be empty while still returning a next page token.
       while buffer.isEmpty && !hasReachedEnd {
