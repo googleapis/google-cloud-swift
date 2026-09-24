@@ -87,13 +87,14 @@
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationDataset> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
         return try op._extractStatus(ConversationDataset.self)
       }
       let rawOp = try await self.createConversationDataset(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -163,13 +164,14 @@
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteConversationDataset(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -226,14 +228,14 @@
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportConversationDataOperationResponse>.State in
         return try op._extractStatus(ImportConversationDataOperationResponse.self)
       }
       let rawOp = try await self.importConversationData(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<ImportConversationDataOperationResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
@@ -408,7 +410,8 @@
     public func createConversationDatasetPollingUntilDone(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationDataset> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -512,7 +515,8 @@
     public func deleteConversationDatasetPollingUntilDone(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -550,7 +554,7 @@
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse> {
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<ImportConversationDataOperationResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }

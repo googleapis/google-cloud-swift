@@ -75,14 +75,15 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
     request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State in
       return try op._extractStatus(BulkMuteFindingsResponse.self)
     }
     let rawOp = try await self.bulkMuteFindings(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -798,7 +799,8 @@ extension Clients.SecurityCenterProtocol {
     request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BulkMuteFindingsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BulkMuteFindingsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

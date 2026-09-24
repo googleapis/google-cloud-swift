@@ -99,13 +99,14 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: AccessPolicy, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
       return try op._extractStatus(AccessPolicy.self)
     }
     let rawOp = try await self.createAccessPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -144,13 +145,14 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
       return try op._extractStatus(AccessPolicy.self)
     }
     let rawOp = try await self.updateAccessPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -187,13 +189,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAccessPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -256,13 +258,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: CreateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessLevel> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
       return try op._extractStatus(AccessLevel.self)
     }
     let rawOp = try await self.createAccessLevel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -305,13 +307,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: UpdateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessLevel> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
       return try op._extractStatus(AccessLevel.self)
     }
     let rawOp = try await self.updateAccessLevel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -350,13 +352,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: DeleteAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAccessLevel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -417,14 +419,15 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: ReplaceAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ReplaceAccessLevelsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ReplaceAccessLevelsResponse>.State in
       return try op._extractStatus(ReplaceAccessLevelsResponse.self)
     }
     let rawOp = try await self.replaceAccessLevels(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ReplaceAccessLevelsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ReplaceAccessLevelsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -489,13 +492,14 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: CreateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServicePerimeter> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
       return try op._extractStatus(ServicePerimeter.self)
     }
     let rawOp = try await self.createServicePerimeter(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -538,13 +542,14 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: UpdateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServicePerimeter> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
       return try op._extractStatus(ServicePerimeter.self)
     }
     let rawOp = try await self.updateServicePerimeter(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -583,13 +588,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: DeleteServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteServicePerimeter(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -642,14 +647,15 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: ReplaceServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ReplaceServicePerimetersResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ReplaceServicePerimetersResponse>.State in
       return try op._extractStatus(ReplaceServicePerimetersResponse.self)
     }
     let rawOp = try await self.replaceServicePerimeters(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ReplaceServicePerimetersResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ReplaceServicePerimetersResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -710,14 +716,15 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: CommitServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CommitServicePerimetersResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CommitServicePerimetersResponse>.State in
       return try op._extractStatus(CommitServicePerimetersResponse.self)
     }
     let rawOp = try await self.commitServicePerimeters(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<CommitServicePerimetersResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CommitServicePerimetersResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -786,13 +793,14 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: CreateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GcpUserAccessBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
       return try op._extractStatus(GcpUserAccessBinding.self)
     }
     let rawOp = try await self.createGcpUserAccessBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -829,13 +837,14 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: UpdateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GcpUserAccessBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
       return try op._extractStatus(GcpUserAccessBinding.self)
     }
     let rawOp = try await self.updateGcpUserAccessBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -872,13 +881,13 @@ public final class AccessContextManagerClient: Clients.AccessContextManagerProto
     request: DeleteGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteGcpUserAccessBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1241,7 +1250,8 @@ extension Clients.AccessContextManagerProtocol {
   public func createAccessPolicyPollingUntilDone(
     request: AccessPolicy, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1269,7 +1279,8 @@ extension Clients.AccessContextManagerProtocol {
   public func updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1308,7 +1319,7 @@ extension Clients.AccessContextManagerProtocol {
   public func deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1411,7 +1422,7 @@ extension Clients.AccessContextManagerProtocol {
   public func createAccessLevelPollingUntilDone(
     request: CreateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessLevel> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1450,7 +1461,7 @@ extension Clients.AccessContextManagerProtocol {
   public func updateAccessLevelPollingUntilDone(
     request: UpdateAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AccessLevel> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessLevel>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1489,7 +1500,7 @@ extension Clients.AccessContextManagerProtocol {
   public func deleteAccessLevelPollingUntilDone(
     request: DeleteAccessLevelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1527,7 +1538,8 @@ extension Clients.AccessContextManagerProtocol {
     request: ReplaceAccessLevelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ReplaceAccessLevelsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ReplaceAccessLevelsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ReplaceAccessLevelsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1621,7 +1633,8 @@ extension Clients.AccessContextManagerProtocol {
   public func createServicePerimeterPollingUntilDone(
     request: CreateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServicePerimeter> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1660,7 +1673,8 @@ extension Clients.AccessContextManagerProtocol {
   public func updateServicePerimeterPollingUntilDone(
     request: UpdateServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServicePerimeter> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServicePerimeter>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1699,7 +1713,7 @@ extension Clients.AccessContextManagerProtocol {
   public func deleteServicePerimeterPollingUntilDone(
     request: DeleteServicePerimeterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1737,7 +1751,8 @@ extension Clients.AccessContextManagerProtocol {
     request: ReplaceServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ReplaceServicePerimetersResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ReplaceServicePerimetersResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ReplaceServicePerimetersResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1766,7 +1781,8 @@ extension Clients.AccessContextManagerProtocol {
     request: CommitServicePerimetersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CommitServicePerimetersResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<CommitServicePerimetersResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CommitServicePerimetersResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1860,7 +1876,8 @@ extension Clients.AccessContextManagerProtocol {
   public func createGcpUserAccessBindingPollingUntilDone(
     request: CreateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GcpUserAccessBinding> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1899,7 +1916,8 @@ extension Clients.AccessContextManagerProtocol {
   public func updateGcpUserAccessBindingPollingUntilDone(
     request: UpdateGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GcpUserAccessBinding> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GcpUserAccessBinding>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1938,7 +1956,7 @@ extension Clients.AccessContextManagerProtocol {
   public func deleteGcpUserAccessBindingPollingUntilDone(
     request: DeleteGcpUserAccessBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

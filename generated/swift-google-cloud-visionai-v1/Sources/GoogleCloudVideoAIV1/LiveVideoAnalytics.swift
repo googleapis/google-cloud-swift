@@ -96,13 +96,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: CreateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operator> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Operator>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Operator>.State in
       return try op._extractStatus(Operator.self)
     }
     let rawOp = try await self.createOperator(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -131,13 +131,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: UpdateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operator> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Operator>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Operator>.State in
       return try op._extractStatus(Operator.self)
     }
     let rawOp = try await self.updateOperator(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -166,13 +166,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: DeleteOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteOperator(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -219,13 +219,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Analysis> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Analysis>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Analysis>.State in
       return try op._extractStatus(Analysis.self)
     }
     let rawOp = try await self.createAnalysis(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -254,13 +254,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: UpdateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Analysis> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Analysis>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Analysis>.State in
       return try op._extractStatus(Analysis.self)
     }
     let rawOp = try await self.updateAnalysis(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -289,13 +289,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: DeleteAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAnalysis(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -342,12 +342,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: CreateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Process> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Process>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Process>.State in
       return try op._extractStatus(Process.self)
     }
     let rawOp = try await self.createProcess(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -376,12 +377,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: UpdateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Process> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Process>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Process>.State in
       return try op._extractStatus(Process.self)
     }
     let rawOp = try await self.updateProcess(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -410,13 +412,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteProcess(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -447,14 +449,15 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
     request: BatchRunProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchRunProcessResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchRunProcessResponse>.State in
       return try op._extractStatus(BatchRunProcessResponse.self)
     }
     let rawOp = try await self.batchRunProcess(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchRunProcessResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchRunProcessResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -855,7 +858,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func createOperatorPollingUntilDone(
     request: CreateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operator> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -896,7 +899,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func updateOperatorPollingUntilDone(
     request: UpdateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operator> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operator>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -935,7 +938,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func deleteOperatorPollingUntilDone(
     request: DeleteOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1034,7 +1037,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func createAnalysisPollingUntilDone(
     request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Analysis> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1075,7 +1078,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func updateAnalysisPollingUntilDone(
     request: UpdateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Analysis> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Analysis>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1114,7 +1117,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func deleteAnalysisPollingUntilDone(
     request: DeleteAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1212,7 +1215,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func createProcessPollingUntilDone(
     request: CreateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Process> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1253,7 +1256,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func updateProcessPollingUntilDone(
     request: UpdateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Process> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Process>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1292,7 +1295,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func deleteProcessPollingUntilDone(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1330,7 +1333,8 @@ extension Clients.LiveVideoAnalyticsProtocol {
     request: BatchRunProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchRunProcessResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchRunProcessResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchRunProcessResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

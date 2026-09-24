@@ -75,13 +75,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Endpoint>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Endpoint>.State in
       return try op._extractStatus(Endpoint.self)
     }
     let rawOp = try await self.createEndpoint(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -110,13 +110,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteEndpoint(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -312,7 +312,7 @@ extension Clients.IDSProtocol {
   public func createEndpointPollingUntilDone(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -353,7 +353,7 @@ extension Clients.IDSProtocol {
   public func deleteEndpointPollingUntilDone(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

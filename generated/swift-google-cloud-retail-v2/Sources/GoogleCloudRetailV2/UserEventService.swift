@@ -88,14 +88,15 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
     request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PurgeUserEventsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State in
       return try op._extractStatus(PurgeUserEventsResponse.self)
     }
     let rawOp = try await self.purgeUserEvents(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -136,14 +137,15 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
     request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportUserEventsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State in
       return try op._extractStatus(ImportUserEventsResponse.self)
     }
     let rawOp = try await self.importUserEvents(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -186,14 +188,15 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
     request: RejoinUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RejoinUserEventsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RejoinUserEventsResponse>.State in
       return try op._extractStatus(RejoinUserEventsResponse.self)
     }
     let rawOp = try await self.rejoinUserEvents(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RejoinUserEventsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RejoinUserEventsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -330,7 +333,8 @@ extension Clients.UserEventServiceProtocol {
     request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PurgeUserEventsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeUserEventsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -359,7 +363,8 @@ extension Clients.UserEventServiceProtocol {
     request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportUserEventsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportUserEventsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -388,7 +393,8 @@ extension Clients.UserEventServiceProtocol {
     request: RejoinUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RejoinUserEventsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RejoinUserEventsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RejoinUserEventsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

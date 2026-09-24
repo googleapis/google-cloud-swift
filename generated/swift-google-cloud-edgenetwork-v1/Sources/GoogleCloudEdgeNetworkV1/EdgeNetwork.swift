@@ -120,12 +120,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: CreateNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Network> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Network>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Network>.State in
       return try op._extractStatus(Network.self)
     }
     let rawOp = try await self.createNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Network>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Network>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -154,13 +155,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: DeleteNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -207,12 +208,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: CreateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Subnet>.State in
       return try op._extractStatus(Subnet.self)
     }
     let rawOp = try await self.createSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -241,12 +243,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Subnet>.State in
       return try op._extractStatus(Subnet.self)
     }
     let rawOp = try await self.updateSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -275,13 +278,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: DeleteSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -355,14 +358,14 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: CreateInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<InterconnectAttachment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterconnectAttachment>.State in
       return try op._extractStatus(InterconnectAttachment.self)
     }
     let rawOp = try await self.createInterconnectAttachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<InterconnectAttachment>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterconnectAttachment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -391,13 +394,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: DeleteInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteInterconnectAttachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -453,12 +456,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: CreateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Router> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Router>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Router>.State in
       return try op._extractStatus(Router.self)
     }
     let rawOp = try await self.createRouter(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -487,12 +491,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: UpdateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Router> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Router>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Router>.State in
       return try op._extractStatus(Router.self)
     }
     let rawOp = try await self.updateRouter(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -521,13 +526,13 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
     request: DeleteRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteRouter(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1018,7 +1023,7 @@ extension Clients.EdgeNetworkProtocol {
   public func createNetworkPollingUntilDone(
     request: CreateNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Network> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Network>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Network>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1059,7 +1064,7 @@ extension Clients.EdgeNetworkProtocol {
   public func deleteNetworkPollingUntilDone(
     request: DeleteNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1157,7 +1162,7 @@ extension Clients.EdgeNetworkProtocol {
   public func createSubnetPollingUntilDone(
     request: CreateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1197,7 +1202,7 @@ extension Clients.EdgeNetworkProtocol {
   public func updateSubnetPollingUntilDone(
     request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1235,7 +1240,7 @@ extension Clients.EdgeNetworkProtocol {
   public func deleteSubnetPollingUntilDone(
     request: DeleteSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1422,7 +1427,7 @@ extension Clients.EdgeNetworkProtocol {
     request: CreateInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<InterconnectAttachment> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<InterconnectAttachment>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterconnectAttachment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1463,7 +1468,7 @@ extension Clients.EdgeNetworkProtocol {
   public func deleteInterconnectAttachmentPollingUntilDone(
     request: DeleteInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1582,7 +1587,7 @@ extension Clients.EdgeNetworkProtocol {
   public func createRouterPollingUntilDone(
     request: CreateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Router> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1622,7 +1627,7 @@ extension Clients.EdgeNetworkProtocol {
   public func updateRouterPollingUntilDone(
     request: UpdateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Router> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Router>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1660,7 +1665,7 @@ extension Clients.EdgeNetworkProtocol {
   public func deleteRouterPollingUntilDone(
     request: DeleteRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

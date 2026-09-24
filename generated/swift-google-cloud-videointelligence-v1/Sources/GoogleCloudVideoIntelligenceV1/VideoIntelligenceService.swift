@@ -66,13 +66,14 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
     request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
       return try op._extractStatus(AnnotateVideoResponse.self)
     }
     let rawOp = try await self.annotateVideo(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -187,7 +188,8 @@ extension Clients.VideoIntelligenceServiceProtocol {
   public func annotateVideoPollingUntilDone(
     request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

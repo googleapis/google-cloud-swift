@@ -78,12 +78,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
     request: CreateAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<App> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<App>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<App>.State in
       return try op._extractStatus(App.self)
     }
     let rawOp = try await self.createApp(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<App>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<App>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -121,13 +122,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
     request: DeleteAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteApp(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -156,13 +157,14 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
     request: ExportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportAppResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
       return try op._extractStatus(ExportAppResponse.self)
     }
     let rawOp = try await self.exportApp(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -191,13 +193,14 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
     request: ImportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportAppResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
       return try op._extractStatus(ImportAppResponse.self)
     }
     let rawOp = try await self.importApp(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -361,14 +364,15 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
     request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
       return try op._extractStatus(BatchDeleteConversationsResponse.self)
     }
     let rawOp = try await self.batchDeleteConversations(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -599,14 +603,15 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
     request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RestoreAppVersionResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State in
       return try op._extractStatus(RestoreAppVersionResponse.self)
     }
     let rawOp = try await self.restoreAppVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1101,7 +1106,7 @@ extension Clients.AgentServiceProtocol {
   public func createAppPollingUntilDone(
     request: CreateAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<App> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<App>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<App>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1172,7 +1177,7 @@ extension Clients.AgentServiceProtocol {
   public func deleteAppPollingUntilDone(
     request: DeleteAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1207,7 +1212,8 @@ extension Clients.AgentServiceProtocol {
   public func exportAppPollingUntilDone(
     request: ExportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportAppResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1242,7 +1248,8 @@ extension Clients.AgentServiceProtocol {
   public func importAppPollingUntilDone(
     request: ImportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportAppResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1705,7 +1712,8 @@ extension Clients.AgentServiceProtocol {
     request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2353,7 +2361,8 @@ extension Clients.AgentServiceProtocol {
     request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RestoreAppVersionResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

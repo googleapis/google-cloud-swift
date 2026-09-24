@@ -76,13 +76,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Execution>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Execution>.State in
       return try op._extractStatus(Execution.self)
     }
     let rawOp = try await self.deleteExecution(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -111,13 +111,13 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Execution>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Execution>.State in
       return try op._extractStatus(Execution.self)
     }
     let rawOp = try await self.cancelExecution(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -315,7 +315,7 @@ extension Clients.ExecutionsProtocol {
   public func deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -352,7 +352,7 @@ extension Clients.ExecutionsProtocol {
   public func cancelExecutionPollingUntilDone(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Execution> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

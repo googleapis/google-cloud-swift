@@ -61,13 +61,13 @@
       request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         return try op._extractStatus(RagCorpus.self)
       }
       let rawOp = try await self.createRagCorpus(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -96,13 +96,13 @@
       request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         return try op._extractStatus(RagCorpus.self)
       }
       let rawOp = try await self.updateRagCorpus(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -149,13 +149,14 @@
       request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteRagCorpus(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -193,14 +194,15 @@
       request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State in
         return try op._extractStatus(ImportRagFilesResponse.self)
       }
       let rawOp = try await self.importRagFiles(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -247,13 +249,14 @@
       request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteRagFile(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -282,13 +285,14 @@
       request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
         return try op._extractStatus(RagEngineConfig.self)
       }
       let rawOp = try await self.updateRagEngineConfig(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -589,7 +593,7 @@
     public func createRagCorpusPollingUntilDone(
       request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -628,7 +632,7 @@
     public func updateRagCorpusPollingUntilDone(
       request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagCorpus> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RagCorpus>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -729,7 +733,8 @@
     public func deleteRagCorpusPollingUntilDone(
       request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -792,7 +797,8 @@
       request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportRagFilesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportRagFilesResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -895,7 +901,8 @@
     public func deleteRagFilePollingUntilDone(
       request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -932,7 +939,8 @@
     public func updateRagEngineConfigPollingUntilDone(
       request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RagEngineConfig> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<RagEngineConfig>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

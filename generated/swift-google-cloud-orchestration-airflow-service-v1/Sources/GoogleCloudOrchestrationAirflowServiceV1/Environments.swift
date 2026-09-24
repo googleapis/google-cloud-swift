@@ -58,13 +58,13 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Environment>.State in
       return try op._extractStatus(Environment.self)
     }
     let rawOp = try await self.createEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -111,13 +111,13 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Environment>.State in
       return try op._extractStatus(Environment.self)
     }
     let rawOp = try await self.updateEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -146,13 +146,13 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -225,13 +225,14 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CheckUpgradeResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
       return try op._extractStatus(CheckUpgradeResponse.self)
     }
     let rawOp = try await self.checkUpgrade(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -387,13 +388,14 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SaveSnapshotResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
       return try op._extractStatus(SaveSnapshotResponse.self)
     }
     let rawOp = try await self.saveSnapshot(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -428,13 +430,14 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoadSnapshotResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
       return try op._extractStatus(LoadSnapshotResponse.self)
     }
     let rawOp = try await self.loadSnapshot(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -463,14 +466,15 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
     request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DatabaseFailoverResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State in
       return try op._extractStatus(DatabaseFailoverResponse.self)
     }
     let rawOp = try await self.databaseFailover(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -723,7 +727,7 @@ extension Clients.EnvironmentsProtocol {
   public func createEnvironmentPollingUntilDone(
     request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -826,7 +830,7 @@ extension Clients.EnvironmentsProtocol {
   public func updateEnvironmentPollingUntilDone(
     request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Environment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Environment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -867,7 +871,7 @@ extension Clients.EnvironmentsProtocol {
   public func deleteEnvironmentPollingUntilDone(
     request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -986,7 +990,8 @@ extension Clients.EnvironmentsProtocol {
   public func checkUpgradePollingUntilDone(
     request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CheckUpgradeResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CheckUpgradeResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1275,7 +1280,8 @@ extension Clients.EnvironmentsProtocol {
   public func saveSnapshotPollingUntilDone(
     request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SaveSnapshotResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SaveSnapshotResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1302,7 +1308,8 @@ extension Clients.EnvironmentsProtocol {
   public func loadSnapshotPollingUntilDone(
     request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoadSnapshotResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LoadSnapshotResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1331,7 +1338,8 @@ extension Clients.EnvironmentsProtocol {
     request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DatabaseFailoverResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatabaseFailoverResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

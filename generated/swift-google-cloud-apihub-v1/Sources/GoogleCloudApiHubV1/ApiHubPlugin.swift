@@ -109,13 +109,13 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
     request: DeletePluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePlugin(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -144,13 +144,14 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
     request: CreatePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PluginInstance> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PluginInstance>.State in
       return try op._extractStatus(PluginInstance.self)
     }
     let rawOp = try await self.createPluginInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PluginInstance>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PluginInstance>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -179,15 +180,15 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
     request: ExecutePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExecutePluginInstanceActionResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExecutePluginInstanceActionResponse>.State in
       return try op._extractStatus(ExecutePluginInstanceActionResponse.self)
     }
     let rawOp = try await self.executePluginInstanceAction(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExecutePluginInstanceActionResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExecutePluginInstanceActionResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -235,15 +236,15 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
     request: EnablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EnablePluginInstanceActionResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EnablePluginInstanceActionResponse>.State in
       return try op._extractStatus(EnablePluginInstanceActionResponse.self)
     }
     let rawOp = try await self.enablePluginInstanceAction(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<EnablePluginInstanceActionResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<EnablePluginInstanceActionResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -272,15 +273,15 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
     request: DisablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DisablePluginInstanceActionResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DisablePluginInstanceActionResponse>.State in
       return try op._extractStatus(DisablePluginInstanceActionResponse.self)
     }
     let rawOp = try await self.disablePluginInstanceAction(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<DisablePluginInstanceActionResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<DisablePluginInstanceActionResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -341,13 +342,13 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
     request: DeletePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePluginInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -705,7 +706,7 @@ extension Clients.ApiHubPluginProtocol {
   public func deletePluginPollingUntilDone(
     request: DeletePluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -742,7 +743,8 @@ extension Clients.ApiHubPluginProtocol {
   public func createPluginInstancePollingUntilDone(
     request: CreatePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PluginInstance> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PluginInstance>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PluginInstance>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -784,8 +786,8 @@ extension Clients.ApiHubPluginProtocol {
     request: ExecutePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExecutePluginInstanceActionResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExecutePluginInstanceActionResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExecutePluginInstanceActionResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -890,8 +892,8 @@ extension Clients.ApiHubPluginProtocol {
     request: EnablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EnablePluginInstanceActionResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<EnablePluginInstanceActionResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<EnablePluginInstanceActionResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -931,8 +933,8 @@ extension Clients.ApiHubPluginProtocol {
     request: DisablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DisablePluginInstanceActionResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<DisablePluginInstanceActionResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<DisablePluginInstanceActionResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -994,7 +996,7 @@ extension Clients.ApiHubPluginProtocol {
   public func deletePluginInstancePollingUntilDone(
     request: DeletePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

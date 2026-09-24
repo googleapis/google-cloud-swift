@@ -117,14 +117,14 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
     request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
       return try op._extractStatus(ExportEntitiesResponse.self)
     }
     let rawOp = try await self.exportEntities(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -161,13 +161,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
     request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.importEntities(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -228,12 +228,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
     let rawOp = try await self.createIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -290,12 +291,13 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Index>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Index>.State in
       return try op._extractStatus(Index.self)
     }
     let rawOp = try await self.deleteIndex(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -471,7 +473,7 @@ extension Clients.DatastoreAdminProtocol {
     request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportEntitiesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportEntitiesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -514,7 +516,7 @@ extension Clients.DatastoreAdminProtocol {
   public func importEntitiesPollingUntilDone(
     request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -555,7 +557,7 @@ extension Clients.DatastoreAdminProtocol {
   public func createIndexPollingUntilDone(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -581,7 +583,7 @@ extension Clients.DatastoreAdminProtocol {
   public func deleteIndexPollingUntilDone(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Index> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Index>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

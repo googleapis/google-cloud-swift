@@ -78,13 +78,14 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
       return try op._extractStatus(ConnectionProfile.self)
     }
     let rawOp = try await self.createConnectionProfile(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -113,13 +114,14 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
       return try op._extractStatus(ConnectionProfile.self)
     }
     let rawOp = try await self.updateConnectionProfile(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -148,13 +150,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteConnectionProfile(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -213,12 +215,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Stream>.State in
       return try op._extractStatus(Stream.self)
     }
     let rawOp = try await self.createStream(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -247,12 +250,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Stream>.State in
       return try op._extractStatus(Stream.self)
     }
     let rawOp = try await self.updateStream(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -281,13 +285,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteStream(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -318,12 +322,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: RunStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Stream>.State in
       return try op._extractStatus(Stream.self)
     }
     let rawOp = try await self.runStream(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -407,13 +412,14 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       return try op._extractStatus(PrivateConnection.self)
     }
     let rawOp = try await self.createPrivateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -461,13 +467,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePrivateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -498,12 +504,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: CreateRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Route> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Route>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Route>.State in
       return try op._extractStatus(Route.self)
     }
     let rawOp = try await self.createRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Route>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Route>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -551,13 +558,13 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
     request: DeleteRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteRoute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -940,7 +947,8 @@ extension Clients.DatastreamProtocol {
   public func createConnectionProfilePollingUntilDone(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -981,7 +989,8 @@ extension Clients.DatastreamProtocol {
   public func updateConnectionProfilePollingUntilDone(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ConnectionProfile> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConnectionProfile>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1020,7 +1029,7 @@ extension Clients.DatastreamProtocol {
   public func deleteConnectionProfilePollingUntilDone(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1129,7 +1138,7 @@ extension Clients.DatastreamProtocol {
   public func createStreamPollingUntilDone(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1169,7 +1178,7 @@ extension Clients.DatastreamProtocol {
   public func updateStreamPollingUntilDone(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1207,7 +1216,7 @@ extension Clients.DatastreamProtocol {
   public func deleteStreamPollingUntilDone(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1242,7 +1251,7 @@ extension Clients.DatastreamProtocol {
   public func runStreamPollingUntilDone(
     request: RunStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Stream> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1409,7 +1418,8 @@ extension Clients.DatastreamProtocol {
   public func createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1515,7 +1525,7 @@ extension Clients.DatastreamProtocol {
   public func deletePrivateConnectionPollingUntilDone(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1550,7 +1560,7 @@ extension Clients.DatastreamProtocol {
   public func createRoutePollingUntilDone(
     request: CreateRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Route> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Route>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Route>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1651,7 +1661,7 @@ extension Clients.DatastreamProtocol {
   public func deleteRoutePollingUntilDone(
     request: DeleteRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

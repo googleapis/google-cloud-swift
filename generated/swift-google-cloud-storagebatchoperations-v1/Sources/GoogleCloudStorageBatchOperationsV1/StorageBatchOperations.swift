@@ -80,12 +80,13 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Job>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Job>.State in
       return try op._extractStatus(Job.self)
     }
     let rawOp = try await self.createJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -355,7 +356,7 @@ extension Clients.StorageBatchOperationsProtocol {
   public func createJobPollingUntilDone(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Job> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -63,12 +63,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagHold> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<TagHold>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<TagHold>.State in
       return try op._extractStatus(TagHold.self)
     }
     let rawOp = try await self.createTagHold(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagHold>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<TagHold>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -97,13 +98,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteTagHold(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -194,7 +195,7 @@ extension Clients.TagHoldsProtocol {
   public func createTagHoldPollingUntilDone(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TagHold> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<TagHold>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<TagHold>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -233,7 +234,7 @@ extension Clients.TagHoldsProtocol {
   public func deleteTagHoldPollingUntilDone(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

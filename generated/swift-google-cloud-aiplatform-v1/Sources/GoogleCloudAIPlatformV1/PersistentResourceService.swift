@@ -64,13 +64,14 @@
       request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         return try op._extractStatus(PersistentResource.self)
       }
       let rawOp = try await self.createPersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -117,13 +118,14 @@
       request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deletePersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -152,13 +154,14 @@
       request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         return try op._extractStatus(PersistentResource.self)
       }
       let rawOp = try await self.updatePersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -187,13 +190,14 @@
       request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         return try op._extractStatus(PersistentResource.self)
       }
       let rawOp = try await self.rebootPersistentResource(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -445,7 +449,8 @@
     public func createPersistentResourcePollingUntilDone(
       request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -550,7 +555,8 @@
     public func deletePersistentResourcePollingUntilDone(
       request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -587,7 +593,8 @@
     public func updatePersistentResourcePollingUntilDone(
       request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -626,7 +633,8 @@
     public func rebootPersistentResourcePollingUntilDone(
       request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PersistentResource> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PersistentResource>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

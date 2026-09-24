@@ -104,13 +104,14 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagedService> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ManagedService>.State in
       return try op._extractStatus(ManagedService.self)
     }
     let rawOp = try await self.createService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ManagedService>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagedService>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -157,13 +158,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -202,14 +203,15 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
     request: UndeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UndeleteServiceResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UndeleteServiceResponse>.State in
       return try op._extractStatus(UndeleteServiceResponse.self)
     }
     let rawOp = try await self.undeleteService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<UndeleteServiceResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<UndeleteServiceResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -305,14 +307,15 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
     request: SubmitConfigSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SubmitConfigSourceResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SubmitConfigSourceResponse>.State in
       return try op._extractStatus(SubmitConfigSourceResponse.self)
     }
     let rawOp = try await self.submitConfigSource(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SubmitConfigSourceResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SubmitConfigSourceResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -389,12 +392,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
     request: CreateServiceRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Rollout>.State in
       return try op._extractStatus(Rollout.self)
     }
     let rawOp = try await self.createServiceRollout(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -703,7 +707,8 @@ extension Clients.ServiceManagerProtocol {
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagedService> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ManagedService>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagedService>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -740,7 +745,7 @@ extension Clients.ServiceManagerProtocol {
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -778,7 +783,8 @@ extension Clients.ServiceManagerProtocol {
     request: UndeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<UndeleteServiceResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<UndeleteServiceResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<UndeleteServiceResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -906,7 +912,8 @@ extension Clients.ServiceManagerProtocol {
     request: SubmitConfigSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SubmitConfigSourceResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SubmitConfigSourceResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SubmitConfigSourceResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1016,7 +1023,7 @@ extension Clients.ServiceManagerProtocol {
   public func createServiceRolloutPollingUntilDone(
     request: CreateServiceRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -101,7 +101,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operation> {
     let extractStatus = {
-      (op: Operation) throws -> GoogleGax._PollableOperationImpl<Operation>.State in
+      @Sendable (op: Operation) throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       guard op._done() else {
         return .init(done: false, result: nil)
       }
@@ -115,7 +115,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
     }
     let rawOp = try await self.patch(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       let op = try await self.getOperation(
         request: .init().with {
           $0.operation = rawOp._name()
@@ -166,7 +166,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operation> {
     let extractStatus = {
-      (op: Operation) throws -> GoogleGax._PollableOperationImpl<Operation>.State in
+      @Sendable (op: Operation) throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       guard op._done() else {
         return .init(done: false, result: nil)
       }
@@ -180,7 +180,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
     }
     let rawOp = try await self.update(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       let op = try await self.getOperation(
         request: .init().with {
           $0.operation = rawOp._name()
@@ -408,7 +408,7 @@ extension Clients.ManagedZonesProtocol {
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operation> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -493,7 +493,7 @@ extension Clients.ManagedZonesProtocol {
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Operation> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

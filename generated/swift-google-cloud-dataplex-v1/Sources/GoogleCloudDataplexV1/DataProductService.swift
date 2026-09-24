@@ -61,13 +61,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
     request: CreateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataProduct> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataProduct>.State in
       return try op._extractStatus(DataProduct.self)
     }
     let rawOp = try await self.createDataProduct(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -98,13 +98,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
     request: DeleteDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDataProduct(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -151,13 +151,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
     request: UpdateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataProduct> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataProduct>.State in
       return try op._extractStatus(DataProduct.self)
     }
     let rawOp = try await self.updateDataProduct(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -197,13 +197,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
     request: CreateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAsset> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<DataAsset>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DataAsset>.State in
       return try op._extractStatus(DataAsset.self)
     }
     let rawOp = try await self.createDataAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -232,13 +232,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
     request: UpdateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAsset> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<DataAsset>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DataAsset>.State in
       return try op._extractStatus(DataAsset.self)
     }
     let rawOp = try await self.updateDataAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -267,13 +267,13 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
     request: DeleteDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDataAsset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -579,7 +579,7 @@ extension Clients.DataProductServiceProtocol {
   public func createDataProductPollingUntilDone(
     request: CreateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataProduct> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -620,7 +620,7 @@ extension Clients.DataProductServiceProtocol {
   public func deleteDataProductPollingUntilDone(
     request: DeleteDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -721,7 +721,7 @@ extension Clients.DataProductServiceProtocol {
   public func updateDataProductPollingUntilDone(
     request: UpdateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataProduct> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataProduct>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -783,7 +783,7 @@ extension Clients.DataProductServiceProtocol {
   public func createDataAssetPollingUntilDone(
     request: CreateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAsset> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -824,7 +824,7 @@ extension Clients.DataProductServiceProtocol {
   public func updateDataAssetPollingUntilDone(
     request: UpdateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAsset> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAsset>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -863,7 +863,7 @@ extension Clients.DataProductServiceProtocol {
   public func deleteDataAssetPollingUntilDone(
     request: DeleteDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

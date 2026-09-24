@@ -62,13 +62,14 @@
       request: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         return try op._extractStatus(Featurestore.self)
       }
       let rawOp = try await self.createFeaturestore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -115,13 +116,14 @@
       request: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         return try op._extractStatus(Featurestore.self)
       }
       let rawOp = try await self.updateFeaturestore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -152,13 +154,14 @@
       request: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteFeaturestore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -187,13 +190,14 @@
       request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EntityType> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<EntityType>.State in
         return try op._extractStatus(EntityType.self)
       }
       let rawOp = try await self.createEntityType(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntityType>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntityType>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -251,13 +255,14 @@
       request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteEntityType(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -286,13 +291,13 @@
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Feature>.State
-        in
+        @Sendable (op: GoogleLongRunning.Operation) throws
+          -> GoogleGax._PollableOperationImpl<Feature>.State in
         return try op._extractStatus(Feature.self)
       }
       let rawOp = try await self.createFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -321,14 +326,15 @@
       request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
         return try op._extractStatus(BatchCreateFeaturesResponse.self)
       }
       let rawOp = try await self.batchCreateFeatures(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -384,13 +390,14 @@
       request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteFeature(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -457,14 +464,15 @@
       request: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
         return try op._extractStatus(ImportFeatureValuesResponse.self)
       }
       let rawOp = try await self.importFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -503,14 +511,15 @@
       request: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
         return try op._extractStatus(BatchReadFeatureValuesResponse.self)
       }
       let rawOp = try await self.batchReadFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -539,14 +548,15 @@
       request: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
         return try op._extractStatus(ExportFeatureValuesResponse.self)
       }
       let rawOp = try await self.exportFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -593,14 +603,15 @@
       request: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
         return try op._extractStatus(DeleteFeatureValuesResponse.self)
       }
       let rawOp = try await self.deleteFeatureValues(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -976,7 +987,8 @@
     public func createFeaturestorePollingUntilDone(
       request: CreateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1092,7 +1104,8 @@
     public func updateFeaturestorePollingUntilDone(
       request: UpdateFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Featurestore> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Featurestore>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1131,7 +1144,8 @@
     public func deleteFeaturestorePollingUntilDone(
       request: DeleteFeaturestoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1179,7 +1193,8 @@
     public func createEntityTypePollingUntilDone(
       request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EntityType> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntityType>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntityType>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1318,7 +1333,8 @@
     public func deleteEntityTypePollingUntilDone(
       request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1366,7 +1382,7 @@
     public func createFeaturePollingUntilDone(
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Feature> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Feature>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1419,7 +1435,8 @@
       request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateFeaturesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchCreateFeaturesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1545,7 +1562,8 @@
     public func deleteFeaturePollingUntilDone(
       request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1583,7 +1601,8 @@
       request: ImportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportFeatureValuesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ImportFeatureValuesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1621,7 +1640,8 @@
       request: BatchReadFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchReadFeatureValuesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchReadFeatureValuesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1659,7 +1679,8 @@
       request: ExportFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportFeatureValuesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ExportFeatureValuesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1697,7 +1718,8 @@
       request: DeleteFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeleteFeatureValuesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<DeleteFeatureValuesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

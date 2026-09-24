@@ -60,14 +60,15 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
     request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
       return try op._extractStatus(GenerateServiceAgentsResponse.self)
     }
     let rawOp = try await self.generateServiceAgents(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -228,7 +229,8 @@ extension Clients.WorkloadIdentityProtocol {
     request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -360,14 +360,15 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
     request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State in
       return try op._extractStatus(ImportProductSetsResponse.self)
     }
     let rawOp = try await self.importProductSets(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -446,13 +447,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.purgeProducts(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1088,7 +1089,8 @@ extension Clients.ProductSearchProtocol {
     request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportProductSetsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportProductSetsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1127,7 +1129,7 @@ extension Clients.ProductSearchProtocol {
   public func purgeProductsPollingUntilDone(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

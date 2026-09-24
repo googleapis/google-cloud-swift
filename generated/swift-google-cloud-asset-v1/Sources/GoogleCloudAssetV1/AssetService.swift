@@ -84,13 +84,14 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportAssetsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
       return try op._extractStatus(ExportAssetsResponse.self)
     }
     let rawOp = try await self.exportAssets(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -248,15 +249,15 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State in
       return try op._extractStatus(AnalyzeIamPolicyLongrunningResponse.self)
     }
     let rawOp = try await self.analyzeIamPolicyLongrunning(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -600,7 +601,8 @@ extension Clients.AssetServiceProtocol {
   public func exportAssetsPollingUntilDone(
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportAssetsResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -891,8 +893,8 @@ extension Clients.AssetServiceProtocol {
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

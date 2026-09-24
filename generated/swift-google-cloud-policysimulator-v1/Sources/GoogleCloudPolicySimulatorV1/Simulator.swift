@@ -90,12 +90,13 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
     request: CreateReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Replay> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Replay>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Replay>.State in
       return try op._extractStatus(Replay.self)
     }
     let rawOp = try await self.createReplay(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Replay>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replay>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -220,7 +221,7 @@ extension Clients.SimulatorProtocol {
   public func createReplayPollingUntilDone(
     request: CreateReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Replay> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Replay>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replay>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

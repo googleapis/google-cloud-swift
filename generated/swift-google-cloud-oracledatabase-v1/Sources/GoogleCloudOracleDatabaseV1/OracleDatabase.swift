@@ -77,14 +77,15 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CloudExadataInfrastructure> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
       return try op._extractStatus(CloudExadataInfrastructure.self)
     }
     let rawOp = try await self.createCloudExadataInfrastructure(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -113,13 +114,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteCloudExadataInfrastructure(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -149,7 +150,7 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: ConfigureExascaleCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CloudExadataInfrastructure> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
       return try op._extractStatus(CloudExadataInfrastructure.self)
     }
@@ -157,7 +158,8 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -204,13 +206,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateCloudVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CloudVmCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
       return try op._extractStatus(CloudVmCluster.self)
     }
     let rawOp = try await self.createCloudVmCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -239,13 +242,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteCloudVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteCloudVmCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -348,13 +351,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.createAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -383,13 +387,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: UpdateAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.updateAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -418,13 +423,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -453,13 +458,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: RestoreAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.restoreAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -525,13 +531,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: StopAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.stopAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -560,13 +567,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: StartAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.startAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -595,13 +603,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: RestartAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.restartAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -632,13 +641,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: SwitchoverAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.switchoverAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -669,13 +679,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: FailoverAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.failoverAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -704,13 +715,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: RefreshAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       return try op._extractStatus(AutonomousDatabase.self)
     }
     let rawOp = try await self.refreshAutonomousDatabase(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -766,13 +778,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateOdbNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OdbNetwork> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<OdbNetwork>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
       return try op._extractStatus(OdbNetwork.self)
     }
     let rawOp = try await self.createOdbNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -801,13 +813,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteOdbNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteOdbNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -854,13 +866,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateOdbSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OdbSubnet> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
       return try op._extractStatus(OdbSubnet.self)
     }
     let rawOp = try await self.createOdbSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -889,13 +901,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteOdbSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteOdbSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -943,13 +955,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       return try op._extractStatus(ExadbVmCluster.self)
     }
     let rawOp = try await self.createExadbVmCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -978,13 +991,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteExadbVmCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1015,13 +1028,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: UpdateExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       return try op._extractStatus(ExadbVmCluster.self)
     }
     let rawOp = try await self.updateExadbVmCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1050,14 +1064,15 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: RemoveVirtualMachineExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       return try op._extractStatus(ExadbVmCluster.self)
     }
     let rawOp = try await self.removeVirtualMachineExadbVmCluster(
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1105,14 +1120,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExascaleDbStorageVault> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
       return try op._extractStatus(ExascaleDbStorageVault.self)
     }
     let rawOp = try await self.createExascaleDbStorageVault(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1141,13 +1156,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteExascaleDbStorageVault(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1241,13 +1256,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateDbSystemRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DbSystem> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<DbSystem>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<DbSystem>.State in
       return try op._extractStatus(DbSystem.self)
     }
     let rawOp = try await self.createDbSystem(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DbSystem>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DbSystem>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1276,13 +1291,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteDbSystemRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDbSystem(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1329,13 +1344,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateDeployment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       return try op._extractStatus(GoldengateDeployment.self)
     }
     let rawOp = try await self.createGoldengateDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1364,13 +1380,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteGoldengateDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1399,13 +1415,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: StopGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateDeployment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       return try op._extractStatus(GoldengateDeployment.self)
     }
     let rawOp = try await self.stopGoldengateDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1434,13 +1451,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: StartGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateDeployment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       return try op._extractStatus(GoldengateDeployment.self)
     }
     let rawOp = try await self.startGoldengateDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1487,13 +1505,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateConnection> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
       return try op._extractStatus(GoldengateConnection.self)
     }
     let rawOp = try await self.createGoldengateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1522,13 +1541,13 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteGoldengateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteGoldengateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1631,7 +1650,7 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: CreateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateConnectionAssignment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
       return try op._extractStatus(GoldengateConnectionAssignment.self)
     }
@@ -1639,7 +1658,8 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1668,14 +1688,14 @@ public final class OracleDatabaseClient: Clients.OracleDatabaseProtocol, Sendabl
     request: DeleteGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteGoldengateConnectionAssignment(
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -2475,7 +2495,8 @@ extension Clients.OracleDatabaseProtocol {
     request: CreateCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CloudExadataInfrastructure> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2517,7 +2538,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteCloudExadataInfrastructurePollingUntilDone(
     request: DeleteCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2556,7 +2577,8 @@ extension Clients.OracleDatabaseProtocol {
     request: ConfigureExascaleCloudExadataInfrastructureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CloudExadataInfrastructure> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<CloudExadataInfrastructure>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2660,7 +2682,8 @@ extension Clients.OracleDatabaseProtocol {
   public func createCloudVmClusterPollingUntilDone(
     request: CreateCloudVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<CloudVmCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CloudVmCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2701,7 +2724,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteCloudVmClusterPollingUntilDone(
     request: DeleteCloudVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3062,7 +3085,8 @@ extension Clients.OracleDatabaseProtocol {
   public func createAutonomousDatabasePollingUntilDone(
     request: CreateAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3103,7 +3127,8 @@ extension Clients.OracleDatabaseProtocol {
   public func updateAutonomousDatabasePollingUntilDone(
     request: UpdateAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3142,7 +3167,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteAutonomousDatabasePollingUntilDone(
     request: DeleteAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3179,7 +3204,8 @@ extension Clients.OracleDatabaseProtocol {
   public func restoreAutonomousDatabasePollingUntilDone(
     request: RestoreAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3375,7 +3401,8 @@ extension Clients.OracleDatabaseProtocol {
   public func stopAutonomousDatabasePollingUntilDone(
     request: StopAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3412,7 +3439,8 @@ extension Clients.OracleDatabaseProtocol {
   public func startAutonomousDatabasePollingUntilDone(
     request: StartAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3449,7 +3477,8 @@ extension Clients.OracleDatabaseProtocol {
   public func restartAutonomousDatabasePollingUntilDone(
     request: RestartAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3486,7 +3515,8 @@ extension Clients.OracleDatabaseProtocol {
   public func switchoverAutonomousDatabasePollingUntilDone(
     request: SwitchoverAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3525,7 +3555,8 @@ extension Clients.OracleDatabaseProtocol {
   public func failoverAutonomousDatabasePollingUntilDone(
     request: FailoverAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3564,7 +3595,8 @@ extension Clients.OracleDatabaseProtocol {
   public func refreshAutonomousDatabasePollingUntilDone(
     request: RefreshAutonomousDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AutonomousDatabase> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AutonomousDatabase>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3688,7 +3720,7 @@ extension Clients.OracleDatabaseProtocol {
   public func createOdbNetworkPollingUntilDone(
     request: CreateOdbNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OdbNetwork> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbNetwork>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3729,7 +3761,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteOdbNetworkPollingUntilDone(
     request: DeleteOdbNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3830,7 +3862,7 @@ extension Clients.OracleDatabaseProtocol {
   public func createOdbSubnetPollingUntilDone(
     request: CreateOdbSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OdbSubnet> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<OdbSubnet>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3871,7 +3903,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteOdbSubnetPollingUntilDone(
     request: DeleteOdbSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3973,7 +4005,8 @@ extension Clients.OracleDatabaseProtocol {
   public func createExadbVmClusterPollingUntilDone(
     request: CreateExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4014,7 +4047,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteExadbVmClusterPollingUntilDone(
     request: DeleteExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4051,7 +4084,8 @@ extension Clients.OracleDatabaseProtocol {
   public func updateExadbVmClusterPollingUntilDone(
     request: UpdateExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4091,7 +4125,8 @@ extension Clients.OracleDatabaseProtocol {
   public func removeVirtualMachineExadbVmClusterPollingUntilDone(
     request: RemoveVirtualMachineExadbVmClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExadbVmCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExadbVmCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4196,7 +4231,7 @@ extension Clients.OracleDatabaseProtocol {
     request: CreateExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExascaleDbStorageVault> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExascaleDbStorageVault>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4237,7 +4272,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteExascaleDbStorageVaultPollingUntilDone(
     request: DeleteExascaleDbStorageVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4511,7 +4546,7 @@ extension Clients.OracleDatabaseProtocol {
   public func createDbSystemPollingUntilDone(
     request: CreateDbSystemRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DbSystem> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DbSystem>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DbSystem>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4552,7 +4587,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteDbSystemPollingUntilDone(
     request: DeleteDbSystemRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4653,7 +4688,8 @@ extension Clients.OracleDatabaseProtocol {
   public func createGoldengateDeploymentPollingUntilDone(
     request: CreateGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateDeployment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4694,7 +4730,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteGoldengateDeploymentPollingUntilDone(
     request: DeleteGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4731,7 +4767,8 @@ extension Clients.OracleDatabaseProtocol {
   public func stopGoldengateDeploymentPollingUntilDone(
     request: StopGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateDeployment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4768,7 +4805,8 @@ extension Clients.OracleDatabaseProtocol {
   public func startGoldengateDeploymentPollingUntilDone(
     request: StartGoldengateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateDeployment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4869,7 +4907,8 @@ extension Clients.OracleDatabaseProtocol {
   public func createGoldengateConnectionPollingUntilDone(
     request: CreateGoldengateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateConnection> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnection>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4910,7 +4949,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteGoldengateConnectionPollingUntilDone(
     request: DeleteGoldengateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -5271,7 +5310,8 @@ extension Clients.OracleDatabaseProtocol {
     request: CreateGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<GoldengateConnectionAssignment> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<GoldengateConnectionAssignment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -5313,7 +5353,7 @@ extension Clients.OracleDatabaseProtocol {
   public func deleteGoldengateConnectionAssignmentPollingUntilDone(
     request: DeleteGoldengateConnectionAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

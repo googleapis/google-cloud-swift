@@ -63,13 +63,14 @@
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
         return try op._extractStatus(ReasoningEngine.self)
       }
       let rawOp = try await self.createReasoningEngine(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -116,13 +117,14 @@
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
         return try op._extractStatus(ReasoningEngine.self)
       }
       let rawOp = try await self.updateReasoningEngine(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -151,13 +153,14 @@
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteReasoningEngine(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -399,7 +402,8 @@
     public func createReasoningEnginePollingUntilDone(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -502,7 +506,8 @@
     public func updateReasoningEnginePollingUntilDone(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -541,7 +546,8 @@
     public func deleteReasoningEnginePollingUntilDone(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

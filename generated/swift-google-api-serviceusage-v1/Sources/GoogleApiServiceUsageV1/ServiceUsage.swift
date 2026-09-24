@@ -61,13 +61,14 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EnableServiceResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
       return try op._extractStatus(EnableServiceResponse.self)
     }
     let rawOp = try await self.enableService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -108,14 +109,14 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DisableServiceResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
       return try op._extractStatus(DisableServiceResponse.self)
     }
     let rawOp = try await self.disableService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -178,14 +179,15 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchEnableServicesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
       return try op._extractStatus(BatchEnableServicesResponse.self)
     }
     let rawOp = try await self.batchEnableServices(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -313,7 +315,8 @@ extension Clients.ServiceUsageProtocol {
   public func enableServicePollingUntilDone(
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EnableServiceResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -342,7 +345,7 @@ extension Clients.ServiceUsageProtocol {
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DisableServiceResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -428,7 +431,8 @@ extension Clients.ServiceUsageProtocol {
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchEnableServicesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

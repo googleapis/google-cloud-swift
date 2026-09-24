@@ -79,12 +79,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: CreateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Node>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Node>.State in
       return try op._extractStatus(Node.self)
     }
     let rawOp = try await self.createNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -113,13 +114,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: DeleteNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -148,12 +149,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: StopNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Node>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Node>.State in
       return try op._extractStatus(Node.self)
     }
     let rawOp = try await self.stopNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -182,12 +184,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: StartNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Node>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Node>.State in
       return try op._extractStatus(Node.self)
     }
     let rawOp = try await self.startNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -216,12 +219,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: UpdateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Node>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Node>.State in
       return try op._extractStatus(Node.self)
     }
     let rawOp = try await self.updateNode(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -268,13 +272,14 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<QueuedResource> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
       return try op._extractStatus(QueuedResource.self)
     }
     let rawOp = try await self.createQueuedResource(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -303,13 +308,13 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteQueuedResource(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -338,13 +343,14 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
     request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<QueuedResource> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
       return try op._extractStatus(QueuedResource.self)
     }
     let rawOp = try await self.resetQueuedResource(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -720,7 +726,7 @@ extension Clients.TpuProtocol {
   public func createNodePollingUntilDone(
     request: CreateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -759,7 +765,7 @@ extension Clients.TpuProtocol {
   public func deleteNodePollingUntilDone(
     request: DeleteNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -794,7 +800,7 @@ extension Clients.TpuProtocol {
   public func stopNodePollingUntilDone(
     request: StopNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -820,7 +826,7 @@ extension Clients.TpuProtocol {
   public func startNodePollingUntilDone(
     request: StartNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -846,7 +852,7 @@ extension Clients.TpuProtocol {
   public func updateNodePollingUntilDone(
     request: UpdateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Node> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Node>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -949,7 +955,8 @@ extension Clients.TpuProtocol {
   public func createQueuedResourcePollingUntilDone(
     request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<QueuedResource> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -990,7 +997,7 @@ extension Clients.TpuProtocol {
   public func deleteQueuedResourcePollingUntilDone(
     request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1027,7 +1034,8 @@ extension Clients.TpuProtocol {
   public func resetQueuedResourcePollingUntilDone(
     request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<QueuedResource> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<QueuedResource>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

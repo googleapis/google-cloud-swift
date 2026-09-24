@@ -86,13 +86,13 @@
       request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Schema>.State
-        in
+        @Sendable (op: GoogleLongRunning.Operation) throws
+          -> GoogleGax._PollableOperationImpl<Schema>.State in
         return try op._extractStatus(Schema.self)
       }
       let rawOp = try await self.createSchema(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -125,13 +125,13 @@
       request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Schema>.State
-        in
+        @Sendable (op: GoogleLongRunning.Operation) throws
+          -> GoogleGax._PollableOperationImpl<Schema>.State in
         return try op._extractStatus(Schema.self)
       }
       let rawOp = try await self.updateSchema(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -164,13 +164,14 @@
       request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteSchema(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -365,7 +366,7 @@
     public func createSchemaPollingUntilDone(
       request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -406,7 +407,7 @@
     public func updateSchemaPollingUntilDone(
       request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Schema> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Schema>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -434,7 +435,8 @@
     public func deleteSchemaPollingUntilDone(
       request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

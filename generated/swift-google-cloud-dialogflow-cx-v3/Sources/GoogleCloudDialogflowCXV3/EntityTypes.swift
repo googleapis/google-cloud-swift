@@ -119,14 +119,15 @@
       request: ExportEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportEntityTypesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
         return try op._extractStatus(ExportEntityTypesResponse.self)
       }
       let rawOp = try await self.exportEntityTypes(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -155,14 +156,15 @@
       request: ImportEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportEntityTypesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
         return try op._extractStatus(ImportEntityTypesResponse.self)
       }
       let rawOp = try await self.importEntityTypes(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -471,7 +473,8 @@
       request: ExportEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportEntityTypesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -500,7 +503,8 @@
       request: ImportEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportEntityTypesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

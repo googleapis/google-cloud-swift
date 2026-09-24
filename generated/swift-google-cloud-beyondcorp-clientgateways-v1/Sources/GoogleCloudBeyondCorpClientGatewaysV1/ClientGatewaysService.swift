@@ -88,13 +88,14 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ClientGateway> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
       return try op._extractStatus(ClientGateway.self)
     }
     let rawOp = try await self.createClientGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -123,13 +124,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteClientGateway(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -409,7 +410,8 @@ extension Clients.ClientGatewaysServiceProtocol {
   public func createClientGatewayPollingUntilDone(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ClientGateway> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -450,7 +452,7 @@ extension Clients.ClientGatewaysServiceProtocol {
   public func deleteClientGatewayPollingUntilDone(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

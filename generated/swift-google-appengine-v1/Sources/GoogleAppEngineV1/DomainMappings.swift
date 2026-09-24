@@ -79,13 +79,14 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
     request: CreateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DomainMapping> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
       return try op._extractStatus(DomainMapping.self)
     }
     let rawOp = try await self.createDomainMapping(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -120,13 +121,14 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
     request: UpdateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DomainMapping> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
       return try op._extractStatus(DomainMapping.self)
     }
     let rawOp = try await self.updateDomainMapping(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -159,13 +161,13 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
     request: DeleteDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDomainMapping(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -324,7 +326,8 @@ extension Clients.DomainMappingsProtocol {
   public func createDomainMappingPollingUntilDone(
     request: CreateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DomainMapping> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -352,7 +355,8 @@ extension Clients.DomainMappingsProtocol {
   public func updateDomainMappingPollingUntilDone(
     request: UpdateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DomainMapping> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DomainMapping>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -380,7 +384,7 @@ extension Clients.DomainMappingsProtocol {
   public func deleteDomainMappingPollingUntilDone(
     request: DeleteDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

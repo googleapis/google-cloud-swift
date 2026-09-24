@@ -77,15 +77,15 @@
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State in
         return try op._extractStatus(InitializeEncryptionSpecResponse.self)
       }
       let rawOp = try await self.initializeEncryptionSpec(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State
-        in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -256,8 +256,8 @@
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State
-        in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

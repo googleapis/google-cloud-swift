@@ -103,12 +103,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: CreatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Posture>.State in
       return try op._extractStatus(Posture.self)
     }
     let rawOp = try await self.createPosture(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -159,12 +160,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: UpdatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Posture>.State in
       return try op._extractStatus(Posture.self)
     }
     let rawOp = try await self.updatePosture(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -197,13 +199,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: DeletePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePosture(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -236,12 +238,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: ExtractPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Posture>.State in
       return try op._extractStatus(Posture.self)
     }
     let rawOp = try await self.extractPosture(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -289,13 +292,14 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: CreatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PostureDeployment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
       return try op._extractStatus(PostureDeployment.self)
     }
     let rawOp = try await self.createPostureDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -324,13 +328,14 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: UpdatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PostureDeployment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
       return try op._extractStatus(PostureDeployment.self)
     }
     let rawOp = try await self.updatePostureDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -359,13 +364,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
     request: DeletePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePostureDeployment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -731,7 +736,7 @@ extension Clients.SecurityPostureProtocol {
   public func createPosturePollingUntilDone(
     request: CreatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -772,7 +777,7 @@ extension Clients.SecurityPostureProtocol {
   public func updatePosturePollingUntilDone(
     request: UpdatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -811,7 +816,7 @@ extension Clients.SecurityPostureProtocol {
   public func deletePosturePollingUntilDone(
     request: DeletePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -848,7 +853,7 @@ extension Clients.SecurityPostureProtocol {
   public func extractPosturePollingUntilDone(
     request: ExtractPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Posture> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Posture>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -954,7 +959,8 @@ extension Clients.SecurityPostureProtocol {
   public func createPostureDeploymentPollingUntilDone(
     request: CreatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PostureDeployment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -995,7 +1001,8 @@ extension Clients.SecurityPostureProtocol {
   public func updatePostureDeploymentPollingUntilDone(
     request: UpdatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PostureDeployment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PostureDeployment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1034,7 +1041,7 @@ extension Clients.SecurityPostureProtocol {
   public func deletePostureDeploymentPollingUntilDone(
     request: DeletePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

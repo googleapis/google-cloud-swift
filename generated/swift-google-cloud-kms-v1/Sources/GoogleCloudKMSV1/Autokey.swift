@@ -99,13 +99,13 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<KeyHandle> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<KeyHandle>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
       return try op._extractStatus(KeyHandle.self)
     }
     let rawOp = try await self.createKeyHandle(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -302,7 +302,7 @@ extension Clients.AutokeyProtocol {
   public func createKeyHandlePollingUntilDone(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<KeyHandle> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

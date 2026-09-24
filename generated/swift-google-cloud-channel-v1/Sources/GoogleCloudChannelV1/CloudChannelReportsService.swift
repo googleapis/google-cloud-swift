@@ -134,13 +134,14 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
     request: RunReportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunReportJobResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
       return try op._extractStatus(RunReportJobResponse.self)
     }
     let rawOp = try await self.runReportJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -306,7 +307,8 @@ extension Clients.CloudChannelReportsServiceProtocol {
   public func runReportJobPollingUntilDone(
     request: RunReportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunReportJobResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RunReportJobResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

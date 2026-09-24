@@ -171,13 +171,14 @@
       request: SetSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationProfile> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
         return try op._extractStatus(ConversationProfile.self)
       }
       let rawOp = try await self.setSuggestionFeatureConfig(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -232,13 +233,14 @@
       request: ClearSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationProfile> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
         return try op._extractStatus(ConversationProfile.self)
       }
       let rawOp = try await self.clearSuggestionFeatureConfig(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -546,7 +548,8 @@
     public func setSuggestionFeatureConfigPollingUntilDone(
       request: SetSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationProfile> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -597,7 +600,8 @@
     public func clearSuggestionFeatureConfigPollingUntilDone(
       request: ClearSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ConversationProfile> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationProfile>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

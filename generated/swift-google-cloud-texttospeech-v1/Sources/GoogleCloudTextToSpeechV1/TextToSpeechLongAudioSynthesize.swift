@@ -60,14 +60,15 @@ public final class TextToSpeechLongAudioSynthesizeClient: Clients
     request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
       return try op._extractStatus(SynthesizeLongAudioResponse.self)
     }
     let rawOp = try await self.synthesizeLongAudio(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -151,7 +152,8 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
     request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -64,14 +64,15 @@ public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sen
     request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
       return try op._extractStatus(ExportAnalyticsMetricsResponse.self)
     }
     let rawOp = try await self.exportAnalyticsMetrics(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -155,7 +156,8 @@ extension Clients.AnalyticsServiceProtocol {
     request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

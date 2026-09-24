@@ -60,13 +60,13 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Workload>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Workload>.State in
       return try op._extractStatus(Workload.self)
     }
     let rawOp = try await self.createWorkload(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -229,7 +229,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
   public func createWorkloadPollingUntilDone(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

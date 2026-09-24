@@ -303,13 +303,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Customer> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Customer>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Customer>.State in
       return try op._extractStatus(Customer.self)
     }
     let rawOp = try await self.provisionCloudIdentity(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Customer>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Customer>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -521,13 +521,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.createEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -604,13 +604,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ChangeParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.changeParameters(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -687,13 +687,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.changeRenewalSettings(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -766,13 +766,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ChangeOfferRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.changeOffer(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -851,13 +851,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.startPaidService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -930,13 +930,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.suspendEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1019,13 +1019,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.cancelEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1110,13 +1110,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.activateEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1211,14 +1211,15 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TransferEntitlementsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TransferEntitlementsResponse>.State in
       return try op._extractStatus(TransferEntitlementsResponse.self)
     }
     let rawOp = try await self.transferEntitlements(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<TransferEntitlementsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<TransferEntitlementsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1307,13 +1308,13 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
     request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.transferEntitlementsToGoogle(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -2630,7 +2631,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func provisionCloudIdentityPollingUntilDone(
     request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Customer> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Customer>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Customer>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2827,7 +2828,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2855,7 +2856,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func changeParametersPollingUntilDone(
     request: ChangeParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2883,7 +2884,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func changeRenewalSettingsPollingUntilDone(
     request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2909,7 +2910,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func changeOfferPollingUntilDone(
     request: ChangeOfferRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2937,7 +2938,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func startPaidServicePollingUntilDone(
     request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2965,7 +2966,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func suspendEntitlementPollingUntilDone(
     request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2993,7 +2994,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func cancelEntitlementPollingUntilDone(
     request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3021,7 +3022,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func activateEntitlementPollingUntilDone(
     request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3050,7 +3051,8 @@ extension Clients.CloudChannelServiceProtocol {
     request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TransferEntitlementsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<TransferEntitlementsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<TransferEntitlementsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3078,7 +3080,7 @@ extension Clients.CloudChannelServiceProtocol {
   public func transferEntitlementsToGooglePollingUntilDone(
     request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

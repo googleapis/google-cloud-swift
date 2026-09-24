@@ -121,13 +121,13 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.createEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -160,13 +160,13 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.deleteEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -233,13 +233,13 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       return try op._extractStatus(Entitlement.self)
     }
     let rawOp = try await self.updateEntitlement(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -330,12 +330,13 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
     request: RevokeGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Grant> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Grant>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Grant>.State in
       return try op._extractStatus(Grant.self)
     }
     let rawOp = try await self.revokeGrant(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Grant>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Grant>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -653,7 +654,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
   public func createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -694,7 +695,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
   public func deleteEntitlementPollingUntilDone(
     request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -731,7 +732,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
   public func updateEntitlementPollingUntilDone(
     request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Entitlement> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Entitlement>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -914,7 +915,7 @@ extension Clients.PrivilegedAccessManagerProtocol {
   public func revokeGrantPollingUntilDone(
     request: RevokeGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Grant> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Grant>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Grant>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
