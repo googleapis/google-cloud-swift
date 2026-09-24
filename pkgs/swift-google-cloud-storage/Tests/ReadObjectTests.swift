@@ -1405,7 +1405,7 @@ import Testing
     )
 
     let client = try makeClient(registry: registry)
-    let download: ObjectDownload = client.readObject(from: bucket, object: objectName)
+    let download: ReadObjectHandle = client.readObject(from: bucket, object: objectName)
 
     let task = Task {
       withUnsafeCurrentTask { $0?.cancel() }

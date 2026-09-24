@@ -827,7 +827,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
 
 /// A handle to an in-progress or deferred object download returned by ``StorageClient/readObject(from:object:options:)``.
 ///
-/// `ObjectDownload` provides access to both the object's initial response metadata (``metadata``)
+/// `ReadObjectHandle` provides access to both the object's initial response metadata (``metadata``)
 /// and its streaming payload (``body``). The network request is started lazily when either
 /// ``metadata`` or ``body`` is first awaited.
 ///
@@ -843,7 +843,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
 ///   // Process ByteChunk chunk
 /// }
 /// ```
-public struct ObjectDownload: Sendable {
+public struct ReadObjectHandle: Sendable {
   private let coordinator: ReadObjectCoordinator
 
   package init(coordinator: ReadObjectCoordinator) {
@@ -867,6 +867,3 @@ public struct ObjectDownload: Sendable {
     coordinator.cancel()
   }
 }
-
-@available(*, deprecated, renamed: "ObjectDownload")
-public typealias ReadObjectTask = ObjectDownload

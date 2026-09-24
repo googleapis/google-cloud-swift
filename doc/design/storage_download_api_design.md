@@ -20,12 +20,12 @@ func readObject(
   from bucket: String,
   object: String,
   options: ReadObjectOptions = .init()
-) -> ObjectDownload
+) -> ReadObjectHandle
 ```
 
-- **Return Struct (`ObjectDownload`):** `readObject` returns immediately with an `ObjectDownload` struct holding both the object metadata and the streaming body:
+- **Return Struct (`ReadObjectHandle`):** `readObject` returns immediately with a `ReadObjectHandle` struct holding both the object metadata and the streaming body:
   ```swift
-  public struct ObjectDownload: Sendable {
+  public struct ReadObjectHandle: Sendable {
     /// Object metadata populated from response headers upon request initiation.
     public var metadata: ReadObjectMetadata { get async throws }
 
@@ -300,7 +300,7 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
 }
 
 /// Container object returned by `readObject` containing metadata and the streaming body sequence.
-public struct ObjectDownload: Sendable {
+public struct ReadObjectHandle: Sendable {
   /// Object metadata extracted from initial HTTP response headers.
   public var metadata: ReadObjectMetadata { get async throws }
 
@@ -320,14 +320,14 @@ public protocol StorageProtocol {
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ObjectDownload
+  ) -> ReadObjectHandle
 }
 
 extension StorageProtocol {
   public func readObject(
     from bucket: String,
     object: String
-  ) -> ObjectDownload {
+  ) -> ReadObjectHandle {
     readObject(from: bucket, object: object, options: .init())
   }
 }
@@ -337,8 +337,8 @@ extension StorageClient {
     from bucket: String,
     object: String,
     options: ReadObjectOptions = .init()
-  ) -> ObjectDownload {
-    // Return ObjectDownload backed by coordinator
+  ) -> ReadObjectHandle {
+    // Return ReadObjectHandle backed by coordinator
   }
 }
 ```
