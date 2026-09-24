@@ -307,7 +307,7 @@ extension Clients.GSuiteAddOnsProtocol {
 
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     self.listDeploymentsByItems(request: request, options: .init())
   }
 
@@ -316,9 +316,10 @@ extension Clients.GSuiteAddOnsProtocol {
   /// @Snippet(path: "GSuiteAddOns_ListDeployments")
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse in
       var request = request
       request.pageToken = token
       return try await self.listDeployments(request: request, options: options)
@@ -328,7 +329,7 @@ extension Clients.GSuiteAddOnsProtocol {
 
   public func listDeploymentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }

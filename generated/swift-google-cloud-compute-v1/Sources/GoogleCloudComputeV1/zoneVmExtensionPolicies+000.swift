@@ -378,7 +378,7 @@
 
     public func listByItems(
       request: ZoneVmExtensionPoliciesClient.ListRequest
-    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -387,9 +387,10 @@
     /// @Snippet(path: "zoneVmExtensionPolicies_list")
     public func listByItems(
       request: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.VmExtensionPolicyList
+        in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -400,7 +401,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<VmExtensionPolicy, Swift.Error> & Sendable {
       let request = ZoneVmExtensionPoliciesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

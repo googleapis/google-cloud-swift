@@ -502,7 +502,7 @@
 
     public func aggregatedListByItems(
       request: InstanceGroupsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -514,9 +514,10 @@
     /// @Snippet(path: "instanceGroups_aggregatedList")
     public func aggregatedListByItems(
       request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.InstanceGroupAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -526,7 +527,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstanceGroupsScopedList), Swift.Error> & Sendable {
       let request = InstanceGroupsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -656,7 +657,7 @@
 
     public func listByItems(
       request: InstanceGroupsClient.ListRequest
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -670,9 +671,9 @@
     /// @Snippet(path: "instanceGroups_list")
     public func listByItems(
       request: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -683,7 +684,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
       let request = InstanceGroupsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -705,7 +706,7 @@
 
     public func listInstancesByItems(
       request: InstanceGroupsClient.ListInstancesRequest
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
       self.listInstancesByItems(request: request, options: .init())
     }
 
@@ -717,9 +718,10 @@
     /// @Snippet(path: "instanceGroups_listInstances")
     public func listInstancesByItems(
       request: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceGroupsListInstances in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.InstanceGroupsListInstances in
         var request = request
         request.pageToken = token
         return try await self.listInstances(request: request, options: options)
@@ -732,7 +734,7 @@
       zone: Swift.String,
       instanceGroup: Swift.String,
       body: InstanceGroupsListInstancesRequest?,
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
       let request = InstanceGroupsClient.ListInstancesRequest().with {
         $0.project = project
         $0.zone = zone

@@ -148,7 +148,7 @@ extension Clients.ChangesProtocol {
 
   public func listByItems(
     request: ChangesClient.ListRequest
-  ) -> any AsyncSequence<Change, Swift.Error> {
+  ) -> any AsyncSequence<Change, Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -157,8 +157,8 @@ extension Clients.ChangesProtocol {
   /// @Snippet(path: "changes_list")
   public func listByItems(
     request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Change, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ChangesListResponse in
+  ) -> any AsyncSequence<Change, Swift.Error> & Sendable {
+    let listRpc = { @Sendable (token: Swift.String) async throws -> ChangesListResponse in
       var request = request
       request.pageToken = token
       return try await self.list(request: request, options: options)
@@ -169,7 +169,7 @@ extension Clients.ChangesProtocol {
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,
-  ) -> any AsyncSequence<Change, Swift.Error> {
+  ) -> any AsyncSequence<Change, Swift.Error> & Sendable {
     let request = ChangesClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone

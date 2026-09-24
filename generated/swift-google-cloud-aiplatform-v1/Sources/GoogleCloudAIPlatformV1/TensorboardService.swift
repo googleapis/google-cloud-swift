@@ -1003,7 +1003,7 @@
 
     public func listTensorboardsByItems(
       request: ListTensorboardsRequest
-    ) -> any AsyncSequence<Tensorboard, Swift.Error> {
+    ) -> any AsyncSequence<Tensorboard, Swift.Error> & Sendable {
       self.listTensorboardsByItems(request: request, options: .init())
     }
 
@@ -1012,9 +1012,10 @@
     /// @Snippet(path: "TensorboardService_ListTensorboards")
     public func listTensorboardsByItems(
       request: ListTensorboardsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Tensorboard, Swift.Error> {
+    ) -> any AsyncSequence<Tensorboard, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudAIPlatformV1.ListTensorboardsResponse in
         var request = request
         request.pageToken = token
         return try await self.listTensorboards(request: request, options: options)
@@ -1024,7 +1025,7 @@
 
     public func listTensorboardsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Tensorboard, Swift.Error> {
+    ) -> any AsyncSequence<Tensorboard, Swift.Error> & Sendable {
       let request = ListTensorboardsRequest().with {
         $0.parent = parent
       }
@@ -1193,7 +1194,7 @@
 
     public func listTensorboardExperimentsByItems(
       request: ListTensorboardExperimentsRequest
-    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> & Sendable {
       self.listTensorboardExperimentsByItems(request: request, options: .init())
     }
 
@@ -1202,9 +1203,9 @@
     /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
     public func listTensorboardExperimentsByItems(
       request: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse in
         var request = request
         request.pageToken = token
@@ -1215,7 +1216,7 @@
 
     public func listTensorboardExperimentsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardExperiment, Swift.Error> & Sendable {
       let request = ListTensorboardExperimentsRequest().with {
         $0.parent = parent
       }
@@ -1365,7 +1366,7 @@
 
     public func listTensorboardRunsByItems(
       request: ListTensorboardRunsRequest
-    ) -> any AsyncSequence<TensorboardRun, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardRun, Swift.Error> & Sendable {
       self.listTensorboardRunsByItems(request: request, options: .init())
     }
 
@@ -1374,9 +1375,10 @@
     /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
     public func listTensorboardRunsByItems(
       request: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TensorboardRun, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardRun, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse in
         var request = request
         request.pageToken = token
         return try await self.listTensorboardRuns(request: request, options: options)
@@ -1386,7 +1388,7 @@
 
     public func listTensorboardRunsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<TensorboardRun, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardRun, Swift.Error> & Sendable {
       let request = ListTensorboardRunsRequest().with {
         $0.parent = parent
       }
@@ -1534,7 +1536,7 @@
 
     public func listTensorboardTimeSeriesByItems(
       request: ListTensorboardTimeSeriesRequest
-    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> & Sendable {
       self.listTensorboardTimeSeriesByItems(request: request, options: .init())
     }
 
@@ -1543,9 +1545,9 @@
     /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
     public func listTensorboardTimeSeriesByItems(
       request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse in
         var request = request
         request.pageToken = token
@@ -1556,7 +1558,7 @@
 
     public func listTensorboardTimeSeriesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> {
+    ) -> any AsyncSequence<TensorboardTimeSeries, Swift.Error> & Sendable {
       let request = ListTensorboardTimeSeriesRequest().with {
         $0.parent = parent
       }
@@ -1723,7 +1725,7 @@
 
     public func exportTensorboardTimeSeriesDataByItems(
       request: ExportTensorboardTimeSeriesDataRequest
-    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> {
+    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> & Sendable {
       self.exportTensorboardTimeSeriesDataByItems(request: request, options: .init())
     }
 
@@ -1733,9 +1735,9 @@
     /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
     public func exportTensorboardTimeSeriesDataByItems(
       request: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> {
+    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse in
         var request = request
         request.pageToken = token
@@ -1746,7 +1748,7 @@
 
     public func exportTensorboardTimeSeriesDataByItems(
       tensorboardTimeSeries: Swift.String,
-    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> {
+    ) -> any AsyncSequence<TimeSeriesDataPoint, Swift.Error> & Sendable {
       let request = ExportTensorboardTimeSeriesDataRequest().with {
         $0.tensorboardTimeSeries = tensorboardTimeSeries
       }
@@ -1767,7 +1769,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -1776,9 +1778,9 @@
     /// @Snippet(path: "TensorboardService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
@@ -1848,7 +1850,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -1859,9 +1861,9 @@
     /// @Snippet(path: "TensorboardService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -1872,7 +1874,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

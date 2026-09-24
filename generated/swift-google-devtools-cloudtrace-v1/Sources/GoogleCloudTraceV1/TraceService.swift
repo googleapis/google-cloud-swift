@@ -112,7 +112,7 @@ extension Clients.TraceServiceProtocol {
 
   public func listTracesByItems(
     request: ListTracesRequest
-  ) -> any AsyncSequence<Trace, Swift.Error> {
+  ) -> any AsyncSequence<Trace, Swift.Error> & Sendable {
     self.listTracesByItems(request: request, options: .init())
   }
 
@@ -121,8 +121,9 @@ extension Clients.TraceServiceProtocol {
   /// @Snippet(path: "TraceService_ListTraces")
   public func listTracesByItems(
     request: ListTracesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Trace, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTraceV1.ListTracesResponse in
+  ) -> any AsyncSequence<Trace, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudTraceV1.ListTracesResponse in
       var request = request
       request.pageToken = token
       return try await self.listTraces(request: request, options: options)
@@ -132,7 +133,7 @@ extension Clients.TraceServiceProtocol {
 
   public func listTracesByItems(
     projectId: Swift.String,
-  ) -> any AsyncSequence<Trace, Swift.Error> {
+  ) -> any AsyncSequence<Trace, Swift.Error> & Sendable {
     let request = ListTracesRequest().with {
       $0.projectId = projectId
     }

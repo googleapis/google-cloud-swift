@@ -109,7 +109,7 @@
 
     public func aggregatedListByItems(
       request: AcceleratorTypesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -121,9 +121,10 @@
     /// @Snippet(path: "acceleratorTypes_aggregatedList")
     public func aggregatedListByItems(
       request: AcceleratorTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.AcceleratorTypeAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -133,7 +134,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, AcceleratorTypesScopedList), Swift.Error> & Sendable {
       let request = AcceleratorTypesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -179,7 +180,7 @@
 
     public func listByItems(
       request: AcceleratorTypesClient.ListRequest
-    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -189,9 +190,9 @@
     /// @Snippet(path: "acceleratorTypes_list")
     public func listByItems(
       request: AcceleratorTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.AcceleratorTypeList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -202,7 +203,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<AcceleratorType, Swift.Error> {
+    ) -> any AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
       let request = AcceleratorTypesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

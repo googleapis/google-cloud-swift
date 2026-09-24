@@ -201,7 +201,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -210,9 +210,10 @@ extension Clients.TranscoderServiceProtocol {
   /// @Snippet(path: "TranscoderService_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
@@ -222,7 +223,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
@@ -306,7 +307,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobTemplatesByItems(
     request: ListJobTemplatesRequest
-  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> & Sendable {
     self.listJobTemplatesByItems(request: request, options: .init())
   }
 
@@ -315,9 +316,10 @@ extension Clients.TranscoderServiceProtocol {
   /// @Snippet(path: "TranscoderService_ListJobTemplates")
   public func listJobTemplatesByItems(
     request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse in
       var request = request
       request.pageToken = token
       return try await self.listJobTemplates(request: request, options: options)
@@ -327,7 +329,7 @@ extension Clients.TranscoderServiceProtocol {
 
   public func listJobTemplatesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<JobTemplate, Swift.Error> {
+  ) -> any AsyncSequence<JobTemplate, Swift.Error> & Sendable {
     let request = ListJobTemplatesRequest().with {
       $0.parent = parent
     }

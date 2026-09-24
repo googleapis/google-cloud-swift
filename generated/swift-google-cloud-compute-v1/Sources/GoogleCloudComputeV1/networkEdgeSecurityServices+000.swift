@@ -278,7 +278,9 @@
 
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+      & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -292,9 +294,11 @@
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+      & Sendable
+    {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList in
         var request = request
         request.pageToken = token
@@ -305,7 +309,9 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+      & Sendable
+    {
       let request = NetworkEdgeSecurityServicesClient.AggregatedListRequest().with {
         $0.project = project
       }

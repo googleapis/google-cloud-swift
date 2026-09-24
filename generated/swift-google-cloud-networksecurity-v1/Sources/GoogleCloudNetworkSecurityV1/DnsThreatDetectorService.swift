@@ -296,7 +296,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
 
   public func listDnsThreatDetectorsByItems(
     request: ListDnsThreatDetectorsRequest
-  ) -> any AsyncSequence<DnsThreatDetector, Swift.Error> {
+  ) -> any AsyncSequence<DnsThreatDetector, Swift.Error> & Sendable {
     self.listDnsThreatDetectorsByItems(request: request, options: .init())
   }
 
@@ -305,9 +305,9 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   /// @Snippet(path: "DnsThreatDetectorService_ListDnsThreatDetectors")
   public func listDnsThreatDetectorsByItems(
     request: ListDnsThreatDetectorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DnsThreatDetector, Swift.Error> {
+  ) -> any AsyncSequence<DnsThreatDetector, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListDnsThreatDetectorsResponse in
       var request = request
       request.pageToken = token
@@ -318,7 +318,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
 
   public func listDnsThreatDetectorsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DnsThreatDetector, Swift.Error> {
+  ) -> any AsyncSequence<DnsThreatDetector, Swift.Error> & Sendable {
     let request = ListDnsThreatDetectorsRequest().with {
       $0.parent = parent
     }
@@ -427,7 +427,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -453,9 +453,9 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   /// @Snippet(path: "DnsThreatDetectorService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -525,7 +525,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -536,9 +536,9 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   /// @Snippet(path: "DnsThreatDetectorService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -549,7 +549,7 @@ extension Clients.DnsThreatDetectorServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

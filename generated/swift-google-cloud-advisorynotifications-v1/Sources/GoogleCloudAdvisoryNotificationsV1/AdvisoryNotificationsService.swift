@@ -121,7 +121,7 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
 
   public func listNotificationsByItems(
     request: ListNotificationsRequest
-  ) -> any AsyncSequence<Notification, Swift.Error> {
+  ) -> any AsyncSequence<Notification, Swift.Error> & Sendable {
     self.listNotificationsByItems(request: request, options: .init())
   }
 
@@ -130,9 +130,9 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
   /// @Snippet(path: "AdvisoryNotificationsService_ListNotifications")
   public func listNotificationsByItems(
     request: ListNotificationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Notification, Swift.Error> {
+  ) -> any AsyncSequence<Notification, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse in
       var request = request
       request.pageToken = token
@@ -143,7 +143,7 @@ extension Clients.AdvisoryNotificationsServiceProtocol {
 
   public func listNotificationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Notification, Swift.Error> {
+  ) -> any AsyncSequence<Notification, Swift.Error> & Sendable {
     let request = ListNotificationsRequest().with {
       $0.parent = parent
     }

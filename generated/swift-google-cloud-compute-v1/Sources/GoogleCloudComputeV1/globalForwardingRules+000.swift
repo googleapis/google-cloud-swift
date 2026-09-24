@@ -491,7 +491,7 @@
 
     public func listByItems(
       request: GlobalForwardingRulesClient.ListRequest
-    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -501,9 +501,9 @@
     /// @Snippet(path: "globalForwardingRules_list")
     public func listByItems(
       request: GlobalForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ForwardingRuleList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -513,7 +513,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<ForwardingRule, Swift.Error> {
+    ) -> any AsyncSequence<ForwardingRule, Swift.Error> & Sendable {
       let request = GlobalForwardingRulesClient.ListRequest().with {
         $0.project = project
       }

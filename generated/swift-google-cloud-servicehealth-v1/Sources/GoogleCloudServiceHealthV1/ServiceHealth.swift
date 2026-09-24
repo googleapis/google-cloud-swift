@@ -178,7 +178,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listEventsByItems(
     request: ListEventsRequest
-  ) -> any AsyncSequence<Event, Swift.Error> {
+  ) -> any AsyncSequence<Event, Swift.Error> & Sendable {
     self.listEventsByItems(request: request, options: .init())
   }
 
@@ -187,9 +187,10 @@ extension Clients.ServiceHealthProtocol {
   /// @Snippet(path: "ServiceHealth_ListEvents")
   public func listEventsByItems(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Event, Swift.Error> {
+  ) -> any AsyncSequence<Event, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listEvents(request: request, options: options)
@@ -199,7 +200,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listEventsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Event, Swift.Error> {
+  ) -> any AsyncSequence<Event, Swift.Error> & Sendable {
     let request = ListEventsRequest().with {
       $0.parent = parent
     }
@@ -239,7 +240,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listOrganizationEventsByItems(
     request: ListOrganizationEventsRequest
-  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> {
+  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> & Sendable {
     self.listOrganizationEventsByItems(request: request, options: .init())
   }
 
@@ -248,9 +249,9 @@ extension Clients.ServiceHealthProtocol {
   /// @Snippet(path: "ServiceHealth_ListOrganizationEvents")
   public func listOrganizationEventsByItems(
     request: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> {
+  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse in
       var request = request
       request.pageToken = token
@@ -261,7 +262,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listOrganizationEventsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> {
+  ) -> any AsyncSequence<OrganizationEvent, Swift.Error> & Sendable {
     let request = ListOrganizationEventsRequest().with {
       $0.parent = parent
     }
@@ -303,7 +304,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listOrganizationImpactsByItems(
     request: ListOrganizationImpactsRequest
-  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> {
+  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> & Sendable {
     self.listOrganizationImpactsByItems(request: request, options: .init())
   }
 
@@ -313,9 +314,9 @@ extension Clients.ServiceHealthProtocol {
   /// @Snippet(path: "ServiceHealth_ListOrganizationImpacts")
   public func listOrganizationImpactsByItems(
     request: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> {
+  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse in
       var request = request
       request.pageToken = token
@@ -326,7 +327,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listOrganizationImpactsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> {
+  ) -> any AsyncSequence<OrganizationImpact, Swift.Error> & Sendable {
     let request = ListOrganizationImpactsRequest().with {
       $0.parent = parent
     }
@@ -368,7 +369,7 @@ extension Clients.ServiceHealthProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -377,9 +378,9 @@ extension Clients.ServiceHealthProtocol {
   /// @Snippet(path: "ServiceHealth_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)

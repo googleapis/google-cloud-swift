@@ -301,7 +301,7 @@
 
     public func aggregatedListByItems(
       request: SslPoliciesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -314,9 +314,10 @@
     /// @Snippet(path: "sslPolicies_aggregatedList")
     public func aggregatedListByItems(
       request: SslPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.SslPoliciesAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -326,7 +327,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslPoliciesScopedList), Swift.Error> & Sendable {
       let request = SslPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -450,7 +451,7 @@
 
     public func listByItems(
       request: SslPoliciesClient.ListRequest
-    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -460,8 +461,9 @@
     /// @Snippet(path: "sslPolicies_list")
     public func listByItems(
       request: SslPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslPoliciesList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -471,7 +473,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<SslPolicy, Swift.Error> {
+    ) -> any AsyncSequence<SslPolicy, Swift.Error> & Sendable {
       let request = SslPoliciesClient.ListRequest().with {
         $0.project = project
       }

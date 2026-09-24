@@ -282,7 +282,7 @@ extension Clients.TagHoldsProtocol {
 
   public func listTagHoldsByItems(
     request: ListTagHoldsRequest
-  ) -> any AsyncSequence<TagHold, Swift.Error> {
+  ) -> any AsyncSequence<TagHold, Swift.Error> & Sendable {
     self.listTagHoldsByItems(request: request, options: .init())
   }
 
@@ -291,9 +291,10 @@ extension Clients.TagHoldsProtocol {
   /// @Snippet(path: "TagHolds_ListTagHolds")
   public func listTagHoldsByItems(
     request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TagHold, Swift.Error> {
+  ) -> any AsyncSequence<TagHold, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.ListTagHoldsResponse in
       var request = request
       request.pageToken = token
       return try await self.listTagHolds(request: request, options: options)
@@ -303,7 +304,7 @@ extension Clients.TagHoldsProtocol {
 
   public func listTagHoldsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TagHold, Swift.Error> {
+  ) -> any AsyncSequence<TagHold, Swift.Error> & Sendable {
     let request = ListTagHoldsRequest().with {
       $0.parent = parent
     }

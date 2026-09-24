@@ -159,7 +159,7 @@ extension Clients.GroupServiceProtocol {
 
   public func listGroupsByItems(
     request: ListGroupsRequest
-  ) -> any AsyncSequence<Group, Swift.Error> {
+  ) -> any AsyncSequence<Group, Swift.Error> & Sendable {
     self.listGroupsByItems(request: request, options: .init())
   }
 
@@ -168,9 +168,9 @@ extension Clients.GroupServiceProtocol {
   /// @Snippet(path: "GroupService_ListGroups")
   public func listGroupsByItems(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Group, Swift.Error> {
+  ) -> any AsyncSequence<Group, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse in
       var request = request
       request.pageToken = token
       return try await self.listGroups(request: request, options: options)
@@ -180,7 +180,7 @@ extension Clients.GroupServiceProtocol {
 
   public func listGroupsByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<Group, Swift.Error> {
+  ) -> any AsyncSequence<Group, Swift.Error> & Sendable {
     let request = ListGroupsRequest().with {
       $0.name = name
     }
@@ -281,7 +281,7 @@ extension Clients.GroupServiceProtocol {
 
   public func listGroupMembersByItems(
     request: ListGroupMembersRequest
-  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> & Sendable {
     self.listGroupMembersByItems(request: request, options: .init())
   }
 
@@ -290,9 +290,10 @@ extension Clients.GroupServiceProtocol {
   /// @Snippet(path: "GroupService_ListGroupMembers")
   public func listGroupMembersByItems(
     request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudMonitoringV3.ListGroupMembersResponse in
       var request = request
       request.pageToken = token
       return try await self.listGroupMembers(request: request, options: options)
@@ -302,7 +303,7 @@ extension Clients.GroupServiceProtocol {
 
   public func listGroupMembersByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResource, Swift.Error> & Sendable {
     let request = ListGroupMembersRequest().with {
       $0.name = name
     }

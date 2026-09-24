@@ -418,7 +418,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listFederationsByItems(
     request: ListFederationsRequest
-  ) -> any AsyncSequence<Federation, Swift.Error> {
+  ) -> any AsyncSequence<Federation, Swift.Error> & Sendable {
     self.listFederationsByItems(request: request, options: .init())
   }
 
@@ -427,9 +427,10 @@ extension Clients.DataprocMetastoreFederationProtocol {
   /// @Snippet(path: "DataprocMetastoreFederation_ListFederations")
   public func listFederationsByItems(
     request: ListFederationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Federation, Swift.Error> {
+  ) -> any AsyncSequence<Federation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listFederations(request: request, options: options)
@@ -439,7 +440,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listFederationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Federation, Swift.Error> {
+  ) -> any AsyncSequence<Federation, Swift.Error> & Sendable {
     let request = ListFederationsRequest().with {
       $0.parent = parent
     }
@@ -598,7 +599,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -607,9 +608,9 @@ extension Clients.DataprocMetastoreFederationProtocol {
   /// @Snippet(path: "DataprocMetastoreFederation_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -679,7 +680,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -690,9 +691,9 @@ extension Clients.DataprocMetastoreFederationProtocol {
   /// @Snippet(path: "DataprocMetastoreFederation_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -703,7 +704,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

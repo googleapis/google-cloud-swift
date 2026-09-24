@@ -313,7 +313,7 @@
 
     public func listByItems(
       request: RolloutPlansClient.ListRequest
-    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -322,9 +322,10 @@
     /// @Snippet(path: "rolloutPlans_list")
     public func listByItems(
       request: RolloutPlansClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RolloutPlansListResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.RolloutPlansListResponse in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -334,7 +335,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<RolloutPlan, Swift.Error> {
+    ) -> any AsyncSequence<RolloutPlan, Swift.Error> & Sendable {
       let request = RolloutPlansClient.ListRequest().with {
         $0.project = project
       }

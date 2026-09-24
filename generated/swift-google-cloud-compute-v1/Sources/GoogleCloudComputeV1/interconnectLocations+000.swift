@@ -117,7 +117,7 @@
 
     public func listByItems(
       request: InterconnectLocationsClient.ListRequest
-    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -127,9 +127,10 @@
     /// @Snippet(path: "interconnectLocations_list")
     public func listByItems(
       request: InterconnectLocationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectLocationList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.InterconnectLocationList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -139,7 +140,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectLocation, Swift.Error> & Sendable {
       let request = InterconnectLocationsClient.ListRequest().with {
         $0.project = project
       }

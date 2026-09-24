@@ -177,7 +177,7 @@
 
     public func listBackupsByItems(
       request: ListBackupsRequest
-    ) -> any AsyncSequence<Backup, Swift.Error> {
+    ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
       self.listBackupsByItems(request: request, options: .init())
     }
 
@@ -186,8 +186,9 @@
     /// @Snippet(path: "SqlBackupsService_ListBackups")
     public func listBackupsByItems(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Backup, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudSqlV1.ListBackupsResponse in
+    ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudSqlV1.ListBackupsResponse in
         var request = request
         request.pageToken = token
         return try await self.listBackups(request: request, options: options)
@@ -197,7 +198,7 @@
 
     public func listBackupsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Backup, Swift.Error> {
+    ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
       let request = ListBackupsRequest().with {
         $0.parent = parent
       }

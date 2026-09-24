@@ -1068,7 +1068,7 @@ extension Clients.AppHubProtocol {
 
   public func listServiceProjectAttachmentsByItems(
     request: ListServiceProjectAttachmentsRequest
-  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
+  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> & Sendable {
     self.listServiceProjectAttachmentsByItems(request: request, options: .init())
   }
 
@@ -1077,9 +1077,9 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListServiceProjectAttachments")
   public func listServiceProjectAttachmentsByItems(
     request: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
+  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse in
       var request = request
       request.pageToken = token
@@ -1090,7 +1090,7 @@ extension Clients.AppHubProtocol {
 
   public func listServiceProjectAttachmentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> {
+  ) -> any AsyncSequence<ServiceProjectAttachment, Swift.Error> & Sendable {
     let request = ListServiceProjectAttachmentsRequest().with {
       $0.parent = parent
     }
@@ -1234,7 +1234,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredServicesByItems(
     request: ListDiscoveredServicesRequest
-  ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredService, Swift.Error> & Sendable {
     self.listDiscoveredServicesByItems(request: request, options: .init())
   }
 
@@ -1244,9 +1244,10 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListDiscoveredServices")
   public func listDiscoveredServicesByItems(
     request: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredService, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse in
       var request = request
       request.pageToken = token
       return try await self.listDiscoveredServices(request: request, options: options)
@@ -1256,7 +1257,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredServicesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DiscoveredService, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredService, Swift.Error> & Sendable {
     let request = ListDiscoveredServicesRequest().with {
       $0.parent = parent
     }
@@ -1321,7 +1322,7 @@ extension Clients.AppHubProtocol {
 
   public func listServicesByItems(
     request: ListServicesRequest
-  ) -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
     self.listServicesByItems(request: request, options: .init())
   }
 
@@ -1330,9 +1331,9 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListServices")
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListServicesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListServicesResponse in
       var request = request
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
@@ -1342,7 +1343,7 @@ extension Clients.AppHubProtocol {
 
   public func listServicesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
@@ -1499,7 +1500,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredWorkloadsByItems(
     request: ListDiscoveredWorkloadsRequest
-  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> & Sendable {
     self.listDiscoveredWorkloadsByItems(request: request, options: .init())
   }
 
@@ -1509,9 +1510,10 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListDiscoveredWorkloads")
   public func listDiscoveredWorkloadsByItems(
     request: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse in
       var request = request
       request.pageToken = token
       return try await self.listDiscoveredWorkloads(request: request, options: options)
@@ -1521,7 +1523,7 @@ extension Clients.AppHubProtocol {
 
   public func listDiscoveredWorkloadsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> {
+  ) -> any AsyncSequence<DiscoveredWorkload, Swift.Error> & Sendable {
     let request = ListDiscoveredWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -1586,7 +1588,7 @@ extension Clients.AppHubProtocol {
 
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
-  ) -> any AsyncSequence<Workload, Swift.Error> {
+  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
     self.listWorkloadsByItems(request: request, options: .init())
   }
 
@@ -1595,9 +1597,9 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListWorkloads")
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workload, Swift.Error> {
+  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse in
       var request = request
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
@@ -1607,7 +1609,7 @@ extension Clients.AppHubProtocol {
 
   public func listWorkloadsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Workload, Swift.Error> {
+  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -1765,7 +1767,7 @@ extension Clients.AppHubProtocol {
 
   public func listApplicationsByItems(
     request: ListApplicationsRequest
-  ) -> any AsyncSequence<Application, Swift.Error> {
+  ) -> any AsyncSequence<Application, Swift.Error> & Sendable {
     self.listApplicationsByItems(request: request, options: .init())
   }
 
@@ -1774,9 +1776,10 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListApplications")
   public func listApplicationsByItems(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Application, Swift.Error> {
+  ) -> any AsyncSequence<Application, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listApplications(request: request, options: options)
@@ -1786,7 +1789,7 @@ extension Clients.AppHubProtocol {
 
   public func listApplicationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Application, Swift.Error> {
+  ) -> any AsyncSequence<Application, Swift.Error> & Sendable {
     let request = ListApplicationsRequest().with {
       $0.parent = parent
     }
@@ -1945,7 +1948,7 @@ extension Clients.AppHubProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1954,9 +1957,9 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -2026,7 +2029,7 @@ extension Clients.AppHubProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2037,9 +2040,9 @@ extension Clients.AppHubProtocol {
   /// @Snippet(path: "AppHub_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -2050,7 +2053,7 @@ extension Clients.AppHubProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

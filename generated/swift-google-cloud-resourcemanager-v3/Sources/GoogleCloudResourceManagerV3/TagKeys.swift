@@ -348,7 +348,7 @@ extension Clients.TagKeysProtocol {
 
   public func listTagKeysByItems(
     request: ListTagKeysRequest
-  ) -> any AsyncSequence<TagKey, Swift.Error> {
+  ) -> any AsyncSequence<TagKey, Swift.Error> & Sendable {
     self.listTagKeysByItems(request: request, options: .init())
   }
 
@@ -357,9 +357,10 @@ extension Clients.TagKeysProtocol {
   /// @Snippet(path: "TagKeys_ListTagKeys")
   public func listTagKeysByItems(
     request: ListTagKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TagKey, Swift.Error> {
+  ) -> any AsyncSequence<TagKey, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListTagKeysResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.ListTagKeysResponse in
       var request = request
       request.pageToken = token
       return try await self.listTagKeys(request: request, options: options)
@@ -369,7 +370,7 @@ extension Clients.TagKeysProtocol {
 
   public func listTagKeysByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TagKey, Swift.Error> {
+  ) -> any AsyncSequence<TagKey, Swift.Error> & Sendable {
     let request = ListTagKeysRequest().with {
       $0.parent = parent
     }

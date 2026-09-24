@@ -394,7 +394,7 @@
 
     public func listByItems(
       request: InstantSnapshotGroupsClient.ListRequest
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -404,9 +404,10 @@
     /// @Snippet(path: "instantSnapshotGroups_list")
     public func listByItems(
       request: InstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.ListInstantSnapshotGroups in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.ListInstantSnapshotGroups in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -417,7 +418,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
       let request = InstantSnapshotGroupsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

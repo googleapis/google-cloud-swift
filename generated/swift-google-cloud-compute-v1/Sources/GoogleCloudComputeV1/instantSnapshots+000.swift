@@ -346,7 +346,7 @@
 
     public func aggregatedListByItems(
       request: InstantSnapshotsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -358,9 +358,10 @@
     /// @Snippet(path: "instantSnapshots_aggregatedList")
     public func aggregatedListByItems(
       request: InstantSnapshotsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.InstantSnapshotAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -370,7 +371,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InstantSnapshotsScopedList), Swift.Error> & Sendable {
       let request = InstantSnapshotsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -525,7 +526,7 @@
 
     public func listByItems(
       request: InstantSnapshotsClient.ListRequest
-    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -535,9 +536,9 @@
     /// @Snippet(path: "instantSnapshots_list")
     public func listByItems(
       request: InstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstantSnapshotList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -548,7 +549,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> {
+    ) -> any AsyncSequence<InstantSnapshot, Swift.Error> & Sendable {
       let request = InstantSnapshotsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

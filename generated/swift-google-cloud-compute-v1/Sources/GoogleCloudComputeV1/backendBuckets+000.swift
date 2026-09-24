@@ -609,7 +609,7 @@
 
     public func aggregatedListByItems(
       request: BackendBucketsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -622,9 +622,10 @@
     /// @Snippet(path: "backendBuckets_aggregatedList")
     public func aggregatedListByItems(
       request: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.BackendBucketAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -634,7 +635,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, BackendBucketsScopedList), Swift.Error> & Sendable {
       let request = BackendBucketsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -823,7 +824,7 @@
 
     public func listByItems(
       request: BackendBucketsClient.ListRequest
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -833,9 +834,9 @@
     /// @Snippet(path: "backendBuckets_list")
     public func listByItems(
       request: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -845,7 +846,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> & Sendable {
       let request = BackendBucketsClient.ListRequest().with {
         $0.project = project
       }
@@ -866,7 +867,7 @@
 
     public func listUsableByItems(
       request: BackendBucketsClient.ListUsableRequest
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -875,9 +876,10 @@
     /// @Snippet(path: "backendBuckets_listUsable")
     public func listUsableByItems(
       request: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendBucketListUsable
+        in
         var request = request
         request.pageToken = token
         return try await self.listUsable(request: request, options: options)
@@ -887,7 +889,7 @@
 
     public func listUsableByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<BackendBucket, Swift.Error> {
+    ) -> any AsyncSequence<BackendBucket, Swift.Error> & Sendable {
       let request = BackendBucketsClient.ListUsableRequest().with {
         $0.project = project
       }

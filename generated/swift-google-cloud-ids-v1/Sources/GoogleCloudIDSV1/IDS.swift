@@ -264,7 +264,7 @@ extension Clients.IDSProtocol {
 
   public func listEndpointsByItems(
     request: ListEndpointsRequest
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> & Sendable {
     self.listEndpointsByItems(request: request, options: .init())
   }
 
@@ -273,8 +273,9 @@ extension Clients.IDSProtocol {
   /// @Snippet(path: "IDS_ListEndpoints")
   public func listEndpointsByItems(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudIDSV1.ListEndpointsResponse in
+  ) -> any AsyncSequence<Endpoint, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudIDSV1.ListEndpointsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEndpoints(request: request, options: options)
@@ -284,7 +285,7 @@ extension Clients.IDSProtocol {
 
   public func listEndpointsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> & Sendable {
     let request = ListEndpointsRequest().with {
       $0.parent = parent
     }
@@ -402,7 +403,7 @@ extension Clients.IDSProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -413,9 +414,9 @@ extension Clients.IDSProtocol {
   /// @Snippet(path: "IDS_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -426,7 +427,7 @@ extension Clients.IDSProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

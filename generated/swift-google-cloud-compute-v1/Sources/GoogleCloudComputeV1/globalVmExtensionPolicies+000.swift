@@ -297,7 +297,7 @@
 
     public func aggregatedListByItems(
       request: GlobalVmExtensionPoliciesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -311,9 +311,9 @@
     public func aggregatedListByItems(
       request: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse in
         var request = request
         request.pageToken = token
@@ -324,7 +324,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), Swift.Error> & Sendable {
       let request = GlobalVmExtensionPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -450,7 +450,7 @@
 
     public func listByItems(
       request: GlobalVmExtensionPoliciesClient.ListRequest
-    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -459,9 +459,10 @@
     /// @Snippet(path: "globalVmExtensionPolicies_list")
     public func listByItems(
       request: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -471,7 +472,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> {
+    ) -> any AsyncSequence<GlobalVmExtensionPolicy, Swift.Error> & Sendable {
       let request = GlobalVmExtensionPoliciesClient.ListRequest().with {
         $0.project = project
       }

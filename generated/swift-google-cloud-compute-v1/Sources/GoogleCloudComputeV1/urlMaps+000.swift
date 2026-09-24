@@ -436,7 +436,7 @@
 
     public func aggregatedListByItems(
       request: UrlMapsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -449,9 +449,10 @@
     /// @Snippet(path: "urlMaps_aggregatedList")
     public func aggregatedListByItems(
       request: UrlMapsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapsAggregatedList
+        in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -461,7 +462,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, UrlMapsScopedList), Swift.Error> & Sendable {
       let request = UrlMapsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -626,7 +627,7 @@
 
     public func listByItems(
       request: UrlMapsClient.ListRequest
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -636,8 +637,9 @@
     /// @Snippet(path: "urlMaps_list")
     public func listByItems(
       request: UrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
+    ) -> any AsyncSequence<UrlMap, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -647,7 +649,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> & Sendable {
       let request = UrlMapsClient.ListRequest().with {
         $0.project = project
       }

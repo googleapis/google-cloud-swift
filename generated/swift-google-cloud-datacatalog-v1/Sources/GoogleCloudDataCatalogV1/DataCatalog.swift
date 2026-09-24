@@ -1091,7 +1091,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func searchCatalogByItems(
     request: SearchCatalogRequest
-  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> & Sendable {
     self.searchCatalogByItems(request: request, options: .init())
   }
 
@@ -1115,9 +1115,10 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func searchCatalogByItems(
     request: SearchCatalogRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.searchCatalog(request: request, options: options)
@@ -1129,7 +1130,7 @@ extension Clients.DataCatalogProtocol {
   public func searchCatalogByItems(
     scope: SearchCatalogRequest.Scope?,
     query: Swift.String,
-  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> {
+  ) -> any AsyncSequence<SearchCatalogResult, Swift.Error> & Sendable {
     let request = SearchCatalogRequest().with {
       $0.scope = scope
       $0.query = query
@@ -1276,7 +1277,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> & Sendable {
     self.listEntryGroupsByItems(request: request, options: .init())
   }
 
@@ -1286,9 +1287,10 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEntryGroups(request: request, options: options)
@@ -1299,7 +1301,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntryGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> {
+  ) -> any AsyncSequence<EntryGroup, Swift.Error> & Sendable {
     let request = ListEntryGroupsRequest().with {
       $0.parent = parent
     }
@@ -1445,7 +1447,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntriesByItems(
     request: ListEntriesRequest
-  ) -> any AsyncSequence<Entry, Swift.Error> {
+  ) -> any AsyncSequence<Entry, Swift.Error> & Sendable {
     self.listEntriesByItems(request: request, options: .init())
   }
 
@@ -1461,9 +1463,10 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntriesByItems(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entry, Swift.Error> {
+  ) -> any AsyncSequence<Entry, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listEntries(request: request, options: options)
@@ -1474,7 +1477,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listEntriesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Entry, Swift.Error> {
+  ) -> any AsyncSequence<Entry, Swift.Error> & Sendable {
     let request = ListEntriesRequest().with {
       $0.parent = parent
     }
@@ -1862,7 +1865,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listTagsByItems(
     request: ListTagsRequest
-  ) -> any AsyncSequence<Tag, Swift.Error> {
+  ) -> any AsyncSequence<Tag, Swift.Error> & Sendable {
     self.listTagsByItems(request: request, options: .init())
   }
 
@@ -1877,9 +1880,9 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listTagsByItems(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Tag, Swift.Error> {
+  ) -> any AsyncSequence<Tag, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse in
       var request = request
       request.pageToken = token
       return try await self.listTags(request: request, options: options)
@@ -1890,7 +1893,7 @@ extension Clients.DataCatalogProtocol {
   @available(*, deprecated)
   public func listTagsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Tag, Swift.Error> {
+  ) -> any AsyncSequence<Tag, Swift.Error> & Sendable {
     let request = ListTagsRequest().with {
       $0.parent = parent
     }
@@ -2129,7 +2132,7 @@ extension Clients.DataCatalogProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2140,9 +2143,9 @@ extension Clients.DataCatalogProtocol {
   /// @Snippet(path: "DataCatalog_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -2153,7 +2156,7 @@ extension Clients.DataCatalogProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

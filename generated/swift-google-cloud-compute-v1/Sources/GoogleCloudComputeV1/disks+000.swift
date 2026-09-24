@@ -1010,7 +1010,7 @@
 
     public func aggregatedListByItems(
       request: DisksClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -1022,9 +1022,9 @@
     /// @Snippet(path: "disks_aggregatedList")
     public func aggregatedListByItems(
       request: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskAggregatedList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -1034,7 +1034,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, DisksScopedList), Swift.Error> & Sendable {
       let request = DisksClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -1314,7 +1314,7 @@
 
     public func listByItems(
       request: DisksClient.ListRequest
-    ) -> any AsyncSequence<Disk, Swift.Error> {
+    ) -> any AsyncSequence<Disk, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1324,8 +1324,9 @@
     /// @Snippet(path: "disks_list")
     public func listByItems(
       request: DisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Disk, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
+    ) -> any AsyncSequence<Disk, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -1336,7 +1337,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<Disk, Swift.Error> {
+    ) -> any AsyncSequence<Disk, Swift.Error> & Sendable {
       let request = DisksClient.ListRequest().with {
         $0.project = project
         $0.zone = zone

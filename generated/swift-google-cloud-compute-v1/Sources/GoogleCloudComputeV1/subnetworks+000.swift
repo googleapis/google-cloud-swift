@@ -463,7 +463,7 @@
 
     public func aggregatedListByItems(
       request: SubnetworksClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -475,9 +475,10 @@
     /// @Snippet(path: "subnetworks_aggregatedList")
     public func aggregatedListByItems(
       request: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.SubnetworkAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -487,7 +488,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SubnetworksScopedList), Swift.Error> & Sendable {
       let request = SubnetworksClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -686,7 +687,7 @@
 
     public func listByItems(
       request: SubnetworksClient.ListRequest
-    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -696,8 +697,9 @@
     /// @Snippet(path: "subnetworks_list")
     public func listByItems(
       request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkList in
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SubnetworkList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -708,7 +710,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<Subnetwork, Swift.Error> {
+    ) -> any AsyncSequence<Subnetwork, Swift.Error> & Sendable {
       let request = SubnetworksClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -730,7 +732,7 @@
 
     public func listUsableByItems(
       request: SubnetworksClient.ListUsableRequest
-    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -739,10 +741,10 @@
     /// @Snippet(path: "subnetworks_listUsable")
     public func listUsableByItems(
       request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList
-        in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.listUsable(request: request, options: options)
@@ -752,7 +754,7 @@
 
     public func listUsableByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+    ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> & Sendable {
       let request = SubnetworksClient.ListUsableRequest().with {
         $0.project = project
       }

@@ -298,7 +298,7 @@ extension Clients.GrafeasProtocol {
 
   public func listOccurrencesByItems(
     request: ListOccurrencesRequest
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> & Sendable {
     self.listOccurrencesByItems(request: request, options: .init())
   }
 
@@ -307,8 +307,9 @@ extension Clients.GrafeasProtocol {
   /// @Snippet(path: "Grafeas_ListOccurrences")
   public func listOccurrencesByItems(
     request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
+  ) -> any AsyncSequence<Occurrence, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleGrafeasV1.ListOccurrencesResponse in
       var request = request
       request.pageToken = token
       return try await self.listOccurrences(request: request, options: options)
@@ -319,7 +320,7 @@ extension Clients.GrafeasProtocol {
   public func listOccurrencesByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> & Sendable {
     let request = ListOccurrencesRequest().with {
       $0.parent = parent
       $0.filter = filter
@@ -470,7 +471,7 @@ extension Clients.GrafeasProtocol {
 
   public func listNotesByItems(
     request: ListNotesRequest
-  ) -> any AsyncSequence<Note, Swift.Error> {
+  ) -> any AsyncSequence<Note, Swift.Error> & Sendable {
     self.listNotesByItems(request: request, options: .init())
   }
 
@@ -479,8 +480,9 @@ extension Clients.GrafeasProtocol {
   /// @Snippet(path: "Grafeas_ListNotes")
   public func listNotesByItems(
     request: ListNotesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Note, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
+  ) -> any AsyncSequence<Note, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleGrafeasV1.ListNotesResponse in
       var request = request
       request.pageToken = token
       return try await self.listNotes(request: request, options: options)
@@ -491,7 +493,7 @@ extension Clients.GrafeasProtocol {
   public func listNotesByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<Note, Swift.Error> {
+  ) -> any AsyncSequence<Note, Swift.Error> & Sendable {
     let request = ListNotesRequest().with {
       $0.parent = parent
       $0.filter = filter
@@ -601,7 +603,7 @@ extension Clients.GrafeasProtocol {
 
   public func listNoteOccurrencesByItems(
     request: ListNoteOccurrencesRequest
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> & Sendable {
     self.listNoteOccurrencesByItems(request: request, options: .init())
   }
 
@@ -612,9 +614,9 @@ extension Clients.GrafeasProtocol {
   /// @Snippet(path: "Grafeas_ListNoteOccurrences")
   public func listNoteOccurrencesByItems(
     request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse in
       var request = request
       request.pageToken = token
       return try await self.listNoteOccurrences(request: request, options: options)
@@ -625,7 +627,7 @@ extension Clients.GrafeasProtocol {
   public func listNoteOccurrencesByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<Occurrence, Swift.Error> {
+  ) -> any AsyncSequence<Occurrence, Swift.Error> & Sendable {
     let request = ListNoteOccurrencesRequest().with {
       $0.name = name
       $0.filter = filter

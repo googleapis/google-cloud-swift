@@ -152,7 +152,7 @@
 
     public func aggregatedListByItems(
       request: GlobalOperationsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -164,9 +164,10 @@
     /// @Snippet(path: "globalOperations_aggregatedList")
     public func aggregatedListByItems(
       request: GlobalOperationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationAggregatedList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationAggregatedList
+        in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -176,7 +177,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, OperationsScopedList), Swift.Error> & Sendable {
       let request = GlobalOperationsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -241,7 +242,7 @@
 
     public func listByItems(
       request: GlobalOperationsClient.ListRequest
-    ) -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -251,8 +252,9 @@
     /// @Snippet(path: "globalOperations_list")
     public func listByItems(
       request: GlobalOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
+    ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -262,7 +264,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
       let request = GlobalOperationsClient.ListRequest().with {
         $0.project = project
       }

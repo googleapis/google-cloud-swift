@@ -244,7 +244,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
-  ) -> any AsyncSequence<Workload, Swift.Error> {
+  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
     self.listWorkloadsByItems(request: request, options: .init())
   }
 
@@ -253,9 +253,10 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   /// @Snippet(path: "CloudControlsPartnerCore_ListWorkloads")
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workload, Swift.Error> {
+  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse in
       var request = request
       request.pageToken = token
       return try await self.listWorkloads(request: request, options: options)
@@ -265,7 +266,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listWorkloadsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Workload, Swift.Error> {
+  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -307,7 +308,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listCustomersByItems(
     request: ListCustomersRequest
-  ) -> any AsyncSequence<Customer, Swift.Error> {
+  ) -> any AsyncSequence<Customer, Swift.Error> & Sendable {
     self.listCustomersByItems(request: request, options: .init())
   }
 
@@ -316,9 +317,10 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   /// @Snippet(path: "CloudControlsPartnerCore_ListCustomers")
   public func listCustomersByItems(
     request: ListCustomersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Customer, Swift.Error> {
+  ) -> any AsyncSequence<Customer, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudControlsPartnerV1.ListCustomersResponse in
       var request = request
       request.pageToken = token
       return try await self.listCustomers(request: request, options: options)
@@ -328,7 +330,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listCustomersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Customer, Swift.Error> {
+  ) -> any AsyncSequence<Customer, Swift.Error> & Sendable {
     let request = ListCustomersRequest().with {
       $0.parent = parent
     }
@@ -394,7 +396,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   @available(*, deprecated)
   public func listAccessApprovalRequestsByItems(
     request: ListAccessApprovalRequestsRequest
-  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
+  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
     self.listAccessApprovalRequestsByItems(request: request, options: .init())
   }
 
@@ -405,9 +407,9 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   @available(*, deprecated)
   public func listAccessApprovalRequestsByItems(
     request: ListAccessApprovalRequestsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
+  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse in
       var request = request
       request.pageToken = token
@@ -419,7 +421,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   @available(*, deprecated)
   public func listAccessApprovalRequestsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> {
+  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
     let request = ListAccessApprovalRequestsRequest().with {
       $0.parent = parent
     }

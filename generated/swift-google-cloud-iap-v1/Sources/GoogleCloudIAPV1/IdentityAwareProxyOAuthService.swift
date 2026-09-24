@@ -236,7 +236,7 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
 
   public func listIdentityAwareProxyClientsByItems(
     request: ListIdentityAwareProxyClientsRequest
-  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
+  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> & Sendable {
     self.listIdentityAwareProxyClientsByItems(request: request, options: .init())
   }
 
@@ -245,10 +245,10 @@ extension Clients.IdentityAwareProxyOAuthServiceProtocol {
   /// @Snippet(path: "IdentityAwareProxyOAuthService_ListIdentityAwareProxyClients")
   public func listIdentityAwareProxyClientsByItems(
     request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> {
+  ) -> any AsyncSequence<IdentityAwareProxyClient, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse in
       var request = request
       request.pageToken = token
       return try await self.listIdentityAwareProxyClients(request: request, options: options)

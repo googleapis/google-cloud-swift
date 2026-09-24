@@ -1131,7 +1131,7 @@
 
     public func listCustomJobsByItems(
       request: ListCustomJobsRequest
-    ) -> any AsyncSequence<CustomJob, Swift.Error> {
+    ) -> any AsyncSequence<CustomJob, Swift.Error> & Sendable {
       self.listCustomJobsByItems(request: request, options: .init())
     }
 
@@ -1140,9 +1140,10 @@
     /// @Snippet(path: "JobService_ListCustomJobs")
     public func listCustomJobsByItems(
       request: ListCustomJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CustomJob, Swift.Error> {
+    ) -> any AsyncSequence<CustomJob, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListCustomJobsResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudAIPlatformV1.ListCustomJobsResponse in
         var request = request
         request.pageToken = token
         return try await self.listCustomJobs(request: request, options: options)
@@ -1152,7 +1153,7 @@
 
     public func listCustomJobsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<CustomJob, Swift.Error> {
+    ) -> any AsyncSequence<CustomJob, Swift.Error> & Sendable {
       let request = ListCustomJobsRequest().with {
         $0.parent = parent
       }
@@ -1273,7 +1274,7 @@
 
     public func listDataLabelingJobsByItems(
       request: ListDataLabelingJobsRequest
-    ) -> any AsyncSequence<DataLabelingJob, Swift.Error> {
+    ) -> any AsyncSequence<DataLabelingJob, Swift.Error> & Sendable {
       self.listDataLabelingJobsByItems(request: request, options: .init())
     }
 
@@ -1282,10 +1283,10 @@
     /// @Snippet(path: "JobService_ListDataLabelingJobs")
     public func listDataLabelingJobsByItems(
       request: ListDataLabelingJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DataLabelingJob, Swift.Error> {
+    ) -> any AsyncSequence<DataLabelingJob, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListDataLabelingJobsResponse
-        in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudAIPlatformV1.ListDataLabelingJobsResponse in
         var request = request
         request.pageToken = token
         return try await self.listDataLabelingJobs(request: request, options: options)
@@ -1295,7 +1296,7 @@
 
     public func listDataLabelingJobsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<DataLabelingJob, Swift.Error> {
+    ) -> any AsyncSequence<DataLabelingJob, Swift.Error> & Sendable {
       let request = ListDataLabelingJobsRequest().with {
         $0.parent = parent
       }
@@ -1416,7 +1417,7 @@
 
     public func listHyperparameterTuningJobsByItems(
       request: ListHyperparameterTuningJobsRequest
-    ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> {
+    ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> & Sendable {
       self.listHyperparameterTuningJobsByItems(request: request, options: .init())
     }
 
@@ -1425,9 +1426,9 @@
     /// @Snippet(path: "JobService_ListHyperparameterTuningJobs")
     public func listHyperparameterTuningJobsByItems(
       request: ListHyperparameterTuningJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> {
+    ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListHyperparameterTuningJobsResponse in
         var request = request
         request.pageToken = token
@@ -1438,7 +1439,7 @@
 
     public func listHyperparameterTuningJobsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> {
+    ) -> any AsyncSequence<HyperparameterTuningJob, Swift.Error> & Sendable {
       let request = ListHyperparameterTuningJobsRequest().with {
         $0.parent = parent
       }
@@ -1561,7 +1562,7 @@
 
     public func listNasJobsByItems(
       request: ListNasJobsRequest
-    ) -> any AsyncSequence<NasJob, Swift.Error> {
+    ) -> any AsyncSequence<NasJob, Swift.Error> & Sendable {
       self.listNasJobsByItems(request: request, options: .init())
     }
 
@@ -1570,9 +1571,10 @@
     /// @Snippet(path: "JobService_ListNasJobs")
     public func listNasJobsByItems(
       request: ListNasJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NasJob, Swift.Error> {
+    ) -> any AsyncSequence<NasJob, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNasJobsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNasJobsResponse
+        in
         var request = request
         request.pageToken = token
         return try await self.listNasJobs(request: request, options: options)
@@ -1582,7 +1584,7 @@
 
     public func listNasJobsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<NasJob, Swift.Error> {
+    ) -> any AsyncSequence<NasJob, Swift.Error> & Sendable {
       let request = ListNasJobsRequest().with {
         $0.parent = parent
       }
@@ -1680,7 +1682,7 @@
 
     public func listNasTrialDetailsByItems(
       request: ListNasTrialDetailsRequest
-    ) -> any AsyncSequence<NasTrialDetail, Swift.Error> {
+    ) -> any AsyncSequence<NasTrialDetail, Swift.Error> & Sendable {
       self.listNasTrialDetailsByItems(request: request, options: .init())
     }
 
@@ -1689,9 +1691,10 @@
     /// @Snippet(path: "JobService_ListNasTrialDetails")
     public func listNasTrialDetailsByItems(
       request: ListNasTrialDetailsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NasTrialDetail, Swift.Error> {
+    ) -> any AsyncSequence<NasTrialDetail, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListNasTrialDetailsResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudAIPlatformV1.ListNasTrialDetailsResponse in
         var request = request
         request.pageToken = token
         return try await self.listNasTrialDetails(request: request, options: options)
@@ -1701,7 +1704,7 @@
 
     public func listNasTrialDetailsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<NasTrialDetail, Swift.Error> {
+    ) -> any AsyncSequence<NasTrialDetail, Swift.Error> & Sendable {
       let request = ListNasTrialDetailsRequest().with {
         $0.parent = parent
       }
@@ -1766,7 +1769,7 @@
 
     public func listBatchPredictionJobsByItems(
       request: ListBatchPredictionJobsRequest
-    ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> {
+    ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> & Sendable {
       self.listBatchPredictionJobsByItems(request: request, options: .init())
     }
 
@@ -1775,9 +1778,9 @@
     /// @Snippet(path: "JobService_ListBatchPredictionJobs")
     public func listBatchPredictionJobsByItems(
       request: ListBatchPredictionJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> {
+    ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListBatchPredictionJobsResponse in
         var request = request
         request.pageToken = token
@@ -1788,7 +1791,7 @@
 
     public func listBatchPredictionJobsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> {
+    ) -> any AsyncSequence<BatchPredictionJob, Swift.Error> & Sendable {
       let request = ListBatchPredictionJobsRequest().with {
         $0.parent = parent
       }
@@ -1892,7 +1895,7 @@
 
     public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
       request: SearchModelDeploymentMonitoringStatsAnomaliesRequest
-    ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> {
+    ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> & Sendable {
       self.searchModelDeploymentMonitoringStatsAnomaliesByItems(request: request, options: .init())
     }
 
@@ -1902,9 +1905,9 @@
     public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
       request: SearchModelDeploymentMonitoringStatsAnomaliesRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> {
+    ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.SearchModelDeploymentMonitoringStatsAnomaliesResponse in
         var request = request
         request.pageToken = token
@@ -1917,7 +1920,7 @@
     public func searchModelDeploymentMonitoringStatsAnomaliesByItems(
       modelDeploymentMonitoringJob: Swift.String,
       deployedModelId: Swift.String,
-    ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> {
+    ) -> any AsyncSequence<ModelMonitoringStatsAnomalies, Swift.Error> & Sendable {
       let request = SearchModelDeploymentMonitoringStatsAnomaliesRequest().with {
         $0.modelDeploymentMonitoringJob = modelDeploymentMonitoringJob
         $0.deployedModelId = deployedModelId
@@ -1960,7 +1963,7 @@
 
     public func listModelDeploymentMonitoringJobsByItems(
       request: ListModelDeploymentMonitoringJobsRequest
-    ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> {
+    ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> & Sendable {
       self.listModelDeploymentMonitoringJobsByItems(request: request, options: .init())
     }
 
@@ -1969,9 +1972,9 @@
     /// @Snippet(path: "JobService_ListModelDeploymentMonitoringJobs")
     public func listModelDeploymentMonitoringJobsByItems(
       request: ListModelDeploymentMonitoringJobsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> {
+    ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListModelDeploymentMonitoringJobsResponse in
         var request = request
         request.pageToken = token
@@ -1982,7 +1985,7 @@
 
     public func listModelDeploymentMonitoringJobsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> {
+    ) -> any AsyncSequence<ModelDeploymentMonitoringJob, Swift.Error> & Sendable {
       let request = ListModelDeploymentMonitoringJobsRequest().with {
         $0.parent = parent
       }
@@ -2124,7 +2127,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -2133,9 +2136,9 @@
     /// @Snippet(path: "JobService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
@@ -2205,7 +2208,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -2216,9 +2219,9 @@
     /// @Snippet(path: "JobService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -2229,7 +2232,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

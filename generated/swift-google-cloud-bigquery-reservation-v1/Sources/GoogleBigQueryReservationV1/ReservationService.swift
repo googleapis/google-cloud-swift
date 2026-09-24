@@ -705,7 +705,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listReservationsByItems(
     request: ListReservationsRequest
-  ) -> any AsyncSequence<Reservation, Swift.Error> {
+  ) -> any AsyncSequence<Reservation, Swift.Error> & Sendable {
     self.listReservationsByItems(request: request, options: .init())
   }
 
@@ -714,9 +714,10 @@ extension Clients.ReservationServiceProtocol {
   /// @Snippet(path: "ReservationService_ListReservations")
   public func listReservationsByItems(
     request: ListReservationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Reservation, Swift.Error> {
+  ) -> any AsyncSequence<Reservation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryReservationV1.ListReservationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listReservations(request: request, options: options)
@@ -726,7 +727,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listReservationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Reservation, Swift.Error> {
+  ) -> any AsyncSequence<Reservation, Swift.Error> & Sendable {
     let request = ListReservationsRequest().with {
       $0.parent = parent
     }
@@ -845,7 +846,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listCapacityCommitmentsByItems(
     request: ListCapacityCommitmentsRequest
-  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> {
+  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> & Sendable {
     self.listCapacityCommitmentsByItems(request: request, options: .init())
   }
 
@@ -854,9 +855,9 @@ extension Clients.ReservationServiceProtocol {
   /// @Snippet(path: "ReservationService_ListCapacityCommitments")
   public func listCapacityCommitmentsByItems(
     request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> {
+  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse in
       var request = request
       request.pageToken = token
@@ -867,7 +868,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listCapacityCommitmentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> {
+  ) -> any AsyncSequence<CapacityCommitment, Swift.Error> & Sendable {
     let request = ListCapacityCommitmentsRequest().with {
       $0.parent = parent
     }
@@ -1020,7 +1021,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listAssignmentsByItems(
     request: ListAssignmentsRequest
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     self.listAssignmentsByItems(request: request, options: .init())
   }
 
@@ -1049,9 +1050,10 @@ extension Clients.ReservationServiceProtocol {
   /// @Snippet(path: "ReservationService_ListAssignments")
   public func listAssignmentsByItems(
     request: ListAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryReservationV1.ListAssignmentsResponse in
       var request = request
       request.pageToken = token
       return try await self.listAssignments(request: request, options: options)
@@ -1061,7 +1063,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listAssignmentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     let request = ListAssignmentsRequest().with {
       $0.parent = parent
     }
@@ -1104,7 +1106,7 @@ extension Clients.ReservationServiceProtocol {
   @available(*, deprecated)
   public func searchAssignmentsByItems(
     request: SearchAssignmentsRequest
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     self.searchAssignmentsByItems(request: request, options: .init())
   }
 
@@ -1136,9 +1138,10 @@ extension Clients.ReservationServiceProtocol {
   @available(*, deprecated)
   public func searchAssignmentsByItems(
     request: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.SearchAssignmentsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryReservationV1.SearchAssignmentsResponse in
       var request = request
       request.pageToken = token
       return try await self.searchAssignments(request: request, options: options)
@@ -1150,7 +1153,7 @@ extension Clients.ReservationServiceProtocol {
   public func searchAssignmentsByItems(
     parent: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     let request = SearchAssignmentsRequest().with {
       $0.parent = parent
       $0.query = query
@@ -1172,7 +1175,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func searchAllAssignmentsByItems(
     request: SearchAllAssignmentsRequest
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     self.searchAllAssignmentsByItems(request: request, options: .init())
   }
 
@@ -1200,10 +1203,10 @@ extension Clients.ReservationServiceProtocol {
   /// @Snippet(path: "ReservationService_SearchAllAssignments")
   public func searchAllAssignmentsByItems(
     request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse in
       var request = request
       request.pageToken = token
       return try await self.searchAllAssignments(request: request, options: options)
@@ -1214,7 +1217,7 @@ extension Clients.ReservationServiceProtocol {
   public func searchAllAssignmentsByItems(
     parent: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<Assignment, Swift.Error> {
+  ) -> any AsyncSequence<Assignment, Swift.Error> & Sendable {
     let request = SearchAllAssignmentsRequest().with {
       $0.parent = parent
       $0.query = query
@@ -1434,7 +1437,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listReservationGroupsByItems(
     request: ListReservationGroupsRequest
-  ) -> any AsyncSequence<ReservationGroup, Swift.Error> {
+  ) -> any AsyncSequence<ReservationGroup, Swift.Error> & Sendable {
     self.listReservationGroupsByItems(request: request, options: .init())
   }
 
@@ -1443,9 +1446,9 @@ extension Clients.ReservationServiceProtocol {
   /// @Snippet(path: "ReservationService_ListReservationGroups")
   public func listReservationGroupsByItems(
     request: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ReservationGroup, Swift.Error> {
+  ) -> any AsyncSequence<ReservationGroup, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryReservationV1.ListReservationGroupsResponse in
       var request = request
       request.pageToken = token
@@ -1456,7 +1459,7 @@ extension Clients.ReservationServiceProtocol {
 
   public func listReservationGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ReservationGroup, Swift.Error> {
+  ) -> any AsyncSequence<ReservationGroup, Swift.Error> & Sendable {
     let request = ListReservationGroupsRequest().with {
       $0.parent = parent
     }

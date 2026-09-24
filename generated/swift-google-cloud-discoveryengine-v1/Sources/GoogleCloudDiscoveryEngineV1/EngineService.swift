@@ -404,7 +404,7 @@
 
     public func listEnginesByItems(
       request: ListEnginesRequest
-    ) -> any AsyncSequence<Engine, Swift.Error> {
+    ) -> any AsyncSequence<Engine, Swift.Error> & Sendable {
       self.listEnginesByItems(request: request, options: .init())
     }
 
@@ -416,9 +416,10 @@
     /// @Snippet(path: "EngineService_ListEngines")
     public func listEnginesByItems(
       request: ListEnginesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Engine, Swift.Error> {
+    ) -> any AsyncSequence<Engine, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse in
         var request = request
         request.pageToken = token
         return try await self.listEngines(request: request, options: options)
@@ -428,7 +429,7 @@
 
     public func listEnginesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Engine, Swift.Error> {
+    ) -> any AsyncSequence<Engine, Swift.Error> & Sendable {
       let request = ListEnginesRequest().with {
         $0.parent = parent
       }
@@ -449,7 +450,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -460,9 +461,9 @@
     /// @Snippet(path: "EngineService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -473,7 +474,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

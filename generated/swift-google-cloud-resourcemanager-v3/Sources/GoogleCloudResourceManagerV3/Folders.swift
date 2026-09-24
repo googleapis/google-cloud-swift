@@ -657,7 +657,7 @@ extension Clients.FoldersProtocol {
 
   public func listFoldersByItems(
     request: ListFoldersRequest
-  ) -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> & Sendable {
     self.listFoldersByItems(request: request, options: .init())
   }
 
@@ -672,9 +672,10 @@ extension Clients.FoldersProtocol {
   /// @Snippet(path: "Folders_ListFolders")
   public func listFoldersByItems(
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.ListFoldersResponse in
       var request = request
       request.pageToken = token
       return try await self.listFolders(request: request, options: options)
@@ -684,7 +685,7 @@ extension Clients.FoldersProtocol {
 
   public func listFoldersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> & Sendable {
     let request = ListFoldersRequest().with {
       $0.parent = parent
     }
@@ -705,7 +706,7 @@ extension Clients.FoldersProtocol {
 
   public func searchFoldersByItems(
     request: SearchFoldersRequest
-  ) -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> & Sendable {
     self.searchFoldersByItems(request: request, options: .init())
   }
 
@@ -719,9 +720,10 @@ extension Clients.FoldersProtocol {
   /// @Snippet(path: "Folders_SearchFolders")
   public func searchFoldersByItems(
     request: SearchFoldersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.SearchFoldersResponse in
       var request = request
       request.pageToken = token
       return try await self.searchFolders(request: request, options: options)
@@ -731,7 +733,7 @@ extension Clients.FoldersProtocol {
 
   public func searchFoldersByItems(
     query: Swift.String,
-  ) -> any AsyncSequence<Folder, Swift.Error> {
+  ) -> any AsyncSequence<Folder, Swift.Error> & Sendable {
     let request = SearchFoldersRequest().with {
       $0.query = query
     }

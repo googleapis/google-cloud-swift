@@ -564,7 +564,7 @@
 
     public func aggregatedListByItems(
       request: TargetHttpsProxiesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, TargetHttpsProxiesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetHttpsProxiesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -577,9 +577,10 @@
     /// @Snippet(path: "targetHttpsProxies_aggregatedList")
     public func aggregatedListByItems(
       request: TargetHttpsProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, TargetHttpsProxiesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetHttpsProxiesScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.TargetHttpsProxyAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -589,7 +590,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, TargetHttpsProxiesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetHttpsProxiesScopedList), Swift.Error> & Sendable {
       let request = TargetHttpsProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -713,7 +714,7 @@
 
     public func listByItems(
       request: TargetHttpsProxiesClient.ListRequest
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -723,9 +724,9 @@
     /// @Snippet(path: "targetHttpsProxies_list")
     public func listByItems(
       request: TargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -735,7 +736,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> {
+    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
       let request = TargetHttpsProxiesClient.ListRequest().with {
         $0.project = project
       }

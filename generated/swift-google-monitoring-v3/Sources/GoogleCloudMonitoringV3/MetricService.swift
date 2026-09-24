@@ -213,7 +213,7 @@ extension Clients.MetricServiceProtocol {
 
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest
-  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
     self.listMonitoredResourceDescriptorsByItems(request: request, options: .init())
   }
 
@@ -222,9 +222,9 @@ extension Clients.MetricServiceProtocol {
   /// @Snippet(path: "MetricService_ListMonitoredResourceDescriptors")
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse in
       var request = request
       request.pageToken = token
@@ -235,7 +235,7 @@ extension Clients.MetricServiceProtocol {
 
   public func listMonitoredResourceDescriptorsByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
     let request = ListMonitoredResourceDescriptorsRequest().with {
       $0.name = name
     }
@@ -277,7 +277,7 @@ extension Clients.MetricServiceProtocol {
 
   public func listMetricDescriptorsByItems(
     request: ListMetricDescriptorsRequest
-  ) -> any AsyncSequence<GoogleApi.MetricDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MetricDescriptor, Swift.Error> & Sendable {
     self.listMetricDescriptorsByItems(request: request, options: .init())
   }
 
@@ -286,9 +286,10 @@ extension Clients.MetricServiceProtocol {
   /// @Snippet(path: "MetricService_ListMetricDescriptors")
   public func listMetricDescriptorsByItems(
     request: ListMetricDescriptorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleApi.MetricDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MetricDescriptor, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse in
       var request = request
       request.pageToken = token
       return try await self.listMetricDescriptors(request: request, options: options)
@@ -298,7 +299,7 @@ extension Clients.MetricServiceProtocol {
 
   public func listMetricDescriptorsByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<GoogleApi.MetricDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MetricDescriptor, Swift.Error> & Sendable {
     let request = ListMetricDescriptorsRequest().with {
       $0.name = name
     }
@@ -382,7 +383,7 @@ extension Clients.MetricServiceProtocol {
 
   public func listTimeSeriesByItems(
     request: ListTimeSeriesRequest
-  ) -> any AsyncSequence<TimeSeries, Swift.Error> {
+  ) -> any AsyncSequence<TimeSeries, Swift.Error> & Sendable {
     self.listTimeSeriesByItems(request: request, options: .init())
   }
 
@@ -391,9 +392,10 @@ extension Clients.MetricServiceProtocol {
   /// @Snippet(path: "MetricService_ListTimeSeries")
   public func listTimeSeriesByItems(
     request: ListTimeSeriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TimeSeries, Swift.Error> {
+  ) -> any AsyncSequence<TimeSeries, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListTimeSeriesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListTimeSeriesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listTimeSeries(request: request, options: options)
@@ -406,7 +408,7 @@ extension Clients.MetricServiceProtocol {
     filter: Swift.String,
     interval: TimeInterval?,
     view: ListTimeSeriesRequest.TimeSeriesView,
-  ) -> any AsyncSequence<TimeSeries, Swift.Error> {
+  ) -> any AsyncSequence<TimeSeries, Swift.Error> & Sendable {
     let request = ListTimeSeriesRequest().with {
       $0.name = name
       $0.filter = filter

@@ -148,7 +148,7 @@ extension Clients.SnoozeServiceProtocol {
 
   public func listSnoozesByItems(
     request: ListSnoozesRequest
-  ) -> any AsyncSequence<Snooze, Swift.Error> {
+  ) -> any AsyncSequence<Snooze, Swift.Error> & Sendable {
     self.listSnoozesByItems(request: request, options: .init())
   }
 
@@ -158,9 +158,9 @@ extension Clients.SnoozeServiceProtocol {
   /// @Snippet(path: "SnoozeService_ListSnoozes")
   public func listSnoozesByItems(
     request: ListSnoozesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Snooze, Swift.Error> {
+  ) -> any AsyncSequence<Snooze, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse in
       var request = request
       request.pageToken = token
       return try await self.listSnoozes(request: request, options: options)
@@ -170,7 +170,7 @@ extension Clients.SnoozeServiceProtocol {
 
   public func listSnoozesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Snooze, Swift.Error> {
+  ) -> any AsyncSequence<Snooze, Swift.Error> & Sendable {
     let request = ListSnoozesRequest().with {
       $0.parent = parent
     }

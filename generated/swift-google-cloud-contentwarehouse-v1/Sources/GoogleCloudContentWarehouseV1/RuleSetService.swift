@@ -231,7 +231,7 @@ extension Clients.RuleSetServiceProtocol {
 
   public func listRuleSetsByItems(
     request: ListRuleSetsRequest
-  ) -> any AsyncSequence<RuleSet, Swift.Error> {
+  ) -> any AsyncSequence<RuleSet, Swift.Error> & Sendable {
     self.listRuleSetsByItems(request: request, options: .init())
   }
 
@@ -240,9 +240,10 @@ extension Clients.RuleSetServiceProtocol {
   /// @Snippet(path: "RuleSetService_ListRuleSets")
   public func listRuleSetsByItems(
     request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RuleSet, Swift.Error> {
+  ) -> any AsyncSequence<RuleSet, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse in
       var request = request
       request.pageToken = token
       return try await self.listRuleSets(request: request, options: options)
@@ -252,7 +253,7 @@ extension Clients.RuleSetServiceProtocol {
 
   public func listRuleSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<RuleSet, Swift.Error> {
+  ) -> any AsyncSequence<RuleSet, Swift.Error> & Sendable {
     let request = ListRuleSetsRequest().with {
       $0.parent = parent
     }

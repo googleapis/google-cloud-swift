@@ -498,7 +498,7 @@
 
     public func listByItems(
       request: InterconnectAttachmentGroupsClient.ListRequest
-    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -507,9 +507,9 @@
     /// @Snippet(path: "interconnectAttachmentGroups_list")
     public func listByItems(
       request: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse in
         var request = request
         request.pageToken = token
@@ -520,7 +520,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachmentGroup, Swift.Error> & Sendable {
       let request = InterconnectAttachmentGroupsClient.ListRequest().with {
         $0.project = project
       }

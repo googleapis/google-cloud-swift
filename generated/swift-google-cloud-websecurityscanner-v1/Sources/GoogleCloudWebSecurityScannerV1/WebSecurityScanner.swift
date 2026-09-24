@@ -281,7 +281,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listScanConfigsByItems(
     request: ListScanConfigsRequest
-  ) -> any AsyncSequence<ScanConfig, Swift.Error> {
+  ) -> any AsyncSequence<ScanConfig, Swift.Error> & Sendable {
     self.listScanConfigsByItems(request: request, options: .init())
   }
 
@@ -290,10 +290,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
   public func listScanConfigsByItems(
     request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ScanConfig, Swift.Error> {
+  ) -> any AsyncSequence<ScanConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listScanConfigs(request: request, options: options)
@@ -351,7 +351,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listScanRunsByItems(
     request: ListScanRunsRequest
-  ) -> any AsyncSequence<ScanRun, Swift.Error> {
+  ) -> any AsyncSequence<ScanRun, Swift.Error> & Sendable {
     self.listScanRunsByItems(request: request, options: .init())
   }
 
@@ -361,9 +361,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
   public func listScanRunsByItems(
     request: ListScanRunsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ScanRun, Swift.Error> {
+  ) -> any AsyncSequence<ScanRun, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse in
       var request = request
       request.pageToken = token
       return try await self.listScanRuns(request: request, options: options)
@@ -397,7 +398,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listCrawledUrlsByItems(
     request: ListCrawledUrlsRequest
-  ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
+  ) -> any AsyncSequence<CrawledUrl, Swift.Error> & Sendable {
     self.listCrawledUrlsByItems(request: request, options: .init())
   }
 
@@ -406,10 +407,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
   public func listCrawledUrlsByItems(
     request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CrawledUrl, Swift.Error> {
+  ) -> any AsyncSequence<CrawledUrl, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse in
       var request = request
       request.pageToken = token
       return try await self.listCrawledUrls(request: request, options: options)
@@ -443,7 +444,7 @@ extension Clients.WebSecurityScannerProtocol {
 
   public func listFindingsByItems(
     request: ListFindingsRequest
-  ) -> any AsyncSequence<Finding, Swift.Error> {
+  ) -> any AsyncSequence<Finding, Swift.Error> & Sendable {
     self.listFindingsByItems(request: request, options: .init())
   }
 
@@ -452,9 +453,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// @Snippet(path: "WebSecurityScanner_ListFindings")
   public func listFindingsByItems(
     request: ListFindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Finding, Swift.Error> {
+  ) -> any AsyncSequence<Finding, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse in
       var request = request
       request.pageToken = token
       return try await self.listFindings(request: request, options: options)

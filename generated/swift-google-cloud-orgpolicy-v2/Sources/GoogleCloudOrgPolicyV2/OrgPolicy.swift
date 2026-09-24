@@ -292,7 +292,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listConstraintsByItems(
     request: ListConstraintsRequest
-  ) -> any AsyncSequence<Constraint, Swift.Error> {
+  ) -> any AsyncSequence<Constraint, Swift.Error> & Sendable {
     self.listConstraintsByItems(request: request, options: .init())
   }
 
@@ -301,9 +301,10 @@ extension Clients.OrgPolicyProtocol {
   /// @Snippet(path: "OrgPolicy_ListConstraints")
   public func listConstraintsByItems(
     request: ListConstraintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Constraint, Swift.Error> {
+  ) -> any AsyncSequence<Constraint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listConstraints(request: request, options: options)
@@ -313,7 +314,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listConstraintsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Constraint, Swift.Error> {
+  ) -> any AsyncSequence<Constraint, Swift.Error> & Sendable {
     let request = ListConstraintsRequest().with {
       $0.parent = parent
     }
@@ -334,7 +335,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listPoliciesByItems(
     request: ListPoliciesRequest
-  ) -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> & Sendable {
     self.listPoliciesByItems(request: request, options: .init())
   }
 
@@ -343,9 +344,9 @@ extension Clients.OrgPolicyProtocol {
   /// @Snippet(path: "OrgPolicy_ListPolicies")
   public func listPoliciesByItems(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse in
       var request = request
       request.pageToken = token
       return try await self.listPolicies(request: request, options: options)
@@ -355,7 +356,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Policy, Swift.Error> {
+  ) -> any AsyncSequence<Policy, Swift.Error> & Sendable {
     let request = ListPoliciesRequest().with {
       $0.parent = parent
     }
@@ -544,7 +545,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listCustomConstraintsByItems(
     request: ListCustomConstraintsRequest
-  ) -> any AsyncSequence<CustomConstraint, Swift.Error> {
+  ) -> any AsyncSequence<CustomConstraint, Swift.Error> & Sendable {
     self.listCustomConstraintsByItems(request: request, options: .init())
   }
 
@@ -554,9 +555,10 @@ extension Clients.OrgPolicyProtocol {
   /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
   public func listCustomConstraintsByItems(
     request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CustomConstraint, Swift.Error> {
+  ) -> any AsyncSequence<CustomConstraint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse in
       var request = request
       request.pageToken = token
       return try await self.listCustomConstraints(request: request, options: options)
@@ -566,7 +568,7 @@ extension Clients.OrgPolicyProtocol {
 
   public func listCustomConstraintsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CustomConstraint, Swift.Error> {
+  ) -> any AsyncSequence<CustomConstraint, Swift.Error> & Sendable {
     let request = ListCustomConstraintsRequest().with {
       $0.parent = parent
     }

@@ -1718,7 +1718,7 @@ extension Clients.AMLProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -1727,9 +1727,10 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudFinancialServicesV1.ListInstancesResponse in
       var request = request
       request.pageToken = token
       return try await self.listInstances(request: request, options: options)
@@ -1739,7 +1740,7 @@ extension Clients.AMLProtocol {
 
   public func listInstancesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Instance, Swift.Error> {
+  ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
@@ -1984,7 +1985,7 @@ extension Clients.AMLProtocol {
 
   public func listDatasetsByItems(
     request: ListDatasetsRequest
-  ) -> any AsyncSequence<Dataset, Swift.Error> {
+  ) -> any AsyncSequence<Dataset, Swift.Error> & Sendable {
     self.listDatasetsByItems(request: request, options: .init())
   }
 
@@ -1993,9 +1994,10 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListDatasets")
   public func listDatasetsByItems(
     request: ListDatasetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Dataset, Swift.Error> {
+  ) -> any AsyncSequence<Dataset, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudFinancialServicesV1.ListDatasetsResponse in
       var request = request
       request.pageToken = token
       return try await self.listDatasets(request: request, options: options)
@@ -2005,7 +2007,7 @@ extension Clients.AMLProtocol {
 
   public func listDatasetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Dataset, Swift.Error> {
+  ) -> any AsyncSequence<Dataset, Swift.Error> & Sendable {
     let request = ListDatasetsRequest().with {
       $0.parent = parent
     }
@@ -2164,7 +2166,7 @@ extension Clients.AMLProtocol {
 
   public func listModelsByItems(
     request: ListModelsRequest
-  ) -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> & Sendable {
     self.listModelsByItems(request: request, options: .init())
   }
 
@@ -2173,9 +2175,10 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListModels")
   public func listModelsByItems(
     request: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudFinancialServicesV1.ListModelsResponse in
       var request = request
       request.pageToken = token
       return try await self.listModels(request: request, options: options)
@@ -2185,7 +2188,7 @@ extension Clients.AMLProtocol {
 
   public func listModelsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Model, Swift.Error> {
+  ) -> any AsyncSequence<Model, Swift.Error> & Sendable {
     let request = ListModelsRequest().with {
       $0.parent = parent
     }
@@ -2378,7 +2381,7 @@ extension Clients.AMLProtocol {
 
   public func listEngineConfigsByItems(
     request: ListEngineConfigsRequest
-  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> & Sendable {
     self.listEngineConfigsByItems(request: request, options: .init())
   }
 
@@ -2387,10 +2390,10 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListEngineConfigs")
   public func listEngineConfigsByItems(
     request: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEngineConfigs(request: request, options: options)
@@ -2400,7 +2403,7 @@ extension Clients.AMLProtocol {
 
   public func listEngineConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EngineConfig, Swift.Error> {
+  ) -> any AsyncSequence<EngineConfig, Swift.Error> & Sendable {
     let request = ListEngineConfigsRequest().with {
       $0.parent = parent
     }
@@ -2621,7 +2624,7 @@ extension Clients.AMLProtocol {
 
   public func listEngineVersionsByItems(
     request: ListEngineVersionsRequest
-  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> & Sendable {
     self.listEngineVersionsByItems(request: request, options: .init())
   }
 
@@ -2630,9 +2633,9 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListEngineVersions")
   public func listEngineVersionsByItems(
     request: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse in
       var request = request
       request.pageToken = token
@@ -2643,7 +2646,7 @@ extension Clients.AMLProtocol {
 
   public func listEngineVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EngineVersion, Swift.Error> {
+  ) -> any AsyncSequence<EngineVersion, Swift.Error> & Sendable {
     let request = ListEngineVersionsRequest().with {
       $0.parent = parent
     }
@@ -2664,7 +2667,7 @@ extension Clients.AMLProtocol {
 
   public func listPredictionResultsByItems(
     request: ListPredictionResultsRequest
-  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> & Sendable {
     self.listPredictionResultsByItems(request: request, options: .init())
   }
 
@@ -2673,9 +2676,9 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListPredictionResults")
   public func listPredictionResultsByItems(
     request: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse in
       var request = request
       request.pageToken = token
@@ -2686,7 +2689,7 @@ extension Clients.AMLProtocol {
 
   public func listPredictionResultsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PredictionResult, Swift.Error> {
+  ) -> any AsyncSequence<PredictionResult, Swift.Error> & Sendable {
     let request = ListPredictionResultsRequest().with {
       $0.parent = parent
     }
@@ -2887,7 +2890,7 @@ extension Clients.AMLProtocol {
 
   public func listBacktestResultsByItems(
     request: ListBacktestResultsRequest
-  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> & Sendable {
     self.listBacktestResultsByItems(request: request, options: .init())
   }
 
@@ -2896,9 +2899,9 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListBacktestResults")
   public func listBacktestResultsByItems(
     request: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse in
       var request = request
       request.pageToken = token
@@ -2909,7 +2912,7 @@ extension Clients.AMLProtocol {
 
   public func listBacktestResultsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BacktestResult, Swift.Error> {
+  ) -> any AsyncSequence<BacktestResult, Swift.Error> & Sendable {
     let request = ListBacktestResultsRequest().with {
       $0.parent = parent
     }
@@ -3109,7 +3112,7 @@ extension Clients.AMLProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -3118,9 +3121,9 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -3154,7 +3157,7 @@ extension Clients.AMLProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -3165,9 +3168,9 @@ extension Clients.AMLProtocol {
   /// @Snippet(path: "AML_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -3178,7 +3181,7 @@ extension Clients.AMLProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

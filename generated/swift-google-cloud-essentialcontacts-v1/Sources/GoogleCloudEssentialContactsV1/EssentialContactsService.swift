@@ -214,7 +214,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func listContactsByItems(
     request: ListContactsRequest
-  ) -> any AsyncSequence<Contact, Swift.Error> {
+  ) -> any AsyncSequence<Contact, Swift.Error> & Sendable {
     self.listContactsByItems(request: request, options: .init())
   }
 
@@ -223,9 +223,10 @@ extension Clients.EssentialContactsServiceProtocol {
   /// @Snippet(path: "EssentialContactsService_ListContacts")
   public func listContactsByItems(
     request: ListContactsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Contact, Swift.Error> {
+  ) -> any AsyncSequence<Contact, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEssentialContactsV1.ListContactsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudEssentialContactsV1.ListContactsResponse in
       var request = request
       request.pageToken = token
       return try await self.listContacts(request: request, options: options)
@@ -235,7 +236,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func listContactsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Contact, Swift.Error> {
+  ) -> any AsyncSequence<Contact, Swift.Error> & Sendable {
     let request = ListContactsRequest().with {
       $0.parent = parent
     }
@@ -296,7 +297,7 @@ extension Clients.EssentialContactsServiceProtocol {
 
   public func computeContactsByItems(
     request: ComputeContactsRequest
-  ) -> any AsyncSequence<Contact, Swift.Error> {
+  ) -> any AsyncSequence<Contact, Swift.Error> & Sendable {
     self.computeContactsByItems(request: request, options: .init())
   }
 
@@ -307,10 +308,10 @@ extension Clients.EssentialContactsServiceProtocol {
   /// @Snippet(path: "EssentialContactsService_ComputeContacts")
   public func computeContactsByItems(
     request: ComputeContactsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Contact, Swift.Error> {
+  ) -> any AsyncSequence<Contact, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEssentialContactsV1.ComputeContactsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudEssentialContactsV1.ComputeContactsResponse in
       var request = request
       request.pageToken = token
       return try await self.computeContacts(request: request, options: options)

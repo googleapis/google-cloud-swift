@@ -150,7 +150,7 @@
 
     public func listByItems(
       request: GlobalOrganizationOperationsClient.ListRequest
-    ) -> any AsyncSequence<Operation, Swift.Error> {
+    ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -160,8 +160,9 @@
     /// @Snippet(path: "globalOrganizationOperations_list")
     public func listByItems(
       request: GlobalOrganizationOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Operation, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
+    ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.OperationList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)

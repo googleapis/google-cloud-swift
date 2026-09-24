@@ -251,7 +251,7 @@ extension Clients.LoggingServiceV2Protocol {
 
   public func listLogEntriesByItems(
     request: ListLogEntriesRequest
-  ) -> any AsyncSequence<LogEntry, Swift.Error> {
+  ) -> any AsyncSequence<LogEntry, Swift.Error> & Sendable {
     self.listLogEntriesByItems(request: request, options: .init())
   }
 
@@ -263,9 +263,9 @@ extension Clients.LoggingServiceV2Protocol {
   /// @Snippet(path: "LoggingServiceV2_ListLogEntries")
   public func listLogEntriesByItems(
     request: ListLogEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogEntry, Swift.Error> {
+  ) -> any AsyncSequence<LogEntry, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogEntriesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogEntriesResponse in
       var request = request
       request.pageToken = token
       return try await self.listLogEntries(request: request, options: options)
@@ -277,7 +277,7 @@ extension Clients.LoggingServiceV2Protocol {
     resourceNames: [Swift.String],
     filter: Swift.String,
     orderBy: Swift.String,
-  ) -> any AsyncSequence<LogEntry, Swift.Error> {
+  ) -> any AsyncSequence<LogEntry, Swift.Error> & Sendable {
     let request = ListLogEntriesRequest().with {
       $0.resourceNames = resourceNames
       $0.filter = filter
@@ -300,7 +300,7 @@ extension Clients.LoggingServiceV2Protocol {
 
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest
-  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
     self.listMonitoredResourceDescriptorsByItems(request: request, options: .init())
   }
 
@@ -309,9 +309,9 @@ extension Clients.LoggingServiceV2Protocol {
   /// @Snippet(path: "LoggingServiceV2_ListMonitoredResourceDescriptors")
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> {
+  ) -> any AsyncSequence<GoogleApi.MonitoredResourceDescriptor, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudLoggingV2.ListMonitoredResourceDescriptorsResponse in
       var request = request
       request.pageToken = token
@@ -367,7 +367,7 @@ extension Clients.LoggingServiceV2Protocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -378,9 +378,9 @@ extension Clients.LoggingServiceV2Protocol {
   /// @Snippet(path: "LoggingServiceV2_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -391,7 +391,7 @@ extension Clients.LoggingServiceV2Protocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

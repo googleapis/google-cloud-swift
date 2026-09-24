@@ -459,7 +459,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listFunctionsByItems(
     request: ListFunctionsRequest
-  ) -> any AsyncSequence<Function, Swift.Error> {
+  ) -> any AsyncSequence<Function, Swift.Error> & Sendable {
     self.listFunctionsByItems(request: request, options: .init())
   }
 
@@ -468,9 +468,10 @@ extension Clients.FunctionServiceProtocol {
   /// @Snippet(path: "FunctionService_ListFunctions")
   public func listFunctionsByItems(
     request: ListFunctionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Function, Swift.Error> {
+  ) -> any AsyncSequence<Function, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudFunctionsV2.ListFunctionsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudFunctionsV2.ListFunctionsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listFunctions(request: request, options: options)
@@ -480,7 +481,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listFunctionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Function, Swift.Error> {
+  ) -> any AsyncSequence<Function, Swift.Error> & Sendable {
     let request = ListFunctionsRequest().with {
       $0.parent = parent
     }
@@ -663,7 +664,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -672,9 +673,9 @@ extension Clients.FunctionServiceProtocol {
   /// @Snippet(path: "FunctionService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -732,7 +733,7 @@ extension Clients.FunctionServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -743,9 +744,9 @@ extension Clients.FunctionServiceProtocol {
   /// @Snippet(path: "FunctionService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -756,7 +757,7 @@ extension Clients.FunctionServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

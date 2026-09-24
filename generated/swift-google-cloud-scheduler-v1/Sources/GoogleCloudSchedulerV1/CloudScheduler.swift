@@ -246,7 +246,7 @@ extension Clients.CloudSchedulerProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -255,8 +255,9 @@ extension Clients.CloudSchedulerProtocol {
   /// @Snippet(path: "CloudScheduler_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudSchedulerV1.ListJobsResponse in
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudSchedulerV1.ListJobsResponse in
       var request = request
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
@@ -266,7 +267,7 @@ extension Clients.CloudSchedulerProtocol {
 
   public func listJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
@@ -424,7 +425,7 @@ extension Clients.CloudSchedulerProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -433,9 +434,9 @@ extension Clients.CloudSchedulerProtocol {
   /// @Snippet(path: "CloudScheduler_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)

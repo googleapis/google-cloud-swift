@@ -358,7 +358,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func listDataTablesByItems(
     request: ListDataTablesRequest
-  ) -> any AsyncSequence<DataTable, Swift.Error> {
+  ) -> any AsyncSequence<DataTable, Swift.Error> & Sendable {
     self.listDataTablesByItems(request: request, options: .init())
   }
 
@@ -367,9 +367,10 @@ extension Clients.DataTableServiceProtocol {
   /// @Snippet(path: "DataTableService_ListDataTables")
   public func listDataTablesByItems(
     request: ListDataTablesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataTable, Swift.Error> {
+  ) -> any AsyncSequence<DataTable, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listDataTables(request: request, options: options)
@@ -379,7 +380,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func listDataTablesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataTable, Swift.Error> {
+  ) -> any AsyncSequence<DataTable, Swift.Error> & Sendable {
     let request = ListDataTablesRequest().with {
       $0.parent = parent
     }
@@ -511,7 +512,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func listDataTableRowsByItems(
     request: ListDataTableRowsRequest
-  ) -> any AsyncSequence<DataTableRow, Swift.Error> {
+  ) -> any AsyncSequence<DataTableRow, Swift.Error> & Sendable {
     self.listDataTableRowsByItems(request: request, options: .init())
   }
 
@@ -520,9 +521,10 @@ extension Clients.DataTableServiceProtocol {
   /// @Snippet(path: "DataTableService_ListDataTableRows")
   public func listDataTableRowsByItems(
     request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataTableRow, Swift.Error> {
+  ) -> any AsyncSequence<DataTableRow, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudChronicleV1.ListDataTableRowsResponse in
       var request = request
       request.pageToken = token
       return try await self.listDataTableRows(request: request, options: options)
@@ -532,7 +534,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func listDataTableRowsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataTableRow, Swift.Error> {
+  ) -> any AsyncSequence<DataTableRow, Swift.Error> & Sendable {
     let request = ListDataTableRowsRequest().with {
       $0.parent = parent
     }
@@ -706,7 +708,7 @@ extension Clients.DataTableServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -717,9 +719,9 @@ extension Clients.DataTableServiceProtocol {
   /// @Snippet(path: "DataTableService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -730,7 +732,7 @@ extension Clients.DataTableServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

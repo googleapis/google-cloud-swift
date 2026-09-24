@@ -251,7 +251,7 @@ extension Clients.AccessApprovalProtocol {
 
   public func listApprovalRequestsByItems(
     request: ListApprovalRequestsMessage
-  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
+  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> & Sendable {
     self.listApprovalRequestsByItems(request: request, options: .init())
   }
 
@@ -262,10 +262,10 @@ extension Clients.AccessApprovalProtocol {
   /// @Snippet(path: "AccessApproval_ListApprovalRequests")
   public func listApprovalRequestsByItems(
     request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
+  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse in
       var request = request
       request.pageToken = token
       return try await self.listApprovalRequests(request: request, options: options)
@@ -275,7 +275,7 @@ extension Clients.AccessApprovalProtocol {
 
   public func listApprovalRequestsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> {
+  ) -> any AsyncSequence<ApprovalRequest, Swift.Error> & Sendable {
     let request = ListApprovalRequestsMessage().with {
       $0.parent = parent
     }

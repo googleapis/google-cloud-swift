@@ -159,7 +159,7 @@ extension Clients.UptimeCheckServiceProtocol {
 
   public func listUptimeCheckConfigsByItems(
     request: ListUptimeCheckConfigsRequest
-  ) -> any AsyncSequence<UptimeCheckConfig, Swift.Error> {
+  ) -> any AsyncSequence<UptimeCheckConfig, Swift.Error> & Sendable {
     self.listUptimeCheckConfigsByItems(request: request, options: .init())
   }
 
@@ -169,10 +169,10 @@ extension Clients.UptimeCheckServiceProtocol {
   /// @Snippet(path: "UptimeCheckService_ListUptimeCheckConfigs")
   public func listUptimeCheckConfigsByItems(
     request: ListUptimeCheckConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<UptimeCheckConfig, Swift.Error> {
+  ) -> any AsyncSequence<UptimeCheckConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckConfigsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudMonitoringV3.ListUptimeCheckConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listUptimeCheckConfigs(request: request, options: options)
@@ -182,7 +182,7 @@ extension Clients.UptimeCheckServiceProtocol {
 
   public func listUptimeCheckConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<UptimeCheckConfig, Swift.Error> {
+  ) -> any AsyncSequence<UptimeCheckConfig, Swift.Error> & Sendable {
     let request = ListUptimeCheckConfigsRequest().with {
       $0.parent = parent
     }
@@ -287,7 +287,7 @@ extension Clients.UptimeCheckServiceProtocol {
 
   public func listUptimeCheckIpsByItems(
     request: ListUptimeCheckIpsRequest
-  ) -> any AsyncSequence<UptimeCheckIp, Swift.Error> {
+  ) -> any AsyncSequence<UptimeCheckIp, Swift.Error> & Sendable {
     self.listUptimeCheckIpsByItems(request: request, options: .init())
   }
 
@@ -296,9 +296,10 @@ extension Clients.UptimeCheckServiceProtocol {
   /// @Snippet(path: "UptimeCheckService_ListUptimeCheckIps")
   public func listUptimeCheckIpsByItems(
     request: ListUptimeCheckIpsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<UptimeCheckIp, Swift.Error> {
+  ) -> any AsyncSequence<UptimeCheckIp, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckIpsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudMonitoringV3.ListUptimeCheckIpsResponse in
       var request = request
       request.pageToken = token
       return try await self.listUptimeCheckIps(request: request, options: options)

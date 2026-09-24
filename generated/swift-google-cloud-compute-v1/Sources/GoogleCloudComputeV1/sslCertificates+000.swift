@@ -231,7 +231,7 @@
 
     public func aggregatedListByItems(
       request: SslCertificatesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -244,9 +244,10 @@
     /// @Snippet(path: "sslCertificates_aggregatedList")
     public func aggregatedListByItems(
       request: SslCertificatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.SslCertificateAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -256,7 +257,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, SslCertificatesScopedList), Swift.Error> & Sendable {
       let request = SslCertificatesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -380,7 +381,7 @@
 
     public func listByItems(
       request: SslCertificatesClient.ListRequest
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -390,9 +391,9 @@
     /// @Snippet(path: "sslCertificates_list")
     public func listByItems(
       request: SslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -402,7 +403,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> {
+    ) -> any AsyncSequence<SslCertificate, Swift.Error> & Sendable {
       let request = SslCertificatesClient.ListRequest().with {
         $0.project = project
       }

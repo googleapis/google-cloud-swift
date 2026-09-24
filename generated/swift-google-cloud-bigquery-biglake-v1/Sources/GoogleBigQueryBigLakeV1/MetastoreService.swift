@@ -348,7 +348,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func listCatalogsByItems(
     request: ListCatalogsRequest
-  ) -> any AsyncSequence<Catalog, Swift.Error> {
+  ) -> any AsyncSequence<Catalog, Swift.Error> & Sendable {
     self.listCatalogsByItems(request: request, options: .init())
   }
 
@@ -357,9 +357,10 @@ extension Clients.MetastoreServiceProtocol {
   /// @Snippet(path: "MetastoreService_ListCatalogs")
   public func listCatalogsByItems(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Catalog, Swift.Error> {
+  ) -> any AsyncSequence<Catalog, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listCatalogs(request: request, options: options)
@@ -369,7 +370,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func listCatalogsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Catalog, Swift.Error> {
+  ) -> any AsyncSequence<Catalog, Swift.Error> & Sendable {
     let request = ListCatalogsRequest().with {
       $0.parent = parent
     }
@@ -480,7 +481,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func listDatabasesByItems(
     request: ListDatabasesRequest
-  ) -> any AsyncSequence<Database, Swift.Error> {
+  ) -> any AsyncSequence<Database, Swift.Error> & Sendable {
     self.listDatabasesByItems(request: request, options: .init())
   }
 
@@ -489,9 +490,10 @@ extension Clients.MetastoreServiceProtocol {
   /// @Snippet(path: "MetastoreService_ListDatabases")
   public func listDatabasesByItems(
     request: ListDatabasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Database, Swift.Error> {
+  ) -> any AsyncSequence<Database, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listDatabases(request: request, options: options)
@@ -501,7 +503,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func listDatabasesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Database, Swift.Error> {
+  ) -> any AsyncSequence<Database, Swift.Error> & Sendable {
     let request = ListDatabasesRequest().with {
       $0.parent = parent
     }
@@ -629,7 +631,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func listTablesByItems(
     request: ListTablesRequest
-  ) -> any AsyncSequence<Table, Swift.Error> {
+  ) -> any AsyncSequence<Table, Swift.Error> & Sendable {
     self.listTablesByItems(request: request, options: .init())
   }
 
@@ -638,9 +640,9 @@ extension Clients.MetastoreServiceProtocol {
   /// @Snippet(path: "MetastoreService_ListTables")
   public func listTablesByItems(
     request: ListTablesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Table, Swift.Error> {
+  ) -> any AsyncSequence<Table, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse in
       var request = request
       request.pageToken = token
       return try await self.listTables(request: request, options: options)
@@ -650,7 +652,7 @@ extension Clients.MetastoreServiceProtocol {
 
   public func listTablesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Table, Swift.Error> {
+  ) -> any AsyncSequence<Table, Swift.Error> & Sendable {
     let request = ListTablesRequest().with {
       $0.parent = parent
     }

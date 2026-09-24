@@ -662,7 +662,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listCollectionsByItems(
     request: ListCollectionsRequest
-  ) -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> & Sendable {
     self.listCollectionsByItems(request: request, options: .init())
   }
 
@@ -671,9 +671,10 @@ extension Clients.VectorSearchServiceProtocol {
   /// @Snippet(path: "VectorSearchService_ListCollections")
   public func listCollectionsByItems(
     request: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVectorSearchV1.ListCollectionsResponse in
       var request = request
       request.pageToken = token
       return try await self.listCollections(request: request, options: options)
@@ -683,7 +684,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listCollectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Collection, Swift.Error> {
+  ) -> any AsyncSequence<Collection, Swift.Error> & Sendable {
     let request = ListCollectionsRequest().with {
       $0.parent = parent
     }
@@ -842,7 +843,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listIndexesByItems(
     request: ListIndexesRequest
-  ) -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
     self.listIndexesByItems(request: request, options: .init())
   }
 
@@ -851,9 +852,10 @@ extension Clients.VectorSearchServiceProtocol {
   /// @Snippet(path: "VectorSearchService_ListIndexes")
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listIndexes(request: request, options: options)
@@ -863,7 +865,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listIndexesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
     let request = ListIndexesRequest().with {
       $0.parent = parent
     }
@@ -1072,7 +1074,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1098,9 +1100,9 @@ extension Clients.VectorSearchServiceProtocol {
   /// @Snippet(path: "VectorSearchService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -1134,7 +1136,7 @@ extension Clients.VectorSearchServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1145,9 +1147,9 @@ extension Clients.VectorSearchServiceProtocol {
   /// @Snippet(path: "VectorSearchService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1158,7 +1160,7 @@ extension Clients.VectorSearchServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

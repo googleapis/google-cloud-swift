@@ -374,7 +374,7 @@
 
     public func listByItems(
       request: CrossSiteNetworksClient.ListRequest
-    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -383,9 +383,9 @@
     /// @Snippet(path: "crossSiteNetworks_list")
     public func listByItems(
       request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.CrossSiteNetworkList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -395,7 +395,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> {
+    ) -> any AsyncSequence<CrossSiteNetwork, Swift.Error> & Sendable {
       let request = CrossSiteNetworksClient.ListRequest().with {
         $0.project = project
       }

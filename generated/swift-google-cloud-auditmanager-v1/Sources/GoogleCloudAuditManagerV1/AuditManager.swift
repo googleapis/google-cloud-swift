@@ -474,7 +474,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditSchedulesByItems(
     request: ListAuditSchedulesRequest
-  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> & Sendable {
     self.listAuditSchedulesByItems(request: request, options: .init())
   }
 
@@ -483,9 +483,10 @@ extension Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListAuditSchedules")
   public func listAuditSchedulesByItems(
     request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse in
       var request = request
       request.pageToken = token
       return try await self.listAuditSchedules(request: request, options: options)
@@ -495,7 +496,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditSchedulesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AuditSchedule, Swift.Error> {
+  ) -> any AsyncSequence<AuditSchedule, Swift.Error> & Sendable {
     let request = ListAuditSchedulesRequest().with {
       $0.parent = parent
     }
@@ -613,7 +614,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditReportsByItems(
     request: ListAuditReportsRequest
-  ) -> any AsyncSequence<AuditReport, Swift.Error> {
+  ) -> any AsyncSequence<AuditReport, Swift.Error> & Sendable {
     self.listAuditReportsByItems(request: request, options: .init())
   }
 
@@ -623,9 +624,10 @@ extension Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListAuditReports")
   public func listAuditReportsByItems(
     request: ListAuditReportsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AuditReport, Swift.Error> {
+  ) -> any AsyncSequence<AuditReport, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAuditManagerV1.ListAuditReportsResponse in
       var request = request
       request.pageToken = token
       return try await self.listAuditReports(request: request, options: options)
@@ -635,7 +637,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listAuditReportsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AuditReport, Swift.Error> {
+  ) -> any AsyncSequence<AuditReport, Swift.Error> & Sendable {
     let request = ListAuditReportsRequest().with {
       $0.parent = parent
     }
@@ -698,7 +700,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listResourceEnrollmentStatusesByItems(
     request: ListResourceEnrollmentStatusesRequest
-  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> & Sendable {
     self.listResourceEnrollmentStatusesByItems(request: request, options: .init())
   }
 
@@ -708,9 +710,9 @@ extension Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListResourceEnrollmentStatuses")
   public func listResourceEnrollmentStatusesByItems(
     request: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse in
       var request = request
       request.pageToken = token
@@ -721,7 +723,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listResourceEnrollmentStatusesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> {
+  ) -> any AsyncSequence<ResourceEnrollmentStatus, Swift.Error> & Sendable {
     let request = ListResourceEnrollmentStatusesRequest().with {
       $0.parent = parent
     }
@@ -742,7 +744,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listControlsByItems(
     request: ListControlsRequest
-  ) -> any AsyncSequence<Control, Swift.Error> {
+  ) -> any AsyncSequence<Control, Swift.Error> & Sendable {
     self.listControlsByItems(request: request, options: .init())
   }
 
@@ -752,9 +754,10 @@ extension Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListControls")
   public func listControlsByItems(
     request: ListControlsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Control, Swift.Error> {
+  ) -> any AsyncSequence<Control, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listControls(request: request, options: options)
@@ -764,7 +767,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listControlsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Control, Swift.Error> {
+  ) -> any AsyncSequence<Control, Swift.Error> & Sendable {
     let request = ListControlsRequest().with {
       $0.parent = parent
     }
@@ -785,7 +788,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -811,9 +814,9 @@ extension Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -847,7 +850,7 @@ extension Clients.AuditManagerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -858,9 +861,9 @@ extension Clients.AuditManagerProtocol {
   /// @Snippet(path: "AuditManager_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -871,7 +874,7 @@ extension Clients.AuditManagerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

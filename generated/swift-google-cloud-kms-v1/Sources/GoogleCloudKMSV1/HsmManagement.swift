@@ -522,7 +522,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstancesByItems(
     request: ListSingleTenantHsmInstancesRequest
-  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
+  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> & Sendable {
     self.listSingleTenantHsmInstancesByItems(request: request, options: .init())
   }
 
@@ -534,9 +534,10 @@ extension Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
   public func listSingleTenantHsmInstancesByItems(
     request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
+  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse in
       var request = request
       request.pageToken = token
       return try await self.listSingleTenantHsmInstances(request: request, options: options)
@@ -546,7 +547,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstancesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> {
+  ) -> any AsyncSequence<SingleTenantHsmInstance, Swift.Error> & Sendable {
     let request = ListSingleTenantHsmInstancesRequest().with {
       $0.parent = parent
     }
@@ -760,7 +761,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstanceProposalsByItems(
     request: ListSingleTenantHsmInstanceProposalsRequest
-  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
+  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> & Sendable {
     self.listSingleTenantHsmInstanceProposalsByItems(request: request, options: .init())
   }
 
@@ -772,9 +773,9 @@ extension Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
   public func listSingleTenantHsmInstanceProposalsByItems(
     request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
+  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse in
       var request = request
       request.pageToken = token
@@ -785,7 +786,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listSingleTenantHsmInstanceProposalsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> {
+  ) -> any AsyncSequence<SingleTenantHsmInstanceProposal, Swift.Error> & Sendable {
     let request = ListSingleTenantHsmInstanceProposalsRequest().with {
       $0.parent = parent
     }
@@ -827,7 +828,7 @@ extension Clients.HsmManagementProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -853,9 +854,9 @@ extension Clients.HsmManagementProtocol {
   /// @Snippet(path: "HsmManagement_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)

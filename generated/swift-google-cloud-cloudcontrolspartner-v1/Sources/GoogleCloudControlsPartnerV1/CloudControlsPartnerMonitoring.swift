@@ -99,7 +99,7 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
 
   public func listViolationsByItems(
     request: ListViolationsRequest
-  ) -> any AsyncSequence<Violation, Swift.Error> {
+  ) -> any AsyncSequence<Violation, Swift.Error> & Sendable {
     self.listViolationsByItems(request: request, options: .init())
   }
 
@@ -114,9 +114,10 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
   /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
   public func listViolationsByItems(
     request: ListViolationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Violation, Swift.Error> {
+  ) -> any AsyncSequence<Violation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudControlsPartnerV1.ListViolationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listViolations(request: request, options: options)
@@ -126,7 +127,7 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
 
   public func listViolationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Violation, Swift.Error> {
+  ) -> any AsyncSequence<Violation, Swift.Error> & Sendable {
     let request = ListViolationsRequest().with {
       $0.parent = parent
     }

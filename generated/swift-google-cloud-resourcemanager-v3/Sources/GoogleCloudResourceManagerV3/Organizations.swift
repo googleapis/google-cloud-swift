@@ -186,7 +186,7 @@ extension Clients.OrganizationsProtocol {
 
   public func searchOrganizationsByItems(
     request: SearchOrganizationsRequest
-  ) -> any AsyncSequence<Organization, Swift.Error> {
+  ) -> any AsyncSequence<Organization, Swift.Error> & Sendable {
     self.searchOrganizationsByItems(request: request, options: .init())
   }
 
@@ -201,10 +201,10 @@ extension Clients.OrganizationsProtocol {
   /// @Snippet(path: "Organizations_SearchOrganizations")
   public func searchOrganizationsByItems(
     request: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Organization, Swift.Error> {
+  ) -> any AsyncSequence<Organization, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse in
       var request = request
       request.pageToken = token
       return try await self.searchOrganizations(request: request, options: options)
@@ -214,7 +214,7 @@ extension Clients.OrganizationsProtocol {
 
   public func searchOrganizationsByItems(
     query: Swift.String,
-  ) -> any AsyncSequence<Organization, Swift.Error> {
+  ) -> any AsyncSequence<Organization, Swift.Error> & Sendable {
     let request = SearchOrganizationsRequest().with {
       $0.query = query
     }

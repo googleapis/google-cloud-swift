@@ -211,7 +211,7 @@ extension Clients.GkeInferenceQuickstartProtocol {
 
   public func fetchProfilesByItems(
     request: FetchProfilesRequest
-  ) -> any AsyncSequence<Profile, Swift.Error> {
+  ) -> any AsyncSequence<Profile, Swift.Error> & Sendable {
     self.fetchProfilesByItems(request: request, options: .init())
   }
 
@@ -230,9 +230,10 @@ extension Clients.GkeInferenceQuickstartProtocol {
   /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
   public func fetchProfilesByItems(
     request: FetchProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Profile, Swift.Error> {
+  ) -> any AsyncSequence<Profile, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudGKERecommenderV1.FetchProfilesResponse in
       var request = request
       request.pageToken = token
       return try await self.fetchProfiles(request: request, options: options)

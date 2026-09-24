@@ -456,7 +456,7 @@
 
     public func listByItems(
       request: RegionHealthChecksClient.ListRequest
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -466,8 +466,9 @@
     /// @Snippet(path: "regionHealthChecks_list")
     public func listByItems(
       request: RegionHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -478,7 +479,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> {
+    ) -> any AsyncSequence<HealthCheck, Swift.Error> & Sendable {
       let request = RegionHealthChecksClient.ListRequest().with {
         $0.project = project
         $0.region = region

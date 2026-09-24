@@ -426,7 +426,7 @@ extension Clients.ApiKeysProtocol {
 
   public func listKeysByItems(
     request: ListKeysRequest
-  ) -> any AsyncSequence<Key, Swift.Error> {
+  ) -> any AsyncSequence<Key, Swift.Error> & Sendable {
     self.listKeysByItems(request: request, options: .init())
   }
 
@@ -439,8 +439,9 @@ extension Clients.ApiKeysProtocol {
   /// @Snippet(path: "ApiKeys_ListKeys")
   public func listKeysByItems(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Key, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
+  ) -> any AsyncSequence<Key, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleApiApiKeysV1.ListKeysResponse in
       var request = request
       request.pageToken = token
       return try await self.listKeys(request: request, options: options)
@@ -450,7 +451,7 @@ extension Clients.ApiKeysProtocol {
 
   public func listKeysByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Key, Swift.Error> {
+  ) -> any AsyncSequence<Key, Swift.Error> & Sendable {
     let request = ListKeysRequest().with {
       $0.parent = parent
     }

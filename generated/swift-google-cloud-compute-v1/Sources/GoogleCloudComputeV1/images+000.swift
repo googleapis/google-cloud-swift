@@ -636,7 +636,7 @@
 
     public func listByItems(
       request: ImagesClient.ListRequest
-    ) -> any AsyncSequence<Image, Swift.Error> {
+    ) -> any AsyncSequence<Image, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -651,8 +651,9 @@
     /// @Snippet(path: "images_list")
     public func listByItems(
       request: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Image, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.ImageList in
+    ) -> any AsyncSequence<Image, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ImageList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -662,7 +663,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<Image, Swift.Error> {
+    ) -> any AsyncSequence<Image, Swift.Error> & Sendable {
       let request = ImagesClient.ListRequest().with {
         $0.project = project
       }

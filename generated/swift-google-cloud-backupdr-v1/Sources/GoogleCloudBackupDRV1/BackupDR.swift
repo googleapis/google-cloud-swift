@@ -1420,7 +1420,7 @@ extension Clients.BackupDRProtocol {
 
   public func listManagementServersByItems(
     request: ListManagementServersRequest
-  ) -> any AsyncSequence<ManagementServer, Swift.Error> {
+  ) -> any AsyncSequence<ManagementServer, Swift.Error> & Sendable {
     self.listManagementServersByItems(request: request, options: .init())
   }
 
@@ -1429,9 +1429,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListManagementServers")
   public func listManagementServersByItems(
     request: ListManagementServersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ManagementServer, Swift.Error> {
+  ) -> any AsyncSequence<ManagementServer, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListManagementServersResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListManagementServersResponse in
       var request = request
       request.pageToken = token
       return try await self.listManagementServers(request: request, options: options)
@@ -1441,7 +1442,7 @@ extension Clients.BackupDRProtocol {
 
   public func listManagementServersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ManagementServer, Swift.Error> {
+  ) -> any AsyncSequence<ManagementServer, Swift.Error> & Sendable {
     let request = ListManagementServersRequest().with {
       $0.parent = parent
     }
@@ -1602,7 +1603,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupVaultsByItems(
     request: ListBackupVaultsRequest
-  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> & Sendable {
     self.listBackupVaultsByItems(request: request, options: .init())
   }
 
@@ -1611,9 +1612,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListBackupVaults")
   public func listBackupVaultsByItems(
     request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupVaultsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupVaultsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listBackupVaults(request: request, options: options)
@@ -1623,7 +1625,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupVaultsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> & Sendable {
     let request = ListBackupVaultsRequest().with {
       $0.parent = parent
     }
@@ -1644,7 +1646,7 @@ extension Clients.BackupDRProtocol {
 
   public func fetchUsableBackupVaultsByItems(
     request: FetchUsableBackupVaultsRequest
-  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> & Sendable {
     self.fetchUsableBackupVaultsByItems(request: request, options: .init())
   }
 
@@ -1655,9 +1657,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_FetchUsableBackupVaults")
   public func fetchUsableBackupVaultsByItems(
     request: FetchUsableBackupVaultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.FetchUsableBackupVaultsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.FetchUsableBackupVaultsResponse in
       var request = request
       request.pageToken = token
       return try await self.fetchUsableBackupVaults(request: request, options: options)
@@ -1667,7 +1670,7 @@ extension Clients.BackupDRProtocol {
 
   public func fetchUsableBackupVaultsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackupVault, Swift.Error> {
+  ) -> any AsyncSequence<BackupVault, Swift.Error> & Sendable {
     let request = FetchUsableBackupVaultsRequest().with {
       $0.parent = parent
     }
@@ -1785,7 +1788,7 @@ extension Clients.BackupDRProtocol {
 
   public func listDataSourcesByItems(
     request: ListDataSourcesRequest
-  ) -> any AsyncSequence<DataSource, Swift.Error> {
+  ) -> any AsyncSequence<DataSource, Swift.Error> & Sendable {
     self.listDataSourcesByItems(request: request, options: .init())
   }
 
@@ -1794,9 +1797,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListDataSources")
   public func listDataSourcesByItems(
     request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSource, Swift.Error> {
+  ) -> any AsyncSequence<DataSource, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListDataSourcesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListDataSourcesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listDataSources(request: request, options: options)
@@ -1806,7 +1810,7 @@ extension Clients.BackupDRProtocol {
 
   public func listDataSourcesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataSource, Swift.Error> {
+  ) -> any AsyncSequence<DataSource, Swift.Error> & Sendable {
     let request = ListDataSourcesRequest().with {
       $0.parent = parent
     }
@@ -1887,7 +1891,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupsByItems(
     request: ListBackupsRequest
-  ) -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
     self.listBackupsByItems(request: request, options: .init())
   }
 
@@ -1896,9 +1900,9 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListBackups")
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupsResponse in
       var request = request
       request.pageToken = token
       return try await self.listBackups(request: request, options: options)
@@ -1908,7 +1912,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
@@ -1929,7 +1933,7 @@ extension Clients.BackupDRProtocol {
 
   public func fetchBackupsForResourceTypeByItems(
     request: FetchBackupsForResourceTypeRequest
-  ) -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
     self.fetchBackupsForResourceTypeByItems(request: request, options: .init())
   }
 
@@ -1938,9 +1942,9 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_FetchBackupsForResourceType")
   public func fetchBackupsForResourceTypeByItems(
     request: FetchBackupsForResourceTypeRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudBackupDRV1.FetchBackupsForResourceTypeResponse in
       var request = request
       request.pageToken = token
@@ -1952,7 +1956,7 @@ extension Clients.BackupDRProtocol {
   public func fetchBackupsForResourceTypeByItems(
     parent: Swift.String,
     resourceType: Swift.String,
-  ) -> any AsyncSequence<Backup, Swift.Error> {
+  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
     let request = FetchBackupsForResourceTypeRequest().with {
       $0.parent = parent
       $0.resourceType = resourceType
@@ -2205,7 +2209,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupPlansByItems(
     request: ListBackupPlansRequest
-  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> & Sendable {
     self.listBackupPlansByItems(request: request, options: .init())
   }
 
@@ -2214,9 +2218,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListBackupPlans")
   public func listBackupPlansByItems(
     request: ListBackupPlansRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupPlansResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupPlansResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listBackupPlans(request: request, options: options)
@@ -2226,7 +2231,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupPlansByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackupPlan, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlan, Swift.Error> & Sendable {
     let request = ListBackupPlansRequest().with {
       $0.parent = parent
     }
@@ -2305,7 +2310,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupPlanRevisionsByItems(
     request: ListBackupPlanRevisionsRequest
-  ) -> any AsyncSequence<BackupPlanRevision, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanRevision, Swift.Error> & Sendable {
     self.listBackupPlanRevisionsByItems(request: request, options: .init())
   }
 
@@ -2314,9 +2319,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListBackupPlanRevisions")
   public func listBackupPlanRevisionsByItems(
     request: ListBackupPlanRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupPlanRevision, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanRevision, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupPlanRevisionsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListBackupPlanRevisionsResponse in
       var request = request
       request.pageToken = token
       return try await self.listBackupPlanRevisions(request: request, options: options)
@@ -2326,7 +2332,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupPlanRevisionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackupPlanRevision, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanRevision, Swift.Error> & Sendable {
     let request = ListBackupPlanRevisionsRequest().with {
       $0.parent = parent
     }
@@ -2448,7 +2454,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupPlanAssociationsByItems(
     request: ListBackupPlanAssociationsRequest
-  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> & Sendable {
     self.listBackupPlanAssociationsByItems(request: request, options: .init())
   }
 
@@ -2457,10 +2463,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListBackupPlanAssociations")
   public func listBackupPlanAssociationsByItems(
     request: ListBackupPlanAssociationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListBackupPlanAssociationsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListBackupPlanAssociationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listBackupPlanAssociations(request: request, options: options)
@@ -2470,7 +2476,7 @@ extension Clients.BackupDRProtocol {
 
   public func listBackupPlanAssociationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> & Sendable {
     let request = ListBackupPlanAssociationsRequest().with {
       $0.parent = parent
     }
@@ -2491,7 +2497,7 @@ extension Clients.BackupDRProtocol {
 
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
     request: FetchBackupPlanAssociationsForResourceTypeRequest
-  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> & Sendable {
     self.fetchBackupPlanAssociationsForResourceTypeByItems(request: request, options: .init())
   }
 
@@ -2500,9 +2506,9 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_FetchBackupPlanAssociationsForResourceType")
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
     request: FetchBackupPlanAssociationsForResourceTypeRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudBackupDRV1.FetchBackupPlanAssociationsForResourceTypeResponse in
       var request = request
       request.pageToken = token
@@ -2515,7 +2521,7 @@ extension Clients.BackupDRProtocol {
   public func fetchBackupPlanAssociationsForResourceTypeByItems(
     parent: Swift.String,
     resourceType: Swift.String,
-  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> {
+  ) -> any AsyncSequence<BackupPlanAssociation, Swift.Error> & Sendable {
     let request = FetchBackupPlanAssociationsForResourceTypeRequest().with {
       $0.parent = parent
       $0.resourceType = resourceType
@@ -2634,7 +2640,7 @@ extension Clients.BackupDRProtocol {
 
   public func listDataSourceReferencesByItems(
     request: ListDataSourceReferencesRequest
-  ) -> any AsyncSequence<DataSourceReference, Swift.Error> {
+  ) -> any AsyncSequence<DataSourceReference, Swift.Error> & Sendable {
     self.listDataSourceReferencesByItems(request: request, options: .init())
   }
 
@@ -2643,10 +2649,10 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListDataSourceReferences")
   public func listDataSourceReferencesByItems(
     request: ListDataSourceReferencesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSourceReference, Swift.Error> {
+  ) -> any AsyncSequence<DataSourceReference, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBackupDRV1.ListDataSourceReferencesResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBackupDRV1.ListDataSourceReferencesResponse in
       var request = request
       request.pageToken = token
       return try await self.listDataSourceReferences(request: request, options: options)
@@ -2656,7 +2662,7 @@ extension Clients.BackupDRProtocol {
 
   public func listDataSourceReferencesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataSourceReference, Swift.Error> {
+  ) -> any AsyncSequence<DataSourceReference, Swift.Error> & Sendable {
     let request = ListDataSourceReferencesRequest().with {
       $0.parent = parent
     }
@@ -2677,7 +2683,7 @@ extension Clients.BackupDRProtocol {
 
   public func fetchDataSourceReferencesForResourceTypeByItems(
     request: FetchDataSourceReferencesForResourceTypeRequest
-  ) -> any AsyncSequence<DataSourceReference, Swift.Error> {
+  ) -> any AsyncSequence<DataSourceReference, Swift.Error> & Sendable {
     self.fetchDataSourceReferencesForResourceTypeByItems(request: request, options: .init())
   }
 
@@ -2686,9 +2692,9 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_FetchDataSourceReferencesForResourceType")
   public func fetchDataSourceReferencesForResourceTypeByItems(
     request: FetchDataSourceReferencesForResourceTypeRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSourceReference, Swift.Error> {
+  ) -> any AsyncSequence<DataSourceReference, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudBackupDRV1.FetchDataSourceReferencesForResourceTypeResponse in
       var request = request
       request.pageToken = token
@@ -2701,7 +2707,7 @@ extension Clients.BackupDRProtocol {
   public func fetchDataSourceReferencesForResourceTypeByItems(
     parent: Swift.String,
     resourceType: Swift.String,
-  ) -> any AsyncSequence<DataSourceReference, Swift.Error> {
+  ) -> any AsyncSequence<DataSourceReference, Swift.Error> & Sendable {
     let request = FetchDataSourceReferencesForResourceTypeRequest().with {
       $0.parent = parent
       $0.resourceType = resourceType
@@ -2752,7 +2758,7 @@ extension Clients.BackupDRProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -2761,9 +2767,9 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -2833,7 +2839,7 @@ extension Clients.BackupDRProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2844,9 +2850,9 @@ extension Clients.BackupDRProtocol {
   /// @Snippet(path: "BackupDR_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -2857,7 +2863,7 @@ extension Clients.BackupDRProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -376,7 +376,7 @@ extension Clients.BinauthzManagementServiceV1Protocol {
 
   public func listAttestorsByItems(
     request: ListAttestorsRequest
-  ) -> any AsyncSequence<Attestor, Swift.Error> {
+  ) -> any AsyncSequence<Attestor, Swift.Error> & Sendable {
     self.listAttestorsByItems(request: request, options: .init())
   }
 
@@ -388,10 +388,10 @@ extension Clients.BinauthzManagementServiceV1Protocol {
   /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
   public func listAttestorsByItems(
     request: ListAttestorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Attestor, Swift.Error> {
+  ) -> any AsyncSequence<Attestor, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse in
       var request = request
       request.pageToken = token
       return try await self.listAttestors(request: request, options: options)
@@ -401,7 +401,7 @@ extension Clients.BinauthzManagementServiceV1Protocol {
 
   public func listAttestorsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Attestor, Swift.Error> {
+  ) -> any AsyncSequence<Attestor, Swift.Error> & Sendable {
     let request = ListAttestorsRequest().with {
       $0.parent = parent
     }

@@ -834,7 +834,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listOrchestrationClustersByItems(
     request: ListOrchestrationClustersRequest
-  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> & Sendable {
     self.listOrchestrationClustersByItems(request: request, options: .init())
   }
 
@@ -843,9 +843,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListOrchestrationClusters")
   public func listOrchestrationClustersByItems(
     request: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse in
       var request = request
       request.pageToken = token
@@ -856,7 +856,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listOrchestrationClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> {
+  ) -> any AsyncSequence<OrchestrationCluster, Swift.Error> & Sendable {
     let request = ListOrchestrationClustersRequest().with {
       $0.parent = parent
     }
@@ -976,7 +976,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listEdgeSlmsByItems(
     request: ListEdgeSlmsRequest
-  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> & Sendable {
     self.listEdgeSlmsByItems(request: request, options: .init())
   }
 
@@ -985,9 +985,10 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListEdgeSlms")
   public func listEdgeSlmsByItems(
     request: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEdgeSlms(request: request, options: options)
@@ -997,7 +998,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listEdgeSlmsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EdgeSlm, Swift.Error> {
+  ) -> any AsyncSequence<EdgeSlm, Swift.Error> & Sendable {
     let request = ListEdgeSlmsRequest().with {
       $0.parent = parent
     }
@@ -1205,7 +1206,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprintsByItems(
     request: ListBlueprintsRequest
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     self.listBlueprintsByItems(request: request, options: .init())
   }
 
@@ -1214,9 +1215,10 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListBlueprints")
   public func listBlueprintsByItems(
     request: ListBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse in
       var request = request
       request.pageToken = token
       return try await self.listBlueprints(request: request, options: options)
@@ -1226,7 +1228,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprintsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     let request = ListBlueprintsRequest().with {
       $0.parent = parent
     }
@@ -1310,7 +1312,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprintRevisionsByItems(
     request: ListBlueprintRevisionsRequest
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     self.listBlueprintRevisionsByItems(request: request, options: .init())
   }
 
@@ -1319,9 +1321,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListBlueprintRevisions")
   public func listBlueprintRevisionsByItems(
     request: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse in
       var request = request
       request.pageToken = token
@@ -1332,7 +1334,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listBlueprintRevisionsByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     let request = ListBlueprintRevisionsRequest().with {
       $0.name = name
     }
@@ -1353,7 +1355,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func searchBlueprintRevisionsByItems(
     request: SearchBlueprintRevisionsRequest
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     self.searchBlueprintRevisionsByItems(request: request, options: .init())
   }
 
@@ -1362,9 +1364,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_SearchBlueprintRevisions")
   public func searchBlueprintRevisionsByItems(
     request: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse in
       var request = request
       request.pageToken = token
@@ -1376,7 +1378,7 @@ extension Clients.TelcoAutomationProtocol {
   public func searchBlueprintRevisionsByItems(
     parent: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<Blueprint, Swift.Error> {
+  ) -> any AsyncSequence<Blueprint, Swift.Error> & Sendable {
     let request = SearchBlueprintRevisionsRequest().with {
       $0.parent = parent
       $0.query = query
@@ -1398,7 +1400,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func searchDeploymentRevisionsByItems(
     request: SearchDeploymentRevisionsRequest
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     self.searchDeploymentRevisionsByItems(request: request, options: .init())
   }
 
@@ -1407,9 +1409,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_SearchDeploymentRevisions")
   public func searchDeploymentRevisionsByItems(
     request: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse in
       var request = request
       request.pageToken = token
@@ -1421,7 +1423,7 @@ extension Clients.TelcoAutomationProtocol {
   public func searchDeploymentRevisionsByItems(
     parent: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let request = SearchDeploymentRevisionsRequest().with {
       $0.parent = parent
       $0.query = query
@@ -1464,7 +1466,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listPublicBlueprintsByItems(
     request: ListPublicBlueprintsRequest
-  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> & Sendable {
     self.listPublicBlueprintsByItems(request: request, options: .init())
   }
 
@@ -1474,9 +1476,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListPublicBlueprints")
   public func listPublicBlueprintsByItems(
     request: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse in
       var request = request
       request.pageToken = token
@@ -1487,7 +1489,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listPublicBlueprintsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> {
+  ) -> any AsyncSequence<PublicBlueprint, Swift.Error> & Sendable {
     let request = ListPublicBlueprintsRequest().with {
       $0.parent = parent
     }
@@ -1617,7 +1619,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     self.listDeploymentsByItems(request: request, options: .init())
   }
 
@@ -1626,9 +1628,10 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListDeployments")
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse in
       var request = request
       request.pageToken = token
       return try await self.listDeployments(request: request, options: options)
@@ -1638,7 +1641,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeploymentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let request = ListDeploymentsRequest().with {
       $0.parent = parent
     }
@@ -1659,7 +1662,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeploymentRevisionsByItems(
     request: ListDeploymentRevisionsRequest
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     self.listDeploymentRevisionsByItems(request: request, options: .init())
   }
 
@@ -1668,9 +1671,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListDeploymentRevisions")
   public func listDeploymentRevisionsByItems(
     request: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse in
       var request = request
       request.pageToken = token
@@ -1681,7 +1684,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listDeploymentRevisionsByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<Deployment, Swift.Error> {
+  ) -> any AsyncSequence<Deployment, Swift.Error> & Sendable {
     let request = ListDeploymentRevisionsRequest().with {
       $0.name = name
     }
@@ -1809,7 +1812,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listHydratedDeploymentsByItems(
     request: ListHydratedDeploymentsRequest
-  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> & Sendable {
     self.listHydratedDeploymentsByItems(request: request, options: .init())
   }
 
@@ -1818,9 +1821,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListHydratedDeployments")
   public func listHydratedDeploymentsByItems(
     request: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse in
       var request = request
       request.pageToken = token
@@ -1831,7 +1834,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listHydratedDeploymentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> {
+  ) -> any AsyncSequence<HydratedDeployment, Swift.Error> & Sendable {
     let request = ListHydratedDeploymentsRequest().with {
       $0.parent = parent
     }
@@ -1896,7 +1899,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1905,9 +1908,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -1941,7 +1944,7 @@ extension Clients.TelcoAutomationProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1952,9 +1955,9 @@ extension Clients.TelcoAutomationProtocol {
   /// @Snippet(path: "TelcoAutomation_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1965,7 +1968,7 @@ extension Clients.TelcoAutomationProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

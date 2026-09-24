@@ -230,7 +230,7 @@ extension Clients.CompanyServiceProtocol {
 
   public func listCompaniesByItems(
     request: ListCompaniesRequest
-  ) -> any AsyncSequence<Company, Swift.Error> {
+  ) -> any AsyncSequence<Company, Swift.Error> & Sendable {
     self.listCompaniesByItems(request: request, options: .init())
   }
 
@@ -239,9 +239,9 @@ extension Clients.CompanyServiceProtocol {
   /// @Snippet(path: "CompanyService_ListCompanies")
   public func listCompaniesByItems(
     request: ListCompaniesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Company, Swift.Error> {
+  ) -> any AsyncSequence<Company, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudTalentV4.ListCompaniesResponse in
       var request = request
       request.pageToken = token
       return try await self.listCompanies(request: request, options: options)
@@ -251,7 +251,7 @@ extension Clients.CompanyServiceProtocol {
 
   public func listCompaniesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Company, Swift.Error> {
+  ) -> any AsyncSequence<Company, Swift.Error> & Sendable {
     let request = ListCompaniesRequest().with {
       $0.parent = parent
     }

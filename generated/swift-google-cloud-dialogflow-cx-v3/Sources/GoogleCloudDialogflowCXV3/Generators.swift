@@ -226,7 +226,7 @@
 
     public func listGeneratorsByItems(
       request: ListGeneratorsRequest
-    ) -> any AsyncSequence<Generator, Swift.Error> {
+    ) -> any AsyncSequence<Generator, Swift.Error> & Sendable {
       self.listGeneratorsByItems(request: request, options: .init())
     }
 
@@ -235,9 +235,10 @@
     /// @Snippet(path: "Generators_ListGenerators")
     public func listGeneratorsByItems(
       request: ListGeneratorsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Generator, Swift.Error> {
+    ) -> any AsyncSequence<Generator, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDialogflowCXV3.ListGeneratorsResponse in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudDialogflowCXV3.ListGeneratorsResponse in
         var request = request
         request.pageToken = token
         return try await self.listGenerators(request: request, options: options)
@@ -247,7 +248,7 @@
 
     public func listGeneratorsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Generator, Swift.Error> {
+    ) -> any AsyncSequence<Generator, Swift.Error> & Sendable {
       let request = ListGeneratorsRequest().with {
         $0.parent = parent
       }
@@ -354,7 +355,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -380,9 +381,9 @@
     /// @Snippet(path: "Generators_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
@@ -416,7 +417,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -427,9 +428,9 @@
     /// @Snippet(path: "Generators_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -440,7 +441,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

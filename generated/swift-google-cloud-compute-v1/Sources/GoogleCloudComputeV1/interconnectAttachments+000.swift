@@ -356,7 +356,9 @@
 
     public func aggregatedListByItems(
       request: InterconnectAttachmentsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+      & Sendable
+    {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -369,9 +371,11 @@
     public func aggregatedListByItems(
       request: InterconnectAttachmentsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+      & Sendable
+    {
       let listRpc = {
-        (token: Swift.String) async throws
+        @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentAggregatedList in
         var request = request
         request.pageToken = token
@@ -382,7 +386,9 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+      & Sendable
+    {
       let request = InterconnectAttachmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -512,7 +518,7 @@
 
     public func listByItems(
       request: InterconnectAttachmentsClient.ListRequest
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -522,9 +528,10 @@
     /// @Snippet(path: "interconnectAttachments_list")
     public func listByItems(
       request: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectAttachmentList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.InterconnectAttachmentList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -535,7 +542,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
       let request = InterconnectAttachmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region

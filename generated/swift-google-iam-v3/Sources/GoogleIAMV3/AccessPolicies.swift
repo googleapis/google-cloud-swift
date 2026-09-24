@@ -407,7 +407,7 @@ extension Clients.AccessPoliciesProtocol {
 
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest
-  ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AccessPolicy, Swift.Error> & Sendable {
     self.listAccessPoliciesByItems(request: request, options: .init())
   }
 
@@ -416,8 +416,9 @@ extension Clients.AccessPoliciesProtocol {
   /// @Snippet(path: "AccessPolicies_ListAccessPolicies")
   public func listAccessPoliciesByItems(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleIAMV3.ListAccessPoliciesResponse in
+  ) -> any AsyncSequence<AccessPolicy, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleIAMV3.ListAccessPoliciesResponse in
       var request = request
       request.pageToken = token
       return try await self.listAccessPolicies(request: request, options: options)
@@ -427,7 +428,7 @@ extension Clients.AccessPoliciesProtocol {
 
   public func listAccessPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AccessPolicy, Swift.Error> {
+  ) -> any AsyncSequence<AccessPolicy, Swift.Error> & Sendable {
     let request = ListAccessPoliciesRequest().with {
       $0.parent = parent
     }
@@ -448,7 +449,7 @@ extension Clients.AccessPoliciesProtocol {
 
   public func searchAccessPolicyBindingsByItems(
     request: SearchAccessPolicyBindingsRequest
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     self.searchAccessPolicyBindingsByItems(request: request, options: .init())
   }
 
@@ -458,9 +459,10 @@ extension Clients.AccessPoliciesProtocol {
   /// @Snippet(path: "AccessPolicies_SearchAccessPolicyBindings")
   public func searchAccessPolicyBindingsByItems(
     request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.searchAccessPolicyBindings(request: request, options: options)
@@ -470,7 +472,7 @@ extension Clients.AccessPoliciesProtocol {
 
   public func searchAccessPolicyBindingsByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> {
+  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     let request = SearchAccessPolicyBindingsRequest().with {
       $0.name = name
     }

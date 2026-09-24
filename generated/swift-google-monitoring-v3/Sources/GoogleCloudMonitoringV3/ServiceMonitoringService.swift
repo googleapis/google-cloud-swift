@@ -251,7 +251,7 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServicesByItems(
     request: ListServicesRequest
-  ) -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
     self.listServicesByItems(request: request, options: .init())
   }
 
@@ -260,9 +260,10 @@ extension Clients.ServiceMonitoringServiceProtocol {
   /// @Snippet(path: "ServiceMonitoringService_ListServices")
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListServicesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudMonitoringV3.ListServicesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listServices(request: request, options: options)
@@ -272,7 +273,7 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServicesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Service, Swift.Error> {
+  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
     let request = ListServicesRequest().with {
       $0.parent = parent
     }
@@ -377,7 +378,7 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServiceLevelObjectivesByItems(
     request: ListServiceLevelObjectivesRequest
-  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> & Sendable {
     self.listServiceLevelObjectivesByItems(request: request, options: .init())
   }
 
@@ -386,9 +387,9 @@ extension Clients.ServiceMonitoringServiceProtocol {
   /// @Snippet(path: "ServiceMonitoringService_ListServiceLevelObjectives")
   public func listServiceLevelObjectivesByItems(
     request: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse in
       var request = request
       request.pageToken = token
@@ -399,7 +400,7 @@ extension Clients.ServiceMonitoringServiceProtocol {
 
   public func listServiceLevelObjectivesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> {
+  ) -> any AsyncSequence<ServiceLevelObjective, Swift.Error> & Sendable {
     let request = ListServiceLevelObjectivesRequest().with {
       $0.parent = parent
     }

@@ -301,7 +301,7 @@ extension Clients.EkmServiceProtocol {
 
   public func listEkmConnectionsByItems(
     request: ListEkmConnectionsRequest
-  ) -> any AsyncSequence<EkmConnection, Swift.Error> {
+  ) -> any AsyncSequence<EkmConnection, Swift.Error> & Sendable {
     self.listEkmConnectionsByItems(request: request, options: .init())
   }
 
@@ -312,9 +312,9 @@ extension Clients.EkmServiceProtocol {
   /// @Snippet(path: "EkmService_ListEkmConnections")
   public func listEkmConnectionsByItems(
     request: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EkmConnection, Swift.Error> {
+  ) -> any AsyncSequence<EkmConnection, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEkmConnections(request: request, options: options)
@@ -324,7 +324,7 @@ extension Clients.EkmServiceProtocol {
 
   public func listEkmConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EkmConnection, Swift.Error> {
+  ) -> any AsyncSequence<EkmConnection, Swift.Error> & Sendable {
     let request = ListEkmConnectionsRequest().with {
       $0.parent = parent
     }
@@ -478,7 +478,7 @@ extension Clients.EkmServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -504,9 +504,9 @@ extension Clients.EkmServiceProtocol {
   /// @Snippet(path: "EkmService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)

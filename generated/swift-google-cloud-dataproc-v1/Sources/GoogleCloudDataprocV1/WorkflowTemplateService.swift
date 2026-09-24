@@ -634,7 +634,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func listWorkflowTemplatesByItems(
     request: ListWorkflowTemplatesRequest
-  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> & Sendable {
     self.listWorkflowTemplatesByItems(request: request, options: .init())
   }
 
@@ -643,9 +643,10 @@ extension Clients.WorkflowTemplateServiceProtocol {
   /// @Snippet(path: "WorkflowTemplateService_ListWorkflowTemplates")
   public func listWorkflowTemplatesByItems(
     request: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse in
       var request = request
       request.pageToken = token
       return try await self.listWorkflowTemplates(request: request, options: options)
@@ -655,7 +656,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func listWorkflowTemplatesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> {
+  ) -> any AsyncSequence<WorkflowTemplate, Swift.Error> & Sendable {
     let request = ListWorkflowTemplatesRequest().with {
       $0.parent = parent
     }
@@ -731,7 +732,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -742,9 +743,9 @@ extension Clients.WorkflowTemplateServiceProtocol {
   /// @Snippet(path: "WorkflowTemplateService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -755,7 +756,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

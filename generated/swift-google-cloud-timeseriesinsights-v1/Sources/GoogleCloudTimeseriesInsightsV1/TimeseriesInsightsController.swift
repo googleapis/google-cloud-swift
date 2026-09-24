@@ -187,7 +187,7 @@ extension Clients.TimeseriesInsightsControllerProtocol {
 
   public func listDataSetsByItems(
     request: ListDataSetsRequest
-  ) -> any AsyncSequence<DataSet, Swift.Error> {
+  ) -> any AsyncSequence<DataSet, Swift.Error> & Sendable {
     self.listDataSetsByItems(request: request, options: .init())
   }
 
@@ -202,9 +202,10 @@ extension Clients.TimeseriesInsightsControllerProtocol {
   /// @Snippet(path: "TimeseriesInsightsController_ListDataSets")
   public func listDataSetsByItems(
     request: ListDataSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSet, Swift.Error> {
+  ) -> any AsyncSequence<DataSet, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse in
       var request = request
       request.pageToken = token
       return try await self.listDataSets(request: request, options: options)
@@ -214,7 +215,7 @@ extension Clients.TimeseriesInsightsControllerProtocol {
 
   public func listDataSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataSet, Swift.Error> {
+  ) -> any AsyncSequence<DataSet, Swift.Error> & Sendable {
     let request = ListDataSetsRequest().with {
       $0.parent = parent
     }

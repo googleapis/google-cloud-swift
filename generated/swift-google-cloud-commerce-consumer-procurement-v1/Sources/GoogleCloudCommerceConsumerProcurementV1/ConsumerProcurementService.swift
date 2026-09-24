@@ -354,7 +354,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
 
   public func listOrdersByItems(
     request: ListOrdersRequest
-  ) -> any AsyncSequence<Order, Swift.Error> {
+  ) -> any AsyncSequence<Order, Swift.Error> & Sendable {
     self.listOrdersByItems(request: request, options: .init())
   }
 
@@ -367,9 +367,9 @@ extension Clients.ConsumerProcurementServiceProtocol {
   /// @Snippet(path: "ConsumerProcurementService_ListOrders")
   public func listOrdersByItems(
     request: ListOrdersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Order, Swift.Error> {
+  ) -> any AsyncSequence<Order, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse in
       var request = request
       request.pageToken = token
@@ -380,7 +380,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
 
   public func listOrdersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Order, Swift.Error> {
+  ) -> any AsyncSequence<Order, Swift.Error> & Sendable {
     let request = ListOrdersRequest().with {
       $0.parent = parent
     }

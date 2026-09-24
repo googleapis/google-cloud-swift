@@ -629,7 +629,7 @@ extension Clients.AssetServiceProtocol {
 
   public func listAssetsByItems(
     request: ListAssetsRequest
-  ) -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> & Sendable {
     self.listAssetsByItems(request: request, options: .init())
   }
 
@@ -639,8 +639,9 @@ extension Clients.AssetServiceProtocol {
   /// @Snippet(path: "AssetService_ListAssets")
   public func listAssetsByItems(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Asset, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudAssetV1.ListAssetsResponse in
+  ) -> any AsyncSequence<Asset, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAssetV1.ListAssetsResponse in
       var request = request
       request.pageToken = token
       return try await self.listAssets(request: request, options: options)
@@ -650,7 +651,7 @@ extension Clients.AssetServiceProtocol {
 
   public func listAssetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Asset, Swift.Error> {
+  ) -> any AsyncSequence<Asset, Swift.Error> & Sendable {
     let request = ListAssetsRequest().with {
       $0.parent = parent
     }
@@ -780,7 +781,7 @@ extension Clients.AssetServiceProtocol {
 
   public func searchAllResourcesByItems(
     request: SearchAllResourcesRequest
-  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> & Sendable {
     self.searchAllResourcesByItems(request: request, options: .init())
   }
 
@@ -792,9 +793,10 @@ extension Clients.AssetServiceProtocol {
   /// @Snippet(path: "AssetService_SearchAllResources")
   public func searchAllResourcesByItems(
     request: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.searchAllResources(request: request, options: options)
@@ -806,7 +808,7 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     query: Swift.String,
     assetTypes: [Swift.String],
-  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> {
+  ) -> any AsyncSequence<ResourceSearchResult, Swift.Error> & Sendable {
     let request = SearchAllResourcesRequest().with {
       $0.scope = scope
       $0.query = query
@@ -829,7 +831,7 @@ extension Clients.AssetServiceProtocol {
 
   public func searchAllIamPoliciesByItems(
     request: SearchAllIamPoliciesRequest
-  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> & Sendable {
     self.searchAllIamPoliciesByItems(request: request, options: .init())
   }
 
@@ -841,9 +843,10 @@ extension Clients.AssetServiceProtocol {
   /// @Snippet(path: "AssetService_SearchAllIamPolicies")
   public func searchAllIamPoliciesByItems(
     request: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse in
       var request = request
       request.pageToken = token
       return try await self.searchAllIamPolicies(request: request, options: options)
@@ -854,7 +857,7 @@ extension Clients.AssetServiceProtocol {
   public func searchAllIamPoliciesByItems(
     scope: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> {
+  ) -> any AsyncSequence<IamPolicySearchResult, Swift.Error> & Sendable {
     let request = SearchAllIamPoliciesRequest().with {
       $0.scope = scope
       $0.query = query
@@ -988,7 +991,7 @@ extension Clients.AssetServiceProtocol {
 
   public func listSavedQueriesByItems(
     request: ListSavedQueriesRequest
-  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> & Sendable {
     self.listSavedQueriesByItems(request: request, options: .init())
   }
 
@@ -997,9 +1000,9 @@ extension Clients.AssetServiceProtocol {
   /// @Snippet(path: "AssetService_ListSavedQueries")
   public func listSavedQueriesByItems(
     request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse in
       var request = request
       request.pageToken = token
       return try await self.listSavedQueries(request: request, options: options)
@@ -1009,7 +1012,7 @@ extension Clients.AssetServiceProtocol {
 
   public func listSavedQueriesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SavedQuery, Swift.Error> {
+  ) -> any AsyncSequence<SavedQuery, Swift.Error> & Sendable {
     let request = ListSavedQueriesRequest().with {
       $0.parent = parent
     }
@@ -1084,7 +1087,7 @@ extension Clients.AssetServiceProtocol {
 
   public func analyzeOrgPoliciesByItems(
     request: AnalyzeOrgPoliciesRequest
-  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> & Sendable {
     self.analyzeOrgPoliciesByItems(request: request, options: .init())
   }
 
@@ -1093,9 +1096,10 @@ extension Clients.AssetServiceProtocol {
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
   public func analyzeOrgPoliciesByItems(
     request: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.analyzeOrgPolicies(request: request, options: options)
@@ -1107,7 +1111,7 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     constraint: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, Swift.Error> & Sendable {
     let request = AnalyzeOrgPoliciesRequest().with {
       $0.scope = scope
       $0.constraint = constraint
@@ -1131,6 +1135,7 @@ extension Clients.AssetServiceProtocol {
   public func analyzeOrgPolicyGovernedContainersByItems(
     request: AnalyzeOrgPolicyGovernedContainersRequest
   ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+    & Sendable
   {
     self.analyzeOrgPolicyGovernedContainersByItems(request: request, options: .init())
   }
@@ -1142,9 +1147,10 @@ extension Clients.AssetServiceProtocol {
   public func analyzeOrgPolicyGovernedContainersByItems(
     request: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+    & Sendable
   {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse in
       var request = request
       request.pageToken = token
@@ -1158,6 +1164,7 @@ extension Clients.AssetServiceProtocol {
     constraint: Swift.String,
     filter: Swift.String,
   ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedContainersResponse.GovernedContainer, Swift.Error>
+    & Sendable
   {
     let request = AnalyzeOrgPolicyGovernedContainersRequest().with {
       $0.scope = scope
@@ -1181,7 +1188,9 @@ extension Clients.AssetServiceProtocol {
 
   public func analyzeOrgPolicyGovernedAssetsByItems(
     request: AnalyzeOrgPolicyGovernedAssetsRequest
-  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
+    & Sendable
+  {
     self.analyzeOrgPolicyGovernedAssetsByItems(request: request, options: .init())
   }
 
@@ -1238,9 +1247,11 @@ extension Clients.AssetServiceProtocol {
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
   public func analyzeOrgPolicyGovernedAssetsByItems(
     request: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
+    & Sendable
+  {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse in
       var request = request
       request.pageToken = token
@@ -1253,7 +1264,9 @@ extension Clients.AssetServiceProtocol {
     scope: Swift.String,
     constraint: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error> {
+  ) -> any AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, Swift.Error>
+    & Sendable
+  {
     let request = AnalyzeOrgPolicyGovernedAssetsRequest().with {
       $0.scope = scope
       $0.constraint = constraint

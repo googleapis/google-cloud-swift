@@ -316,7 +316,7 @@
 
     public func aggregatedListByItems(
       request: VpnGatewaysClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -328,9 +328,10 @@
     /// @Snippet(path: "vpnGateways_aggregatedList")
     public func aggregatedListByItems(
       request: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.VpnGatewayAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -340,7 +341,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, VpnGatewaysScopedList), Swift.Error> & Sendable {
       let request = VpnGatewaysClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -495,7 +496,7 @@
 
     public func listByItems(
       request: VpnGatewaysClient.ListRequest
-    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -505,8 +506,9 @@
     /// @Snippet(path: "vpnGateways_list")
     public func listByItems(
       request: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayList in
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.VpnGatewayList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -517,7 +519,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<VpnGateway, Swift.Error> {
+    ) -> any AsyncSequence<VpnGateway, Swift.Error> & Sendable {
       let request = VpnGatewaysClient.ListRequest().with {
         $0.project = project
         $0.region = region

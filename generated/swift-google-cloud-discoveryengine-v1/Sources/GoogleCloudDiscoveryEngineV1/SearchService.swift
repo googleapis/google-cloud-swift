@@ -149,7 +149,7 @@
 
     public func searchByItems(
       request: SearchRequest
-    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
+    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> & Sendable {
       self.searchByItems(request: request, options: .init())
     }
 
@@ -158,9 +158,10 @@
     /// @Snippet(path: "SearchService_Search")
     public func searchByItems(
       request: SearchRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
+    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse
+        in
         var request = request
         request.pageToken = token
         return try await self.search(request: request, options: options)
@@ -182,7 +183,7 @@
 
     public func searchLiteByItems(
       request: SearchRequest
-    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
+    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> & Sendable {
       self.searchLiteByItems(request: request, options: .init())
     }
 
@@ -205,9 +206,10 @@
     /// @Snippet(path: "SearchService_SearchLite")
     public func searchLiteByItems(
       request: SearchRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> {
+    ) -> any AsyncSequence<SearchResponse.SearchResult, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudDiscoveryEngineV1.SearchResponse
+        in
         var request = request
         request.pageToken = token
         return try await self.searchLite(request: request, options: options)
@@ -229,7 +231,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -240,9 +242,9 @@
     /// @Snippet(path: "SearchService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -253,7 +255,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

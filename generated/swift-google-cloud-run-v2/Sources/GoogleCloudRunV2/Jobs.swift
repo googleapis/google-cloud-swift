@@ -472,7 +472,7 @@ extension Clients.JobsProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -481,8 +481,9 @@ extension Clients.JobsProtocol {
   /// @Snippet(path: "Jobs_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudRunV2.ListJobsResponse in
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudRunV2.ListJobsResponse in
       var request = request
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
@@ -492,7 +493,7 @@ extension Clients.JobsProtocol {
 
   public func listJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
@@ -654,7 +655,7 @@ extension Clients.JobsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -665,9 +666,9 @@ extension Clients.JobsProtocol {
   /// @Snippet(path: "Jobs_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -678,7 +679,7 @@ extension Clients.JobsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

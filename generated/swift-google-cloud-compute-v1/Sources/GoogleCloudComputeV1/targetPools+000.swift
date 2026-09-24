@@ -677,7 +677,7 @@
 
     public func aggregatedListByItems(
       request: TargetPoolsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -689,9 +689,10 @@
     /// @Snippet(path: "targetPools_aggregatedList")
     public func aggregatedListByItems(
       request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.TargetPoolAggregatedList in
         var request = request
         request.pageToken = token
         return try await self.aggregatedList(request: request, options: options)
@@ -701,7 +702,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> {
+    ) -> any AsyncSequence<(Swift.String, TargetPoolsScopedList), Swift.Error> & Sendable {
       let request = TargetPoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -858,7 +859,7 @@
 
     public func listByItems(
       request: TargetPoolsClient.ListRequest
-    ) -> any AsyncSequence<TargetPool, Swift.Error> {
+    ) -> any AsyncSequence<TargetPool, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -868,8 +869,9 @@
     /// @Snippet(path: "targetPools_list")
     public func listByItems(
       request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetPool, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolList in
+    ) -> any AsyncSequence<TargetPool, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetPoolList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -880,7 +882,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<TargetPool, Swift.Error> {
+    ) -> any AsyncSequence<TargetPool, Swift.Error> & Sendable {
       let request = TargetPoolsClient.ListRequest().with {
         $0.project = project
         $0.region = region

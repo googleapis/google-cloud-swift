@@ -1702,7 +1702,7 @@ extension Clients.ClusterManagerProtocol {
 
   public func listUsableSubnetworksByItems(
     request: ListUsableSubnetworksRequest
-  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> & Sendable {
     self.listUsableSubnetworksByItems(request: request, options: .init())
   }
 
@@ -1711,9 +1711,10 @@ extension Clients.ClusterManagerProtocol {
   /// @Snippet(path: "ClusterManager_ListUsableSubnetworks")
   public func listUsableSubnetworksByItems(
     request: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> {
+  ) -> any AsyncSequence<UsableSubnetwork, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContainerV1.ListUsableSubnetworksResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudContainerV1.ListUsableSubnetworksResponse in
       var request = request
       request.pageToken = token
       return try await self.listUsableSubnetworks(request: request, options: options)

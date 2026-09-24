@@ -211,7 +211,7 @@ extension Clients.UniversalLedgerProtocol {
 
   public func listEndpointsByItems(
     request: ListEndpointsRequest
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> & Sendable {
     self.listEndpointsByItems(request: request, options: .init())
   }
 
@@ -220,9 +220,10 @@ extension Clients.UniversalLedgerProtocol {
   /// @Snippet(path: "UniversalLedger_ListEndpoints")
   public func listEndpointsByItems(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEndpoints(request: request, options: options)
@@ -232,7 +233,7 @@ extension Clients.UniversalLedgerProtocol {
 
   public func listEndpointsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Endpoint, Swift.Error> {
+  ) -> any AsyncSequence<Endpoint, Swift.Error> & Sendable {
     let request = ListEndpointsRequest().with {
       $0.parent = parent
     }

@@ -578,7 +578,7 @@ extension Clients.JobServiceProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -587,8 +587,9 @@ extension Clients.JobServiceProtocol {
   /// @Snippet(path: "JobService_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleCloudTalentV4.ListJobsResponse in
       var request = request
       request.pageToken = token
       return try await self.listJobs(request: request, options: options)
@@ -599,7 +600,7 @@ extension Clients.JobServiceProtocol {
   public func listJobsByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<Job, Swift.Error> {
+  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
       $0.filter = filter

@@ -959,7 +959,7 @@ extension Clients.EdgeNetworkProtocol {
   @available(*, deprecated)
   public func listZonesByItems(
     request: ListZonesRequest
-  ) -> any AsyncSequence<Zone, Swift.Error> {
+  ) -> any AsyncSequence<Zone, Swift.Error> & Sendable {
     self.listZonesByItems(request: request, options: .init())
   }
 
@@ -970,9 +970,9 @@ extension Clients.EdgeNetworkProtocol {
   @available(*, deprecated)
   public func listZonesByItems(
     request: ListZonesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Zone, Swift.Error> {
+  ) -> any AsyncSequence<Zone, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListZonesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListZonesResponse in
       var request = request
       request.pageToken = token
       return try await self.listZones(request: request, options: options)
@@ -983,7 +983,7 @@ extension Clients.EdgeNetworkProtocol {
   @available(*, deprecated)
   public func listZonesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Zone, Swift.Error> {
+  ) -> any AsyncSequence<Zone, Swift.Error> & Sendable {
     let request = ListZonesRequest().with {
       $0.parent = parent
     }
@@ -1026,7 +1026,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listNetworksByItems(
     request: ListNetworksRequest
-  ) -> any AsyncSequence<Network, Swift.Error> {
+  ) -> any AsyncSequence<Network, Swift.Error> & Sendable {
     self.listNetworksByItems(request: request, options: .init())
   }
 
@@ -1035,9 +1035,10 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListNetworks")
   public func listNetworksByItems(
     request: ListNetworksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Network, Swift.Error> {
+  ) -> any AsyncSequence<Network, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListNetworksResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListNetworksResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listNetworks(request: request, options: options)
@@ -1047,7 +1048,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listNetworksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Network, Swift.Error> {
+  ) -> any AsyncSequence<Network, Swift.Error> & Sendable {
     let request = ListNetworksRequest().with {
       $0.parent = parent
     }
@@ -1188,7 +1189,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listSubnetsByItems(
     request: ListSubnetsRequest
-  ) -> any AsyncSequence<Subnet, Swift.Error> {
+  ) -> any AsyncSequence<Subnet, Swift.Error> & Sendable {
     self.listSubnetsByItems(request: request, options: .init())
   }
 
@@ -1197,9 +1198,10 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListSubnets")
   public func listSubnetsByItems(
     request: ListSubnetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Subnet, Swift.Error> {
+  ) -> any AsyncSequence<Subnet, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListSubnetsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListSubnetsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listSubnets(request: request, options: options)
@@ -1209,7 +1211,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listSubnetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Subnet, Swift.Error> {
+  ) -> any AsyncSequence<Subnet, Swift.Error> & Sendable {
     let request = ListSubnetsRequest().with {
       $0.parent = parent
     }
@@ -1363,7 +1365,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listInterconnectsByItems(
     request: ListInterconnectsRequest
-  ) -> any AsyncSequence<Interconnect, Swift.Error> {
+  ) -> any AsyncSequence<Interconnect, Swift.Error> & Sendable {
     self.listInterconnectsByItems(request: request, options: .init())
   }
 
@@ -1372,9 +1374,10 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListInterconnects")
   public func listInterconnectsByItems(
     request: ListInterconnectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Interconnect, Swift.Error> {
+  ) -> any AsyncSequence<Interconnect, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListInterconnectsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudEdgeNetworkV1.ListInterconnectsResponse in
       var request = request
       request.pageToken = token
       return try await self.listInterconnects(request: request, options: options)
@@ -1384,7 +1387,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listInterconnectsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Interconnect, Swift.Error> {
+  ) -> any AsyncSequence<Interconnect, Swift.Error> & Sendable {
     let request = ListInterconnectsRequest().with {
       $0.parent = parent
     }
@@ -1447,7 +1450,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listInterconnectAttachmentsByItems(
     request: ListInterconnectAttachmentsRequest
-  ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+  ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
     self.listInterconnectAttachmentsByItems(request: request, options: .init())
   }
 
@@ -1456,9 +1459,9 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListInterconnectAttachments")
   public func listInterconnectAttachmentsByItems(
     request: ListInterconnectAttachmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+  ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudEdgeNetworkV1.ListInterconnectAttachmentsResponse in
       var request = request
       request.pageToken = token
@@ -1469,7 +1472,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listInterconnectAttachmentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> {
+  ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
     let request = ListInterconnectAttachmentsRequest().with {
       $0.parent = parent
     }
@@ -1590,7 +1593,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listRoutersByItems(
     request: ListRoutersRequest
-  ) -> any AsyncSequence<Router, Swift.Error> {
+  ) -> any AsyncSequence<Router, Swift.Error> & Sendable {
     self.listRoutersByItems(request: request, options: .init())
   }
 
@@ -1599,9 +1602,10 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListRouters")
   public func listRoutersByItems(
     request: ListRoutersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Router, Swift.Error> {
+  ) -> any AsyncSequence<Router, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListRoutersResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudEdgeNetworkV1.ListRoutersResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listRouters(request: request, options: options)
@@ -1611,7 +1615,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listRoutersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Router, Swift.Error> {
+  ) -> any AsyncSequence<Router, Swift.Error> & Sendable {
     let request = ListRoutersRequest().with {
       $0.parent = parent
     }
@@ -1786,7 +1790,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1795,9 +1799,9 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -1831,7 +1835,7 @@ extension Clients.EdgeNetworkProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1842,9 +1846,9 @@ extension Clients.EdgeNetworkProtocol {
   /// @Snippet(path: "EdgeNetwork_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1855,7 +1859,7 @@ extension Clients.EdgeNetworkProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

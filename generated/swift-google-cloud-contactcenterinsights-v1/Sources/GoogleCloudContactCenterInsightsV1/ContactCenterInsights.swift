@@ -1957,7 +1957,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listConversationsByItems(
     request: ListConversationsRequest
-  ) -> any AsyncSequence<Conversation, Swift.Error> {
+  ) -> any AsyncSequence<Conversation, Swift.Error> & Sendable {
     self.listConversationsByItems(request: request, options: .init())
   }
 
@@ -1966,9 +1966,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListConversations")
   public func listConversationsByItems(
     request: ListConversationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Conversation, Swift.Error> {
+  ) -> any AsyncSequence<Conversation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListConversationsResponse in
       var request = request
       request.pageToken = token
@@ -1979,7 +1979,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listConversationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Conversation, Swift.Error> {
+  ) -> any AsyncSequence<Conversation, Swift.Error> & Sendable {
     let request = ListConversationsRequest().with {
       $0.parent = parent
     }
@@ -2079,7 +2079,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listAnalysesByItems(
     request: ListAnalysesRequest
-  ) -> any AsyncSequence<Analysis, Swift.Error> {
+  ) -> any AsyncSequence<Analysis, Swift.Error> & Sendable {
     self.listAnalysesByItems(request: request, options: .init())
   }
 
@@ -2088,10 +2088,10 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListAnalyses")
   public func listAnalysesByItems(
     request: ListAnalysesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Analysis, Swift.Error> {
+  ) -> any AsyncSequence<Analysis, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContactCenterInsightsV1.ListAnalysesResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudContactCenterInsightsV1.ListAnalysesResponse in
       var request = request
       request.pageToken = token
       return try await self.listAnalyses(request: request, options: options)
@@ -2101,7 +2101,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listAnalysesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Analysis, Swift.Error> {
+  ) -> any AsyncSequence<Analysis, Swift.Error> & Sendable {
     let request = ListAnalysesRequest().with {
       $0.parent = parent
     }
@@ -2741,7 +2741,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listPhraseMatchersByItems(
     request: ListPhraseMatchersRequest
-  ) -> any AsyncSequence<PhraseMatcher, Swift.Error> {
+  ) -> any AsyncSequence<PhraseMatcher, Swift.Error> & Sendable {
     self.listPhraseMatchersByItems(request: request, options: .init())
   }
 
@@ -2750,9 +2750,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListPhraseMatchers")
   public func listPhraseMatchersByItems(
     request: ListPhraseMatchersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PhraseMatcher, Swift.Error> {
+  ) -> any AsyncSequence<PhraseMatcher, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListPhraseMatchersResponse in
       var request = request
       request.pageToken = token
@@ -2763,7 +2763,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listPhraseMatchersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PhraseMatcher, Swift.Error> {
+  ) -> any AsyncSequence<PhraseMatcher, Swift.Error> & Sendable {
     let request = ListPhraseMatchersRequest().with {
       $0.parent = parent
     }
@@ -2935,7 +2935,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listAnalysisRulesByItems(
     request: ListAnalysisRulesRequest
-  ) -> any AsyncSequence<AnalysisRule, Swift.Error> {
+  ) -> any AsyncSequence<AnalysisRule, Swift.Error> & Sendable {
     self.listAnalysisRulesByItems(request: request, options: .init())
   }
 
@@ -2944,9 +2944,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListAnalysisRules")
   public func listAnalysisRulesByItems(
     request: ListAnalysisRulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AnalysisRule, Swift.Error> {
+  ) -> any AsyncSequence<AnalysisRule, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListAnalysisRulesResponse in
       var request = request
       request.pageToken = token
@@ -2957,7 +2957,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listAnalysisRulesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AnalysisRule, Swift.Error> {
+  ) -> any AsyncSequence<AnalysisRule, Swift.Error> & Sendable {
     let request = ListAnalysisRulesRequest().with {
       $0.parent = parent
     }
@@ -3123,7 +3123,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listViewsByItems(
     request: ListViewsRequest
-  ) -> any AsyncSequence<View, Swift.Error> {
+  ) -> any AsyncSequence<View, Swift.Error> & Sendable {
     self.listViewsByItems(request: request, options: .init())
   }
 
@@ -3132,9 +3132,10 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListViews")
   public func listViewsByItems(
     request: ListViewsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<View, Swift.Error> {
+  ) -> any AsyncSequence<View, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudContactCenterInsightsV1.ListViewsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudContactCenterInsightsV1.ListViewsResponse in
       var request = request
       request.pageToken = token
       return try await self.listViews(request: request, options: options)
@@ -3144,7 +3145,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listViewsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<View, Swift.Error> {
+  ) -> any AsyncSequence<View, Swift.Error> & Sendable {
     let request = ListViewsRequest().with {
       $0.parent = parent
     }
@@ -3322,7 +3323,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listQaQuestionsByItems(
     request: ListQaQuestionsRequest
-  ) -> any AsyncSequence<QaQuestion, Swift.Error> {
+  ) -> any AsyncSequence<QaQuestion, Swift.Error> & Sendable {
     self.listQaQuestionsByItems(request: request, options: .init())
   }
 
@@ -3331,9 +3332,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListQaQuestions")
   public func listQaQuestionsByItems(
     request: ListQaQuestionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<QaQuestion, Swift.Error> {
+  ) -> any AsyncSequence<QaQuestion, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListQaQuestionsResponse in
       var request = request
       request.pageToken = token
@@ -3344,7 +3345,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listQaQuestionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<QaQuestion, Swift.Error> {
+  ) -> any AsyncSequence<QaQuestion, Swift.Error> & Sendable {
     let request = ListQaQuestionsRequest().with {
       $0.parent = parent
     }
@@ -3453,7 +3454,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listQaScorecardsByItems(
     request: ListQaScorecardsRequest
-  ) -> any AsyncSequence<QaScorecard, Swift.Error> {
+  ) -> any AsyncSequence<QaScorecard, Swift.Error> & Sendable {
     self.listQaScorecardsByItems(request: request, options: .init())
   }
 
@@ -3462,9 +3463,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListQaScorecards")
   public func listQaScorecardsByItems(
     request: ListQaScorecardsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<QaScorecard, Swift.Error> {
+  ) -> any AsyncSequence<QaScorecard, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListQaScorecardsResponse in
       var request = request
       request.pageToken = token
@@ -3475,7 +3476,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listQaScorecardsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<QaScorecard, Swift.Error> {
+  ) -> any AsyncSequence<QaScorecard, Swift.Error> & Sendable {
     let request = ListQaScorecardsRequest().with {
       $0.parent = parent
     }
@@ -3627,7 +3628,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listQaScorecardRevisionsByItems(
     request: ListQaScorecardRevisionsRequest
-  ) -> any AsyncSequence<QaScorecardRevision, Swift.Error> {
+  ) -> any AsyncSequence<QaScorecardRevision, Swift.Error> & Sendable {
     self.listQaScorecardRevisionsByItems(request: request, options: .init())
   }
 
@@ -3636,9 +3637,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListQaScorecardRevisions")
   public func listQaScorecardRevisionsByItems(
     request: ListQaScorecardRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<QaScorecardRevision, Swift.Error> {
+  ) -> any AsyncSequence<QaScorecardRevision, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListQaScorecardRevisionsResponse in
       var request = request
       request.pageToken = token
@@ -3649,7 +3650,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listQaScorecardRevisionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<QaScorecardRevision, Swift.Error> {
+  ) -> any AsyncSequence<QaScorecardRevision, Swift.Error> & Sendable {
     let request = ListQaScorecardRevisionsRequest().with {
       $0.parent = parent
     }
@@ -3695,7 +3696,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listFeedbackLabelsByItems(
     request: ListFeedbackLabelsRequest
-  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> {
+  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> & Sendable {
     self.listFeedbackLabelsByItems(request: request, options: .init())
   }
 
@@ -3704,9 +3705,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListFeedbackLabels")
   public func listFeedbackLabelsByItems(
     request: ListFeedbackLabelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> {
+  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListFeedbackLabelsResponse in
       var request = request
       request.pageToken = token
@@ -3717,7 +3718,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listFeedbackLabelsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> {
+  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> & Sendable {
     let request = ListFeedbackLabelsRequest().with {
       $0.parent = parent
     }
@@ -3801,7 +3802,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listAllFeedbackLabelsByItems(
     request: ListAllFeedbackLabelsRequest
-  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> {
+  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> & Sendable {
     self.listAllFeedbackLabelsByItems(request: request, options: .init())
   }
 
@@ -3810,9 +3811,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListAllFeedbackLabels")
   public func listAllFeedbackLabelsByItems(
     request: ListAllFeedbackLabelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> {
+  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudContactCenterInsightsV1.ListAllFeedbackLabelsResponse in
       var request = request
       request.pageToken = token
@@ -3823,7 +3824,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listAllFeedbackLabelsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> {
+  ) -> any AsyncSequence<FeedbackLabel, Swift.Error> & Sendable {
     let request = ListAllFeedbackLabelsRequest().with {
       $0.parent = parent
     }
@@ -3921,7 +3922,7 @@ extension Clients.ContactCenterInsightsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -3932,9 +3933,9 @@ extension Clients.ContactCenterInsightsProtocol {
   /// @Snippet(path: "ContactCenterInsights_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -3945,7 +3946,7 @@ extension Clients.ContactCenterInsightsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

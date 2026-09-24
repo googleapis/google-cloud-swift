@@ -936,7 +936,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listWorkstationClustersByItems(
     request: ListWorkstationClustersRequest
-  ) -> any AsyncSequence<WorkstationCluster, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationCluster, Swift.Error> & Sendable {
     self.listWorkstationClustersByItems(request: request, options: .init())
   }
 
@@ -945,9 +945,9 @@ extension Clients.WorkstationsProtocol {
   /// @Snippet(path: "Workstations_ListWorkstationClusters")
   public func listWorkstationClustersByItems(
     request: ListWorkstationClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkstationCluster, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationCluster, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudWorkstationsV1.ListWorkstationClustersResponse in
       var request = request
       request.pageToken = token
@@ -958,7 +958,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listWorkstationClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<WorkstationCluster, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationCluster, Swift.Error> & Sendable {
     let request = ListWorkstationClustersRequest().with {
       $0.parent = parent
     }
@@ -1117,7 +1117,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listWorkstationConfigsByItems(
     request: ListWorkstationConfigsRequest
-  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> & Sendable {
     self.listWorkstationConfigsByItems(request: request, options: .init())
   }
 
@@ -1126,10 +1126,10 @@ extension Clients.WorkstationsProtocol {
   /// @Snippet(path: "Workstations_ListWorkstationConfigs")
   public func listWorkstationConfigsByItems(
     request: ListWorkstationConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWorkstationsV1.ListWorkstationConfigsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWorkstationsV1.ListWorkstationConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listWorkstationConfigs(request: request, options: options)
@@ -1139,7 +1139,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listWorkstationConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> & Sendable {
     let request = ListWorkstationConfigsRequest().with {
       $0.parent = parent
     }
@@ -1160,7 +1160,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listUsableWorkstationConfigsByItems(
     request: ListUsableWorkstationConfigsRequest
-  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> & Sendable {
     self.listUsableWorkstationConfigsByItems(request: request, options: .init())
   }
 
@@ -1170,9 +1170,9 @@ extension Clients.WorkstationsProtocol {
   /// @Snippet(path: "Workstations_ListUsableWorkstationConfigs")
   public func listUsableWorkstationConfigsByItems(
     request: ListUsableWorkstationConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudWorkstationsV1.ListUsableWorkstationConfigsResponse in
       var request = request
       request.pageToken = token
@@ -1183,7 +1183,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listUsableWorkstationConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> {
+  ) -> any AsyncSequence<WorkstationConfig, Swift.Error> & Sendable {
     let request = ListUsableWorkstationConfigsRequest().with {
       $0.parent = parent
     }
@@ -1342,7 +1342,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listWorkstationsByItems(
     request: ListWorkstationsRequest
-  ) -> any AsyncSequence<Workstation, Swift.Error> {
+  ) -> any AsyncSequence<Workstation, Swift.Error> & Sendable {
     self.listWorkstationsByItems(request: request, options: .init())
   }
 
@@ -1351,9 +1351,10 @@ extension Clients.WorkstationsProtocol {
   /// @Snippet(path: "Workstations_ListWorkstations")
   public func listWorkstationsByItems(
     request: ListWorkstationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workstation, Swift.Error> {
+  ) -> any AsyncSequence<Workstation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWorkstationsV1.ListWorkstationsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWorkstationsV1.ListWorkstationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listWorkstations(request: request, options: options)
@@ -1363,7 +1364,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listWorkstationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Workstation, Swift.Error> {
+  ) -> any AsyncSequence<Workstation, Swift.Error> & Sendable {
     let request = ListWorkstationsRequest().with {
       $0.parent = parent
     }
@@ -1384,7 +1385,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listUsableWorkstationsByItems(
     request: ListUsableWorkstationsRequest
-  ) -> any AsyncSequence<Workstation, Swift.Error> {
+  ) -> any AsyncSequence<Workstation, Swift.Error> & Sendable {
     self.listUsableWorkstationsByItems(request: request, options: .init())
   }
 
@@ -1394,10 +1395,10 @@ extension Clients.WorkstationsProtocol {
   /// @Snippet(path: "Workstations_ListUsableWorkstations")
   public func listUsableWorkstationsByItems(
     request: ListUsableWorkstationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workstation, Swift.Error> {
+  ) -> any AsyncSequence<Workstation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudWorkstationsV1.ListUsableWorkstationsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudWorkstationsV1.ListUsableWorkstationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listUsableWorkstations(request: request, options: options)
@@ -1407,7 +1408,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listUsableWorkstationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Workstation, Swift.Error> {
+  ) -> any AsyncSequence<Workstation, Swift.Error> & Sendable {
     let request = ListUsableWorkstationsRequest().with {
       $0.parent = parent
     }
@@ -1676,7 +1677,7 @@ extension Clients.WorkstationsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1687,9 +1688,9 @@ extension Clients.WorkstationsProtocol {
   /// @Snippet(path: "Workstations_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1700,7 +1701,7 @@ extension Clients.WorkstationsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

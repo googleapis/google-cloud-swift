@@ -134,7 +134,7 @@ extension Clients.CloudLocationFinderProtocol {
 
   public func listCloudLocationsByItems(
     request: ListCloudLocationsRequest
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
+  ) -> any AsyncSequence<CloudLocation, Swift.Error> & Sendable {
     self.listCloudLocationsByItems(request: request, options: .init())
   }
 
@@ -143,10 +143,10 @@ extension Clients.CloudLocationFinderProtocol {
   /// @Snippet(path: "CloudLocationFinder_ListCloudLocations")
   public func listCloudLocationsByItems(
     request: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
+  ) -> any AsyncSequence<CloudLocation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listCloudLocations(request: request, options: options)
@@ -156,7 +156,7 @@ extension Clients.CloudLocationFinderProtocol {
 
   public func listCloudLocationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
+  ) -> any AsyncSequence<CloudLocation, Swift.Error> & Sendable {
     let request = ListCloudLocationsRequest().with {
       $0.parent = parent
     }
@@ -198,7 +198,7 @@ extension Clients.CloudLocationFinderProtocol {
 
   public func searchCloudLocationsByItems(
     request: SearchCloudLocationsRequest
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
+  ) -> any AsyncSequence<CloudLocation, Swift.Error> & Sendable {
     self.searchCloudLocationsByItems(request: request, options: .init())
   }
 
@@ -207,10 +207,10 @@ extension Clients.CloudLocationFinderProtocol {
   /// @Snippet(path: "CloudLocationFinder_SearchCloudLocations")
   public func searchCloudLocationsByItems(
     request: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
+  ) -> any AsyncSequence<CloudLocation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.searchCloudLocations(request: request, options: options)
@@ -222,7 +222,7 @@ extension Clients.CloudLocationFinderProtocol {
     parent: Swift.String,
     sourceCloudLocation: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<CloudLocation, Swift.Error> {
+  ) -> any AsyncSequence<CloudLocation, Swift.Error> & Sendable {
     let request = SearchCloudLocationsRequest().with {
       $0.parent = parent
       $0.sourceCloudLocation = sourceCloudLocation
@@ -245,7 +245,7 @@ extension Clients.CloudLocationFinderProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -254,9 +254,9 @@ extension Clients.CloudLocationFinderProtocol {
   /// @Snippet(path: "CloudLocationFinder_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)

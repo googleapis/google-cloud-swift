@@ -481,7 +481,7 @@ extension Clients.EchoProtocol {
 
   public func pagedExpandByItems(
     request: PagedExpandRequest
-  ) -> any AsyncSequence<EchoResponse, Swift.Error> {
+  ) -> any AsyncSequence<EchoResponse, Swift.Error> & Sendable {
     self.pagedExpandByItems(request: request, options: .init())
   }
 
@@ -491,9 +491,9 @@ extension Clients.EchoProtocol {
   /// @Snippet(path: "Echo_PagedExpand")
   public func pagedExpandByItems(
     request: PagedExpandRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EchoResponse, Swift.Error> {
+  ) -> any AsyncSequence<EchoResponse, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse in
       var request = request
       request.pageToken = token
       return try await self.pagedExpand(request: request, options: options)
@@ -515,7 +515,7 @@ extension Clients.EchoProtocol {
 
   public func pagedExpandLegacyByItems(
     request: PagedExpandLegacyRequest
-  ) -> any AsyncSequence<EchoResponse, Swift.Error> {
+  ) -> any AsyncSequence<EchoResponse, Swift.Error> & Sendable {
     self.pagedExpandLegacyByItems(request: request, options: .init())
   }
 
@@ -526,9 +526,9 @@ extension Clients.EchoProtocol {
   /// @Snippet(path: "Echo_PagedExpandLegacy")
   public func pagedExpandLegacyByItems(
     request: PagedExpandLegacyRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EchoResponse, Swift.Error> {
+  ) -> any AsyncSequence<EchoResponse, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse in
       var request = request
       request.pageToken = token
       return try await self.pagedExpandLegacy(request: request, options: options)
@@ -550,7 +550,7 @@ extension Clients.EchoProtocol {
 
   public func pagedExpandLegacyMappedByItems(
     request: PagedExpandRequest
-  ) -> any AsyncSequence<(Swift.String, PagedExpandResponseList), Swift.Error> {
+  ) -> any AsyncSequence<(Swift.String, PagedExpandResponseList), Swift.Error> & Sendable {
     self.pagedExpandLegacyMappedByItems(request: request, options: .init())
   }
 
@@ -563,9 +563,10 @@ extension Clients.EchoProtocol {
   /// @Snippet(path: "Echo_PagedExpandLegacyMapped")
   public func pagedExpandLegacyMappedByItems(
     request: PagedExpandRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<(Swift.String, PagedExpandResponseList), Swift.Error> {
+  ) -> any AsyncSequence<(Swift.String, PagedExpandResponseList), Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.PagedExpandLegacyMappedResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleShowcaseV1Beta1.PagedExpandLegacyMappedResponse in
       var request = request
       request.pageToken = token
       return try await self.pagedExpandLegacyMapped(request: request, options: options)
@@ -623,7 +624,7 @@ extension Clients.EchoProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -634,9 +635,9 @@ extension Clients.EchoProtocol {
   /// @Snippet(path: "Echo_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -706,7 +707,7 @@ extension Clients.EchoProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -717,9 +718,9 @@ extension Clients.EchoProtocol {
   /// @Snippet(path: "Echo_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -730,7 +731,7 @@ extension Clients.EchoProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -218,7 +218,7 @@
 
     public func listByItems(
       request: RegionInstanceGroupsClient.ListRequest
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -228,9 +228,10 @@
     /// @Snippet(path: "regionInstanceGroups_list")
     public func listByItems(
       request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList
+        in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -241,7 +242,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<InstanceGroup, Swift.Error> {
+    ) -> any AsyncSequence<InstanceGroup, Swift.Error> & Sendable {
       let request = RegionInstanceGroupsClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -263,7 +264,7 @@
 
     public func listInstancesByItems(
       request: RegionInstanceGroupsClient.ListInstancesRequest
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
       self.listInstancesByItems(request: request, options: .init())
     }
 
@@ -275,10 +276,10 @@
     /// @Snippet(path: "regionInstanceGroups_listInstances")
     public func listInstancesByItems(
       request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances
-        in
+        @Sendable (token: Swift.String) async throws
+          -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances in
         var request = request
         request.pageToken = token
         return try await self.listInstances(request: request, options: options)
@@ -291,7 +292,7 @@
       region: Swift.String,
       instanceGroup: Swift.String,
       body: RegionInstanceGroupsListInstancesRequest?,
-    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> {
+    ) -> any AsyncSequence<InstanceWithNamedPorts, Swift.Error> & Sendable {
       let request = RegionInstanceGroupsClient.ListInstancesRequest().with {
         $0.project = project
         $0.region = region

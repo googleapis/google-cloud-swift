@@ -983,7 +983,7 @@
 
     public func listByItems(
       request: FirewallPoliciesClient.ListRequest
-    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -993,9 +993,9 @@
     /// @Snippet(path: "firewallPolicies_list")
     public func listByItems(
       request: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> {
+    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)

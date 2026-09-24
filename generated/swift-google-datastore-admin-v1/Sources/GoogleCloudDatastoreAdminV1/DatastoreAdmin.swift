@@ -644,7 +644,7 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listIndexesByItems(
     request: ListIndexesRequest
-  ) -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
     self.listIndexesByItems(request: request, options: .init())
   }
 
@@ -655,9 +655,10 @@ extension Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ListIndexes")
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Index, Swift.Error> {
+  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDatastoreAdminV1.ListIndexesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDatastoreAdminV1.ListIndexesResponse in
       var request = request
       request.pageToken = token
       return try await self.listIndexes(request: request, options: options)
@@ -679,7 +680,7 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -690,9 +691,9 @@ extension Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -703,7 +704,7 @@ extension Clients.DatastoreAdminProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

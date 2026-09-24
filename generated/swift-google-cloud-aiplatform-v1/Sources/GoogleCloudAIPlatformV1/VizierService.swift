@@ -586,7 +586,7 @@
 
     public func listStudiesByItems(
       request: ListStudiesRequest
-    ) -> any AsyncSequence<Study, Swift.Error> {
+    ) -> any AsyncSequence<Study, Swift.Error> & Sendable {
       self.listStudiesByItems(request: request, options: .init())
     }
 
@@ -595,9 +595,10 @@
     /// @Snippet(path: "VizierService_ListStudies")
     public func listStudiesByItems(
       request: ListStudiesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Study, Swift.Error> {
+    ) -> any AsyncSequence<Study, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse
+        in
         var request = request
         request.pageToken = token
         return try await self.listStudies(request: request, options: options)
@@ -607,7 +608,7 @@
 
     public func listStudiesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Study, Swift.Error> {
+    ) -> any AsyncSequence<Study, Swift.Error> & Sendable {
       let request = ListStudiesRequest().with {
         $0.parent = parent
       }
@@ -739,7 +740,7 @@
 
     public func listTrialsByItems(
       request: ListTrialsRequest
-    ) -> any AsyncSequence<Trial, Swift.Error> {
+    ) -> any AsyncSequence<Trial, Swift.Error> & Sendable {
       self.listTrialsByItems(request: request, options: .init())
     }
 
@@ -748,9 +749,10 @@
     /// @Snippet(path: "VizierService_ListTrials")
     public func listTrialsByItems(
       request: ListTrialsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Trial, Swift.Error> {
+    ) -> any AsyncSequence<Trial, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse
+        in
         var request = request
         request.pageToken = token
         return try await self.listTrials(request: request, options: options)
@@ -760,7 +762,7 @@
 
     public func listTrialsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Trial, Swift.Error> {
+    ) -> any AsyncSequence<Trial, Swift.Error> & Sendable {
       let request = ListTrialsRequest().with {
         $0.parent = parent
       }
@@ -886,7 +888,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -895,9 +897,9 @@
     /// @Snippet(path: "VizierService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listLocations(request: request, options: options)
@@ -967,7 +969,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -978,9 +980,9 @@
     /// @Snippet(path: "VizierService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
-        (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+        @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
         request.pageToken = token
         return try await self.listOperations(request: request, options: options)
@@ -991,7 +993,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

@@ -651,7 +651,7 @@ extension Clients.ProjectsProtocol {
 
   public func listProjectsByItems(
     request: ListProjectsRequest
-  ) -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
     self.listProjectsByItems(request: request, options: .init())
   }
 
@@ -665,9 +665,10 @@ extension Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_ListProjects")
   public func listProjectsByItems(
     request: ListProjectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.ListProjectsResponse in
       var request = request
       request.pageToken = token
       return try await self.listProjects(request: request, options: options)
@@ -677,7 +678,7 @@ extension Clients.ProjectsProtocol {
 
   public func listProjectsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
     let request = ListProjectsRequest().with {
       $0.parent = parent
     }
@@ -698,7 +699,7 @@ extension Clients.ProjectsProtocol {
 
   public func searchProjectsByItems(
     request: SearchProjectsRequest
-  ) -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
     self.searchProjectsByItems(request: request, options: .init())
   }
 
@@ -718,9 +719,10 @@ extension Clients.ProjectsProtocol {
   /// @Snippet(path: "Projects_SearchProjects")
   public func searchProjectsByItems(
     request: SearchProjectsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudResourceManagerV3.SearchProjectsResponse in
       var request = request
       request.pageToken = token
       return try await self.searchProjects(request: request, options: options)
@@ -730,7 +732,7 @@ extension Clients.ProjectsProtocol {
 
   public func searchProjectsByItems(
     query: Swift.String,
-  ) -> any AsyncSequence<Project, Swift.Error> {
+  ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
     let request = SearchProjectsRequest().with {
       $0.query = query
     }

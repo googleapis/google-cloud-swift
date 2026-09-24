@@ -3059,7 +3059,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPrivateCloudsByItems(
     request: ListPrivateCloudsRequest
-  ) -> any AsyncSequence<PrivateCloud, Swift.Error> {
+  ) -> any AsyncSequence<PrivateCloud, Swift.Error> & Sendable {
     self.listPrivateCloudsByItems(request: request, options: .init())
   }
 
@@ -3068,9 +3068,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListPrivateClouds")
   public func listPrivateCloudsByItems(
     request: ListPrivateCloudsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PrivateCloud, Swift.Error> {
+  ) -> any AsyncSequence<PrivateCloud, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListPrivateCloudsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListPrivateCloudsResponse in
       var request = request
       request.pageToken = token
       return try await self.listPrivateClouds(request: request, options: options)
@@ -3080,7 +3081,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPrivateCloudsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PrivateCloud, Swift.Error> {
+  ) -> any AsyncSequence<PrivateCloud, Swift.Error> & Sendable {
     let request = ListPrivateCloudsRequest().with {
       $0.parent = parent
     }
@@ -3276,7 +3277,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listClustersByItems(
     request: ListClustersRequest
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
     self.listClustersByItems(request: request, options: .init())
   }
 
@@ -3285,9 +3286,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListClusters")
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListClustersResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListClustersResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listClusters(request: request, options: options)
@@ -3297,7 +3299,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Cluster, Swift.Error> {
+  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
@@ -3456,7 +3458,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNodesByItems(
     request: ListNodesRequest
-  ) -> any AsyncSequence<Node, Swift.Error> {
+  ) -> any AsyncSequence<Node, Swift.Error> & Sendable {
     self.listNodesByItems(request: request, options: .init())
   }
 
@@ -3465,9 +3467,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListNodes")
   public func listNodesByItems(
     request: ListNodesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Node, Swift.Error> {
+  ) -> any AsyncSequence<Node, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNodesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNodesResponse in
       var request = request
       request.pageToken = token
       return try await self.listNodes(request: request, options: options)
@@ -3477,7 +3479,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNodesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Node, Swift.Error> {
+  ) -> any AsyncSequence<Node, Swift.Error> & Sendable {
     let request = ListNodesRequest().with {
       $0.parent = parent
     }
@@ -3517,7 +3519,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listExternalAddressesByItems(
     request: ListExternalAddressesRequest
-  ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAddress, Swift.Error> & Sendable {
     self.listExternalAddressesByItems(request: request, options: .init())
   }
 
@@ -3527,10 +3529,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListExternalAddresses")
   public func listExternalAddressesByItems(
     request: ListExternalAddressesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAddress, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListExternalAddressesResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListExternalAddressesResponse in
       var request = request
       request.pageToken = token
       return try await self.listExternalAddresses(request: request, options: options)
@@ -3540,7 +3542,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listExternalAddressesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAddress, Swift.Error> & Sendable {
     let request = ListExternalAddressesRequest().with {
       $0.parent = parent
     }
@@ -3561,7 +3563,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func fetchNetworkPolicyExternalAddressesByItems(
     request: FetchNetworkPolicyExternalAddressesRequest
-  ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAddress, Swift.Error> & Sendable {
     self.fetchNetworkPolicyExternalAddressesByItems(request: request, options: .init())
   }
 
@@ -3571,9 +3573,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_FetchNetworkPolicyExternalAddresses")
   public func fetchNetworkPolicyExternalAddressesByItems(
     request: FetchNetworkPolicyExternalAddressesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAddress, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.FetchNetworkPolicyExternalAddressesResponse in
       var request = request
       request.pageToken = token
@@ -3584,7 +3586,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func fetchNetworkPolicyExternalAddressesByItems(
     networkPolicy: Swift.String,
-  ) -> any AsyncSequence<ExternalAddress, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAddress, Swift.Error> & Sendable {
     let request = FetchNetworkPolicyExternalAddressesRequest().with {
       $0.networkPolicy = networkPolicy
     }
@@ -3743,7 +3745,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listSubnetsByItems(
     request: ListSubnetsRequest
-  ) -> any AsyncSequence<Subnet, Swift.Error> {
+  ) -> any AsyncSequence<Subnet, Swift.Error> & Sendable {
     self.listSubnetsByItems(request: request, options: .init())
   }
 
@@ -3752,9 +3754,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListSubnets")
   public func listSubnetsByItems(
     request: ListSubnetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Subnet, Swift.Error> {
+  ) -> any AsyncSequence<Subnet, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListSubnetsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListSubnetsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listSubnets(request: request, options: options)
@@ -3764,7 +3767,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listSubnetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Subnet, Swift.Error> {
+  ) -> any AsyncSequence<Subnet, Swift.Error> & Sendable {
     let request = ListSubnetsRequest().with {
       $0.parent = parent
     }
@@ -3843,7 +3846,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listExternalAccessRulesByItems(
     request: ListExternalAccessRulesRequest
-  ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> & Sendable {
     self.listExternalAccessRulesByItems(request: request, options: .init())
   }
 
@@ -3852,9 +3855,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListExternalAccessRules")
   public func listExternalAccessRulesByItems(
     request: ListExternalAccessRulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListExternalAccessRulesResponse in
       var request = request
       request.pageToken = token
@@ -3865,7 +3868,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listExternalAccessRulesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> {
+  ) -> any AsyncSequence<ExternalAccessRule, Swift.Error> & Sendable {
     let request = ListExternalAccessRulesRequest().with {
       $0.parent = parent
     }
@@ -4024,7 +4027,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listLoggingServersByItems(
     request: ListLoggingServersRequest
-  ) -> any AsyncSequence<LoggingServer, Swift.Error> {
+  ) -> any AsyncSequence<LoggingServer, Swift.Error> & Sendable {
     self.listLoggingServersByItems(request: request, options: .init())
   }
 
@@ -4034,9 +4037,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListLoggingServers")
   public func listLoggingServersByItems(
     request: ListLoggingServersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LoggingServer, Swift.Error> {
+  ) -> any AsyncSequence<LoggingServer, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListLoggingServersResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListLoggingServersResponse in
       var request = request
       request.pageToken = token
       return try await self.listLoggingServers(request: request, options: options)
@@ -4046,7 +4050,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listLoggingServersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<LoggingServer, Swift.Error> {
+  ) -> any AsyncSequence<LoggingServer, Swift.Error> & Sendable {
     let request = ListLoggingServersRequest().with {
       $0.parent = parent
     }
@@ -4205,7 +4209,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNodeTypesByItems(
     request: ListNodeTypesRequest
-  ) -> any AsyncSequence<NodeType, Swift.Error> {
+  ) -> any AsyncSequence<NodeType, Swift.Error> & Sendable {
     self.listNodeTypesByItems(request: request, options: .init())
   }
 
@@ -4214,9 +4218,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListNodeTypes")
   public func listNodeTypesByItems(
     request: ListNodeTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<NodeType, Swift.Error> {
+  ) -> any AsyncSequence<NodeType, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNodeTypesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListNodeTypesResponse in
       var request = request
       request.pageToken = token
       return try await self.listNodeTypes(request: request, options: options)
@@ -4226,7 +4231,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNodeTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<NodeType, Swift.Error> {
+  ) -> any AsyncSequence<NodeType, Swift.Error> & Sendable {
     let request = ListNodeTypesRequest().with {
       $0.parent = parent
     }
@@ -4465,7 +4470,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNetworkPeeringsByItems(
     request: ListNetworkPeeringsRequest
-  ) -> any AsyncSequence<NetworkPeering, Swift.Error> {
+  ) -> any AsyncSequence<NetworkPeering, Swift.Error> & Sendable {
     self.listNetworkPeeringsByItems(request: request, options: .init())
   }
 
@@ -4475,9 +4480,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListNetworkPeerings")
   public func listNetworkPeeringsByItems(
     request: ListNetworkPeeringsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<NetworkPeering, Swift.Error> {
+  ) -> any AsyncSequence<NetworkPeering, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPeeringsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListNetworkPeeringsResponse in
       var request = request
       request.pageToken = token
       return try await self.listNetworkPeerings(request: request, options: options)
@@ -4487,7 +4493,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNetworkPeeringsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<NetworkPeering, Swift.Error> {
+  ) -> any AsyncSequence<NetworkPeering, Swift.Error> & Sendable {
     let request = ListNetworkPeeringsRequest().with {
       $0.parent = parent
     }
@@ -4625,7 +4631,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPeeringRoutesByItems(
     request: ListPeeringRoutesRequest
-  ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
+  ) -> any AsyncSequence<PeeringRoute, Swift.Error> & Sendable {
     self.listPeeringRoutesByItems(request: request, options: .init())
   }
 
@@ -4635,9 +4641,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListPeeringRoutes")
   public func listPeeringRoutesByItems(
     request: ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
+  ) -> any AsyncSequence<PeeringRoute, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListPeeringRoutesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListPeeringRoutesResponse in
       var request = request
       request.pageToken = token
       return try await self.listPeeringRoutes(request: request, options: options)
@@ -4647,7 +4654,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPeeringRoutesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
+  ) -> any AsyncSequence<PeeringRoute, Swift.Error> & Sendable {
     let request = ListPeeringRoutesRequest().with {
       $0.parent = parent
     }
@@ -4709,7 +4716,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listHcxActivationKeysByItems(
     request: ListHcxActivationKeysRequest
-  ) -> any AsyncSequence<HcxActivationKey, Swift.Error> {
+  ) -> any AsyncSequence<HcxActivationKey, Swift.Error> & Sendable {
     self.listHcxActivationKeysByItems(request: request, options: .init())
   }
 
@@ -4718,10 +4725,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListHcxActivationKeys")
   public func listHcxActivationKeysByItems(
     request: ListHcxActivationKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<HcxActivationKey, Swift.Error> {
+  ) -> any AsyncSequence<HcxActivationKey, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListHcxActivationKeysResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListHcxActivationKeysResponse in
       var request = request
       request.pageToken = token
       return try await self.listHcxActivationKeys(request: request, options: options)
@@ -4731,7 +4738,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listHcxActivationKeysByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<HcxActivationKey, Swift.Error> {
+  ) -> any AsyncSequence<HcxActivationKey, Swift.Error> & Sendable {
     let request = ListHcxActivationKeysRequest().with {
       $0.parent = parent
     }
@@ -4794,7 +4801,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNetworkPoliciesByItems(
     request: ListNetworkPoliciesRequest
-  ) -> any AsyncSequence<NetworkPolicy, Swift.Error> {
+  ) -> any AsyncSequence<NetworkPolicy, Swift.Error> & Sendable {
     self.listNetworkPoliciesByItems(request: request, options: .init())
   }
 
@@ -4803,9 +4810,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListNetworkPolicies")
   public func listNetworkPoliciesByItems(
     request: ListNetworkPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<NetworkPolicy, Swift.Error> {
+  ) -> any AsyncSequence<NetworkPolicy, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPoliciesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListNetworkPoliciesResponse in
       var request = request
       request.pageToken = token
       return try await self.listNetworkPolicies(request: request, options: options)
@@ -4815,7 +4823,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listNetworkPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<NetworkPolicy, Swift.Error> {
+  ) -> any AsyncSequence<NetworkPolicy, Swift.Error> & Sendable {
     let request = ListNetworkPoliciesRequest().with {
       $0.parent = parent
     }
@@ -4953,7 +4961,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listManagementDnsZoneBindingsByItems(
     request: ListManagementDnsZoneBindingsRequest
-  ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> {
+  ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> & Sendable {
     self.listManagementDnsZoneBindingsByItems(request: request, options: .init())
   }
 
@@ -4962,9 +4970,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListManagementDnsZoneBindings")
   public func listManagementDnsZoneBindingsByItems(
     request: ListManagementDnsZoneBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> {
+  ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListManagementDnsZoneBindingsResponse in
       var request = request
       request.pageToken = token
@@ -4975,7 +4983,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listManagementDnsZoneBindingsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> {
+  ) -> any AsyncSequence<ManagementDnsZoneBinding, Swift.Error> & Sendable {
     let request = ListManagementDnsZoneBindingsRequest().with {
       $0.parent = parent
     }
@@ -5316,7 +5324,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listVmwareEngineNetworksByItems(
     request: ListVmwareEngineNetworksRequest
-  ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> {
+  ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> & Sendable {
     self.listVmwareEngineNetworksByItems(request: request, options: .init())
   }
 
@@ -5325,9 +5333,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListVmwareEngineNetworks")
   public func listVmwareEngineNetworksByItems(
     request: ListVmwareEngineNetworksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> {
+  ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListVmwareEngineNetworksResponse in
       var request = request
       request.pageToken = token
@@ -5338,7 +5346,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listVmwareEngineNetworksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> {
+  ) -> any AsyncSequence<VmwareEngineNetwork, Swift.Error> & Sendable {
     let request = ListVmwareEngineNetworksRequest().with {
       $0.parent = parent
     }
@@ -5421,7 +5429,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPrivateConnectionsByItems(
     request: ListPrivateConnectionsRequest
-  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> & Sendable {
     self.listPrivateConnectionsByItems(request: request, options: .init())
   }
 
@@ -5430,10 +5438,10 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListPrivateConnections")
   public func listPrivateConnectionsByItems(
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVMwareEngineV1.ListPrivateConnectionsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVMwareEngineV1.ListPrivateConnectionsResponse in
       var request = request
       request.pageToken = token
       return try await self.listPrivateConnections(request: request, options: options)
@@ -5443,7 +5451,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPrivateConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PrivateConnection, Swift.Error> {
+  ) -> any AsyncSequence<PrivateConnection, Swift.Error> & Sendable {
     let request = ListPrivateConnectionsRequest().with {
       $0.parent = parent
     }
@@ -5540,7 +5548,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPrivateConnectionPeeringRoutesByItems(
     request: ListPrivateConnectionPeeringRoutesRequest
-  ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
+  ) -> any AsyncSequence<PeeringRoute, Swift.Error> & Sendable {
     self.listPrivateConnectionPeeringRoutesByItems(request: request, options: .init())
   }
 
@@ -5549,9 +5557,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListPrivateConnectionPeeringRoutes")
   public func listPrivateConnectionPeeringRoutesByItems(
     request: ListPrivateConnectionPeeringRoutesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
+  ) -> any AsyncSequence<PeeringRoute, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws
+      @Sendable (token: Swift.String) async throws
         -> GoogleCloudVMwareEngineV1.ListPrivateConnectionPeeringRoutesResponse in
       var request = request
       request.pageToken = token
@@ -5562,7 +5570,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listPrivateConnectionPeeringRoutesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PeeringRoute, Swift.Error> {
+  ) -> any AsyncSequence<PeeringRoute, Swift.Error> & Sendable {
     let request = ListPrivateConnectionPeeringRoutesRequest().with {
       $0.parent = parent
     }
@@ -5682,7 +5690,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -5691,9 +5699,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -5763,7 +5771,7 @@ extension Clients.VmwareEngineProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -5774,9 +5782,9 @@ extension Clients.VmwareEngineProtocol {
   /// @Snippet(path: "VmwareEngine_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -5787,7 +5795,7 @@ extension Clients.VmwareEngineProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -298,7 +298,7 @@ extension Clients.RecommenderProtocol {
 
   public func listInsightsByItems(
     request: ListInsightsRequest
-  ) -> any AsyncSequence<Insight, Swift.Error> {
+  ) -> any AsyncSequence<Insight, Swift.Error> & Sendable {
     self.listInsightsByItems(request: request, options: .init())
   }
 
@@ -308,9 +308,10 @@ extension Clients.RecommenderProtocol {
   /// @Snippet(path: "Recommender_ListInsights")
   public func listInsightsByItems(
     request: ListInsightsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Insight, Swift.Error> {
+  ) -> any AsyncSequence<Insight, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listInsights(request: request, options: options)
@@ -320,7 +321,7 @@ extension Clients.RecommenderProtocol {
 
   public func listInsightsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Insight, Swift.Error> {
+  ) -> any AsyncSequence<Insight, Swift.Error> & Sendable {
     let request = ListInsightsRequest().with {
       $0.parent = parent
     }
@@ -387,7 +388,7 @@ extension Clients.RecommenderProtocol {
 
   public func listRecommendationsByItems(
     request: ListRecommendationsRequest
-  ) -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> & Sendable {
     self.listRecommendationsByItems(request: request, options: .init())
   }
 
@@ -397,9 +398,10 @@ extension Clients.RecommenderProtocol {
   /// @Snippet(path: "Recommender_ListRecommendations")
   public func listRecommendationsByItems(
     request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudRecommenderV1.ListRecommendationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listRecommendations(request: request, options: options)
@@ -409,7 +411,7 @@ extension Clients.RecommenderProtocol {
 
   public func listRecommendationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> & Sendable {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
     }
@@ -419,7 +421,7 @@ extension Clients.RecommenderProtocol {
   public func listRecommendationsByItems(
     parent: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<Recommendation, Swift.Error> {
+  ) -> any AsyncSequence<Recommendation, Swift.Error> & Sendable {
     let request = ListRecommendationsRequest().with {
       $0.parent = parent
       $0.filter = filter

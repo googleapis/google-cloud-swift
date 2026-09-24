@@ -1013,7 +1013,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listProcessorTypesByItems(
     request: ListProcessorTypesRequest
-  ) -> any AsyncSequence<ProcessorType, Swift.Error> {
+  ) -> any AsyncSequence<ProcessorType, Swift.Error> & Sendable {
     self.listProcessorTypesByItems(request: request, options: .init())
   }
 
@@ -1022,9 +1022,10 @@ extension Clients.DocumentProcessorServiceProtocol {
   /// @Snippet(path: "DocumentProcessorService_ListProcessorTypes")
   public func listProcessorTypesByItems(
     request: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProcessorType, Swift.Error> {
+  ) -> any AsyncSequence<ProcessorType, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse in
       var request = request
       request.pageToken = token
       return try await self.listProcessorTypes(request: request, options: options)
@@ -1034,7 +1035,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listProcessorTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ProcessorType, Swift.Error> {
+  ) -> any AsyncSequence<ProcessorType, Swift.Error> & Sendable {
     let request = ListProcessorTypesRequest().with {
       $0.parent = parent
     }
@@ -1076,7 +1077,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listProcessorsByItems(
     request: ListProcessorsRequest
-  ) -> any AsyncSequence<Processor, Swift.Error> {
+  ) -> any AsyncSequence<Processor, Swift.Error> & Sendable {
     self.listProcessorsByItems(request: request, options: .init())
   }
 
@@ -1085,9 +1086,10 @@ extension Clients.DocumentProcessorServiceProtocol {
   /// @Snippet(path: "DocumentProcessorService_ListProcessors")
   public func listProcessorsByItems(
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Processor, Swift.Error> {
+  ) -> any AsyncSequence<Processor, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listProcessors(request: request, options: options)
@@ -1097,7 +1099,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listProcessorsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Processor, Swift.Error> {
+  ) -> any AsyncSequence<Processor, Swift.Error> & Sendable {
     let request = ListProcessorsRequest().with {
       $0.parent = parent
     }
@@ -1200,7 +1202,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listProcessorVersionsByItems(
     request: ListProcessorVersionsRequest
-  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> {
+  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> & Sendable {
     self.listProcessorVersionsByItems(request: request, options: .init())
   }
 
@@ -1209,9 +1211,10 @@ extension Clients.DocumentProcessorServiceProtocol {
   /// @Snippet(path: "DocumentProcessorService_ListProcessorVersions")
   public func listProcessorVersionsByItems(
     request: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> {
+  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse in
       var request = request
       request.pageToken = token
       return try await self.listProcessorVersions(request: request, options: options)
@@ -1221,7 +1224,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listProcessorVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> {
+  ) -> any AsyncSequence<ProcessorVersion, Swift.Error> & Sendable {
     let request = ListProcessorVersionsRequest().with {
       $0.parent = parent
     }
@@ -1600,7 +1603,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listEvaluationsByItems(
     request: ListEvaluationsRequest
-  ) -> any AsyncSequence<Evaluation, Swift.Error> {
+  ) -> any AsyncSequence<Evaluation, Swift.Error> & Sendable {
     self.listEvaluationsByItems(request: request, options: .init())
   }
 
@@ -1609,9 +1612,10 @@ extension Clients.DocumentProcessorServiceProtocol {
   /// @Snippet(path: "DocumentProcessorService_ListEvaluations")
   public func listEvaluationsByItems(
     request: ListEvaluationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Evaluation, Swift.Error> {
+  ) -> any AsyncSequence<Evaluation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudDocumentAIV1.ListEvaluationsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudDocumentAIV1.ListEvaluationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listEvaluations(request: request, options: options)
@@ -1621,7 +1625,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listEvaluationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Evaluation, Swift.Error> {
+  ) -> any AsyncSequence<Evaluation, Swift.Error> & Sendable {
     let request = ListEvaluationsRequest().with {
       $0.parent = parent
     }
@@ -1642,7 +1646,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1651,9 +1655,9 @@ extension Clients.DocumentProcessorServiceProtocol {
   /// @Snippet(path: "DocumentProcessorService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -1687,7 +1691,7 @@ extension Clients.DocumentProcessorServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1698,9 +1702,9 @@ extension Clients.DocumentProcessorServiceProtocol {
   /// @Snippet(path: "DocumentProcessorService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -1711,7 +1715,7 @@ extension Clients.DocumentProcessorServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

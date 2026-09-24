@@ -114,7 +114,7 @@ extension Clients.ManagedZoneOperationsProtocol {
 
   public func listByItems(
     request: ManagedZoneOperationsClient.ListRequest
-  ) -> any AsyncSequence<Operation, Swift.Error> {
+  ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -123,8 +123,9 @@ extension Clients.ManagedZoneOperationsProtocol {
   /// @Snippet(path: "managedZoneOperations_list")
   public func listByItems(
     request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Operation, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> ManagedZoneOperationsListResponse in
+  ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> ManagedZoneOperationsListResponse in
       var request = request
       request.pageToken = token
       return try await self.list(request: request, options: options)
@@ -135,7 +136,7 @@ extension Clients.ManagedZoneOperationsProtocol {
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,
-  ) -> any AsyncSequence<Operation, Swift.Error> {
+  ) -> any AsyncSequence<Operation, Swift.Error> & Sendable {
     let request = ManagedZoneOperationsClient.ListRequest().with {
       $0.project = project
       $0.managedZone = managedZone

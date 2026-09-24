@@ -456,7 +456,7 @@
 
     public func listByItems(
       request: RegionUrlMapsClient.ListRequest
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -466,8 +466,9 @@
     /// @Snippet(path: "regionUrlMaps_list")
     public func listByItems(
       request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
-      let listRpc = { (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
+    ) -> any AsyncSequence<UrlMap, Swift.Error> & Sendable {
+      let listRpc = {
+        @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.UrlMapList in
         var request = request
         request.pageToken = token
         return try await self.list(request: request, options: options)
@@ -478,7 +479,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<UrlMap, Swift.Error> {
+    ) -> any AsyncSequence<UrlMap, Swift.Error> & Sendable {
       let request = RegionUrlMapsClient.ListRequest().with {
         $0.project = project
         $0.region = region

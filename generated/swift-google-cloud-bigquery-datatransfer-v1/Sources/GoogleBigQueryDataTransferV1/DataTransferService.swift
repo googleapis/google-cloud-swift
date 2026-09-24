@@ -362,7 +362,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listDataSourcesByItems(
     request: ListDataSourcesRequest
-  ) -> any AsyncSequence<DataSource, Swift.Error> {
+  ) -> any AsyncSequence<DataSource, Swift.Error> & Sendable {
     self.listDataSourcesByItems(request: request, options: .init())
   }
 
@@ -371,9 +371,10 @@ extension Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListDataSources")
   public func listDataSourcesByItems(
     request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSource, Swift.Error> {
+  ) -> any AsyncSequence<DataSource, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse in
       var request = request
       request.pageToken = token
       return try await self.listDataSources(request: request, options: options)
@@ -383,7 +384,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listDataSourcesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataSource, Swift.Error> {
+  ) -> any AsyncSequence<DataSource, Swift.Error> & Sendable {
     let request = ListDataSourcesRequest().with {
       $0.parent = parent
     }
@@ -496,7 +497,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listTransferConfigsByItems(
     request: ListTransferConfigsRequest
-  ) -> any AsyncSequence<TransferConfig, Swift.Error> {
+  ) -> any AsyncSequence<TransferConfig, Swift.Error> & Sendable {
     self.listTransferConfigsByItems(request: request, options: .init())
   }
 
@@ -506,10 +507,10 @@ extension Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListTransferConfigs")
   public func listTransferConfigsByItems(
     request: ListTransferConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TransferConfig, Swift.Error> {
+  ) -> any AsyncSequence<TransferConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listTransferConfigs(request: request, options: options)
@@ -519,7 +520,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listTransferConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TransferConfig, Swift.Error> {
+  ) -> any AsyncSequence<TransferConfig, Swift.Error> & Sendable {
     let request = ListTransferConfigsRequest().with {
       $0.parent = parent
     }
@@ -620,7 +621,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listTransferRunsByItems(
     request: ListTransferRunsRequest
-  ) -> any AsyncSequence<TransferRun, Swift.Error> {
+  ) -> any AsyncSequence<TransferRun, Swift.Error> & Sendable {
     self.listTransferRunsByItems(request: request, options: .init())
   }
 
@@ -629,9 +630,10 @@ extension Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListTransferRuns")
   public func listTransferRunsByItems(
     request: ListTransferRunsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TransferRun, Swift.Error> {
+  ) -> any AsyncSequence<TransferRun, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse in
       var request = request
       request.pageToken = token
       return try await self.listTransferRuns(request: request, options: options)
@@ -641,7 +643,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listTransferRunsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TransferRun, Swift.Error> {
+  ) -> any AsyncSequence<TransferRun, Swift.Error> & Sendable {
     let request = ListTransferRunsRequest().with {
       $0.parent = parent
     }
@@ -662,7 +664,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listTransferLogsByItems(
     request: ListTransferLogsRequest
-  ) -> any AsyncSequence<TransferMessage, Swift.Error> {
+  ) -> any AsyncSequence<TransferMessage, Swift.Error> & Sendable {
     self.listTransferLogsByItems(request: request, options: .init())
   }
 
@@ -671,9 +673,10 @@ extension Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListTransferLogs")
   public func listTransferLogsByItems(
     request: ListTransferLogsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TransferMessage, Swift.Error> {
+  ) -> any AsyncSequence<TransferMessage, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse in
       var request = request
       request.pageToken = token
       return try await self.listTransferLogs(request: request, options: options)
@@ -683,7 +686,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listTransferLogsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TransferMessage, Swift.Error> {
+  ) -> any AsyncSequence<TransferMessage, Swift.Error> & Sendable {
     let request = ListTransferLogsRequest().with {
       $0.parent = parent
     }
@@ -745,7 +748,7 @@ extension Clients.DataTransferServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -754,9 +757,9 @@ extension Clients.DataTransferServiceProtocol {
   /// @Snippet(path: "DataTransferService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)

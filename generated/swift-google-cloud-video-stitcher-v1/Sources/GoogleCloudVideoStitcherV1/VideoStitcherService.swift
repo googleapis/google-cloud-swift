@@ -1097,7 +1097,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listCdnKeysByItems(
     request: ListCdnKeysRequest
-  ) -> any AsyncSequence<CdnKey, Swift.Error> {
+  ) -> any AsyncSequence<CdnKey, Swift.Error> & Sendable {
     self.listCdnKeysByItems(request: request, options: .init())
   }
 
@@ -1106,9 +1106,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListCdnKeys")
   public func listCdnKeysByItems(
     request: ListCdnKeysRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CdnKey, Swift.Error> {
+  ) -> any AsyncSequence<CdnKey, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListCdnKeysResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListCdnKeysResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listCdnKeys(request: request, options: options)
@@ -1118,7 +1119,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listCdnKeysByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CdnKey, Swift.Error> {
+  ) -> any AsyncSequence<CdnKey, Swift.Error> & Sendable {
     let request = ListCdnKeysRequest().with {
       $0.parent = parent
     }
@@ -1277,7 +1278,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listVodStitchDetailsByItems(
     request: ListVodStitchDetailsRequest
-  ) -> any AsyncSequence<VodStitchDetail, Swift.Error> {
+  ) -> any AsyncSequence<VodStitchDetail, Swift.Error> & Sendable {
     self.listVodStitchDetailsByItems(request: request, options: .init())
   }
 
@@ -1287,10 +1288,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListVodStitchDetails")
   public func listVodStitchDetailsByItems(
     request: ListVodStitchDetailsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<VodStitchDetail, Swift.Error> {
+  ) -> any AsyncSequence<VodStitchDetail, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListVodStitchDetailsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVideoStitcherV1.ListVodStitchDetailsResponse in
       var request = request
       request.pageToken = token
       return try await self.listVodStitchDetails(request: request, options: options)
@@ -1300,7 +1301,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listVodStitchDetailsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<VodStitchDetail, Swift.Error> {
+  ) -> any AsyncSequence<VodStitchDetail, Swift.Error> & Sendable {
     let request = ListVodStitchDetailsRequest().with {
       $0.parent = parent
     }
@@ -1342,7 +1343,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listVodAdTagDetailsByItems(
     request: ListVodAdTagDetailsRequest
-  ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> {
+  ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> & Sendable {
     self.listVodAdTagDetailsByItems(request: request, options: .init())
   }
 
@@ -1351,10 +1352,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListVodAdTagDetails")
   public func listVodAdTagDetailsByItems(
     request: ListVodAdTagDetailsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> {
+  ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListVodAdTagDetailsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVideoStitcherV1.ListVodAdTagDetailsResponse in
       var request = request
       request.pageToken = token
       return try await self.listVodAdTagDetails(request: request, options: options)
@@ -1364,7 +1365,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listVodAdTagDetailsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> {
+  ) -> any AsyncSequence<VodAdTagDetail, Swift.Error> & Sendable {
     let request = ListVodAdTagDetailsRequest().with {
       $0.parent = parent
     }
@@ -1406,7 +1407,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listLiveAdTagDetailsByItems(
     request: ListLiveAdTagDetailsRequest
-  ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> {
+  ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> & Sendable {
     self.listLiveAdTagDetailsByItems(request: request, options: .init())
   }
 
@@ -1415,10 +1416,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListLiveAdTagDetails")
   public func listLiveAdTagDetailsByItems(
     request: ListLiveAdTagDetailsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> {
+  ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListLiveAdTagDetailsResponse
-      in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVideoStitcherV1.ListLiveAdTagDetailsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLiveAdTagDetails(request: request, options: options)
@@ -1428,7 +1429,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listLiveAdTagDetailsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> {
+  ) -> any AsyncSequence<LiveAdTagDetail, Swift.Error> & Sendable {
     let request = ListLiveAdTagDetailsRequest().with {
       $0.parent = parent
     }
@@ -1509,7 +1510,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listSlatesByItems(
     request: ListSlatesRequest
-  ) -> any AsyncSequence<Slate, Swift.Error> {
+  ) -> any AsyncSequence<Slate, Swift.Error> & Sendable {
     self.listSlatesByItems(request: request, options: .init())
   }
 
@@ -1518,9 +1519,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListSlates")
   public func listSlatesByItems(
     request: ListSlatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Slate, Swift.Error> {
+  ) -> any AsyncSequence<Slate, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListSlatesResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListSlatesResponse
+      in
       var request = request
       request.pageToken = token
       return try await self.listSlates(request: request, options: options)
@@ -1530,7 +1532,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listSlatesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Slate, Swift.Error> {
+  ) -> any AsyncSequence<Slate, Swift.Error> & Sendable {
     let request = ListSlatesRequest().with {
       $0.parent = parent
     }
@@ -1727,7 +1729,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listLiveConfigsByItems(
     request: ListLiveConfigsRequest
-  ) -> any AsyncSequence<LiveConfig, Swift.Error> {
+  ) -> any AsyncSequence<LiveConfig, Swift.Error> & Sendable {
     self.listLiveConfigsByItems(request: request, options: .init())
   }
 
@@ -1737,9 +1739,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListLiveConfigs")
   public func listLiveConfigsByItems(
     request: ListLiveConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LiveConfig, Swift.Error> {
+  ) -> any AsyncSequence<LiveConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListLiveConfigsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVideoStitcherV1.ListLiveConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLiveConfigs(request: request, options: options)
@@ -1749,7 +1752,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listLiveConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<LiveConfig, Swift.Error> {
+  ) -> any AsyncSequence<LiveConfig, Swift.Error> & Sendable {
     let request = ListLiveConfigsRequest().with {
       $0.parent = parent
     }
@@ -1908,7 +1911,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listVodConfigsByItems(
     request: ListVodConfigsRequest
-  ) -> any AsyncSequence<VodConfig, Swift.Error> {
+  ) -> any AsyncSequence<VodConfig, Swift.Error> & Sendable {
     self.listVodConfigsByItems(request: request, options: .init())
   }
 
@@ -1918,9 +1921,10 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListVodConfigs")
   public func listVodConfigsByItems(
     request: ListVodConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<VodConfig, Swift.Error> {
+  ) -> any AsyncSequence<VodConfig, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudVideoStitcherV1.ListVodConfigsResponse in
+      @Sendable (token: Swift.String) async throws
+        -> GoogleCloudVideoStitcherV1.ListVodConfigsResponse in
       var request = request
       request.pageToken = token
       return try await self.listVodConfigs(request: request, options: options)
@@ -1930,7 +1934,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listVodConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<VodConfig, Swift.Error> {
+  ) -> any AsyncSequence<VodConfig, Swift.Error> & Sendable {
     let request = ListVodConfigsRequest().with {
       $0.parent = parent
     }
@@ -2048,7 +2052,7 @@ extension Clients.VideoStitcherServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2059,9 +2063,9 @@ extension Clients.VideoStitcherServiceProtocol {
   /// @Snippet(path: "VideoStitcherService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -2072,7 +2076,7 @@ extension Clients.VideoStitcherServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

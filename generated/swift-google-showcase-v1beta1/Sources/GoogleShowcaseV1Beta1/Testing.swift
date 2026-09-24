@@ -355,7 +355,7 @@ extension Clients.TestingProtocol {
 
   public func listSessionsByItems(
     request: ListSessionsRequest
-  ) -> any AsyncSequence<Session, Swift.Error> {
+  ) -> any AsyncSequence<Session, Swift.Error> & Sendable {
     self.listSessionsByItems(request: request, options: .init())
   }
 
@@ -364,9 +364,9 @@ extension Clients.TestingProtocol {
   /// @Snippet(path: "Testing_ListSessions")
   public func listSessionsByItems(
     request: ListSessionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Session, Swift.Error> {
+  ) -> any AsyncSequence<Session, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListSessionsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListSessionsResponse in
       var request = request
       request.pageToken = token
       return try await self.listSessions(request: request, options: options)
@@ -410,7 +410,7 @@ extension Clients.TestingProtocol {
 
   public func listTestsByItems(
     request: ListTestsRequest
-  ) -> any AsyncSequence<Test, Swift.Error> {
+  ) -> any AsyncSequence<Test, Swift.Error> & Sendable {
     self.listTestsByItems(request: request, options: .init())
   }
 
@@ -419,8 +419,9 @@ extension Clients.TestingProtocol {
   /// @Snippet(path: "Testing_ListTests")
   public func listTestsByItems(
     request: ListTestsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Test, Swift.Error> {
-    let listRpc = { (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListTestsResponse in
+  ) -> any AsyncSequence<Test, Swift.Error> & Sendable {
+    let listRpc = {
+      @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListTestsResponse in
       var request = request
       request.pageToken = token
       return try await self.listTests(request: request, options: options)
@@ -464,7 +465,7 @@ extension Clients.TestingProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -475,9 +476,9 @@ extension Clients.TestingProtocol {
   /// @Snippet(path: "Testing_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> {
+  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listLocations(request: request, options: options)
@@ -547,7 +548,7 @@ extension Clients.TestingProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -558,9 +559,9 @@ extension Clients.TestingProtocol {
   /// @Snippet(path: "Testing_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
-      (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
+      @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
       request.pageToken = token
       return try await self.listOperations(request: request, options: options)
@@ -571,7 +572,7 @@ extension Clients.TestingProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> {
+  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter
