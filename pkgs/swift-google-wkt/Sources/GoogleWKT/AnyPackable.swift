@@ -21,7 +21,7 @@ import Foundation
 ///
 /// For `google-cloud-swift` developers: while it would be desirable to make this type `@_spi()` we
 /// cannot because then normal types like ``WKTApi`` cannot use it.
-public protocol _AnyPackable {
+public protocol _AnyPackable: Sendable {
   static var _anyTypeUrl: String { get }
   init(fromAny any: WKTAny) throws
   func _pack() throws -> WKTStruct

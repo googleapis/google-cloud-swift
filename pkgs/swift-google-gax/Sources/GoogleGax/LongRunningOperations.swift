@@ -18,9 +18,9 @@ import Foundation
 ///
 /// Long-running operations are operations that take a significant amount of time to complete.
 /// This protocol defines the contract for waiting on the final result of such an operation.
-public protocol PollableOperation<ResponseType> {
+public protocol PollableOperation<ResponseType>: Sendable {
   /// The type of the response message returned when the long-running operation completes.
-  associatedtype ResponseType
+  associatedtype ResponseType: Sendable
 
   /// Waits for the long-running operation to complete, returning the final response.
   ///
@@ -34,35 +34,35 @@ public protocol PollableOperation<ResponseType> {
 /// This class implements a generic polling loop with a backoff policy to avoid overloading the
 /// server with status requests.
 @_spi(GoogleCloudInternal)
-public final class _PollableOperationImpl<ResponseType>: PollableOperation {
+public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOperation, Sendable {
   /// Represents the current state of the long-running operation.
-  public struct State {
+  public struct State: Sendable {
     /// A Boolean value indicating whether the operation has finished.
     public let done: Bool
     /// The result of the operation if it is complete, or `nil` if it is still running.
-    public let result: Result<ResponseType, Error>?
+    public let result: Result<ResponseType, any Error & Sendable>?
 
     /// Creates a new state representation.
     /// - Parameters:
     ///   - done: A Boolean value indicating whether the operation has finished.
     ///   - result: The result of the operation if it is complete.
-    public init(done: Bool, result: Result<ResponseType, Error>?) {
+    public init(done: Bool, result: Result<ResponseType, any Error & Sendable>?) {
       self.done = done
       self.result = result
     }
   }
 
   /// A closure that fetches the latest state of the operation.
-  public typealias Poll = () async throws -> State
+  public typealias Poll = @Sendable () async throws -> State
 
   /// A closure that suspends execution for a given duration.
-  public typealias Sleep = (Duration) async throws -> Void
+  public typealias Sleep = @Sendable (Duration) async throws -> Void
 
-  private var state: State
+  private let initialState: State
   private let pollOp: Poll
   private let sleep: Sleep
-  private let pollingPolicy: PollingErrorPolicy
-  private let backoffPolicy: BackoffPolicy
+  private let pollingPolicy: any PollingErrorPolicy
+  private let backoffPolicy: any BackoffPolicy
 
   /// Initializes a new pollable operation implementation.
   ///
@@ -75,7 +75,7 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
     poll: @escaping Poll,
     sleep: @escaping Sleep = { try await Task.sleep(for: $0) },
   ) {
-    self.state = initialState
+    self.initialState = initialState
     self.pollOp = poll
     self.sleep = sleep
     self.pollingPolicy = defaultPollingErrorPolicy()
@@ -97,7 +97,7 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
     poll: @escaping Poll,
     sleep: @escaping Sleep = { try await Task.sleep(for: $0) },
   ) {
-    self.state = initialState
+    self.initialState = initialState
     self.pollOp = poll
     self.sleep = sleep
     self.pollingPolicy = polling
@@ -114,6 +114,7 @@ public final class _PollableOperationImpl<ResponseType>: PollableOperation {
   ///   - The underlying operation error if the operation failed.
   ///   - `RequestError.malformedResponse` if the operation completed successfully but returned no result.
   public func wait() async throws -> ResponseType {
+    var state = self.initialState
     var pollingState = PollingState()
     while !state.done {
       try pollingPolicy.onInProgress(state: pollingState)

@@ -62,7 +62,7 @@ extension Operation {
     }
   }
 
-  static func _extractError<T>(_ type: T.Type, status: GoogleRpc.Status?)
+  static func _extractError<T: Sendable>(_ type: T.Type, status: GoogleRpc.Status?)
     -> GoogleGax._PollableOperationImpl<T>.State
   {
     guard let statusUnwrapped = status else {
@@ -79,7 +79,9 @@ extension Operation {
     return .init(done: true, result: .failure(error))
   }
 
-  static func _missingResult<T>(_ type: T.Type) -> GoogleGax._PollableOperationImpl<T>.State {
+  static func _missingResult<T: Sendable>(_ type: T.Type)
+    -> GoogleGax._PollableOperationImpl<T>.State
+  {
     .init(
       done: true,
       result: .failure(

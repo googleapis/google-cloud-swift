@@ -20,12 +20,12 @@ import GoogleRpc
 @_spi(GoogleCloudInternal) @testable import GoogleGax
 
 @Suite struct PollableOperationTest {
-  struct MockError: Error, Equatable {
+  struct MockError: Error, Equatable, Sendable {
     var message: String
   }
 
-  class MockPoller<ResponseType> {
-    public var responses: [() throws -> _PollableOperationImpl<ResponseType>.State] = []
+  final class MockPoller<ResponseType: Sendable>: @unchecked Sendable {
+    public var responses: [@Sendable () throws -> _PollableOperationImpl<ResponseType>.State] = []
     public var pollCount = 0
 
     public func poll() async throws -> _PollableOperationImpl<ResponseType>.State {
@@ -34,7 +34,7 @@ import GoogleRpc
     }
   }
 
-  class MockSleeper {
+  final class MockSleeper: @unchecked Sendable {
     public var sleepCount = 0
 
     public func sleep(_: Duration) async throws {
@@ -104,7 +104,7 @@ import GoogleRpc
   }
 
   @Test func waitLoopsUntilDone() async throws {
-    let results = [
+    let results: [@Sendable () throws -> _PollableOperationImpl<String>.State] = [
       { () in Self.pendingState() },
       { () in Self.successState() },
     ]
@@ -122,7 +122,7 @@ import GoogleRpc
   }
 
   @Test func waitLoopsFailure() async throws {
-    let results = [
+    let results: [@Sendable () throws -> _PollableOperationImpl<String>.State] = [
       { () in Self.pendingState() },
       { () in Self.pendingState() },
       { () in Self.errorState("intermediate error") },
@@ -143,11 +143,11 @@ import GoogleRpc
 
   @Test func waitLoopsPollThrows() async throws {
     let sleepProvider = MockSleeper()
-    var pollCount = 0
+    let pollCount = Atomic<Int>(0)
     let op = _PollableOperationImpl<String>(
       initialState: Self.pendingState(),
       poll: {
-        pollCount += 1
+        pollCount.add(1, ordering: .sequentiallyConsistent)
         throw Self.httpError()
       },
       sleep: sleepProvider.sleep
@@ -156,12 +156,12 @@ import GoogleRpc
     await #expect(throws: RequestError.self) {
       try await op.wait()
     }
-    #expect(pollCount == 1)
+    #expect(pollCount.load(ordering: .sequentiallyConsistent) == 1)
     #expect(sleepProvider.sleepCount == 1)
   }
 
   @Test func voidOperationPolling() async throws {
-    let results = [
+    let results: [@Sendable () throws -> _PollableOperationImpl<Void>.State] = [
       { () in Self.pendingVoid() },
       { () in Self.successVoid() },
     ]
@@ -178,7 +178,7 @@ import GoogleRpc
   }
 
   @Test func continuesIfPolicyAllows() async throws {
-    let results = [
+    let results: [@Sendable () throws -> _PollableOperationImpl<String>.State] = [
       { () in Self.pendingState() },
       { () throws in throw Self.transient() },
       { () throws in throw Self.transient() },
@@ -216,7 +216,7 @@ import GoogleRpc
   }
 
   @Test func stopsIfPolicySaysSo() async throws {
-    let results = [
+    let results: [@Sendable () throws -> _PollableOperationImpl<String>.State] = [
       { () in Self.pendingState() },
       { () throws in throw Self.transient() },
       { () throws in throw Self.transient() },
@@ -311,9 +311,9 @@ import GoogleRpc
     let pollingPolicy = MockPollingPolicy().withTimeLimit(limit)
     let pollProvider = MockPoller<String>()
     pollProvider.responses = [
-      { () in Self.pendingState() },
-      { () in Self.pendingState() },
-      { () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
     ]
 
     let op = _PollableOperationImpl<String>(
@@ -336,10 +336,10 @@ import GoogleRpc
     let pollingPolicy = MockPollingPolicy().withAttemptLimit(3)
     let pollProvider = MockPoller<String>()
     pollProvider.responses = [
-      { () in Self.pendingState() },
-      { () in Self.pendingState() },
-      { () in Self.pendingState() },
-      { () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
+      { @Sendable () in Self.pendingState() },
     ]
     let sleepProvider = MockSleeper()
 
@@ -357,5 +357,17 @@ import GoogleRpc
     #expect(error == RequestError.exhausted(.attemptCount(maximumAttempts: 3)))
     #expect(pollProvider.pollCount == 3)
     #expect(sleepProvider.sleepCount == 3)
+  }
+
+  @Test func pollableOperationIsSendable() async throws {
+    let state = Self.successState("success")
+    let op: any PollableOperation<String> = _PollableOperationImpl(initialState: state) {
+      return state
+    }
+    let task = Task {
+      try await op.wait()
+    }
+    let res = try await task.value
+    #expect(res == "success")
   }
 }
