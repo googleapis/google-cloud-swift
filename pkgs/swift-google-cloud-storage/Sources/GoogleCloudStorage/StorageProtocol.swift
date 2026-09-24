@@ -123,7 +123,23 @@ extension StorageProtocol {
       BytesSource(data: data), to: bucket, as: objectName, options: options)
   }
 
-  /// Reads (downloads) an object from Cloud Storage with default options.
+  /// Starts an object download from Cloud Storage with default options.
+  ///
+  /// Iterate over ``ReadObjectHandle/body`` on the returned ``ReadObjectHandle`` to stream the
+  /// object's content as an asynchronous sequence of ``ByteChunk`` chunks, or `await`
+  /// ``ReadObjectHandle/metadata`` to inspect the object's metadata.
+  ///
+  /// ```swift
+  /// let download = client.readObject(from: "my-bucket", object: "file.txt")
+  /// for try await chunk in download.body {
+  ///   // Process ByteChunk chunk
+  /// }
+  /// ```
+  ///
+  /// - Parameters:
+  ///   - bucket: The GCS bucket name.
+  ///   - object: The GCS object name.
+  /// - Returns: A ``ReadObjectHandle`` providing access to the object's ``ReadObjectHandle/metadata`` and streaming ``ReadObjectHandle/body``.
   public func readObject(
     from bucket: String,
     object: String
