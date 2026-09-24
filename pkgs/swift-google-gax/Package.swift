@@ -17,7 +17,8 @@
 import PackageDescription
 
 let swiftSettings: [SwiftSetting] = [
-  .enableUpcomingFeature("InternalImportsByDefault")
+  .enableUpcomingFeature("InternalImportsByDefault"),
+  .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 ]
 
 let package = Package(

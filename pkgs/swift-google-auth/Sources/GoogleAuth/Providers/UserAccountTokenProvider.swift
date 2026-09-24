@@ -46,6 +46,7 @@ struct UserAccountTokenProvider: TokenProvider {
   ///
   /// - Returns: A valid `Token` containing the access token string and expiration date.
   /// - Throws: An `AuthHTTPError` or network error if the token endpoint cannot be reached or rejects the request.
+  @concurrent
   func fetchToken() async throws -> Token {
     let scopesStr = scopes?.joined(separator: " ")
 

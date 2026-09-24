@@ -46,15 +46,18 @@ import struct NIOCore.ByteBuffer
     _HTTPResponseBody(self.response.body)
   }
 
+  @concurrent
   public func data(upTo: Int) async throws -> Data {
     let buffer = try await self.response.body.collect(upTo: upTo)
     return Data(buffer: buffer)
   }
 
+  @concurrent
   public func data() async throws -> Data {
     try await data(upTo: Self.defaultMaximumResponseSize)
   }
 
+  @concurrent
   public consuming func drain() async {
     do {
       for try await _ in self.response.body {}
@@ -65,6 +68,7 @@ import struct NIOCore.ByteBuffer
     !(200...300).contains(self.response.status.code)
   }
 
+  @concurrent
   public consuming func decodeError() async -> RequestError {
     let data: Data
     do {
@@ -93,6 +97,7 @@ import struct NIOCore.ByteBuffer
       ))
   }
 
+  @concurrent
   public func decode<R>(_ type: R.Type) async throws -> Result<R, RequestError> where R: Decodable {
     let buffer: NIOCore.ByteBuffer
     do {

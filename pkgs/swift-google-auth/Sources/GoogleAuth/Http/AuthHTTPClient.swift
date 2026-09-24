@@ -28,6 +28,7 @@ protocol HTTPClientProtocol: Sendable {
   ///   - timeout: Execution timeout duration.
   ///   - logger: Optional logger for diagnostic messages.
   /// - Returns: The HTTP response.
+  @concurrent
   func execute(
     request: HTTPClientRequest,
     timeout: Duration,
@@ -63,6 +64,7 @@ final class HTTPClientHolder: HTTPClientProtocol {
     }
   }
 
+  @concurrent
   func execute(
     request: HTTPClientRequest,
     timeout: Duration,
@@ -106,6 +108,7 @@ struct AuthHTTPClient: Sendable {
   ///   - url: The target URL of the request.
   ///   - headers: HTTP request headers.
   /// - Returns: The parsed JSON response structure.
+  @concurrent
   func get<T: Decodable>(
     url: URL,
     headers: [String: String] = [:]
@@ -136,6 +139,7 @@ struct AuthHTTPClient: Sendable {
   ///   - headers: Optional HTTP request headers.
   /// - Returns: The plain-text UTF-8 string returned by the server.
   /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` if invalid UTF-8.
+  @concurrent
   func getString(
     url: URL,
     headers: [String: String] = [:]
@@ -171,6 +175,7 @@ struct AuthHTTPClient: Sendable {
   ///   - headers: Optional HTTP request headers.
   /// - Returns: The parsed JSON response structure.
   /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` on parse failure.
+  @concurrent
   func post<Body: Encodable, Response: Decodable>(
     url: URL,
     body: Body,
@@ -208,6 +213,7 @@ struct AuthHTTPClient: Sendable {
   ///   - headers: Optional HTTP request headers.
   /// - Returns: The parsed JSON response structure.
   /// - Throws: `AuthHTTPError.unsuccessfulResponse` on non-2xx status, or `AuthHTTPError.decodingError` on parse failure.
+  @concurrent
   func postData<Response: Decodable>(
     url: URL,
     bodyData: Data,
@@ -248,6 +254,7 @@ struct AuthHTTPClient: Sendable {
     }
   }
 
+  @concurrent
   private func performRequest(_ request: HTTPClientRequest) async throws -> HTTPClientResponse {
     return try await inner.execute(request: request, timeout: .seconds(30), logger: nil)
   }

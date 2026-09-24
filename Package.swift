@@ -79,7 +79,8 @@ let baseDependencies: [Package.Dependency] = [
 ]
 
 let swiftSettings: [SwiftSetting] = [
-  .enableUpcomingFeature("InternalImportsByDefault")
+  .enableUpcomingFeature("InternalImportsByDefault"),
+  .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
 ]
 
 let package = Package(

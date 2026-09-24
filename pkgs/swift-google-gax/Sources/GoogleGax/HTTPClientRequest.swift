@@ -145,6 +145,7 @@ enum _RequestBody: Sendable {
     self.headers.replaceOrAdd(name: "Content-Type", value: ofContentType)
   }
 
+  @concurrent
   public consuming func execute(timeout: Duration) async throws
     -> _HTTPClientResponse
   {
@@ -168,10 +169,12 @@ enum _RequestBody: Sendable {
     return _HTTPClientResponse(response)
   }
 
+  @concurrent
   public consuming func execute() async throws -> _HTTPClientResponse {
     try await execute(timeout: Self.defaultTimeout)
   }
 
+  @concurrent
   public consuming func rpc<R>(_ type: R.Type, timeout: Duration? = nil) async
     -> Result<R, RequestError> where R: Decodable
   {

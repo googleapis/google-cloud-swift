@@ -142,6 +142,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   ///
   /// - Returns: A valid `Token` containing the access token string and expiration date.
   /// - Throws: `CredentialsError.cannotFetchToken` if the metadata server is unreachable or returns an error.
+  @concurrent
   func fetchToken() async throws -> Token {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = self.resolveBaseEndpoint(hostEnv: hostEnv)
