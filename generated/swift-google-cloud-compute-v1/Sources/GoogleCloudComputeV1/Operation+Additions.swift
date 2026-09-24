@@ -32,13 +32,24 @@
 
     func _detectErrors() throws {
       if self.error != nil || (self.httpErrorStatusCode ?? 0) != 0 || self.httpErrorMessage != nil {
+        let code: GoogleRpc.Code
+        let httpStatusCode: Int?
+        if let statusCode = self.httpErrorStatusCode, statusCode != 0 {
+          let statusInt = Int(statusCode)
+          code = GoogleRpc.Code(httpStatusCode: statusInt)
+          httpStatusCode = statusInt
+        } else {
+          code = .unknown
+          httpStatusCode = nil
+        }
         throw GoogleGax.RequestError.service(
           GoogleGax.ServiceError(
-            code: GoogleRpc.Code(intValue: Int(self.httpErrorStatusCode ?? 0)),
+            code: code,
             message: self.httpErrorMessage ?? "Operation failed",
             details: self.error?.errors.compactMap { try? GoogleWKT.WKTAny(fromMessage: $0) }.map {
               .other($0)
-            } ?? []
+            } ?? [],
+            httpStatusCode: httpStatusCode
           )
         )
       }

@@ -19,29 +19,79 @@ import GoogleRpc
 import GoogleWKT
 
 @Suite struct ComputeOperationTests {
+  private static let httpStatusMappings: [(Int32, GoogleRpc.Code)] = [
+    (400, .invalidArgument),
+    (401, .unauthenticated),
+    (403, .permissionDenied),
+    (404, .notFound),
+    (409, .alreadyExists),
+    (412, .failedPrecondition),
+    (429, .resourceExhausted),
+    (499, .cancelled),
+    (500, .internal),
+    (501, .unimplemented),
+    (503, .unavailable),
+    (504, .deadlineExceeded),
+    (599, .unknown),
+  ]
+
   @Test func throwErrorsNoError() throws {
     let operation = GoogleCloudComputeV1.Operation()
     try operation._detectErrors()
   }
 
-  @Test func throwErrorsGenericError() throws {
+  @Test(arguments: httpStatusMappings)
+  func throwErrorsHttpStatusCode(mapping: (Int32, GoogleRpc.Code)) throws {
+    let (statusCode, expectedCode) = mapping
     let operation = GoogleCloudComputeV1.Operation().with {
-      $0.httpErrorStatusCode = 404
-      $0.httpErrorMessage = "Not Found"
+      $0.httpErrorStatusCode = statusCode
+      $0.httpErrorMessage = "Error \(statusCode)"
     }
-    #expect(throws: RequestError.self) {
+    do {
       try operation._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.code == expectedCode)
+      #expect(serviceError.httpStatusCode == Int(statusCode))
+      #expect(serviceError.message == "Error \(statusCode)")
+    } catch {
+      Issue.record("Unexpected error: \(error)")
     }
   }
 
-  @Test func throwErrorsOperationError() throws {
+  @Test func throwErrorsOperationErrorWithoutStatusCode() throws {
     let operation = GoogleCloudComputeV1.Operation().with {
       $0.error = GoogleCloudComputeV1.Operation.Error().with {
         $0.errors = [GoogleCloudComputeV1.Operation.Error.Errors().with { $0.message = "fail" }]
       }
     }
-    #expect(throws: RequestError.self) {
+    do {
       try operation._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.code == .unknown)
+      #expect(serviceError.httpStatusCode == nil)
+      #expect(serviceError.message == "Operation failed")
+      #expect(!serviceError.details.isEmpty)
+    } catch {
+      Issue.record("Unexpected error: \(error)")
+    }
+  }
+
+  @Test func throwErrorsHttpErrorMessageWithoutStatusCode() throws {
+    let operation = GoogleCloudComputeV1.Operation().with {
+      $0.httpErrorStatusCode = 0
+      $0.httpErrorMessage = "Custom failure message"
+    }
+    do {
+      try operation._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.code == .unknown)
+      #expect(serviceError.httpStatusCode == nil)
+      #expect(serviceError.message == "Custom failure message")
+    } catch {
+      Issue.record("Unexpected error: \(error)")
     }
   }
 
@@ -53,8 +103,15 @@ import GoogleWKT
         ]
       }
     }
-    #expect(throws: RequestError.self) {
+    do {
       try operation._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.code == .unknown)
+      #expect(serviceError.message == "Instances bulk insert operation failed")
+      #expect(!serviceError.details.isEmpty)
+    } catch {
+      Issue.record("Unexpected error: \(error)")
     }
   }
 
@@ -69,8 +126,15 @@ import GoogleWKT
           ]
         }
     }
-    #expect(throws: RequestError.self) {
+    do {
       try operation._detectErrors()
+      Issue.record("Expected RequestError.service to be thrown")
+    } catch RequestError.service(let serviceError) {
+      #expect(serviceError.code == .unknown)
+      #expect(serviceError.message == "Set common instance metadata operation failed")
+      #expect(!serviceError.details.isEmpty)
+    } catch {
+      Issue.record("Unexpected error: \(error)")
     }
   }
 }
