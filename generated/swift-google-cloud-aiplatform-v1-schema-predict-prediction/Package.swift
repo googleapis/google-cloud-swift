@@ -39,7 +39,8 @@ let package = Package(
         .product(name: "GoogleWKT", package: "swift-google-wkt")
       ],
       swiftSettings: [
-        .enableUpcomingFeature("InternalImportsByDefault")
+        .enableUpcomingFeature("InternalImportsByDefault"),
+        .strictMemorySafety(),
       ]
     )
   ]

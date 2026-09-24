@@ -758,7 +758,8 @@ let package = Package(
         .product(name: "Logging", package: "swift-log"),
       ],
       swiftSettings: [
-        .enableUpcomingFeature("InternalImportsByDefault")
+        .enableUpcomingFeature("InternalImportsByDefault"),
+        .strictMemorySafety(),
       ]
     )
   ]
