@@ -18,8 +18,8 @@ import GoogleCloudStorage
 public func managedFolderList(
   client: StorageControlClient, bucketId: String
 ) async throws {
-  let folders = client.listManagedFolders(
-    byItem: .init().with {
+  let folders = client.listManagedFoldersByItems(
+    request: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
     }
   )

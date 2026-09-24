@@ -60,11 +60,11 @@ import GoogleRpc
       }
       return mockResponses.removeFirst()
     }
-    public func aggregatedListItems(byItem: Request) -> PaginatedResponseSequence<
+    public func aggregatedListItemsByItems(request: Request) -> PaginatedResponseSequence<
       (String, Item), Response
     > {
       let listRpc = { (token: String) async throws -> Response in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.aggregatedListItems(request: request)
       }
@@ -130,8 +130,8 @@ import GoogleRpc
 
   func aggregateAll(_ service: Service) async throws -> [String: Item] {
     var result: [String: Item] = [:]
-    for try await (group, item) in service.aggregatedListItems(
-      byItem: .init()
+    for try await (group, item) in service.aggregatedListItemsByItems(
+      request: .init()
     ) {
       result[group] = item
     }

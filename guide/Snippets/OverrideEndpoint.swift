@@ -29,8 +29,8 @@ func sample(projectId: String, region: String) async throws {
   })
   // snippet.end [END swift_override_endpoint_client]
   // snippet.list [START swift_override_endpoint_list]
-  let secrets = client.listSecrets(
-    byItem: ListSecretsRequest().with { $0.parent = "projects/\(projectId)/locations/\(region)" })
+  let secrets = client.listSecretsByItems(
+    request: ListSecretsRequest().with { $0.parent = "projects/\(projectId)/locations/\(region)" })
   for try await item in secrets {
     print("  \(item)")
   }

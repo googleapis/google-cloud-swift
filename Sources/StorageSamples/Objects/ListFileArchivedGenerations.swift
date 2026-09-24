@@ -18,8 +18,8 @@ import GoogleCloudStorage
 public func listFileArchivedGenerations(
   client: StorageControlClient, bucketId: String
 ) async throws {
-  let objects = client.listObjects(
-    byItem: .init().with {
+  let objects = client.listObjectsByItems(
+    request: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.versions = true
     }

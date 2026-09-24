@@ -42,7 +42,7 @@ automatically retrieves subsequent pages in the background as needed.
    @Snippet(path: "Pagination", slice: "function")
 3. Initialize the client using the default options:
    @Snippet(path: "Pagination", slice: "client")
-4. Request an asynchronous sequence of items using `byItem:` and iterate over
+4. Request an asynchronous sequence of items using `<methodName>ByItems` and iterate over
    the results:
    @Snippet(path: "Pagination", slice: "auto")
 

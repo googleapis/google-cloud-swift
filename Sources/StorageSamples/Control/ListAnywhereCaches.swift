@@ -18,8 +18,8 @@ import GoogleCloudStorage
 public func listAnywhereCaches(
   client: StorageControlClient, bucketId: String
 ) async throws {
-  let caches = client.listAnywhereCaches(
-    byItem: .init().with {
+  let caches = client.listAnywhereCachesByItems(
+    request: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
     }
   )

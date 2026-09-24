@@ -24,7 +24,7 @@ extension InstanceSamples {
     logger: Logger
   ) async throws {
     logger.info("Calling Instances::list()")
-    let instances = client.list(project: projectId, zone: zoneId)
+    let instances = client.listByItems(project: projectId, zone: zoneId)
     for try await instance in instances {
       logger.info("  instance = \(instance)")
     }

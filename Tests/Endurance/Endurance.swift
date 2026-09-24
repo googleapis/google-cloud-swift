@@ -253,8 +253,8 @@ private func updateSecret(
       task: task
     )
   }
-  let items = client.listSecretVersions(
-    byItem: .init().with { $0.parent = secret },
+  let items = client.listSecretVersionsByItems(
+    request: .init().with { $0.parent = secret },
     options: listOptions
   )
   for try await version in items {
@@ -308,8 +308,8 @@ private func getEnduranceSecrets(
       task: "main"
     )
   }
-  let items = client.listSecrets(
-    byItem: .init().with { $0.parent = "projects/\(projectId)" },
+  let items = client.listSecretsByItems(
+    request: .init().with { $0.parent = "projects/\(projectId)" },
     options: options
   )
   for try await secret in items {

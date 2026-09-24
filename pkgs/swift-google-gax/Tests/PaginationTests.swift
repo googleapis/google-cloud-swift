@@ -56,11 +56,11 @@ import Testing
       let response = mockResponses.removeFirst()
       return response
     }
-    public func listItems(byItem: ListItemsRequest) -> PaginatedResponseSequence<
+    public func listItemsByItems(request: ListItemsRequest) -> PaginatedResponseSequence<
       Item, ListItemsResponse
     > {
       let listRpc = { (token: String) async throws -> ListItemsResponse in
-        var request = byItem
+        var request = request
         request.pageToken = token
         return try await self.listItems(request: request)
       }
@@ -74,8 +74,8 @@ import Testing
         ListItemsResponse(items: [Item(name: "item1"), Item(name: "item2")], nextPageToken: "")
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }
@@ -90,8 +90,8 @@ import Testing
         ListItemsResponse(items: [Item(name: "item5"), Item(name: "item6")], nextPageToken: ""),
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }
@@ -108,8 +108,8 @@ import Testing
         ListItemsResponse(items: [], nextPageToken: "")
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }
@@ -124,8 +124,8 @@ import Testing
         ListItemsResponse(items: [Item(name: "item3"), Item(name: "item4")], nextPageToken: ""),
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }
@@ -142,8 +142,8 @@ import Testing
         ListItemsResponse(items: [Item(name: "item1"), Item(name: "item2")], nextPageToken: ""),
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }
@@ -159,8 +159,8 @@ import Testing
         ListItemsResponse(items: [Item(name: "item2")], nextPageToken: ""),
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }
@@ -175,8 +175,8 @@ import Testing
         ListItemsResponse(items: [], nextPageToken: ""),
       ])
     var array: [Item] = []
-    for try await item in service.listItems(
-      byItem: .init()
+    for try await item in service.listItemsByItems(
+      request: .init()
     ) {
       array.append(item)
     }

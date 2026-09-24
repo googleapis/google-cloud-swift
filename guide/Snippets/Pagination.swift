@@ -31,7 +31,7 @@ func iterateItems(projectId: String) async throws {
     $0.parent = "projects/\(projectId)"
     $0.pageSize = 25
   }
-  let secrets = client.listSecrets(byItem: request)
+  let secrets = client.listSecretsByItems(request: request)
   for try await secret in secrets {
     print("Secret name: \(secret.name)")
   }

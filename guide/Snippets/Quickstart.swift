@@ -35,8 +35,8 @@ struct Quickstart {
     let client = try SecretManagerServiceClient()
     // snippet.end
     // snippet.list
-    let secrets = client.listSecrets(
-      byItem: ListSecretsRequest().with { $0.parent = "projects/\(projectId)" })
+    let secrets = client.listSecretsByItems(
+      request: ListSecretsRequest().with { $0.parent = "projects/\(projectId)" })
     for try await item in secrets {
       print("  \(item)")
     }

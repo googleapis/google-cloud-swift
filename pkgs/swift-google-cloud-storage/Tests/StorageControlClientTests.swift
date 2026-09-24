@@ -165,7 +165,7 @@ import Testing
     }
 
     let client: any StorageControlProtocol = mock
-    let sequence = client.listBuckets(byItem: .init())
+    let sequence = client.listBucketsByItems(request: .init())
     var names: [String] = []
     for try await bucket in sequence {
       names.append(bucket.name)

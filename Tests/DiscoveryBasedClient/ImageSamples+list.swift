@@ -21,8 +21,8 @@ extension ImageSamples {
     client: ImagesClient, projectId: String, logger: Logger
   ) async throws {
     logger.info("Calling listImages()")
-    let images = client.list(
-      byItem: .init().with {
+    let images = client.listByItems(
+      request: .init().with {
         $0.project = projectId
       })
     for try await image in images {

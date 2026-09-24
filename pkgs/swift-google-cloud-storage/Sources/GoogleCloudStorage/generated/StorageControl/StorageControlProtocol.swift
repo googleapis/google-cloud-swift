@@ -627,17 +627,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listBuckets(
-    byItem: ListBucketsRequest
+  public func listBucketsByItems(
+    request: ListBucketsRequest
   ) -> any AsyncSequence<Bucket, Swift.Error> {
-    self.listBuckets(byItem: byItem, options: .init())
+    self.listBucketsByItems(request: request, options: .init())
   }
 
-  public func listBuckets(
-    byItem: ListBucketsRequest, options: GoogleGax.RequestOptions
+  public func listBucketsByItems(
+    request: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Bucket, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListBucketsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listBuckets(request: request, options: options)
     }
@@ -726,17 +726,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listObjects(
-    byItem: ListObjectsRequest
+  public func listObjectsByItems(
+    request: ListObjectsRequest
   ) -> any AsyncSequence<Object, Swift.Error> {
-    self.listObjects(byItem: byItem, options: .init())
+    self.listObjectsByItems(request: request, options: .init())
   }
 
-  public func listObjects(
-    byItem: ListObjectsRequest, options: GoogleGax.RequestOptions
+  public func listObjectsByItems(
+    request: ListObjectsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Object, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListObjectsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listObjects(request: request, options: options)
     }
@@ -803,17 +803,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listFolders(
-    byItem: ListFoldersRequest
+  public func listFoldersByItems(
+    request: ListFoldersRequest
   ) -> any AsyncSequence<Folder, Swift.Error> {
-    self.listFolders(byItem: byItem, options: .init())
+    self.listFoldersByItems(request: request, options: .init())
   }
 
-  public func listFolders(
-    byItem: ListFoldersRequest, options: GoogleGax.RequestOptions
+  public func listFoldersByItems(
+    request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<Folder, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListFoldersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listFolders(request: request, options: options)
     }
@@ -928,17 +928,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listManagedFolders(
-    byItem: ListManagedFoldersRequest
+  public func listManagedFoldersByItems(
+    request: ListManagedFoldersRequest
   ) -> any AsyncSequence<ManagedFolder, Swift.Error> {
-    self.listManagedFolders(byItem: byItem, options: .init())
+    self.listManagedFoldersByItems(request: request, options: .init())
   }
 
-  public func listManagedFolders(
-    byItem: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
+  public func listManagedFoldersByItems(
+    request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<ManagedFolder, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListManagedFoldersResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listManagedFolders(request: request, options: options)
     }
@@ -1067,17 +1067,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listAnywhereCaches(
-    byItem: ListAnywhereCachesRequest
+  public func listAnywhereCachesByItems(
+    request: ListAnywhereCachesRequest
   ) -> any AsyncSequence<AnywhereCache, Swift.Error> {
-    self.listAnywhereCaches(byItem: byItem, options: .init())
+    self.listAnywhereCachesByItems(request: request, options: .init())
   }
 
-  public func listAnywhereCaches(
-    byItem: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
+  public func listAnywhereCachesByItems(
+    request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<AnywhereCache, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListAnywhereCachesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listAnywhereCaches(request: request, options: options)
     }
@@ -1190,17 +1190,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listRapidCaches(
-    byItem: ListRapidCachesRequest
+  public func listRapidCachesByItems(
+    request: ListRapidCachesRequest
   ) -> any AsyncSequence<RapidCache, Swift.Error> {
-    self.listRapidCaches(byItem: byItem, options: .init())
+    self.listRapidCachesByItems(request: request, options: .init())
   }
 
-  public func listRapidCaches(
-    byItem: ListRapidCachesRequest, options: GoogleGax.RequestOptions
+  public func listRapidCachesByItems(
+    request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<RapidCache, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListRapidCachesResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listRapidCaches(request: request, options: options)
     }
@@ -1339,17 +1339,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIntelligenceFindings(
-    byItem: ListIntelligenceFindingsRequest
+  public func listIntelligenceFindingsByItems(
+    request: ListIntelligenceFindingsRequest
   ) -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
-    self.listIntelligenceFindings(byItem: byItem, options: .init())
+    self.listIntelligenceFindingsByItems(request: request, options: .init())
   }
 
-  public func listIntelligenceFindings(
-    byItem: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
+  public func listIntelligenceFindingsByItems(
+    request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IntelligenceFinding, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> ListIntelligenceFindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIntelligenceFindings(request: request, options: options)
     }
@@ -1368,17 +1368,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func summarizeIntelligenceFindings(
-    byItem: SummarizeIntelligenceFindingsRequest
+  public func summarizeIntelligenceFindingsByItems(
+    request: SummarizeIntelligenceFindingsRequest
   ) -> any AsyncSequence<FindingSummary, Swift.Error> {
-    self.summarizeIntelligenceFindings(byItem: byItem, options: .init())
+    self.summarizeIntelligenceFindingsByItems(request: request, options: .init())
   }
 
-  public func summarizeIntelligenceFindings(
-    byItem: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
+  public func summarizeIntelligenceFindingsByItems(
+    request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<FindingSummary, Swift.Error> {
     let listRpc = { (token: Swift.String) async throws -> SummarizeIntelligenceFindingsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.summarizeIntelligenceFindings(request: request, options: options)
     }
@@ -1409,18 +1409,18 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func listIntelligenceFindingRevisions(
-    byItem: ListIntelligenceFindingRevisionsRequest
+  public func listIntelligenceFindingRevisionsByItems(
+    request: ListIntelligenceFindingRevisionsRequest
   ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
-    self.listIntelligenceFindingRevisions(byItem: byItem, options: .init())
+    self.listIntelligenceFindingRevisionsByItems(request: request, options: .init())
   }
 
-  public func listIntelligenceFindingRevisions(
-    byItem: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
+  public func listIntelligenceFindingRevisionsByItems(
+    request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> any AsyncSequence<IntelligenceFindingRevision, Swift.Error> {
     let listRpc = {
       (token: Swift.String) async throws -> ListIntelligenceFindingRevisionsResponse in
-      var request = byItem
+      var request = request
       request.pageToken = token
       return try await self.listIntelligenceFindingRevisions(request: request, options: options)
     }

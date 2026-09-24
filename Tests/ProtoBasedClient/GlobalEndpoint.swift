@@ -109,8 +109,8 @@ public enum GlobalEndpoint {
     logger.info("update = \(update)")
 
     logger.info("\nTesting listSecrets()")
-    let secrets = client.listSecrets(
-      byItem: .init().with { $0.parent = "projects/\(projectId)" },
+    let secrets = client.listSecretsByItems(
+      request: .init().with { $0.parent = "projects/\(projectId)" },
       options: retryOptions
     )
     var count: UInt64 = 0
@@ -218,8 +218,8 @@ public enum GlobalEndpoint {
     logger.info("enabledVersion state = \(enabledVersion.state)")
 
     logger.info("\nTesting listSecretVersions()")
-    let versions = client.listSecretVersions(
-      byItem: .init().with { $0.parent = secretName },
+    let versions = client.listSecretVersionsByItems(
+      request: .init().with { $0.parent = secretName },
       options: retryOptions
     )
     for try await version in versions {
@@ -322,8 +322,8 @@ public enum GlobalEndpoint {
     logger.info("Testing listLocations()")
     var count: Int64 = 0
     var first: Location? = nil
-    let locations = client.listLocations(
-      byItem: .init().with { $0.name = "projects/\(projectId)" },
+    let locations = client.listLocationsByItems(
+      request: .init().with { $0.name = "projects/\(projectId)" },
       options: retryOptions
     )
     for try await location in locations {
