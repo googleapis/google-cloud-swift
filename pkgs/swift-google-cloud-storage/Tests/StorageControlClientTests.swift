@@ -189,4 +189,46 @@ import Testing
       request: .init().with { $0.parent = "projects/test-project" })
     #expect(response.buckets.count == 1)
   }
+
+  @MainActor
+  struct BucketListModel {
+    let client: any StorageControlProtocol
+
+    func streamBucketNamesInBackground() -> Task<[String], Swift.Error> {
+      // Construct the paginated sequence on @MainActor and stream it inside a detached task.
+      let buckets = client.listBucketsByItems(
+        request: .init().with { $0.parent = "projects/test-project" })
+      return Task.detached {
+        var names: [String] = []
+        for try await bucket in buckets {
+          names.append(bucket.name)
+        }
+        return names
+      }
+    }
+  }
+
+  @Test func mockPaginationStreamedInDetachedTaskFromMainActor() async throws {
+    let mock = MockStorageControl()
+    mock.listBucketsHandler = { req, _ in
+      var response = ListBucketsResponse()
+      if req.pageToken.isEmpty {
+        var b = Bucket()
+        b.name = "bucket-1"
+        response.buckets = [b]
+        response.nextPageToken = "token-page-2"
+      } else if req.pageToken == "token-page-2" {
+        var b = Bucket()
+        b.name = "bucket-2"
+        response.buckets = [b]
+        response.nextPageToken = ""
+      }
+      return response
+    }
+
+    let model = BucketListModel(client: mock)
+    let task = await model.streamBucketNamesInBackground()
+    let names = try await task.value
+    #expect(names == ["bucket-1", "bucket-2"])
+  }
 }

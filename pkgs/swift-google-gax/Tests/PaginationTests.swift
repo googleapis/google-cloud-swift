@@ -44,7 +44,7 @@ import Testing
     }
   }
 
-  final class PaginatedService: @unchecked Sendable {
+  final class PaginatedService: PaginatedServiceProtocol, @unchecked Sendable {
     public var mockResponses: [ListItemsResponse] = []
     init(mockResponses: [ListItemsResponse]) {
       self.mockResponses = mockResponses
@@ -56,9 +56,9 @@ import Testing
       let response = mockResponses.removeFirst()
       return response
     }
-    public func listItemsByItems(request: ListItemsRequest) -> PaginatedResponseSequence<
-      Item, ListItemsResponse
-    > {
+    public func listItemsByItems(request: ListItemsRequest) -> any AsyncSequence<Item, Swift.Error>
+      & Sendable
+    {
       let listRpc = { @Sendable (token: String) async throws -> ListItemsResponse in
         var request = request
         request.pageToken = token
@@ -181,5 +181,84 @@ import Testing
       array.append(item)
     }
     #expect(array.isEmpty)
+  }
+
+  protocol PaginatedServiceProtocol: Sendable {
+    func listItemsByItems(request: ListItemsRequest) -> any AsyncSequence<Item, Swift.Error>
+      & Sendable
+  }
+
+  actor ItemCollector {
+    private(set) var items: [Item] = []
+    func record(_ item: Item) {
+      items.append(item)
+    }
+  }
+
+  @MainActor
+  final class ViewModel {
+    private let service: any PaginatedServiceProtocol
+    let collector = ItemCollector()
+
+    init(service: any PaginatedServiceProtocol) {
+      self.service = service
+    }
+
+    func startBackgroundStream() -> Task<[Item], Swift.Error> {
+      // Construct the paginated sequence on @MainActor from the service protocol existential
+      // and send it across isolation boundaries into a detached background worker.
+      let sequence = service.listItemsByItems(request: .init())
+      let collector = self.collector
+      return Task.detached {
+        for try await item in sequence {
+          await collector.record(item)
+        }
+        return await collector.items
+      }
+    }
+  }
+
+  @Test func streamPaginatedSequenceAcrossMainActorAndDetachedTask() async throws {
+    let service = PaginatedService(
+      mockResponses: [
+        ListItemsResponse(items: [Item(name: "item1"), Item(name: "item2")], nextPageToken: "p2"),
+        ListItemsResponse(items: [Item(name: "item3")], nextPageToken: ""),
+      ])
+    let viewModel = await ViewModel(service: service)
+    let task = await viewModel.startBackgroundStream()
+    let collected = try await task.value
+    #expect(collected == [Item(name: "item1"), Item(name: "item2"), Item(name: "item3")])
+  }
+
+  @Test func independentConcurrentIterationsOverSameSequence() async throws {
+    // Because PaginatedResponseSequence is a Sendable struct, passing the same sequence
+    // to multiple concurrent tasks gives each task its own independent iterator state.
+    let sequence = PaginatedResponseSequence<Item, ListItemsResponse> { token in
+      if token.isEmpty {
+        return ListItemsResponse(items: [Item(name: "a"), Item(name: "b")], nextPageToken: "p2")
+      }
+      return ListItemsResponse(items: [Item(name: "c")], nextPageToken: "")
+    }
+
+    let results = try await withThrowingTaskGroup(of: [Item].self) { group in
+      for _ in 0..<2 {
+        group.addTask {
+          var items: [Item] = []
+          for try await item in sequence {
+            items.append(item)
+          }
+          return items
+        }
+      }
+      var allRuns: [[Item]] = []
+      for try await run in group {
+        allRuns.append(run)
+      }
+      return allRuns
+    }
+
+    #expect(results.count == 2)
+    #expect(results[0] == [Item(name: "a"), Item(name: "b"), Item(name: "c")])
+    #expect(results[1] == [Item(name: "a"), Item(name: "b"), Item(name: "c")])
   }
 }
