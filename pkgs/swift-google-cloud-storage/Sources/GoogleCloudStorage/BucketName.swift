@@ -14,10 +14,8 @@
 
 import Foundation
 
-/// Utility class for working with Google Cloud Storage bucket resource names and identifiers.
-package final class BucketName: Sendable {
-  private init() {}
-
+/// Utility namespace for working with Google Cloud Storage bucket resource names and identifiers.
+package enum BucketName: Sendable {
   /// Formats a bucket name or resource path into the canonical resource name format
   /// (`projects/_/buckets/<bucket>`).
   ///
