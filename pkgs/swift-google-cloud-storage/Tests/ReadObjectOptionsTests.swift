@@ -20,16 +20,18 @@ import Testing
 @Suite struct ReadObjectOptionsTests {
   @Test func readRangeHeaderValues() {
     #expect(ReadObjectRange.entire.headerValue == nil)
-    #expect(ReadObjectRange.fromOffset(1024).headerValue == "bytes=1024-")
-    #expect(ReadObjectRange.prefix(500).headerValue == "bytes=0-499")
-    #expect(ReadObjectRange.prefix(0).headerValue == "bytes=0-0")
-    #expect(ReadObjectRange.suffix(100).headerValue == "bytes=-100")
-    #expect(ReadObjectRange.bounded(10...50).headerValue == "bytes=10-50")
-    #expect(ReadObjectRange(10...50).headerValue == "bytes=10-50")
-    #expect(ReadObjectRange(10...50) == ReadObjectRange.bounded(10...50))
-    #expect(ReadObjectRange(10...).headerValue == "bytes=10-")
-    #expect(ReadObjectRange(...50).headerValue == "bytes=0-50")
-    #expect(ReadObjectRange(start: 10, end: 50) == ReadObjectRange.bounded(10...50))
+    #expect(ReadObjectRange(fromOffset: 1024)?.headerValue == "bytes=1024-")
+    #expect(ReadObjectRange(fromOffset: 0) == ReadObjectRange.entire)
+    #expect(ReadObjectRange(prefix: 500)?.headerValue == "bytes=0-499")
+    #expect(ReadObjectRange(prefix: 0)?.headerValue == "bytes=0-0")
+    #expect(ReadObjectRange(suffix: 100)?.headerValue == "bytes=-100")
+    #expect(ReadObjectRange(suffix: 0)?.headerValue == "bytes=0-0")
+    #expect(ReadObjectRange(range: 10...50)?.headerValue == "bytes=10-50")
+    #expect(ReadObjectRange(range: 10...)?.headerValue == "bytes=10-")
+    #expect(ReadObjectRange(range: 0...) == ReadObjectRange.entire)
+    #expect(ReadObjectRange(range: ...50)?.headerValue == "bytes=0-50")
+    #expect(ReadObjectRange(start: 10, end: 50)?.headerValue == "bytes=10-50")
+    #expect(ReadObjectRange(start: 10, end: 50) == ReadObjectRange(range: 10...50))
     #expect(ReadObjectRange(start: 50, end: 10) == nil)
   }
 
@@ -54,7 +56,7 @@ import Testing
       $0.generation = 456
       $0.preconditions = preconditions
       $0.customerEncryptionKey = csek
-      $0.range = .bounded(0...1024)
+      $0.range = ReadObjectRange(range: 0...1024)!
       $0.enableDecompressiveTranscoding = false
       $0.resumePolicy = NeverResume<ReadObjectDetails>()
       $0.checksums = .none
@@ -63,7 +65,7 @@ import Testing
     #expect(options.generation == 456)
     #expect(options.preconditions?.ifGenerationMatch == 123)
     #expect(options.customerEncryptionKey == csek)
-    #expect(options.range == ReadObjectRange.bounded(0...1024))
+    #expect(options.range == ReadObjectRange(range: 0...1024)!)
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.resumePolicy != nil)
     #expect(options.checksums == .none)
@@ -130,70 +132,81 @@ import Testing
     // Entire
     #expect(
       calculateResumeRange(originalRange: .entire, bytesReceived: 0, totalSize: 1000)
-        == .fromOffset(0))
+        == ReadObjectRange.entire)
     #expect(
       calculateResumeRange(originalRange: .entire, bytesReceived: 500, totalSize: 1000)
-        == .fromOffset(500))
+        == ReadObjectRange(fromOffset: 500)!)
 
     // From offset
     #expect(
-      calculateResumeRange(originalRange: .fromOffset(100), bytesReceived: 50, totalSize: 1000)
-        == .fromOffset(150))
+      calculateResumeRange(
+        originalRange: ReadObjectRange(fromOffset: 100)!, bytesReceived: 50, totalSize: 1000)
+        == ReadObjectRange(fromOffset: 150)!)
 
     // Prefix
     #expect(
-      calculateResumeRange(originalRange: .prefix(100), bytesReceived: 40, totalSize: 1000)
-        == .bounded(40...99))
+      calculateResumeRange(
+        originalRange: ReadObjectRange(prefix: 100)!, bytesReceived: 40, totalSize: 1000)
+        == ReadObjectRange(range: 40...99)!)
     #expect(
-      calculateResumeRange(originalRange: .prefix(100), bytesReceived: 100, totalSize: 1000) == nil)
+      calculateResumeRange(
+        originalRange: ReadObjectRange(prefix: 100)!, bytesReceived: 100, totalSize: 1000) == nil)
     #expect(
-      calculateResumeRange(originalRange: .prefix(100), bytesReceived: 120, totalSize: 1000) == nil)
+      calculateResumeRange(
+        originalRange: ReadObjectRange(prefix: 100)!, bytesReceived: 120, totalSize: 1000) == nil)
 
     // Bounded
     #expect(
       calculateResumeRange(
-        originalRange: .bounded(10...50), bytesReceived: 20, totalSize: 1000)
-        == .bounded(30...50))
+        originalRange: ReadObjectRange(range: 10...50)!, bytesReceived: 20, totalSize: 1000)
+        == ReadObjectRange(range: 30...50)!)
     #expect(
       calculateResumeRange(
-        originalRange: .bounded(10...50), bytesReceived: 41, totalSize: 1000) == nil)
+        originalRange: ReadObjectRange(range: 10...50)!, bytesReceived: 41, totalSize: 1000) == nil)
 
     // Suffix
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: 200)
-        == .bounded(160...199))
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 10, totalSize: 200)
+        == ReadObjectRange(range: 160...199)!)
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 50, totalSize: 200) == nil)
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 50, totalSize: 200) == nil)
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: nil)
-        == .suffix(40))
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 10, totalSize: nil)
+        == ReadObjectRange(suffix: 40)!)
   }
 
   @Test func suffixResumeRangeWithUnknownTotalSize() {
     // Issue #728: When totalSize is unknown (nil) and bytesReceived == 0,
-    // resuming a suffix range should re-request the original suffix (.suffix(50)),
-    // NOT the entire object from byte 0 (.fromOffset(0)).
+    // resuming a suffix range should re-request the original suffix (suffix(50)),
+    // NOT the entire object from byte 0 (.entire).
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 0, totalSize: nil)
-        == .suffix(50))
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 0, totalSize: nil)
+        == ReadObjectRange(suffix: 50)!)
 
     // When totalSize is 0 (empty object), all 0 bytes have been received, so it should return nil.
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 0, totalSize: 0)
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 0, totalSize: 0)
         == nil)
 
     // When all requested bytes have been received, resuming should return nil,
-    // NOT request from offset 50 to EOF (.fromOffset(50)).
+    // NOT request from offset 50 to EOF (fromOffset(50)).
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 50, totalSize: nil)
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 50, totalSize: nil)
         == nil)
 
     // When partial bytes (10 of 50) have been received and totalSize is unknown,
-    // resuming must not request from byte 10 to EOF (.fromOffset(10)).
-    // It should request the remaining suffix (.suffix(40)).
+    // resuming must not request from byte 10 to EOF (fromOffset(10)).
+    // It should request the remaining suffix (suffix(40)).
     #expect(
-      calculateResumeRange(originalRange: .suffix(50), bytesReceived: 10, totalSize: nil)
-        == .suffix(40))
+      calculateResumeRange(
+        originalRange: ReadObjectRange(suffix: 50)!, bytesReceived: 10, totalSize: nil)
+        == ReadObjectRange(suffix: 40)!)
   }
 
   @Test func readObjectOptionsQuotaProject() {

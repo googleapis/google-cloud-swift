@@ -96,43 +96,20 @@ To support partial object downloads, parallel chunk downloads, or reading file f
 
 ### The `ReadObjectRange` Abstraction
 
-Ranged reads are configured via the `ReadObjectRange` enum:
+Ranged reads are configured via the `ReadObjectRange` struct:
 
 ```swift
-public enum ReadObjectRange: Sendable, Hashable, Equatable {
-  /// Read the entire object (default).
-  case entire
+public struct ReadObjectRange: Sendable, Hashable, Equatable {
+  public static var entire: Self { get }
 
-  /// Read all bytes starting from `offset` to the end of the object (HTTP `bytes=N-`).
-  case fromOffset(UInt64)
-
-  /// Read the first `count` bytes of the object (HTTP `bytes=0-N`).
-  case prefix(UInt64)
-
-  /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
-  case suffix(UInt64)
-
-  /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
-  case bounded(ClosedRange<UInt64>)
-
-  /// Convenience initializer for Swift `ClosedRange<UInt64>`.
-  public init(_ range: ClosedRange<UInt64>) {
-    self = .bounded(range)
-  }
-
-  /// Converts the range specification to an HTTP `Range` header value string.
-  public var headerValue: String? {
-    switch self {
-    case .entire:
-      return nil
-    case .fromOffset(let offset):
-      return "bytes=\(offset)-"
-    case .suffix(let count):
-      return "bytes=-\(count)"
-    case .bounded(let range):
-      return "bytes=\(range.lowerBound)-\(range.upperBound)"
-    }
-  }
+  public init()
+  public init?(range: ClosedRange<UInt64>)
+  public init?(range: PartialRangeFrom<UInt64>)
+  public init?(range: PartialRangeThrough<UInt64>)
+  public init?(start: UInt64, end: UInt64)
+  public init?(fromOffset: UInt64)
+  public init?(prefix: UInt64)
+  public init?(suffix: UInt64)
 }
 ```
 
@@ -212,14 +189,17 @@ Below is the complete proposed public API surface for object downloads in `Googl
 
 ```swift
 /// Specifies a byte range for ranged reads.
-public enum ReadObjectRange: Sendable, Hashable, Equatable {
-  case entire
-  case fromOffset(UInt64)
-  case suffix(UInt64)
-  case bounded(ClosedRange<UInt64>)
+public struct ReadObjectRange: Sendable, Hashable, Equatable {
+  public static var entire: Self { get }
 
-  public init(_ range: ClosedRange<UInt64>)
-  public var headerValue: String? { get }
+  public init()
+  public init?(range: ClosedRange<UInt64>)
+  public init?(range: PartialRangeFrom<UInt64>)
+  public init?(range: PartialRangeThrough<UInt64>)
+  public init?(start: UInt64, end: UInt64)
+  public init?(fromOffset: UInt64)
+  public init?(prefix: UInt64)
+  public init?(suffix: UInt64)
 }
 
 /// Configuration options for object download (`readObject`) requests.

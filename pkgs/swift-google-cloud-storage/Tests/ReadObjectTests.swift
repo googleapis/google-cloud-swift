@@ -366,7 +366,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .fromOffset(10)
+      $0.range = ReadObjectRange(fromOffset: 10)!
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -408,7 +408,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .prefix(20)
+      $0.range = ReadObjectRange(prefix: 20)!
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -449,7 +449,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .suffix(15)
+      $0.range = ReadObjectRange(suffix: 15)!
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -490,7 +490,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(10...29)
+      $0.range = ReadObjectRange(range: 10...29)!
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)
@@ -527,7 +527,7 @@ import Testing
 
     _ = try await client.readObject(
       from: bucket, object: objectName,
-      options: ReadObjectOptions().with { $0.range = ReadObjectRange(10...29) }
+      options: ReadObjectOptions().with { $0.range = ReadObjectRange(range: 10...29)! }
     ).metadata
     #expect(
       registry.lastRequest(for: downloadUrl)?.value(forHTTPHeaderField: "Range") == "bytes=10-29")
@@ -556,7 +556,7 @@ import Testing
     let prefixResult = client.readObject(
       from: bucket,
       object: prefixObject,
-      options: ReadObjectOptions().with { $0.range = .prefix(0) }
+      options: ReadObjectOptions().with { $0.range = ReadObjectRange(prefix: 0)! }
     )
     let prefixMeta = try await prefixResult.metadata
     #expect(prefixMeta.size == 50)
@@ -588,13 +588,13 @@ import Testing
     let suffixResult = client.readObject(
       from: bucket,
       object: suffixObject,
-      options: ReadObjectOptions().with { $0.range = .suffix(0) }
+      options: ReadObjectOptions().with { $0.range = ReadObjectRange(suffix: 0)! }
     )
     let suffixMeta = try await suffixResult.metadata
     #expect(suffixMeta.size == 50)
     #expect(suffixMeta.generation == 123)
     #expect(
-      registry.lastRequest(for: suffixUrl)?.value(forHTTPHeaderField: "Range") == "bytes=-0")
+      registry.lastRequest(for: suffixUrl)?.value(forHTTPHeaderField: "Range") == "bytes=0-0")
 
     var suffixData = Data()
     for try await chunk in suffixResult.body {
@@ -612,7 +612,7 @@ import Testing
       _ = try await client.readObject(
         from: bucket,
         object: "nonexistent.txt",
-        options: ReadObjectOptions().with { $0.range = .prefix(0) }
+        options: ReadObjectOptions().with { $0.range = ReadObjectRange(prefix: 0)! }
       ).metadata
       Issue.record("Expected requestError(.http) error to be thrown for 404")
     } catch ReadObjectError.requestError(.http(let details)) {
@@ -1061,7 +1061,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.range = .bounded(10...29)
+      $0.range = ReadObjectRange(range: 10...29)!
     }
 
     let result = client.readObject(from: bucket, object: objectName, options: options)

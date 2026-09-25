@@ -723,11 +723,11 @@ struct StorageClientRangedDownloadIntegrationTests {
   }
 
   @Test(arguments: [
-    (ReadObjectRange.bounded(10...19), "abcdefghij"),
-    (ReadObjectRange.fromOffset(36), "ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
-    (ReadObjectRange.prefix(10), "0123456789"),
-    (ReadObjectRange.suffix(10), "QRSTUVWXYZ"),
-    (ReadObjectRange(5...15), "56789abcdef"),
+    (ReadObjectRange(range: 10...19)!, "abcdefghij"),
+    (ReadObjectRange(fromOffset: 36)!, "ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+    (ReadObjectRange(prefix: 10)!, "0123456789"),
+    (ReadObjectRange(suffix: 10)!, "QRSTUVWXYZ"),
+    (ReadObjectRange(range: 5...15)!, "56789abcdef"),
     (ReadObjectRange.entire, "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"),
   ])
   func testRangedDownload(range: ReadObjectRange, expectedContent: String) async throws {
@@ -755,7 +755,7 @@ struct StorageClientRangedDownloadIntegrationTests {
     let fixture = try await Self.sharedFixture.value
     let storage = try StorageClient()
     let options = ReadObjectOptions().with {
-      $0.range = .prefix(0)
+      $0.range = ReadObjectRange(prefix: 0)!
     }
     let result = storage.readObject(
       from: fixture.bucketName, object: fixture.objectName, options: options)
@@ -772,12 +772,12 @@ struct StorageClientRangedDownloadIntegrationTests {
   }
 
   @Test(arguments: [
-    ReadObjectRange.prefix(0),
-    ReadObjectRange.suffix(0),
-    ReadObjectRange.bounded(10...19),
-    ReadObjectRange.fromOffset(36),
-    ReadObjectRange.prefix(10),
-    ReadObjectRange.suffix(10),
+    ReadObjectRange(prefix: 0)!,
+    ReadObjectRange(suffix: 0)!,
+    ReadObjectRange(range: 10...19)!,
+    ReadObjectRange(fromOffset: 36)!,
+    ReadObjectRange(prefix: 10)!,
+    ReadObjectRange(suffix: 10)!,
     ReadObjectRange.entire,
   ])
   func testRangedDownloadNonExistentObject(range: ReadObjectRange) async throws {

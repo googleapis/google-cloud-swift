@@ -16,56 +16,125 @@ import Foundation
 public import GoogleGax
 
 /// Specifies a byte range for ranged reads.
-public enum ReadObjectRange: Sendable, Hashable, Equatable {
-  /// Read the entire object (default).
-  case entire
+public struct ReadObjectRange: Sendable, Hashable, Equatable {
+  package enum Store: Sendable, Hashable, Equatable {
+    /// Read the entire object (default).
+    case entire
 
-  /// Read all bytes starting from `offset` to the end of the object (HTTP `bytes=N-`).
-  case fromOffset(UInt64)
+    /// Read all bytes starting from `offset` to the end of the object (HTTP `bytes=N-`).
+    case fromOffset(Int64)
 
-  /// Read the first `count` bytes of the object (HTTP `bytes=0-N`).
-  case prefix(UInt64)
+    /// Read the first `count` bytes of the object (HTTP `bytes=0-N`).
+    case prefix(Int64)
 
-  /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
-  case suffix(UInt64)
+    /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
+    case suffix(Int64)
 
-  /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
-  case bounded(ClosedRange<UInt64>)
+    /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
+    case bounded(ClosedRange<Int64>)
+
+    /// Converts the range specification to an HTTP `Range` header value string.
+    public var headerValue: String? {
+      switch self {
+      case .entire:
+        return nil
+      case .fromOffset(let offset):
+        return "bytes=\(offset)-"
+      case .prefix(let count):
+        return count > 0 ? "bytes=0-\(count - 1)" : "bytes=0-0"
+      case .suffix(let count):
+        return "bytes=-\(count)"
+      case .bounded(let range):
+        return "bytes=\(range.lowerBound)-\(range.upperBound)"
+      }
+    }
+  }
+
+  package let store: Store
+
+  package init(store: Store) {
+    self.store = store
+  }
+
+  /// Returns a range representing the entire object.
+  public init() {
+    self.store = .entire
+  }
+
+  /// Returns a range representing the entire object.
+  public static var entire: Self {
+    .init()
+  }
+
+  /// Converts the range specification to an HTTP `Range` header value string.
+  package var headerValue: String? {
+    store.headerValue
+  }
 
   /// Convenience initializer for Swift `ClosedRange<UInt64>`.
-  public init(_ range: ClosedRange<UInt64>) {
-    self = .bounded(range)
+  public init?(range: ClosedRange<UInt64>) {
+    guard let lower = Int64(exactly: range.lowerBound) else { return nil }
+    guard let upper = Int64(exactly: range.upperBound) else { return nil }
+    self.store = .bounded(lower...upper)
   }
 
   /// Convenience initializer for Swift `PartialRangeFrom<UInt64>` (e.g. `1024...`).
-  public init(_ range: PartialRangeFrom<UInt64>) {
-    self = .fromOffset(range.lowerBound)
+  public init?(range: PartialRangeFrom<UInt64>) {
+    guard range.lowerBound <= UInt64(Int64.max) else { return nil }
+    guard range.lowerBound != 0 else {
+      self.store = .entire
+      return
+    }
+    self.store = .fromOffset(Int64(range.lowerBound))
   }
 
   /// Convenience initializer for Swift `PartialRangeThrough<UInt64>` (e.g. `...1024`).
-  public init(_ range: PartialRangeThrough<UInt64>) {
-    self = .bounded(0...range.upperBound)
+  public init?(range: PartialRangeThrough<UInt64>) {
+    guard range.upperBound <= UInt64(Int64.max) else { return nil }
+    self.store = .bounded(0...Int64(range.upperBound))
   }
 
   /// Creates a bounded range from `start` to `end` inclusive, or returns `nil` if `end < start`.
   public init?(start: UInt64, end: UInt64) {
     guard start <= end else { return nil }
-    self = .bounded(start...end)
+    guard let s = Int64(exactly: start) else { return nil }
+    guard let e = Int64(exactly: end) else { return nil }
+    self.store = .bounded(s...e)
   }
 
-  /// Converts the range specification to an HTTP `Range` header value string.
-  public var headerValue: String? {
-    switch self {
-    case .entire:
-      return nil
-    case .fromOffset(let offset):
-      return "bytes=\(offset)-"
-    case .prefix(let count):
-      return count > 0 ? "bytes=0-\(count - 1)" : "bytes=0-0"
-    case .suffix(let count):
-      return "bytes=-\(count)"
-    case .bounded(let range):
-      return "bytes=\(range.lowerBound)-\(range.upperBound)"
+  /// Creates a range starting from the given offset.
+  /// When `fromOffset` is 0, this is normalized to `.entire`.
+  public init?(fromOffset: UInt64) {
+    guard let o = Int64(exactly: fromOffset) else { return nil }
+    guard o != 0 else {
+      self.store = .entire
+      return
+    }
+    self.store = .fromOffset(o)
+  }
+
+  /// Creates a range for the first `count` bytes of the object (HTTP `bytes=0-N`).
+  public init?(prefix: UInt64) {
+    guard let p = Int64(exactly: prefix) else { return nil }
+    self.store = .prefix(p)
+  }
+
+  /// Creates a range for the last `count` bytes of the object (HTTP `bytes=-N`).
+  public init?(suffix: UInt64) {
+    guard let s = Int64(exactly: suffix) else { return nil }
+    guard s != 0 else {
+      self.store = .prefix(0)
+      return
+    }
+    self.store = .suffix(s)
+  }
+
+  package var isZeroBytes: Bool {
+    switch store {
+    case .prefix(0), .suffix(0):
+      return true
+    default:
+      return false
     }
   }
 }
@@ -305,27 +374,30 @@ package func calculateResumeRange(
   bytesReceived: UInt64,
   totalSize: UInt64?
 ) -> ReadObjectRange? {
-  switch originalRange {
+  guard let received = Int64(exactly: bytesReceived) else { return nil }
+  let total = totalSize.flatMap { Int64(exactly: $0) }
+  switch originalRange.store {
   case .entire:
-    return .fromOffset(bytesReceived)
+    guard received != 0 else { return .entire }
+    return .init(store: .fromOffset(received))
   case .fromOffset(let offset):
-    return .fromOffset(offset + bytesReceived)
+    return .init(store: .fromOffset(offset + received))
   case .prefix(let count):
-    guard count > bytesReceived else { return nil }
-    return .bounded(bytesReceived...(count - 1))
+    guard count > received else { return nil }
+    return .init(store: .bounded(received...(count - 1)))
   case .bounded(let range):
-    let newStart = range.lowerBound + bytesReceived
+    let newStart = range.lowerBound + received
     guard newStart <= range.upperBound else { return nil }
-    return .bounded(newStart...range.upperBound)
+    return .init(store: .bounded(newStart...range.upperBound))
   case .suffix(let count):
-    guard count > bytesReceived else { return nil }
-    guard let totalSize = totalSize else {
-      return .suffix(count - bytesReceived)
+    guard count > received else { return nil }
+    guard let totalSize = total else {
+      return .init(store: .suffix(count - received))
     }
     guard totalSize > 0 else { return nil }
     let startOffset = totalSize > count ? (totalSize - count) : 0
-    let newStart = startOffset + bytesReceived
+    let newStart = startOffset + received
     guard newStart < totalSize else { return nil }
-    return .bounded(newStart...(totalSize - 1))
+    return .init(store: .bounded(newStart...(totalSize - 1)))
   }
 }

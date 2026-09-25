@@ -254,11 +254,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     }
     guard !lock.withLock({ isFinished }) else { return nil }
 
-    if case .prefix(0) = options.range {
-      lock.withLock { isFinished = true }
-      return nil
-    }
-    if case .suffix(0) = options.range {
+    if options.range.isZeroBytes {
       lock.withLock { isFinished = true }
       return nil
     }
