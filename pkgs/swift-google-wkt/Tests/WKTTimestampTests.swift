@@ -253,6 +253,74 @@ import Testing
     #expect(wrapped.value.seconds == args.1)
     #expect(wrapped.value.nanos == args.2)
   }
+
+  @Test("Timestamp Comparable")
+  func comparable() throws {
+    let t1 = try WKTTimestamp(seconds: -10, nanos: 0)
+    let t2 = try WKTTimestamp(seconds: -10, nanos: 500)
+    let t3 = try WKTTimestamp(seconds: -9, nanos: 0)
+    let t4 = try WKTTimestamp(seconds: 0, nanos: 0)
+    let t5 = try WKTTimestamp(seconds: 0, nanos: 1)
+    let t6 = try WKTTimestamp(seconds: 10, nanos: 100)
+    let t7 = try WKTTimestamp(seconds: 10, nanos: 200)
+    let t8 = try WKTTimestamp(seconds: 20, nanos: 0)
+
+    #expect(t1 < t2)
+    #expect(t2 < t3)
+    #expect(t3 < t4)
+    #expect(t4 < t5)
+    #expect(t5 < t6)
+    #expect(t6 < t7)
+    #expect(t7 < t8)
+
+    #expect(t8 > t7)
+    #expect(t7 >= t6)
+    #expect(t1 <= t2)
+    #expect(t1 <= t1)
+    #expect(t1 >= t1)
+    #expect(!(t1 < t1))
+    #expect(!(t1 > t1))
+
+    let unsorted = [t6, t1, t8, t3, t7, t4, t2, t5]
+    let sorted = unsorted.sorted()
+    #expect(sorted == [t1, t2, t3, t4, t5, t6, t7, t8])
+
+    let range = t2...t7
+    #expect(!range.contains(t1))
+    #expect(range.contains(t2))
+    #expect(range.contains(t5))
+    #expect(range.contains(t7))
+    #expect(!range.contains(t8))
+  }
+
+  @Test("Timestamp Hashable")
+  func hashable() throws {
+    let t1 = try WKTTimestamp(seconds: 1234, nanos: 5678)
+    let t2 = try WKTTimestamp(seconds: 1234, nanos: 5678)
+    let t3 = try WKTTimestamp(seconds: 1234, nanos: 9999)
+    let t4 = try WKTTimestamp(seconds: 5678, nanos: 5678)
+
+    #expect(t1 == t2)
+    #expect(t1.hashValue == t2.hashValue)
+
+    var set: Set<WKTTimestamp> = []
+    set.insert(t1)
+    set.insert(t2)
+    set.insert(t3)
+    set.insert(t4)
+    #expect(set.count == 3)
+    #expect(set.contains(t1))
+    #expect(set.contains(t3))
+    #expect(set.contains(t4))
+
+    var dict: [WKTTimestamp: String] = [:]
+    dict[t1] = "first"
+    dict[t2] = "second"
+    dict[t3] = "third"
+    #expect(dict.count == 2)
+    #expect(dict[t1] == "second")
+    #expect(dict[t3] == "third")
+  }
 }
 
 struct WrappedTimestamp: Encodable {

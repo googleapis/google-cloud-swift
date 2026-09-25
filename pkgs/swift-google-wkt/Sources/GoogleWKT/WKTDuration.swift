@@ -32,7 +32,7 @@ import Foundation
 /// encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should
 /// be expressed in JSON format as "3.000000001s", and 3 seconds and 1
 /// microsecond should be expressed in JSON format as "3.000001s".
-public struct WKTDuration: Codable, Equatable, Sendable {
+public struct WKTDuration: Codable, Comparable, Equatable, Hashable, Sendable {
   /// The maximum value for the `seconds` component, approximately 10,000 years.
   public static let maxSeconds: Int64 = 315_576_000_000
 
@@ -72,6 +72,13 @@ public struct WKTDuration: Codable, Equatable, Sendable {
     }
     self.seconds = seconds
     self.nanos = nanos
+  }
+
+  public static func < (lhs: WKTDuration, rhs: WKTDuration) -> Bool {
+    if lhs.seconds != rhs.seconds {
+      return lhs.seconds < rhs.seconds
+    }
+    return lhs.nanos < rhs.nanos
   }
 
   public init(from decoder: any Decoder) throws {

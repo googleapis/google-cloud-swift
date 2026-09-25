@@ -58,7 +58,7 @@ let rfc3339DateTimeLength = 19
 /// able to accept both UTC and other timezones (as indicated by an offset).
 ///
 /// For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past 01:30 UTC on January 15, 2017.
-public struct WKTTimestamp: Codable, Equatable, Sendable {
+public struct WKTTimestamp: Codable, Comparable, Equatable, Hashable, Sendable {
   /// The minimum value for the `seconds` component.
   ///
   /// Corresponds to 0001-01-01T00:00:00Z
@@ -106,6 +106,13 @@ public struct WKTTimestamp: Codable, Equatable, Sendable {
     }
     self.seconds = seconds
     self.nanos = nanos
+  }
+
+  public static func < (lhs: WKTTimestamp, rhs: WKTTimestamp) -> Bool {
+    if lhs.seconds != rhs.seconds {
+      return lhs.seconds < rhs.seconds
+    }
+    return lhs.nanos < rhs.nanos
   }
 
   public init(from encoder: any Decoder) throws {

@@ -199,4 +199,82 @@ import Testing
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.Duration","value":"123.450s"}}"#
     #expect(got == want)
   }
+
+  @Test("Duration Comparable")
+  func comparable() throws {
+    let d1 = try GoogleWKT.WKTDuration(seconds: -2, nanos: -100)
+    let d2 = try GoogleWKT.WKTDuration(seconds: -1, nanos: -900_000_000)
+    let d3 = try GoogleWKT.WKTDuration(seconds: -1, nanos: -100)
+    let d4 = try GoogleWKT.WKTDuration(seconds: -1, nanos: 0)
+    let d5 = try GoogleWKT.WKTDuration(seconds: 0, nanos: -500)
+    let d6 = try GoogleWKT.WKTDuration(seconds: 0, nanos: -1)
+    let d7 = try GoogleWKT.WKTDuration(seconds: 0, nanos: 0)
+    let d8 = try GoogleWKT.WKTDuration(seconds: 0, nanos: 1)
+    let d9 = try GoogleWKT.WKTDuration(seconds: 0, nanos: 500)
+    let d10 = try GoogleWKT.WKTDuration(seconds: 0, nanos: 999_999_999)
+    let d11 = try GoogleWKT.WKTDuration(seconds: 1, nanos: 0)
+    let d12 = try GoogleWKT.WKTDuration(seconds: 1, nanos: 500)
+    let d13 = try GoogleWKT.WKTDuration(seconds: 2, nanos: 0)
+
+    #expect(d1 < d2)
+    #expect(d2 < d3)
+    #expect(d3 < d4)
+    #expect(d4 < d5)
+    #expect(d5 < d6)
+    #expect(d6 < d7)
+    #expect(d7 < d8)
+    #expect(d8 < d9)
+    #expect(d9 < d10)
+    #expect(d10 < d11)
+    #expect(d11 < d12)
+    #expect(d12 < d13)
+
+    #expect(d13 > d12)
+    #expect(d12 >= d11)
+    #expect(d1 <= d2)
+    #expect(d1 <= d1)
+    #expect(d1 >= d1)
+    #expect(!(d1 < d1))
+    #expect(!(d1 > d1))
+
+    let unsorted = [d10, d3, d1, d13, d7, d2, d11, d6, d8, d4, d12, d5, d9]
+    let sorted = unsorted.sorted()
+    #expect(sorted == [d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13])
+
+    let range = d4...d11
+    #expect(!range.contains(d3))
+    #expect(range.contains(d4))
+    #expect(range.contains(d7))
+    #expect(range.contains(d11))
+    #expect(!range.contains(d12))
+  }
+
+  @Test("Duration Hashable")
+  func hashable() throws {
+    let d1 = try GoogleWKT.WKTDuration(seconds: 1234, nanos: 5678)
+    let d2 = try GoogleWKT.WKTDuration(seconds: 1234, nanos: 5678)
+    let d3 = try GoogleWKT.WKTDuration(seconds: 1234, nanos: 9999)
+    let d4 = try GoogleWKT.WKTDuration(seconds: -1234, nanos: -5678)
+
+    #expect(d1 == d2)
+    #expect(d1.hashValue == d2.hashValue)
+
+    var set: Set<GoogleWKT.WKTDuration> = []
+    set.insert(d1)
+    set.insert(d2)
+    set.insert(d3)
+    set.insert(d4)
+    #expect(set.count == 3)
+    #expect(set.contains(d1))
+    #expect(set.contains(d3))
+    #expect(set.contains(d4))
+
+    var dict: [GoogleWKT.WKTDuration: String] = [:]
+    dict[d1] = "first"
+    dict[d2] = "second"
+    dict[d3] = "third"
+    #expect(dict.count == 2)
+    #expect(dict[d1] == "second")
+    #expect(dict[d3] == "third")
+  }
 }
