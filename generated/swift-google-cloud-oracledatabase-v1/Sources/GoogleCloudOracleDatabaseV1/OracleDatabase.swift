@@ -2422,7 +2422,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listCloudExadataInfrastructuresByItems(
     request: ListCloudExadataInfrastructuresRequest
-  ) -> any AsyncSequence<CloudExadataInfrastructure, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudExadataInfrastructure, Swift.Error> & Sendable {
     self.listCloudExadataInfrastructuresByItems(request: request, options: .init())
   }
 
@@ -2431,7 +2431,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListCloudExadataInfrastructures")
   public func listCloudExadataInfrastructuresByItems(
     request: ListCloudExadataInfrastructuresRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudExadataInfrastructure, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudExadataInfrastructure, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListCloudExadataInfrastructuresResponse in
@@ -2444,7 +2444,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listCloudExadataInfrastructuresByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CloudExadataInfrastructure, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudExadataInfrastructure, Swift.Error> & Sendable {
     let request = ListCloudExadataInfrastructuresRequest().with {
       $0.parent = parent
     }
@@ -2611,7 +2611,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listCloudVmClustersByItems(
     request: ListCloudVmClustersRequest
-  ) -> any AsyncSequence<CloudVmCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudVmCluster, Swift.Error> & Sendable {
     self.listCloudVmClustersByItems(request: request, options: .init())
   }
 
@@ -2620,7 +2620,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListCloudVmClusters")
   public func listCloudVmClustersByItems(
     request: ListCloudVmClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudVmCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudVmCluster, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListCloudVmClustersResponse in
@@ -2633,7 +2633,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listCloudVmClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CloudVmCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudVmCluster, Swift.Error> & Sendable {
     let request = ListCloudVmClustersRequest().with {
       $0.parent = parent
     }
@@ -2754,7 +2754,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listEntitlementsByItems(
     request: ListEntitlementsRequest
-  ) -> any AsyncSequence<Entitlement, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Entitlement, Swift.Error> & Sendable {
     self.listEntitlementsByItems(request: request, options: .init())
   }
 
@@ -2763,7 +2763,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListEntitlements")
   public func listEntitlementsByItems(
     request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entitlement, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Entitlement, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListEntitlementsResponse in
@@ -2776,7 +2776,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listEntitlementsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Entitlement, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Entitlement, Swift.Error> & Sendable {
     let request = ListEntitlementsRequest().with {
       $0.parent = parent
     }
@@ -2797,7 +2797,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbServersByItems(
     request: ListDbServersRequest
-  ) -> any AsyncSequence<DbServer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbServer, Swift.Error> & Sendable {
     self.listDbServersByItems(request: request, options: .init())
   }
 
@@ -2806,7 +2806,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDbServers")
   public func listDbServersByItems(
     request: ListDbServersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DbServer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbServer, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbServersResponse in
@@ -2819,7 +2819,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbServersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DbServer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbServer, Swift.Error> & Sendable {
     let request = ListDbServersRequest().with {
       $0.parent = parent
     }
@@ -2840,7 +2840,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbNodesByItems(
     request: ListDbNodesRequest
-  ) -> any AsyncSequence<DbNode, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbNode, Swift.Error> & Sendable {
     self.listDbNodesByItems(request: request, options: .init())
   }
 
@@ -2849,7 +2849,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDbNodes")
   public func listDbNodesByItems(
     request: ListDbNodesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DbNode, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbNode, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbNodesResponse in
@@ -2862,7 +2862,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbNodesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DbNode, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbNode, Swift.Error> & Sendable {
     let request = ListDbNodesRequest().with {
       $0.parent = parent
     }
@@ -2883,7 +2883,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGiVersionsByItems(
     request: ListGiVersionsRequest
-  ) -> any AsyncSequence<GiVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GiVersion, Swift.Error> & Sendable {
     self.listGiVersionsByItems(request: request, options: .init())
   }
 
@@ -2893,7 +2893,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGiVersions")
   public func listGiVersionsByItems(
     request: ListGiVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GiVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GiVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGiVersionsResponse in
@@ -2906,7 +2906,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGiVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GiVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GiVersion, Swift.Error> & Sendable {
     let request = ListGiVersionsRequest().with {
       $0.parent = parent
     }
@@ -2927,7 +2927,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listMinorVersionsByItems(
     request: ListMinorVersionsRequest
-  ) -> any AsyncSequence<MinorVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MinorVersion, Swift.Error> & Sendable {
     self.listMinorVersionsByItems(request: request, options: .init())
   }
 
@@ -2937,7 +2937,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListMinorVersions")
   public func listMinorVersionsByItems(
     request: ListMinorVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MinorVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MinorVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListMinorVersionsResponse in
@@ -2950,7 +2950,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listMinorVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<MinorVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MinorVersion, Swift.Error> & Sendable {
     let request = ListMinorVersionsRequest().with {
       $0.parent = parent
     }
@@ -2971,7 +2971,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbSystemShapesByItems(
     request: ListDbSystemShapesRequest
-  ) -> any AsyncSequence<DbSystemShape, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystemShape, Swift.Error> & Sendable {
     self.listDbSystemShapesByItems(request: request, options: .init())
   }
 
@@ -2980,7 +2980,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDbSystemShapes")
   public func listDbSystemShapesByItems(
     request: ListDbSystemShapesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DbSystemShape, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystemShape, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbSystemShapesResponse in
@@ -2993,7 +2993,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbSystemShapesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DbSystemShape, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystemShape, Swift.Error> & Sendable {
     let request = ListDbSystemShapesRequest().with {
       $0.parent = parent
     }
@@ -3014,7 +3014,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDatabasesByItems(
     request: ListAutonomousDatabasesRequest
-  ) -> any AsyncSequence<AutonomousDatabase, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabase, Swift.Error> & Sendable {
     self.listAutonomousDatabasesByItems(request: request, options: .init())
   }
 
@@ -3023,7 +3023,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListAutonomousDatabases")
   public func listAutonomousDatabasesByItems(
     request: ListAutonomousDatabasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AutonomousDatabase, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabase, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDatabasesResponse in
@@ -3036,7 +3036,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDatabasesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AutonomousDatabase, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabase, Swift.Error> & Sendable {
     let request = ListAutonomousDatabasesRequest().with {
       $0.parent = parent
     }
@@ -3264,7 +3264,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDbVersionsByItems(
     request: ListAutonomousDbVersionsRequest
-  ) -> any AsyncSequence<AutonomousDbVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDbVersion, Swift.Error> & Sendable {
     self.listAutonomousDbVersionsByItems(request: request, options: .init())
   }
 
@@ -3274,7 +3274,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListAutonomousDbVersions")
   public func listAutonomousDbVersionsByItems(
     request: ListAutonomousDbVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AutonomousDbVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDbVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDbVersionsResponse in
@@ -3287,7 +3287,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDbVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AutonomousDbVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDbVersion, Swift.Error> & Sendable {
     let request = ListAutonomousDbVersionsRequest().with {
       $0.parent = parent
     }
@@ -3308,7 +3308,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDatabaseCharacterSetsByItems(
     request: ListAutonomousDatabaseCharacterSetsRequest
-  ) -> any AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> & Sendable {
     self.listAutonomousDatabaseCharacterSetsByItems(request: request, options: .init())
   }
 
@@ -3317,7 +3317,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListAutonomousDatabaseCharacterSets")
   public func listAutonomousDatabaseCharacterSetsByItems(
     request: ListAutonomousDatabaseCharacterSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDatabaseCharacterSetsResponse in
@@ -3330,7 +3330,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDatabaseCharacterSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabaseCharacterSet, Swift.Error> & Sendable {
     let request = ListAutonomousDatabaseCharacterSetsRequest().with {
       $0.parent = parent
     }
@@ -3351,7 +3351,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDatabaseBackupsByItems(
     request: ListAutonomousDatabaseBackupsRequest
-  ) -> any AsyncSequence<AutonomousDatabaseBackup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabaseBackup, Swift.Error> & Sendable {
     self.listAutonomousDatabaseBackupsByItems(request: request, options: .init())
   }
 
@@ -3360,7 +3360,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListAutonomousDatabaseBackups")
   public func listAutonomousDatabaseBackupsByItems(
     request: ListAutonomousDatabaseBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AutonomousDatabaseBackup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabaseBackup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListAutonomousDatabaseBackupsResponse in
@@ -3373,7 +3373,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listAutonomousDatabaseBackupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AutonomousDatabaseBackup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutonomousDatabaseBackup, Swift.Error> & Sendable {
     let request = ListAutonomousDatabaseBackupsRequest().with {
       $0.parent = parent
     }
@@ -3649,7 +3649,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listOdbNetworksByItems(
     request: ListOdbNetworksRequest
-  ) -> any AsyncSequence<OdbNetwork, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OdbNetwork, Swift.Error> & Sendable {
     self.listOdbNetworksByItems(request: request, options: .init())
   }
 
@@ -3658,7 +3658,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListOdbNetworks")
   public func listOdbNetworksByItems(
     request: ListOdbNetworksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OdbNetwork, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OdbNetwork, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListOdbNetworksResponse in
@@ -3671,7 +3671,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listOdbNetworksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<OdbNetwork, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OdbNetwork, Swift.Error> & Sendable {
     let request = ListOdbNetworksRequest().with {
       $0.parent = parent
     }
@@ -3791,7 +3791,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listOdbSubnetsByItems(
     request: ListOdbSubnetsRequest
-  ) -> any AsyncSequence<OdbSubnet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OdbSubnet, Swift.Error> & Sendable {
     self.listOdbSubnetsByItems(request: request, options: .init())
   }
 
@@ -3800,7 +3800,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListOdbSubnets")
   public func listOdbSubnetsByItems(
     request: ListOdbSubnetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<OdbSubnet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OdbSubnet, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListOdbSubnetsResponse in
@@ -3813,7 +3813,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listOdbSubnetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<OdbSubnet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<OdbSubnet, Swift.Error> & Sendable {
     let request = ListOdbSubnetsRequest().with {
       $0.parent = parent
     }
@@ -3933,7 +3933,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listExadbVmClustersByItems(
     request: ListExadbVmClustersRequest
-  ) -> any AsyncSequence<ExadbVmCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ExadbVmCluster, Swift.Error> & Sendable {
     self.listExadbVmClustersByItems(request: request, options: .init())
   }
 
@@ -3943,7 +3943,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListExadbVmClusters")
   public func listExadbVmClustersByItems(
     request: ListExadbVmClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ExadbVmCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ExadbVmCluster, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListExadbVmClustersResponse in
@@ -3956,7 +3956,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listExadbVmClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ExadbVmCluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ExadbVmCluster, Swift.Error> & Sendable {
     let request = ListExadbVmClustersRequest().with {
       $0.parent = parent
     }
@@ -4158,7 +4158,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listExascaleDbStorageVaultsByItems(
     request: ListExascaleDbStorageVaultsRequest
-  ) -> any AsyncSequence<ExascaleDbStorageVault, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ExascaleDbStorageVault, Swift.Error> & Sendable {
     self.listExascaleDbStorageVaultsByItems(request: request, options: .init())
   }
 
@@ -4168,7 +4168,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListExascaleDbStorageVaults")
   public func listExascaleDbStorageVaultsByItems(
     request: ListExascaleDbStorageVaultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ExascaleDbStorageVault, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ExascaleDbStorageVault, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListExascaleDbStorageVaultsResponse in
@@ -4181,7 +4181,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listExascaleDbStorageVaultsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ExascaleDbStorageVault, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ExascaleDbStorageVault, Swift.Error> & Sendable {
     let request = ListExascaleDbStorageVaultsRequest().with {
       $0.parent = parent
     }
@@ -4302,7 +4302,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbSystemInitialStorageSizesByItems(
     request: ListDbSystemInitialStorageSizesRequest
-  ) -> any AsyncSequence<DbSystemInitialStorageSize, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystemInitialStorageSize, Swift.Error> & Sendable {
     self.listDbSystemInitialStorageSizesByItems(request: request, options: .init())
   }
 
@@ -4312,7 +4312,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDbSystemInitialStorageSizes")
   public func listDbSystemInitialStorageSizesByItems(
     request: ListDbSystemInitialStorageSizesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DbSystemInitialStorageSize, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystemInitialStorageSize, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbSystemInitialStorageSizesResponse in
@@ -4325,7 +4325,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbSystemInitialStorageSizesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DbSystemInitialStorageSize, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystemInitialStorageSize, Swift.Error> & Sendable {
     let request = ListDbSystemInitialStorageSizesRequest().with {
       $0.parent = parent
     }
@@ -4346,7 +4346,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDatabasesByItems(
     request: ListDatabasesRequest
-  ) -> any AsyncSequence<Database, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Database, Swift.Error> & Sendable {
     self.listDatabasesByItems(request: request, options: .init())
   }
 
@@ -4355,7 +4355,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDatabases")
   public func listDatabasesByItems(
     request: ListDatabasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Database, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Database, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDatabasesResponse in
@@ -4368,7 +4368,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDatabasesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Database, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Database, Swift.Error> & Sendable {
     let request = ListDatabasesRequest().with {
       $0.parent = parent
     }
@@ -4410,7 +4410,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listPluggableDatabasesByItems(
     request: ListPluggableDatabasesRequest
-  ) -> any AsyncSequence<PluggableDatabase, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PluggableDatabase, Swift.Error> & Sendable {
     self.listPluggableDatabasesByItems(request: request, options: .init())
   }
 
@@ -4420,7 +4420,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListPluggableDatabases")
   public func listPluggableDatabasesByItems(
     request: ListPluggableDatabasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PluggableDatabase, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PluggableDatabase, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListPluggableDatabasesResponse in
@@ -4433,7 +4433,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listPluggableDatabasesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PluggableDatabase, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PluggableDatabase, Swift.Error> & Sendable {
     let request = ListPluggableDatabasesRequest().with {
       $0.parent = parent
     }
@@ -4475,7 +4475,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbSystemsByItems(
     request: ListDbSystemsRequest
-  ) -> any AsyncSequence<DbSystem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystem, Swift.Error> & Sendable {
     self.listDbSystemsByItems(request: request, options: .init())
   }
 
@@ -4484,7 +4484,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDbSystems")
   public func listDbSystemsByItems(
     request: ListDbSystemsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DbSystem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystem, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbSystemsResponse in
@@ -4497,7 +4497,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbSystemsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DbSystem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbSystem, Swift.Error> & Sendable {
     let request = ListDbSystemsRequest().with {
       $0.parent = parent
     }
@@ -4617,7 +4617,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentsByItems(
     request: ListGoldengateDeploymentsRequest
-  ) -> any AsyncSequence<GoldengateDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeployment, Swift.Error> & Sendable {
     self.listGoldengateDeploymentsByItems(request: request, options: .init())
   }
 
@@ -4626,7 +4626,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeployments")
   public func listGoldengateDeploymentsByItems(
     request: ListGoldengateDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeployment, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentsResponse in
@@ -4639,7 +4639,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeployment, Swift.Error> & Sendable {
     let request = ListGoldengateDeploymentsRequest().with {
       $0.parent = parent
     }
@@ -4836,7 +4836,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionsByItems(
     request: ListGoldengateConnectionsRequest
-  ) -> any AsyncSequence<GoldengateConnection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnection, Swift.Error> & Sendable {
     self.listGoldengateConnectionsByItems(request: request, options: .init())
   }
 
@@ -4845,7 +4845,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnections")
   public func listGoldengateConnectionsByItems(
     request: ListGoldengateConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateConnection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionsResponse in
@@ -4858,7 +4858,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateConnection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnection, Swift.Error> & Sendable {
     let request = ListGoldengateConnectionsRequest().with {
       $0.parent = parent
     }
@@ -4979,7 +4979,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentVersionsByItems(
     request: ListGoldengateDeploymentVersionsRequest
-  ) -> any AsyncSequence<GoldengateDeploymentVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentVersion, Swift.Error> & Sendable {
     self.listGoldengateDeploymentVersionsByItems(request: request, options: .init())
   }
 
@@ -4988,7 +4988,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeploymentVersions")
   public func listGoldengateDeploymentVersionsByItems(
     request: ListGoldengateDeploymentVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateDeploymentVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentVersionsResponse in
@@ -5001,7 +5001,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateDeploymentVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentVersion, Swift.Error> & Sendable {
     let request = ListGoldengateDeploymentVersionsRequest().with {
       $0.parent = parent
     }
@@ -5022,7 +5022,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentTypesByItems(
     request: ListGoldengateDeploymentTypesRequest
-  ) -> any AsyncSequence<GoldengateDeploymentType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentType, Swift.Error> & Sendable {
     self.listGoldengateDeploymentTypesByItems(request: request, options: .init())
   }
 
@@ -5031,7 +5031,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeploymentTypes")
   public func listGoldengateDeploymentTypesByItems(
     request: ListGoldengateDeploymentTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateDeploymentType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentTypesResponse in
@@ -5044,7 +5044,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateDeploymentType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentType, Swift.Error> & Sendable {
     let request = ListGoldengateDeploymentTypesRequest().with {
       $0.parent = parent
     }
@@ -5065,7 +5065,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentEnvironmentsByItems(
     request: ListGoldengateDeploymentEnvironmentsRequest
-  ) -> any AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> & Sendable {
     self.listGoldengateDeploymentEnvironmentsByItems(request: request, options: .init())
   }
 
@@ -5074,7 +5074,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateDeploymentEnvironments")
   public func listGoldengateDeploymentEnvironmentsByItems(
     request: ListGoldengateDeploymentEnvironmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateDeploymentEnvironmentsResponse in
@@ -5087,7 +5087,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateDeploymentEnvironmentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateDeploymentEnvironment, Swift.Error> & Sendable {
     let request = ListGoldengateDeploymentEnvironmentsRequest().with {
       $0.parent = parent
     }
@@ -5108,7 +5108,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionTypesByItems(
     request: ListGoldengateConnectionTypesRequest
-  ) -> any AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
     self.listGoldengateConnectionTypesByItems(request: request, options: .init())
   }
 
@@ -5117,7 +5117,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnectionTypes")
   public func listGoldengateConnectionTypesByItems(
     request: ListGoldengateConnectionTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionTypesResponse in
@@ -5130,7 +5130,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnectionType, Swift.Error> & Sendable {
     let request = ListGoldengateConnectionTypesRequest().with {
       $0.parent = parent
     }
@@ -5151,7 +5151,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbVersionsByItems(
     request: ListDbVersionsRequest
-  ) -> any AsyncSequence<DbVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbVersion, Swift.Error> & Sendable {
     self.listDbVersionsByItems(request: request, options: .init())
   }
 
@@ -5160,7 +5160,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDbVersions")
   public func listDbVersionsByItems(
     request: ListDbVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DbVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDbVersionsResponse in
@@ -5173,7 +5173,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDbVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DbVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DbVersion, Swift.Error> & Sendable {
     let request = ListDbVersionsRequest().with {
       $0.parent = parent
     }
@@ -5194,7 +5194,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDatabaseCharacterSetsByItems(
     request: ListDatabaseCharacterSetsRequest
-  ) -> any AsyncSequence<DatabaseCharacterSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DatabaseCharacterSet, Swift.Error> & Sendable {
     self.listDatabaseCharacterSetsByItems(request: request, options: .init())
   }
 
@@ -5203,7 +5203,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListDatabaseCharacterSets")
   public func listDatabaseCharacterSetsByItems(
     request: ListDatabaseCharacterSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DatabaseCharacterSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DatabaseCharacterSet, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListDatabaseCharacterSetsResponse in
@@ -5216,7 +5216,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listDatabaseCharacterSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DatabaseCharacterSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DatabaseCharacterSet, Swift.Error> & Sendable {
     let request = ListDatabaseCharacterSetsRequest().with {
       $0.parent = parent
     }
@@ -5237,7 +5237,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionAssignmentsByItems(
     request: ListGoldengateConnectionAssignmentsRequest
-  ) -> any AsyncSequence<GoldengateConnectionAssignment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnectionAssignment, Swift.Error> & Sendable {
     self.listGoldengateConnectionAssignmentsByItems(request: request, options: .init())
   }
 
@@ -5246,7 +5246,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListGoldengateConnectionAssignments")
   public func listGoldengateConnectionAssignmentsByItems(
     request: ListGoldengateConnectionAssignmentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoldengateConnectionAssignment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnectionAssignment, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudOracleDatabaseV1.ListGoldengateConnectionAssignmentsResponse in
@@ -5259,7 +5259,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listGoldengateConnectionAssignmentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GoldengateConnectionAssignment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoldengateConnectionAssignment, Swift.Error> & Sendable {
     let request = ListGoldengateConnectionAssignmentsRequest().with {
       $0.parent = parent
     }
@@ -5404,7 +5404,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -5430,7 +5430,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -5466,7 +5466,7 @@ extension Clients.OracleDatabaseProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -5477,7 +5477,7 @@ extension Clients.OracleDatabaseProtocol {
   /// @Snippet(path: "OracleDatabase_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -5490,7 +5490,7 @@ extension Clients.OracleDatabaseProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

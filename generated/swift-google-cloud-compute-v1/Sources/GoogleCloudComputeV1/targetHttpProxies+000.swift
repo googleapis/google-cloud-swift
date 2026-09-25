@@ -367,7 +367,7 @@
 
     public func aggregatedListByItems(
       request: TargetHttpProxiesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -380,7 +380,7 @@
     /// @Snippet(path: "targetHttpProxies_aggregatedList")
     public func aggregatedListByItems(
       request: TargetHttpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.TargetHttpProxyAggregatedList in
@@ -393,7 +393,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, TargetHttpProxiesScopedList), Swift.Error> & Sendable {
       let request = TargetHttpProxiesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -519,7 +519,7 @@
 
     public func listByItems(
       request: TargetHttpProxiesClient.ListRequest
-    ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -529,7 +529,7 @@
     /// @Snippet(path: "targetHttpProxies_list")
     public func listByItems(
       request: TargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpProxyList in
         var request = request
@@ -541,7 +541,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpProxy, Swift.Error> & Sendable {
       let request = TargetHttpProxiesClient.ListRequest().with {
         $0.project = project
       }

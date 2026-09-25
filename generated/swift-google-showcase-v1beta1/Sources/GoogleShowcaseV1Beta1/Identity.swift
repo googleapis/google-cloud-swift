@@ -332,7 +332,7 @@ extension Clients.IdentityProtocol {
 
   public func listUsersByItems(
     request: ListUsersRequest
-  ) -> any AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
     self.listUsersByItems(request: request, options: .init())
   }
 
@@ -341,7 +341,7 @@ extension Clients.IdentityProtocol {
   /// @Snippet(path: "Identity_ListUsers")
   public func listUsersByItems(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<User, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<User, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse in
       var request = request
@@ -365,7 +365,7 @@ extension Clients.IdentityProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -376,7 +376,7 @@ extension Clients.IdentityProtocol {
   /// @Snippet(path: "Identity_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -448,7 +448,7 @@ extension Clients.IdentityProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -459,7 +459,7 @@ extension Clients.IdentityProtocol {
   /// @Snippet(path: "Identity_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -472,7 +472,7 @@ extension Clients.IdentityProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -188,7 +188,7 @@
 
     public func listByItems(
       request: PreviewFeaturesClient.ListRequest
-    ) -> any AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -197,7 +197,7 @@
     /// @Snippet(path: "previewFeatures_list")
     public func listByItems(
       request: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.PreviewFeatureList in
         var request = request
@@ -209,7 +209,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PreviewFeature, Swift.Error> & Sendable {
       let request = PreviewFeaturesClient.ListRequest().with {
         $0.project = project
       }

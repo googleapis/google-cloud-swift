@@ -454,7 +454,7 @@
 
     public func listIdentityMappingsByItems(
       request: ListIdentityMappingsRequest
-    ) -> any AsyncSequence<IdentityMappingEntry, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<IdentityMappingEntry, Swift.Error> & Sendable {
       self.listIdentityMappingsByItems(request: request, options: .init())
     }
 
@@ -463,7 +463,7 @@
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappings")
     public func listIdentityMappingsByItems(
       request: ListIdentityMappingsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<IdentityMappingEntry, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<IdentityMappingEntry, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingsResponse in
@@ -488,7 +488,7 @@
 
     public func listIdentityMappingStoresByItems(
       request: ListIdentityMappingStoresRequest
-    ) -> any AsyncSequence<IdentityMappingStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<IdentityMappingStore, Swift.Error> & Sendable {
       self.listIdentityMappingStoresByItems(request: request, options: .init())
     }
 
@@ -497,7 +497,7 @@
     /// @Snippet(path: "IdentityMappingStoreService_ListIdentityMappingStores")
     public func listIdentityMappingStoresByItems(
       request: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<IdentityMappingStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<IdentityMappingStore, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingStoresResponse in
@@ -510,7 +510,7 @@
 
     public func listIdentityMappingStoresByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<IdentityMappingStore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<IdentityMappingStore, Swift.Error> & Sendable {
       let request = ListIdentityMappingStoresRequest().with {
         $0.parent = parent
       }
@@ -531,7 +531,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -542,7 +542,7 @@
     /// @Snippet(path: "IdentityMappingStoreService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -555,7 +555,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

@@ -288,7 +288,7 @@
 
     public func aggregatedListByItems(
       request: NodeTemplatesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -300,7 +300,7 @@
     /// @Snippet(path: "nodeTemplates_aggregatedList")
     public func aggregatedListByItems(
       request: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NodeTemplateAggregatedList in
@@ -313,7 +313,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), Swift.Error> & Sendable {
       let request = NodeTemplatesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -470,7 +470,7 @@
 
     public func listByItems(
       request: NodeTemplatesClient.ListRequest
-    ) -> any AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -480,7 +480,7 @@
     /// @Snippet(path: "nodeTemplates_list")
     public func listByItems(
       request: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeTemplateList in
         var request = request
@@ -493,7 +493,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeTemplate, Swift.Error> & Sendable {
       let request = NodeTemplatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

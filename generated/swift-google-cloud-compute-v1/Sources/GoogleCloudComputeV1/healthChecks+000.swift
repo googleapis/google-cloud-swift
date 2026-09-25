@@ -383,7 +383,7 @@
 
     public func aggregatedListByItems(
       request: HealthChecksClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -396,7 +396,7 @@
     /// @Snippet(path: "healthChecks_aggregatedList")
     public func aggregatedListByItems(
       request: HealthChecksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.HealthChecksAggregatedList in
@@ -409,7 +409,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, HealthChecksScopedList), Swift.Error> & Sendable {
       let request = HealthChecksClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -535,7 +535,7 @@
 
     public func listByItems(
       request: HealthChecksClient.ListRequest
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthCheck, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -545,7 +545,7 @@
     /// @Snippet(path: "healthChecks_list")
     public func listByItems(
       request: HealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthCheck, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthCheckList in
         var request = request
@@ -557,7 +557,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<HealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthCheck, Swift.Error> & Sendable {
       let request = HealthChecksClient.ListRequest().with {
         $0.project = project
       }

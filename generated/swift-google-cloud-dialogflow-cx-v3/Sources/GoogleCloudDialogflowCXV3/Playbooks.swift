@@ -443,7 +443,7 @@
 
     public func listPlaybooksByItems(
       request: ListPlaybooksRequest
-    ) -> any AsyncSequence<Playbook, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Playbook, Swift.Error> & Sendable {
       self.listPlaybooksByItems(request: request, options: .init())
     }
 
@@ -452,7 +452,7 @@
     /// @Snippet(path: "Playbooks_ListPlaybooks")
     public func listPlaybooksByItems(
       request: ListPlaybooksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Playbook, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Playbook, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse in
@@ -465,7 +465,7 @@
 
     public func listPlaybooksByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Playbook, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Playbook, Swift.Error> & Sendable {
       let request = ListPlaybooksRequest().with {
         $0.parent = parent
       }
@@ -655,7 +655,7 @@
 
     public func listPlaybookVersionsByItems(
       request: ListPlaybookVersionsRequest
-    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PlaybookVersion, Swift.Error> & Sendable {
       self.listPlaybookVersionsByItems(request: request, options: .init())
     }
 
@@ -664,7 +664,7 @@
     /// @Snippet(path: "Playbooks_ListPlaybookVersions")
     public func listPlaybookVersionsByItems(
       request: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PlaybookVersion, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse in
@@ -677,7 +677,7 @@
 
     public func listPlaybookVersionsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<PlaybookVersion, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PlaybookVersion, Swift.Error> & Sendable {
       let request = ListPlaybookVersionsRequest().with {
         $0.parent = parent
       }
@@ -717,7 +717,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -743,7 +743,7 @@
     /// @Snippet(path: "Playbooks_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -779,7 +779,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -790,7 +790,7 @@
     /// @Snippet(path: "Playbooks_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -803,7 +803,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

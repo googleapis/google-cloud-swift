@@ -1155,7 +1155,7 @@
 
     public func listByItems(
       request: OrganizationSecurityPoliciesClient.ListRequest
-    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SecurityPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1169,7 +1169,7 @@
     /// @Snippet(path: "organizationSecurityPolicies_list")
     public func listByItems(
       request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SecurityPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SecurityPolicy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SecurityPolicyList in
         var request = request

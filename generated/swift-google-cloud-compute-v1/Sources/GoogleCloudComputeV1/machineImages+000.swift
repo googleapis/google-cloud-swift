@@ -466,7 +466,7 @@
 
     public func listByItems(
       request: MachineImagesClient.ListRequest
-    ) -> any AsyncSequence<MachineImage, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineImage, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -476,7 +476,7 @@
     /// @Snippet(path: "machineImages_list")
     public func listByItems(
       request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<MachineImage, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineImage, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.MachineImageList in
         var request = request
@@ -488,7 +488,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<MachineImage, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<MachineImage, Swift.Error> & Sendable {
       let request = MachineImagesClient.ListRequest().with {
         $0.project = project
       }

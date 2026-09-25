@@ -547,7 +547,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listClustersByItems(
     request: ListClustersRequest
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     self.listClustersByItems(request: request, options: .init())
   }
 
@@ -556,7 +556,7 @@ extension Clients.ManagedKafkaProtocol {
   /// @Snippet(path: "ManagedKafka_ListClusters")
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse
       in
@@ -569,7 +569,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
@@ -728,7 +728,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listTopicsByItems(
     request: ListTopicsRequest
-  ) -> any AsyncSequence<Topic, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Topic, Swift.Error> & Sendable {
     self.listTopicsByItems(request: request, options: .init())
   }
 
@@ -737,7 +737,7 @@ extension Clients.ManagedKafkaProtocol {
   /// @Snippet(path: "ManagedKafka_ListTopics")
   public func listTopicsByItems(
     request: ListTopicsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Topic, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Topic, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse
       in
@@ -750,7 +750,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listTopicsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Topic, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Topic, Swift.Error> & Sendable {
     let request = ListTopicsRequest().with {
       $0.parent = parent
     }
@@ -857,7 +857,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listConsumerGroupsByItems(
     request: ListConsumerGroupsRequest
-  ) -> any AsyncSequence<ConsumerGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConsumerGroup, Swift.Error> & Sendable {
     self.listConsumerGroupsByItems(request: request, options: .init())
   }
 
@@ -866,7 +866,7 @@ extension Clients.ManagedKafkaProtocol {
   /// @Snippet(path: "ManagedKafka_ListConsumerGroups")
   public func listConsumerGroupsByItems(
     request: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ConsumerGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConsumerGroup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse in
@@ -879,7 +879,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listConsumerGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ConsumerGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ConsumerGroup, Swift.Error> & Sendable {
     let request = ListConsumerGroupsRequest().with {
       $0.parent = parent
     }
@@ -963,7 +963,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listAclsByItems(
     request: ListAclsRequest
-  ) -> any AsyncSequence<Acl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Acl, Swift.Error> & Sendable {
     self.listAclsByItems(request: request, options: .init())
   }
 
@@ -972,7 +972,7 @@ extension Clients.ManagedKafkaProtocol {
   /// @Snippet(path: "ManagedKafka_ListAcls")
   public func listAclsByItems(
     request: ListAclsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Acl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Acl, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse in
       var request = request
@@ -984,7 +984,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listAclsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Acl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Acl, Swift.Error> & Sendable {
     let request = ListAclsRequest().with {
       $0.parent = parent
     }
@@ -1133,7 +1133,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1142,7 +1142,7 @@ extension Clients.ManagedKafkaProtocol {
   /// @Snippet(path: "ManagedKafka_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1178,7 +1178,7 @@ extension Clients.ManagedKafkaProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1189,7 +1189,7 @@ extension Clients.ManagedKafkaProtocol {
   /// @Snippet(path: "ManagedKafka_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1202,7 +1202,7 @@ extension Clients.ManagedKafkaProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

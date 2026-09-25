@@ -239,7 +239,7 @@ extension Clients.EnterpriseKnowledgeGraphServiceProtocol {
 
   public func listEntityReconciliationJobsByItems(
     request: ListEntityReconciliationJobsRequest
-  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntityReconciliationJob, Swift.Error> & Sendable {
     self.listEntityReconciliationJobsByItems(request: request, options: .init())
   }
 
@@ -248,7 +248,7 @@ extension Clients.EnterpriseKnowledgeGraphServiceProtocol {
   /// @Snippet(path: "EnterpriseKnowledgeGraphService_ListEntityReconciliationJobs")
   public func listEntityReconciliationJobsByItems(
     request: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntityReconciliationJob, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse in
@@ -261,7 +261,7 @@ extension Clients.EnterpriseKnowledgeGraphServiceProtocol {
 
   public func listEntityReconciliationJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EntityReconciliationJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntityReconciliationJob, Swift.Error> & Sendable {
     let request = ListEntityReconciliationJobsRequest().with {
       $0.parent = parent
     }

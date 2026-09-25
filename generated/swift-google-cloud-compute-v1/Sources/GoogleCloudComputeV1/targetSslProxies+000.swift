@@ -645,7 +645,7 @@
 
     public func listByItems(
       request: TargetSslProxiesClient.ListRequest
-    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSslProxy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -655,7 +655,7 @@
     /// @Snippet(path: "targetSslProxies_list")
     public func listByItems(
       request: TargetSslProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSslProxy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetSslProxyList in
         var request = request
@@ -667,7 +667,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<TargetSslProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSslProxy, Swift.Error> & Sendable {
       let request = TargetSslProxiesClient.ListRequest().with {
         $0.project = project
       }

@@ -633,7 +633,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductSetsByItems(
     request: ListProductSetsRequest
-  ) -> any AsyncSequence<ProductSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProductSet, Swift.Error> & Sendable {
     self.listProductSetsByItems(request: request, options: .init())
   }
 
@@ -647,7 +647,7 @@ extension Clients.ProductSearchProtocol {
   /// @Snippet(path: "ProductSearch_ListProductSets")
   public func listProductSetsByItems(
     request: ListProductSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProductSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProductSet, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductSetsResponse in
       var request = request
@@ -659,7 +659,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ProductSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProductSet, Swift.Error> & Sendable {
     let request = ListProductSetsRequest().with {
       $0.parent = parent
     }
@@ -768,7 +768,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductsByItems(
     request: ListProductsRequest
-  ) -> any AsyncSequence<Product, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Product, Swift.Error> & Sendable {
     self.listProductsByItems(request: request, options: .init())
   }
 
@@ -781,7 +781,7 @@ extension Clients.ProductSearchProtocol {
   /// @Snippet(path: "ProductSearch_ListProducts")
   public func listProductsByItems(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Product, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Product, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVisionV1.ListProductsResponse in
       var request = request
@@ -793,7 +793,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Product, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Product, Swift.Error> & Sendable {
     let request = ListProductsRequest().with {
       $0.parent = parent
     }
@@ -919,7 +919,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listReferenceImagesByItems(
     request: ListReferenceImagesRequest
-  ) -> any AsyncSequence<ReferenceImage, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReferenceImage, Swift.Error> & Sendable {
     self.listReferenceImagesByItems(request: request, options: .init())
   }
 
@@ -934,7 +934,7 @@ extension Clients.ProductSearchProtocol {
   /// @Snippet(path: "ProductSearch_ListReferenceImages")
   public func listReferenceImagesByItems(
     request: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ReferenceImage, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReferenceImage, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVisionV1.ListReferenceImagesResponse in
@@ -947,7 +947,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listReferenceImagesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ReferenceImage, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReferenceImage, Swift.Error> & Sendable {
     let request = ListReferenceImagesRequest().with {
       $0.parent = parent
     }
@@ -1032,7 +1032,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductsInProductSetByItems(
     request: ListProductsInProductSetRequest
-  ) -> any AsyncSequence<Product, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Product, Swift.Error> & Sendable {
     self.listProductsInProductSetByItems(request: request, options: .init())
   }
 
@@ -1047,7 +1047,7 @@ extension Clients.ProductSearchProtocol {
   /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
   public func listProductsInProductSetByItems(
     request: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Product, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Product, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVisionV1.ListProductsInProductSetResponse in
@@ -1060,7 +1060,7 @@ extension Clients.ProductSearchProtocol {
 
   public func listProductsInProductSetByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<Product, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Product, Swift.Error> & Sendable {
     let request = ListProductsInProductSetRequest().with {
       $0.name = name
     }

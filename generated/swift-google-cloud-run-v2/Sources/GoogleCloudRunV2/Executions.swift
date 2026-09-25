@@ -265,7 +265,7 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutionsByItems(
     request: ListExecutionsRequest
-  ) -> any AsyncSequence<Execution, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
     self.listExecutionsByItems(request: request, options: .init())
   }
 
@@ -275,7 +275,7 @@ extension Clients.ExecutionsProtocol {
   /// @Snippet(path: "Executions_ListExecutions")
   public func listExecutionsByItems(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Execution, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRunV2.ListExecutionsResponse in
       var request = request
@@ -287,7 +287,7 @@ extension Clients.ExecutionsProtocol {
 
   public func listExecutionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Execution, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Execution, Swift.Error> & Sendable {
     let request = ListExecutionsRequest().with {
       $0.parent = parent
     }
@@ -382,7 +382,7 @@ extension Clients.ExecutionsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -393,7 +393,7 @@ extension Clients.ExecutionsProtocol {
   /// @Snippet(path: "Executions_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -406,7 +406,7 @@ extension Clients.ExecutionsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

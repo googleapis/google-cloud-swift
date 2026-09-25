@@ -77,7 +77,7 @@ extension Clients.ConnectionServiceProtocol {
 
   public func listConnectionsByItems(
     request: ListConnectionsRequest
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     self.listConnectionsByItems(request: request, options: .init())
   }
 
@@ -87,7 +87,7 @@ extension Clients.ConnectionServiceProtocol {
   /// @Snippet(path: "ConnectionService_ListConnections")
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudApigeeConnectV1.ListConnectionsResponse in
@@ -100,7 +100,7 @@ extension Clients.ConnectionServiceProtocol {
 
   public func listConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }

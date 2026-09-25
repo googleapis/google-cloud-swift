@@ -456,7 +456,7 @@
 
     public func listReasoningEnginesByItems(
       request: ListReasoningEnginesRequest
-    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
       self.listReasoningEnginesByItems(request: request, options: .init())
     }
 
@@ -465,7 +465,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
     public func listReasoningEnginesByItems(
       request: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse in
@@ -478,7 +478,7 @@
 
     public func listReasoningEnginesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ReasoningEngine, Swift.Error> & Sendable {
       let request = ListReasoningEnginesRequest().with {
         $0.parent = parent
       }
@@ -577,7 +577,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -586,7 +586,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -658,7 +658,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -669,7 +669,7 @@
     /// @Snippet(path: "ReasoningEngineService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -682,7 +682,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

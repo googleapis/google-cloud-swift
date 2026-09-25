@@ -542,7 +542,7 @@
 
     public func listByItems(
       request: InterconnectsClient.ListRequest
-    ) -> any AsyncSequence<Interconnect, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Interconnect, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -551,7 +551,7 @@
     /// @Snippet(path: "interconnects_list")
     public func listByItems(
       request: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Interconnect, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Interconnect, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InterconnectList in
         var request = request
@@ -563,7 +563,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<Interconnect, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Interconnect, Swift.Error> & Sendable {
       let request = InterconnectsClient.ListRequest().with {
         $0.project = project
       }

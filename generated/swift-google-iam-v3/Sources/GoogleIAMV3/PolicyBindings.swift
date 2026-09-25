@@ -412,7 +412,7 @@ extension Clients.PolicyBindingsProtocol {
 
   public func listPolicyBindingsByItems(
     request: ListPolicyBindingsRequest
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     self.listPolicyBindingsByItems(request: request, options: .init())
   }
 
@@ -421,7 +421,7 @@ extension Clients.PolicyBindingsProtocol {
   /// @Snippet(path: "PolicyBindings_ListPolicyBindings")
   public func listPolicyBindingsByItems(
     request: ListPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleIAMV3.ListPolicyBindingsResponse in
       var request = request
@@ -433,7 +433,7 @@ extension Clients.PolicyBindingsProtocol {
 
   public func listPolicyBindingsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     let request = ListPolicyBindingsRequest().with {
       $0.parent = parent
     }
@@ -454,7 +454,7 @@ extension Clients.PolicyBindingsProtocol {
 
   public func searchTargetPolicyBindingsByItems(
     request: SearchTargetPolicyBindingsRequest
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     self.searchTargetPolicyBindingsByItems(request: request, options: .init())
   }
 
@@ -464,7 +464,7 @@ extension Clients.PolicyBindingsProtocol {
   /// @Snippet(path: "PolicyBindings_SearchTargetPolicyBindings")
   public func searchTargetPolicyBindingsByItems(
     request: SearchTargetPolicyBindingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleIAMV3.SearchTargetPolicyBindingsResponse
       in
@@ -478,7 +478,7 @@ extension Clients.PolicyBindingsProtocol {
   public func searchTargetPolicyBindingsByItems(
     parent: Swift.String,
     target: Swift.String,
-  ) -> any AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBinding, Swift.Error> & Sendable {
     let request = SearchTargetPolicyBindingsRequest().with {
       $0.parent = parent
       $0.target = target

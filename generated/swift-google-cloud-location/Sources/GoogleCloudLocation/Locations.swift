@@ -94,7 +94,7 @@ extension Clients.LocationsProtocol {
 
   public func listLocationsByItems(
     request: ListLocationsRequest
-  ) -> any AsyncSequence<Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -103,7 +103,7 @@ extension Clients.LocationsProtocol {
   /// @Snippet(path: "Locations_ListLocations")
   public func listLocationsByItems(
     request: ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

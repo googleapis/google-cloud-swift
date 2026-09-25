@@ -379,7 +379,7 @@
 
     public func aggregatedListByItems(
       request: StoragePoolsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -391,7 +391,7 @@
     /// @Snippet(path: "storagePools_aggregatedList")
     public func aggregatedListByItems(
       request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.StoragePoolAggregatedList in
@@ -404,7 +404,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), Swift.Error> & Sendable {
       let request = StoragePoolsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -561,7 +561,7 @@
 
     public func listByItems(
       request: StoragePoolsClient.ListRequest
-    ) -> any AsyncSequence<StoragePool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePool, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -571,7 +571,7 @@
     /// @Snippet(path: "storagePools_list")
     public func listByItems(
       request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<StoragePool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePool, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolList in
         var request = request
@@ -584,7 +584,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<StoragePool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePool, Swift.Error> & Sendable {
       let request = StoragePoolsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -606,7 +606,7 @@
 
     public func listDisksByItems(
       request: StoragePoolsClient.ListDisksRequest
-    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
       self.listDisksByItems(request: request, options: .init())
     }
 
@@ -615,7 +615,7 @@
     /// @Snippet(path: "storagePools_listDisks")
     public func listDisksByItems(
       request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.StoragePoolListDisks in
         var request = request
@@ -629,7 +629,7 @@
       project: Swift.String,
       zone: Swift.String,
       storagePool: Swift.String,
-    ) -> any AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<StoragePoolDisk, Swift.Error> & Sendable {
       let request = StoragePoolsClient.ListDisksRequest().with {
         $0.project = project
         $0.zone = zone

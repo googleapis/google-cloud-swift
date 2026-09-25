@@ -614,7 +614,7 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listIndexesByItems(
     request: ListIndexesRequest
-  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
     self.listIndexesByItems(request: request, options: .init())
   }
 
@@ -625,7 +625,7 @@ extension Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ListIndexes")
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDatastoreAdminV1.ListIndexesResponse in
@@ -650,7 +650,7 @@ extension Clients.DatastoreAdminProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -661,7 +661,7 @@ extension Clients.DatastoreAdminProtocol {
   /// @Snippet(path: "DatastoreAdmin_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -674,7 +674,7 @@ extension Clients.DatastoreAdminProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

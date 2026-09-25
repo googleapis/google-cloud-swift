@@ -711,7 +711,7 @@
 
     public func aggregatedListByItems(
       request: NodeGroupsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -724,7 +724,7 @@
     /// @Snippet(path: "nodeGroups_aggregatedList")
     public func aggregatedListByItems(
       request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeGroupAggregatedList
         in
@@ -737,7 +737,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NodeGroupsScopedList), Swift.Error> & Sendable {
       let request = NodeGroupsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -941,7 +941,7 @@
 
     public func listByItems(
       request: NodeGroupsClient.ListRequest
-    ) -> any AsyncSequence<NodeGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -951,7 +951,7 @@
     /// @Snippet(path: "nodeGroups_list")
     public func listByItems(
       request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NodeGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeGroup, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeGroupList in
         var request = request
@@ -964,7 +964,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<NodeGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeGroup, Swift.Error> & Sendable {
       let request = NodeGroupsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -986,7 +986,7 @@
 
     public func listNodesByItems(
       request: NodeGroupsClient.ListNodesRequest
-    ) -> any AsyncSequence<NodeGroupNode, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeGroupNode, Swift.Error> & Sendable {
       self.listNodesByItems(request: request, options: .init())
     }
 
@@ -995,7 +995,7 @@
     /// @Snippet(path: "nodeGroups_listNodes")
     public func listNodesByItems(
       request: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NodeGroupNode, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeGroupNode, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NodeGroupsListNodes in
         var request = request
@@ -1009,7 +1009,7 @@
       project: Swift.String,
       zone: Swift.String,
       nodeGroup: Swift.String,
-    ) -> any AsyncSequence<NodeGroupNode, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NodeGroupNode, Swift.Error> & Sendable {
       let request = NodeGroupsClient.ListNodesRequest().with {
         $0.project = project
         $0.zone = zone

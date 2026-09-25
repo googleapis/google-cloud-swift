@@ -341,7 +341,7 @@
 
     public func listByItems(
       request: RegionSslCertificatesClient.ListRequest
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -351,7 +351,7 @@
     /// @Snippet(path: "regionSslCertificates_list")
     public func listByItems(
       request: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.SslCertificateList in
         var request = request
@@ -364,7 +364,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<SslCertificate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SslCertificate, Swift.Error> & Sendable {
       let request = RegionSslCertificatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

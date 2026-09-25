@@ -927,7 +927,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptEndpointGroupsByItems(
     request: ListInterceptEndpointGroupsRequest
-  ) -> any AsyncSequence<InterceptEndpointGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptEndpointGroup, Swift.Error> & Sendable {
     self.listInterceptEndpointGroupsByItems(request: request, options: .init())
   }
 
@@ -937,7 +937,7 @@ extension Clients.InterceptProtocol {
   /// @Snippet(path: "Intercept_ListInterceptEndpointGroups")
   public func listInterceptEndpointGroupsByItems(
     request: ListInterceptEndpointGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InterceptEndpointGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptEndpointGroup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupsResponse in
@@ -950,7 +950,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptEndpointGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<InterceptEndpointGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptEndpointGroup, Swift.Error> & Sendable {
     let request = ListInterceptEndpointGroupsRequest().with {
       $0.parent = parent
     }
@@ -1111,7 +1111,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptEndpointGroupAssociationsByItems(
     request: ListInterceptEndpointGroupAssociationsRequest
-  ) -> any AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> & Sendable {
     self.listInterceptEndpointGroupAssociationsByItems(request: request, options: .init())
   }
 
@@ -1121,7 +1121,7 @@ extension Clients.InterceptProtocol {
   /// @Snippet(path: "Intercept_ListInterceptEndpointGroupAssociations")
   public func listInterceptEndpointGroupAssociationsByItems(
     request: ListInterceptEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupAssociationsResponse in
@@ -1135,7 +1135,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptEndpointGroupAssociationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptEndpointGroupAssociation, Swift.Error> & Sendable {
     let request = ListInterceptEndpointGroupAssociationsRequest().with {
       $0.parent = parent
     }
@@ -1301,7 +1301,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptDeploymentGroupsByItems(
     request: ListInterceptDeploymentGroupsRequest
-  ) -> any AsyncSequence<InterceptDeploymentGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptDeploymentGroup, Swift.Error> & Sendable {
     self.listInterceptDeploymentGroupsByItems(request: request, options: .init())
   }
 
@@ -1311,7 +1311,7 @@ extension Clients.InterceptProtocol {
   /// @Snippet(path: "Intercept_ListInterceptDeploymentGroups")
   public func listInterceptDeploymentGroupsByItems(
     request: ListInterceptDeploymentGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InterceptDeploymentGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptDeploymentGroup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentGroupsResponse in
@@ -1324,7 +1324,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptDeploymentGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<InterceptDeploymentGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptDeploymentGroup, Swift.Error> & Sendable {
     let request = ListInterceptDeploymentGroupsRequest().with {
       $0.parent = parent
     }
@@ -1490,7 +1490,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptDeploymentsByItems(
     request: ListInterceptDeploymentsRequest
-  ) -> any AsyncSequence<InterceptDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptDeployment, Swift.Error> & Sendable {
     self.listInterceptDeploymentsByItems(request: request, options: .init())
   }
 
@@ -1500,7 +1500,7 @@ extension Clients.InterceptProtocol {
   /// @Snippet(path: "Intercept_ListInterceptDeployments")
   public func listInterceptDeploymentsByItems(
     request: ListInterceptDeploymentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InterceptDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptDeployment, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentsResponse in
@@ -1513,7 +1513,7 @@ extension Clients.InterceptProtocol {
 
   public func listInterceptDeploymentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<InterceptDeployment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InterceptDeployment, Swift.Error> & Sendable {
     let request = ListInterceptDeploymentsRequest().with {
       $0.parent = parent
     }
@@ -1674,7 +1674,7 @@ extension Clients.InterceptProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1700,7 +1700,7 @@ extension Clients.InterceptProtocol {
   /// @Snippet(path: "Intercept_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1772,7 +1772,7 @@ extension Clients.InterceptProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1783,7 +1783,7 @@ extension Clients.InterceptProtocol {
   /// @Snippet(path: "Intercept_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1796,7 +1796,7 @@ extension Clients.InterceptProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

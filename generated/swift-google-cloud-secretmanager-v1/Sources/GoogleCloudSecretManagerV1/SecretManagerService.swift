@@ -425,7 +425,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func listSecretsByItems(
     request: ListSecretsRequest
-  ) -> any AsyncSequence<Secret, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Secret, Swift.Error> & Sendable {
     self.listSecretsByItems(request: request, options: .init())
   }
 
@@ -436,7 +436,7 @@ extension Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_ListSecrets")
   public func listSecretsByItems(
     request: ListSecretsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Secret, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Secret, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse
       in
@@ -449,7 +449,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func listSecretsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Secret, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Secret, Swift.Error> & Sendable {
     let request = ListSecretsRequest().with {
       $0.parent = parent
     }
@@ -580,7 +580,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func listSecretVersionsByItems(
     request: ListSecretVersionsRequest
-  ) -> any AsyncSequence<SecretVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecretVersion, Swift.Error> & Sendable {
     self.listSecretVersionsByItems(request: request, options: .init())
   }
 
@@ -592,7 +592,7 @@ extension Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_ListSecretVersions")
   public func listSecretVersionsByItems(
     request: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SecretVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecretVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse in
@@ -605,7 +605,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func listSecretVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SecretVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SecretVersion, Swift.Error> & Sendable {
     let request = ListSecretVersionsRequest().with {
       $0.parent = parent
     }
@@ -811,7 +811,7 @@ extension Clients.SecretManagerServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -820,7 +820,7 @@ extension Clients.SecretManagerServiceProtocol {
   /// @Snippet(path: "SecretManagerService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

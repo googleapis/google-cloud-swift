@@ -215,7 +215,7 @@ extension Clients.EntityServiceProtocol {
 
   public func listWatchlistsByItems(
     request: ListWatchlistsRequest
-  ) -> any AsyncSequence<Watchlist, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Watchlist, Swift.Error> & Sendable {
     self.listWatchlistsByItems(request: request, options: .init())
   }
 
@@ -224,7 +224,7 @@ extension Clients.EntityServiceProtocol {
   /// @Snippet(path: "EntityService_ListWatchlists")
   public func listWatchlistsByItems(
     request: ListWatchlistsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Watchlist, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Watchlist, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListWatchlistsResponse
       in
@@ -237,7 +237,7 @@ extension Clients.EntityServiceProtocol {
 
   public func listWatchlistsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Watchlist, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Watchlist, Swift.Error> & Sendable {
     let request = ListWatchlistsRequest().with {
       $0.parent = parent
     }
@@ -327,7 +327,7 @@ extension Clients.EntityServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -338,7 +338,7 @@ extension Clients.EntityServiceProtocol {
   /// @Snippet(path: "EntityService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -351,7 +351,7 @@ extension Clients.EntityServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

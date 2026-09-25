@@ -222,7 +222,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
 
   public func listResourceBackupConfigsByItems(
     request: ListResourceBackupConfigsRequest
-  ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResourceBackupConfig, Swift.Error> & Sendable {
     self.listResourceBackupConfigsByItems(request: request, options: .init())
   }
 
@@ -231,7 +231,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   /// @Snippet(path: "BackupDrProtectionSummary_ListResourceBackupConfigs")
   public func listResourceBackupConfigsByItems(
     request: ListResourceBackupConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResourceBackupConfig, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBackupDRV1.ListResourceBackupConfigsResponse in
@@ -244,7 +244,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
 
   public func listResourceBackupConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ResourceBackupConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResourceBackupConfig, Swift.Error> & Sendable {
     let request = ListResourceBackupConfigsRequest().with {
       $0.parent = parent
     }
@@ -265,7 +265,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -274,7 +274,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   /// @Snippet(path: "BackupDrProtectionSummary_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -346,7 +346,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -357,7 +357,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   /// @Snippet(path: "BackupDrProtectionSummary_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -370,7 +370,7 @@ extension Clients.BackupDrProtectionSummaryProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

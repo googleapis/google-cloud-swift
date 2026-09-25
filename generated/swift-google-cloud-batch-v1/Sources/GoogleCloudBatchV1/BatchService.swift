@@ -447,7 +447,7 @@ extension Clients.BatchServiceProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -456,7 +456,7 @@ extension Clients.BatchServiceProtocol {
   /// @Snippet(path: "BatchService_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBatchV1.ListJobsResponse in
       var request = request
@@ -468,7 +468,7 @@ extension Clients.BatchServiceProtocol {
 
   public func listJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
@@ -508,7 +508,7 @@ extension Clients.BatchServiceProtocol {
 
   public func listTasksByItems(
     request: ListTasksRequest
-  ) -> any AsyncSequence<Task, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Task, Swift.Error> & Sendable {
     self.listTasksByItems(request: request, options: .init())
   }
 
@@ -517,7 +517,7 @@ extension Clients.BatchServiceProtocol {
   /// @Snippet(path: "BatchService_ListTasks")
   public func listTasksByItems(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Task, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Task, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBatchV1.ListTasksResponse in
       var request = request
@@ -529,7 +529,7 @@ extension Clients.BatchServiceProtocol {
 
   public func listTasksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Task, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Task, Swift.Error> & Sendable {
     let request = ListTasksRequest().with {
       $0.parent = parent
     }
@@ -550,7 +550,7 @@ extension Clients.BatchServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -576,7 +576,7 @@ extension Clients.BatchServiceProtocol {
   /// @Snippet(path: "BatchService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -612,7 +612,7 @@ extension Clients.BatchServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -623,7 +623,7 @@ extension Clients.BatchServiceProtocol {
   /// @Snippet(path: "BatchService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -636,7 +636,7 @@ extension Clients.BatchServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

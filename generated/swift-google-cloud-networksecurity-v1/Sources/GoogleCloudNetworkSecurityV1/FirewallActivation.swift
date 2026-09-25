@@ -724,7 +724,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listFirewallEndpointsByItems(
     request: ListFirewallEndpointsRequest
-  ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
     self.listFirewallEndpointsByItems(request: request, options: .init())
   }
 
@@ -733,7 +733,7 @@ extension Clients.FirewallActivationProtocol {
   /// @Snippet(path: "FirewallActivation_ListFirewallEndpoints")
   public func listFirewallEndpointsByItems(
     request: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse in
@@ -746,7 +746,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listFirewallEndpointsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
     let request = ListFirewallEndpointsRequest().with {
       $0.parent = parent
     }
@@ -767,7 +767,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listProjectFirewallEndpointsByItems(
     request: ListFirewallEndpointsRequest
-  ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
     self.listProjectFirewallEndpointsByItems(request: request, options: .init())
   }
 
@@ -776,7 +776,7 @@ extension Clients.FirewallActivationProtocol {
   /// @Snippet(path: "FirewallActivation_ListProjectFirewallEndpoints")
   public func listProjectFirewallEndpointsByItems(
     request: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse in
@@ -789,7 +789,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listProjectFirewallEndpointsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpoint, Swift.Error> & Sendable {
     let request = ListFirewallEndpointsRequest().with {
       $0.parent = parent
     }
@@ -1090,7 +1090,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listFirewallEndpointAssociationsByItems(
     request: ListFirewallEndpointAssociationsRequest
-  ) -> any AsyncSequence<FirewallEndpointAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpointAssociation, Swift.Error> & Sendable {
     self.listFirewallEndpointAssociationsByItems(request: request, options: .init())
   }
 
@@ -1099,7 +1099,7 @@ extension Clients.FirewallActivationProtocol {
   /// @Snippet(path: "FirewallActivation_ListFirewallEndpointAssociations")
   public func listFirewallEndpointAssociationsByItems(
     request: ListFirewallEndpointAssociationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FirewallEndpointAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpointAssociation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointAssociationsResponse in
@@ -1112,7 +1112,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listFirewallEndpointAssociationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FirewallEndpointAssociation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FirewallEndpointAssociation, Swift.Error> & Sendable {
     let request = ListFirewallEndpointAssociationsRequest().with {
       $0.parent = parent
     }
@@ -1278,7 +1278,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1304,7 +1304,7 @@ extension Clients.FirewallActivationProtocol {
   /// @Snippet(path: "FirewallActivation_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1376,7 +1376,7 @@ extension Clients.FirewallActivationProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1387,7 +1387,7 @@ extension Clients.FirewallActivationProtocol {
   /// @Snippet(path: "FirewallActivation_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1400,7 +1400,7 @@ extension Clients.FirewallActivationProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

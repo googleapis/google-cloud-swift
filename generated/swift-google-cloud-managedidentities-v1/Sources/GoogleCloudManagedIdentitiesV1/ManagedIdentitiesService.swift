@@ -582,7 +582,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func listDomainsByItems(
     request: ListDomainsRequest
-  ) -> any AsyncSequence<Domain, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Domain, Swift.Error> & Sendable {
     self.listDomainsByItems(request: request, options: .init())
   }
 
@@ -591,7 +591,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   /// @Snippet(path: "ManagedIdentitiesService_ListDomains")
   public func listDomainsByItems(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Domain, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Domain, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse in
@@ -604,7 +604,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func listDomainsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Domain, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Domain, Swift.Error> & Sendable {
     let request = ListDomainsRequest().with {
       $0.parent = parent
     }
@@ -874,7 +874,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -885,7 +885,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   /// @Snippet(path: "ManagedIdentitiesService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -898,7 +898,7 @@ extension Clients.ManagedIdentitiesServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

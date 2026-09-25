@@ -460,7 +460,7 @@
 
     public func listSpecialistPoolsByItems(
       request: ListSpecialistPoolsRequest
-    ) -> any AsyncSequence<SpecialistPool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SpecialistPool, Swift.Error> & Sendable {
       self.listSpecialistPoolsByItems(request: request, options: .init())
     }
 
@@ -469,7 +469,7 @@
     /// @Snippet(path: "SpecialistPoolService_ListSpecialistPools")
     public func listSpecialistPoolsByItems(
       request: ListSpecialistPoolsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<SpecialistPool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SpecialistPool, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListSpecialistPoolsResponse in
@@ -482,7 +482,7 @@
 
     public func listSpecialistPoolsByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<SpecialistPool, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<SpecialistPool, Swift.Error> & Sendable {
       let request = ListSpecialistPoolsRequest().with {
         $0.parent = parent
       }
@@ -581,7 +581,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -590,7 +590,7 @@
     /// @Snippet(path: "SpecialistPoolService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -662,7 +662,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -673,7 +673,7 @@
     /// @Snippet(path: "SpecialistPoolService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -686,7 +686,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

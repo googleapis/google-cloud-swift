@@ -323,7 +323,7 @@ extension Clients.TagValuesProtocol {
 
   public func listTagValuesByItems(
     request: ListTagValuesRequest
-  ) -> any AsyncSequence<TagValue, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TagValue, Swift.Error> & Sendable {
     self.listTagValuesByItems(request: request, options: .init())
   }
 
@@ -332,7 +332,7 @@ extension Clients.TagValuesProtocol {
   /// @Snippet(path: "TagValues_ListTagValues")
   public func listTagValuesByItems(
     request: ListTagValuesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TagValue, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TagValue, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudResourceManagerV3.ListTagValuesResponse in
@@ -345,7 +345,7 @@ extension Clients.TagValuesProtocol {
 
   public func listTagValuesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TagValue, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TagValue, Swift.Error> & Sendable {
     let request = ListTagValuesRequest().with {
       $0.parent = parent
     }

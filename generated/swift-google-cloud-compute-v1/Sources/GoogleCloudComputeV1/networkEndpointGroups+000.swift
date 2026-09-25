@@ -442,7 +442,7 @@
 
     public func aggregatedListByItems(
       request: NetworkEndpointGroupsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), Swift.Error> & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
     }
@@ -455,7 +455,7 @@
     /// @Snippet(path: "networkEndpointGroups_aggregatedList")
     public func aggregatedListByItems(
       request: NetworkEndpointGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), Swift.Error> & Sendable
     {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
@@ -469,7 +469,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), Swift.Error> & Sendable
     {
       let request = NetworkEndpointGroupsClient.AggregatedListRequest().with {
         $0.project = project
@@ -696,7 +696,7 @@
 
     public func listByItems(
       request: NetworkEndpointGroupsClient.ListRequest
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -706,7 +706,7 @@
     /// @Snippet(path: "networkEndpointGroups_list")
     public func listByItems(
       request: NetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupList in
@@ -720,7 +720,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
       let request = NetworkEndpointGroupsClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -743,7 +743,7 @@
 
     public func listNetworkEndpointsByItems(
       request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
       self.listNetworkEndpointsByItems(request: request, options: .init())
     }
 
@@ -753,7 +753,7 @@
     public func listNetworkEndpointsByItems(
       request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints in
@@ -769,7 +769,7 @@
       zone: Swift.String,
       networkEndpointGroup: Swift.String,
       body: NetworkEndpointGroupsListEndpointsRequest?,
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
       let request = NetworkEndpointGroupsClient.ListNetworkEndpointsRequest().with {
         $0.project = project
         $0.zone = zone

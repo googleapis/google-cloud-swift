@@ -156,7 +156,7 @@ extension Clients.AlertPolicyServiceProtocol {
 
   public func listAlertPoliciesByItems(
     request: ListAlertPoliciesRequest
-  ) -> any AsyncSequence<AlertPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AlertPolicy, Swift.Error> & Sendable {
     self.listAlertPoliciesByItems(request: request, options: .init())
   }
 
@@ -165,7 +165,7 @@ extension Clients.AlertPolicyServiceProtocol {
   /// @Snippet(path: "AlertPolicyService_ListAlertPolicies")
   public func listAlertPoliciesByItems(
     request: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AlertPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AlertPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse in
@@ -178,7 +178,7 @@ extension Clients.AlertPolicyServiceProtocol {
 
   public func listAlertPoliciesByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<AlertPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AlertPolicy, Swift.Error> & Sendable {
     let request = ListAlertPoliciesRequest().with {
       $0.name = name
     }

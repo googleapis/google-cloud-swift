@@ -673,7 +673,7 @@
 
     public func listByItems(
       request: RegionBackendServicesClient.ListRequest
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -683,7 +683,7 @@
     /// @Snippet(path: "regionBackendServices_list")
     public func listByItems(
       request: RegionBackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
         var request = request
@@ -696,7 +696,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let request = RegionBackendServicesClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -718,7 +718,7 @@
 
     public func listUsableByItems(
       request: RegionBackendServicesClient.ListUsableRequest
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -730,7 +730,7 @@
     /// @Snippet(path: "regionBackendServices_listUsable")
     public func listUsableByItems(
       request: RegionBackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendServiceListUsable in
@@ -744,7 +744,7 @@
     public func listUsableByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let request = RegionBackendServicesClient.ListUsableRequest().with {
         $0.project = project
         $0.region = region

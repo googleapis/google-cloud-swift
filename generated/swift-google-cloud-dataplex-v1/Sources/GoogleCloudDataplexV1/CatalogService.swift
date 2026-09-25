@@ -1292,7 +1292,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listEntryTypesByItems(
     request: ListEntryTypesRequest
-  ) -> any AsyncSequence<EntryType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryType, Swift.Error> & Sendable {
     self.listEntryTypesByItems(request: request, options: .init())
   }
 
@@ -1301,7 +1301,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListEntryTypes")
   public func listEntryTypesByItems(
     request: ListEntryTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntryType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEntryTypesResponse
       in
@@ -1314,7 +1314,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listEntryTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EntryType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryType, Swift.Error> & Sendable {
     let request = ListEntryTypesRequest().with {
       $0.parent = parent
     }
@@ -1473,7 +1473,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listAspectTypesByItems(
     request: ListAspectTypesRequest
-  ) -> any AsyncSequence<AspectType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AspectType, Swift.Error> & Sendable {
     self.listAspectTypesByItems(request: request, options: .init())
   }
 
@@ -1482,7 +1482,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListAspectTypes")
   public func listAspectTypesByItems(
     request: ListAspectTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AspectType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AspectType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListAspectTypesResponse
       in
@@ -1495,7 +1495,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listAspectTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AspectType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AspectType, Swift.Error> & Sendable {
     let request = ListAspectTypesRequest().with {
       $0.parent = parent
     }
@@ -1654,7 +1654,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryGroup, Swift.Error> & Sendable {
     self.listEntryGroupsByItems(request: request, options: .init())
   }
 
@@ -1663,7 +1663,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListEntryGroups")
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryGroup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEntryGroupsResponse
       in
@@ -1676,7 +1676,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listEntryGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<EntryGroup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryGroup, Swift.Error> & Sendable {
     let request = ListEntryGroupsRequest().with {
       $0.parent = parent
     }
@@ -1781,7 +1781,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listEntriesByItems(
     request: ListEntriesRequest
-  ) -> any AsyncSequence<Entry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Entry, Swift.Error> & Sendable {
     self.listEntriesByItems(request: request, options: .init())
   }
 
@@ -1790,7 +1790,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListEntries")
   public func listEntriesByItems(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Entry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Entry, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListEntriesResponse in
       var request = request
@@ -1802,7 +1802,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listEntriesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Entry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Entry, Swift.Error> & Sendable {
     let request = ListEntriesRequest().with {
       $0.parent = parent
     }
@@ -1862,7 +1862,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func searchEntriesByItems(
     request: SearchEntriesRequest
-  ) -> any AsyncSequence<SearchEntriesResult, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchEntriesResult, Swift.Error> & Sendable {
     self.searchEntriesByItems(request: request, options: .init())
   }
 
@@ -1871,7 +1871,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_SearchEntries")
   public func searchEntriesByItems(
     request: SearchEntriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchEntriesResult, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchEntriesResult, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.SearchEntriesResponse in
       var request = request
@@ -1884,7 +1884,7 @@ extension Clients.CatalogServiceProtocol {
   public func searchEntriesByItems(
     name: Swift.String,
     query: Swift.String,
-  ) -> any AsyncSequence<SearchEntriesResult, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchEntriesResult, Swift.Error> & Sendable {
     let request = SearchEntriesRequest().with {
       $0.name = name
       $0.query = query
@@ -1968,7 +1968,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listMetadataJobsByItems(
     request: ListMetadataJobsRequest
-  ) -> any AsyncSequence<MetadataJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MetadataJob, Swift.Error> & Sendable {
     self.listMetadataJobsByItems(request: request, options: .init())
   }
 
@@ -1977,7 +1977,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListMetadataJobs")
   public func listMetadataJobsByItems(
     request: ListMetadataJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MetadataJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MetadataJob, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListMetadataJobsResponse
       in
@@ -1990,7 +1990,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listMetadataJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<MetadataJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MetadataJob, Swift.Error> & Sendable {
     let request = ListMetadataJobsRequest().with {
       $0.parent = parent
     }
@@ -2097,7 +2097,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func lookupEntryLinksByItems(
     request: LookupEntryLinksRequest
-  ) -> any AsyncSequence<EntryLink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryLink, Swift.Error> & Sendable {
     self.lookupEntryLinksByItems(request: request, options: .init())
   }
 
@@ -2106,7 +2106,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_LookupEntryLinks")
   public func lookupEntryLinksByItems(
     request: LookupEntryLinksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<EntryLink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<EntryLink, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.LookupEntryLinksResponse
       in
@@ -2227,7 +2227,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listMetadataFeedsByItems(
     request: ListMetadataFeedsRequest
-  ) -> any AsyncSequence<MetadataFeed, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MetadataFeed, Swift.Error> & Sendable {
     self.listMetadataFeedsByItems(request: request, options: .init())
   }
 
@@ -2236,7 +2236,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListMetadataFeeds")
   public func listMetadataFeedsByItems(
     request: ListMetadataFeedsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MetadataFeed, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MetadataFeed, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataplexV1.ListMetadataFeedsResponse in
@@ -2249,7 +2249,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listMetadataFeedsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<MetadataFeed, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MetadataFeed, Swift.Error> & Sendable {
     let request = ListMetadataFeedsRequest().with {
       $0.parent = parent
     }
@@ -2347,7 +2347,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -2373,7 +2373,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -2445,7 +2445,7 @@ extension Clients.CatalogServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2456,7 +2456,7 @@ extension Clients.CatalogServiceProtocol {
   /// @Snippet(path: "CatalogService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -2469,7 +2469,7 @@ extension Clients.CatalogServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

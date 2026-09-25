@@ -436,7 +436,7 @@
 
     public func aggregatedListByItems(
       request: PublicDelegatedPrefixesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
       & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
@@ -452,7 +452,7 @@
     public func aggregatedListByItems(
       request: PublicDelegatedPrefixesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
       & Sendable
     {
       let listRpc = {
@@ -467,7 +467,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, PublicDelegatedPrefixesScopedList), Swift.Error>
       & Sendable
     {
       let request = PublicDelegatedPrefixesClient.AggregatedListRequest().with {
@@ -644,7 +644,7 @@
 
     public func listByItems(
       request: PublicDelegatedPrefixesClient.ListRequest
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -653,7 +653,7 @@
     /// @Snippet(path: "publicDelegatedPrefixes_list")
     public func listByItems(
       request: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
@@ -667,7 +667,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
       let request = PublicDelegatedPrefixesClient.ListRequest().with {
         $0.project = project
         $0.region = region

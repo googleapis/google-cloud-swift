@@ -400,7 +400,7 @@
 
     public func listByItems(
       request: WireGroupsClient.ListRequest
-    ) -> any AsyncSequence<WireGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<WireGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -409,7 +409,7 @@
     /// @Snippet(path: "wireGroups_list")
     public func listByItems(
       request: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<WireGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<WireGroup, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.WireGroupList in
         var request = request
@@ -422,7 +422,7 @@
     public func listByItems(
       project: Swift.String,
       crossSiteNetwork: Swift.String,
-    ) -> any AsyncSequence<WireGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<WireGroup, Swift.Error> & Sendable {
       let request = WireGroupsClient.ListRequest().with {
         $0.project = project
         $0.crossSiteNetwork = crossSiteNetwork

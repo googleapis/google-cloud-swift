@@ -282,7 +282,7 @@ extension Clients.DocumentServiceProtocol {
 
   public func searchDocumentsByItems(
     request: SearchDocumentsRequest
-  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> & Sendable {
     self.searchDocumentsByItems(request: request, options: .init())
   }
 
@@ -296,7 +296,7 @@ extension Clients.DocumentServiceProtocol {
   /// @Snippet(path: "DocumentService_SearchDocuments")
   public func searchDocumentsByItems(
     request: SearchDocumentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse in
@@ -309,7 +309,7 @@ extension Clients.DocumentServiceProtocol {
 
   public func searchDocumentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchDocumentsResponse.MatchingDocument, Swift.Error> & Sendable {
     let request = SearchDocumentsRequest().with {
       $0.parent = parent
     }

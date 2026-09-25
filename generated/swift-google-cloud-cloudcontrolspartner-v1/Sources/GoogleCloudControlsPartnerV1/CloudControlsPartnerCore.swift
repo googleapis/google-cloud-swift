@@ -244,7 +244,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
-  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
     self.listWorkloadsByItems(request: request, options: .init())
   }
 
@@ -253,7 +253,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   /// @Snippet(path: "CloudControlsPartnerCore_ListWorkloads")
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse in
@@ -266,7 +266,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listWorkloadsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -308,7 +308,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listCustomersByItems(
     request: ListCustomersRequest
-  ) -> any AsyncSequence<Customer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Customer, Swift.Error> & Sendable {
     self.listCustomersByItems(request: request, options: .init())
   }
 
@@ -317,7 +317,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   /// @Snippet(path: "CloudControlsPartnerCore_ListCustomers")
   public func listCustomersByItems(
     request: ListCustomersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Customer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Customer, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudControlsPartnerV1.ListCustomersResponse in
@@ -330,7 +330,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
 
   public func listCustomersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Customer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Customer, Swift.Error> & Sendable {
     let request = ListCustomersRequest().with {
       $0.parent = parent
     }
@@ -396,7 +396,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   @available(*, deprecated)
   public func listAccessApprovalRequestsByItems(
     request: ListAccessApprovalRequestsRequest
-  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
     self.listAccessApprovalRequestsByItems(request: request, options: .init())
   }
 
@@ -407,7 +407,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   @available(*, deprecated)
   public func listAccessApprovalRequestsByItems(
     request: ListAccessApprovalRequestsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse in
@@ -421,7 +421,7 @@ extension Clients.CloudControlsPartnerCoreProtocol {
   @available(*, deprecated)
   public func listAccessApprovalRequestsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AccessApprovalRequest, Swift.Error> & Sendable {
     let request = ListAccessApprovalRequestsRequest().with {
       $0.parent = parent
     }

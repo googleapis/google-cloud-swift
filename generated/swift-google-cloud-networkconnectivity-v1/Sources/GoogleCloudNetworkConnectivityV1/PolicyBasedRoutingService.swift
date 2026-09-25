@@ -332,7 +332,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
 
   public func listPolicyBasedRoutesByItems(
     request: ListPolicyBasedRoutesRequest
-  ) -> any AsyncSequence<PolicyBasedRoute, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBasedRoute, Swift.Error> & Sendable {
     self.listPolicyBasedRoutesByItems(request: request, options: .init())
   }
 
@@ -341,7 +341,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
   /// @Snippet(path: "PolicyBasedRoutingService_ListPolicyBasedRoutes")
   public func listPolicyBasedRoutesByItems(
     request: ListPolicyBasedRoutesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyBasedRoute, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBasedRoute, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListPolicyBasedRoutesResponse in
@@ -354,7 +354,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
 
   public func listPolicyBasedRoutesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PolicyBasedRoute, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyBasedRoute, Swift.Error> & Sendable {
     let request = ListPolicyBasedRoutesRequest().with {
       $0.parent = parent
     }
@@ -475,7 +475,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -484,7 +484,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
   /// @Snippet(path: "PolicyBasedRoutingService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -556,7 +556,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -567,7 +567,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
   /// @Snippet(path: "PolicyBasedRoutingService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -580,7 +580,7 @@ extension Clients.PolicyBasedRoutingServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

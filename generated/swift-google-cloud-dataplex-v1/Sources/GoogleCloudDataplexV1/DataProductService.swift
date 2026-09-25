@@ -671,7 +671,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func listDataProductsByItems(
     request: ListDataProductsRequest
-  ) -> any AsyncSequence<DataProduct, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataProduct, Swift.Error> & Sendable {
     self.listDataProductsByItems(request: request, options: .init())
   }
 
@@ -680,7 +680,7 @@ extension Clients.DataProductServiceProtocol {
   /// @Snippet(path: "DataProductService_ListDataProducts")
   public func listDataProductsByItems(
     request: ListDataProductsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataProduct, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataProduct, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataProductsResponse
       in
@@ -693,7 +693,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func listDataProductsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataProduct, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataProduct, Swift.Error> & Sendable {
     let request = ListDataProductsRequest().with {
       $0.parent = parent
     }
@@ -914,7 +914,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func listDataAssetsByItems(
     request: ListDataAssetsRequest
-  ) -> any AsyncSequence<DataAsset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAsset, Swift.Error> & Sendable {
     self.listDataAssetsByItems(request: request, options: .init())
   }
 
@@ -923,7 +923,7 @@ extension Clients.DataProductServiceProtocol {
   /// @Snippet(path: "DataProductService_ListDataAssets")
   public func listDataAssetsByItems(
     request: ListDataAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataAsset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAsset, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataplexV1.ListDataAssetsResponse
       in
@@ -936,7 +936,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func listDataAssetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataAsset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataAsset, Swift.Error> & Sendable {
     let request = ListDataAssetsRequest().with {
       $0.parent = parent
     }
@@ -957,7 +957,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -983,7 +983,7 @@ extension Clients.DataProductServiceProtocol {
   /// @Snippet(path: "DataProductService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1055,7 +1055,7 @@ extension Clients.DataProductServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1066,7 +1066,7 @@ extension Clients.DataProductServiceProtocol {
   /// @Snippet(path: "DataProductService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1079,7 +1079,7 @@ extension Clients.DataProductServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

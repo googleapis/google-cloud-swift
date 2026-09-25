@@ -864,7 +864,7 @@
 
     public func aggregatedListByItems(
       request: RoutersClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -876,7 +876,7 @@
     /// @Snippet(path: "routers_aggregatedList")
     public func aggregatedListByItems(
       request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RouterAggregatedList in
         var request = request
@@ -888,7 +888,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, RoutersScopedList), Swift.Error> & Sendable {
       let request = RoutersClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -1112,7 +1112,7 @@
 
     public func getNatMappingInfoByItems(
       request: RoutersClient.GetNatMappingInfoRequest
-    ) -> any AsyncSequence<VmEndpointNatMappings, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmEndpointNatMappings, Swift.Error> & Sendable {
       self.getNatMappingInfoByItems(request: request, options: .init())
     }
 
@@ -1121,7 +1121,7 @@
     /// @Snippet(path: "routers_getNatMappingInfo")
     public func getNatMappingInfoByItems(
       request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<VmEndpointNatMappings, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmEndpointNatMappings, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.VmEndpointNatMappingsList in
@@ -1136,7 +1136,7 @@
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
-    ) -> any AsyncSequence<VmEndpointNatMappings, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<VmEndpointNatMappings, Swift.Error> & Sendable {
       let request = RoutersClient.GetNatMappingInfoRequest().with {
         $0.project = project
         $0.region = region
@@ -1252,7 +1252,7 @@
 
     public func listByItems(
       request: RoutersClient.ListRequest
-    ) -> any AsyncSequence<Router, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Router, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1261,7 +1261,7 @@
     /// @Snippet(path: "routers_list")
     public func listByItems(
       request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Router, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Router, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RouterList in
         var request = request
@@ -1274,7 +1274,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<Router, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Router, Swift.Error> & Sendable {
       let request = RoutersClient.ListRequest().with {
         $0.project = project
         $0.region = region
@@ -1296,7 +1296,7 @@
 
     public func listBgpRoutesByItems(
       request: RoutersClient.ListBgpRoutesRequest
-    ) -> any AsyncSequence<BgpRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BgpRoute, Swift.Error> & Sendable {
       self.listBgpRoutesByItems(request: request, options: .init())
     }
 
@@ -1305,7 +1305,7 @@
     /// @Snippet(path: "routers_listBgpRoutes")
     public func listBgpRoutesByItems(
       request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BgpRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BgpRoute, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RoutersListBgpRoutes in
         var request = request
@@ -1319,7 +1319,7 @@
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
-    ) -> any AsyncSequence<BgpRoute, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BgpRoute, Swift.Error> & Sendable {
       let request = RoutersClient.ListBgpRoutesRequest().with {
         $0.project = project
         $0.region = region
@@ -1342,7 +1342,7 @@
 
     public func listNamedSetsByItems(
       request: RoutersClient.ListNamedSetsRequest
-    ) -> any AsyncSequence<NamedSet, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NamedSet, Swift.Error> & Sendable {
       self.listNamedSetsByItems(request: request, options: .init())
     }
 
@@ -1352,7 +1352,7 @@
     /// @Snippet(path: "routers_listNamedSets")
     public func listNamedSetsByItems(
       request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NamedSet, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NamedSet, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RoutersListNamedSets in
         var request = request
@@ -1366,7 +1366,7 @@
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
-    ) -> any AsyncSequence<NamedSet, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NamedSet, Swift.Error> & Sendable {
       let request = RoutersClient.ListNamedSetsRequest().with {
         $0.project = project
         $0.region = region
@@ -1389,7 +1389,7 @@
 
     public func listRoutePoliciesByItems(
       request: RoutersClient.ListRoutePoliciesRequest
-    ) -> any AsyncSequence<RoutePolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RoutePolicy, Swift.Error> & Sendable {
       self.listRoutePoliciesByItems(request: request, options: .init())
     }
 
@@ -1399,7 +1399,7 @@
     /// @Snippet(path: "routers_listRoutePolicies")
     public func listRoutePoliciesByItems(
       request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<RoutePolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RoutePolicy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.RoutersListRoutePolicies in
@@ -1414,7 +1414,7 @@
       project: Swift.String,
       region: Swift.String,
       router: Swift.String,
-    ) -> any AsyncSequence<RoutePolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<RoutePolicy, Swift.Error> & Sendable {
       let request = RoutersClient.ListRoutePoliciesRequest().with {
         $0.project = project
         $0.region = region

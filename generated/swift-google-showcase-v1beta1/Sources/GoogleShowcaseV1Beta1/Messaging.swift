@@ -462,7 +462,7 @@ extension Clients.MessagingProtocol {
 
   public func listRoomsByItems(
     request: ListRoomsRequest
-  ) -> any AsyncSequence<Room, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Room, Swift.Error> & Sendable {
     self.listRoomsByItems(request: request, options: .init())
   }
 
@@ -471,7 +471,7 @@ extension Clients.MessagingProtocol {
   /// @Snippet(path: "Messaging_ListRooms")
   public func listRoomsByItems(
     request: ListRoomsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Room, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Room, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListRoomsResponse in
       var request = request
@@ -553,7 +553,7 @@ extension Clients.MessagingProtocol {
 
   public func listBlurbsByItems(
     request: ListBlurbsRequest
-  ) -> any AsyncSequence<Blurb, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Blurb, Swift.Error> & Sendable {
     self.listBlurbsByItems(request: request, options: .init())
   }
 
@@ -563,7 +563,7 @@ extension Clients.MessagingProtocol {
   /// @Snippet(path: "Messaging_ListBlurbs")
   public func listBlurbsByItems(
     request: ListBlurbsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Blurb, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Blurb, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleShowcaseV1Beta1.ListBlurbsResponse in
       var request = request
@@ -575,7 +575,7 @@ extension Clients.MessagingProtocol {
 
   public func listBlurbsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Blurb, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Blurb, Swift.Error> & Sendable {
     let request = ListBlurbsRequest().with {
       $0.parent = parent
     }
@@ -635,7 +635,7 @@ extension Clients.MessagingProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -646,7 +646,7 @@ extension Clients.MessagingProtocol {
   /// @Snippet(path: "Messaging_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -718,7 +718,7 @@ extension Clients.MessagingProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -729,7 +729,7 @@ extension Clients.MessagingProtocol {
   /// @Snippet(path: "Messaging_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -742,7 +742,7 @@ extension Clients.MessagingProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

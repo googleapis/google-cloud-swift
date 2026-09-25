@@ -1728,7 +1728,7 @@ extension Clients.WarehouseProtocol {
 
   public func listAssetsByItems(
     request: ListAssetsRequest
-  ) -> any AsyncSequence<Asset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Asset, Swift.Error> & Sendable {
     self.listAssetsByItems(request: request, options: .init())
   }
 
@@ -1737,7 +1737,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListAssets")
   public func listAssetsByItems(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Asset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Asset, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse in
       var request = request
@@ -1749,7 +1749,7 @@ extension Clients.WarehouseProtocol {
 
   public func listAssetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Asset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Asset, Swift.Error> & Sendable {
     let request = ListAssetsRequest().with {
       $0.parent = parent
     }
@@ -1929,7 +1929,7 @@ extension Clients.WarehouseProtocol {
 
   public func viewIndexedAssetsByItems(
     request: ViewIndexedAssetsRequest
-  ) -> any AsyncSequence<IndexedAsset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IndexedAsset, Swift.Error> & Sendable {
     self.viewIndexedAssetsByItems(request: request, options: .init())
   }
 
@@ -1938,7 +1938,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ViewIndexedAssets")
   public func viewIndexedAssetsByItems(
     request: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IndexedAsset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IndexedAsset, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse
       in
@@ -1951,7 +1951,7 @@ extension Clients.WarehouseProtocol {
 
   public func viewIndexedAssetsByItems(
     index: Swift.String,
-  ) -> any AsyncSequence<IndexedAsset, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IndexedAsset, Swift.Error> & Sendable {
     let request = ViewIndexedAssetsRequest().with {
       $0.index = index
     }
@@ -2067,7 +2067,7 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexesByItems(
     request: ListIndexesRequest
-  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
     self.listIndexesByItems(request: request, options: .init())
   }
 
@@ -2076,7 +2076,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListIndexes")
   public func listIndexesByItems(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse in
       var request = request
@@ -2088,7 +2088,7 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Index, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Index, Swift.Error> & Sendable {
     let request = ListIndexesRequest().with {
       $0.parent = parent
     }
@@ -2223,7 +2223,7 @@ extension Clients.WarehouseProtocol {
 
   public func listCorporaByItems(
     request: ListCorporaRequest
-  ) -> any AsyncSequence<Corpus, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Corpus, Swift.Error> & Sendable {
     self.listCorporaByItems(request: request, options: .init())
   }
 
@@ -2232,7 +2232,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListCorpora")
   public func listCorporaByItems(
     request: ListCorporaRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Corpus, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Corpus, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse in
       var request = request
@@ -2244,7 +2244,7 @@ extension Clients.WarehouseProtocol {
 
   public func listCorporaByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Corpus, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Corpus, Swift.Error> & Sendable {
     let request = ListCorporaRequest().with {
       $0.parent = parent
     }
@@ -2399,7 +2399,7 @@ extension Clients.WarehouseProtocol {
 
   public func listDataSchemasByItems(
     request: ListDataSchemasRequest
-  ) -> any AsyncSequence<DataSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataSchema, Swift.Error> & Sendable {
     self.listDataSchemasByItems(request: request, options: .init())
   }
 
@@ -2408,7 +2408,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListDataSchemas")
   public func listDataSchemasByItems(
     request: ListDataSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DataSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataSchema, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse
       in
@@ -2421,7 +2421,7 @@ extension Clients.WarehouseProtocol {
 
   public func listDataSchemasByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DataSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DataSchema, Swift.Error> & Sendable {
     let request = ListDataSchemasRequest().with {
       $0.parent = parent
     }
@@ -2488,7 +2488,7 @@ extension Clients.WarehouseProtocol {
 
   public func listAnnotationsByItems(
     request: ListAnnotationsRequest
-  ) -> any AsyncSequence<Annotation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
     self.listAnnotationsByItems(request: request, options: .init())
   }
 
@@ -2497,7 +2497,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListAnnotations")
   public func listAnnotationsByItems(
     request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Annotation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse
       in
@@ -2510,7 +2510,7 @@ extension Clients.WarehouseProtocol {
 
   public func listAnnotationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Annotation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Annotation, Swift.Error> & Sendable {
     let request = ListAnnotationsRequest().with {
       $0.parent = parent
     }
@@ -2713,7 +2713,7 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchConfigsByItems(
     request: ListSearchConfigsRequest
-  ) -> any AsyncSequence<SearchConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchConfig, Swift.Error> & Sendable {
     self.listSearchConfigsByItems(request: request, options: .init())
   }
 
@@ -2722,7 +2722,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListSearchConfigs")
   public func listSearchConfigsByItems(
     request: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchConfig, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse
       in
@@ -2735,7 +2735,7 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SearchConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchConfig, Swift.Error> & Sendable {
     let request = ListSearchConfigsRequest().with {
       $0.parent = parent
     }
@@ -2844,7 +2844,7 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchHypernymsByItems(
     request: ListSearchHypernymsRequest
-  ) -> any AsyncSequence<SearchHypernym, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchHypernym, Swift.Error> & Sendable {
     self.listSearchHypernymsByItems(request: request, options: .init())
   }
 
@@ -2853,7 +2853,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListSearchHypernyms")
   public func listSearchHypernymsByItems(
     request: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchHypernym, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchHypernym, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse in
@@ -2866,7 +2866,7 @@ extension Clients.WarehouseProtocol {
 
   public func listSearchHypernymsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SearchHypernym, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchHypernym, Swift.Error> & Sendable {
     let request = ListSearchHypernymsRequest().with {
       $0.parent = parent
     }
@@ -2887,7 +2887,7 @@ extension Clients.WarehouseProtocol {
 
   public func searchAssetsByItems(
     request: SearchAssetsRequest
-  ) -> any AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
     self.searchAssetsByItems(request: request, options: .init())
   }
 
@@ -2896,7 +2896,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_SearchAssets")
   public func searchAssetsByItems(
     request: SearchAssetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse in
       var request = request
@@ -2920,7 +2920,7 @@ extension Clients.WarehouseProtocol {
 
   public func searchIndexEndpointByItems(
     request: SearchIndexEndpointRequest
-  ) -> any AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
     self.searchIndexEndpointByItems(request: request, options: .init())
   }
 
@@ -2929,7 +2929,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_SearchIndexEndpoint")
   public func searchIndexEndpointByItems(
     request: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SearchResultItem, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse in
@@ -3017,7 +3017,7 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexEndpointsByItems(
     request: ListIndexEndpointsRequest
-  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IndexEndpoint, Swift.Error> & Sendable {
     self.listIndexEndpointsByItems(request: request, options: .init())
   }
 
@@ -3026,7 +3026,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListIndexEndpoints")
   public func listIndexEndpointsByItems(
     request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IndexEndpoint, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse in
@@ -3039,7 +3039,7 @@ extension Clients.WarehouseProtocol {
 
   public func listIndexEndpointsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<IndexEndpoint, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<IndexEndpoint, Swift.Error> & Sendable {
     let request = ListIndexEndpointsRequest().with {
       $0.parent = parent
     }
@@ -3315,7 +3315,7 @@ extension Clients.WarehouseProtocol {
 
   public func listCollectionsByItems(
     request: ListCollectionsRequest
-  ) -> any AsyncSequence<Collection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Collection, Swift.Error> & Sendable {
     self.listCollectionsByItems(request: request, options: .init())
   }
 
@@ -3324,7 +3324,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListCollections")
   public func listCollectionsByItems(
     request: ListCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Collection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Collection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse
       in
@@ -3337,7 +3337,7 @@ extension Clients.WarehouseProtocol {
 
   public func listCollectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Collection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Collection, Swift.Error> & Sendable {
     let request = ListCollectionsRequest().with {
       $0.parent = parent
     }
@@ -3400,7 +3400,7 @@ extension Clients.WarehouseProtocol {
 
   public func viewCollectionItemsByItems(
     request: ViewCollectionItemsRequest
-  ) -> any AsyncSequence<CollectionItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CollectionItem, Swift.Error> & Sendable {
     self.viewCollectionItemsByItems(request: request, options: .init())
   }
 
@@ -3409,7 +3409,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ViewCollectionItems")
   public func viewCollectionItemsByItems(
     request: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CollectionItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CollectionItem, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse in
@@ -3422,7 +3422,7 @@ extension Clients.WarehouseProtocol {
 
   public func viewCollectionItemsByItems(
     collection: Swift.String,
-  ) -> any AsyncSequence<CollectionItem, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CollectionItem, Swift.Error> & Sendable {
     let request = ViewCollectionItemsRequest().with {
       $0.collection = collection
     }
@@ -3443,7 +3443,7 @@ extension Clients.WarehouseProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -3452,7 +3452,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -3488,7 +3488,7 @@ extension Clients.WarehouseProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -3499,7 +3499,7 @@ extension Clients.WarehouseProtocol {
   /// @Snippet(path: "Warehouse_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -3512,7 +3512,7 @@ extension Clients.WarehouseProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

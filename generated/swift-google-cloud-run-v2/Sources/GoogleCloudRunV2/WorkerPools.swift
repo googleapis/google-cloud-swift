@@ -399,7 +399,7 @@ extension Clients.WorkerPoolsProtocol {
 
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<WorkerPool, Swift.Error> & Sendable {
     self.listWorkerPoolsByItems(request: request, options: .init())
   }
 
@@ -408,7 +408,7 @@ extension Clients.WorkerPoolsProtocol {
   /// @Snippet(path: "WorkerPools_ListWorkerPools")
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<WorkerPool, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse in
       var request = request
@@ -420,7 +420,7 @@ extension Clients.WorkerPoolsProtocol {
 
   public func listWorkerPoolsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<WorkerPool, Swift.Error> & Sendable {
     let request = ListWorkerPoolsRequest().with {
       $0.parent = parent
     }
@@ -562,7 +562,7 @@ extension Clients.WorkerPoolsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -573,7 +573,7 @@ extension Clients.WorkerPoolsProtocol {
   /// @Snippet(path: "WorkerPools_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -586,7 +586,7 @@ extension Clients.WorkerPoolsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -218,7 +218,7 @@ extension Clients.ModelArmorProtocol {
 
   public func listTemplatesByItems(
     request: ListTemplatesRequest
-  ) -> any AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
     self.listTemplatesByItems(request: request, options: .init())
   }
 
@@ -227,7 +227,7 @@ extension Clients.ModelArmorProtocol {
   /// @Snippet(path: "ModelArmor_ListTemplates")
   public func listTemplatesByItems(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse
       in
@@ -240,7 +240,7 @@ extension Clients.ModelArmorProtocol {
 
   public func listTemplatesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Template, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Template, Swift.Error> & Sendable {
     let request = ListTemplatesRequest().with {
       $0.parent = parent
     }
@@ -417,7 +417,7 @@ extension Clients.ModelArmorProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -426,7 +426,7 @@ extension Clients.ModelArmorProtocol {
   /// @Snippet(path: "ModelArmor_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

@@ -366,7 +366,7 @@ extension Clients.ConfigProtocol {
 
   public func listFrameworksByItems(
     request: ListFrameworksRequest
-  ) -> any AsyncSequence<Framework, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Framework, Swift.Error> & Sendable {
     self.listFrameworksByItems(request: request, options: .init())
   }
 
@@ -378,7 +378,7 @@ extension Clients.ConfigProtocol {
   /// @Snippet(path: "Config_ListFrameworks")
   public func listFrameworksByItems(
     request: ListFrameworksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Framework, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Framework, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse in
@@ -391,7 +391,7 @@ extension Clients.ConfigProtocol {
 
   public func listFrameworksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Framework, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Framework, Swift.Error> & Sendable {
     let request = ListFrameworksRequest().with {
       $0.parent = parent
     }
@@ -500,7 +500,7 @@ extension Clients.ConfigProtocol {
 
   public func listCloudControlsByItems(
     request: ListCloudControlsRequest
-  ) -> any AsyncSequence<CloudControl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudControl, Swift.Error> & Sendable {
     self.listCloudControlsByItems(request: request, options: .init())
   }
 
@@ -512,7 +512,7 @@ extension Clients.ConfigProtocol {
   /// @Snippet(path: "Config_ListCloudControls")
   public func listCloudControlsByItems(
     request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CloudControl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudControl, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse in
@@ -525,7 +525,7 @@ extension Clients.ConfigProtocol {
 
   public func listCloudControlsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CloudControl, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CloudControl, Swift.Error> & Sendable {
     let request = ListCloudControlsRequest().with {
       $0.parent = parent
     }
@@ -634,7 +634,7 @@ extension Clients.ConfigProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -660,7 +660,7 @@ extension Clients.ConfigProtocol {
   /// @Snippet(path: "Config_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -696,7 +696,7 @@ extension Clients.ConfigProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -707,7 +707,7 @@ extension Clients.ConfigProtocol {
   /// @Snippet(path: "Config_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -720,7 +720,7 @@ extension Clients.ConfigProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

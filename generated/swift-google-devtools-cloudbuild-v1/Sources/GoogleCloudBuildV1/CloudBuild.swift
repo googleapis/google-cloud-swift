@@ -750,7 +750,7 @@ extension Clients.CloudBuildProtocol {
 
   public func listBuildsByItems(
     request: ListBuildsRequest
-  ) -> any AsyncSequence<Build, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Build, Swift.Error> & Sendable {
     self.listBuildsByItems(request: request, options: .init())
   }
 
@@ -762,7 +762,7 @@ extension Clients.CloudBuildProtocol {
   /// @Snippet(path: "CloudBuild_ListBuilds")
   public func listBuildsByItems(
     request: ListBuildsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Build, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Build, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildsResponse in
       var request = request
@@ -775,7 +775,7 @@ extension Clients.CloudBuildProtocol {
   public func listBuildsByItems(
     projectId: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<Build, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Build, Swift.Error> & Sendable {
     let request = ListBuildsRequest().with {
       $0.projectId = projectId
       $0.filter = filter
@@ -975,7 +975,7 @@ extension Clients.CloudBuildProtocol {
 
   public func listBuildTriggersByItems(
     request: ListBuildTriggersRequest
-  ) -> any AsyncSequence<BuildTrigger, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BuildTrigger, Swift.Error> & Sendable {
     self.listBuildTriggersByItems(request: request, options: .init())
   }
 
@@ -984,7 +984,7 @@ extension Clients.CloudBuildProtocol {
   /// @Snippet(path: "CloudBuild_ListBuildTriggers")
   public func listBuildTriggersByItems(
     request: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BuildTrigger, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BuildTrigger, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse
       in
@@ -997,7 +997,7 @@ extension Clients.CloudBuildProtocol {
 
   public func listBuildTriggersByItems(
     projectId: Swift.String,
-  ) -> any AsyncSequence<BuildTrigger, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BuildTrigger, Swift.Error> & Sendable {
     let request = ListBuildTriggersRequest().with {
       $0.projectId = projectId
     }
@@ -1264,7 +1264,7 @@ extension Clients.CloudBuildProtocol {
 
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<WorkerPool, Swift.Error> & Sendable {
     self.listWorkerPoolsByItems(request: request, options: .init())
   }
 
@@ -1273,7 +1273,7 @@ extension Clients.CloudBuildProtocol {
   /// @Snippet(path: "CloudBuild_ListWorkerPools")
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<WorkerPool, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse in
       var request = request
@@ -1285,7 +1285,7 @@ extension Clients.CloudBuildProtocol {
 
   public func listWorkerPoolsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<WorkerPool, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<WorkerPool, Swift.Error> & Sendable {
     let request = ListWorkerPoolsRequest().with {
       $0.parent = parent
     }

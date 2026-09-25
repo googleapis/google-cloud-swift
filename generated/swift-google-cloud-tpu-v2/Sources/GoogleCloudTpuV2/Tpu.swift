@@ -660,7 +660,7 @@ extension Clients.TpuProtocol {
 
   public func listNodesByItems(
     request: ListNodesRequest
-  ) -> any AsyncSequence<Node, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Node, Swift.Error> & Sendable {
     self.listNodesByItems(request: request, options: .init())
   }
 
@@ -669,7 +669,7 @@ extension Clients.TpuProtocol {
   /// @Snippet(path: "Tpu_ListNodes")
   public func listNodesByItems(
     request: ListNodesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Node, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Node, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudTpuV2.ListNodesResponse in
       var request = request
@@ -681,7 +681,7 @@ extension Clients.TpuProtocol {
 
   public func listNodesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Node, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Node, Swift.Error> & Sendable {
     let request = ListNodesRequest().with {
       $0.parent = parent
     }
@@ -884,7 +884,7 @@ extension Clients.TpuProtocol {
 
   public func listQueuedResourcesByItems(
     request: ListQueuedResourcesRequest
-  ) -> any AsyncSequence<QueuedResource, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QueuedResource, Swift.Error> & Sendable {
     self.listQueuedResourcesByItems(request: request, options: .init())
   }
 
@@ -893,7 +893,7 @@ extension Clients.TpuProtocol {
   /// @Snippet(path: "Tpu_ListQueuedResources")
   public func listQueuedResourcesByItems(
     request: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<QueuedResource, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QueuedResource, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudTpuV2.ListQueuedResourcesResponse
       in
@@ -906,7 +906,7 @@ extension Clients.TpuProtocol {
 
   public func listQueuedResourcesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<QueuedResource, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<QueuedResource, Swift.Error> & Sendable {
     let request = ListQueuedResourcesRequest().with {
       $0.parent = parent
     }
@@ -1077,7 +1077,7 @@ extension Clients.TpuProtocol {
 
   public func listAcceleratorTypesByItems(
     request: ListAcceleratorTypesRequest
-  ) -> any AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
     self.listAcceleratorTypesByItems(request: request, options: .init())
   }
 
@@ -1086,7 +1086,7 @@ extension Clients.TpuProtocol {
   /// @Snippet(path: "Tpu_ListAcceleratorTypes")
   public func listAcceleratorTypesByItems(
     request: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudTpuV2.ListAcceleratorTypesResponse
       in
@@ -1099,7 +1099,7 @@ extension Clients.TpuProtocol {
 
   public func listAcceleratorTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AcceleratorType, Swift.Error> & Sendable {
     let request = ListAcceleratorTypesRequest().with {
       $0.parent = parent
     }
@@ -1141,7 +1141,7 @@ extension Clients.TpuProtocol {
 
   public func listRuntimeVersionsByItems(
     request: ListRuntimeVersionsRequest
-  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeVersion, Swift.Error> & Sendable {
     self.listRuntimeVersionsByItems(request: request, options: .init())
   }
 
@@ -1150,7 +1150,7 @@ extension Clients.TpuProtocol {
   /// @Snippet(path: "Tpu_ListRuntimeVersions")
   public func listRuntimeVersionsByItems(
     request: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeVersion, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudTpuV2.ListRuntimeVersionsResponse
       in
@@ -1163,7 +1163,7 @@ extension Clients.TpuProtocol {
 
   public func listRuntimeVersionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<RuntimeVersion, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuntimeVersion, Swift.Error> & Sendable {
     let request = ListRuntimeVersionsRequest().with {
       $0.parent = parent
     }
@@ -1217,7 +1217,7 @@ extension Clients.TpuProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1226,7 +1226,7 @@ extension Clients.TpuProtocol {
   /// @Snippet(path: "Tpu_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1262,7 +1262,7 @@ extension Clients.TpuProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1273,7 +1273,7 @@ extension Clients.TpuProtocol {
   /// @Snippet(path: "Tpu_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1286,7 +1286,7 @@ extension Clients.TpuProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

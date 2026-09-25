@@ -140,7 +140,7 @@ extension Clients.RuleExecutionErrorServiceProtocol {
 
   public func listRuleExecutionErrorsByItems(
     request: ListRuleExecutionErrorsRequest
-  ) -> any AsyncSequence<RuleExecutionError, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuleExecutionError, Swift.Error> & Sendable {
     self.listRuleExecutionErrorsByItems(request: request, options: .init())
   }
 
@@ -149,7 +149,7 @@ extension Clients.RuleExecutionErrorServiceProtocol {
   /// @Snippet(path: "RuleExecutionErrorService_ListRuleExecutionErrors")
   public func listRuleExecutionErrorsByItems(
     request: ListRuleExecutionErrorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RuleExecutionError, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuleExecutionError, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListRuleExecutionErrorsResponse in
@@ -162,7 +162,7 @@ extension Clients.RuleExecutionErrorServiceProtocol {
 
   public func listRuleExecutionErrorsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<RuleExecutionError, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RuleExecutionError, Swift.Error> & Sendable {
     let request = ListRuleExecutionErrorsRequest().with {
       $0.parent = parent
     }
@@ -183,7 +183,7 @@ extension Clients.RuleExecutionErrorServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -194,7 +194,7 @@ extension Clients.RuleExecutionErrorServiceProtocol {
   /// @Snippet(path: "RuleExecutionErrorService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -207,7 +207,7 @@ extension Clients.RuleExecutionErrorServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

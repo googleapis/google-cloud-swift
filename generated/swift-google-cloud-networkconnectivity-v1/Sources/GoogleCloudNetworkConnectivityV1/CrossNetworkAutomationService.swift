@@ -783,7 +783,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceConnectionMapsByItems(
     request: ListServiceConnectionMapsRequest
-  ) -> any AsyncSequence<ServiceConnectionMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionMap, Swift.Error> & Sendable {
     self.listServiceConnectionMapsByItems(request: request, options: .init())
   }
 
@@ -792,7 +792,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   /// @Snippet(path: "CrossNetworkAutomationService_ListServiceConnectionMaps")
   public func listServiceConnectionMapsByItems(
     request: ListServiceConnectionMapsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceConnectionMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionMap, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListServiceConnectionMapsResponse in
@@ -805,7 +805,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceConnectionMapsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServiceConnectionMap, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionMap, Swift.Error> & Sendable {
     let request = ListServiceConnectionMapsRequest().with {
       $0.parent = parent
     }
@@ -966,7 +966,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceConnectionPoliciesByItems(
     request: ListServiceConnectionPoliciesRequest
-  ) -> any AsyncSequence<ServiceConnectionPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionPolicy, Swift.Error> & Sendable {
     self.listServiceConnectionPoliciesByItems(request: request, options: .init())
   }
 
@@ -975,7 +975,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   /// @Snippet(path: "CrossNetworkAutomationService_ListServiceConnectionPolicies")
   public func listServiceConnectionPoliciesByItems(
     request: ListServiceConnectionPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceConnectionPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListServiceConnectionPoliciesResponse in
@@ -988,7 +988,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceConnectionPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServiceConnectionPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionPolicy, Swift.Error> & Sendable {
     let request = ListServiceConnectionPoliciesRequest().with {
       $0.parent = parent
     }
@@ -1151,7 +1151,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceClassesByItems(
     request: ListServiceClassesRequest
-  ) -> any AsyncSequence<ServiceClass, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceClass, Swift.Error> & Sendable {
     self.listServiceClassesByItems(request: request, options: .init())
   }
 
@@ -1160,7 +1160,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   /// @Snippet(path: "CrossNetworkAutomationService_ListServiceClasses")
   public func listServiceClassesByItems(
     request: ListServiceClassesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceClass, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceClass, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListServiceClassesResponse in
@@ -1173,7 +1173,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceClassesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServiceClass, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceClass, Swift.Error> & Sendable {
     let request = ListServiceClassesRequest().with {
       $0.parent = parent
     }
@@ -1313,7 +1313,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceConnectionTokensByItems(
     request: ListServiceConnectionTokensRequest
-  ) -> any AsyncSequence<ServiceConnectionToken, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionToken, Swift.Error> & Sendable {
     self.listServiceConnectionTokensByItems(request: request, options: .init())
   }
 
@@ -1322,7 +1322,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   /// @Snippet(path: "CrossNetworkAutomationService_ListServiceConnectionTokens")
   public func listServiceConnectionTokensByItems(
     request: ListServiceConnectionTokensRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServiceConnectionToken, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionToken, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListServiceConnectionTokensResponse in
@@ -1335,7 +1335,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listServiceConnectionTokensByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServiceConnectionToken, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServiceConnectionToken, Swift.Error> & Sendable {
     let request = ListServiceConnectionTokensRequest().with {
       $0.parent = parent
     }
@@ -1435,7 +1435,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1444,7 +1444,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   /// @Snippet(path: "CrossNetworkAutomationService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1516,7 +1516,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1527,7 +1527,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   /// @Snippet(path: "CrossNetworkAutomationService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1540,7 +1540,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

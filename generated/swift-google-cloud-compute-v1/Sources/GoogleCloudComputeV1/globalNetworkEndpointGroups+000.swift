@@ -595,7 +595,7 @@
 
     public func listByItems(
       request: GlobalNetworkEndpointGroupsClient.ListRequest
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -605,7 +605,7 @@
     /// @Snippet(path: "globalNetworkEndpointGroups_list")
     public func listByItems(
       request: GlobalNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupList in
@@ -618,7 +618,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointGroup, Swift.Error> & Sendable {
       let request = GlobalNetworkEndpointGroupsClient.ListRequest().with {
         $0.project = project
       }
@@ -640,7 +640,7 @@
 
     public func listNetworkEndpointsByItems(
       request: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
       self.listNetworkEndpointsByItems(request: request, options: .init())
     }
 
@@ -650,7 +650,7 @@
     public func listNetworkEndpointsByItems(
       request: GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints in
@@ -664,7 +664,7 @@
     public func listNetworkEndpointsByItems(
       project: Swift.String,
       networkEndpointGroup: Swift.String,
-    ) -> any AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, Swift.Error> & Sendable {
       let request = GlobalNetworkEndpointGroupsClient.ListNetworkEndpointsRequest().with {
         $0.project = project
         $0.networkEndpointGroup = networkEndpointGroup

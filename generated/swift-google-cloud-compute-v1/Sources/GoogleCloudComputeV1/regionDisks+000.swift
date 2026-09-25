@@ -1230,7 +1230,7 @@
 
     public func listByItems(
       request: RegionDisksClient.ListRequest
-    ) -> any AsyncSequence<Disk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Disk, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1240,7 +1240,7 @@
     /// @Snippet(path: "regionDisks_list")
     public func listByItems(
       request: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Disk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Disk, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.DiskList in
         var request = request
@@ -1253,7 +1253,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<Disk, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Disk, Swift.Error> & Sendable {
       let request = RegionDisksClient.ListRequest().with {
         $0.project = project
         $0.region = region

@@ -1054,7 +1054,7 @@
 
     public func listFeaturestoresByItems(
       request: ListFeaturestoresRequest
-    ) -> any AsyncSequence<Featurestore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Featurestore, Swift.Error> & Sendable {
       self.listFeaturestoresByItems(request: request, options: .init())
     }
 
@@ -1063,7 +1063,7 @@
     /// @Snippet(path: "FeaturestoreService_ListFeaturestores")
     public func listFeaturestoresByItems(
       request: ListFeaturestoresRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Featurestore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Featurestore, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListFeaturestoresResponse in
@@ -1076,7 +1076,7 @@
 
     public func listFeaturestoresByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Featurestore, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Featurestore, Swift.Error> & Sendable {
       let request = ListFeaturestoresRequest().with {
         $0.parent = parent
       }
@@ -1260,7 +1260,7 @@
 
     public func listEntityTypesByItems(
       request: ListEntityTypesRequest
-    ) -> any AsyncSequence<EntityType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<EntityType, Swift.Error> & Sendable {
       self.listEntityTypesByItems(request: request, options: .init())
     }
 
@@ -1269,7 +1269,7 @@
     /// @Snippet(path: "FeaturestoreService_ListEntityTypes")
     public func listEntityTypesByItems(
       request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<EntityType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<EntityType, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.ListEntityTypesResponse in
@@ -1282,7 +1282,7 @@
 
     public func listEntityTypesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<EntityType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<EntityType, Swift.Error> & Sendable {
       let request = ListEntityTypesRequest().with {
         $0.parent = parent
       }
@@ -1489,7 +1489,7 @@
 
     public func listFeaturesByItems(
       request: ListFeaturesRequest
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       self.listFeaturesByItems(request: request, options: .init())
     }
 
@@ -1498,7 +1498,7 @@
     /// @Snippet(path: "FeaturestoreService_ListFeatures")
     public func listFeaturesByItems(
       request: ListFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse
         in
@@ -1511,7 +1511,7 @@
 
     public func listFeaturesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       let request = ListFeaturesRequest().with {
         $0.parent = parent
       }
@@ -1749,7 +1749,7 @@
 
     public func searchFeaturesByItems(
       request: SearchFeaturesRequest
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       self.searchFeaturesByItems(request: request, options: .init())
     }
 
@@ -1758,7 +1758,7 @@
     /// @Snippet(path: "FeaturestoreService_SearchFeatures")
     public func searchFeaturesByItems(
       request: SearchFeaturesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudAIPlatformV1.SearchFeaturesResponse in
@@ -1771,7 +1771,7 @@
 
     public func searchFeaturesByItems(
       location: Swift.String,
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       let request = SearchFeaturesRequest().with {
         $0.location = location
       }
@@ -1781,7 +1781,7 @@
     public func searchFeaturesByItems(
       location: Swift.String,
       query: Swift.String,
-    ) -> any AsyncSequence<Feature, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Feature, Swift.Error> & Sendable {
       let request = SearchFeaturesRequest().with {
         $0.location = location
         $0.query = query
@@ -1803,7 +1803,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -1812,7 +1812,7 @@
     /// @Snippet(path: "FeaturestoreService_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -1884,7 +1884,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -1895,7 +1895,7 @@
     /// @Snippet(path: "FeaturestoreService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -1908,7 +1908,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

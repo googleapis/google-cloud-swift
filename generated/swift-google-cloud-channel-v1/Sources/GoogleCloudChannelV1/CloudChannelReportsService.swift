@@ -332,7 +332,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   @available(*, deprecated)
   public func fetchReportResultsByItems(
     request: FetchReportResultsRequest
-  ) -> any AsyncSequence<Row, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Row, Swift.Error> & Sendable {
     self.fetchReportResultsByItems(request: request, options: .init())
   }
 
@@ -349,7 +349,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   @available(*, deprecated)
   public func fetchReportResultsByItems(
     request: FetchReportResultsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Row, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Row, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChannelV1.FetchReportResultsResponse in
@@ -363,7 +363,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   @available(*, deprecated)
   public func fetchReportResultsByItems(
     reportJob: Swift.String,
-  ) -> any AsyncSequence<Row, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Row, Swift.Error> & Sendable {
     let request = FetchReportResultsRequest().with {
       $0.reportJob = reportJob
     }
@@ -387,7 +387,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   @available(*, deprecated)
   public func listReportsByItems(
     request: ListReportsRequest
-  ) -> any AsyncSequence<Report, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Report, Swift.Error> & Sendable {
     self.listReportsByItems(request: request, options: .init())
   }
 
@@ -402,7 +402,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   @available(*, deprecated)
   public func listReportsByItems(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Report, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Report, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudChannelV1.ListReportsResponse in
       var request = request
@@ -415,7 +415,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   @available(*, deprecated)
   public func listReportsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Report, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Report, Swift.Error> & Sendable {
     let request = ListReportsRequest().with {
       $0.parent = parent
     }
@@ -436,7 +436,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -447,7 +447,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   /// @Snippet(path: "CloudChannelReportsService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -460,7 +460,7 @@ extension Clients.CloudChannelReportsServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

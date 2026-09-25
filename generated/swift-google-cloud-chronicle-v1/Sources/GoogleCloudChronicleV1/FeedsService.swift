@@ -446,7 +446,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedsByItems(
     request: ListFeedsRequest
-  ) -> any AsyncSequence<Feed, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Feed, Swift.Error> & Sendable {
     self.listFeedsByItems(request: request, options: .init())
   }
 
@@ -455,7 +455,7 @@ extension Clients.FeedsServiceProtocol {
   /// @Snippet(path: "FeedsService_ListFeeds")
   public func listFeedsByItems(
     request: ListFeedsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Feed, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Feed, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedsResponse in
       var request = request
@@ -467,7 +467,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Feed, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Feed, Swift.Error> & Sendable {
     let request = ListFeedsRequest().with {
       $0.parent = parent
     }
@@ -488,7 +488,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedPacksByItems(
     request: ListFeedPacksRequest
-  ) -> any AsyncSequence<FeedPack, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FeedPack, Swift.Error> & Sendable {
     self.listFeedPacksByItems(request: request, options: .init())
   }
 
@@ -497,7 +497,7 @@ extension Clients.FeedsServiceProtocol {
   /// @Snippet(path: "FeedsService_ListFeedPacks")
   public func listFeedPacksByItems(
     request: ListFeedPacksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FeedPack, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FeedPack, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudChronicleV1.ListFeedPacksResponse
       in
@@ -510,7 +510,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedPacksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FeedPack, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FeedPack, Swift.Error> & Sendable {
     let request = ListFeedPacksRequest().with {
       $0.parent = parent
     }
@@ -573,7 +573,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedSourceTypeSchemasByItems(
     request: ListFeedSourceTypeSchemasRequest
-  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FeedSourceTypeSchema, Swift.Error> & Sendable {
     self.listFeedSourceTypeSchemasByItems(request: request, options: .init())
   }
 
@@ -582,7 +582,7 @@ extension Clients.FeedsServiceProtocol {
   /// @Snippet(path: "FeedsService_ListFeedSourceTypeSchemas")
   public func listFeedSourceTypeSchemasByItems(
     request: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FeedSourceTypeSchema, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse in
@@ -595,7 +595,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listFeedSourceTypeSchemasByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FeedSourceTypeSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FeedSourceTypeSchema, Swift.Error> & Sendable {
     let request = ListFeedSourceTypeSchemasRequest().with {
       $0.parent = parent
     }
@@ -616,7 +616,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listLogTypeSchemasByItems(
     request: ListLogTypeSchemasRequest
-  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogTypeSchema, Swift.Error> & Sendable {
     self.listLogTypeSchemasByItems(request: request, options: .init())
   }
 
@@ -626,7 +626,7 @@ extension Clients.FeedsServiceProtocol {
   /// @Snippet(path: "FeedsService_ListLogTypeSchemas")
   public func listLogTypeSchemasByItems(
     request: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogTypeSchema, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse in
@@ -639,7 +639,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listLogTypeSchemasByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<LogTypeSchema, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogTypeSchema, Swift.Error> & Sendable {
     let request = ListLogTypeSchemasRequest().with {
       $0.parent = parent
     }
@@ -700,7 +700,7 @@ extension Clients.FeedsServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -711,7 +711,7 @@ extension Clients.FeedsServiceProtocol {
   /// @Snippet(path: "FeedsService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -724,7 +724,7 @@ extension Clients.FeedsServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

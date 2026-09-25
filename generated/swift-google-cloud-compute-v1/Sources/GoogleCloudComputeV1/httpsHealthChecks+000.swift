@@ -471,7 +471,7 @@
 
     public func listByItems(
       request: HttpsHealthChecksClient.ListRequest
-    ) -> any AsyncSequence<HttpsHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HttpsHealthCheck, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -481,7 +481,7 @@
     /// @Snippet(path: "httpsHealthChecks_list")
     public func listByItems(
       request: HttpsHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HttpsHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HttpsHealthCheck, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.HttpsHealthCheckList in
         var request = request
@@ -493,7 +493,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<HttpsHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HttpsHealthCheck, Swift.Error> & Sendable {
       let request = HttpsHealthChecksClient.ListRequest().with {
         $0.project = project
       }

@@ -386,7 +386,7 @@ extension Clients.PolicyTagManagerProtocol {
 
   public func listTaxonomiesByItems(
     request: ListTaxonomiesRequest
-  ) -> any AsyncSequence<Taxonomy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Taxonomy, Swift.Error> & Sendable {
     self.listTaxonomiesByItems(request: request, options: .init())
   }
 
@@ -396,7 +396,7 @@ extension Clients.PolicyTagManagerProtocol {
   /// @Snippet(path: "PolicyTagManager_ListTaxonomies")
   public func listTaxonomiesByItems(
     request: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Taxonomy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Taxonomy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse in
@@ -409,7 +409,7 @@ extension Clients.PolicyTagManagerProtocol {
 
   public func listTaxonomiesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Taxonomy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Taxonomy, Swift.Error> & Sendable {
     let request = ListTaxonomiesRequest().with {
       $0.parent = parent
     }
@@ -514,7 +514,7 @@ extension Clients.PolicyTagManagerProtocol {
 
   public func listPolicyTagsByItems(
     request: ListPolicyTagsRequest
-  ) -> any AsyncSequence<PolicyTag, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyTag, Swift.Error> & Sendable {
     self.listPolicyTagsByItems(request: request, options: .init())
   }
 
@@ -523,7 +523,7 @@ extension Clients.PolicyTagManagerProtocol {
   /// @Snippet(path: "PolicyTagManager_ListPolicyTags")
   public func listPolicyTagsByItems(
     request: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PolicyTag, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyTag, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse in
@@ -536,7 +536,7 @@ extension Clients.PolicyTagManagerProtocol {
 
   public func listPolicyTagsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PolicyTag, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PolicyTag, Swift.Error> & Sendable {
     let request = ListPolicyTagsRequest().with {
       $0.parent = parent
     }
@@ -614,7 +614,7 @@ extension Clients.PolicyTagManagerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -625,7 +625,7 @@ extension Clients.PolicyTagManagerProtocol {
   /// @Snippet(path: "PolicyTagManager_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -638,7 +638,7 @@ extension Clients.PolicyTagManagerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -596,7 +596,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listConnectionsByItems(
     request: ListConnectionsRequest
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     self.listConnectionsByItems(request: request, options: .init())
   }
 
@@ -605,7 +605,7 @@ extension Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_ListConnections")
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBuildV2.ListConnectionsResponse in
       var request = request
@@ -617,7 +617,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
@@ -817,7 +817,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest
-  ) -> any AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
     self.listRepositoriesByItems(request: request, options: .init())
   }
 
@@ -826,7 +826,7 @@ extension Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_ListRepositories")
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse in
       var request = request
@@ -838,7 +838,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func listRepositoriesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
     let request = ListRepositoriesRequest().with {
       $0.parent = parent
     }
@@ -938,7 +938,7 @@ extension Clients.RepositoryManagerProtocol {
 
   public func fetchLinkableRepositoriesByItems(
     request: FetchLinkableRepositoriesRequest
-  ) -> any AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
     self.fetchLinkableRepositoriesByItems(request: request, options: .init())
   }
 
@@ -948,7 +948,7 @@ extension Clients.RepositoryManagerProtocol {
   /// @Snippet(path: "RepositoryManager_FetchLinkableRepositories")
   public func fetchLinkableRepositoriesByItems(
     request: FetchLinkableRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Repository, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Repository, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudBuildV2.FetchLinkableRepositoriesResponse in

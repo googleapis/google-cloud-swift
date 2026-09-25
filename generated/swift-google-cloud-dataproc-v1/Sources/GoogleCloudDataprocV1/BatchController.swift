@@ -330,7 +330,7 @@ extension Clients.BatchControllerProtocol {
 
   public func listBatchesByItems(
     request: ListBatchesRequest
-  ) -> any AsyncSequence<Batch, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Batch, Swift.Error> & Sendable {
     self.listBatchesByItems(request: request, options: .init())
   }
 
@@ -339,7 +339,7 @@ extension Clients.BatchControllerProtocol {
   /// @Snippet(path: "BatchController_ListBatches")
   public func listBatchesByItems(
     request: ListBatchesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Batch, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Batch, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDataprocV1.ListBatchesResponse in
       var request = request
@@ -351,7 +351,7 @@ extension Clients.BatchControllerProtocol {
 
   public func listBatchesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Batch, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Batch, Swift.Error> & Sendable {
     let request = ListBatchesRequest().with {
       $0.parent = parent
     }
@@ -427,7 +427,7 @@ extension Clients.BatchControllerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -438,7 +438,7 @@ extension Clients.BatchControllerProtocol {
   /// @Snippet(path: "BatchController_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -451,7 +451,7 @@ extension Clients.BatchControllerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

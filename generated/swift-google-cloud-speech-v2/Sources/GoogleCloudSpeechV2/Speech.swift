@@ -984,7 +984,7 @@ extension Clients.SpeechProtocol {
 
   public func listRecognizersByItems(
     request: ListRecognizersRequest
-  ) -> any AsyncSequence<Recognizer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recognizer, Swift.Error> & Sendable {
     self.listRecognizersByItems(request: request, options: .init())
   }
 
@@ -993,7 +993,7 @@ extension Clients.SpeechProtocol {
   /// @Snippet(path: "Speech_ListRecognizers")
   public func listRecognizersByItems(
     request: ListRecognizersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Recognizer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recognizer, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListRecognizersResponse in
       var request = request
@@ -1005,7 +1005,7 @@ extension Clients.SpeechProtocol {
 
   public func listRecognizersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Recognizer, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Recognizer, Swift.Error> & Sendable {
     let request = ListRecognizersRequest().with {
       $0.parent = parent
     }
@@ -1328,7 +1328,7 @@ extension Clients.SpeechProtocol {
 
   public func listCustomClassesByItems(
     request: ListCustomClassesRequest
-  ) -> any AsyncSequence<CustomClass, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomClass, Swift.Error> & Sendable {
     self.listCustomClassesByItems(request: request, options: .init())
   }
 
@@ -1337,7 +1337,7 @@ extension Clients.SpeechProtocol {
   /// @Snippet(path: "Speech_ListCustomClasses")
   public func listCustomClassesByItems(
     request: ListCustomClassesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CustomClass, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomClass, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListCustomClassesResponse
       in
@@ -1350,7 +1350,7 @@ extension Clients.SpeechProtocol {
 
   public func listCustomClassesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CustomClass, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomClass, Swift.Error> & Sendable {
     let request = ListCustomClassesRequest().with {
       $0.parent = parent
     }
@@ -1546,7 +1546,7 @@ extension Clients.SpeechProtocol {
 
   public func listPhraseSetsByItems(
     request: ListPhraseSetsRequest
-  ) -> any AsyncSequence<PhraseSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PhraseSet, Swift.Error> & Sendable {
     self.listPhraseSetsByItems(request: request, options: .init())
   }
 
@@ -1555,7 +1555,7 @@ extension Clients.SpeechProtocol {
   /// @Snippet(path: "Speech_ListPhraseSets")
   public func listPhraseSetsByItems(
     request: ListPhraseSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<PhraseSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PhraseSet, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudSpeechV2.ListPhraseSetsResponse in
       var request = request
@@ -1567,7 +1567,7 @@ extension Clients.SpeechProtocol {
 
   public func listPhraseSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<PhraseSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<PhraseSet, Swift.Error> & Sendable {
     let request = ListPhraseSetsRequest().with {
       $0.parent = parent
     }
@@ -1722,7 +1722,7 @@ extension Clients.SpeechProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1738,7 +1738,7 @@ extension Clients.SpeechProtocol {
   /// @Snippet(path: "Speech_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1774,7 +1774,7 @@ extension Clients.SpeechProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1785,7 +1785,7 @@ extension Clients.SpeechProtocol {
   /// @Snippet(path: "Speech_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1798,7 +1798,7 @@ extension Clients.SpeechProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -288,7 +288,7 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listJobsByItems(
     request: ListJobsRequest
-  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
     self.listJobsByItems(request: request, options: .init())
   }
 
@@ -297,7 +297,7 @@ extension Clients.StorageBatchOperationsProtocol {
   /// @Snippet(path: "StorageBatchOperations_ListJobs")
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudStorageBatchOperationsV1.ListJobsResponse in
@@ -310,7 +310,7 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Job, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Job, Swift.Error> & Sendable {
     let request = ListJobsRequest().with {
       $0.parent = parent
     }
@@ -430,7 +430,7 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listBucketOperationsByItems(
     request: ListBucketOperationsRequest
-  ) -> any AsyncSequence<BucketOperation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BucketOperation, Swift.Error> & Sendable {
     self.listBucketOperationsByItems(request: request, options: .init())
   }
 
@@ -439,7 +439,7 @@ extension Clients.StorageBatchOperationsProtocol {
   /// @Snippet(path: "StorageBatchOperations_ListBucketOperations")
   public func listBucketOperationsByItems(
     request: ListBucketOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BucketOperation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BucketOperation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudStorageBatchOperationsV1.ListBucketOperationsResponse in
@@ -452,7 +452,7 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listBucketOperationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BucketOperation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BucketOperation, Swift.Error> & Sendable {
     let request = ListBucketOperationsRequest().with {
       $0.parent = parent
     }
@@ -494,7 +494,7 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -503,7 +503,7 @@ extension Clients.StorageBatchOperationsProtocol {
   /// @Snippet(path: "StorageBatchOperations_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -539,7 +539,7 @@ extension Clients.StorageBatchOperationsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -550,7 +550,7 @@ extension Clients.StorageBatchOperationsProtocol {
   /// @Snippet(path: "StorageBatchOperations_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -563,7 +563,7 @@ extension Clients.StorageBatchOperationsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

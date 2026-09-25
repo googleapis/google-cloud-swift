@@ -551,7 +551,7 @@ extension Clients.LineageProtocol {
 
   public func listProcessesByItems(
     request: ListProcessesRequest
-  ) -> any AsyncSequence<Process, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Process, Swift.Error> & Sendable {
     self.listProcessesByItems(request: request, options: .init())
   }
 
@@ -561,7 +561,7 @@ extension Clients.LineageProtocol {
   /// @Snippet(path: "Lineage_ListProcesses")
   public func listProcessesByItems(
     request: ListProcessesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Process, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Process, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.ListProcessesResponse in
@@ -574,7 +574,7 @@ extension Clients.LineageProtocol {
 
   public func listProcessesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Process, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Process, Swift.Error> & Sendable {
     let request = ListProcessesRequest().with {
       $0.parent = parent
     }
@@ -697,7 +697,7 @@ extension Clients.LineageProtocol {
 
   public func listRunsByItems(
     request: ListRunsRequest
-  ) -> any AsyncSequence<Run, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Run, Swift.Error> & Sendable {
     self.listRunsByItems(request: request, options: .init())
   }
 
@@ -707,7 +707,7 @@ extension Clients.LineageProtocol {
   /// @Snippet(path: "Lineage_ListRuns")
   public func listRunsByItems(
     request: ListRunsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Run, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Run, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.ListRunsResponse in
@@ -720,7 +720,7 @@ extension Clients.LineageProtocol {
 
   public func listRunsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Run, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Run, Swift.Error> & Sendable {
     let request = ListRunsRequest().with {
       $0.parent = parent
     }
@@ -820,7 +820,7 @@ extension Clients.LineageProtocol {
 
   public func listLineageEventsByItems(
     request: ListLineageEventsRequest
-  ) -> any AsyncSequence<LineageEvent, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LineageEvent, Swift.Error> & Sendable {
     self.listLineageEventsByItems(request: request, options: .init())
   }
 
@@ -830,7 +830,7 @@ extension Clients.LineageProtocol {
   /// @Snippet(path: "Lineage_ListLineageEvents")
   public func listLineageEventsByItems(
     request: ListLineageEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LineageEvent, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LineageEvent, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.ListLineageEventsResponse in
@@ -843,7 +843,7 @@ extension Clients.LineageProtocol {
 
   public func listLineageEventsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<LineageEvent, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LineageEvent, Swift.Error> & Sendable {
     let request = ListLineageEventsRequest().with {
       $0.parent = parent
     }
@@ -883,7 +883,7 @@ extension Clients.LineageProtocol {
 
   public func searchLinksByItems(
     request: SearchLinksRequest
-  ) -> any AsyncSequence<Link, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Link, Swift.Error> & Sendable {
     self.searchLinksByItems(request: request, options: .init())
   }
 
@@ -900,7 +900,7 @@ extension Clients.LineageProtocol {
   /// @Snippet(path: "Lineage_SearchLinks")
   public func searchLinksByItems(
     request: SearchLinksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Link, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Link, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.SearchLinksResponse in
@@ -925,7 +925,7 @@ extension Clients.LineageProtocol {
 
   public func batchSearchLinkProcessesByItems(
     request: BatchSearchLinkProcessesRequest
-  ) -> any AsyncSequence<ProcessLinks, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProcessLinks, Swift.Error> & Sendable {
     self.batchSearchLinkProcessesByItems(request: request, options: .init())
   }
 
@@ -949,7 +949,7 @@ extension Clients.LineageProtocol {
   /// @Snippet(path: "Lineage_BatchSearchLinkProcesses")
   public func batchSearchLinkProcessesByItems(
     request: BatchSearchLinkProcessesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProcessLinks, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProcessLinks, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDataCatalogLineageV1.BatchSearchLinkProcessesResponse in
@@ -974,7 +974,7 @@ extension Clients.LineageProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -985,7 +985,7 @@ extension Clients.LineageProtocol {
   /// @Snippet(path: "Lineage_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -998,7 +998,7 @@ extension Clients.LineageProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

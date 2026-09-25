@@ -92,7 +92,7 @@ extension Clients.CloudCatalogProtocol {
 
   public func listServicesByItems(
     request: ListServicesRequest
-  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
     self.listServicesByItems(request: request, options: .init())
   }
 
@@ -101,7 +101,7 @@ extension Clients.CloudCatalogProtocol {
   /// @Snippet(path: "CloudCatalog_ListServices")
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Service, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Service, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBillingV1.ListServicesResponse in
       var request = request
@@ -125,7 +125,7 @@ extension Clients.CloudCatalogProtocol {
 
   public func listSkusByItems(
     request: ListSkusRequest
-  ) -> any AsyncSequence<Sku, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Sku, Swift.Error> & Sendable {
     self.listSkusByItems(request: request, options: .init())
   }
 
@@ -134,7 +134,7 @@ extension Clients.CloudCatalogProtocol {
   /// @Snippet(path: "CloudCatalog_ListSkus")
   public func listSkusByItems(
     request: ListSkusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Sku, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Sku, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudBillingV1.ListSkusResponse in
       var request = request
@@ -146,7 +146,7 @@ extension Clients.CloudCatalogProtocol {
 
   public func listSkusByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Sku, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Sku, Swift.Error> & Sendable {
     let request = ListSkusRequest().with {
       $0.parent = parent
     }

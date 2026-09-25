@@ -397,7 +397,7 @@ extension Clients.ModelServiceProtocol {
 
   public func listModelsByItems(
     request: ListModelsRequest
-  ) -> any AsyncSequence<Model, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Model, Swift.Error> & Sendable {
     self.listModelsByItems(request: request, options: .init())
   }
 
@@ -406,7 +406,7 @@ extension Clients.ModelServiceProtocol {
   /// @Snippet(path: "ModelService_ListModels")
   public func listModelsByItems(
     request: ListModelsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Model, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Model, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRetailV2.ListModelsResponse in
       var request = request
@@ -418,7 +418,7 @@ extension Clients.ModelServiceProtocol {
 
   public func listModelsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Model, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Model, Swift.Error> & Sendable {
     let request = ListModelsRequest().with {
       $0.parent = parent
     }
@@ -496,7 +496,7 @@ extension Clients.ModelServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -507,7 +507,7 @@ extension Clients.ModelServiceProtocol {
   /// @Snippet(path: "ModelService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -520,7 +520,7 @@ extension Clients.ModelServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

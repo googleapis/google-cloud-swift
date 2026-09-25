@@ -895,7 +895,7 @@ extension Clients.HubServiceProtocol {
 
   public func listHubsByItems(
     request: ListHubsRequest
-  ) -> any AsyncSequence<Hub, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Hub, Swift.Error> & Sendable {
     self.listHubsByItems(request: request, options: .init())
   }
 
@@ -904,7 +904,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListHubs")
   public func listHubsByItems(
     request: ListHubsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Hub, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Hub, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListHubsResponse in
@@ -917,7 +917,7 @@ extension Clients.HubServiceProtocol {
 
   public func listHubsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Hub, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Hub, Swift.Error> & Sendable {
     let request = ListHubsRequest().with {
       $0.parent = parent
     }
@@ -1068,7 +1068,7 @@ extension Clients.HubServiceProtocol {
 
   public func listHubSpokesByItems(
     request: ListHubSpokesRequest
-  ) -> any AsyncSequence<Spoke, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Spoke, Swift.Error> & Sendable {
     self.listHubSpokesByItems(request: request, options: .init())
   }
 
@@ -1079,7 +1079,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListHubSpokes")
   public func listHubSpokesByItems(
     request: ListHubSpokesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Spoke, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Spoke, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse in
@@ -1092,7 +1092,7 @@ extension Clients.HubServiceProtocol {
 
   public func listHubSpokesByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<Spoke, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Spoke, Swift.Error> & Sendable {
     let request = ListHubSpokesRequest().with {
       $0.name = name
     }
@@ -1113,7 +1113,7 @@ extension Clients.HubServiceProtocol {
 
   public func queryHubStatusByItems(
     request: QueryHubStatusRequest
-  ) -> any AsyncSequence<HubStatusEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<HubStatusEntry, Swift.Error> & Sendable {
     self.queryHubStatusByItems(request: request, options: .init())
   }
 
@@ -1123,7 +1123,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_QueryHubStatus")
   public func queryHubStatusByItems(
     request: QueryHubStatusRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<HubStatusEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<HubStatusEntry, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse in
@@ -1136,7 +1136,7 @@ extension Clients.HubServiceProtocol {
 
   public func queryHubStatusByItems(
     name: Swift.String,
-  ) -> any AsyncSequence<HubStatusEntry, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<HubStatusEntry, Swift.Error> & Sendable {
     let request = QueryHubStatusRequest().with {
       $0.name = name
     }
@@ -1157,7 +1157,7 @@ extension Clients.HubServiceProtocol {
 
   public func listSpokesByItems(
     request: ListSpokesRequest
-  ) -> any AsyncSequence<Spoke, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Spoke, Swift.Error> & Sendable {
     self.listSpokesByItems(request: request, options: .init())
   }
 
@@ -1167,7 +1167,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListSpokes")
   public func listSpokesByItems(
     request: ListSpokesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Spoke, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Spoke, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse in
@@ -1180,7 +1180,7 @@ extension Clients.HubServiceProtocol {
 
   public func listSpokesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Spoke, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Spoke, Swift.Error> & Sendable {
     let request = ListSpokesRequest().with {
       $0.parent = parent
     }
@@ -1541,7 +1541,7 @@ extension Clients.HubServiceProtocol {
 
   public func listRoutesByItems(
     request: ListRoutesRequest
-  ) -> any AsyncSequence<Route, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Route, Swift.Error> & Sendable {
     self.listRoutesByItems(request: request, options: .init())
   }
 
@@ -1550,7 +1550,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListRoutes")
   public func listRoutesByItems(
     request: ListRoutesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Route, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Route, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse in
@@ -1563,7 +1563,7 @@ extension Clients.HubServiceProtocol {
 
   public func listRoutesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Route, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Route, Swift.Error> & Sendable {
     let request = ListRoutesRequest().with {
       $0.parent = parent
     }
@@ -1584,7 +1584,7 @@ extension Clients.HubServiceProtocol {
 
   public func listRouteTablesByItems(
     request: ListRouteTablesRequest
-  ) -> any AsyncSequence<RouteTable, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RouteTable, Swift.Error> & Sendable {
     self.listRouteTablesByItems(request: request, options: .init())
   }
 
@@ -1593,7 +1593,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListRouteTables")
   public func listRouteTablesByItems(
     request: ListRouteTablesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<RouteTable, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RouteTable, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse in
@@ -1606,7 +1606,7 @@ extension Clients.HubServiceProtocol {
 
   public func listRouteTablesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<RouteTable, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<RouteTable, Swift.Error> & Sendable {
     let request = ListRouteTablesRequest().with {
       $0.parent = parent
     }
@@ -1648,7 +1648,7 @@ extension Clients.HubServiceProtocol {
 
   public func listGroupsByItems(
     request: ListGroupsRequest
-  ) -> any AsyncSequence<Group, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Group, Swift.Error> & Sendable {
     self.listGroupsByItems(request: request, options: .init())
   }
 
@@ -1657,7 +1657,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListGroups")
   public func listGroupsByItems(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Group, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Group, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse in
@@ -1670,7 +1670,7 @@ extension Clients.HubServiceProtocol {
 
   public func listGroupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Group, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Group, Swift.Error> & Sendable {
     let request = ListGroupsRequest().with {
       $0.parent = parent
     }
@@ -1728,7 +1728,7 @@ extension Clients.HubServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1737,7 +1737,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1809,7 +1809,7 @@ extension Clients.HubServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1820,7 +1820,7 @@ extension Clients.HubServiceProtocol {
   /// @Snippet(path: "HubService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1833,7 +1833,7 @@ extension Clients.HubServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

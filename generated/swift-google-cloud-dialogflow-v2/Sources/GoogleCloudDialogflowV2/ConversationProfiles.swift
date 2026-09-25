@@ -412,7 +412,7 @@
 
     public func listConversationProfilesByItems(
       request: ListConversationProfilesRequest
-    ) -> any AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
       self.listConversationProfilesByItems(request: request, options: .init())
     }
 
@@ -421,7 +421,7 @@
     /// @Snippet(path: "ConversationProfiles_ListConversationProfiles")
     public func listConversationProfilesByItems(
       request: ListConversationProfilesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDialogflowV2.ListConversationProfilesResponse in
@@ -434,7 +434,7 @@
 
     public func listConversationProfilesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<ConversationProfile, Swift.Error> & Sendable {
       let request = ListConversationProfilesRequest().with {
         $0.parent = parent
       }
@@ -644,7 +644,7 @@
 
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       self.listLocationsByItems(request: request, options: .init())
     }
 
@@ -670,7 +670,7 @@
     /// @Snippet(path: "ConversationProfiles_ListLocations")
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
         var request = request
@@ -706,7 +706,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -717,7 +717,7 @@
     /// @Snippet(path: "ConversationProfiles_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -730,7 +730,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

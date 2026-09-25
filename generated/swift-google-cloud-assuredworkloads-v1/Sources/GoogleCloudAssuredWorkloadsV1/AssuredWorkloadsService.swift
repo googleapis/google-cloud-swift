@@ -336,7 +336,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
 
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
-  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
     self.listWorkloadsByItems(request: request, options: .init())
   }
 
@@ -345,7 +345,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
   /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse in
@@ -358,7 +358,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
 
   public func listWorkloadsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Workload, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Workload, Swift.Error> & Sendable {
     let request = ListWorkloadsRequest().with {
       $0.parent = parent
     }
@@ -379,7 +379,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -390,7 +390,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
   /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -403,7 +403,7 @@ extension Clients.AssuredWorkloadsServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

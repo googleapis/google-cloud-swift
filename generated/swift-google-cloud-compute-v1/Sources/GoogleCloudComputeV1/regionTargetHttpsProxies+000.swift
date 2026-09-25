@@ -531,7 +531,7 @@
 
     public func listByItems(
       request: RegionTargetHttpsProxiesClient.ListRequest
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -541,7 +541,7 @@
     /// @Snippet(path: "regionTargetHttpsProxies_list")
     public func listByItems(
       request: RegionTargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList in
         var request = request
@@ -554,7 +554,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetHttpsProxy, Swift.Error> & Sendable {
       let request = RegionTargetHttpsProxiesClient.ListRequest().with {
         $0.project = project
         $0.region = region

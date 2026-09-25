@@ -656,7 +656,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listClustersByItems(
     request: ListClustersRequest
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     self.listClustersByItems(request: request, options: .init())
   }
 
@@ -673,7 +673,7 @@ extension Clients.CloudRedisClusterProtocol {
   /// @Snippet(path: "CloudRedisCluster_ListClusters")
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListClustersResponse
       in
@@ -686,7 +686,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
@@ -928,7 +928,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest
-  ) -> any AsyncSequence<BackupCollection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackupCollection, Swift.Error> & Sendable {
     self.listBackupCollectionsByItems(request: request, options: .init())
   }
 
@@ -941,7 +941,7 @@ extension Clients.CloudRedisClusterProtocol {
   /// @Snippet(path: "CloudRedisCluster_ListBackupCollections")
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackupCollection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackupCollection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudRedisClusterV1.ListBackupCollectionsResponse in
@@ -954,7 +954,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listBackupCollectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackupCollection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackupCollection, Swift.Error> & Sendable {
     let request = ListBackupCollectionsRequest().with {
       $0.parent = parent
     }
@@ -996,7 +996,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listBackupsByItems(
     request: ListBackupsRequest
-  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
     self.listBackupsByItems(request: request, options: .init())
   }
 
@@ -1005,7 +1005,7 @@ extension Clients.CloudRedisClusterProtocol {
   /// @Snippet(path: "CloudRedisCluster_ListBackups")
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRedisClusterV1.ListBackupsResponse
       in
@@ -1018,7 +1018,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listBackupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
@@ -1159,7 +1159,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1168,7 +1168,7 @@ extension Clients.CloudRedisClusterProtocol {
   /// @Snippet(path: "CloudRedisCluster_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1204,7 +1204,7 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1215,7 +1215,7 @@ extension Clients.CloudRedisClusterProtocol {
   /// @Snippet(path: "CloudRedisCluster_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1228,7 +1228,7 @@ extension Clients.CloudRedisClusterProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

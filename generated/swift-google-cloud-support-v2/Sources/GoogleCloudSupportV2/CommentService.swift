@@ -135,7 +135,7 @@ extension Clients.CommentServiceProtocol {
 
   public func listCommentsByItems(
     request: ListCommentsRequest
-  ) -> any AsyncSequence<Comment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Comment, Swift.Error> & Sendable {
     self.listCommentsByItems(request: request, options: .init())
   }
 
@@ -144,7 +144,7 @@ extension Clients.CommentServiceProtocol {
   /// @Snippet(path: "CommentService_ListComments")
   public func listCommentsByItems(
     request: ListCommentsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Comment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Comment, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudSupportV2.ListCommentsResponse in
       var request = request
@@ -156,7 +156,7 @@ extension Clients.CommentServiceProtocol {
 
   public func listCommentsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Comment, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Comment, Swift.Error> & Sendable {
     let request = ListCommentsRequest().with {
       $0.parent = parent
     }

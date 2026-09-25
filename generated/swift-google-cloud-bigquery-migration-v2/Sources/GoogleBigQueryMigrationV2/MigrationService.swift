@@ -207,7 +207,7 @@ extension Clients.MigrationServiceProtocol {
 
   public func listMigrationWorkflowsByItems(
     request: ListMigrationWorkflowsRequest
-  ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MigrationWorkflow, Swift.Error> & Sendable {
     self.listMigrationWorkflowsByItems(request: request, options: .init())
   }
 
@@ -216,7 +216,7 @@ extension Clients.MigrationServiceProtocol {
   /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
   public func listMigrationWorkflowsByItems(
     request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MigrationWorkflow, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse in
@@ -229,7 +229,7 @@ extension Clients.MigrationServiceProtocol {
 
   public func listMigrationWorkflowsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<MigrationWorkflow, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MigrationWorkflow, Swift.Error> & Sendable {
     let request = ListMigrationWorkflowsRequest().with {
       $0.parent = parent
     }
@@ -309,7 +309,7 @@ extension Clients.MigrationServiceProtocol {
 
   public func listMigrationSubtasksByItems(
     request: ListMigrationSubtasksRequest
-  ) -> any AsyncSequence<MigrationSubtask, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MigrationSubtask, Swift.Error> & Sendable {
     self.listMigrationSubtasksByItems(request: request, options: .init())
   }
 
@@ -318,7 +318,7 @@ extension Clients.MigrationServiceProtocol {
   /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
   public func listMigrationSubtasksByItems(
     request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<MigrationSubtask, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MigrationSubtask, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse in
@@ -331,7 +331,7 @@ extension Clients.MigrationServiceProtocol {
 
   public func listMigrationSubtasksByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<MigrationSubtask, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<MigrationSubtask, Swift.Error> & Sendable {
     let request = ListMigrationSubtasksRequest().with {
       $0.parent = parent
     }

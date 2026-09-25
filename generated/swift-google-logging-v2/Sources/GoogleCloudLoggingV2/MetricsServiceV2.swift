@@ -176,7 +176,7 @@ extension Clients.MetricsServiceV2Protocol {
 
   public func listLogMetricsByItems(
     request: ListLogMetricsRequest
-  ) -> any AsyncSequence<LogMetric, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogMetric, Swift.Error> & Sendable {
     self.listLogMetricsByItems(request: request, options: .init())
   }
 
@@ -185,7 +185,7 @@ extension Clients.MetricsServiceV2Protocol {
   /// @Snippet(path: "MetricsServiceV2_ListLogMetrics")
   public func listLogMetricsByItems(
     request: ListLogMetricsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<LogMetric, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogMetric, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse in
       var request = request
@@ -197,7 +197,7 @@ extension Clients.MetricsServiceV2Protocol {
 
   public func listLogMetricsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<LogMetric, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<LogMetric, Swift.Error> & Sendable {
     let request = ListLogMetricsRequest().with {
       $0.parent = parent
     }
@@ -304,7 +304,7 @@ extension Clients.MetricsServiceV2Protocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -315,7 +315,7 @@ extension Clients.MetricsServiceV2Protocol {
   /// @Snippet(path: "MetricsServiceV2_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -328,7 +328,7 @@ extension Clients.MetricsServiceV2Protocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

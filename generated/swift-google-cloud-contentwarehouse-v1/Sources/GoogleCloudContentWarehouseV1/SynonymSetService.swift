@@ -237,7 +237,7 @@ extension Clients.SynonymSetServiceProtocol {
 
   public func listSynonymSetsByItems(
     request: ListSynonymSetsRequest
-  ) -> any AsyncSequence<SynonymSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SynonymSet, Swift.Error> & Sendable {
     self.listSynonymSetsByItems(request: request, options: .init())
   }
 
@@ -246,7 +246,7 @@ extension Clients.SynonymSetServiceProtocol {
   /// @Snippet(path: "SynonymSetService_ListSynonymSets")
   public func listSynonymSetsByItems(
     request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<SynonymSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SynonymSet, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse in
@@ -259,7 +259,7 @@ extension Clients.SynonymSetServiceProtocol {
 
   public func listSynonymSetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<SynonymSet, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<SynonymSet, Swift.Error> & Sendable {
     let request = ListSynonymSetsRequest().with {
       $0.parent = parent
     }

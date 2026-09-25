@@ -917,7 +917,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listClustersByItems(
     request: ListClustersRequest
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     self.listClustersByItems(request: request, options: .init())
   }
 
@@ -926,7 +926,7 @@ extension Clients.StreamsServiceProtocol {
   /// @Snippet(path: "StreamsService_ListClusters")
   public func listClustersByItems(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListClustersResponse in
       var request = request
@@ -938,7 +938,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listClustersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Cluster, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Cluster, Swift.Error> & Sendable {
     let request = ListClustersRequest().with {
       $0.parent = parent
     }
@@ -1095,7 +1095,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listStreamsByItems(
     request: ListStreamsRequest
-  ) -> any AsyncSequence<Stream, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Stream, Swift.Error> & Sendable {
     self.listStreamsByItems(request: request, options: .init())
   }
 
@@ -1104,7 +1104,7 @@ extension Clients.StreamsServiceProtocol {
   /// @Snippet(path: "StreamsService_ListStreams")
   public func listStreamsByItems(
     request: ListStreamsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Stream, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Stream, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListStreamsResponse in
       var request = request
@@ -1116,7 +1116,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listStreamsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Stream, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Stream, Swift.Error> & Sendable {
     let request = ListStreamsRequest().with {
       $0.parent = parent
     }
@@ -1332,7 +1332,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listEventsByItems(
     request: ListEventsRequest
-  ) -> any AsyncSequence<Event, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Event, Swift.Error> & Sendable {
     self.listEventsByItems(request: request, options: .init())
   }
 
@@ -1341,7 +1341,7 @@ extension Clients.StreamsServiceProtocol {
   /// @Snippet(path: "StreamsService_ListEvents")
   public func listEventsByItems(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Event, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Event, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListEventsResponse in
       var request = request
@@ -1353,7 +1353,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listEventsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Event, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Event, Swift.Error> & Sendable {
     let request = ListEventsRequest().with {
       $0.parent = parent
     }
@@ -1504,7 +1504,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listSeriesByItems(
     request: ListSeriesRequest
-  ) -> any AsyncSequence<Series, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Series, Swift.Error> & Sendable {
     self.listSeriesByItems(request: request, options: .init())
   }
 
@@ -1513,7 +1513,7 @@ extension Clients.StreamsServiceProtocol {
   /// @Snippet(path: "StreamsService_ListSeries")
   public func listSeriesByItems(
     request: ListSeriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Series, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Series, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListSeriesResponse in
       var request = request
@@ -1525,7 +1525,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listSeriesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Series, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Series, Swift.Error> & Sendable {
     let request = ListSeriesRequest().with {
       $0.parent = parent
     }
@@ -1720,7 +1720,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1729,7 +1729,7 @@ extension Clients.StreamsServiceProtocol {
   /// @Snippet(path: "StreamsService_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1765,7 +1765,7 @@ extension Clients.StreamsServiceProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1776,7 +1776,7 @@ extension Clients.StreamsServiceProtocol {
   /// @Snippet(path: "StreamsService_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1789,7 +1789,7 @@ extension Clients.StreamsServiceProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

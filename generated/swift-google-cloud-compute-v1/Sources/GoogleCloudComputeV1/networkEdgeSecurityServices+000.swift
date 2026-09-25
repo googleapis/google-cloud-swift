@@ -296,7 +296,7 @@
 
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
       & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
@@ -312,7 +312,7 @@
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
       & Sendable
     {
       let listRpc = {
@@ -327,7 +327,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), Swift.Error>
       & Sendable
     {
       let request = NetworkEdgeSecurityServicesClient.AggregatedListRequest().with {

@@ -314,7 +314,7 @@
 
     public func listSchemasByItems(
       request: ListSchemasRequest
-    ) -> any AsyncSequence<Schema, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Schema, Swift.Error> & Sendable {
       self.listSchemasByItems(request: request, options: .init())
     }
 
@@ -325,7 +325,7 @@
     /// @Snippet(path: "SchemaService_ListSchemas")
     public func listSchemasByItems(
       request: ListSchemasRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Schema, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Schema, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse in
@@ -338,7 +338,7 @@
 
     public func listSchemasByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<Schema, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Schema, Swift.Error> & Sendable {
       let request = ListSchemasRequest().with {
         $0.parent = parent
       }
@@ -466,7 +466,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -477,7 +477,7 @@
     /// @Snippet(path: "SchemaService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -490,7 +490,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

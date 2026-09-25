@@ -209,7 +209,7 @@ extension Clients.ResponsePoliciesProtocol {
 
   public func listByItems(
     request: ResponsePoliciesClient.ListRequest
-  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResponsePolicy, Swift.Error> & Sendable {
     self.listByItems(request: request, options: .init())
   }
 
@@ -218,7 +218,7 @@ extension Clients.ResponsePoliciesProtocol {
   /// @Snippet(path: "responsePolicies_list")
   public func listByItems(
     request: ResponsePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResponsePolicy, Swift.Error> & Sendable {
     let listRpc = { @Sendable (token: Swift.String) async throws -> ResponsePoliciesListResponse in
       var request = request
       request.pageToken = token
@@ -229,7 +229,7 @@ extension Clients.ResponsePoliciesProtocol {
 
   public func listByItems(
     project: Swift.String,
-  ) -> any AsyncSequence<ResponsePolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ResponsePolicy, Swift.Error> & Sendable {
     let request = ResponsePoliciesClient.ListRequest().with {
       $0.project = project
     }

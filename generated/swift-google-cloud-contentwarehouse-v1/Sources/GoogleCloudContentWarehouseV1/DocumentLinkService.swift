@@ -153,7 +153,7 @@ extension Clients.DocumentLinkServiceProtocol {
 
   public func listLinkedSourcesByItems(
     request: ListLinkedSourcesRequest
-  ) -> any AsyncSequence<DocumentLink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DocumentLink, Swift.Error> & Sendable {
     self.listLinkedSourcesByItems(request: request, options: .init())
   }
 
@@ -162,7 +162,7 @@ extension Clients.DocumentLinkServiceProtocol {
   /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
   public func listLinkedSourcesByItems(
     request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DocumentLink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DocumentLink, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse in
@@ -175,7 +175,7 @@ extension Clients.DocumentLinkServiceProtocol {
 
   public func listLinkedSourcesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DocumentLink, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DocumentLink, Swift.Error> & Sendable {
     let request = ListLinkedSourcesRequest().with {
       $0.parent = parent
     }

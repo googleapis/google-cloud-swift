@@ -1186,7 +1186,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listInspectTemplatesByItems(
     request: ListInspectTemplatesRequest
-  ) -> any AsyncSequence<InspectTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InspectTemplate, Swift.Error> & Sendable {
     self.listInspectTemplatesByItems(request: request, options: .init())
   }
 
@@ -1198,7 +1198,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListInspectTemplates")
   public func listInspectTemplatesByItems(
     request: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<InspectTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InspectTemplate, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListInspectTemplatesResponse
       in
@@ -1211,7 +1211,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listInspectTemplatesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<InspectTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<InspectTemplate, Swift.Error> & Sendable {
     let request = ListInspectTemplatesRequest().with {
       $0.parent = parent
     }
@@ -1320,7 +1320,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listDeidentifyTemplatesByItems(
     request: ListDeidentifyTemplatesRequest
-  ) -> any AsyncSequence<DeidentifyTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeidentifyTemplate, Swift.Error> & Sendable {
     self.listDeidentifyTemplatesByItems(request: request, options: .init())
   }
 
@@ -1332,7 +1332,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
   public func listDeidentifyTemplatesByItems(
     request: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeidentifyTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeidentifyTemplate, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDLPV2.ListDeidentifyTemplatesResponse in
@@ -1345,7 +1345,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listDeidentifyTemplatesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DeidentifyTemplate, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeidentifyTemplate, Swift.Error> & Sendable {
     let request = ListDeidentifyTemplatesRequest().with {
       $0.parent = parent
     }
@@ -1475,7 +1475,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listJobTriggersByItems(
     request: ListJobTriggersRequest
-  ) -> any AsyncSequence<JobTrigger, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobTrigger, Swift.Error> & Sendable {
     self.listJobTriggersByItems(request: request, options: .init())
   }
 
@@ -1487,7 +1487,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListJobTriggers")
   public func listJobTriggersByItems(
     request: ListJobTriggersRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<JobTrigger, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobTrigger, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListJobTriggersResponse in
       var request = request
@@ -1499,7 +1499,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listJobTriggersByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<JobTrigger, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobTrigger, Swift.Error> & Sendable {
     let request = ListJobTriggersRequest().with {
       $0.parent = parent
     }
@@ -1620,7 +1620,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listDiscoveryConfigsByItems(
     request: ListDiscoveryConfigsRequest
-  ) -> any AsyncSequence<DiscoveryConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveryConfig, Swift.Error> & Sendable {
     self.listDiscoveryConfigsByItems(request: request, options: .init())
   }
 
@@ -1629,7 +1629,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
   public func listDiscoveryConfigsByItems(
     request: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DiscoveryConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveryConfig, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListDiscoveryConfigsResponse
       in
@@ -1642,7 +1642,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listDiscoveryConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DiscoveryConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DiscoveryConfig, Swift.Error> & Sendable {
     let request = ListDiscoveryConfigsRequest().with {
       $0.parent = parent
     }
@@ -1714,7 +1714,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listDlpJobsByItems(
     request: ListDlpJobsRequest
-  ) -> any AsyncSequence<DlpJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DlpJob, Swift.Error> & Sendable {
     self.listDlpJobsByItems(request: request, options: .init())
   }
 
@@ -1728,7 +1728,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListDlpJobs")
   public func listDlpJobsByItems(
     request: ListDlpJobsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DlpJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DlpJob, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListDlpJobsResponse in
       var request = request
@@ -1740,7 +1740,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listDlpJobsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DlpJob, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DlpJob, Swift.Error> & Sendable {
     let request = ListDlpJobsRequest().with {
       $0.parent = parent
     }
@@ -1878,7 +1878,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listStoredInfoTypesByItems(
     request: ListStoredInfoTypesRequest
-  ) -> any AsyncSequence<StoredInfoType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<StoredInfoType, Swift.Error> & Sendable {
     self.listStoredInfoTypesByItems(request: request, options: .init())
   }
 
@@ -1890,7 +1890,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListStoredInfoTypes")
   public func listStoredInfoTypesByItems(
     request: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<StoredInfoType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<StoredInfoType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListStoredInfoTypesResponse
       in
@@ -1903,7 +1903,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listStoredInfoTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<StoredInfoType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<StoredInfoType, Swift.Error> & Sendable {
     let request = ListStoredInfoTypesRequest().with {
       $0.parent = parent
     }
@@ -1943,7 +1943,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listProjectDataProfilesByItems(
     request: ListProjectDataProfilesRequest
-  ) -> any AsyncSequence<ProjectDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProjectDataProfile, Swift.Error> & Sendable {
     self.listProjectDataProfilesByItems(request: request, options: .init())
   }
 
@@ -1952,7 +1952,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListProjectDataProfiles")
   public func listProjectDataProfilesByItems(
     request: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ProjectDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProjectDataProfile, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDLPV2.ListProjectDataProfilesResponse in
@@ -1965,7 +1965,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listProjectDataProfilesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ProjectDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ProjectDataProfile, Swift.Error> & Sendable {
     let request = ListProjectDataProfilesRequest().with {
       $0.parent = parent
     }
@@ -1986,7 +1986,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listTableDataProfilesByItems(
     request: ListTableDataProfilesRequest
-  ) -> any AsyncSequence<TableDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TableDataProfile, Swift.Error> & Sendable {
     self.listTableDataProfilesByItems(request: request, options: .init())
   }
 
@@ -1995,7 +1995,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListTableDataProfiles")
   public func listTableDataProfilesByItems(
     request: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TableDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TableDataProfile, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListTableDataProfilesResponse
       in
@@ -2008,7 +2008,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listTableDataProfilesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TableDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TableDataProfile, Swift.Error> & Sendable {
     let request = ListTableDataProfilesRequest().with {
       $0.parent = parent
     }
@@ -2029,7 +2029,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listColumnDataProfilesByItems(
     request: ListColumnDataProfilesRequest
-  ) -> any AsyncSequence<ColumnDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ColumnDataProfile, Swift.Error> & Sendable {
     self.listColumnDataProfilesByItems(request: request, options: .init())
   }
 
@@ -2038,7 +2038,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListColumnDataProfiles")
   public func listColumnDataProfilesByItems(
     request: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ColumnDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ColumnDataProfile, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDLPV2.ListColumnDataProfilesResponse in
@@ -2051,7 +2051,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listColumnDataProfilesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ColumnDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ColumnDataProfile, Swift.Error> & Sendable {
     let request = ListColumnDataProfilesRequest().with {
       $0.parent = parent
     }
@@ -2093,7 +2093,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listFileStoreDataProfilesByItems(
     request: ListFileStoreDataProfilesRequest
-  ) -> any AsyncSequence<FileStoreDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FileStoreDataProfile, Swift.Error> & Sendable {
     self.listFileStoreDataProfilesByItems(request: request, options: .init())
   }
 
@@ -2102,7 +2102,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
   public func listFileStoreDataProfilesByItems(
     request: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<FileStoreDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FileStoreDataProfile, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDLPV2.ListFileStoreDataProfilesResponse in
@@ -2115,7 +2115,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listFileStoreDataProfilesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<FileStoreDataProfile, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<FileStoreDataProfile, Swift.Error> & Sendable {
     let request = ListFileStoreDataProfilesRequest().with {
       $0.parent = parent
     }
@@ -2312,7 +2312,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listConnectionsByItems(
     request: ListConnectionsRequest
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     self.listConnectionsByItems(request: request, options: .init())
   }
 
@@ -2322,7 +2322,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListConnections")
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListConnectionsResponse in
       var request = request
@@ -2334,7 +2334,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let request = ListConnectionsRequest().with {
       $0.parent = parent
     }
@@ -2355,7 +2355,7 @@ extension Clients.DlpServiceProtocol {
 
   public func searchConnectionsByItems(
     request: SearchConnectionsRequest
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     self.searchConnectionsByItems(request: request, options: .init())
   }
 
@@ -2364,7 +2364,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_SearchConnections")
   public func searchConnectionsByItems(
     request: SearchConnectionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.SearchConnectionsResponse in
       var request = request
@@ -2376,7 +2376,7 @@ extension Clients.DlpServiceProtocol {
 
   public func searchConnectionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Connection, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Connection, Swift.Error> & Sendable {
     let request = SearchConnectionsRequest().with {
       $0.parent = parent
     }
@@ -2506,7 +2506,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listContentPoliciesByItems(
     request: ListContentPoliciesRequest
-  ) -> any AsyncSequence<ContentPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ContentPolicy, Swift.Error> & Sendable {
     self.listContentPoliciesByItems(request: request, options: .init())
   }
 
@@ -2515,7 +2515,7 @@ extension Clients.DlpServiceProtocol {
   /// @Snippet(path: "DlpService_ListContentPolicies")
   public func listContentPoliciesByItems(
     request: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ContentPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ContentPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse
       in
@@ -2528,7 +2528,7 @@ extension Clients.DlpServiceProtocol {
 
   public func listContentPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ContentPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ContentPolicy, Swift.Error> & Sendable {
     let request = ListContentPoliciesRequest().with {
       $0.parent = parent
     }

@@ -878,7 +878,7 @@
 
     public func listTargetSitesByItems(
       request: ListTargetSitesRequest
-    ) -> any AsyncSequence<TargetSite, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSite, Swift.Error> & Sendable {
       self.listTargetSitesByItems(request: request, options: .init())
     }
 
@@ -889,7 +889,7 @@
     /// @Snippet(path: "SiteSearchEngineService_ListTargetSites")
     public func listTargetSitesByItems(
       request: ListTargetSitesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetSite, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSite, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse in
@@ -902,7 +902,7 @@
 
     public func listTargetSitesByItems(
       parent: Swift.String,
-    ) -> any AsyncSequence<TargetSite, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSite, Swift.Error> & Sendable {
       let request = ListTargetSitesRequest().with {
         $0.parent = parent
       }
@@ -1139,7 +1139,7 @@
 
     public func fetchDomainVerificationStatusByItems(
       request: FetchDomainVerificationStatusRequest
-    ) -> any AsyncSequence<TargetSite, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSite, Swift.Error> & Sendable {
       self.fetchDomainVerificationStatusByItems(request: request, options: .init())
     }
 
@@ -1150,7 +1150,7 @@
     /// @Snippet(path: "SiteSearchEngineService_FetchDomainVerificationStatus")
     public func fetchDomainVerificationStatusByItems(
       request: FetchDomainVerificationStatusRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<TargetSite, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<TargetSite, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudDiscoveryEngineV1.FetchDomainVerificationStatusResponse in
@@ -1175,7 +1175,7 @@
 
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       self.listOperationsByItems(request: request, options: .init())
     }
 
@@ -1186,7 +1186,7 @@
     /// @Snippet(path: "SiteSearchEngineService_ListOperations")
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
         var request = request
@@ -1199,7 +1199,7 @@
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
-    ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
       let request = GoogleLongRunning.ListOperationsRequest().with {
         $0.name = name
         $0.filter = filter

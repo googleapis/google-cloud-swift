@@ -816,7 +816,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listInstancesByItems(
     request: ListInstancesRequest
-  ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
     self.listInstancesByItems(request: request, options: .init())
   }
 
@@ -826,7 +826,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// @Snippet(path: "CloudFilestoreManager_ListInstances")
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudFilestoreV1.ListInstancesResponse
       in
@@ -839,7 +839,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listInstancesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
     let request = ListInstancesRequest().with {
       $0.parent = parent
     }
@@ -1054,7 +1054,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listSnapshotsByItems(
     request: ListSnapshotsRequest
-  ) -> any AsyncSequence<Snapshot, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Snapshot, Swift.Error> & Sendable {
     self.listSnapshotsByItems(request: request, options: .init())
   }
 
@@ -1064,7 +1064,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// @Snippet(path: "CloudFilestoreManager_ListSnapshots")
   public func listSnapshotsByItems(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Snapshot, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Snapshot, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudFilestoreV1.ListSnapshotsResponse
       in
@@ -1077,7 +1077,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listSnapshotsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Snapshot, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Snapshot, Swift.Error> & Sendable {
     let request = ListSnapshotsRequest().with {
       $0.parent = parent
     }
@@ -1236,7 +1236,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listBackupsByItems(
     request: ListBackupsRequest
-  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
     self.listBackupsByItems(request: request, options: .init())
   }
 
@@ -1246,7 +1246,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// @Snippet(path: "CloudFilestoreManager_ListBackups")
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudFilestoreV1.ListBackupsResponse in
       var request = request
@@ -1258,7 +1258,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listBackupsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Backup, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Backup, Swift.Error> & Sendable {
     let request = ListBackupsRequest().with {
       $0.parent = parent
     }
@@ -1440,7 +1440,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1449,7 +1449,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// @Snippet(path: "CloudFilestoreManager_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1485,7 +1485,7 @@ extension Clients.CloudFilestoreManagerProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1496,7 +1496,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// @Snippet(path: "CloudFilestoreManager_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1509,7 +1509,7 @@ extension Clients.CloudFilestoreManagerProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

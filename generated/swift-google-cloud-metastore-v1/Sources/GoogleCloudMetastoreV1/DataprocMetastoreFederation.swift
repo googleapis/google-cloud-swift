@@ -388,7 +388,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listFederationsByItems(
     request: ListFederationsRequest
-  ) -> any AsyncSequence<Federation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Federation, Swift.Error> & Sendable {
     self.listFederationsByItems(request: request, options: .init())
   }
 
@@ -397,7 +397,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
   /// @Snippet(path: "DataprocMetastoreFederation_ListFederations")
   public func listFederationsByItems(
     request: ListFederationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Federation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Federation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse
       in
@@ -410,7 +410,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listFederationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Federation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Federation, Swift.Error> & Sendable {
     let request = ListFederationsRequest().with {
       $0.parent = parent
     }
@@ -569,7 +569,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -578,7 +578,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
   /// @Snippet(path: "DataprocMetastoreFederation_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -650,7 +650,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -661,7 +661,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
   /// @Snippet(path: "DataprocMetastoreFederation_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -674,7 +674,7 @@ extension Clients.DataprocMetastoreFederationProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

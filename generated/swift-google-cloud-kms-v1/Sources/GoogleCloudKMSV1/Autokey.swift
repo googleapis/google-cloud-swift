@@ -356,7 +356,7 @@ extension Clients.AutokeyProtocol {
 
   public func listKeyHandlesByItems(
     request: ListKeyHandlesRequest
-  ) -> any AsyncSequence<KeyHandle, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<KeyHandle, Swift.Error> & Sendable {
     self.listKeyHandlesByItems(request: request, options: .init())
   }
 
@@ -367,7 +367,7 @@ extension Clients.AutokeyProtocol {
   /// @Snippet(path: "Autokey_ListKeyHandles")
   public func listKeyHandlesByItems(
     request: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<KeyHandle, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<KeyHandle, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse in
       var request = request
@@ -379,7 +379,7 @@ extension Clients.AutokeyProtocol {
 
   public func listKeyHandlesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<KeyHandle, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<KeyHandle, Swift.Error> & Sendable {
     let request = ListKeyHandlesRequest().with {
       $0.parent = parent
     }
@@ -400,7 +400,7 @@ extension Clients.AutokeyProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -426,7 +426,7 @@ extension Clients.AutokeyProtocol {
   /// @Snippet(path: "Autokey_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request

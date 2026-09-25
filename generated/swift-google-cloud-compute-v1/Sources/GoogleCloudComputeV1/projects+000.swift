@@ -1002,7 +1002,7 @@
 
     public func getXpnResourcesByItems(
       request: ProjectsClient.GetXpnResourcesRequest
-    ) -> any AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
       self.getXpnResourcesByItems(request: request, options: .init())
     }
 
@@ -1012,7 +1012,7 @@
     /// @Snippet(path: "projects_getXpnResources")
     public func getXpnResourcesByItems(
       request: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources
         in
@@ -1025,7 +1025,7 @@
 
     public func getXpnResourcesByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<XpnResourceId, Swift.Error> & Sendable {
       let request = ProjectsClient.GetXpnResourcesRequest().with {
         $0.project = project
       }
@@ -1046,7 +1046,7 @@
 
     public func listXpnHostsByItems(
       request: ProjectsClient.ListXpnHostsRequest
-    ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
       self.listXpnHostsByItems(request: request, options: .init())
     }
 
@@ -1055,7 +1055,7 @@
     /// @Snippet(path: "projects_listXpnHosts")
     public func listXpnHostsByItems(
       request: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.XpnHostList in
         var request = request
@@ -1068,7 +1068,7 @@
     public func listXpnHostsByItems(
       project: Swift.String,
       body: ProjectsListXpnHostsRequest?,
-    ) -> any AsyncSequence<Project, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Project, Swift.Error> & Sendable {
       let request = ProjectsClient.ListXpnHostsRequest().with {
         $0.project = project
         $0.body = body

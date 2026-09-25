@@ -380,7 +380,7 @@
 
     public func aggregatedListByItems(
       request: InterconnectAttachmentsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
       & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
@@ -395,7 +395,7 @@
     public func aggregatedListByItems(
       request: InterconnectAttachmentsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
       & Sendable
     {
       let listRpc = {
@@ -410,7 +410,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, InterconnectAttachmentsScopedList), Swift.Error>
       & Sendable
     {
       let request = InterconnectAttachmentsClient.AggregatedListRequest().with {
@@ -544,7 +544,7 @@
 
     public func listByItems(
       request: InterconnectAttachmentsClient.ListRequest
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -554,7 +554,7 @@
     /// @Snippet(path: "interconnectAttachments_list")
     public func listByItems(
       request: InterconnectAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.InterconnectAttachmentList in
@@ -568,7 +568,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InterconnectAttachment, Swift.Error> & Sendable {
       let request = InterconnectAttachmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region

@@ -401,7 +401,7 @@
 
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -410,7 +410,7 @@
     /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.PublicDelegatedPrefixList in
@@ -423,7 +423,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<PublicDelegatedPrefix, Swift.Error> & Sendable {
       let request = GlobalPublicDelegatedPrefixesClient.ListRequest().with {
         $0.project = project
       }

@@ -481,7 +481,7 @@
 
     public func listByItems(
       request: RegionAutoscalersClient.ListRequest
-    ) -> any AsyncSequence<Autoscaler, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Autoscaler, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -491,7 +491,7 @@
     /// @Snippet(path: "regionAutoscalers_list")
     public func listByItems(
       request: RegionAutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Autoscaler, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Autoscaler, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionAutoscalerList in
         var request = request
@@ -504,7 +504,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<Autoscaler, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Autoscaler, Swift.Error> & Sendable {
       let request = RegionAutoscalersClient.ListRequest().with {
         $0.project = project
         $0.region = region

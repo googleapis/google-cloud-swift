@@ -1086,7 +1086,7 @@
 
     public func aggregatedListByItems(
       request: NetworkFirewallPoliciesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -1101,7 +1101,7 @@
     public func aggregatedListByItems(
       request: NetworkFirewallPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkFirewallPolicyAggregatedList in
@@ -1114,7 +1114,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, FirewallPoliciesScopedList), Swift.Error> & Sendable {
       let request = NetworkFirewallPoliciesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -1375,7 +1375,7 @@
 
     public func listByItems(
       request: NetworkFirewallPoliciesClient.ListRequest
-    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1384,7 +1384,7 @@
     /// @Snippet(path: "networkFirewallPolicies_list")
     public func listByItems(
       request: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.FirewallPolicyList in
         var request = request
@@ -1396,7 +1396,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<FirewallPolicy, Swift.Error> & Sendable {
       let request = NetworkFirewallPoliciesClient.ListRequest().with {
         $0.project = project
       }

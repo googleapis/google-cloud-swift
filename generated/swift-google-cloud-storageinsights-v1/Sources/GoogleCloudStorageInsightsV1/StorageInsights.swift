@@ -512,7 +512,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listReportConfigsByItems(
     request: ListReportConfigsRequest
-  ) -> any AsyncSequence<ReportConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReportConfig, Swift.Error> & Sendable {
     self.listReportConfigsByItems(request: request, options: .init())
   }
 
@@ -521,7 +521,7 @@ extension Clients.StorageInsightsProtocol {
   /// @Snippet(path: "StorageInsights_ListReportConfigs")
   public func listReportConfigsByItems(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ReportConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReportConfig, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudStorageInsightsV1.ListReportConfigsResponse in
@@ -534,7 +534,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listReportConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ReportConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReportConfig, Swift.Error> & Sendable {
     let request = ListReportConfigsRequest().with {
       $0.parent = parent
     }
@@ -641,7 +641,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listReportDetailsByItems(
     request: ListReportDetailsRequest
-  ) -> any AsyncSequence<ReportDetail, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReportDetail, Swift.Error> & Sendable {
     self.listReportDetailsByItems(request: request, options: .init())
   }
 
@@ -650,7 +650,7 @@ extension Clients.StorageInsightsProtocol {
   /// @Snippet(path: "StorageInsights_ListReportDetails")
   public func listReportDetailsByItems(
     request: ListReportDetailsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ReportDetail, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReportDetail, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudStorageInsightsV1.ListReportDetailsResponse in
@@ -663,7 +663,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listReportDetailsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ReportDetail, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ReportDetail, Swift.Error> & Sendable {
     let request = ListReportDetailsRequest().with {
       $0.parent = parent
     }
@@ -705,7 +705,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listDatasetConfigsByItems(
     request: ListDatasetConfigsRequest
-  ) -> any AsyncSequence<DatasetConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DatasetConfig, Swift.Error> & Sendable {
     self.listDatasetConfigsByItems(request: request, options: .init())
   }
 
@@ -714,7 +714,7 @@ extension Clients.StorageInsightsProtocol {
   /// @Snippet(path: "StorageInsights_ListDatasetConfigs")
   public func listDatasetConfigsByItems(
     request: ListDatasetConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DatasetConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DatasetConfig, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudStorageInsightsV1.ListDatasetConfigsResponse in
@@ -727,7 +727,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listDatasetConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DatasetConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DatasetConfig, Swift.Error> & Sendable {
     let request = ListDatasetConfigsRequest().with {
       $0.parent = parent
     }
@@ -961,7 +961,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -970,7 +970,7 @@ extension Clients.StorageInsightsProtocol {
   /// @Snippet(path: "StorageInsights_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1006,7 +1006,7 @@ extension Clients.StorageInsightsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1017,7 +1017,7 @@ extension Clients.StorageInsightsProtocol {
   /// @Snippet(path: "StorageInsights_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1030,7 +1030,7 @@ extension Clients.StorageInsightsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

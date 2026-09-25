@@ -1377,7 +1377,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeliveryPipelinesByItems(
     request: ListDeliveryPipelinesRequest
-  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeliveryPipeline, Swift.Error> & Sendable {
     self.listDeliveryPipelinesByItems(request: request, options: .init())
   }
 
@@ -1386,7 +1386,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListDeliveryPipelines")
   public func listDeliveryPipelinesByItems(
     request: ListDeliveryPipelinesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeliveryPipeline, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDeployV1.ListDeliveryPipelinesResponse in
@@ -1399,7 +1399,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeliveryPipelinesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DeliveryPipeline, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeliveryPipeline, Swift.Error> & Sendable {
     let request = ListDeliveryPipelinesRequest().with {
       $0.parent = parent
     }
@@ -1560,7 +1560,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listTargetsByItems(
     request: ListTargetsRequest
-  ) -> any AsyncSequence<Target, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Target, Swift.Error> & Sendable {
     self.listTargetsByItems(request: request, options: .init())
   }
 
@@ -1569,7 +1569,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListTargets")
   public func listTargetsByItems(
     request: ListTargetsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Target, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Target, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListTargetsResponse in
       var request = request
@@ -1581,7 +1581,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listTargetsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Target, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Target, Swift.Error> & Sendable {
     let request = ListTargetsRequest().with {
       $0.parent = parent
     }
@@ -1760,7 +1760,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listCustomTargetTypesByItems(
     request: ListCustomTargetTypesRequest
-  ) -> any AsyncSequence<CustomTargetType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomTargetType, Swift.Error> & Sendable {
     self.listCustomTargetTypesByItems(request: request, options: .init())
   }
 
@@ -1769,7 +1769,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListCustomTargetTypes")
   public func listCustomTargetTypesByItems(
     request: ListCustomTargetTypesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<CustomTargetType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomTargetType, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudDeployV1.ListCustomTargetTypesResponse in
@@ -1782,7 +1782,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listCustomTargetTypesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<CustomTargetType, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<CustomTargetType, Swift.Error> & Sendable {
     let request = ListCustomTargetTypesRequest().with {
       $0.parent = parent
     }
@@ -1943,7 +1943,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listReleasesByItems(
     request: ListReleasesRequest
-  ) -> any AsyncSequence<Release, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Release, Swift.Error> & Sendable {
     self.listReleasesByItems(request: request, options: .init())
   }
 
@@ -1952,7 +1952,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListReleases")
   public func listReleasesByItems(
     request: ListReleasesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Release, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Release, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListReleasesResponse in
       var request = request
@@ -1964,7 +1964,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listReleasesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Release, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Release, Swift.Error> & Sendable {
     let request = ListReleasesRequest().with {
       $0.parent = parent
     }
@@ -2185,7 +2185,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeployPoliciesByItems(
     request: ListDeployPoliciesRequest
-  ) -> any AsyncSequence<DeployPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeployPolicy, Swift.Error> & Sendable {
     self.listDeployPoliciesByItems(request: request, options: .init())
   }
 
@@ -2194,7 +2194,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListDeployPolicies")
   public func listDeployPoliciesByItems(
     request: ListDeployPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DeployPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeployPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListDeployPoliciesResponse
       in
@@ -2207,7 +2207,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listDeployPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<DeployPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DeployPolicy, Swift.Error> & Sendable {
     let request = ListDeployPoliciesRequest().with {
       $0.parent = parent
     }
@@ -2314,7 +2314,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listRolloutsByItems(
     request: ListRolloutsRequest
-  ) -> any AsyncSequence<Rollout, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Rollout, Swift.Error> & Sendable {
     self.listRolloutsByItems(request: request, options: .init())
   }
 
@@ -2323,7 +2323,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListRollouts")
   public func listRolloutsByItems(
     request: ListRolloutsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Rollout, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Rollout, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListRolloutsResponse in
       var request = request
@@ -2335,7 +2335,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listRolloutsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Rollout, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Rollout, Swift.Error> & Sendable {
     let request = ListRolloutsRequest().with {
       $0.parent = parent
     }
@@ -2466,7 +2466,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listJobRunsByItems(
     request: ListJobRunsRequest
-  ) -> any AsyncSequence<JobRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobRun, Swift.Error> & Sendable {
     self.listJobRunsByItems(request: request, options: .init())
   }
 
@@ -2475,7 +2475,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListJobRuns")
   public func listJobRunsByItems(
     request: ListJobRunsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<JobRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobRun, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListJobRunsResponse in
       var request = request
@@ -2487,7 +2487,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listJobRunsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<JobRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<JobRun, Swift.Error> & Sendable {
     let request = ListJobRunsRequest().with {
       $0.parent = parent
     }
@@ -2705,7 +2705,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomationsByItems(
     request: ListAutomationsRequest
-  ) -> any AsyncSequence<Automation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Automation, Swift.Error> & Sendable {
     self.listAutomationsByItems(request: request, options: .init())
   }
 
@@ -2714,7 +2714,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListAutomations")
   public func listAutomationsByItems(
     request: ListAutomationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Automation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Automation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListAutomationsResponse in
       var request = request
@@ -2726,7 +2726,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomationsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Automation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Automation, Swift.Error> & Sendable {
     let request = ListAutomationsRequest().with {
       $0.parent = parent
     }
@@ -2768,7 +2768,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomationRunsByItems(
     request: ListAutomationRunsRequest
-  ) -> any AsyncSequence<AutomationRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutomationRun, Swift.Error> & Sendable {
     self.listAutomationRunsByItems(request: request, options: .init())
   }
 
@@ -2777,7 +2777,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListAutomationRuns")
   public func listAutomationRunsByItems(
     request: ListAutomationRunsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AutomationRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutomationRun, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudDeployV1.ListAutomationRunsResponse
       in
@@ -2790,7 +2790,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listAutomationRunsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AutomationRun, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AutomationRun, Swift.Error> & Sendable {
     let request = ListAutomationRunsRequest().with {
       $0.parent = parent
     }
@@ -2832,7 +2832,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -2841,7 +2841,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -2913,7 +2913,7 @@ extension Clients.CloudDeployProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -2924,7 +2924,7 @@ extension Clients.CloudDeployProtocol {
   /// @Snippet(path: "CloudDeploy_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -2937,7 +2937,7 @@ extension Clients.CloudDeployProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

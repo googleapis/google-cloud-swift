@@ -356,7 +356,7 @@
 
     public func aggregatedListByItems(
       request: NetworkAttachmentsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -369,7 +369,7 @@
     /// @Snippet(path: "networkAttachments_aggregatedList")
     public func aggregatedListByItems(
       request: NetworkAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NetworkAttachmentAggregatedList in
@@ -382,7 +382,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, NetworkAttachmentsScopedList), Swift.Error> & Sendable {
       let request = NetworkAttachmentsClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -539,7 +539,7 @@
 
     public func listByItems(
       request: NetworkAttachmentsClient.ListRequest
-    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -548,7 +548,7 @@
     /// @Snippet(path: "networkAttachments_list")
     public func listByItems(
       request: NetworkAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.NetworkAttachmentList
         in
@@ -562,7 +562,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NetworkAttachment, Swift.Error> & Sendable {
       let request = NetworkAttachmentsClient.ListRequest().with {
         $0.project = project
         $0.region = region

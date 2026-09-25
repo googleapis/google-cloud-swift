@@ -342,7 +342,7 @@
 
     public func aggregatedListByItems(
       request: RegionHealthSourcesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -355,7 +355,7 @@
     /// @Snippet(path: "regionHealthSources_aggregatedList")
     public func aggregatedListByItems(
       request: RegionHealthSourcesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.HealthSourceAggregatedList in
@@ -368,7 +368,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, HealthSourcesScopedList), Swift.Error> & Sendable {
       let request = RegionHealthSourcesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -525,7 +525,7 @@
 
     public func listByItems(
       request: RegionHealthSourcesClient.ListRequest
-    ) -> any AsyncSequence<HealthSource, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthSource, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -534,7 +534,7 @@
     /// @Snippet(path: "regionHealthSources_list")
     public func listByItems(
       request: RegionHealthSourcesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HealthSource, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthSource, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.HealthSourceList in
         var request = request
@@ -547,7 +547,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<HealthSource, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthSource, Swift.Error> & Sendable {
       let request = RegionHealthSourcesClient.ListRequest().with {
         $0.project = project
         $0.region = region

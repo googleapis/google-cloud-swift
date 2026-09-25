@@ -1719,7 +1719,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listAuthorizationPoliciesByItems(
     request: ListAuthorizationPoliciesRequest
-  ) -> any AsyncSequence<AuthorizationPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthorizationPolicy, Swift.Error> & Sendable {
     self.listAuthorizationPoliciesByItems(request: request, options: .init())
   }
 
@@ -1728,7 +1728,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
   public func listAuthorizationPoliciesByItems(
     request: ListAuthorizationPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AuthorizationPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthorizationPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListAuthorizationPoliciesResponse in
@@ -1741,7 +1741,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listAuthorizationPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AuthorizationPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthorizationPolicy, Swift.Error> & Sendable {
     let request = ListAuthorizationPoliciesRequest().with {
       $0.parent = parent
     }
@@ -1902,7 +1902,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listBackendAuthenticationConfigsByItems(
     request: ListBackendAuthenticationConfigsRequest
-  ) -> any AsyncSequence<BackendAuthenticationConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackendAuthenticationConfig, Swift.Error> & Sendable {
     self.listBackendAuthenticationConfigsByItems(request: request, options: .init())
   }
 
@@ -1911,7 +1911,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
   public func listBackendAuthenticationConfigsByItems(
     request: ListBackendAuthenticationConfigsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<BackendAuthenticationConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackendAuthenticationConfig, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListBackendAuthenticationConfigsResponse in
@@ -1924,7 +1924,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listBackendAuthenticationConfigsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<BackendAuthenticationConfig, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<BackendAuthenticationConfig, Swift.Error> & Sendable {
     let request = ListBackendAuthenticationConfigsRequest().with {
       $0.parent = parent
     }
@@ -2090,7 +2090,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listServerTlsPoliciesByItems(
     request: ListServerTlsPoliciesRequest
-  ) -> any AsyncSequence<ServerTlsPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServerTlsPolicy, Swift.Error> & Sendable {
     self.listServerTlsPoliciesByItems(request: request, options: .init())
   }
 
@@ -2099,7 +2099,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
   public func listServerTlsPoliciesByItems(
     request: ListServerTlsPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ServerTlsPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServerTlsPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListServerTlsPoliciesResponse in
@@ -2112,7 +2112,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listServerTlsPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ServerTlsPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ServerTlsPolicy, Swift.Error> & Sendable {
     let request = ListServerTlsPoliciesRequest().with {
       $0.parent = parent
     }
@@ -2273,7 +2273,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listClientTlsPoliciesByItems(
     request: ListClientTlsPoliciesRequest
-  ) -> any AsyncSequence<ClientTlsPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ClientTlsPolicy, Swift.Error> & Sendable {
     self.listClientTlsPoliciesByItems(request: request, options: .init())
   }
 
@@ -2282,7 +2282,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
   public func listClientTlsPoliciesByItems(
     request: ListClientTlsPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<ClientTlsPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ClientTlsPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListClientTlsPoliciesResponse in
@@ -2295,7 +2295,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listClientTlsPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<ClientTlsPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<ClientTlsPolicy, Swift.Error> & Sendable {
     let request = ListClientTlsPoliciesRequest().with {
       $0.parent = parent
     }
@@ -2456,7 +2456,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listGatewaySecurityPoliciesByItems(
     request: ListGatewaySecurityPoliciesRequest
-  ) -> any AsyncSequence<GatewaySecurityPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GatewaySecurityPolicy, Swift.Error> & Sendable {
     self.listGatewaySecurityPoliciesByItems(request: request, options: .init())
   }
 
@@ -2465,7 +2465,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
   public func listGatewaySecurityPoliciesByItems(
     request: ListGatewaySecurityPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GatewaySecurityPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GatewaySecurityPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPoliciesResponse in
@@ -2478,7 +2478,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listGatewaySecurityPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GatewaySecurityPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GatewaySecurityPolicy, Swift.Error> & Sendable {
     let request = ListGatewaySecurityPoliciesRequest().with {
       $0.parent = parent
     }
@@ -2639,7 +2639,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listGatewaySecurityPolicyRulesByItems(
     request: ListGatewaySecurityPolicyRulesRequest
-  ) -> any AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> & Sendable {
     self.listGatewaySecurityPolicyRulesByItems(request: request, options: .init())
   }
 
@@ -2648,7 +2648,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
   public func listGatewaySecurityPolicyRulesByItems(
     request: ListGatewaySecurityPolicyRulesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPolicyRulesResponse in
@@ -2661,7 +2661,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listGatewaySecurityPolicyRulesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GatewaySecurityPolicyRule, Swift.Error> & Sendable {
     let request = ListGatewaySecurityPolicyRulesRequest().with {
       $0.parent = parent
     }
@@ -2827,7 +2827,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listUrlListsByItems(
     request: ListUrlListsRequest
-  ) -> any AsyncSequence<UrlList, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UrlList, Swift.Error> & Sendable {
     self.listUrlListsByItems(request: request, options: .init())
   }
 
@@ -2836,7 +2836,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListUrlLists")
   public func listUrlListsByItems(
     request: ListUrlListsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<UrlList, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UrlList, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListUrlListsResponse in
@@ -2849,7 +2849,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listUrlListsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<UrlList, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<UrlList, Swift.Error> & Sendable {
     let request = ListUrlListsRequest().with {
       $0.parent = parent
     }
@@ -3008,7 +3008,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listTlsInspectionPoliciesByItems(
     request: ListTlsInspectionPoliciesRequest
-  ) -> any AsyncSequence<TlsInspectionPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TlsInspectionPolicy, Swift.Error> & Sendable {
     self.listTlsInspectionPoliciesByItems(request: request, options: .init())
   }
 
@@ -3017,7 +3017,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
   public func listTlsInspectionPoliciesByItems(
     request: ListTlsInspectionPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TlsInspectionPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TlsInspectionPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListTlsInspectionPoliciesResponse in
@@ -3030,7 +3030,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listTlsInspectionPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<TlsInspectionPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TlsInspectionPolicy, Swift.Error> & Sendable {
     let request = ListTlsInspectionPoliciesRequest().with {
       $0.parent = parent
     }
@@ -3191,7 +3191,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listAuthzPoliciesByItems(
     request: ListAuthzPoliciesRequest
-  ) -> any AsyncSequence<AuthzPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthzPolicy, Swift.Error> & Sendable {
     self.listAuthzPoliciesByItems(request: request, options: .init())
   }
 
@@ -3200,7 +3200,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
   public func listAuthzPoliciesByItems(
     request: ListAuthzPoliciesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<AuthzPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthzPolicy, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudNetworkSecurityV1.ListAuthzPoliciesResponse in
@@ -3213,7 +3213,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listAuthzPoliciesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<AuthzPolicy, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<AuthzPolicy, Swift.Error> & Sendable {
     let request = ListAuthzPoliciesRequest().with {
       $0.parent = parent
     }
@@ -3372,7 +3372,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -3398,7 +3398,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -3470,7 +3470,7 @@ extension Clients.NetworkSecurityProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -3481,7 +3481,7 @@ extension Clients.NetworkSecurityProtocol {
   /// @Snippet(path: "NetworkSecurity_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -3494,7 +3494,7 @@ extension Clients.NetworkSecurityProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

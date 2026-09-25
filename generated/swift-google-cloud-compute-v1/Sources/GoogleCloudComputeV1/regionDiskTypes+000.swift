@@ -116,7 +116,7 @@
 
     public func listByItems(
       request: RegionDiskTypesClient.ListRequest
-    ) -> any AsyncSequence<DiskType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DiskType, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -125,7 +125,7 @@
     /// @Snippet(path: "regionDiskTypes_list")
     public func listByItems(
       request: RegionDiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<DiskType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DiskType, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.RegionDiskTypeList in
         var request = request
@@ -138,7 +138,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<DiskType, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<DiskType, Swift.Error> & Sendable {
       let request = RegionDiskTypesClient.ListRequest().with {
         $0.project = project
         $0.region = region

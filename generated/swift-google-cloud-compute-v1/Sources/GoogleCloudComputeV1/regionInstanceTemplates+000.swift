@@ -343,7 +343,7 @@
 
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest
-    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -353,7 +353,7 @@
     /// @Snippet(path: "regionInstanceTemplates_list")
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceTemplateList in
         var request = request
@@ -366,7 +366,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstanceTemplate, Swift.Error> & Sendable {
       let request = RegionInstanceTemplatesClient.ListRequest().with {
         $0.project = project
         $0.region = region

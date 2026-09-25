@@ -2837,7 +2837,7 @@
 
     public func aggregatedListByItems(
       request: InstancesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -2853,7 +2853,7 @@
     /// @Snippet(path: "instances_aggregatedList")
     public func aggregatedListByItems(
       request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceAggregatedList
         in
@@ -2866,7 +2866,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, InstancesScopedList), Swift.Error> & Sendable {
       let request = InstancesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -3375,7 +3375,7 @@
 
     public func listByItems(
       request: InstancesClient.ListRequest
-    ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -3385,7 +3385,7 @@
     /// @Snippet(path: "instances_list")
     public func listByItems(
       request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceList in
         var request = request
@@ -3398,7 +3398,7 @@
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
-    ) -> any AsyncSequence<Instance, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Instance, Swift.Error> & Sendable {
       let request = InstancesClient.ListRequest().with {
         $0.project = project
         $0.zone = zone
@@ -3420,7 +3420,7 @@
 
     public func listReferrersByItems(
       request: InstancesClient.ListReferrersRequest
-    ) -> any AsyncSequence<Reference, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Reference, Swift.Error> & Sendable {
       self.listReferrersByItems(request: request, options: .init())
     }
 
@@ -3433,7 +3433,7 @@
     /// @Snippet(path: "instances_listReferrers")
     public func listReferrersByItems(
       request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<Reference, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Reference, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.InstanceListReferrers
         in
@@ -3448,7 +3448,7 @@
       project: Swift.String,
       zone: Swift.String,
       instance: Swift.String,
-    ) -> any AsyncSequence<Reference, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<Reference, Swift.Error> & Sendable {
       let request = InstancesClient.ListReferrersRequest().with {
         $0.project = project
         $0.zone = zone

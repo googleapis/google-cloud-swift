@@ -273,7 +273,7 @@ extension Clients.DomainMappingsProtocol {
 
   public func listDomainMappingsByItems(
     request: ListDomainMappingsRequest
-  ) -> any AsyncSequence<DomainMapping, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DomainMapping, Swift.Error> & Sendable {
     self.listDomainMappingsByItems(request: request, options: .init())
   }
 
@@ -282,7 +282,7 @@ extension Clients.DomainMappingsProtocol {
   /// @Snippet(path: "DomainMappings_ListDomainMappings")
   public func listDomainMappingsByItems(
     request: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<DomainMapping, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<DomainMapping, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse
       in
@@ -405,7 +405,7 @@ extension Clients.DomainMappingsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -416,7 +416,7 @@ extension Clients.DomainMappingsProtocol {
   /// @Snippet(path: "DomainMappings_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -429,7 +429,7 @@ extension Clients.DomainMappingsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

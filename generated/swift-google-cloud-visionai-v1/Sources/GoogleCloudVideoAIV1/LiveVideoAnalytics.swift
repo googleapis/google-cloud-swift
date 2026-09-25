@@ -723,7 +723,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listPublicOperatorsByItems(
     request: ListPublicOperatorsRequest
-  ) -> any AsyncSequence<Operator, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operator, Swift.Error> & Sendable {
     self.listPublicOperatorsByItems(request: request, options: .init())
   }
 
@@ -732,7 +732,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
   public func listPublicOperatorsByItems(
     request: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Operator, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operator, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse in
@@ -745,7 +745,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listPublicOperatorsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Operator, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operator, Swift.Error> & Sendable {
     let request = ListPublicOperatorsRequest().with {
       $0.parent = parent
     }
@@ -789,7 +789,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listOperatorsByItems(
     request: ListOperatorsRequest
-  ) -> any AsyncSequence<Operator, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operator, Swift.Error> & Sendable {
     self.listOperatorsByItems(request: request, options: .init())
   }
 
@@ -798,7 +798,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
   public func listOperatorsByItems(
     request: ListOperatorsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Operator, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operator, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListOperatorsResponse in
       var request = request
@@ -810,7 +810,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listOperatorsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Operator, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Operator, Swift.Error> & Sendable {
     let request = ListOperatorsRequest().with {
       $0.parent = parent
     }
@@ -968,7 +968,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listAnalysesByItems(
     request: ListAnalysesRequest
-  ) -> any AsyncSequence<Analysis, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Analysis, Swift.Error> & Sendable {
     self.listAnalysesByItems(request: request, options: .init())
   }
 
@@ -977,7 +977,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
   public func listAnalysesByItems(
     request: ListAnalysesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Analysis, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Analysis, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListAnalysesResponse in
       var request = request
@@ -989,7 +989,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listAnalysesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Analysis, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Analysis, Swift.Error> & Sendable {
     let request = ListAnalysesRequest().with {
       $0.parent = parent
     }
@@ -1147,7 +1147,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listProcessesByItems(
     request: ListProcessesRequest
-  ) -> any AsyncSequence<Process, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Process, Swift.Error> & Sendable {
     self.listProcessesByItems(request: request, options: .init())
   }
 
@@ -1156,7 +1156,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
   public func listProcessesByItems(
     request: ListProcessesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Process, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Process, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudVideoAIV1.ListProcessesResponse in
       var request = request
@@ -1168,7 +1168,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listProcessesByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Process, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Process, Swift.Error> & Sendable {
     let request = ListProcessesRequest().with {
       $0.parent = parent
     }
@@ -1366,7 +1366,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     self.listLocationsByItems(request: request, options: .init())
   }
 
@@ -1375,7 +1375,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleCloudLocation.Location, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudLocation.ListLocationsResponse in
       var request = request
@@ -1411,7 +1411,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -1422,7 +1422,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -1435,7 +1435,7 @@ extension Clients.LiveVideoAnalyticsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

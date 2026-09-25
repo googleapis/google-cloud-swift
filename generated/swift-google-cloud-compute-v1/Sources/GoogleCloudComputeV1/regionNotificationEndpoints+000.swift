@@ -263,7 +263,7 @@
 
     public func aggregatedListByItems(
       request: RegionNotificationEndpointsClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
     }
@@ -275,7 +275,7 @@
     public func aggregatedListByItems(
       request: RegionNotificationEndpointsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> & Sendable
     {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
@@ -289,7 +289,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, NotificationEndpointsScopedList), Swift.Error> & Sendable
     {
       let request = RegionNotificationEndpointsClient.AggregatedListRequest().with {
         $0.project = project
@@ -422,7 +422,7 @@
 
     public func listByItems(
       request: RegionNotificationEndpointsClient.ListRequest
-    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NotificationEndpoint, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -431,7 +431,7 @@
     /// @Snippet(path: "regionNotificationEndpoints_list")
     public func listByItems(
       request: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NotificationEndpoint, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.NotificationEndpointList in
@@ -445,7 +445,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<NotificationEndpoint, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<NotificationEndpoint, Swift.Error> & Sendable {
       let request = RegionNotificationEndpointsClient.ListRequest().with {
         $0.project = project
         $0.region = region

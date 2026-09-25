@@ -86,7 +86,7 @@ extension Clients.QueryServiceProtocol {
   @available(*, deprecated)
   public func queryTimeSeriesByItems(
     request: QueryTimeSeriesRequest
-  ) -> any AsyncSequence<TimeSeriesData, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TimeSeriesData, Swift.Error> & Sendable {
     self.queryTimeSeriesByItems(request: request, options: .init())
   }
 
@@ -99,7 +99,7 @@ extension Clients.QueryServiceProtocol {
   @available(*, deprecated)
   public func queryTimeSeriesByItems(
     request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<TimeSeriesData, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<TimeSeriesData, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws
         -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse in

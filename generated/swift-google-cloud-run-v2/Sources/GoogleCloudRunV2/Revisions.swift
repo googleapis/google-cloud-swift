@@ -219,7 +219,7 @@ extension Clients.RevisionsProtocol {
 
   public func listRevisionsByItems(
     request: ListRevisionsRequest
-  ) -> any AsyncSequence<Revision, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Revision, Swift.Error> & Sendable {
     self.listRevisionsByItems(request: request, options: .init())
   }
 
@@ -229,7 +229,7 @@ extension Clients.RevisionsProtocol {
   /// @Snippet(path: "Revisions_ListRevisions")
   public func listRevisionsByItems(
     request: ListRevisionsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<Revision, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Revision, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleCloudRunV2.ListRevisionsResponse in
       var request = request
@@ -241,7 +241,7 @@ extension Clients.RevisionsProtocol {
 
   public func listRevisionsByItems(
     parent: Swift.String,
-  ) -> any AsyncSequence<Revision, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<Revision, Swift.Error> & Sendable {
     let request = ListRevisionsRequest().with {
       $0.parent = parent
     }
@@ -299,7 +299,7 @@ extension Clients.RevisionsProtocol {
 
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     self.listOperationsByItems(request: request, options: .init())
   }
 
@@ -310,7 +310,7 @@ extension Clients.RevisionsProtocol {
   /// @Snippet(path: "Revisions_ListOperations")
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let listRpc = {
       @Sendable (token: Swift.String) async throws -> GoogleLongRunning.ListOperationsResponse in
       var request = request
@@ -323,7 +323,7 @@ extension Clients.RevisionsProtocol {
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
-  ) -> any AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
+  ) -> some AsyncSequence<GoogleLongRunning.Operation, Swift.Error> & Sendable {
     let request = GoogleLongRunning.ListOperationsRequest().with {
       $0.name = name
       $0.filter = filter

@@ -416,7 +416,7 @@
 
     public func listByItems(
       request: RegionInstantSnapshotGroupsClient.ListRequest
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -426,7 +426,7 @@
     /// @Snippet(path: "regionInstantSnapshotGroups_list")
     public func listByItems(
       request: RegionInstantSnapshotGroupsClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.ListInstantSnapshotGroups in
@@ -440,7 +440,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<InstantSnapshotGroup, Swift.Error> & Sendable {
       let request = RegionInstantSnapshotGroupsClient.ListRequest().with {
         $0.project = project
         $0.region = region

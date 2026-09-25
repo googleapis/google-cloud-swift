@@ -348,7 +348,7 @@
 
     public func aggregatedListByItems(
       request: RegionCompositeHealthChecksClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
     }
@@ -363,7 +363,7 @@
     public func aggregatedListByItems(
       request: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> & Sendable
     {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
@@ -377,7 +377,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> & Sendable
+    ) -> some AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), Swift.Error> & Sendable
     {
       let request = RegionCompositeHealthChecksClient.AggregatedListRequest().with {
         $0.project = project
@@ -535,7 +535,7 @@
 
     public func listByItems(
       request: RegionCompositeHealthChecksClient.ListRequest
-    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<CompositeHealthCheck, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -544,7 +544,7 @@
     /// @Snippet(path: "regionCompositeHealthChecks_list")
     public func listByItems(
       request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<CompositeHealthCheck, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.CompositeHealthCheckList in
@@ -558,7 +558,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<CompositeHealthCheck, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<CompositeHealthCheck, Swift.Error> & Sendable {
       let request = RegionCompositeHealthChecksClient.ListRequest().with {
         $0.project = project
         $0.region = region

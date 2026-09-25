@@ -762,7 +762,7 @@
 
     public func aggregatedListByItems(
       request: BackendServicesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
       self.aggregatedListByItems(request: request, options: .init())
     }
 
@@ -775,7 +775,7 @@
     /// @Snippet(path: "backendServices_aggregatedList")
     public func aggregatedListByItems(
       request: BackendServicesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendServiceAggregatedList in
@@ -788,7 +788,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
+    ) -> some AsyncSequence<(Swift.String, BackendServicesScopedList), Swift.Error> & Sendable {
       let request = BackendServicesClient.AggregatedListRequest().with {
         $0.project = project
       }
@@ -1029,7 +1029,7 @@
 
     public func listByItems(
       request: BackendServicesClient.ListRequest
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -1039,7 +1039,7 @@
     /// @Snippet(path: "backendServices_list")
     public func listByItems(
       request: BackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws -> GoogleCloudComputeV1.BackendServiceList in
         var request = request
@@ -1051,7 +1051,7 @@
 
     public func listByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let request = BackendServicesClient.ListRequest().with {
         $0.project = project
       }
@@ -1072,7 +1072,7 @@
 
     public func listUsableByItems(
       request: BackendServicesClient.ListUsableRequest
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       self.listUsableByItems(request: request, options: .init())
     }
 
@@ -1084,7 +1084,7 @@
     /// @Snippet(path: "backendServices_listUsable")
     public func listUsableByItems(
       request: BackendServicesClient.ListUsableRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.BackendServiceListUsable in
@@ -1097,7 +1097,7 @@
 
     public func listUsableByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<BackendService, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<BackendService, Swift.Error> & Sendable {
       let request = BackendServicesClient.ListUsableRequest().with {
         $0.project = project
       }

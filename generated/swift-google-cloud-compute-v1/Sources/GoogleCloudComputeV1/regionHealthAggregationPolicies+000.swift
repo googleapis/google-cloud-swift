@@ -343,7 +343,7 @@
 
     public func aggregatedListByItems(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest
-    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
       & Sendable
     {
       self.aggregatedListByItems(request: request, options: .init())
@@ -359,7 +359,7 @@
     public func aggregatedListByItems(
       request: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
       & Sendable
     {
       let listRpc = {
@@ -374,7 +374,7 @@
 
     public func aggregatedListByItems(
       project: Swift.String,
-    ) -> any AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
+    ) -> some AsyncSequence<(Swift.String, HealthAggregationPoliciesScopedList), Swift.Error>
       & Sendable
     {
       let request = RegionHealthAggregationPoliciesClient.AggregatedListRequest().with {
@@ -512,7 +512,7 @@
 
     public func listByItems(
       request: RegionHealthAggregationPoliciesClient.ListRequest
-    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
       self.listByItems(request: request, options: .init())
     }
 
@@ -521,7 +521,7 @@
     /// @Snippet(path: "regionHealthAggregationPolicies_list")
     public func listByItems(
       request: RegionHealthAggregationPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
-    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
       let listRpc = {
         @Sendable (token: Swift.String) async throws
           -> GoogleCloudComputeV1.HealthAggregationPolicyList in
@@ -535,7 +535,7 @@
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
-    ) -> any AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
+    ) -> some AsyncSequence<HealthAggregationPolicy, Swift.Error> & Sendable {
       let request = RegionHealthAggregationPoliciesClient.ListRequest().with {
         $0.project = project
         $0.region = region
