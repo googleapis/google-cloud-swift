@@ -295,6 +295,11 @@
         request: LicensesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `LicensesClient.delete`.
+      func deletePollingUntilDone(
+        request: LicensesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `LicensesClient.`get``.
       func `get`(
         request: LicensesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -309,6 +314,11 @@
       func insert(
         request: LicensesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `LicensesClient.insert`.
+      func insertPollingUntilDone(
+        request: LicensesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `LicensesClient.list`.
       func list(
@@ -329,6 +339,11 @@
       func update(
         request: LicensesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `LicensesClient.update`.
+      func updatePollingUntilDone(
+        request: LicensesClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

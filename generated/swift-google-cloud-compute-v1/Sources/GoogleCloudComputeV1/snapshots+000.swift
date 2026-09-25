@@ -333,6 +333,11 @@
         request: SnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SnapshotsClient.delete`.
+      func deletePollingUntilDone(
+        request: SnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SnapshotsClient.`get``.
       func `get`(
         request: SnapshotsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -347,6 +352,11 @@
       func insert(
         request: SnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SnapshotsClient.insert`.
+      func insertPollingUntilDone(
+        request: SnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `SnapshotsClient.list`.
       func list(
@@ -363,6 +373,11 @@
         request: SnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SnapshotsClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: SnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SnapshotsClient.testIamPermissions`.
       func testIamPermissions(
         request: SnapshotsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -372,6 +387,11 @@
       func updateKmsKey(
         request: SnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SnapshotsClient.updateKmsKey`.
+      func updateKmsKeyPollingUntilDone(
+        request: SnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

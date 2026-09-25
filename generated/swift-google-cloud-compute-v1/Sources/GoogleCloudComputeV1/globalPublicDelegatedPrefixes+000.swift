@@ -240,6 +240,12 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalPublicDelegatedPrefixesClient.delete`.
+      func deletePollingUntilDone(
+        request: GlobalPublicDelegatedPrefixesClient.DeleteRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalPublicDelegatedPrefixesClient.`get``.
       func `get`(
         request: GlobalPublicDelegatedPrefixesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -251,6 +257,12 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalPublicDelegatedPrefixesClient.insert`.
+      func insertPollingUntilDone(
+        request: GlobalPublicDelegatedPrefixesClient.InsertRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalPublicDelegatedPrefixesClient.list`.
       func list(
         request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -260,6 +272,11 @@
       func patch(
         request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `GlobalPublicDelegatedPrefixesClient.patch`.
+      func patchPollingUntilDone(
+        request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

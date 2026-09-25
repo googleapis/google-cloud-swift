@@ -696,15 +696,30 @@
         request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.delete`.
+      func deletePollingUntilDone(
+        request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.deleteNamedSet`.
       func deleteNamedSet(
         request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.deleteNamedSet`.
+      func deleteNamedSetPollingUntilDone(
+        request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.deleteRoutePolicy`.
       func deleteRoutePolicy(
         request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RoutersClient.deleteRoutePolicy`.
+      func deleteRoutePolicyPollingUntilDone(
+        request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RoutersClient.`get``.
       func `get`(
@@ -741,6 +756,11 @@
         request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.insert`.
+      func insertPollingUntilDone(
+        request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.list`.
       func list(
         request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
@@ -766,15 +786,30 @@
         request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.patch`.
+      func patchPollingUntilDone(
+        request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.patchNamedSet`.
       func patchNamedSet(
         request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.patchNamedSet`.
+      func patchNamedSetPollingUntilDone(
+        request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.patchRoutePolicy`.
       func patchRoutePolicy(
         request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RoutersClient.patchRoutePolicy`.
+      func patchRoutePolicyPollingUntilDone(
+        request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RoutersClient.preview`.
       func preview(
@@ -786,15 +821,30 @@
         request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.update`.
+      func updatePollingUntilDone(
+        request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.updateNamedSet`.
       func updateNamedSet(
         request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutersClient.updateNamedSet`.
+      func updateNamedSetPollingUntilDone(
+        request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutersClient.updateRoutePolicy`.
       func updateRoutePolicy(
         request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RoutersClient.updateRoutePolicy`.
+      func updateRoutePolicyPollingUntilDone(
+        request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -237,6 +237,11 @@
         request: RegionTargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionTargetHttpProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionTargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionTargetHttpProxiesClient.`get``.
       func `get`(
         request: RegionTargetHttpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -247,6 +252,11 @@
         request: RegionTargetHttpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionTargetHttpProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionTargetHttpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionTargetHttpProxiesClient.list`.
       func list(
         request: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -256,6 +266,11 @@
       func setUrlMap(
         request: RegionTargetHttpProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionTargetHttpProxiesClient.setUrlMap`.
+      func setUrlMapPollingUntilDone(
+        request: RegionTargetHttpProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

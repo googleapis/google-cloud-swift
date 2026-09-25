@@ -236,6 +236,11 @@
         request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `CrossSiteNetworksClient.delete`.
+      func deletePollingUntilDone(
+        request: CrossSiteNetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `CrossSiteNetworksClient.`get``.
       func `get`(
         request: CrossSiteNetworksClient.GetRequest, options: GoogleGax.RequestOptions
@@ -246,6 +251,11 @@
         request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `CrossSiteNetworksClient.insert`.
+      func insertPollingUntilDone(
+        request: CrossSiteNetworksClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `CrossSiteNetworksClient.list`.
       func list(
         request: CrossSiteNetworksClient.ListRequest, options: GoogleGax.RequestOptions
@@ -255,6 +265,11 @@
       func patch(
         request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `CrossSiteNetworksClient.patch`.
+      func patchPollingUntilDone(
+        request: CrossSiteNetworksClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

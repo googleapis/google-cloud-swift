@@ -190,6 +190,11 @@
         request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RoutesClient.delete`.
+      func deletePollingUntilDone(
+        request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RoutesClient.`get``.
       func `get`(
         request: RoutesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -199,6 +204,11 @@
       func insert(
         request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RoutesClient.insert`.
+      func insertPollingUntilDone(
+        request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RoutesClient.list`.
       func list(

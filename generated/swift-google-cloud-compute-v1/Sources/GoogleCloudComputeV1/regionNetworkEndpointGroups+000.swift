@@ -332,16 +332,33 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionNetworkEndpointGroupsClient.attachNetworkEndpoints`.
+      func attachNetworkEndpointsPollingUntilDone(
+        request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionNetworkEndpointGroupsClient.delete`.
       func delete(
         request: RegionNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionNetworkEndpointGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionNetworkEndpointGroupsClient.detachNetworkEndpoints`.
       func detachNetworkEndpoints(
         request: RegionNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionNetworkEndpointGroupsClient.detachNetworkEndpoints`.
+      func detachNetworkEndpointsPollingUntilDone(
+        request: RegionNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionNetworkEndpointGroupsClient.`get``.
       func `get`(
@@ -352,6 +369,11 @@
       func insert(
         request: RegionNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionNetworkEndpointGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionNetworkEndpointGroupsClient.list`.
       func list(

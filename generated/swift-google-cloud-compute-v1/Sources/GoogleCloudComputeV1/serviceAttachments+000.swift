@@ -287,6 +287,11 @@
         request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ServiceAttachmentsClient.delete`.
+      func deletePollingUntilDone(
+        request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ServiceAttachmentsClient.`get``.
       func `get`(
         request: ServiceAttachmentsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -302,6 +307,11 @@
         request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ServiceAttachmentsClient.insert`.
+      func insertPollingUntilDone(
+        request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ServiceAttachmentsClient.list`.
       func list(
         request: ServiceAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -311,6 +321,11 @@
       func patch(
         request: ServiceAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ServiceAttachmentsClient.patch`.
+      func patchPollingUntilDone(
+        request: ServiceAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ServiceAttachmentsClient.setIamPolicy`.
       func setIamPolicy(

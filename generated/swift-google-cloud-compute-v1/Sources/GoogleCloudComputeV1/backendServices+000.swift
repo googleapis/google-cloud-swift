@@ -578,6 +578,11 @@
         request: BackendServicesClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `BackendServicesClient.addSignedUrlKey`.
+      func addSignedUrlKeyPollingUntilDone(
+        request: BackendServicesClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `BackendServicesClient.aggregatedList`.
       func aggregatedList(
         request: BackendServicesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
@@ -588,10 +593,20 @@
         request: BackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `BackendServicesClient.delete`.
+      func deletePollingUntilDone(
+        request: BackendServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `BackendServicesClient.deleteSignedUrlKey`.
       func deleteSignedUrlKey(
         request: BackendServicesClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `BackendServicesClient.deleteSignedUrlKey`.
+      func deleteSignedUrlKeyPollingUntilDone(
+        request: BackendServicesClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `BackendServicesClient.`get``.
       func `get`(
@@ -619,6 +634,11 @@
         request: BackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `BackendServicesClient.insert`.
+      func insertPollingUntilDone(
+        request: BackendServicesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `BackendServicesClient.list`.
       func list(
         request: BackendServicesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -634,11 +654,22 @@
         request: BackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `BackendServicesClient.patch`.
+      func patchPollingUntilDone(
+        request: BackendServicesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `BackendServicesClient.setEdgeSecurityPolicy`.
       func setEdgeSecurityPolicy(
         request: BackendServicesClient.SetEdgeSecurityPolicyRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `BackendServicesClient.setEdgeSecurityPolicy`.
+      func setEdgeSecurityPolicyPollingUntilDone(
+        request: BackendServicesClient.SetEdgeSecurityPolicyRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `BackendServicesClient.setIamPolicy`.
       func setIamPolicy(
@@ -650,6 +681,11 @@
         request: BackendServicesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `BackendServicesClient.setSecurityPolicy`.
+      func setSecurityPolicyPollingUntilDone(
+        request: BackendServicesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `BackendServicesClient.testIamPermissions`.
       func testIamPermissions(
         request: BackendServicesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -659,6 +695,11 @@
       func update(
         request: BackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `BackendServicesClient.update`.
+      func updatePollingUntilDone(
+        request: BackendServicesClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

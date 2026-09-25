@@ -274,6 +274,11 @@
         request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationSubBlocksClient.getVersion`.
+      func getVersionPollingUntilDone(
+        request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationSubBlocksClient.list`.
       func list(
         request: ReservationSubBlocksClient.ListRequest, options: GoogleGax.RequestOptions
@@ -285,10 +290,21 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationSubBlocksClient.performMaintenance`.
+      func performMaintenancePollingUntilDone(
+        request: ReservationSubBlocksClient.PerformMaintenanceRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationSubBlocksClient.reportFaulty`.
       func reportFaulty(
         request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ReservationSubBlocksClient.reportFaulty`.
+      func reportFaultyPollingUntilDone(
+        request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ReservationSubBlocksClient.setIamPolicy`.
       func setIamPolicy(

@@ -315,6 +315,11 @@
         request: HealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `HealthChecksClient.delete`.
+      func deletePollingUntilDone(
+        request: HealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `HealthChecksClient.`get``.
       func `get`(
         request: HealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
@@ -324,6 +329,11 @@
       func insert(
         request: HealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `HealthChecksClient.insert`.
+      func insertPollingUntilDone(
+        request: HealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `HealthChecksClient.list`.
       func list(
@@ -335,6 +345,11 @@
         request: HealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `HealthChecksClient.patch`.
+      func patchPollingUntilDone(
+        request: HealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `HealthChecksClient.testIamPermissions`.
       func testIamPermissions(
         request: HealthChecksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -344,6 +359,11 @@
       func update(
         request: HealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `HealthChecksClient.update`.
+      func updatePollingUntilDone(
+        request: HealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

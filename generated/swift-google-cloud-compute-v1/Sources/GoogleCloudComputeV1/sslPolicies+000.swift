@@ -261,6 +261,11 @@
         request: SslPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SslPoliciesClient.delete`.
+      func deletePollingUntilDone(
+        request: SslPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SslPoliciesClient.`get``.
       func `get`(
         request: SslPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -270,6 +275,11 @@
       func insert(
         request: SslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SslPoliciesClient.insert`.
+      func insertPollingUntilDone(
+        request: SslPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `SslPoliciesClient.list`.
       func list(
@@ -285,6 +295,11 @@
       func patch(
         request: SslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SslPoliciesClient.patch`.
+      func patchPollingUntilDone(
+        request: SslPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

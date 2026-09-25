@@ -663,20 +663,40 @@
         request: ProjectsClient.DisableXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ProjectsClient.disableXpnHost`.
+      func disableXpnHostPollingUntilDone(
+        request: ProjectsClient.DisableXpnHostRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ProjectsClient.disableXpnResource`.
       func disableXpnResource(
         request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ProjectsClient.disableXpnResource`.
+      func disableXpnResourcePollingUntilDone(
+        request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ProjectsClient.enableXpnHost`.
       func enableXpnHost(
         request: ProjectsClient.EnableXpnHostRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ProjectsClient.enableXpnHost`.
+      func enableXpnHostPollingUntilDone(
+        request: ProjectsClient.EnableXpnHostRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ProjectsClient.enableXpnResource`.
       func enableXpnResource(
         request: ProjectsClient.EnableXpnResourceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ProjectsClient.enableXpnResource`.
+      func enableXpnResourcePollingUntilDone(
+        request: ProjectsClient.EnableXpnResourceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ProjectsClient.`get``.
       func `get`(
@@ -704,31 +724,63 @@
         request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ProjectsClient.moveDisk`.
+      @available(*, deprecated)
+      func moveDiskPollingUntilDone(
+        request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ProjectsClient.moveInstance`.
       @available(*, deprecated)
       func moveInstance(
         request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ProjectsClient.moveInstance`.
+      @available(*, deprecated)
+      func moveInstancePollingUntilDone(
+        request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ProjectsClient.setCloudArmorTier`.
       func setCloudArmorTier(
         request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ProjectsClient.setCloudArmorTier`.
+      func setCloudArmorTierPollingUntilDone(
+        request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ProjectsClient.setCommonInstanceMetadata`.
       func setCommonInstanceMetadata(
         request: ProjectsClient.SetCommonInstanceMetadataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ProjectsClient.setCommonInstanceMetadata`.
+      func setCommonInstanceMetadataPollingUntilDone(
+        request: ProjectsClient.SetCommonInstanceMetadataRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ProjectsClient.setDefaultNetworkTier`.
       func setDefaultNetworkTier(
         request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ProjectsClient.setDefaultNetworkTier`.
+      func setDefaultNetworkTierPollingUntilDone(
+        request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ProjectsClient.setUsageExportBucket`.
       func setUsageExportBucket(
         request: ProjectsClient.SetUsageExportBucketRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ProjectsClient.setUsageExportBucket`.
+      func setUsageExportBucketPollingUntilDone(
+        request: ProjectsClient.SetUsageExportBucketRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -278,6 +278,11 @@
         request: ResourcePoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ResourcePoliciesClient.delete`.
+      func deletePollingUntilDone(
+        request: ResourcePoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ResourcePoliciesClient.`get``.
       func `get`(
         request: ResourcePoliciesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -293,6 +298,11 @@
         request: ResourcePoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ResourcePoliciesClient.insert`.
+      func insertPollingUntilDone(
+        request: ResourcePoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ResourcePoliciesClient.list`.
       func list(
         request: ResourcePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -302,6 +312,11 @@
       func patch(
         request: ResourcePoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ResourcePoliciesClient.patch`.
+      func patchPollingUntilDone(
+        request: ResourcePoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ResourcePoliciesClient.setIamPolicy`.
       func setIamPolicy(

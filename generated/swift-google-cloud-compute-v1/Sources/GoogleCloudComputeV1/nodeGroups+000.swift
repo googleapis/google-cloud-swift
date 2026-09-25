@@ -538,6 +538,11 @@
         request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NodeGroupsClient.addNodes`.
+      func addNodesPollingUntilDone(
+        request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NodeGroupsClient.aggregatedList`.
       func aggregatedList(
         request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
@@ -548,10 +553,20 @@
         request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NodeGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NodeGroupsClient.deleteNodes`.
       func deleteNodes(
         request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NodeGroupsClient.deleteNodes`.
+      func deleteNodesPollingUntilDone(
+        request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NodeGroupsClient.`get``.
       func `get`(
@@ -568,6 +583,11 @@
         request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NodeGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NodeGroupsClient.list`.
       func list(
         request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -583,10 +603,20 @@
         request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NodeGroupsClient.patch`.
+      func patchPollingUntilDone(
+        request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NodeGroupsClient.performMaintenance`.
       func performMaintenance(
         request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NodeGroupsClient.performMaintenance`.
+      func performMaintenancePollingUntilDone(
+        request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NodeGroupsClient.setIamPolicy`.
       func setIamPolicy(
@@ -598,10 +628,20 @@
         request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NodeGroupsClient.setNodeTemplate`.
+      func setNodeTemplatePollingUntilDone(
+        request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NodeGroupsClient.simulateMaintenanceEvent`.
       func simulateMaintenanceEvent(
         request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NodeGroupsClient.simulateMaintenanceEvent`.
+      func simulateMaintenanceEventPollingUntilDone(
+        request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NodeGroupsClient.testIamPermissions`.
       func testIamPermissions(

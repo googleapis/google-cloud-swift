@@ -337,10 +337,20 @@
         request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `PublicAdvertisedPrefixesClient.announce`.
+      func announcePollingUntilDone(
+        request: PublicAdvertisedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `PublicAdvertisedPrefixesClient.delete`.
       func delete(
         request: PublicAdvertisedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `PublicAdvertisedPrefixesClient.delete`.
+      func deletePollingUntilDone(
+        request: PublicAdvertisedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `PublicAdvertisedPrefixesClient.`get``.
       func `get`(
@@ -352,6 +362,11 @@
         request: PublicAdvertisedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `PublicAdvertisedPrefixesClient.insert`.
+      func insertPollingUntilDone(
+        request: PublicAdvertisedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `PublicAdvertisedPrefixesClient.list`.
       func list(
         request: PublicAdvertisedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -362,10 +377,20 @@
         request: PublicAdvertisedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `PublicAdvertisedPrefixesClient.patch`.
+      func patchPollingUntilDone(
+        request: PublicAdvertisedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `PublicAdvertisedPrefixesClient.withdraw`.
       func withdraw(
         request: PublicAdvertisedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `PublicAdvertisedPrefixesClient.withdraw`.
+      func withdrawPollingUntilDone(
+        request: PublicAdvertisedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

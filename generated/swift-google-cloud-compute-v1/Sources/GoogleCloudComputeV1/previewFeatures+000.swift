@@ -141,6 +141,11 @@
       func update(
         request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `PreviewFeaturesClient.update`.
+      func updatePollingUntilDone(
+        request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

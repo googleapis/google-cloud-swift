@@ -236,10 +236,20 @@
         request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationSlotsClient.getHealth`.
+      func getHealthPollingUntilDone(
+        request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationSlotsClient.getVersion`.
       func getVersion(
         request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ReservationSlotsClient.getVersion`.
+      func getVersionPollingUntilDone(
+        request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ReservationSlotsClient.list`.
       func list(
@@ -250,6 +260,11 @@
       func update(
         request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ReservationSlotsClient.update`.
+      func updatePollingUntilDone(
+        request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -270,6 +270,11 @@
         request: MachineImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `MachineImagesClient.delete`.
+      func deletePollingUntilDone(
+        request: MachineImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `MachineImagesClient.`get``.
       func `get`(
         request: MachineImagesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -285,6 +290,11 @@
         request: MachineImagesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `MachineImagesClient.insert`.
+      func insertPollingUntilDone(
+        request: MachineImagesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `MachineImagesClient.list`.
       func list(
         request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -299,6 +309,11 @@
       func setLabels(
         request: MachineImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `MachineImagesClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: MachineImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `MachineImagesClient.testIamPermissions`.
       func testIamPermissions(

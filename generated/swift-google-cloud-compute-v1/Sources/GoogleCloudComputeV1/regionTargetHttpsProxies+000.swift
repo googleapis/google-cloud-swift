@@ -345,6 +345,11 @@
         request: RegionTargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionTargetHttpsProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionTargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionTargetHttpsProxiesClient.`get``.
       func `get`(
         request: RegionTargetHttpsProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -354,6 +359,11 @@
       func insert(
         request: RegionTargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionTargetHttpsProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionTargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionTargetHttpsProxiesClient.list`.
       func list(
@@ -365,16 +375,32 @@
         request: RegionTargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionTargetHttpsProxiesClient.patch`.
+      func patchPollingUntilDone(
+        request: RegionTargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionTargetHttpsProxiesClient.setSslCertificates`.
       func setSslCertificates(
         request: RegionTargetHttpsProxiesClient.SetSslCertificatesRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionTargetHttpsProxiesClient.setSslCertificates`.
+      func setSslCertificatesPollingUntilDone(
+        request: RegionTargetHttpsProxiesClient.SetSslCertificatesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionTargetHttpsProxiesClient.setUrlMap`.
       func setUrlMap(
         request: RegionTargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionTargetHttpsProxiesClient.setUrlMap`.
+      func setUrlMapPollingUntilDone(
+        request: RegionTargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

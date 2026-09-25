@@ -179,6 +179,11 @@
         request: RolloutPlansClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RolloutPlansClient.delete`.
+      func deletePollingUntilDone(
+        request: RolloutPlansClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RolloutPlansClient.`get``.
       func `get`(
         request: RolloutPlansClient.GetRequest, options: GoogleGax.RequestOptions
@@ -188,6 +193,11 @@
       func insert(
         request: RolloutPlansClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RolloutPlansClient.insert`.
+      func insertPollingUntilDone(
+        request: RolloutPlansClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RolloutPlansClient.list`.
       func list(

@@ -200,6 +200,11 @@
         request: SslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SslCertificatesClient.delete`.
+      func deletePollingUntilDone(
+        request: SslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SslCertificatesClient.`get``.
       func `get`(
         request: SslCertificatesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -209,6 +214,11 @@
       func insert(
         request: SslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SslCertificatesClient.insert`.
+      func insertPollingUntilDone(
+        request: SslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `SslCertificatesClient.list`.
       func list(

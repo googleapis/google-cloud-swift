@@ -791,20 +791,40 @@
         request: RegionDisksClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.addResourcePolicies`.
+      func addResourcePoliciesPollingUntilDone(
+        request: RegionDisksClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.bulkInsert`.
       func bulkInsert(
         request: RegionDisksClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionDisksClient.bulkInsert`.
+      func bulkInsertPollingUntilDone(
+        request: RegionDisksClient.BulkInsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionDisksClient.createSnapshot`.
       func createSnapshot(
         request: RegionDisksClient.CreateSnapshotRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.createSnapshot`.
+      func createSnapshotPollingUntilDone(
+        request: RegionDisksClient.CreateSnapshotRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.delete`.
       func delete(
         request: RegionDisksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionDisksClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionDisksClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionDisksClient.`get``.
       func `get`(
@@ -821,6 +841,11 @@
         request: RegionDisksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionDisksClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.list`.
       func list(
         request: RegionDisksClient.ListRequest, options: GoogleGax.RequestOptions
@@ -831,10 +856,20 @@
         request: RegionDisksClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.removeResourcePolicies`.
+      func removeResourcePoliciesPollingUntilDone(
+        request: RegionDisksClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.resize`.
       func resize(
         request: RegionDisksClient.ResizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionDisksClient.resize`.
+      func resizePollingUntilDone(
+        request: RegionDisksClient.ResizeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionDisksClient.setIamPolicy`.
       func setIamPolicy(
@@ -846,21 +881,42 @@
         request: RegionDisksClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: RegionDisksClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.startAsyncReplication`.
       func startAsyncReplication(
         request: RegionDisksClient.StartAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionDisksClient.startAsyncReplication`.
+      func startAsyncReplicationPollingUntilDone(
+        request: RegionDisksClient.StartAsyncReplicationRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionDisksClient.stopAsyncReplication`.
       func stopAsyncReplication(
         request: RegionDisksClient.StopAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.stopAsyncReplication`.
+      func stopAsyncReplicationPollingUntilDone(
+        request: RegionDisksClient.StopAsyncReplicationRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.stopGroupAsyncReplication`.
       func stopGroupAsyncReplication(
         request: RegionDisksClient.StopGroupAsyncReplicationRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionDisksClient.stopGroupAsyncReplication`.
+      func stopGroupAsyncReplicationPollingUntilDone(
+        request: RegionDisksClient.StopGroupAsyncReplicationRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionDisksClient.testIamPermissions`.
       func testIamPermissions(
@@ -872,10 +928,20 @@
         request: RegionDisksClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionDisksClient.update`.
+      func updatePollingUntilDone(
+        request: RegionDisksClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionDisksClient.updateKmsKey`.
       func updateKmsKey(
         request: RegionDisksClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionDisksClient.updateKmsKey`.
+      func updateKmsKeyPollingUntilDone(
+        request: RegionDisksClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -345,6 +345,11 @@
         request: GlobalForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalForwardingRulesClient.delete`.
+      func deletePollingUntilDone(
+        request: GlobalForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalForwardingRulesClient.`get``.
       func `get`(
         request: GlobalForwardingRulesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -354,6 +359,11 @@
       func insert(
         request: GlobalForwardingRulesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `GlobalForwardingRulesClient.insert`.
+      func insertPollingUntilDone(
+        request: GlobalForwardingRulesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `GlobalForwardingRulesClient.list`.
       func list(
@@ -365,15 +375,30 @@
         request: GlobalForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalForwardingRulesClient.patch`.
+      func patchPollingUntilDone(
+        request: GlobalForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalForwardingRulesClient.setLabels`.
       func setLabels(
         request: GlobalForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalForwardingRulesClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: GlobalForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalForwardingRulesClient.setTarget`.
       func setTarget(
         request: GlobalForwardingRulesClient.SetTargetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `GlobalForwardingRulesClient.setTarget`.
+      func setTargetPollingUntilDone(
+        request: GlobalForwardingRulesClient.SetTargetRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

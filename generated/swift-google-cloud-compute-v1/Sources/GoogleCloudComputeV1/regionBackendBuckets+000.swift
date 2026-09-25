@@ -281,6 +281,11 @@
         request: RegionBackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionBackendBucketsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionBackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionBackendBucketsClient.`get``.
       func `get`(
         request: RegionBackendBucketsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -296,6 +301,11 @@
         request: RegionBackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionBackendBucketsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionBackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionBackendBucketsClient.list`.
       func list(
         request: RegionBackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -310,6 +320,11 @@
       func patch(
         request: RegionBackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionBackendBucketsClient.patch`.
+      func patchPollingUntilDone(
+        request: RegionBackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionBackendBucketsClient.setIamPolicy`.
       func setIamPolicy(

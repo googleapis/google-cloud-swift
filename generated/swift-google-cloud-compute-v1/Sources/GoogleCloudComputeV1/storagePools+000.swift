@@ -306,6 +306,11 @@
         request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `StoragePoolsClient.delete`.
+      func deletePollingUntilDone(
+        request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `StoragePoolsClient.`get``.
       func `get`(
         request: StoragePoolsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -320,6 +325,11 @@
       func insert(
         request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `StoragePoolsClient.insert`.
+      func insertPollingUntilDone(
+        request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `StoragePoolsClient.list`.
       func list(
@@ -345,6 +355,11 @@
       func update(
         request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `StoragePoolsClient.update`.
+      func updatePollingUntilDone(
+        request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

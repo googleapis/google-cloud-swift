@@ -236,6 +236,11 @@
         request: TargetGrpcProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetGrpcProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: TargetGrpcProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetGrpcProxiesClient.`get``.
       func `get`(
         request: TargetGrpcProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -246,6 +251,11 @@
         request: TargetGrpcProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetGrpcProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: TargetGrpcProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetGrpcProxiesClient.list`.
       func list(
         request: TargetGrpcProxiesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -255,6 +265,11 @@
       func patch(
         request: TargetGrpcProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetGrpcProxiesClient.patch`.
+      func patchPollingUntilDone(
+        request: TargetGrpcProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -383,6 +383,11 @@
         request: UrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `UrlMapsClient.delete`.
+      func deletePollingUntilDone(
+        request: UrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `UrlMapsClient.`get``.
       func `get`(
         request: UrlMapsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -393,10 +398,20 @@
         request: UrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `UrlMapsClient.insert`.
+      func insertPollingUntilDone(
+        request: UrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `UrlMapsClient.invalidateCache`.
       func invalidateCache(
         request: UrlMapsClient.InvalidateCacheRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `UrlMapsClient.invalidateCache`.
+      func invalidateCachePollingUntilDone(
+        request: UrlMapsClient.InvalidateCacheRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `UrlMapsClient.list`.
       func list(
@@ -408,6 +423,11 @@
         request: UrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `UrlMapsClient.patch`.
+      func patchPollingUntilDone(
+        request: UrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `UrlMapsClient.testIamPermissions`.
       func testIamPermissions(
         request: UrlMapsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -417,6 +437,11 @@
       func update(
         request: UrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `UrlMapsClient.update`.
+      func updatePollingUntilDone(
+        request: UrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `UrlMapsClient.validate`.
       func validate(

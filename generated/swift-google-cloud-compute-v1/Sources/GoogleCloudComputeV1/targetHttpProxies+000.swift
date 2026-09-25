@@ -304,6 +304,11 @@
         request: TargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: TargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpProxiesClient.`get``.
       func `get`(
         request: TargetHttpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -313,6 +318,11 @@
       func insert(
         request: TargetHttpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetHttpProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: TargetHttpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetHttpProxiesClient.list`.
       func list(
@@ -324,10 +334,20 @@
         request: TargetHttpProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpProxiesClient.patch`.
+      func patchPollingUntilDone(
+        request: TargetHttpProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpProxiesClient.setUrlMap`.
       func setUrlMap(
         request: TargetHttpProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetHttpProxiesClient.setUrlMap`.
+      func setUrlMapPollingUntilDone(
+        request: TargetHttpProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

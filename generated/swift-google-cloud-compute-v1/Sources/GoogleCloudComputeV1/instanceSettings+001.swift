@@ -126,6 +126,11 @@
       func patch(
         request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceSettingsClient.patch`.
+      func patchPollingUntilDone(
+        request: InstanceSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

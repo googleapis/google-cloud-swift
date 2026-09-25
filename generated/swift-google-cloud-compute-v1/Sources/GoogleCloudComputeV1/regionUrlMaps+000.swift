@@ -303,6 +303,11 @@
         request: RegionUrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionUrlMapsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionUrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionUrlMapsClient.`get``.
       func `get`(
         request: RegionUrlMapsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -312,6 +317,11 @@
       func insert(
         request: RegionUrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionUrlMapsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionUrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionUrlMapsClient.list`.
       func list(
@@ -323,10 +333,20 @@
         request: RegionUrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionUrlMapsClient.patch`.
+      func patchPollingUntilDone(
+        request: RegionUrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionUrlMapsClient.update`.
       func update(
         request: RegionUrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionUrlMapsClient.update`.
+      func updatePollingUntilDone(
+        request: RegionUrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionUrlMapsClient.validate`.
       func validate(

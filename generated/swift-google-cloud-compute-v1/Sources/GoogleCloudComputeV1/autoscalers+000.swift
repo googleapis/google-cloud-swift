@@ -318,6 +318,11 @@
         request: AutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `AutoscalersClient.delete`.
+      func deletePollingUntilDone(
+        request: AutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `AutoscalersClient.`get``.
       func `get`(
         request: AutoscalersClient.GetRequest, options: GoogleGax.RequestOptions
@@ -327,6 +332,11 @@
       func insert(
         request: AutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `AutoscalersClient.insert`.
+      func insertPollingUntilDone(
+        request: AutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `AutoscalersClient.list`.
       func list(
@@ -338,6 +348,11 @@
         request: AutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `AutoscalersClient.patch`.
+      func patchPollingUntilDone(
+        request: AutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `AutoscalersClient.testIamPermissions`.
       func testIamPermissions(
         request: AutoscalersClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -347,6 +362,11 @@
       func update(
         request: AutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `AutoscalersClient.update`.
+      func updatePollingUntilDone(
+        request: AutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

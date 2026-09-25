@@ -554,15 +554,30 @@
         request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworksClient.addPeering`.
+      func addPeeringPollingUntilDone(
+        request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworksClient.cancelRequestRemovePeering`.
       func cancelRequestRemovePeering(
         request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworksClient.cancelRequestRemovePeering`.
+      func cancelRequestRemovePeeringPollingUntilDone(
+        request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworksClient.delete`.
       func delete(
         request: NetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworksClient.delete`.
+      func deletePollingUntilDone(
+        request: NetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NetworksClient.`get``.
       func `get`(
@@ -579,6 +594,11 @@
         request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworksClient.insert`.
+      func insertPollingUntilDone(
+        request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworksClient.list`.
       func list(
         request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
@@ -594,25 +614,50 @@
         request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworksClient.patch`.
+      func patchPollingUntilDone(
+        request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworksClient.removePeering`.
       func removePeering(
         request: NetworksClient.RemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworksClient.removePeering`.
+      func removePeeringPollingUntilDone(
+        request: NetworksClient.RemovePeeringRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NetworksClient.requestRemovePeering`.
       func requestRemovePeering(
         request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworksClient.requestRemovePeering`.
+      func requestRemovePeeringPollingUntilDone(
+        request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworksClient.switchToCustomMode`.
       func switchToCustomMode(
         request: NetworksClient.SwitchToCustomModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworksClient.switchToCustomMode`.
+      func switchToCustomModePollingUntilDone(
+        request: NetworksClient.SwitchToCustomModeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworksClient.updatePeering`.
       func updatePeering(
         request: NetworksClient.UpdatePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworksClient.updatePeering`.
+      func updatePeeringPollingUntilDone(
+        request: NetworksClient.UpdatePeeringRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

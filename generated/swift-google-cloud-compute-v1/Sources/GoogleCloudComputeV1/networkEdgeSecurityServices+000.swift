@@ -247,6 +247,11 @@
         request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworkEdgeSecurityServicesClient.delete`.
+      func deletePollingUntilDone(
+        request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworkEdgeSecurityServicesClient.`get``.
       func `get`(
         request: NetworkEdgeSecurityServicesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -257,10 +262,20 @@
         request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworkEdgeSecurityServicesClient.insert`.
+      func insertPollingUntilDone(
+        request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworkEdgeSecurityServicesClient.patch`.
       func patch(
         request: NetworkEdgeSecurityServicesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworkEdgeSecurityServicesClient.patch`.
+      func patchPollingUntilDone(
+        request: NetworkEdgeSecurityServicesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

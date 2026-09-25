@@ -176,6 +176,12 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationBlocksClient.performMaintenance`.
+      func performMaintenancePollingUntilDone(
+        request: ReservationBlocksClient.PerformMaintenanceRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationBlocksClient.setIamPolicy`.
       func setIamPolicy(
         request: ReservationBlocksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions

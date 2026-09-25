@@ -384,6 +384,11 @@
         request: ReservationsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationsClient.delete`.
+      func deletePollingUntilDone(
+        request: ReservationsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationsClient.`get``.
       func `get`(
         request: ReservationsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -399,6 +404,11 @@
         request: ReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationsClient.insert`.
+      func insertPollingUntilDone(
+        request: ReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationsClient.list`.
       func list(
         request: ReservationsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -409,10 +419,20 @@
         request: ReservationsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ReservationsClient.performMaintenance`.
+      func performMaintenancePollingUntilDone(
+        request: ReservationsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ReservationsClient.resize`.
       func resize(
         request: ReservationsClient.ResizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ReservationsClient.resize`.
+      func resizePollingUntilDone(
+        request: ReservationsClient.ResizeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ReservationsClient.setIamPolicy`.
       func setIamPolicy(
@@ -428,6 +448,11 @@
       func update(
         request: ReservationsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ReservationsClient.update`.
+      func updatePollingUntilDone(
+        request: ReservationsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

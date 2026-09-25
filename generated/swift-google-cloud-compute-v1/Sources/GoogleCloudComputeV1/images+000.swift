@@ -384,10 +384,20 @@
         request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ImagesClient.delete`.
+      func deletePollingUntilDone(
+        request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ImagesClient.deprecate`.
       func deprecate(
         request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ImagesClient.deprecate`.
+      func deprecatePollingUntilDone(
+        request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ImagesClient.`get``.
       func `get`(
@@ -409,6 +419,11 @@
         request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ImagesClient.insert`.
+      func insertPollingUntilDone(
+        request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ImagesClient.list`.
       func list(
         request: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -419,6 +434,11 @@
         request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ImagesClient.patch`.
+      func patchPollingUntilDone(
+        request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ImagesClient.setIamPolicy`.
       func setIamPolicy(
         request: ImagesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
@@ -428,6 +448,11 @@
       func setLabels(
         request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ImagesClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `ImagesClient.testIamPermissions`.
       func testIamPermissions(

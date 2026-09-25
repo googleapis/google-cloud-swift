@@ -210,6 +210,11 @@
         request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionCommitmentsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionCommitmentsClient.list`.
       func list(
         request: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -219,6 +224,11 @@
       func update(
         request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionCommitmentsClient.update`.
+      func updatePollingUntilDone(
+        request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

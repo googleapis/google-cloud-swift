@@ -170,6 +170,11 @@
         request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionInstanceGroupsClient.setNamedPorts`.
+      func setNamedPortsPollingUntilDone(
+        request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionInstanceGroupsClient.testIamPermissions`.
       func testIamPermissions(
         request: RegionInstanceGroupsClient.TestIamPermissionsRequest,

@@ -300,10 +300,20 @@
         request: FutureReservationsClient.CancelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FutureReservationsClient.cancel`.
+      func cancelPollingUntilDone(
+        request: FutureReservationsClient.CancelRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FutureReservationsClient.delete`.
       func delete(
         request: FutureReservationsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FutureReservationsClient.delete`.
+      func deletePollingUntilDone(
+        request: FutureReservationsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `FutureReservationsClient.`get``.
       func `get`(
@@ -315,6 +325,11 @@
         request: FutureReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FutureReservationsClient.insert`.
+      func insertPollingUntilDone(
+        request: FutureReservationsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FutureReservationsClient.list`.
       func list(
         request: FutureReservationsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -324,6 +339,11 @@
       func update(
         request: FutureReservationsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FutureReservationsClient.update`.
+      func updatePollingUntilDone(
+        request: FutureReservationsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

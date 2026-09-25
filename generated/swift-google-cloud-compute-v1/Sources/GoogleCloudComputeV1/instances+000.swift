@@ -2237,15 +2237,30 @@
         request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.addAccessConfig`.
+      func addAccessConfigPollingUntilDone(
+        request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.addNetworkInterface`.
       func addNetworkInterface(
         request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.addNetworkInterface`.
+      func addNetworkInterfacePollingUntilDone(
+        request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.addResourcePolicies`.
       func addResourcePolicies(
         request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.addResourcePolicies`.
+      func addResourcePoliciesPollingUntilDone(
+        request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.aggregatedList`.
       func aggregatedList(
@@ -2257,30 +2272,60 @@
         request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.attachDisk`.
+      func attachDiskPollingUntilDone(
+        request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.bulkInsert`.
       func bulkInsert(
         request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.bulkInsert`.
+      func bulkInsertPollingUntilDone(
+        request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.delete`.
       func delete(
         request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.delete`.
+      func deletePollingUntilDone(
+        request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.deleteAccessConfig`.
       func deleteAccessConfig(
         request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.deleteAccessConfig`.
+      func deleteAccessConfigPollingUntilDone(
+        request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.deleteNetworkInterface`.
       func deleteNetworkInterface(
         request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.deleteNetworkInterface`.
+      func deleteNetworkInterfacePollingUntilDone(
+        request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.detachDisk`.
       func detachDisk(
         request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.detachDisk`.
+      func detachDiskPollingUntilDone(
+        request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.`get``.
       func `get`(
@@ -2323,6 +2368,11 @@
         request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.insert`.
+      func insertPollingUntilDone(
+        request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.list`.
       func list(
         request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -2338,25 +2388,50 @@
         request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.performMaintenance`.
+      func performMaintenancePollingUntilDone(
+        request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.removeResourcePolicies`.
       func removeResourcePolicies(
         request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.removeResourcePolicies`.
+      func removeResourcePoliciesPollingUntilDone(
+        request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.reportHostAsFaulty`.
       func reportHostAsFaulty(
         request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.reportHostAsFaulty`.
+      func reportHostAsFaultyPollingUntilDone(
+        request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.reset`.
       func reset(
         request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.reset`.
+      func resetPollingUntilDone(
+        request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.resume`.
       func resume(
         request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.resume`.
+      func resumePollingUntilDone(
+        request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.sendDiagnosticInterrupt`.
       func sendDiagnosticInterrupt(
@@ -2368,10 +2443,20 @@
         request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setDeletionProtection`.
+      func setDeletionProtectionPollingUntilDone(
+        request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setDiskAutoDelete`.
       func setDiskAutoDelete(
         request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.setDiskAutoDelete`.
+      func setDiskAutoDeletePollingUntilDone(
+        request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.setIamPolicy`.
       func setIamPolicy(
@@ -2383,45 +2468,90 @@
         request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setMachineResources`.
       func setMachineResources(
         request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.setMachineResources`.
+      func setMachineResourcesPollingUntilDone(
+        request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.setMachineType`.
       func setMachineType(
         request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setMachineType`.
+      func setMachineTypePollingUntilDone(
+        request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setMetadata`.
       func setMetadata(
         request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.setMetadata`.
+      func setMetadataPollingUntilDone(
+        request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.setMinCpuPlatform`.
       func setMinCpuPlatform(
         request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setMinCpuPlatform`.
+      func setMinCpuPlatformPollingUntilDone(
+        request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setName`.
       func setName(
         request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.setName`.
+      func setNamePollingUntilDone(
+        request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.setScheduling`.
       func setScheduling(
         request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setScheduling`.
+      func setSchedulingPollingUntilDone(
+        request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setSecurityPolicy`.
       func setSecurityPolicy(
         request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setSecurityPolicy`.
+      func setSecurityPolicyPollingUntilDone(
+        request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setServiceAccount`.
       func setServiceAccount(
         request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.setServiceAccount`.
+      func setServiceAccountPollingUntilDone(
+        request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.setShieldedInstanceIntegrityPolicy`.
       func setShieldedInstanceIntegrityPolicy(
@@ -2429,35 +2559,71 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.setShieldedInstanceIntegrityPolicy`.
+      func setShieldedInstanceIntegrityPolicyPollingUntilDone(
+        request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.setTags`.
       func setTags(
         request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.setTags`.
+      func setTagsPollingUntilDone(
+        request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.simulateMaintenanceEvent`.
       func simulateMaintenanceEvent(
         request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.simulateMaintenanceEvent`.
+      func simulateMaintenanceEventPollingUntilDone(
+        request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.start`.
       func start(
         request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.start`.
+      func startPollingUntilDone(
+        request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.startWithEncryptionKey`.
       func startWithEncryptionKey(
         request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.startWithEncryptionKey`.
+      func startWithEncryptionKeyPollingUntilDone(
+        request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.stop`.
       func stop(
         request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.stop`.
+      func stopPollingUntilDone(
+        request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.suspend`.
       func suspend(
         request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.suspend`.
+      func suspendPollingUntilDone(
+        request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.testIamPermissions`.
       func testIamPermissions(
@@ -2469,26 +2635,52 @@
         request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.update`.
+      func updatePollingUntilDone(
+        request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.updateAccessConfig`.
       func updateAccessConfig(
         request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.updateAccessConfig`.
+      func updateAccessConfigPollingUntilDone(
+        request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.updateDisplayDevice`.
       func updateDisplayDevice(
         request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstancesClient.updateDisplayDevice`.
+      func updateDisplayDevicePollingUntilDone(
+        request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstancesClient.updateNetworkInterface`.
       func updateNetworkInterface(
         request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.updateNetworkInterface`.
+      func updateNetworkInterfacePollingUntilDone(
+        request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstancesClient.updateShieldedInstanceConfig`.
       func updateShieldedInstanceConfig(
         request: InstancesClient.UpdateShieldedInstanceConfigRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstancesClient.updateShieldedInstanceConfig`.
+      func updateShieldedInstanceConfigPollingUntilDone(
+        request: InstancesClient.UpdateShieldedInstanceConfigRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -519,10 +519,20 @@
         request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetPoolsClient.addHealthCheck`.
+      func addHealthCheckPollingUntilDone(
+        request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetPoolsClient.addInstance`.
       func addInstance(
         request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetPoolsClient.addInstance`.
+      func addInstancePollingUntilDone(
+        request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetPoolsClient.aggregatedList`.
       func aggregatedList(
@@ -533,6 +543,11 @@
       func delete(
         request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetPoolsClient.delete`.
+      func deletePollingUntilDone(
+        request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetPoolsClient.`get``.
       func `get`(
@@ -549,6 +564,11 @@
         request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetPoolsClient.insert`.
+      func insertPollingUntilDone(
+        request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetPoolsClient.list`.
       func list(
         request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -559,20 +579,40 @@
         request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetPoolsClient.removeHealthCheck`.
+      func removeHealthCheckPollingUntilDone(
+        request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetPoolsClient.removeInstance`.
       func removeInstance(
         request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetPoolsClient.removeInstance`.
+      func removeInstancePollingUntilDone(
+        request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetPoolsClient.setBackup`.
       func setBackup(
         request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetPoolsClient.setBackup`.
+      func setBackupPollingUntilDone(
+        request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetPoolsClient.setSecurityPolicy`.
       func setSecurityPolicy(
         request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetPoolsClient.setSecurityPolicy`.
+      func setSecurityPolicyPollingUntilDone(
+        request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetPoolsClient.testIamPermissions`.
       func testIamPermissions(

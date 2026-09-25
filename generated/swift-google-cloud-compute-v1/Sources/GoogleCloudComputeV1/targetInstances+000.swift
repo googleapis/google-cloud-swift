@@ -264,6 +264,11 @@
         request: TargetInstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetInstancesClient.delete`.
+      func deletePollingUntilDone(
+        request: TargetInstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetInstancesClient.`get``.
       func `get`(
         request: TargetInstancesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -274,6 +279,11 @@
         request: TargetInstancesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetInstancesClient.insert`.
+      func insertPollingUntilDone(
+        request: TargetInstancesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetInstancesClient.list`.
       func list(
         request: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -283,6 +293,11 @@
       func setSecurityPolicy(
         request: TargetInstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetInstancesClient.setSecurityPolicy`.
+      func setSecurityPolicyPollingUntilDone(
+        request: TargetInstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetInstancesClient.testIamPermissions`.
       func testIamPermissions(

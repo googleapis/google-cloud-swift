@@ -114,6 +114,11 @@
       func bulkInsert(
         request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionInstancesClient.bulkInsert`.
+      func bulkInsertPollingUntilDone(
+        request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

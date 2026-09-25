@@ -316,6 +316,11 @@
         request: InterconnectAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectAttachmentsClient.delete`.
+      func deletePollingUntilDone(
+        request: InterconnectAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectAttachmentsClient.`get``.
       func `get`(
         request: InterconnectAttachmentsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -325,6 +330,11 @@
       func insert(
         request: InterconnectAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectAttachmentsClient.insert`.
+      func insertPollingUntilDone(
+        request: InterconnectAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InterconnectAttachmentsClient.list`.
       func list(
@@ -336,10 +346,20 @@
         request: InterconnectAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectAttachmentsClient.patch`.
+      func patchPollingUntilDone(
+        request: InterconnectAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectAttachmentsClient.setLabels`.
       func setLabels(
         request: InterconnectAttachmentsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectAttachmentsClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: InterconnectAttachmentsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -128,6 +128,11 @@
       func patch(
         request: RegionSnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionSnapshotSettingsClient.patch`.
+      func patchPollingUntilDone(
+        request: RegionSnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

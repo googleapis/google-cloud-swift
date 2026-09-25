@@ -301,6 +301,11 @@
         request: RegionAutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionAutoscalersClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionAutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionAutoscalersClient.`get``.
       func `get`(
         request: RegionAutoscalersClient.GetRequest, options: GoogleGax.RequestOptions
@@ -310,6 +315,11 @@
       func insert(
         request: RegionAutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionAutoscalersClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionAutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionAutoscalersClient.list`.
       func list(
@@ -321,6 +331,11 @@
         request: RegionAutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionAutoscalersClient.patch`.
+      func patchPollingUntilDone(
+        request: RegionAutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionAutoscalersClient.testIamPermissions`.
       func testIamPermissions(
         request: RegionAutoscalersClient.TestIamPermissionsRequest,
@@ -331,6 +346,11 @@
       func update(
         request: RegionAutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionAutoscalersClient.update`.
+      func updatePollingUntilDone(
+        request: RegionAutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

@@ -1418,6 +1418,12 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.abandonInstances`.
+      func abandonInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.AbandonInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.aggregatedList`.
       func aggregatedList(
         request: InstanceGroupManagersClient.AggregatedListRequest,
@@ -1430,16 +1436,33 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.applyUpdatesToInstances`.
+      func applyUpdatesToInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.createInstances`.
       func createInstances(
         request: InstanceGroupManagersClient.CreateInstancesRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.createInstances`.
+      func createInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.CreateInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.delete`.
       func delete(
         request: InstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.delete`.
+      func deletePollingUntilDone(
+        request: InstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.deleteInstances`.
       func deleteInstances(
@@ -1447,11 +1470,23 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.deleteInstances`.
+      func deleteInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.DeleteInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.deletePerInstanceConfigs`.
       func deletePerInstanceConfigs(
         request: InstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.deletePerInstanceConfigs`.
+      func deletePerInstanceConfigsPollingUntilDone(
+        request: InstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.`get``.
       func `get`(
@@ -1462,6 +1497,11 @@
       func insert(
         request: InstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.insert`.
+      func insertPollingUntilDone(
+        request: InstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.list`.
       func list(
@@ -1490,11 +1530,22 @@
         request: InstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.patch`.
+      func patchPollingUntilDone(
+        request: InstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.patchPerInstanceConfigs`.
       func patchPerInstanceConfigs(
         request: InstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.patchPerInstanceConfigs`.
+      func patchPerInstanceConfigsPollingUntilDone(
+        request: InstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.recreateInstances`.
       func recreateInstances(
@@ -1502,10 +1553,21 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.recreateInstances`.
+      func recreateInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.RecreateInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.resize`.
       func resize(
         request: InstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.resize`.
+      func resizePollingUntilDone(
+        request: InstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.resumeInstances`.
       func resumeInstances(
@@ -1513,11 +1575,23 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.resumeInstances`.
+      func resumeInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.ResumeInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.setInstanceTemplate`.
       func setInstanceTemplate(
         request: InstanceGroupManagersClient.SetInstanceTemplateRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.setInstanceTemplate`.
+      func setInstanceTemplatePollingUntilDone(
+        request: InstanceGroupManagersClient.SetInstanceTemplateRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.setTargetPools`.
       func setTargetPools(
@@ -1525,16 +1599,33 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.setTargetPools`.
+      func setTargetPoolsPollingUntilDone(
+        request: InstanceGroupManagersClient.SetTargetPoolsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.startInstances`.
       func startInstances(
         request: InstanceGroupManagersClient.StartInstancesRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.startInstances`.
+      func startInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.StartInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.stopInstances`.
       func stopInstances(
         request: InstanceGroupManagersClient.StopInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.stopInstances`.
+      func stopInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.StopInstancesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupManagersClient.suspendInstances`.
       func suspendInstances(
@@ -1542,11 +1633,23 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupManagersClient.suspendInstances`.
+      func suspendInstancesPollingUntilDone(
+        request: InstanceGroupManagersClient.SuspendInstancesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupManagersClient.updatePerInstanceConfigs`.
       func updatePerInstanceConfigs(
         request: InstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupManagersClient.updatePerInstanceConfigs`.
+      func updatePerInstanceConfigsPollingUntilDone(
+        request: InstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

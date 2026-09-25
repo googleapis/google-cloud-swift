@@ -282,6 +282,11 @@
         request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionCompositeHealthChecksClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionCompositeHealthChecksClient.`get``.
       func `get`(
         request: RegionCompositeHealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
@@ -298,6 +303,11 @@
         request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionCompositeHealthChecksClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionCompositeHealthChecksClient.list`.
       func list(
         request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
@@ -307,6 +317,11 @@
       func patch(
         request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionCompositeHealthChecksClient.patch`.
+      func patchPollingUntilDone(
+        request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionCompositeHealthChecksClient.testIamPermissions`.
       func testIamPermissions(

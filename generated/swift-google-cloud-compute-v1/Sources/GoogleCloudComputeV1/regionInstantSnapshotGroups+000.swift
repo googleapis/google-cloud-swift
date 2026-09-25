@@ -218,6 +218,11 @@
         request: RegionInstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionInstantSnapshotGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionInstantSnapshotGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionInstantSnapshotGroupsClient.`get``.
       func `get`(
         request: RegionInstantSnapshotGroupsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -233,6 +238,11 @@
       func insert(
         request: RegionInstantSnapshotGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionInstantSnapshotGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionInstantSnapshotGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionInstantSnapshotGroupsClient.list`.
       func list(

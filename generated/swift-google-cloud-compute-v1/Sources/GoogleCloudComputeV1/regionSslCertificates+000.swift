@@ -187,6 +187,11 @@
         request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionSslCertificatesClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionSslCertificatesClient.`get``.
       func `get`(
         request: RegionSslCertificatesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -196,6 +201,11 @@
       func insert(
         request: RegionSslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionSslCertificatesClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionSslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionSslCertificatesClient.list`.
       func list(

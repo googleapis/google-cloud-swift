@@ -236,6 +236,11 @@
         request: WireGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `WireGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: WireGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `WireGroupsClient.`get``.
       func `get`(
         request: WireGroupsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -246,6 +251,11 @@
         request: WireGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `WireGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: WireGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `WireGroupsClient.list`.
       func list(
         request: WireGroupsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -255,6 +265,11 @@
       func patch(
         request: WireGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `WireGroupsClient.patch`.
+      func patchPollingUntilDone(
+        request: WireGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

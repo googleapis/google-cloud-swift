@@ -266,6 +266,11 @@
         request: PacketMirroringsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `PacketMirroringsClient.delete`.
+      func deletePollingUntilDone(
+        request: PacketMirroringsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `PacketMirroringsClient.`get``.
       func `get`(
         request: PacketMirroringsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -276,6 +281,11 @@
         request: PacketMirroringsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `PacketMirroringsClient.insert`.
+      func insertPollingUntilDone(
+        request: PacketMirroringsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `PacketMirroringsClient.list`.
       func list(
         request: PacketMirroringsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -285,6 +295,11 @@
       func patch(
         request: PacketMirroringsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `PacketMirroringsClient.patch`.
+      func patchPollingUntilDone(
+        request: PacketMirroringsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `PacketMirroringsClient.testIamPermissions`.
       func testIamPermissions(

@@ -328,10 +328,20 @@
         request: InterconnectGroupsClient.CreateMembersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectGroupsClient.createMembers`.
+      func createMembersPollingUntilDone(
+        request: InterconnectGroupsClient.CreateMembersRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectGroupsClient.delete`.
       func delete(
         request: InterconnectGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: InterconnectGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InterconnectGroupsClient.`get``.
       func `get`(
@@ -354,6 +364,11 @@
         request: InterconnectGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: InterconnectGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectGroupsClient.list`.
       func list(
         request: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -363,6 +378,11 @@
       func patch(
         request: InterconnectGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectGroupsClient.patch`.
+      func patchPollingUntilDone(
+        request: InterconnectGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InterconnectGroupsClient.setIamPolicy`.
       func setIamPolicy(

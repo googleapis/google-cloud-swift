@@ -256,11 +256,23 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionInstanceGroupManagerResizeRequestsClient.cancel`.
+      func cancelPollingUntilDone(
+        request: RegionInstanceGroupManagerResizeRequestsClient.CancelRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionInstanceGroupManagerResizeRequestsClient.delete`.
       func delete(
         request: RegionInstanceGroupManagerResizeRequestsClient.DeleteRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionInstanceGroupManagerResizeRequestsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionInstanceGroupManagerResizeRequestsClient.DeleteRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionInstanceGroupManagerResizeRequestsClient.`get``.
       func `get`(
@@ -273,6 +285,12 @@
         request: RegionInstanceGroupManagerResizeRequestsClient.InsertRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionInstanceGroupManagerResizeRequestsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionInstanceGroupManagerResizeRequestsClient.InsertRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionInstanceGroupManagerResizeRequestsClient.list`.
       func list(

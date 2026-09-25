@@ -230,6 +230,11 @@
         request: NodeTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NodeTemplatesClient.delete`.
+      func deletePollingUntilDone(
+        request: NodeTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NodeTemplatesClient.`get``.
       func `get`(
         request: NodeTemplatesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -244,6 +249,11 @@
       func insert(
         request: NodeTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NodeTemplatesClient.insert`.
+      func insertPollingUntilDone(
+        request: NodeTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NodeTemplatesClient.list`.
       func list(

@@ -284,6 +284,11 @@
         request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectAttachmentGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectAttachmentGroupsClient.`get``.
       func `get`(
         request: InterconnectAttachmentGroupsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -307,6 +312,11 @@
         request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectAttachmentGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectAttachmentGroupsClient.list`.
       func list(
         request: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -316,6 +326,11 @@
       func patch(
         request: InterconnectAttachmentGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectAttachmentGroupsClient.patch`.
+      func patchPollingUntilDone(
+        request: InterconnectAttachmentGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InterconnectAttachmentGroupsClient.setIamPolicy`.
       func setIamPolicy(

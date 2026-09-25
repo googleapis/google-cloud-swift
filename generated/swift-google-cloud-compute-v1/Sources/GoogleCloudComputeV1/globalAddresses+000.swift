@@ -290,6 +290,11 @@
         request: GlobalAddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalAddressesClient.delete`.
+      func deletePollingUntilDone(
+        request: GlobalAddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalAddressesClient.`get``.
       func `get`(
         request: GlobalAddressesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -299,6 +304,11 @@
       func insert(
         request: GlobalAddressesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `GlobalAddressesClient.insert`.
+      func insertPollingUntilDone(
+        request: GlobalAddressesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `GlobalAddressesClient.list`.
       func list(
@@ -310,10 +320,20 @@
         request: GlobalAddressesClient.MoveRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `GlobalAddressesClient.move`.
+      func movePollingUntilDone(
+        request: GlobalAddressesClient.MoveRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `GlobalAddressesClient.setLabels`.
       func setLabels(
         request: GlobalAddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `GlobalAddressesClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: GlobalAddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `GlobalAddressesClient.testIamPermissions`.
       func testIamPermissions(

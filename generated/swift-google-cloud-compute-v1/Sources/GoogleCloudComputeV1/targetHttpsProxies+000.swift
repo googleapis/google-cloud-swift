@@ -507,6 +507,11 @@
         request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpsProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpsProxiesClient.`get``.
       func `get`(
         request: TargetHttpsProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -516,6 +521,11 @@
       func insert(
         request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetHttpsProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetHttpsProxiesClient.list`.
       func list(
@@ -527,16 +537,32 @@
         request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpsProxiesClient.patch`.
+      func patchPollingUntilDone(
+        request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpsProxiesClient.setCertificateMap`.
       func setCertificateMap(
         request: TargetHttpsProxiesClient.SetCertificateMapRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpsProxiesClient.setCertificateMap`.
+      func setCertificateMapPollingUntilDone(
+        request: TargetHttpsProxiesClient.SetCertificateMapRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpsProxiesClient.setQuicOverride`.
       func setQuicOverride(
         request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetHttpsProxiesClient.setQuicOverride`.
+      func setQuicOverridePollingUntilDone(
+        request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetHttpsProxiesClient.setSslCertificates`.
       func setSslCertificates(
@@ -544,15 +570,31 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpsProxiesClient.setSslCertificates`.
+      func setSslCertificatesPollingUntilDone(
+        request: TargetHttpsProxiesClient.SetSslCertificatesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpsProxiesClient.setSslPolicy`.
       func setSslPolicy(
         request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetHttpsProxiesClient.setSslPolicy`.
+      func setSslPolicyPollingUntilDone(
+        request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetHttpsProxiesClient.setUrlMap`.
       func setUrlMap(
         request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetHttpsProxiesClient.setUrlMap`.
+      func setUrlMapPollingUntilDone(
+        request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

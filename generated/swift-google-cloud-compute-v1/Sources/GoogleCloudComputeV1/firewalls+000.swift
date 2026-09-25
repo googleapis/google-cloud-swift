@@ -301,6 +301,11 @@
         request: FirewallsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallsClient.delete`.
+      func deletePollingUntilDone(
+        request: FirewallsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallsClient.`get``.
       func `get`(
         request: FirewallsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -310,6 +315,11 @@
       func insert(
         request: FirewallsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FirewallsClient.insert`.
+      func insertPollingUntilDone(
+        request: FirewallsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `FirewallsClient.list`.
       func list(
@@ -321,6 +331,11 @@
         request: FirewallsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallsClient.patch`.
+      func patchPollingUntilDone(
+        request: FirewallsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallsClient.testIamPermissions`.
       func testIamPermissions(
         request: FirewallsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -330,6 +345,11 @@
       func update(
         request: FirewallsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FirewallsClient.update`.
+      func updatePollingUntilDone(
+        request: FirewallsClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

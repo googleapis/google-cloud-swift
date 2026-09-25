@@ -213,6 +213,11 @@
         request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionNotificationEndpointsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionNotificationEndpointsClient.`get``.
       func `get`(
         request: RegionNotificationEndpointsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -222,6 +227,11 @@
       func insert(
         request: RegionNotificationEndpointsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionNotificationEndpointsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionNotificationEndpointsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionNotificationEndpointsClient.list`.
       func list(

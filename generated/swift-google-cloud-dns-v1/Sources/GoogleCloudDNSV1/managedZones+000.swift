@@ -244,6 +244,11 @@ extension Clients {
       request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation
 
+    /// See `ManagedZonesClient.patch`.
+    func patchPollingUntilDone(
+      request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
+    ) async throws -> any GoogleGax.PollableOperation<Operation>
+
     /// See `ManagedZonesClient.setIamPolicy`.
     func setIamPolicy(
       request: ManagedZonesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
@@ -258,6 +263,11 @@ extension Clients {
     func update(
       request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation
+
+    /// See `ManagedZonesClient.update`.
+    func updatePollingUntilDone(
+      request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
+    ) async throws -> any GoogleGax.PollableOperation<Operation>
   }
 }
 

@@ -399,10 +399,20 @@
         request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SubnetworksClient.delete`.
+      func deletePollingUntilDone(
+        request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SubnetworksClient.expandIpCidrRange`.
       func expandIpCidrRange(
         request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SubnetworksClient.expandIpCidrRange`.
+      func expandIpCidrRangePollingUntilDone(
+        request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `SubnetworksClient.`get``.
       func `get`(
@@ -419,6 +429,11 @@
         request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SubnetworksClient.insert`.
+      func insertPollingUntilDone(
+        request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SubnetworksClient.list`.
       func list(
         request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
@@ -434,6 +449,11 @@
         request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `SubnetworksClient.patch`.
+      func patchPollingUntilDone(
+        request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `SubnetworksClient.setIamPolicy`.
       func setIamPolicy(
         request: SubnetworksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
@@ -444,6 +464,12 @@
         request: SubnetworksClient.SetPrivateIpGoogleAccessRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `SubnetworksClient.setPrivateIpGoogleAccess`.
+      func setPrivateIpGoogleAccessPollingUntilDone(
+        request: SubnetworksClient.SetPrivateIpGoogleAccessRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `SubnetworksClient.testIamPermissions`.
       func testIamPermissions(

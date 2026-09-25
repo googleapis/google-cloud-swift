@@ -326,15 +326,30 @@
         request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RolloutsClient.advance`.
+      func advancePollingUntilDone(
+        request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RolloutsClient.cancel`.
       func cancel(
         request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RolloutsClient.cancel`.
+      func cancelPollingUntilDone(
+        request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RolloutsClient.delete`.
       func delete(
         request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RolloutsClient.delete`.
+      func deletePollingUntilDone(
+        request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RolloutsClient.`get``.
       func `get`(
@@ -351,10 +366,20 @@
         request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RolloutsClient.pause`.
+      func pausePollingUntilDone(
+        request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RolloutsClient.resume`.
       func resume(
         request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RolloutsClient.resume`.
+      func resumePollingUntilDone(
+        request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

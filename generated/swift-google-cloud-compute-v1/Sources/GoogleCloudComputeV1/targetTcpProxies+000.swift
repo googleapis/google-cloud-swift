@@ -307,6 +307,11 @@
         request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetTcpProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetTcpProxiesClient.`get``.
       func `get`(
         request: TargetTcpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -316,6 +321,11 @@
       func insert(
         request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetTcpProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetTcpProxiesClient.list`.
       func list(
@@ -327,10 +337,20 @@
         request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `TargetTcpProxiesClient.setBackendService`.
+      func setBackendServicePollingUntilDone(
+        request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `TargetTcpProxiesClient.setProxyHeader`.
       func setProxyHeader(
         request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `TargetTcpProxiesClient.setProxyHeader`.
+      func setProxyHeaderPollingUntilDone(
+        request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `TargetTcpProxiesClient.testIamPermissions`.
       func testIamPermissions(

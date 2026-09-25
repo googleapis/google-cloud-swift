@@ -621,20 +621,40 @@
         request: FirewallPoliciesClient.AddAssociationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallPoliciesClient.addAssociation`.
+      func addAssociationPollingUntilDone(
+        request: FirewallPoliciesClient.AddAssociationRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallPoliciesClient.addRule`.
       func addRule(
         request: FirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FirewallPoliciesClient.addRule`.
+      func addRulePollingUntilDone(
+        request: FirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `FirewallPoliciesClient.cloneRules`.
       func cloneRules(
         request: FirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallPoliciesClient.cloneRules`.
+      func cloneRulesPollingUntilDone(
+        request: FirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallPoliciesClient.delete`.
       func delete(
         request: FirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FirewallPoliciesClient.delete`.
+      func deletePollingUntilDone(
+        request: FirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `FirewallPoliciesClient.`get``.
       func `get`(
@@ -661,6 +681,11 @@
         request: FirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallPoliciesClient.insert`.
+      func insertPollingUntilDone(
+        request: FirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallPoliciesClient.list`.
       func list(
         request: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -676,25 +701,50 @@
         request: FirewallPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallPoliciesClient.move`.
+      func movePollingUntilDone(
+        request: FirewallPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallPoliciesClient.patch`.
       func patch(
         request: FirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FirewallPoliciesClient.patch`.
+      func patchPollingUntilDone(
+        request: FirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `FirewallPoliciesClient.patchRule`.
       func patchRule(
         request: FirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallPoliciesClient.patchRule`.
+      func patchRulePollingUntilDone(
+        request: FirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallPoliciesClient.removeAssociation`.
       func removeAssociation(
         request: FirewallPoliciesClient.RemoveAssociationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `FirewallPoliciesClient.removeAssociation`.
+      func removeAssociationPollingUntilDone(
+        request: FirewallPoliciesClient.RemoveAssociationRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `FirewallPoliciesClient.removeRule`.
       func removeRule(
         request: FirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `FirewallPoliciesClient.removeRule`.
+      func removeRulePollingUntilDone(
+        request: FirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `FirewallPoliciesClient.setIamPolicy`.
       func setIamPolicy(

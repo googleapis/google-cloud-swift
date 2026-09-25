@@ -364,16 +364,33 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `NetworkEndpointGroupsClient.attachNetworkEndpoints`.
+      func attachNetworkEndpointsPollingUntilDone(
+        request: NetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `NetworkEndpointGroupsClient.delete`.
       func delete(
         request: NetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworkEndpointGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: NetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NetworkEndpointGroupsClient.detachNetworkEndpoints`.
       func detachNetworkEndpoints(
         request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworkEndpointGroupsClient.detachNetworkEndpoints`.
+      func detachNetworkEndpointsPollingUntilDone(
+        request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NetworkEndpointGroupsClient.`get``.
       func `get`(
@@ -384,6 +401,11 @@
       func insert(
         request: NetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `NetworkEndpointGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: NetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `NetworkEndpointGroupsClient.list`.
       func list(

@@ -312,6 +312,11 @@
         request: AddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `AddressesClient.delete`.
+      func deletePollingUntilDone(
+        request: AddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `AddressesClient.`get``.
       func `get`(
         request: AddressesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -321,6 +326,11 @@
       func insert(
         request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `AddressesClient.insert`.
+      func insertPollingUntilDone(
+        request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `AddressesClient.list`.
       func list(
@@ -332,10 +342,20 @@
         request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `AddressesClient.move`.
+      func movePollingUntilDone(
+        request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `AddressesClient.setLabels`.
       func setLabels(
         request: AddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `AddressesClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: AddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `AddressesClient.testIamPermissions`.
       func testIamPermissions(

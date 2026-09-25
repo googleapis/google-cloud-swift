@@ -739,11 +739,23 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `OrganizationSecurityPoliciesClient.addAssociation`.
+      func addAssociationPollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.AddAssociationRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `OrganizationSecurityPoliciesClient.addRule`.
       func addRule(
         request: OrganizationSecurityPoliciesClient.AddRuleRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `OrganizationSecurityPoliciesClient.addRule`.
+      func addRulePollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.AddRuleRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `OrganizationSecurityPoliciesClient.copyRules`.
       func copyRules(
@@ -751,10 +763,21 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `OrganizationSecurityPoliciesClient.copyRules`.
+      func copyRulesPollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.CopyRulesRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `OrganizationSecurityPoliciesClient.delete`.
       func delete(
         request: OrganizationSecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `OrganizationSecurityPoliciesClient.delete`.
+      func deletePollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `OrganizationSecurityPoliciesClient.`get``.
       func `get`(
@@ -778,6 +801,11 @@
         request: OrganizationSecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `OrganizationSecurityPoliciesClient.insert`.
+      func insertPollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `OrganizationSecurityPoliciesClient.list`.
       func list(
         request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -800,10 +828,20 @@
         request: OrganizationSecurityPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `OrganizationSecurityPoliciesClient.move`.
+      func movePollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `OrganizationSecurityPoliciesClient.patch`.
       func patch(
         request: OrganizationSecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `OrganizationSecurityPoliciesClient.patch`.
+      func patchPollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `OrganizationSecurityPoliciesClient.patchRule`.
       func patchRule(
@@ -811,17 +849,35 @@
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `OrganizationSecurityPoliciesClient.patchRule`.
+      func patchRulePollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.PatchRuleRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `OrganizationSecurityPoliciesClient.removeAssociation`.
       func removeAssociation(
         request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `OrganizationSecurityPoliciesClient.removeAssociation`.
+      func removeAssociationPollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `OrganizationSecurityPoliciesClient.removeRule`.
       func removeRule(
         request: OrganizationSecurityPoliciesClient.RemoveRuleRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `OrganizationSecurityPoliciesClient.removeRule`.
+      func removeRulePollingUntilDone(
+        request: OrganizationSecurityPoliciesClient.RemoveRuleRequest,
+        options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

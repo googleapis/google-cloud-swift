@@ -282,6 +282,11 @@
         request: RegionInstantSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionInstantSnapshotsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionInstantSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionInstantSnapshotsClient.`get``.
       func `get`(
         request: RegionInstantSnapshotsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -297,6 +302,11 @@
         request: RegionInstantSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionInstantSnapshotsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionInstantSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionInstantSnapshotsClient.list`.
       func list(
         request: RegionInstantSnapshotsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -311,6 +321,11 @@
       func setLabels(
         request: RegionInstantSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionInstantSnapshotsClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: RegionInstantSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionInstantSnapshotsClient.testIamPermissions`.
       func testIamPermissions(

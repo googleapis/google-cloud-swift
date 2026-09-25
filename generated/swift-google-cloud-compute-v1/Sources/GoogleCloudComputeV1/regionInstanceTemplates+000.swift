@@ -189,6 +189,11 @@
         request: RegionInstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionInstanceTemplatesClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionInstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionInstanceTemplatesClient.`get``.
       func `get`(
         request: RegionInstanceTemplatesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -198,6 +203,11 @@
       func insert(
         request: RegionInstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionInstanceTemplatesClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionInstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionInstanceTemplatesClient.list`.
       func list(

@@ -400,6 +400,11 @@
         request: InstanceGroupsClient.AddInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupsClient.addInstances`.
+      func addInstancesPollingUntilDone(
+        request: InstanceGroupsClient.AddInstancesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupsClient.aggregatedList`.
       func aggregatedList(
         request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
@@ -410,6 +415,11 @@
         request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupsClient.delete`.
+      func deletePollingUntilDone(
+        request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupsClient.`get``.
       func `get`(
         request: InstanceGroupsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -419,6 +429,11 @@
       func insert(
         request: InstanceGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupsClient.insert`.
+      func insertPollingUntilDone(
+        request: InstanceGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupsClient.list`.
       func list(
@@ -435,10 +450,20 @@
         request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InstanceGroupsClient.removeInstances`.
+      func removeInstancesPollingUntilDone(
+        request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InstanceGroupsClient.setNamedPorts`.
       func setNamedPorts(
         request: InstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InstanceGroupsClient.setNamedPorts`.
+      func setNamedPortsPollingUntilDone(
+        request: InstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `InstanceGroupsClient.testIamPermissions`.
       func testIamPermissions(

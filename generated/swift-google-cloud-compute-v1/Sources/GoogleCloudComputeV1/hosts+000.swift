@@ -136,6 +136,11 @@
         request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `HostsClient.getVersion`.
+      func getVersionPollingUntilDone(
+        request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `HostsClient.list`.
       func list(
         request: HostsClient.ListRequest, options: GoogleGax.RequestOptions

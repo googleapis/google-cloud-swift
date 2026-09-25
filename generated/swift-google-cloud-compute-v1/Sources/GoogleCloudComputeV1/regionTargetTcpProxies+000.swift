@@ -186,6 +186,11 @@
         request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionTargetTcpProxiesClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionTargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionTargetTcpProxiesClient.`get``.
       func `get`(
         request: RegionTargetTcpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -195,6 +200,11 @@
       func insert(
         request: RegionTargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionTargetTcpProxiesClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionTargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionTargetTcpProxiesClient.list`.
       func list(

@@ -333,6 +333,11 @@
         request: RegionSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionSnapshotsClient.delete`.
+      func deletePollingUntilDone(
+        request: RegionSnapshotsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionSnapshotsClient.`get``.
       func `get`(
         request: RegionSnapshotsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -347,6 +352,11 @@
       func insert(
         request: RegionSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionSnapshotsClient.insert`.
+      func insertPollingUntilDone(
+        request: RegionSnapshotsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `RegionSnapshotsClient.list`.
       func list(
@@ -363,6 +373,11 @@
         request: RegionSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `RegionSnapshotsClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: RegionSnapshotsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `RegionSnapshotsClient.testIamPermissions`.
       func testIamPermissions(
         request: RegionSnapshotsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -372,6 +387,11 @@
       func updateKmsKey(
         request: RegionSnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `RegionSnapshotsClient.updateKmsKey`.
+      func updateKmsKeyPollingUntilDone(
+        request: RegionSnapshotsClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

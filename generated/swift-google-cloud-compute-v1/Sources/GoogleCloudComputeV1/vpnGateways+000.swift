@@ -271,6 +271,11 @@
         request: VpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `VpnGatewaysClient.delete`.
+      func deletePollingUntilDone(
+        request: VpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `VpnGatewaysClient.`get``.
       func `get`(
         request: VpnGatewaysClient.GetRequest, options: GoogleGax.RequestOptions
@@ -286,6 +291,11 @@
         request: VpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `VpnGatewaysClient.insert`.
+      func insertPollingUntilDone(
+        request: VpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `VpnGatewaysClient.list`.
       func list(
         request: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
@@ -295,6 +305,11 @@
       func setLabels(
         request: VpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `VpnGatewaysClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: VpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
 
       /// See `VpnGatewaysClient.testIamPermissions`.
       func testIamPermissions(

@@ -234,6 +234,11 @@
         request: ZoneVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ZoneVmExtensionPoliciesClient.delete`.
+      func deletePollingUntilDone(
+        request: ZoneVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ZoneVmExtensionPoliciesClient.`get``.
       func `get`(
         request: ZoneVmExtensionPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
@@ -244,6 +249,11 @@
         request: ZoneVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `ZoneVmExtensionPoliciesClient.insert`.
+      func insertPollingUntilDone(
+        request: ZoneVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `ZoneVmExtensionPoliciesClient.list`.
       func list(
         request: ZoneVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
@@ -253,6 +263,11 @@
       func update(
         request: ZoneVmExtensionPoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `ZoneVmExtensionPoliciesClient.update`.
+      func updatePollingUntilDone(
+        request: ZoneVmExtensionPoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 

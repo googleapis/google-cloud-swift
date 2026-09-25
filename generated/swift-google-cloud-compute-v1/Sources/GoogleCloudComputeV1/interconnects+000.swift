@@ -318,6 +318,11 @@
         request: InterconnectsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectsClient.delete`.
+      func deletePollingUntilDone(
+        request: InterconnectsClient.DeleteRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectsClient.`get``.
       func `get`(
         request: InterconnectsClient.GetRequest, options: GoogleGax.RequestOptions
@@ -338,6 +343,11 @@
         request: InterconnectsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectsClient.insert`.
+      func insertPollingUntilDone(
+        request: InterconnectsClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectsClient.list`.
       func list(
         request: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
@@ -348,10 +358,20 @@
         request: InterconnectsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
 
+      /// See `InterconnectsClient.patch`.
+      func patchPollingUntilDone(
+        request: InterconnectsClient.PatchRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+
       /// See `InterconnectsClient.setLabels`.
       func setLabels(
         request: InterconnectsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation
+
+      /// See `InterconnectsClient.setLabels`.
+      func setLabelsPollingUntilDone(
+        request: InterconnectsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
     }
   }
 
