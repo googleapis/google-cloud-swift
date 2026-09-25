@@ -86,6 +86,15 @@ import Testing
     #expect(state.start == now)
   }
 
+  @Test func detailsTotalBytesTypeConsistency() {
+    let readDetails = ReadObjectDetails(bytesRead: 100, totalBytes: 1000)
+    let writeDetails = WriteObjectDetails(bytesWritten: 100, totalBytes: 1000)
+
+    #expect(readDetails.bytesRead <= readDetails.totalBytes!)
+    #expect(writeDetails.bytesWritten <= writeDetails.totalBytes!)
+    #expect(readDetails.totalBytes == writeDetails.totalBytes)
+  }
+
   @Test func resumePolicyProgressUpdatesState() {
     let policy = StorageResumePolicy<WriteObjectDetails>.unbounded()
     var state = ResumeState(details: WriteObjectDetails(bytesWritten: 0, totalBytes: 1000)).with {

@@ -20,7 +20,7 @@ public struct ReadObjectDetails: Sendable, Equatable {
   public var bytesRead: UInt64
 
   /// The total size of the object to read in bytes, if known.
-  public var totalBytes: Int64?
+  public var totalBytes: UInt64?
 
   /// Creates a new `ReadObjectDetails` instance.
   ///
@@ -29,7 +29,7 @@ public struct ReadObjectDetails: Sendable, Equatable {
   ///   - totalBytes: Total object size in bytes if known. Defaults to `nil`.
   public init(
     bytesRead: UInt64 = 0,
-    totalBytes: Int64? = nil
+    totalBytes: UInt64? = nil
   ) {
     self.bytesRead = bytesRead
     self.totalBytes = totalBytes
