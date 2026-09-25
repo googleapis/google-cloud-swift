@@ -75,6 +75,13 @@ public struct ChecksumOptions: Sendable, Hashable {
   }
 }
 
+/// Encodes a 32-bit CRC32C checksum as a Base64 string of its 4 big-endian bytes, matching the
+/// representation used by Google Cloud Storage in `x-goog-hash` headers and object metadata.
+///
+/// This helper constructs the 4-byte array via bitwise shifts rather than `withUnsafeBytes(of:)`
+/// to avoid raw pointer operations under `-strict-memory-safety` (SE-0458) and to remain
+/// compatible across Swift 6.2/6.3 (where `withUnsafeBytes(of:)` is `@unsafe`) and Swift 6.4+
+/// (where `withUnsafeBytes(of:)` is `@safe` and rejects `unsafe` with `[#UnnecessaryUnsafe]`).
 func crc32cBase64(_ value: UInt32) -> String {
   Data([
     UInt8((value >> 24) & 0xFF),
