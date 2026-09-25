@@ -16,9 +16,9 @@ import Foundation
 
 /// Implements a linear backoff policy with constant delay.
 ///
-/// This class conforms to the ``BackoffPolicy`` protocol. It implements a simple linear backoff
+/// This struct conforms to the ``BackoffPolicy`` protocol. It implements a simple linear backoff
 /// algorithm, where the delay between retry attempts remains constant.
-public final class LinearBackoffPolicy: BackoffPolicy, Sendable {
+public struct LinearBackoffPolicy: BackoffPolicy, Sendable, Equatable {
   public let delay: Duration
 
   /// Create a new linear backoff policy with the specified constant delay.

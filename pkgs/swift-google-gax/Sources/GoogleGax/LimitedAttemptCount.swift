@@ -40,3 +40,5 @@ public struct LimitedAttemptCount<P: Sendable>: Sendable {
     self.maximumAttempts = max(0, maximumAttempts)
   }
 }
+
+extension LimitedAttemptCount: Equatable where P: Equatable {}

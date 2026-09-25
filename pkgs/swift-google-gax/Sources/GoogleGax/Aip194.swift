@@ -26,8 +26,8 @@ import GoogleRpc
 /// only on the status code, and the only retryable status code is `UNAVAILABLE`.
 ///
 /// [AIP-194]: https://google.aip.dev/194
-final public class Aip194: Sendable {
-  init() {}
+public struct Aip194: Sendable, Equatable {
+  public init() {}
 
   /// Creates an unconstrained AIP-194 policy without attempt or time limits.
   ///

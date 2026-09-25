@@ -30,4 +30,14 @@ import Testing
     #expect(p.remainingTime(state: idempotentState()) == nil)
     #expect(p.onThrottle(state: idempotentState(), error: transient()) == .retry(transient()))
   }
+
+  @Test func equatable() {
+    let a = AlwaysRetry.unbounded().strictIdempotency()
+    let b = AlwaysRetry.unbounded().strictIdempotency()
+    #expect(a == b)
+
+    let p1 = NeverRetry().withAttemptLimit(1).strictIdempotency()
+    let p2 = NeverRetry().withAttemptLimit(2).strictIdempotency()
+    #expect(p1 != p2)
+  }
 }

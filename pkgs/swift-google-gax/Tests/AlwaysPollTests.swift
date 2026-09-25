@@ -37,6 +37,12 @@ import Testing
     try p.onInProgress(state: PollingState())
   }
 
+  @Test func equatable() {
+    let a = AlwaysPoll()
+    let b = AlwaysPoll.unbounded()
+    #expect(a == b)
+  }
+
   // Helper functions
 
   private func httpUnavailable() -> RequestError {

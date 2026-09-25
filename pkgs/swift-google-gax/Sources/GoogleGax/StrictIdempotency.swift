@@ -46,6 +46,8 @@ public struct StrictIdempotency<P: RetryPolicy>: RetryPolicy {
   }
 }
 
+extension StrictIdempotency: Equatable where P: Equatable {}
+
 extension RetryPolicy {
   /// Decorate a `RetryPolicy` to stop if the request is not-idempotent.
   ///

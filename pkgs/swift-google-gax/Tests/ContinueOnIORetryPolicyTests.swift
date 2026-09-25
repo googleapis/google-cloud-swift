@@ -35,4 +35,14 @@ import Testing
     #expect(p.remainingTime(state: idempotentState()) == nil)
     #expect(p.remainingTime(state: nonIdempotentState()) == nil)
   }
+
+  @Test func equatable() {
+    let a = NeverRetry().retryOnIO()
+    let b = NeverRetry().retryOnIO()
+    #expect(a == b)
+
+    let p1 = NeverRetry().withAttemptLimit(1).retryOnIO()
+    let p2 = NeverRetry().withAttemptLimit(2).retryOnIO()
+    #expect(p1 != p2)
+  }
 }

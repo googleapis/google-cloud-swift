@@ -103,6 +103,20 @@ import Testing
       #expect(d >= .seconds(0) && d <= .seconds(1))
     }
   }
+
+  @Test func equatable() throws {
+    let a = ExponentialBackoff()
+    let b = ExponentialBackoff()
+    #expect(a == b)
+
+    let configA = ExponentialBackoffConfig()
+    let configB = ExponentialBackoffConfig()
+    #expect(configA == configB)
+
+    let custom = try ExponentialBackoff(
+      config: ExponentialBackoffConfig().with { $0.scaling = 3.0 })
+    #expect(a != custom)
+  }
 }
 
 extension ExponentialBackoffError: Equatable {

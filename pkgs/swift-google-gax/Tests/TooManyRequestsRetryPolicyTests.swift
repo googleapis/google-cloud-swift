@@ -58,6 +58,16 @@ import Testing
     #expect(policy.remainingTime(state: state) == nil)
   }
 
+  @Test func equatable() {
+    let a = NeverRetry().retryOnTooManyRequests()
+    let b = NeverRetry().retryOnTooManyRequests()
+    #expect(a == b)
+
+    let p1 = NeverRetry().withAttemptLimit(1).retryOnTooManyRequests()
+    let p2 = NeverRetry().withAttemptLimit(2).retryOnTooManyRequests()
+    #expect(p1 != p2)
+  }
+
   // Helper functions
 
   private func tooManyRequests() -> RequestError {

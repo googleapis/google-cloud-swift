@@ -102,4 +102,12 @@ import Testing
       try policy.onInProgress(state: PollingState())
     }
   }
+
+  @Test func equatable() {
+    let a = AlwaysPoll().withTimeLimit(.seconds(30))
+    let b = AlwaysPoll().withTimeLimit(.seconds(30))
+    #expect(a == b)
+    let c = AlwaysPoll().withTimeLimit(.seconds(60))
+    #expect(a != c)
+  }
 }

@@ -48,6 +48,12 @@ import Testing
     #expect(p.remainingTime(state: idempotentState()) == nil)
   }
 
+  @Test func equatable() {
+    let a = Aip194()
+    let b = Aip194.unbounded()
+    #expect(a == b)
+  }
+
   static func unavailable() -> RequestError {
     .service(ServiceError(code: GoogleRpc.Code.unavailable, message: "UNAVAILABLE"))
   }

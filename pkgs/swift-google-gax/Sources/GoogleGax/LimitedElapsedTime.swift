@@ -22,7 +22,7 @@ import Foundation
 ///
 /// The `remainingTime()` method returns the remaining time. This is always zero after the
 /// policy's deadline is reached.
-final public class LimitedElapsedTime<P: Sendable>: Sendable {
+public struct LimitedElapsedTime<P: Sendable>: Sendable {
   let inner: P
   let maximumDuration: Duration
 
@@ -31,3 +31,5 @@ final public class LimitedElapsedTime<P: Sendable>: Sendable {
     self.maximumDuration = maximumDuration
   }
 }
+
+extension LimitedElapsedTime: Equatable where P: Equatable {}

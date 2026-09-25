@@ -178,4 +178,12 @@ import Testing
       #expect(remaining <= .seconds(10))
     }
   }
+
+  @Test func equatable() {
+    let a = NeverRetry().withTimeLimit(.seconds(30))
+    let b = NeverRetry().withTimeLimit(.seconds(30))
+    #expect(a == b)
+    let c = NeverRetry().withTimeLimit(.seconds(60))
+    #expect(a != c)
+  }
 }

@@ -39,4 +39,10 @@ import Testing
     try policy.onInProgress(state: PollingState())
     #expect(called.withLock { $0 })
   }
+
+  @Test func equatable() {
+    let a = AlwaysPoll().continueOnIoErrors()
+    let b = AlwaysPoll().continueOnIoErrors()
+    #expect(a == b)
+  }
 }

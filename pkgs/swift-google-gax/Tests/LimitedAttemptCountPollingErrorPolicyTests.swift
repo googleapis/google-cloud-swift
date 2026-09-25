@@ -100,6 +100,14 @@ import Testing
     }
   }
 
+  @Test func equatable() {
+    let a = AlwaysPoll().withAttemptLimit(3)
+    let b = AlwaysPoll().withAttemptLimit(3)
+    #expect(a == b)
+    let c = AlwaysPoll().withAttemptLimit(5)
+    #expect(a != c)
+  }
+
   func transient() -> RequestError {
     RequestError.http(HTTPDetails(httpStatusCode: 429, headers: [:]))
   }

@@ -19,7 +19,7 @@ import Foundation
 /// This policy may be useful when:
 /// - you want to avoid retrying a particular method
 /// - you want to implement a different retry loop
-final public class NeverRetry: RetryPolicy {
+public struct NeverRetry: RetryPolicy, Sendable, Equatable {
   public init() {}
 
   public func onError(state: RetryState, error: RequestError) -> RetryResult {

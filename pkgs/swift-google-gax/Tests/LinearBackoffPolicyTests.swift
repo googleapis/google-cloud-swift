@@ -35,4 +35,12 @@ import Testing
     #expect(policy.delay == .zero)
     #expect(policy.backoffDelayFor(RetryState()) == .zero)
   }
+
+  @Test func equatable() {
+    let a = LinearBackoffPolicy(delay: .seconds(5))
+    let b = LinearBackoffPolicy(delay: .seconds(5))
+    #expect(a == b)
+    let c = LinearBackoffPolicy(delay: .seconds(10))
+    #expect(a != c)
+  }
 }

@@ -78,6 +78,12 @@ import Testing
     #expect(p.onError(state: expired, error: e) == .exhausted(e))
   }
 
+  @Test func equatable() {
+    let a = BaseRetryPolicy()
+    let b = BaseRetryPolicy.unbounded()
+    #expect(a == b)
+  }
+
   static func unavailable() -> RequestError {
     .service(ServiceError(code: GoogleRpc.Code.unavailable, message: "UNAVAILABLE"))
   }

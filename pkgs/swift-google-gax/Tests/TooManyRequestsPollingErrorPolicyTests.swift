@@ -42,6 +42,12 @@ import Testing
     #expect(called.withLock { $0 })
   }
 
+  @Test func equatable() {
+    let a = AlwaysPoll().continueOnTooManyRequests()
+    let b = AlwaysPoll().continueOnTooManyRequests()
+    #expect(a == b)
+  }
+
   // Helper functions
 
   private func tooManyRequests() -> RequestError {

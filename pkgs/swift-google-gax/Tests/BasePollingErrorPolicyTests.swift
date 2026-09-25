@@ -57,4 +57,10 @@ import Testing
     }
     #expect(p.onError(state: expiredState, error: unavailable) == .exhausted(unavailable))
   }
+
+  @Test func equatable() {
+    let a = BasePollingErrorPolicy()
+    let b = BasePollingErrorPolicy.unbounded()
+    #expect(a == b)
+  }
 }

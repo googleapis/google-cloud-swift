@@ -37,3 +37,5 @@ public struct TooManyRequests<P: Sendable>: Sendable {
     return false
   }
 }
+
+extension TooManyRequests: Equatable where P: Equatable {}

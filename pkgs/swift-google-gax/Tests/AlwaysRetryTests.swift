@@ -38,6 +38,12 @@ import Testing
     #expect(p.onError(state: state, error: httpUnavailable()) == .retry(httpUnavailable()))
   }
 
+  @Test func equatable() {
+    let a = AlwaysRetry()
+    let b = AlwaysRetry.unbounded()
+    #expect(a == b)
+  }
+
   // Helper functions
 
   private func httpUnavailable() -> RequestError {

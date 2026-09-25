@@ -98,6 +98,14 @@ import Testing
     #expect(policy.onError(state: nonIdempotentState(), error: error) == .exhausted(error))
   }
 
+  @Test func equatable() {
+    let a = NeverRetry().withAttemptLimit(3)
+    let b = NeverRetry().withAttemptLimit(3)
+    #expect(a == b)
+    let c = NeverRetry().withAttemptLimit(5)
+    #expect(a != c)
+  }
+
   func transient() -> RequestError {
     RequestError.http(HTTPDetails(httpStatusCode: 429, headers: [:]))
   }

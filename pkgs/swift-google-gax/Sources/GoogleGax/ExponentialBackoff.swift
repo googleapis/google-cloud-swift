@@ -29,7 +29,7 @@ public enum ExponentialBackoffError: Error, Sendable {
 }
 
 /// Configuration for ``ExponentialBackoff``.
-public struct ExponentialBackoffConfig: Sendable {
+public struct ExponentialBackoffConfig: Sendable, Equatable {
   /// The initial delay before the first retry.
   public var initialDelay: Duration = .seconds(1)
   /// The maximum delay between retries.
@@ -50,14 +50,14 @@ public struct ExponentialBackoffConfig: Sendable {
 
 /// Implements truncated [exponential backoff] with jitter.
 ///
-/// This class conforms to the ``BackoffPolicy`` protocol. It implements an exponential backoff
+/// This struct conforms to the ``BackoffPolicy`` protocol. It implements an exponential backoff
 /// algorithm, where the delay between attempts grows exponentially on each attempt, typically
 /// doubling. That quickly smears the retry attempts over time. To minimize the chances of
 /// simultaneous retry attempts, each delay has randomized jitter. Finally, the delay is truncated
 /// if it grows beyond some maximum delay.
 ///
 /// [Exponential backoff]: https://en.wikipedia.org/wiki/Exponential_backoff
-public final class ExponentialBackoff: BackoffPolicy, Sendable {
+public struct ExponentialBackoff: BackoffPolicy, Sendable, Equatable {
   public let initialDelay: Duration
   public let maximumDelay: Duration
   public let scaling: Double

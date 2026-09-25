@@ -25,10 +25,10 @@ import GoogleRpc
 ///
 /// [AIP-194]: https://google.aip.dev/194
 /// [idempotent]: https://en.wikipedia.org/wiki/Idempotence
-final public class BaseRetryPolicy: RetryPolicy {
+public struct BaseRetryPolicy: RetryPolicy, Sendable, Equatable {
   let inner: StrictIdempotency<ContinueOnIO<Aip194>>
 
-  init() {
+  public init() {
     self.inner = Aip194().retryOnIO().strictIdempotency()
   }
 

@@ -21,8 +21,8 @@ import Foundation
 ///
 /// The policy continues on all errors. This may be useful in tests, or to just poll for a fixed
 /// number of attempts or fixed amount of time.
-final public class AlwaysPoll: PollingErrorPolicy {
-  init() {}
+public struct AlwaysPoll: PollingErrorPolicy, Sendable, Equatable {
+  public init() {}
 
   /// Creates an unconstrained polling error policy that continues polling on all errors indefinitely.
   ///
