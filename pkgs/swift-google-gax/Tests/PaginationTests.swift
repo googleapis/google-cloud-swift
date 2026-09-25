@@ -56,16 +56,6 @@ import Testing
       let response = mockResponses.removeFirst()
       return response
     }
-    public func listItemsByItems(request: ListItemsRequest) -> some AsyncSequence<Item, Swift.Error>
-      & Sendable
-    {
-      let listRpc = { @Sendable (token: String) async throws -> ListItemsResponse in
-        var request = request
-        request.pageToken = token
-        return try await self.listItems(request: request)
-      }
-      return PaginatedResponseSequence(listRpc: listRpc)
-    }
   }
 
   @Test func onePage() async throws {
@@ -183,11 +173,6 @@ import Testing
     #expect(array.isEmpty)
   }
 
-  protocol PaginatedServiceProtocol: Sendable {
-    func listItemsByItems(request: ListItemsRequest) -> any AsyncSequence<Item, Swift.Error>
-      & Sendable
-  }
-
   actor ItemCollector {
     private(set) var items: [Item] = []
     func record(_ item: Item) {
@@ -290,5 +275,24 @@ import Testing
       filteredAndMapped.append(name)
     }
     #expect(filteredAndMapped == ["A", "C"])
+  }
+}
+
+protocol PaginatedServiceProtocol: Sendable {
+  func listItems(request: PaginatedResponseTest.ListItemsRequest) async throws
+    -> PaginatedResponseTest.ListItemsResponse
+}
+
+extension PaginatedServiceProtocol {
+  func listItemsByItems(request: PaginatedResponseTest.ListItemsRequest)
+    -> some AsyncSequence<PaginatedResponseTest.Item, Swift.Error> & Sendable
+  {
+    let listRpc = {
+      @Sendable (token: String) async throws -> PaginatedResponseTest.ListItemsResponse in
+      var request = request
+      request.pageToken = token
+      return try await self.listItems(request: request)
+    }
+    return GoogleGax.PaginatedResponseSequence(listRpc: listRpc)
   }
 }
