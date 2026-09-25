@@ -1459,7 +1459,7 @@ import Testing
     )
 
     let client = try makeClient(registry: registry)
-    let download: ReadObjectHandle = client.readObject(from: bucket, object: objectName)
+    let download: any ReadObjectHandleProtocol = client.readObject(from: bucket, object: objectName)
 
     let task = Task {
       // SAFETY: The `UnsafeCurrentTask` reference is only used synchronously to cancel the current

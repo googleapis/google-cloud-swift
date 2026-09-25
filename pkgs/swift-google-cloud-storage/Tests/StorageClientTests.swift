@@ -91,6 +91,73 @@ import Testing
       try await client.writeObject(
         Data("test".utf8), to: "bucket", as: "object", options: .default)
     }
+
+    let readHandle = client.readObject(from: "bucket", object: "object")
+    readHandle.cancel()
+    await #expect(throws: GoogleGax.RequestError.self) {
+      _ = try await readHandle.metadata
+    }
+    await #expect(throws: GoogleGax.RequestError.self) {
+      for try await _ in readHandle.body {}
+    }
+  }
+
+  struct MockReadObjectHandle: ReadObjectHandleProtocol {
+    var metadata: ReadObjectMetadata
+    var chunks: [ByteChunk]
+
+    var body: any AsyncSequence<ByteChunk, any Error> & Sendable {
+      let chunks = self.chunks
+      return AsyncThrowingStream { continuation in
+        for chunk in chunks {
+          continuation.yield(chunk)
+        }
+        continuation.finish()
+      }
+    }
+  }
+
+  final class MockReadableStorage: StorageProtocol, @unchecked Sendable {
+    var readHandler: ((String, String, ReadObjectOptions) -> any ReadObjectHandleProtocol)?
+
+    func readObject(
+      from bucket: String,
+      object: String,
+      options: ReadObjectOptions
+    ) -> any ReadObjectHandleProtocol {
+      if let handler = readHandler {
+        return handler(bucket, object, options)
+      }
+      return MockReadObjectHandle(metadata: .init(), chunks: [])
+    }
+  }
+
+  @Test func mockStorageReadObjectDelegation() async throws {
+    let mock = MockReadableStorage()
+    mock.readHandler = { bucket, object, options in
+      let metadata = ReadObjectMetadata().with {
+        $0.bucket = bucket
+        $0.object = object
+        $0.size = 11
+      }
+      return MockReadObjectHandle(
+        metadata: metadata,
+        chunks: [ByteChunk(Data("hello ".utf8)), ByteChunk(Data("world".utf8))]
+      )
+    }
+
+    let client: any StorageProtocol = mock
+    let download = client.readObject(from: "test-bucket", object: "test-object")
+    let metadata = try await download.metadata
+    #expect(metadata.bucket == "test-bucket")
+    #expect(metadata.object == "test-object")
+    #expect(metadata.size == 11)
+
+    var received = Data()
+    for try await chunk in download.body {
+      received.append(chunk.data)
+    }
+    #expect(received == Data("hello world".utf8))
   }
 
   @Test func mockStorageConvenienceOverloadDelegation() async throws {

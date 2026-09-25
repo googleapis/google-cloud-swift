@@ -20,25 +20,25 @@ func readObject(
   from bucket: String,
   object: String,
   options: ReadObjectOptions = .init()
-) -> ReadObjectHandle
+) -> any ReadObjectHandleProtocol
 ```
 
-- **Return Struct (`ReadObjectHandle`):** `readObject` returns immediately with a `ReadObjectHandle` struct holding both the object metadata and the streaming body:
+- **Return Protocol (`ReadObjectHandleProtocol`):** `readObject` returns immediately with a `ReadObjectHandleProtocol` handle providing both the object metadata and the streaming body:
   ```swift
-  public struct ReadObjectHandle: Sendable {
+  public protocol ReadObjectHandleProtocol: Sendable {
     /// Object metadata populated from response headers upon request initiation.
-    public var metadata: ReadObjectMetadata { get async throws }
+    var metadata: ReadObjectMetadata { get async throws }
 
     /// An asynchronous sequence of `ByteChunk` chunks for the object payload.
-    public var body: ReadObjectSequence { get }
+    var body: any AsyncSequence<ByteChunk, any Error> & Sendable { get }
 
     /// Cancels the ongoing download.
-    public func cancel()
+    func cancel()
   }
   ```
 
-- **Immediate Metadata Availability:** Upon `await client.readObject(...)` returning, response headers (`Content-Length`, `x-goog-generation`, `x-goog-hash`, `Content-Type`, etc.) are parsed and made available in `response.metadata` before the application consumes the payload stream.
-- **Lazy Payload Consumption:** The `response.body` (`ReadObjectSequence`) streams raw data chunks lazily as the caller iterates over it.
+- **Immediate Metadata Availability:** Upon awaiting `response.metadata`, response headers (`Content-Length`, `x-goog-generation`, `x-goog-hash`, `Content-Type`, etc.) are parsed and made available before the application consumes the payload stream.
+- **Lazy Payload Consumption:** The `response.body` sequence streams raw data chunks lazily as the caller iterates over it.
 
 ### Example Usage
 
@@ -300,16 +300,16 @@ public struct ReadObjectSequence: AsyncSequence, Sendable {
   public func makeAsyncIterator() -> AsyncIterator
 }
 
-/// Container object returned by `readObject` containing metadata and the streaming body sequence.
-public struct ReadObjectHandle: Sendable {
+/// Handle protocol returned by `readObject` providing metadata and the streaming body sequence.
+public protocol ReadObjectHandleProtocol: Sendable {
   /// Object metadata extracted from initial HTTP response headers.
-  public var metadata: ReadObjectMetadata { get async throws }
+  var metadata: ReadObjectMetadata { get async throws }
 
   /// Asynchronous sequence yielding chunks of binary data payload.
-  public var body: ReadObjectSequence { get }
+  var body: any AsyncSequence<ByteChunk, any Error> & Sendable { get }
 
   /// Cancels the ongoing download.
-  public func cancel()
+  func cancel()
 }
 ```
 
@@ -321,14 +321,14 @@ public protocol StorageProtocol {
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ReadObjectHandle
+  ) -> any ReadObjectHandleProtocol
 }
 
 extension StorageProtocol {
   public func readObject(
     from bucket: String,
     object: String
-  ) -> ReadObjectHandle {
+  ) -> any ReadObjectHandleProtocol {
     readObject(from: bucket, object: object, options: .init())
   }
 }
@@ -338,7 +338,7 @@ extension StorageClient {
     from bucket: String,
     object: String,
     options: ReadObjectOptions = .init()
-  ) -> ReadObjectHandle {
+  ) -> any ReadObjectHandleProtocol {
     // Return ReadObjectHandle backed by coordinator
   }
 }

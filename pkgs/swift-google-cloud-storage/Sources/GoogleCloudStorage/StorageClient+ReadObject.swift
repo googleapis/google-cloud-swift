@@ -19,9 +19,9 @@ import NIOHTTP1
 extension StorageClient {
   /// Starts an object download from Cloud Storage.
   ///
-  /// Iterate over ``ReadObjectHandle/body`` on the returned ``ReadObjectHandle`` to stream the
+  /// Iterate over ``ReadObjectHandleProtocol/body`` on the returned ``ReadObjectHandleProtocol`` to stream the
   /// object's content as an asynchronous sequence of ``ByteChunk`` chunks, or `await`
-  /// ``ReadObjectHandle/metadata`` to inspect the object's metadata.
+  /// ``ReadObjectHandleProtocol/metadata`` to inspect the object's metadata.
   ///
   /// ```swift
   /// let download = client.readObject(from: "my-bucket", object: "file.txt")
@@ -34,12 +34,12 @@ extension StorageClient {
   ///   - bucket: The GCS bucket name.
   ///   - object: The GCS object name.
   ///   - options: Configuration options for the read operation.
-  /// - Returns: A ``ReadObjectHandle`` providing access to the object's ``ReadObjectHandle/metadata`` and streaming ``ReadObjectHandle/body``.
+  /// - Returns: A ``ReadObjectHandleProtocol`` providing access to the object's ``ReadObjectHandleProtocol/metadata`` and streaming ``ReadObjectHandleProtocol/body``.
   public func readObject(
     from bucket: String,
     object: String,
     options: ReadObjectOptions = .init()
-  ) -> ReadObjectHandle {
+  ) -> any ReadObjectHandleProtocol {
     let effectiveOptions = options.withDefaults(self.options.readObject)
     let resumeLoop = _ResumeLoop(
       resumePolicy: effectiveOptions.resumePolicy

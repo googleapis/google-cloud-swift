@@ -13,12 +13,12 @@
 // limitations under the License.
 
 public import Foundation
-@_spi(GoogleCloudInternal) package import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 import NIOCore
 
-/// A handle to an in-progress or deferred object download returned by ``StorageClient/readObject(from:object:options:)``.
+/// A handle to an in-progress or deferred object download returned by ``StorageProtocol/readObject(from:object:options:)``.
 ///
-/// `ReadObjectHandle` provides access to both the object's initial response metadata (``metadata``)
+/// `ReadObjectHandleProtocol` provides access to both the object's initial response metadata (``metadata``)
 /// and its streaming payload (``body``). The network request is started lazily when either
 /// ``metadata`` or ``body`` is first awaited.
 ///
@@ -34,27 +34,54 @@ import NIOCore
 ///   // Process ByteChunk chunk
 /// }
 /// ```
-public struct ReadObjectHandle: Sendable {
+public protocol ReadObjectHandleProtocol: Sendable {
+  /// Object metadata extracted from initial HTTP response headers.
+  var metadata: ReadObjectMetadata { get async throws }
+
+  /// Asynchronous sequence yielding chunks of binary data payload.
+  var body: any AsyncSequence<ByteChunk, any Error> & Sendable { get }
+
+  /// Cancels the ongoing download.
+  func cancel()
+}
+
+extension ReadObjectHandleProtocol {
+  /// Object metadata extracted from initial HTTP response headers.
+  public var metadata: ReadObjectMetadata {
+    get async throws {
+      throw GoogleGax.RequestError.unimplemented
+    }
+  }
+
+  /// Asynchronous sequence yielding chunks of binary data payload.
+  public var body: any AsyncSequence<ByteChunk, any Error> & Sendable {
+    AsyncThrowingStream { continuation in
+      continuation.finish(throwing: GoogleGax.RequestError.unimplemented)
+    }
+  }
+
+  /// Cancels the ongoing download.
+  public func cancel() {}
+}
+
+struct ReadObjectHandle: ReadObjectHandleProtocol, Sendable {
   private let coordinator: ReadObjectCoordinator
 
-  package init(coordinator: ReadObjectCoordinator) {
+  init(coordinator: ReadObjectCoordinator) {
     self.coordinator = coordinator
   }
 
-  /// Object metadata extracted from initial HTTP response headers.
-  public var metadata: ReadObjectMetadata {
+  var metadata: ReadObjectMetadata {
     get async throws {
       try await coordinator.getMetadata()
     }
   }
 
-  /// Asynchronous sequence yielding chunks of binary data payload.
-  public var body: ReadObjectSequence {
+  var body: any AsyncSequence<ByteChunk, any Error> & Sendable {
     ReadObjectSequence(coordinator: coordinator)
   }
 
-  /// Cancels the ongoing download.
-  public func cancel() {
+  func cancel() {
     coordinator.cancel()
   }
 }
@@ -115,39 +142,39 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
 }
 
 /// An asynchronous sequence of `ByteChunk` chunks representing an object payload being downloaded.
-public struct ReadObjectSequence: AsyncSequence, Sendable {
-  public typealias Element = ByteChunk
+struct ReadObjectSequence: AsyncSequence, Sendable {
+  typealias Element = ByteChunk
 
   private let coordinator: ReadObjectCoordinator
 
-  package init(coordinator: ReadObjectCoordinator) {
+  init(coordinator: ReadObjectCoordinator) {
     self.coordinator = coordinator
   }
 
   /// An asynchronous iterator for iterating over chunks of downloaded object payload data.
-  public struct AsyncIterator: AsyncIteratorProtocol {
-    public typealias Element = ByteChunk
+  struct AsyncIterator: AsyncIteratorProtocol {
+    typealias Element = ByteChunk
 
     private let coordinator: ReadObjectCoordinator
 
-    package init(coordinator: ReadObjectCoordinator) {
+    init(coordinator: ReadObjectCoordinator) {
       self.coordinator = coordinator
     }
 
     /// Advances to the next `ByteChunk` chunk in the downloaded object payload stream.
-    public mutating func next() async throws -> ByteChunk? {
+    mutating func next() async throws -> ByteChunk? {
       try await coordinator.nextChunk()
     }
   }
 
   /// Creates an asynchronous iterator for iterating over object payload chunks.
-  public func makeAsyncIterator() -> AsyncIterator {
+  func makeAsyncIterator() -> AsyncIterator {
     AsyncIterator(coordinator: coordinator)
   }
 }
 
 /// Coordinates the deferred initial request, metadata resolution, and streaming body consumption.
-package final class ReadObjectCoordinator: @unchecked Sendable {
+final class ReadObjectCoordinator: @unchecked Sendable {
   let bucket: String
   let object: String
   let options: ReadObjectOptions
@@ -168,7 +195,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
   private var md5Calculator: MD5Calculator?
   private var hasValidatedChecksums: Bool = false
 
-  package init(
+  init(
     bucket: String,
     object: String,
     options: ReadObjectOptions,
@@ -229,7 +256,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     return try await task.value
   }
 
-  package func getMetadata() async throws -> ReadObjectMetadata {
+  func getMetadata() async throws -> ReadObjectMetadata {
     try await withTaskCancellationHandler {
       if cancelled || Task.isCancelled {
         throw CancellationError()
@@ -240,7 +267,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     }
   }
 
-  package func nextChunk() async throws -> ByteChunk? {
+  func nextChunk() async throws -> ByteChunk? {
     try await withTaskCancellationHandler {
       try await nextChunkImpl()
     } onCancel: {
@@ -490,7 +517,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
     }
   }
 
-  package func cancel() {
+  func cancel() {
     let taskToCancel = lock.withLock { () -> Task<ReadObjectMetadata, Error>? in
       isCancelled = true
       isFinished = true

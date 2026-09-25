@@ -35,21 +35,23 @@ public protocol StorageProtocol: Sendable {
 
   /// Starts an object download from Cloud Storage.
   ///
-  /// Iterate over ``ReadObjectHandle/body`` on the returned ``ReadObjectHandle`` to stream the
+  /// Iterate over ``ReadObjectHandleProtocol/body`` on the returned ``ReadObjectHandleProtocol`` to stream the
   /// object's content as an asynchronous sequence of ``ByteChunk`` chunks, or `await`
-  /// ``ReadObjectHandle/metadata`` to inspect the object's metadata.
+  /// ``ReadObjectHandleProtocol/metadata`` to inspect the object's metadata.
   ///
   /// - Parameters:
   ///   - bucket: The GCS bucket name.
   ///   - object: The GCS object name.
   ///   - options: Configuration options for the read operation.
-  /// - Returns: A ``ReadObjectHandle`` providing access to the object's ``ReadObjectHandle/metadata`` and streaming ``ReadObjectHandle/body``.
+  /// - Returns: A ``ReadObjectHandleProtocol`` providing access to the object's ``ReadObjectHandleProtocol/metadata`` and streaming ``ReadObjectHandleProtocol/body``.
   func readObject(
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ReadObjectHandle
+  ) -> any ReadObjectHandleProtocol
 }
+
+private struct UnimplementedReadObjectHandle: ReadObjectHandleProtocol {}
 
 extension StorageProtocol {
   /// Core write method accepting any write object source.
@@ -79,8 +81,8 @@ extension StorageProtocol {
     from bucket: String,
     object: String,
     options: ReadObjectOptions
-  ) -> ReadObjectHandle {
-    fatalError("readObject(from:object:options:) has not been implemented")
+  ) -> any ReadObjectHandleProtocol {
+    UnimplementedReadObjectHandle()
   }
 
   /// Core write method accepting any write object source with default options.
@@ -125,9 +127,9 @@ extension StorageProtocol {
 
   /// Starts an object download from Cloud Storage with default options.
   ///
-  /// Iterate over ``ReadObjectHandle/body`` on the returned ``ReadObjectHandle`` to stream the
+  /// Iterate over ``ReadObjectHandleProtocol/body`` on the returned ``ReadObjectHandleProtocol`` to stream the
   /// object's content as an asynchronous sequence of ``ByteChunk`` chunks, or `await`
-  /// ``ReadObjectHandle/metadata`` to inspect the object's metadata.
+  /// ``ReadObjectHandleProtocol/metadata`` to inspect the object's metadata.
   ///
   /// ```swift
   /// let download = client.readObject(from: "my-bucket", object: "file.txt")
@@ -139,11 +141,11 @@ extension StorageProtocol {
   /// - Parameters:
   ///   - bucket: The GCS bucket name.
   ///   - object: The GCS object name.
-  /// - Returns: A ``ReadObjectHandle`` providing access to the object's ``ReadObjectHandle/metadata`` and streaming ``ReadObjectHandle/body``.
+  /// - Returns: A ``ReadObjectHandleProtocol`` providing access to the object's ``ReadObjectHandleProtocol/metadata`` and streaming ``ReadObjectHandleProtocol/body``.
   public func readObject(
     from bucket: String,
     object: String
-  ) -> ReadObjectHandle {
+  ) -> any ReadObjectHandleProtocol {
     self.readObject(from: bucket, object: object, options: .init())
   }
 }
