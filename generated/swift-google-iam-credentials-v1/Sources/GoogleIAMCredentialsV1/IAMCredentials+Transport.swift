@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func generateAccessToken(
       request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateIdToken(
       request: GenerateIdTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.GenerateIdTokenResponse {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func signBlob(
       request: SignBlobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.SignBlobResponse {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func signJwt(
       request: SignJwtRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.SignJwtResponse {

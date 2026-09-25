@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listLogMetrics(
       request: ListLogMetricsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLogMetric(
       request: GetLogMetricRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogMetric {
@@ -128,6 +130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLogMetric(
       request: CreateLogMetricRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogMetric {
@@ -175,6 +178,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLogMetric(
       request: UpdateLogMetricRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogMetric {
@@ -226,6 +230,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLogMetric(
       request: DeleteLogMetricRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -274,6 +279,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -486,6 +492,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -668,6 +675,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

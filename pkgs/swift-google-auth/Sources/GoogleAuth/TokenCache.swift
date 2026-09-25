@@ -41,6 +41,7 @@ protocol TokenProvider: Sendable {
   /// Asynchronously fetches a fresh token from the provider.
   ///
   /// - Returns: A fresh token.
+  @concurrent
   func fetchToken() async throws -> Token
 }
 

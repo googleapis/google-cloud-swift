@@ -80,6 +80,7 @@ let baseDependencies: [Package.Dependency] = [
 
 let swiftSettings: [SwiftSetting] = [
   .enableUpcomingFeature("InternalImportsByDefault"),
+  .enableUpcomingFeature("NonisolatedNonsendingByDefault"),
   .strictMemorySafety(),
 ]
 

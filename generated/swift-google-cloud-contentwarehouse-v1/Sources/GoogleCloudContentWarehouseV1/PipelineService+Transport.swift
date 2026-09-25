@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func runPipeline(
       request: RunPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

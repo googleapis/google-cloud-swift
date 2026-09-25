@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addPeering(
         request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -97,6 +98,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelRequestRemovePeering(
         request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -162,6 +164,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: NetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -223,6 +226,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: NetworksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Network {
@@ -282,6 +286,7 @@
         ).get()
       }
 
+      @concurrent
       public func getEffectiveFirewalls(
         request: NetworksClient.GetEffectiveFirewallsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworksGetEffectiveFirewallsResponse {
@@ -343,6 +348,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -393,6 +399,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkList {
@@ -446,6 +453,7 @@
         ).get()
       }
 
+      @concurrent
       public func listPeeringRoutes(
         request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList {
@@ -517,6 +525,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -581,6 +590,7 @@
         ).get()
       }
 
+      @concurrent
       public func removePeering(
         request: NetworksClient.RemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -646,6 +656,7 @@
         ).get()
       }
 
+      @concurrent
       public func requestRemovePeering(
         request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -711,6 +722,7 @@
         ).get()
       }
 
+      @concurrent
       public func switchToCustomMode(
         request: NetworksClient.SwitchToCustomModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -773,6 +785,7 @@
         ).get()
       }
 
+      @concurrent
       public func updatePeering(
         request: NetworksClient.UpdatePeeringRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -838,6 +851,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

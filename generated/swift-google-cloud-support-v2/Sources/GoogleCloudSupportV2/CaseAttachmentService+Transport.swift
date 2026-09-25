@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listAttachments(
       request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse {
@@ -116,6 +117,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAttachment(
       request: GetAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Attachment {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addRule(
         request: SecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -98,6 +99,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList {
@@ -156,6 +158,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: SecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -218,6 +221,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: SecurityPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPolicy {
@@ -278,6 +282,7 @@
         ).get()
       }
 
+      @concurrent
       public func getRule(
         request: SecurityPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule {
@@ -340,6 +345,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: SecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -392,6 +398,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SecurityPolicyList {
@@ -445,6 +452,7 @@
         ).get()
       }
 
+      @concurrent
       public func listPreconfiguredExpressionSets(
         request: SecurityPoliciesClient.ListPreconfiguredExpressionSetsRequest,
         options: GoogleGax.RequestOptions
@@ -502,6 +510,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: SecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -568,6 +577,7 @@
         ).get()
       }
 
+      @concurrent
       public func patchRule(
         request: SecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -636,6 +646,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeRule(
         request: SecurityPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -698,6 +709,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: SecurityPoliciesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -761,6 +773,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

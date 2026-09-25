@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listDockerImages(
       request: ListDockerImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDockerImage(
       request: GetDockerImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.DockerImage {
@@ -142,6 +144,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMavenArtifacts(
       request: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListMavenArtifactsResponse {
@@ -196,6 +199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMavenArtifact(
       request: GetMavenArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.MavenArtifact {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNpmPackages(
       request: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListNpmPackagesResponse {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNpmPackage(
       request: GetNpmPackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.NpmPackage {
@@ -353,6 +359,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPythonPackages(
       request: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListPythonPackagesResponse {
@@ -407,6 +414,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPythonPackage(
       request: GetPythonPackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.PythonPackage {
@@ -459,6 +467,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importAptArtifacts(
       request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -512,6 +521,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importYumArtifacts(
       request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -565,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListRepositoriesResponse {
@@ -618,6 +629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -668,6 +680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRepository(
       request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -721,6 +734,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRepository(
       request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -776,6 +790,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRepository(
       request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -826,6 +841,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPackages(
       request: ListPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListPackagesResponse {
@@ -881,6 +897,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPackage(
       request: GetPackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -932,6 +949,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePackage(
       request: DeletePackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -983,6 +1001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListVersionsResponse {
@@ -1040,6 +1059,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Version {
@@ -1094,6 +1114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteVersion(
       request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1148,6 +1169,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchDeleteVersions(
       request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1202,6 +1224,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateVersion(
       request: UpdateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Version {
@@ -1259,6 +1282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFiles(
       request: ListFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListFilesResponse {
@@ -1314,6 +1338,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFile(
       request: GetFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -1366,6 +1391,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFile(
       request: DeleteFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1416,6 +1442,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFile(
       request: UpdateFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -1471,6 +1498,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTags(
       request: ListTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListTagsResponse {
@@ -1526,6 +1554,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTag(
       request: GetTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -1578,6 +1607,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTag(
       request: CreateTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -1634,6 +1664,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTag(
       request: UpdateTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -1691,6 +1722,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTag(
       request: DeleteTagRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1743,6 +1775,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRule(
       request: CreateRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -1798,6 +1831,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRules(
       request: ListRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListRulesResponse {
@@ -1851,6 +1885,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRule(
       request: GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -1901,6 +1936,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRule(
       request: UpdateRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -1956,6 +1992,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRule(
       request: DeleteRuleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2006,6 +2043,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2059,6 +2097,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2111,6 +2150,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2164,6 +2204,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProjectSettings(
       request: GetProjectSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -2208,6 +2249,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProjectSettings(
       request: UpdateProjectSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -2257,6 +2299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVpcscconfig(
       request: GetVPCSCConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
@@ -2307,6 +2350,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateVpcscconfig(
       request: UpdateVPCSCConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
@@ -2362,6 +2406,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePackage(
       request: UpdatePackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -2418,6 +2463,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAttachments(
       request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListAttachmentsResponse {
@@ -2472,6 +2518,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAttachment(
       request: GetAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Attachment {
@@ -2524,6 +2571,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAttachment(
       request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2579,6 +2627,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAttachment(
       request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2631,6 +2680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportArtifact(
       request: ExportArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2684,6 +2734,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2732,6 +2783,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2780,6 +2832,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

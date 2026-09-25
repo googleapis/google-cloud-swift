@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func submitTransaction(
       request: SubmitTransactionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEndpoint(
       request: GetEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.Endpoint {
@@ -185,6 +188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func submitOperationalTransaction(
       request: SubmitOperationalTransactionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse {
@@ -239,6 +243,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryTransactionState(
       request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse {
@@ -294,6 +299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryAccount(
       request: QueryAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse {
@@ -347,6 +353,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryData(
       request: QueryDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {

@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func translateText(
       request: TranslateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateTextResponse {
@@ -113,6 +114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func romanizeText(
       request: RomanizeTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.RomanizeTextResponse {
@@ -191,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func detectLanguage(
       request: DetectLanguageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.DetectLanguageResponse {
@@ -269,6 +272,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSupportedLanguages(
       request: GetSupportedLanguagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.SupportedLanguages {
@@ -354,6 +358,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func translateDocument(
       request: TranslateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateDocumentResponse {
@@ -405,6 +410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchTranslateText(
       request: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -456,6 +462,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchTranslateDocument(
       request: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -507,6 +514,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGlossary(
       request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -558,6 +566,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGlossary(
       request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -613,6 +622,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGlossaries(
       request: ListGlossariesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListGlossariesResponse {
@@ -665,6 +675,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGlossary(
       request: GetGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.Glossary {
@@ -715,6 +726,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGlossary(
       request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -765,6 +777,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGlossaryEntry(
       request: GetGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.GlossaryEntry {
@@ -817,6 +830,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGlossaryEntries(
       request: ListGlossaryEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListGlossaryEntriesResponse {
@@ -870,6 +884,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGlossaryEntry(
       request: CreateGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.GlossaryEntry {
@@ -923,6 +938,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGlossaryEntry(
       request: UpdateGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.GlossaryEntry {
@@ -978,6 +994,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGlossaryEntry(
       request: DeleteGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1030,6 +1047,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDataset(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1081,6 +1099,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataset(
       request: GetDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.Dataset {
@@ -1131,6 +1150,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDatasets(
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListDatasetsResponse {
@@ -1182,6 +1202,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataset(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1232,6 +1253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAdaptiveMtDataset(
       request: CreateAdaptiveMtDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtDataset {
@@ -1283,6 +1305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAdaptiveMtDataset(
       request: DeleteAdaptiveMtDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1333,6 +1356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAdaptiveMtDataset(
       request: GetAdaptiveMtDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtDataset {
@@ -1383,6 +1407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAdaptiveMtDatasets(
       request: ListAdaptiveMtDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListAdaptiveMtDatasetsResponse {
@@ -1435,6 +1460,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func adaptiveMtTranslate(
       request: AdaptiveMtTranslateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtTranslateResponse {
@@ -1486,6 +1512,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAdaptiveMtFile(
       request: GetAdaptiveMtFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtFile {
@@ -1538,6 +1565,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAdaptiveMtFile(
       request: DeleteAdaptiveMtFileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1590,6 +1618,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importAdaptiveMtFile(
       request: ImportAdaptiveMtFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ImportAdaptiveMtFileResponse {
@@ -1643,6 +1672,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAdaptiveMtFiles(
       request: ListAdaptiveMtFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListAdaptiveMtFilesResponse {
@@ -1696,6 +1726,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAdaptiveMtSentences(
       request: ListAdaptiveMtSentencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListAdaptiveMtSentencesResponse {
@@ -1787,6 +1818,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1840,6 +1872,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportData(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1893,6 +1926,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listExamples(
       request: ListExamplesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListExamplesResponse {
@@ -1947,6 +1981,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createModel(
       request: CreateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1998,6 +2033,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listModels(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListModelsResponse {
@@ -2050,6 +2086,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getModel(
       request: GetModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.Model {
@@ -2100,6 +2137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteModel(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2150,6 +2188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2198,6 +2237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2246,6 +2286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2301,6 +2342,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2351,6 +2393,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2401,6 +2444,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2454,6 +2498,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

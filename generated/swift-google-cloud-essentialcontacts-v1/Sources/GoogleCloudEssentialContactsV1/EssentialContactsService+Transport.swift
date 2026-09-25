@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createContact(
       request: CreateContactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -133,6 +134,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateContact(
       request: UpdateContactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -253,6 +255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listContacts(
       request: ListContactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.ListContactsResponse {
@@ -360,6 +363,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getContact(
       request: GetContactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -471,6 +475,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteContact(
       request: DeleteContactRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -582,6 +587,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func computeContacts(
       request: ComputeContactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.ComputeContactsResponse {
@@ -698,6 +704,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func sendTestMessage(
       request: SendTestMessageRequest, options: GoogleGax.RequestOptions
     ) async throws {

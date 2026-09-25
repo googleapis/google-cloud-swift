@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listMemberships(
       request: ListMembershipsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListMembershipsResponse {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBoundMemberships(
       request: ListBoundMembershipsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListBoundMembershipsResponse {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFeatures(
       request: ListFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListFeaturesResponse {
@@ -197,6 +200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMembership(
       request: GetMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.Membership {
@@ -247,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFeature(
       request: GetFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.Feature {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMembership(
       request: CreateMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -355,6 +361,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFeature(
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -409,6 +416,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMembership(
       request: DeleteMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -462,6 +470,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFeature(
       request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -515,6 +524,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMembership(
       request: UpdateMembershipRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -571,6 +581,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFeature(
       request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -627,6 +638,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateConnectManifest(
       request: GenerateConnectManifestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.GenerateConnectManifestResponse {
@@ -686,6 +698,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFleet(
       request: CreateFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -737,6 +750,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFleet(
       request: GetFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.Fleet {
@@ -787,6 +801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFleet(
       request: UpdateFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -842,6 +857,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFleet(
       request: DeleteFleetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -892,6 +908,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFleets(
       request: ListFleetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListFleetsResponse {
@@ -978,6 +995,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getScopeNamespace(
       request: GetScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.Namespace {
@@ -1028,6 +1046,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createScopeNamespace(
       request: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1084,6 +1103,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateScopeNamespace(
       request: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1139,6 +1159,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteScopeNamespace(
       request: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1189,6 +1210,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listScopeNamespaces(
       request: ListScopeNamespacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListScopeNamespacesResponse {
@@ -1242,6 +1264,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getScopeRbacroleBinding(
       request: GetScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.RBACRoleBinding {
@@ -1294,6 +1317,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createScopeRbacroleBinding(
       request: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1350,6 +1374,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateScopeRbacroleBinding(
       request: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1407,6 +1432,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteScopeRbacroleBinding(
       request: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1459,6 +1485,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listScopeRbacroleBindings(
       request: ListScopeRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListScopeRBACRoleBindingsResponse {
@@ -1512,6 +1539,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getScope(
       request: GetScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.Scope {
@@ -1562,6 +1590,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createScope(
       request: CreateScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1615,6 +1644,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateScope(
       request: UpdateScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1670,6 +1700,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteScope(
       request: DeleteScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1720,6 +1751,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listScopes(
       request: ListScopesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListScopesResponse {
@@ -1771,6 +1803,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPermittedScopes(
       request: ListPermittedScopesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListPermittedScopesResponse {
@@ -1822,6 +1855,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMembershipBinding(
       request: GetMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.MembershipBinding {
@@ -1872,6 +1906,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMembershipBinding(
       request: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1929,6 +1964,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMembershipBinding(
       request: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1984,6 +2020,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMembershipBinding(
       request: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2034,6 +2071,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMembershipBindings(
       request: ListMembershipBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListMembershipBindingsResponse {
@@ -2088,6 +2126,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMembershipRbacroleBinding(
       request: GetMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.RBACRoleBinding {
@@ -2140,6 +2179,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMembershipRbacroleBinding(
       request: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2196,6 +2236,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMembershipRbacroleBinding(
       request: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2253,6 +2294,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMembershipRbacroleBinding(
       request: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2305,6 +2347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMembershipRbacroleBindings(
       request: ListMembershipRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.ListMembershipRBACRoleBindingsResponse {
@@ -2359,6 +2402,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateMembershipRbacroleBindingYaml(
       request: GenerateMembershipRBACRoleBindingYAMLRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEHubV1.GenerateMembershipRBACRoleBindingYAMLResponse {
@@ -2416,6 +2460,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2471,6 +2516,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2521,6 +2567,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2571,6 +2618,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createDataStore(
         request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -156,6 +157,7 @@
         ).get()
       }
 
+      @concurrent
       public func getDataStore(
         request: GetDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -242,6 +244,7 @@
         ).get()
       }
 
+      @concurrent
       public func listDataStores(
         request: ListDataStoresRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse {
@@ -332,6 +335,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteDataStore(
         request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -418,6 +422,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateDataStore(
         request: UpdateDataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -511,6 +516,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1170,6 +1176,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1748,6 +1755,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

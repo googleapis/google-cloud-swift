@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: RegionSslCertificatesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -108,6 +109,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionSslCertificatesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslCertificate {
@@ -182,6 +184,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionSslCertificatesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -247,6 +250,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionSslCertificatesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.SslCertificateList {
@@ -315,6 +319,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

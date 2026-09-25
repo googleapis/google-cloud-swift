@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApigeeConnectV1.ListConnectionsResponse {

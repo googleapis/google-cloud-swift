@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getSystemPolicy(
       request: GetSystemPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -76,6 +77,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -154,6 +156,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -233,6 +236,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {

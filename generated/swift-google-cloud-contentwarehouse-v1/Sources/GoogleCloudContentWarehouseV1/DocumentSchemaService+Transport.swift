@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createDocumentSchema(
       request: CreateDocumentSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDocumentSchema(
       request: UpdateDocumentSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDocumentSchema(
       request: GetDocumentSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -187,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDocumentSchema(
       request: DeleteDocumentSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -237,6 +241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDocumentSchemas(
       request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse {
@@ -289,6 +294,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

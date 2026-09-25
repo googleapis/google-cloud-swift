@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func `get`(
       request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
@@ -107,6 +108,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func list(
       request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZoneOperationsListResponse {

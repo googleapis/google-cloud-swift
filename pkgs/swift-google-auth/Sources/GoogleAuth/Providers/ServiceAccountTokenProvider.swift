@@ -75,6 +75,7 @@ struct ServiceAccountTokenProvider: TokenProvider, Sendable {
     }
   }
 
+  @concurrent
   func fetchToken() async throws -> Token {
     let now = timeSource.now
     let iatDate = now.addingTimeInterval(clockSkewFudgeSeconds)

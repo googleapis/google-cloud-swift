@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: SqlBackupRunsDeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -99,6 +100,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: SqlBackupRunsGetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.BackupRun {
@@ -166,6 +168,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: SqlBackupRunsInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -228,6 +231,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.BackupRunsListResponse {

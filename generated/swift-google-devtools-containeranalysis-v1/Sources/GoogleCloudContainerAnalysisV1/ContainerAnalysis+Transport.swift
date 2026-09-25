@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -180,6 +181,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -328,6 +330,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -476,6 +479,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVulnerabilityOccurrencesSummary(
       request: GetVulnerabilityOccurrencesSummaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerAnalysisV1.VulnerabilityOccurrencesSummary {
@@ -556,6 +560,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportSbom(
       request: ExportSBOMRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerAnalysisV1.ExportSBOMResponse {

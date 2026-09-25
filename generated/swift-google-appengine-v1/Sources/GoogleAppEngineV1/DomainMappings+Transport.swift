@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listDomainMappings(
       request: ListDomainMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListDomainMappingsResponse {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDomainMapping(
       request: GetDomainMappingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.DomainMapping {
@@ -129,6 +131,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDomainMapping(
       request: CreateDomainMappingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -179,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDomainMapping(
       request: UpdateDomainMappingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -232,6 +236,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDomainMapping(
       request: DeleteDomainMappingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -280,6 +285,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -331,6 +337,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

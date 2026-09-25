@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createEngine(
         request: CreateEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteEngine(
         request: DeleteEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -143,6 +145,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateEngine(
         request: UpdateEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -200,6 +203,7 @@
         ).get()
       }
 
+      @concurrent
       public func getEngine(
         request: GetEngineRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -252,6 +256,7 @@
         ).get()
       }
 
+      @concurrent
       public func listEngines(
         request: ListEnginesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse {
@@ -307,6 +312,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -966,6 +972,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1544,6 +1551,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

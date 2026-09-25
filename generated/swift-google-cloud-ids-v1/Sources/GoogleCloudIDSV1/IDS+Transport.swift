@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIDSV1.ListEndpointsResponse {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEndpoint(
       request: GetEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIDSV1.Endpoint {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEndpoint(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEndpoint(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -243,6 +247,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -348,6 +354,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -398,6 +405,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -130,6 +130,7 @@ struct STSHandler: Sendable {
   ///   - url: The STS endpoint URL (typically `https://sts.googleapis.com/v1/token`).
   ///   - encoding: The request body serialization format (default `.urlEncoded`).
   /// - Returns: A `TokenResponse` containing the exchanged access token.
+  @concurrent
   func exchangeToken(
     request: ExchangeTokenRequest,
     url: URL,

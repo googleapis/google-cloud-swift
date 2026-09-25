@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: RegionCommitmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CommitmentAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionCommitmentsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Commitment {
@@ -164,6 +166,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionCommitmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -228,6 +231,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionCommitmentsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CommitmentList {
@@ -295,6 +299,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: RegionCommitmentsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -376,6 +381,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

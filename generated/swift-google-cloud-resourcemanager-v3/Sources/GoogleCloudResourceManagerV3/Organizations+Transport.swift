@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getOrganization(
       request: GetOrganizationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.Organization {
@@ -77,6 +78,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchOrganizations(
       request: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse {
@@ -111,6 +113,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -158,6 +161,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -205,6 +209,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -252,6 +257,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

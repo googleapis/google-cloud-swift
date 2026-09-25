@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func initializeZone(
       request: InitializeZoneRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.InitializeZoneResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -144,6 +146,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -197,6 +200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNetworks(
       request: ListNetworksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.ListNetworksResponse {
@@ -252,6 +256,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNetwork(
       request: GetNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.Network {
@@ -302,6 +307,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func diagnoseNetwork(
       request: DiagnoseNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.DiagnoseNetworkResponse {
@@ -352,6 +358,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNetwork(
       request: CreateNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -408,6 +415,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNetwork(
       request: DeleteNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -460,6 +468,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSubnets(
       request: ListSubnetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.ListSubnetsResponse {
@@ -515,6 +524,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSubnet(
       request: GetSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.Subnet {
@@ -565,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSubnet(
       request: CreateSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -621,6 +632,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSubnet(
       request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -677,6 +689,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSubnet(
       request: DeleteSubnetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -729,6 +742,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInterconnects(
       request: ListInterconnectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.ListInterconnectsResponse {
@@ -784,6 +798,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInterconnect(
       request: GetInterconnectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.Interconnect {
@@ -834,6 +849,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func diagnoseInterconnect(
       request: DiagnoseInterconnectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.DiagnoseInterconnectResponse {
@@ -884,6 +900,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInterconnectAttachments(
       request: ListInterconnectAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.ListInterconnectAttachmentsResponse {
@@ -940,6 +957,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInterconnectAttachment(
       request: GetInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.InterconnectAttachment {
@@ -992,6 +1010,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInterconnectAttachment(
       request: CreateInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1050,6 +1069,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInterconnectAttachment(
       request: DeleteInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1104,6 +1124,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRouters(
       request: ListRoutersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.ListRoutersResponse {
@@ -1159,6 +1180,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRouter(
       request: GetRouterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.Router {
@@ -1209,6 +1231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func diagnoseRouter(
       request: DiagnoseRouterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeNetworkV1.DiagnoseRouterResponse {
@@ -1259,6 +1282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRouter(
       request: CreateRouterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1315,6 +1339,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRouter(
       request: UpdateRouterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1371,6 +1396,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRouter(
       request: DeleteRouterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1423,6 +1449,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1471,6 +1498,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1519,6 +1547,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1574,6 +1603,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1624,6 +1654,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1674,6 +1705,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

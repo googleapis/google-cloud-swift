@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listLinkedTargets(
       request: ListLinkedTargetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLinkedSources(
       request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDocumentLink(
       request: CreateDocumentLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.DocumentLink {
@@ -194,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDocumentLink(
       request: DeleteDocumentLinkRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -249,6 +253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

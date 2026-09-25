@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listConnectionProfiles(
       request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConnectionProfile(
       request: GetConnectionProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ConnectionProfile {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createConnectionProfile(
       request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -196,6 +199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConnectionProfile(
       request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -254,6 +258,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteConnectionProfile(
       request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -306,6 +311,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func discoverConnectionProfile(
       request: DiscoverConnectionProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.DiscoverConnectionProfileResponse {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listStreams(
       request: ListStreamsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse {
@@ -411,6 +418,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getStream(
       request: GetStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.Stream {
@@ -461,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createStream(
       request: CreateStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -517,6 +526,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateStream(
       request: UpdateStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -575,6 +585,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteStream(
       request: DeleteStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -627,6 +638,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func runStream(
       request: RunStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -680,6 +692,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getStreamObject(
       request: GetStreamObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.StreamObject {
@@ -730,6 +743,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookupStreamObject(
       request: LookupStreamObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.StreamObject {
@@ -783,6 +797,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listStreamObjects(
       request: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse {
@@ -836,6 +851,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startBackfillJob(
       request: StartBackfillJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.StartBackfillJobResponse {
@@ -889,6 +905,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func stopBackfillJob(
       request: StopBackfillJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.StopBackfillJobResponse {
@@ -942,6 +959,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchStaticIps(
       request: FetchStaticIpsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.FetchStaticIpsResponse {
@@ -993,6 +1011,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPrivateConnection(
       request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1051,6 +1070,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPrivateConnection(
       request: GetPrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.PrivateConnection {
@@ -1101,6 +1121,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPrivateConnections(
       request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse {
@@ -1154,6 +1175,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePrivateConnection(
       request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1207,6 +1229,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRoute(
       request: CreateRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1263,6 +1286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRoute(
       request: GetRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.Route {
@@ -1315,6 +1339,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRoutes(
       request: ListRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse {
@@ -1370,6 +1395,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRoute(
       request: DeleteRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1424,6 +1450,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1472,6 +1499,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1520,6 +1548,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1575,6 +1604,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1625,6 +1655,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1675,6 +1706,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

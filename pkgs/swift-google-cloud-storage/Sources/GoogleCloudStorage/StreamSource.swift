@@ -18,9 +18,9 @@ import NIOCore
 /// A write object source that wraps an arbitrary AsyncSequence of ByteChunk or Data chunks.
 public struct StreamSource: WriteObjectSource {
   private final class StateBox: @unchecked Sendable {
-    var nextChunk: () async throws -> NIOCore.ByteBuffer?
+    var nextChunk: @concurrent () async throws -> NIOCore.ByteBuffer?
 
-    init(nextChunk: @escaping () async throws -> NIOCore.ByteBuffer?) {
+    init(nextChunk: @escaping @concurrent () async throws -> NIOCore.ByteBuffer?) {
       self.nextChunk = nextChunk
     }
   }
@@ -36,7 +36,7 @@ public struct StreamSource: WriteObjectSource {
   ) where S.Element == ByteChunk {
     self.totalSizeValue = totalSize
     var iterator = sequence.makeAsyncIterator()
-    self.stateBox = StateBox {
+    self.stateBox = StateBox { @concurrent in
       guard let next = try await iterator.next() else { return nil }
       return next.byteBuffer
     }
@@ -48,7 +48,7 @@ public struct StreamSource: WriteObjectSource {
   ) where S.Element == Data {
     self.totalSizeValue = totalSize
     var iterator = sequence.makeAsyncIterator()
-    self.stateBox = StateBox {
+    self.stateBox = StateBox { @concurrent in
       guard let next = try await iterator.next() else { return nil }
       return ByteChunk(next).byteBuffer
     }
@@ -60,7 +60,7 @@ public struct StreamSource: WriteObjectSource {
   ) where S.Element == NIOCore.ByteBuffer {
     self.totalSizeValue = totalSize
     var iterator = sequence.makeAsyncIterator()
-    self.stateBox = StateBox {
+    self.stateBox = StateBox { @concurrent in
       try await iterator.next()
     }
   }

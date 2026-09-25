@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func getConnectSettings(
         request: GetConnectSettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.ConnectSettings {
@@ -93,6 +94,7 @@
         ).get()
       }
 
+      @concurrent
       public func resolveConnectSettings(
         request: ResolveConnectSettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.ConnectSettings {
@@ -152,6 +154,7 @@
         ).get()
       }
 
+      @concurrent
       public func generateEphemeralCert(
         request: GenerateEphemeralCertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.GenerateEphemeralCertResponse {

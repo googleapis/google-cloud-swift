@@ -19,5 +19,6 @@ import struct Logging.Logger
 ///
 /// The tests for `GoogleGax.HttpClient`
 @_spi(GoogleCloudInternal) public protocol _HTTPClientProtocol: Sendable {
+  @concurrent
   func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse
 }

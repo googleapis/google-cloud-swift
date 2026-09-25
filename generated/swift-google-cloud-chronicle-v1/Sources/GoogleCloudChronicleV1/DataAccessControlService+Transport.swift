@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createDataAccessLabel(
       request: CreateDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataAccessLabel(
       request: GetDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataAccessLabels(
       request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDataAccessLabel(
       request: UpdateDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -252,6 +256,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataAccessLabel(
       request: DeleteDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -304,6 +309,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDataAccessScope(
       request: CreateDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -360,6 +366,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataAccessScope(
       request: GetDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -412,6 +419,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataAccessScopes(
       request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataAccessScopesResponse {
@@ -466,6 +474,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDataAccessScope(
       request: UpdateDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -523,6 +532,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataAccessScope(
       request: DeleteDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -575,6 +585,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -632,6 +643,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -682,6 +694,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -732,6 +745,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

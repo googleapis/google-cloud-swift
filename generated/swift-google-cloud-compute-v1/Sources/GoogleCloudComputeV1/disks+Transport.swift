@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addResourcePolicies(
         request: DisksClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -111,6 +112,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: DisksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskAggregatedList {
@@ -169,6 +171,7 @@
         ).get()
       }
 
+      @concurrent
       public func bulkInsert(
         request: DisksClient.BulkInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -234,6 +237,7 @@
         ).get()
       }
 
+      @concurrent
       public func bulkSetLabels(
         request: DisksClient.BulkSetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -300,6 +304,7 @@
         ).get()
       }
 
+      @concurrent
       public func createSnapshot(
         request: DisksClient.CreateSnapshotRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -380,6 +385,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: DisksClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -456,6 +462,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: DisksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Disk {
@@ -530,6 +537,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: DisksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -608,6 +616,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: DisksClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -673,6 +682,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: DisksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskList {
@@ -740,6 +750,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeResourcePolicies(
         request: DisksClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -819,6 +830,7 @@
         ).get()
       }
 
+      @concurrent
       public func resize(
         request: DisksClient.ResizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -898,6 +910,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: DisksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -975,6 +988,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: DisksClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1054,6 +1068,7 @@
         ).get()
       }
 
+      @concurrent
       public func startAsyncReplication(
         request: DisksClient.StartAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1133,6 +1148,7 @@
         ).get()
       }
 
+      @concurrent
       public func stopAsyncReplication(
         request: DisksClient.StopAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1209,6 +1225,7 @@
         ).get()
       }
 
+      @concurrent
       public func stopGroupAsyncReplication(
         request: DisksClient.StopGroupAsyncReplicationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1274,6 +1291,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: DisksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -1351,6 +1369,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: DisksClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1432,6 +1451,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateKmsKey(
         request: DisksClient.UpdateKmsKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1511,6 +1531,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: RegionUrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -108,6 +109,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionUrlMapsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UrlMap {
@@ -182,6 +184,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionUrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -246,6 +249,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UrlMapList {
@@ -313,6 +317,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RegionUrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -392,6 +397,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: RegionUrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -471,6 +477,7 @@
         ).get()
       }
 
+      @concurrent
       public func validate(
         request: RegionUrlMapsClient.ValidateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.UrlMapsValidateResponse {
@@ -548,6 +555,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

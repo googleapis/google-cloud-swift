@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getFindingsRefinement(
       request: GetFindingsRefinementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFindingsRefinements(
       request: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListFindingsRefinementsResponse {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFindingsRefinement(
       request: CreateFindingsRefinementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFindingsRefinement(
       request: UpdateFindingsRefinementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFindingsRefinementDeployment(
       request: GetFindingsRefinementDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFindingsRefinementDeployment(
       request: UpdateFindingsRefinementDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -357,6 +363,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAllFindingsRefinementDeployments(
       request: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListAllFindingsRefinementDeploymentsResponse {
@@ -412,6 +419,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func computeFindingsRefinementActivity(
       request: ComputeFindingsRefinementActivityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ComputeFindingsRefinementActivityResponse {
@@ -468,6 +476,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func computeAllFindingsRefinementActivities(
       request: ComputeAllFindingsRefinementActivitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ComputeAllFindingsRefinementActivitiesResponse {
@@ -522,6 +531,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -579,6 +589,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -629,6 +640,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -679,6 +691,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

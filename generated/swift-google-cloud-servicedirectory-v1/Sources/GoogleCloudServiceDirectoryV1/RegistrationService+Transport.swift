@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createNamespace(
       request: CreateNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNamespaces(
       request: ListNamespacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNamespace(
       request: GetNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
@@ -190,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNamespace(
       request: UpdateNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
@@ -245,6 +249,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNamespace(
       request: DeleteNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -295,6 +300,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Service {
@@ -350,6 +356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse {
@@ -405,6 +412,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Service {
@@ -455,6 +463,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateService(
       request: UpdateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Service {
@@ -510,6 +519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteService(
       request: DeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -560,6 +570,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEndpoint(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
@@ -615,6 +626,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse {
@@ -670,6 +682,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEndpoint(
       request: GetEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
@@ -722,6 +735,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEndpoint(
       request: UpdateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
@@ -779,6 +793,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEndpoint(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -831,6 +846,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -917,6 +933,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1003,6 +1020,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1089,6 +1107,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1137,6 +1156,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

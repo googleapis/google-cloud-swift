@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -129,6 +130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -244,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -339,6 +342,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -453,6 +457,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -582,6 +587,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -711,6 +717,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -825,6 +832,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -939,6 +947,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1053,6 +1062,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1167,6 +1177,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1281,6 +1292,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1395,6 +1407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1510,6 +1523,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1607,6 +1621,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1722,6 +1737,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1836,6 +1852,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1933,6 +1950,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJsonwebKeys(
       request: GetJSONWebKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.GetJSONWebKeysResponse {
@@ -1983,6 +2001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2098,6 +2117,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2228,6 +2248,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2342,6 +2363,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2472,6 +2494,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func completeNodePoolUpgrade(
       request: CompleteNodePoolUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2525,6 +2548,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2654,6 +2678,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2783,6 +2808,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -2897,6 +2923,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -3011,6 +3038,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -3125,6 +3153,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -3239,6 +3268,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -3368,6 +3398,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -3482,6 +3513,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setMaintenancePolicy(
       request: SetMaintenancePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {
@@ -3593,6 +3625,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUsableSubnetworks(
       request: ListUsableSubnetworksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ListUsableSubnetworksResponse {
@@ -3641,6 +3674,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func checkAutopilotCompatibility(
       request: CheckAutopilotCompatibilityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.CheckAutopilotCompatibilityResponse {
@@ -3692,6 +3726,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchClusterUpgradeInfo(
       request: FetchClusterUpgradeInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.ClusterUpgradeInfo {
@@ -3779,6 +3814,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchNodePoolUpgradeInfo(
       request: FetchNodePoolUpgradeInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo {
@@ -3866,6 +3902,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func completeControlPlaneUpgrade(
       request: CompleteControlPlaneUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContainerV1.Operation {

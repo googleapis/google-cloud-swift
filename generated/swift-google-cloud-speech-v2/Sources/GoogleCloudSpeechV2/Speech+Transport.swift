@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createRecognizer(
       request: CreateRecognizerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRecognizers(
       request: ListRecognizersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.ListRecognizersResponse {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRecognizer(
       request: GetRecognizerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.Recognizer {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRecognizer(
       request: UpdateRecognizerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -247,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRecognizer(
       request: DeleteRecognizerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteRecognizer(
       request: UndeleteRecognizerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -354,6 +360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func recognize(
       request: RecognizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.RecognizeResponse {
@@ -407,6 +414,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchRecognize(
       request: BatchRecognizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -460,6 +468,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConfig(
       request: GetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.Config {
@@ -510,6 +519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConfig(
       request: UpdateConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.Config {
@@ -565,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCustomClass(
       request: CreateCustomClassRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -620,6 +631,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCustomClasses(
       request: ListCustomClassesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.ListCustomClassesResponse {
@@ -672,6 +684,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCustomClass(
       request: GetCustomClassRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.CustomClass {
@@ -722,6 +735,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCustomClass(
       request: UpdateCustomClassRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -778,6 +792,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCustomClass(
       request: DeleteCustomClassRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -832,6 +847,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteCustomClass(
       request: UndeleteCustomClassRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -885,6 +901,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPhraseSet(
       request: CreatePhraseSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -939,6 +956,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPhraseSets(
       request: ListPhraseSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.ListPhraseSetsResponse {
@@ -991,6 +1009,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPhraseSet(
       request: GetPhraseSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSpeechV2.PhraseSet {
@@ -1041,6 +1060,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePhraseSet(
       request: UpdatePhraseSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1097,6 +1117,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePhraseSet(
       request: DeletePhraseSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1151,6 +1172,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeletePhraseSet(
       request: UndeletePhraseSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1204,6 +1226,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1252,6 +1275,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1300,6 +1324,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1355,6 +1380,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1405,6 +1431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1455,6 +1482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

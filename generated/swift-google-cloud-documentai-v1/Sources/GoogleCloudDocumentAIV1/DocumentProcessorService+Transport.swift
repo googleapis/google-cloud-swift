@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func processDocument(
       request: ProcessRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ProcessResponse {
@@ -123,6 +124,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchProcessDocuments(
       request: BatchProcessRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -211,6 +213,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchProcessorTypes(
       request: FetchProcessorTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.FetchProcessorTypesResponse {
@@ -259,6 +262,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProcessorTypes(
       request: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse {
@@ -310,6 +314,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProcessorType(
       request: GetProcessorTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ProcessorType {
@@ -360,6 +365,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProcessors(
       request: ListProcessorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse {
@@ -411,6 +417,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProcessor(
       request: GetProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.Processor {
@@ -461,6 +468,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func trainProcessorVersion(
       request: TrainProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -514,6 +522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProcessorVersion(
       request: GetProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ProcessorVersion {
@@ -566,6 +575,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProcessorVersions(
       request: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse {
@@ -619,6 +629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteProcessorVersion(
       request: DeleteProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -671,6 +682,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deployProcessorVersion(
       request: DeployProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -726,6 +738,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeployProcessorVersion(
       request: UndeployProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -781,6 +794,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createProcessor(
       request: CreateProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.Processor {
@@ -832,6 +846,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteProcessor(
       request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -882,6 +897,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableProcessor(
       request: EnableProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -935,6 +951,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableProcessor(
       request: DisableProcessorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -988,6 +1005,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setDefaultProcessorVersion(
       request: SetDefaultProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1041,6 +1059,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reviewDocument(
       request: ReviewDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1094,6 +1113,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func evaluateProcessorVersion(
       request: EvaluateProcessorVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1149,6 +1169,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEvaluation(
       request: GetEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.Evaluation {
@@ -1201,6 +1222,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEvaluations(
       request: ListEvaluationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDocumentAIV1.ListEvaluationsResponse {
@@ -1256,6 +1278,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1335,6 +1358,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1414,6 +1438,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1511,6 +1536,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1625,6 +1651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

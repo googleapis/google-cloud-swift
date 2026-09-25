@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getWorkload(
       request: GetWorkloadRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Workload {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCustomer(
       request: GetCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Customer {
@@ -188,6 +191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCustomers(
       request: ListCustomersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEkmConnections(
       request: GetEkmConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections {
@@ -294,6 +299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPartnerPermissions(
       request: GetPartnerPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions {
@@ -346,6 +352,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAccessApprovalRequests(
       request: ListAccessApprovalRequestsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.ListAccessApprovalRequestsResponse {
@@ -403,6 +410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPartner(
       request: GetPartnerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Partner {
@@ -453,6 +461,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCustomer(
       request: CreateCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Customer {
@@ -507,6 +516,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCustomer(
       request: UpdateCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudControlsPartnerV1.Customer {
@@ -562,6 +572,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCustomer(
       request: DeleteCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws {

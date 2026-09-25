@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func batchCreateResourceValueConfigs(
       request: BatchCreateResourceValueConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BatchCreateResourceValueConfigsResponse {
@@ -115,6 +116,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func bulkMuteFindings(
       request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -310,6 +312,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBigQueryExport(
       request: CreateBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
@@ -433,6 +436,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFinding(
       request: CreateFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -521,6 +525,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMuteConfig(
       request: CreateMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
@@ -728,6 +733,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNotificationConfig(
       request: CreateNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
@@ -848,6 +854,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSource(
       request: CreateSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Source {
@@ -895,6 +902,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBigQueryExport(
       request: DeleteBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1011,6 +1019,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMuteConfig(
       request: DeleteMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1222,6 +1231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNotificationConfig(
       request: DeleteNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1338,6 +1348,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteResourceValueConfig(
       request: DeleteResourceValueConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1421,6 +1432,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBigQueryExport(
       request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
@@ -1537,6 +1549,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSimulation(
       request: GetSimulationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Simulation {
@@ -1620,6 +1633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getValuedResource(
       request: GetValuedResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ValuedResource {
@@ -1705,6 +1719,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1756,6 +1771,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMuteConfig(
       request: GetMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
@@ -1967,6 +1983,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNotificationConfig(
       request: GetNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
@@ -2083,6 +2100,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getResourceValueConfig(
       request: GetResourceValueConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ResourceValueConfig {
@@ -2166,6 +2184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSource(
       request: GetSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Source {
@@ -2214,6 +2233,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func groupFindings(
       request: GroupFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.GroupFindingsResponse {
@@ -2426,6 +2446,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAttackPaths(
       request: ListAttackPathsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListAttackPathsResponse {
@@ -2663,6 +2684,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBigQueryExports(
       request: ListBigQueryExportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListBigQueryExportsResponse {
@@ -2784,6 +2806,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFindings(
       request: ListFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListFindingsResponse {
@@ -3029,6 +3052,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMuteConfigs(
       request: ListMuteConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListMuteConfigsResponse {
@@ -3239,6 +3263,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNotificationConfigs(
       request: ListNotificationConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListNotificationConfigsResponse {
@@ -3360,6 +3385,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listResourceValueConfigs(
       request: ListResourceValueConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListResourceValueConfigsResponse {
@@ -3443,6 +3469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSources(
       request: ListSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListSourcesResponse {
@@ -3550,6 +3577,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listValuedResources(
       request: ListValuedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListValuedResourcesResponse {
@@ -3676,6 +3704,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setFindingState(
       request: SetFindingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -3894,6 +3923,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -3945,6 +3975,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setMute(
       request: SetMuteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -4163,6 +4194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -4214,6 +4246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBigQueryExport(
       request: UpdateBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
@@ -4339,6 +4372,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateExternalSystem(
       request: UpdateExternalSystemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ExternalSystem {
@@ -4581,6 +4615,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFinding(
       request: UpdateFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -4811,6 +4846,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMuteConfig(
       request: UpdateMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
@@ -5037,6 +5073,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNotificationConfig(
       request: UpdateNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
@@ -5162,6 +5199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateResourceValueConfig(
       request: UpdateResourceValueConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ResourceValueConfig {
@@ -5252,6 +5290,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSecurityMarks(
       request: UpdateSecurityMarksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.SecurityMarks {
@@ -5593,6 +5632,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSource(
       request: UpdateSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Source {
@@ -5646,6 +5686,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -5697,6 +5738,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -5747,6 +5789,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -5797,6 +5840,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

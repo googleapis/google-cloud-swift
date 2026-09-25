@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listVoices(
       request: ListVoicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTextToSpeechV1.ListVoicesResponse {
@@ -63,6 +64,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func synthesizeSpeech(
       request: SynthesizeSpeechRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTextToSpeechV1.SynthesizeSpeechResponse {
@@ -93,6 +95,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -148,6 +151,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

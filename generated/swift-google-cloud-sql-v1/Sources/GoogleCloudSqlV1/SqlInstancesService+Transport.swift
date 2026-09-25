@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addServerCa(
         request: SqlInstancesAddServerCaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func addServerCertificate(
         request: SqlInstancesAddServerCertificateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -151,6 +153,7 @@
         ).get()
       }
 
+      @concurrent
       public func addEntraIdCertificate(
         request: SqlInstancesAddEntraIdCertificateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -211,6 +214,7 @@
         ).get()
       }
 
+      @concurrent
       public func clone(
         request: SqlInstancesCloneRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -273,6 +277,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: SqlInstancesDeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -349,6 +354,7 @@
         ).get()
       }
 
+      @concurrent
       public func demoteMaster(
         request: SqlInstancesDemoteMasterRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -411,6 +417,7 @@
         ).get()
       }
 
+      @concurrent
       public func demote(
         request: SqlInstancesDemoteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -473,6 +480,7 @@
         ).get()
       }
 
+      @concurrent
       public func export(
         request: SqlInstancesExportRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -535,6 +543,7 @@
         ).get()
       }
 
+      @concurrent
       public func failover(
         request: SqlInstancesFailoverRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -597,6 +606,7 @@
         ).get()
       }
 
+      @concurrent
       public func reencrypt(
         request: SqlInstancesReencryptRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -659,6 +669,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: SqlInstancesGetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.DatabaseInstance {
@@ -718,6 +729,7 @@
         ).get()
       }
 
+      @concurrent
       public func `import`(
         request: SqlInstancesImportRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -780,6 +792,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: SqlInstancesInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -828,6 +841,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SqlInstancesListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.InstancesListResponse {
@@ -877,6 +891,7 @@
         ).get()
       }
 
+      @concurrent
       public func listServerCas(
         request: SqlInstancesListServerCasRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.InstancesListServerCasResponse {
@@ -936,6 +951,7 @@
         ).get()
       }
 
+      @concurrent
       public func listServerCertificates(
         request: SqlInstancesListServerCertificatesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.InstancesListServerCertificatesResponse {
@@ -997,6 +1013,7 @@
         ).get()
       }
 
+      @concurrent
       public func listEntraIdCertificates(
         request: SqlInstancesListEntraIdCertificatesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.InstancesListEntraIdCertificatesResponse {
@@ -1058,6 +1075,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: SqlInstancesPatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1127,6 +1145,7 @@
         ).get()
       }
 
+      @concurrent
       public func promoteReplica(
         request: SqlInstancesPromoteReplicaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1188,6 +1207,7 @@
         ).get()
       }
 
+      @concurrent
       public func switchover(
         request: SqlInstancesSwitchoverRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1249,6 +1269,7 @@
         ).get()
       }
 
+      @concurrent
       public func resetSslConfig(
         request: SqlInstancesResetSslConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1310,6 +1331,7 @@
         ).get()
       }
 
+      @concurrent
       public func restart(
         request: SqlInstancesRestartRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1369,6 +1391,7 @@
         ).get()
       }
 
+      @concurrent
       public func restoreBackup(
         request: SqlInstancesRestoreBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1431,6 +1454,7 @@
         ).get()
       }
 
+      @concurrent
       public func rotateServerCa(
         request: SqlInstancesRotateServerCaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1493,6 +1517,7 @@
         ).get()
       }
 
+      @concurrent
       public func rotateServerCertificate(
         request: SqlInstancesRotateServerCertificateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1556,6 +1581,7 @@
         ).get()
       }
 
+      @concurrent
       public func rotateEntraIdCertificate(
         request: SqlInstancesRotateEntraIdCertificateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1619,6 +1645,7 @@
         ).get()
       }
 
+      @concurrent
       public func startReplica(
         request: SqlInstancesStartReplicaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1678,6 +1705,7 @@
         ).get()
       }
 
+      @concurrent
       public func stopReplica(
         request: SqlInstancesStopReplicaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1737,6 +1765,7 @@
         ).get()
       }
 
+      @concurrent
       public func truncateLog(
         request: SqlInstancesTruncateLogRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1799,6 +1828,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: SqlInstancesUpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1861,6 +1891,7 @@
         ).get()
       }
 
+      @concurrent
       public func createEphemeral(
         request: SqlInstancesCreateEphemeralCertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SslCert {
@@ -1923,6 +1954,7 @@
         ).get()
       }
 
+      @concurrent
       public func rescheduleMaintenance(
         request: SqlInstancesRescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -1986,6 +2018,7 @@
         ).get()
       }
 
+      @concurrent
       public func verifyExternalSyncSettings(
         request: SqlInstancesVerifyExternalSyncSettingsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesVerifyExternalSyncSettingsResponse {
@@ -2050,6 +2083,7 @@
         ).get()
       }
 
+      @concurrent
       public func startExternalSync(
         request: SqlInstancesStartExternalSyncRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -2112,6 +2146,7 @@
         ).get()
       }
 
+      @concurrent
       public func performDiskShrink(
         request: SqlInstancesPerformDiskShrinkRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -2174,6 +2209,7 @@
         ).get()
       }
 
+      @concurrent
       public func getDiskShrinkConfig(
         request: SqlInstancesGetDiskShrinkConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesGetDiskShrinkConfigResponse {
@@ -2235,6 +2271,7 @@
         ).get()
       }
 
+      @concurrent
       public func resetReplicaSize(
         request: SqlInstancesResetReplicaSizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -2297,6 +2334,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLatestRecoveryTime(
         request: SqlInstancesGetLatestRecoveryTimeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesGetLatestRecoveryTimeResponse {
@@ -2362,6 +2400,7 @@
         ).get()
       }
 
+      @concurrent
       public func executeSql(
         request: SqlInstancesExecuteSqlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesExecuteSqlResponse {
@@ -2424,6 +2463,7 @@
         ).get()
       }
 
+      @concurrent
       public func acquireSsrsLease(
         request: SqlInstancesAcquireSsrsLeaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesAcquireSsrsLeaseResponse {
@@ -2487,6 +2527,7 @@
         ).get()
       }
 
+      @concurrent
       public func releaseSsrsLease(
         request: SqlInstancesReleaseSsrsLeaseRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SqlInstancesReleaseSsrsLeaseResponse {
@@ -2547,6 +2588,7 @@
         ).get()
       }
 
+      @concurrent
       public func preCheckMajorVersionUpgrade(
         request: SqlInstancesPreCheckMajorVersionUpgradeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -2610,6 +2652,7 @@
         ).get()
       }
 
+      @concurrent
       public func pointInTimeRestore(
         request: SqlInstancesPointInTimeRestoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {

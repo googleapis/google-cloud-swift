@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func troubleshootIamPolicy(
       request: TroubleshootIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse {

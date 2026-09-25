@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: DiskTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskTypeAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: DiskTypesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskType {
@@ -164,6 +166,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: DiskTypesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.DiskTypeList {

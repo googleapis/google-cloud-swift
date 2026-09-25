@@ -36,6 +36,7 @@
         )
       }
 
+      @concurrent
       public func listEntityTypes(
         request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse {
@@ -124,6 +125,7 @@
         ).get()
       }
 
+      @concurrent
       public func getEntityType(
         request: GetEntityTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -214,6 +216,7 @@
         ).get()
       }
 
+      @concurrent
       public func createEntityType(
         request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -301,6 +304,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateEntityType(
         request: UpdateEntityTypeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -396,6 +400,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteEntityType(
         request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -480,6 +485,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchUpdateEntityTypes(
         request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -561,6 +567,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchDeleteEntityTypes(
         request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -642,6 +649,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchCreateEntities(
         request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -729,6 +737,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchUpdateEntities(
         request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -816,6 +825,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchDeleteEntities(
         request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -903,6 +913,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -952,6 +963,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -1001,6 +1013,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1091,6 +1104,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1173,6 +1187,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

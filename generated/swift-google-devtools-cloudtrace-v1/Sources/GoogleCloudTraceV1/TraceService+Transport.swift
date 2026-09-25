@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listTraces(
       request: ListTracesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTraceV1.ListTracesResponse {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTrace(
       request: GetTraceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTraceV1.Trace {
@@ -142,6 +144,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func patchTraces(
       request: PatchTracesRequest, options: GoogleGax.RequestOptions
     ) async throws {

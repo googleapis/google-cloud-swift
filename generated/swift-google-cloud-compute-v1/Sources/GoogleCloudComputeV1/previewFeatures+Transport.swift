@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: PreviewFeaturesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PreviewFeature {
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: PreviewFeaturesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PreviewFeatureList {
@@ -145,6 +147,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: PreviewFeaturesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -210,6 +213,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

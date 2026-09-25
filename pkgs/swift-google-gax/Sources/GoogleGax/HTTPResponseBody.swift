@@ -32,6 +32,7 @@
       self.iterator = iterator
     }
 
+    @concurrent
     public mutating func next() async throws -> NIOCore.ByteBuffer? {
       try await self.iterator.next()
     }

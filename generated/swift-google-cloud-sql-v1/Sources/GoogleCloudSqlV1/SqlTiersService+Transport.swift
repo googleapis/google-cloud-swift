@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func list(
         request: SqlTiersListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.TiersListResponse {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: GlobalVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -157,6 +159,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: GlobalVmExtensionPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicy {
@@ -217,6 +220,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: GlobalVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -267,6 +271,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList {
@@ -320,6 +325,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: GlobalVmExtensionPoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -385,6 +391,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

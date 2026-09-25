@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func generateCredentials(
       request: GenerateCredentialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse {

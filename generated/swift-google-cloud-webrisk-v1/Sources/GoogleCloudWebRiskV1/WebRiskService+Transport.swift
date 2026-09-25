@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func computeThreatListDiff(
       request: ComputeThreatListDiffRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebRiskV1.ComputeThreatListDiffResponse {
@@ -67,6 +68,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchUris(
       request: SearchUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebRiskV1.SearchUrisResponse {
@@ -99,6 +101,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchHashes(
       request: SearchHashesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebRiskV1.SearchHashesResponse {
@@ -131,6 +134,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSubmission(
       request: CreateSubmissionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebRiskV1.Submission {
@@ -178,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func submitUri(
       request: SubmitUriRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -225,6 +230,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -276,6 +282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -324,6 +331,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -372,6 +380,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

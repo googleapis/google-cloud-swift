@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addAssociation(
         request: NetworkFirewallPoliciesClient.AddAssociationRequest,
         options: GoogleGax.RequestOptions
@@ -101,6 +102,7 @@
         ).get()
       }
 
+      @concurrent
       public func addPacketMirroringRule(
         request: NetworkFirewallPoliciesClient.AddPacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
@@ -169,6 +171,7 @@
         ).get()
       }
 
+      @concurrent
       public func addRule(
         request: NetworkFirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -236,6 +239,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: NetworkFirewallPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
@@ -296,6 +300,7 @@
         ).get()
       }
 
+      @concurrent
       public func cloneRules(
         request: NetworkFirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -361,6 +366,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: NetworkFirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -423,6 +429,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: NetworkFirewallPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
@@ -483,6 +490,7 @@
         ).get()
       }
 
+      @concurrent
       public func getAssociation(
         request: NetworkFirewallPoliciesClient.GetAssociationRequest,
         options: GoogleGax.RequestOptions
@@ -546,6 +554,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: NetworkFirewallPoliciesClient.GetIamPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -611,6 +620,7 @@
         ).get()
       }
 
+      @concurrent
       public func getPacketMirroringRule(
         request: NetworkFirewallPoliciesClient.GetPacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
@@ -674,6 +684,7 @@
         ).get()
       }
 
+      @concurrent
       public func getRule(
         request: NetworkFirewallPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
@@ -736,6 +747,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: NetworkFirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -786,6 +798,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyList {
@@ -839,6 +852,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: NetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -904,6 +918,7 @@
         ).get()
       }
 
+      @concurrent
       public func patchPacketMirroringRule(
         request: NetworkFirewallPoliciesClient.PatchPacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
@@ -971,6 +986,7 @@
         ).get()
       }
 
+      @concurrent
       public func patchRule(
         request: NetworkFirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1037,6 +1053,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeAssociation(
         request: NetworkFirewallPoliciesClient.RemoveAssociationRequest,
         options: GoogleGax.RequestOptions
@@ -1101,6 +1118,7 @@
         ).get()
       }
 
+      @concurrent
       public func removePacketMirroringRule(
         request: NetworkFirewallPoliciesClient.RemovePacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
@@ -1165,6 +1183,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeRule(
         request: NetworkFirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1228,6 +1247,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: NetworkFirewallPoliciesClient.SetIamPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -1292,6 +1312,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: NetworkFirewallPoliciesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -1356,6 +1377,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

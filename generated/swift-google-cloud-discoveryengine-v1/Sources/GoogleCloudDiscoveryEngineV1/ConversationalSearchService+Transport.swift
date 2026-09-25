@@ -34,6 +34,7 @@
         )
       }
 
+      @concurrent
       public func converseConversation(
         request: ConverseConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse {
@@ -161,6 +162,7 @@
         ).get()
       }
 
+      @concurrent
       public func createConversation(
         request: CreateConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -284,6 +286,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteConversation(
         request: DeleteConversationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -407,6 +410,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateConversation(
         request: UpdateConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -539,6 +543,7 @@
         ).get()
       }
 
+      @concurrent
       public func getConversation(
         request: GetConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -662,6 +667,7 @@
         ).get()
       }
 
+      @concurrent
       public func listConversations(
         request: ListConversationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse {
@@ -798,6 +804,7 @@
         ).get()
       }
 
+      @concurrent
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
@@ -927,6 +934,7 @@
         ).get()
       }
 
+      @concurrent
       public func getAnswer(
         request: GetAnswerRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Answer {
@@ -1053,6 +1061,7 @@
         ).get()
       }
 
+      @concurrent
       public func createSession(
         request: CreateSessionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -1176,6 +1185,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteSession(
         request: DeleteSessionRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -1298,6 +1308,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateSession(
         request: UpdateSessionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -1429,6 +1440,7 @@
         ).get()
       }
 
+      @concurrent
       public func getSession(
         request: GetSessionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -1563,6 +1575,7 @@
         ).get()
       }
 
+      @concurrent
       public func listSessions(
         request: ListSessionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse {
@@ -1698,6 +1711,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2357,6 +2371,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -2935,6 +2950,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

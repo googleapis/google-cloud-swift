@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: NodeTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeTypeAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: NodeTypesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeType {
@@ -164,6 +166,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: NodeTypesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NodeTypeList {

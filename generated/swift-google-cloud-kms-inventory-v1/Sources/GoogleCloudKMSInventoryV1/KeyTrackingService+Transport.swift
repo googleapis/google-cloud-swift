@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getProtectedResourcesSummary(
       request: GetProtectedResourcesSummaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchProtectedResources(
       request: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse {

@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func executePatchJob(
       request: ExecutePatchJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPatchJob(
       request: GetPatchJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -128,6 +130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelPatchJob(
       request: CancelPatchJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -179,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPatchJobs(
       request: ListPatchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse {
@@ -227,6 +231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPatchJobInstanceDetails(
       request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse {
@@ -280,6 +285,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createPatchDeployment(
       request: CreatePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -330,6 +336,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPatchDeployment(
       request: GetPatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -380,6 +387,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPatchDeployments(
       request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse {
@@ -427,6 +435,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deletePatchDeployment(
       request: DeletePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -477,6 +486,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updatePatchDeployment(
       request: UpdatePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -532,6 +542,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pausePatchDeployment(
       request: PausePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -585,6 +596,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resumePatchDeployment(
       request: ResumePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -638,6 +650,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -690,6 +703,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

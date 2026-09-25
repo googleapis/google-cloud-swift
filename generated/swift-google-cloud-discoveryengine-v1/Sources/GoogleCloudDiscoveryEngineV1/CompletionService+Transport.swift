@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func completeQuery(
         request: CompleteQueryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.CompleteQueryResponse {
@@ -137,6 +138,7 @@
         ).get()
       }
 
+      @concurrent
       public func importSuggestionDenyListEntries(
         request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -226,6 +228,7 @@
         ).get()
       }
 
+      @concurrent
       public func purgeSuggestionDenyListEntries(
         request: PurgeSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -315,6 +318,7 @@
         ).get()
       }
 
+      @concurrent
       public func importCompletionSuggestions(
         request: ImportCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -404,6 +408,7 @@
         ).get()
       }
 
+      @concurrent
       public func purgeCompletionSuggestions(
         request: PurgeCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -493,6 +498,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1152,6 +1158,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1730,6 +1737,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

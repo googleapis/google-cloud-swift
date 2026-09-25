@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func updateCmekConfig(
         request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -126,6 +127,7 @@
         ).get()
       }
 
+      @concurrent
       public func getCmekConfig(
         request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.CmekConfig {
@@ -210,6 +212,7 @@
         ).get()
       }
 
+      @concurrent
       public func listCmekConfigs(
         request: ListCmekConfigsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListCmekConfigsResponse {
@@ -259,6 +262,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteCmekConfig(
         request: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -310,6 +314,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -969,6 +974,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1547,6 +1553,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getLicensePool(
       request: GetLicensePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLicensePool(
       request: UpdateLicensePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func assign(
       request: AssignRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.AssignResponse {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func unassign(
       request: UnassignRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.UnassignResponse {
@@ -246,6 +250,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enumerateLicensedUsers(
       request: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

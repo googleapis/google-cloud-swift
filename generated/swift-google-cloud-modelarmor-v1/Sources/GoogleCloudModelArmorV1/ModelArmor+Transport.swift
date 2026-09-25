@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listTemplates(
       request: ListTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTemplate(
       request: GetTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTemplate(
       request: CreateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -190,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTemplate(
       request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -246,6 +250,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTemplate(
       request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFloorSetting(
       request: GetFloorSettingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
@@ -414,6 +420,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFloorSetting(
       request: UpdateFloorSettingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
@@ -539,6 +546,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func sanitizeUserPrompt(
       request: SanitizeUserPromptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.SanitizeUserPromptResponse {
@@ -592,6 +600,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func sanitizeModelResponse(
       request: SanitizeModelResponseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.SanitizeModelResponseResponse {
@@ -645,6 +654,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -693,6 +703,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

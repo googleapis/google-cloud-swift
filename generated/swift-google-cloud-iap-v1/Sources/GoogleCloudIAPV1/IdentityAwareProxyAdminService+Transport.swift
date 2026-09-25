@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -127,6 +129,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -174,6 +177,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIapSettings(
       request: GetIapSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IapSettings {
@@ -218,6 +222,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIapSettings(
       request: UpdateIapSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IapSettings {
@@ -267,6 +272,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func validateIapAttributeExpression(
       request: ValidateIapAttributeExpressionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ValidateIapAttributeExpressionResponse {
@@ -314,6 +320,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTunnelDestGroups(
       request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse {
@@ -367,6 +374,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTunnelDestGroup(
       request: CreateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -423,6 +431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTunnelDestGroup(
       request: GetTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -473,6 +482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTunnelDestGroup(
       request: DeleteTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -523,6 +533,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTunnelDestGroup(
       request: UpdateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {

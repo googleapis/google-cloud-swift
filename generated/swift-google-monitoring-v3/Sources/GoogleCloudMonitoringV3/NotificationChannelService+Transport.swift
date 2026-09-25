@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listNotificationChannelDescriptors(
       request: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNotificationChannelDescriptor(
       request: GetNotificationChannelDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannelDescriptor {
@@ -130,6 +132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNotificationChannels(
       request: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse {
@@ -180,6 +183,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNotificationChannel(
       request: GetNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -230,6 +234,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNotificationChannel(
       request: CreateNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -277,6 +282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNotificationChannel(
       request: UpdateNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -332,6 +338,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNotificationChannel(
       request: DeleteNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -384,6 +391,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func sendNotificationChannelVerificationCode(
       request: SendNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -437,6 +445,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNotificationChannelVerificationCode(
       request: GetNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.GetNotificationChannelVerificationCodeResponse {
@@ -491,6 +500,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyNotificationChannel(
       request: VerifyNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {

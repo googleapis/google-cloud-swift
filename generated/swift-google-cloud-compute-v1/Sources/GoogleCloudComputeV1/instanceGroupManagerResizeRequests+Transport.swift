@@ -33,6 +33,7 @@
         )
       }
 
+      @concurrent
       public func cancel(
         request: InstanceGroupManagerResizeRequestsClient.CancelRequest,
         options: GoogleGax.RequestOptions
@@ -124,6 +125,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: InstanceGroupManagerResizeRequestsClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -215,6 +217,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InstanceGroupManagerResizeRequestsClient.GetRequest,
         options: GoogleGax.RequestOptions
@@ -305,6 +308,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InstanceGroupManagerResizeRequestsClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -385,6 +389,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InstanceGroupManagerResizeRequestsClient.ListRequest,
         options: GoogleGax.RequestOptions
@@ -469,6 +474,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

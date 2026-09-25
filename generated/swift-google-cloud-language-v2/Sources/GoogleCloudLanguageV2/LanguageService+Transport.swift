@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func analyzeSentiment(
       request: AnalyzeSentimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse {
@@ -61,6 +62,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeEntities(
       request: AnalyzeEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse {
@@ -91,6 +93,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func classifyText(
       request: ClassifyTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse {
@@ -121,6 +124,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moderateText(
       request: ModerateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse {
@@ -151,6 +155,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func annotateText(
       request: AnnotateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse {

@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createGlossary(
       request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGlossary(
       request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -146,6 +148,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGlossary(
       request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -198,6 +201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGlossary(
       request: GetGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.Glossary {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGlossaries(
       request: ListGlossariesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListGlossariesResponse {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGlossaryCategory(
       request: CreateGlossaryCategoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
@@ -356,6 +362,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGlossaryCategory(
       request: UpdateGlossaryCategoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
@@ -412,6 +419,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGlossaryCategory(
       request: DeleteGlossaryCategoryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -463,6 +471,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGlossaryCategory(
       request: GetGlossaryCategoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
@@ -514,6 +523,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGlossaryCategories(
       request: ListGlossaryCategoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListGlossaryCategoriesResponse {
@@ -569,6 +579,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGlossaryTerm(
       request: CreateGlossaryTermRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
@@ -624,6 +635,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGlossaryTerm(
       request: UpdateGlossaryTermRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
@@ -679,6 +691,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGlossaryTerm(
       request: DeleteGlossaryTermRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -729,6 +742,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGlossaryTerm(
       request: GetGlossaryTermRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
@@ -779,6 +793,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGlossaryTerms(
       request: ListGlossaryTermsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataplexV1.ListGlossaryTermsResponse {
@@ -834,6 +849,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -882,6 +898,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -930,6 +947,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1615,6 +1633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2337,6 +2356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -3022,6 +3042,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -3116,6 +3137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3199,6 +3221,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3282,6 +3305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

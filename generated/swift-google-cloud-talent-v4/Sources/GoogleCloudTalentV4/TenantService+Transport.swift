@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createTenant(
       request: CreateTenantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTenant(
       request: GetTenantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -128,6 +130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTenant(
       request: UpdateTenantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -181,6 +184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTenant(
       request: DeleteTenantRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -229,6 +233,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTenants(
       request: ListTenantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListTenantsResponse {
@@ -276,6 +281,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

@@ -31,6 +31,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func `get`(
       request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Project {

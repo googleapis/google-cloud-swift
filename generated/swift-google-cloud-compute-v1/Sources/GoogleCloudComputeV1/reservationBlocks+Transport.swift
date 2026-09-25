@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: ReservationBlocksClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationBlocksGetResponse {
@@ -122,6 +123,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: ReservationBlocksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -214,6 +216,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: ReservationBlocksClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ReservationBlocksListResponse {
@@ -296,6 +299,7 @@
         ).get()
       }
 
+      @concurrent
       public func performMaintenance(
         request: ReservationBlocksClient.PerformMaintenanceRequest,
         options: GoogleGax.RequestOptions
@@ -390,6 +394,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: ReservationBlocksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -481,6 +486,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: ReservationBlocksClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -573,6 +579,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

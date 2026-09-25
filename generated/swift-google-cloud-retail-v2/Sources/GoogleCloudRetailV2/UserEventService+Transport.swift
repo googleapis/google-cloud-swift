@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func writeUserEvent(
       request: WriteUserEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.UserEvent {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func collectUserEvent(
       request: CollectUserEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -182,6 +184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func purgeUserEvents(
       request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -235,6 +238,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importUserEvents(
       request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -288,6 +292,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rejoinUserEvents(
       request: RejoinUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -341,6 +346,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -470,6 +476,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

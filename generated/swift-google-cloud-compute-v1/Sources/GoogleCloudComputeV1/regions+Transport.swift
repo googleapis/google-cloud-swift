@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: RegionsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Region {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RegionList {

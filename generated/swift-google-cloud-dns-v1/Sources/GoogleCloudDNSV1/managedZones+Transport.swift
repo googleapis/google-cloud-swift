@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func create(
       request: ManagedZonesClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZone {
@@ -82,6 +83,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func delete(
       request: ManagedZonesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -143,6 +145,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func `get`(
       request: ManagedZonesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZone {
@@ -204,6 +207,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: ManagedZonesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIamV1Policy {
@@ -251,6 +255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func list(
       request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZonesListResponse {
@@ -299,6 +304,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func patch(
       request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
@@ -363,6 +369,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: ManagedZonesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIamV1Policy {
@@ -410,6 +417,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: ManagedZonesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIamV1TestIamPermissionsResponse {
@@ -457,6 +465,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func update(
       request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
@@ -521,6 +530,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {

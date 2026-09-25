@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listGroups(
       request: ListGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse {
@@ -95,6 +96,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGroup(
       request: GetGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -143,6 +145,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGroup(
       request: CreateGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGroup(
       request: UpdateGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -245,6 +249,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGroup(
       request: DeleteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -295,6 +300,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGroupMembers(
       request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse {

@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listCloudLocations(
       request: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCloudLocation(
       request: GetCloudLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocationFinderV1.CloudLocation {
@@ -134,6 +136,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchCloudLocations(
       request: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse {
@@ -190,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -238,6 +242,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

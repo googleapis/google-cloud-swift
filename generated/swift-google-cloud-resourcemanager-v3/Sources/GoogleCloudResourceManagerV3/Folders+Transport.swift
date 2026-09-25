@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.Folder {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listFolders(
       request: ListFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse {
@@ -113,6 +115,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchFolders(
       request: SearchFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse {
@@ -146,6 +149,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFolder(
       request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -178,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFolder(
       request: UpdateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -227,6 +232,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveFolder(
       request: MoveFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -274,6 +280,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFolder(
       request: DeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -318,6 +325,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteFolder(
       request: UndeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -365,6 +373,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -412,6 +421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -459,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -506,6 +517,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

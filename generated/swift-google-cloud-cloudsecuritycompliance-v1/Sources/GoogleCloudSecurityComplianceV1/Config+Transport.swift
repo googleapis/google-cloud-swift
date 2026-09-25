@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listFrameworks(
       request: ListFrameworksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse {
@@ -120,6 +121,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFramework(
       request: GetFrameworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -209,6 +211,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFramework(
       request: CreateFrameworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -296,6 +299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFramework(
       request: UpdateFrameworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -390,6 +394,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFramework(
       request: DeleteFrameworkRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -473,6 +478,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCloudControls(
       request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse {
@@ -560,6 +566,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCloudControl(
       request: GetCloudControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -649,6 +656,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCloudControl(
       request: CreateCloudControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -738,6 +746,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCloudControl(
       request: UpdateCloudControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -828,6 +837,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCloudControl(
       request: DeleteCloudControlRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -911,6 +921,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -990,6 +1001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1070,6 +1082,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1164,6 +1177,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1247,6 +1261,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1330,6 +1345,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

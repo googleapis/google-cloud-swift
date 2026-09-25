@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listNodes(
       request: ListNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.ListNodesResponse {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNode(
       request: GetNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.Node {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNode(
       request: CreateNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNode(
       request: DeleteNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -239,6 +243,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func stopNode(
       request: StopNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startNode(
       request: StartNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -345,6 +351,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNode(
       request: UpdateNodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -400,6 +407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listQueuedResources(
       request: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.ListQueuedResourcesResponse {
@@ -451,6 +459,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQueuedResource(
       request: GetQueuedResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.QueuedResource {
@@ -501,6 +510,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createQueuedResource(
       request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -556,6 +566,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteQueuedResource(
       request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -609,6 +620,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetQueuedResource(
       request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -662,6 +674,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateServiceIdentity(
       request: GenerateServiceIdentityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.GenerateServiceIdentityResponse {
@@ -713,6 +726,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAcceleratorTypes(
       request: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.ListAcceleratorTypesResponse {
@@ -766,6 +780,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAcceleratorType(
       request: GetAcceleratorTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.AcceleratorType {
@@ -816,6 +831,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRuntimeVersions(
       request: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.ListRuntimeVersionsResponse {
@@ -869,6 +885,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRuntimeVersion(
       request: GetRuntimeVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.RuntimeVersion {
@@ -919,6 +936,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGuestAttributes(
       request: GetGuestAttributesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTpuV2.GetGuestAttributesResponse {
@@ -972,6 +990,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1020,6 +1039,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1068,6 +1088,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1123,6 +1144,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1173,6 +1195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1223,6 +1246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

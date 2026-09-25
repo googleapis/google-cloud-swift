@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addHealthCheck(
         request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -111,6 +112,7 @@
         ).get()
       }
 
+      @concurrent
       public func addInstance(
         request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -190,6 +192,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList {
@@ -248,6 +251,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -324,6 +328,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: TargetPoolsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetPool {
@@ -398,6 +403,7 @@
         ).get()
       }
 
+      @concurrent
       public func getHealth(
         request: TargetPoolsClient.GetHealthRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetPoolInstanceHealth {
@@ -475,6 +481,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -539,6 +546,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetPoolList {
@@ -606,6 +614,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeHealthCheck(
         request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -685,6 +694,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeInstance(
         request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -764,6 +774,7 @@
         ).get()
       }
 
+      @concurrent
       public func setBackup(
         request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -845,6 +856,7 @@
         ).get()
       }
 
+      @concurrent
       public func setSecurityPolicy(
         request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -924,6 +936,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: TargetPoolsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -1001,6 +1014,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

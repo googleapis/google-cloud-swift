@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getMetricsScope(
       request: GetMetricsScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope {
@@ -78,6 +79,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMetricsScopesByMonitoredProject(
       request: ListMetricsScopesByMonitoredProjectRequest, options: GoogleGax.RequestOptions
     ) async throws
@@ -114,6 +116,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMonitoredProject(
       request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -161,6 +164,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMonitoredProject(
       request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -211,6 +215,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

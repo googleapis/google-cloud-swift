@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: ExternalVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -94,6 +95,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: ExternalVpnGatewaysClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ExternalVpnGateway {
@@ -154,6 +156,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: ExternalVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -204,6 +207,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: ExternalVpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ExternalVpnGatewayList {
@@ -257,6 +261,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: ExternalVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -320,6 +325,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: ExternalVpnGatewaysClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -384,6 +390,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

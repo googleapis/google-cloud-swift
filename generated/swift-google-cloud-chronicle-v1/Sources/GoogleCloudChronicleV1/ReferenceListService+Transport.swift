@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getReferenceList(
       request: GetReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReferenceLists(
       request: ListReferenceListsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListReferenceListsResponse {
@@ -141,6 +143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createReferenceList(
       request: CreateReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -197,6 +200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateReferenceList(
       request: UpdateReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -254,6 +258,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyReferenceList(
       request: VerifyReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.VerifyReferenceListResponse {
@@ -307,6 +312,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -364,6 +370,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -414,6 +421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -464,6 +472,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

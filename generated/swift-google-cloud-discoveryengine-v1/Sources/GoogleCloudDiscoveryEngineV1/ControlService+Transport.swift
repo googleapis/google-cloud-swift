@@ -34,6 +34,7 @@
         )
       }
 
+      @concurrent
       public func createControl(
         request: CreateControlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -163,6 +164,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteControl(
         request: DeleteControlRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -285,6 +287,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateControl(
         request: UpdateControlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -416,6 +419,7 @@
         ).get()
       }
 
+      @concurrent
       public func getControl(
         request: GetControlRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -538,6 +542,7 @@
         ).get()
       }
 
+      @concurrent
       public func listControls(
         request: ListControlsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDiscoveryEngineV1.ListControlsResponse {
@@ -670,6 +675,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1329,6 +1335,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1907,6 +1914,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

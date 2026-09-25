@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createRule(
       request: CreateRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Rule {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRule(
       request: GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Rule {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRules(
       request: ListRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListRulesResponse {
@@ -194,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRule(
       request: UpdateRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Rule {
@@ -249,6 +253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRule(
       request: DeleteRuleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyRuleText(
       request: VerifyRuleTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.VerifyRuleTextResponse {
@@ -354,6 +360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRuleRevisions(
       request: ListRuleRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListRuleRevisionsResponse {
@@ -408,6 +415,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRetrohunt(
       request: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -461,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRetrohunt(
       request: GetRetrohuntRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Retrohunt {
@@ -513,6 +522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRetrohunts(
       request: ListRetrohuntsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListRetrohuntsResponse {
@@ -567,6 +577,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRuleDeployment(
       request: GetRuleDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.RuleDeployment {
@@ -619,6 +630,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRuleDeployments(
       request: ListRuleDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListRuleDeploymentsResponse {
@@ -673,6 +685,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRuleDeployment(
       request: UpdateRuleDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.RuleDeployment {
@@ -730,6 +743,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -787,6 +801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -837,6 +852,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -887,6 +903,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

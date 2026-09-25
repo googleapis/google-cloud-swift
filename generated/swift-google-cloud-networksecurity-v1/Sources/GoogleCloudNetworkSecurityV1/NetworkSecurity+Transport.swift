@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listAuthorizationPolicies(
       request: ListAuthorizationPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListAuthorizationPoliciesResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAuthorizationPolicy(
       request: GetAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.AuthorizationPolicy {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAuthorizationPolicy(
       request: CreateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +196,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAuthorizationPolicy(
       request: UpdateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAuthorizationPolicy(
       request: DeleteAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackendAuthenticationConfigs(
       request: ListBackendAuthenticationConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListBackendAuthenticationConfigsResponse {
@@ -350,6 +356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackendAuthenticationConfig(
       request: GetBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.BackendAuthenticationConfig {
@@ -401,6 +408,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackendAuthenticationConfig(
       request: CreateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -456,6 +464,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackendAuthenticationConfig(
       request: UpdateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -511,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackendAuthenticationConfig(
       request: DeleteBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -563,6 +573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServerTlsPolicies(
       request: ListServerTlsPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListServerTlsPoliciesResponse {
@@ -618,6 +629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServerTlsPolicy(
       request: GetServerTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ServerTlsPolicy {
@@ -668,6 +680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServerTlsPolicy(
       request: CreateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -722,6 +735,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateServerTlsPolicy(
       request: UpdateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -777,6 +791,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteServerTlsPolicy(
       request: DeleteServerTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -827,6 +842,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listClientTlsPolicies(
       request: ListClientTlsPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListClientTlsPoliciesResponse {
@@ -879,6 +895,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getClientTlsPolicy(
       request: GetClientTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ClientTlsPolicy {
@@ -929,6 +946,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createClientTlsPolicy(
       request: CreateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -983,6 +1001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateClientTlsPolicy(
       request: UpdateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1038,6 +1057,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteClientTlsPolicy(
       request: DeleteClientTlsPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1088,6 +1108,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGatewaySecurityPolicies(
       request: ListGatewaySecurityPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPoliciesResponse {
@@ -1140,6 +1161,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGatewaySecurityPolicy(
       request: GetGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicy {
@@ -1190,6 +1212,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGatewaySecurityPolicy(
       request: CreateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1245,6 +1268,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGatewaySecurityPolicy(
       request: UpdateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1300,6 +1324,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGatewaySecurityPolicy(
       request: DeleteGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1350,6 +1375,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGatewaySecurityPolicyRules(
       request: ListGatewaySecurityPolicyRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPolicyRulesResponse {
@@ -1404,6 +1430,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGatewaySecurityPolicyRule(
       request: GetGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicyRule {
@@ -1456,6 +1483,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGatewaySecurityPolicyRule(
       request: CreateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1513,6 +1541,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateGatewaySecurityPolicyRule(
       request: UpdateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1570,6 +1599,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGatewaySecurityPolicyRule(
       request: DeleteGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1622,6 +1652,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUrlLists(
       request: ListUrlListsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListUrlListsResponse {
@@ -1673,6 +1704,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getUrlList(
       request: GetUrlListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.UrlList {
@@ -1723,6 +1755,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createUrlList(
       request: CreateUrlListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1776,6 +1809,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateUrlList(
       request: UpdateUrlListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1831,6 +1865,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteUrlList(
       request: DeleteUrlListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1881,6 +1916,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTlsInspectionPolicies(
       request: ListTlsInspectionPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListTlsInspectionPoliciesResponse {
@@ -1933,6 +1969,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTlsInspectionPolicy(
       request: GetTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.TlsInspectionPolicy {
@@ -1983,6 +2020,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTlsInspectionPolicy(
       request: CreateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2038,6 +2076,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTlsInspectionPolicy(
       request: UpdateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2093,6 +2132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTlsInspectionPolicy(
       request: DeleteTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2145,6 +2185,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAuthzPolicies(
       request: ListAuthzPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListAuthzPoliciesResponse {
@@ -2198,6 +2239,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAuthzPolicy(
       request: GetAuthzPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.AuthzPolicy {
@@ -2248,6 +2290,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAuthzPolicy(
       request: CreateAuthzPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2303,6 +2346,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAuthzPolicy(
       request: UpdateAuthzPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2359,6 +2403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAuthzPolicy(
       request: DeleteAuthzPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2411,6 +2456,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2490,6 +2536,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2570,6 +2617,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2755,6 +2803,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -2947,6 +2996,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -3165,6 +3215,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -3259,6 +3310,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3342,6 +3394,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3425,6 +3478,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

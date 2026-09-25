@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.ListJobsResponse {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJob(
       request: GetJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -134,6 +136,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -185,6 +188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateJob(
       request: UpdateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -240,6 +244,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteJob(
       request: DeleteJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -290,6 +295,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pauseJob(
       request: PauseJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -343,6 +349,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resumeJob(
       request: ResumeJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -396,6 +403,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func runJob(
       request: RunJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -449,6 +457,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -497,6 +506,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

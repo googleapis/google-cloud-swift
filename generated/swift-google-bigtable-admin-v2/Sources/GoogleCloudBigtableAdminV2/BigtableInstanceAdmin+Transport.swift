@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -82,6 +83,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Instance {
@@ -130,6 +132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse {
@@ -176,6 +179,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInstance(
       request: Instance, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Instance {
@@ -227,6 +231,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func partialUpdateInstance(
       request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -280,6 +285,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -328,6 +334,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -381,6 +388,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Cluster {
@@ -431,6 +439,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse {
@@ -481,6 +490,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCluster(
       request: Cluster, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -534,6 +544,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func partialUpdateCluster(
       request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -589,6 +600,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -639,6 +651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMemoryLayer(
       request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -694,6 +707,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMemoryLayers(
       request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse {
@@ -747,6 +761,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMemoryLayer(
       request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
@@ -797,6 +812,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAppProfile(
       request: CreateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
@@ -852,6 +868,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAppProfile(
       request: GetAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
@@ -902,6 +919,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAppProfiles(
       request: ListAppProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse {
@@ -953,6 +971,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAppProfile(
       request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1010,6 +1029,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAppProfile(
       request: DeleteAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1063,6 +1083,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1180,6 +1201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1297,6 +1319,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1414,6 +1437,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listHotTablets(
       request: ListHotTabletsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse {
@@ -1469,6 +1493,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createLogicalView(
       request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1523,6 +1548,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLogicalView(
       request: GetLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.LogicalView {
@@ -1573,6 +1599,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLogicalViews(
       request: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse {
@@ -1624,6 +1651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateLogicalView(
       request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1679,6 +1707,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteLogicalView(
       request: DeleteLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1731,6 +1760,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMaterializedView(
       request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1786,6 +1816,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMaterializedView(
       request: GetMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView {
@@ -1836,6 +1867,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMaterializedViews(
       request: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse {
@@ -1888,6 +1920,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMaterializedView(
       request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1943,6 +1976,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMaterializedView(
       request: DeleteMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1995,6 +2029,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2046,6 +2081,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2090,6 +2126,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2134,6 +2171,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

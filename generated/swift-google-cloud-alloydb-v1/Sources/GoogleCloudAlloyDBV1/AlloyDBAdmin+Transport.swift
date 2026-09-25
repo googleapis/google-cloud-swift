@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListClustersResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.Cluster {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -253,6 +257,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportCluster(
       request: ExportClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -306,6 +311,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importCluster(
       request: ImportClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -359,6 +365,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func upgradeCluster(
       request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -412,6 +419,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -467,6 +475,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func promoteCluster(
       request: PromoteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -520,6 +529,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func switchoverCluster(
       request: SwitchoverClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -573,6 +583,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restoreCluster(
       request: RestoreClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -624,6 +635,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSecondaryCluster(
       request: CreateSecondaryClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -679,6 +691,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListInstancesResponse {
@@ -734,6 +747,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.Instance {
@@ -786,6 +800,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -843,6 +858,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSecondaryInstance(
       request: CreateSecondaryInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -900,6 +916,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchCreateInstances(
       request: BatchCreateInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -955,6 +972,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInstance(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1013,6 +1031,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1067,6 +1086,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func failoverInstance(
       request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1120,6 +1140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func injectFault(
       request: InjectFaultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1173,6 +1194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restartInstance(
       request: RestartInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1226,6 +1248,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func executeSql(
       request: ExecuteSqlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ExecuteSqlResponse {
@@ -1279,6 +1302,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListBackupsResponse {
@@ -1332,6 +1356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.Backup {
@@ -1382,6 +1407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackup(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1437,6 +1463,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBackup(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1495,6 +1522,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackup(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1549,6 +1577,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSupportedDatabaseFlags(
       request: ListSupportedDatabaseFlagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListSupportedDatabaseFlagsResponse {
@@ -1602,6 +1631,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateClientCertificate(
       request: GenerateClientCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.GenerateClientCertificateResponse {
@@ -1655,6 +1685,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConnectionInfo(
       request: GetConnectionInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ConnectionInfo {
@@ -1707,6 +1738,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUsers(
       request: ListUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListUsersResponse {
@@ -1762,6 +1794,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getUser(
       request: GetUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.User {
@@ -1812,6 +1845,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createUser(
       request: CreateUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.User {
@@ -1869,6 +1903,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateUser(
       request: UpdateUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.User {
@@ -1927,6 +1962,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteUser(
       request: DeleteUserRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1980,6 +2016,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDatabases(
       request: ListDatabasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAlloyDBV1.ListDatabasesResponse {
@@ -2034,6 +2071,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2082,6 +2120,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2130,6 +2169,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2185,6 +2225,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2235,6 +2276,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2285,6 +2327,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func list(
         request: RegionZonesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ZoneList {

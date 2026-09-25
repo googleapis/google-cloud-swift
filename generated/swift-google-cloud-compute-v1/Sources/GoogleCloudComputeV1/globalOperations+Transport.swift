@@ -33,6 +33,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: GlobalOperationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.OperationAggregatedList {
@@ -91,6 +92,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: GlobalOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -150,6 +152,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -209,6 +212,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: GlobalOperationsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.OperationList {
@@ -262,6 +266,7 @@
         ).get()
       }
 
+      @concurrent
       public func wait(
         request: GlobalOperationsClient.WaitRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

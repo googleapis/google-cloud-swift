@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func searchCatalog(
       request: SearchCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.SearchCatalogResponse {
@@ -65,6 +66,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEntryGroup(
       request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
@@ -118,6 +120,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEntryGroup(
       request: GetEntryGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
@@ -170,6 +173,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEntryGroup(
       request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.EntryGroup {
@@ -225,6 +229,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEntryGroup(
       request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -277,6 +282,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEntryGroups(
       request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse {
@@ -328,6 +334,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEntry(
       request: CreateEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Entry {
@@ -383,6 +390,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEntry(
       request: UpdateEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Entry {
@@ -438,6 +446,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEntry(
       request: DeleteEntryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -488,6 +497,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEntry(
       request: GetEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Entry {
@@ -538,6 +548,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookupEntry(
       request: LookupEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Entry {
@@ -585,6 +596,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEntries(
       request: ListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListEntriesResponse {
@@ -639,6 +651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func modifyEntryOverview(
       request: ModifyEntryOverviewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.EntryOverview {
@@ -692,6 +705,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func modifyEntryContacts(
       request: ModifyEntryContactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Contacts {
@@ -745,6 +759,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTagTemplate(
       request: CreateTagTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
@@ -799,6 +814,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTagTemplate(
       request: GetTagTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
@@ -849,6 +865,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTagTemplate(
       request: UpdateTagTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplate {
@@ -904,6 +921,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTagTemplate(
       request: DeleteTagTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -956,6 +974,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTagTemplateField(
       request: CreateTagTemplateFieldRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
@@ -1013,6 +1032,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTagTemplateField(
       request: UpdateTagTemplateFieldRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
@@ -1068,6 +1088,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameTagTemplateField(
       request: RenameTagTemplateFieldRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
@@ -1121,6 +1142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameTagTemplateFieldEnumValue(
       request: RenameTagTemplateFieldEnumValueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.TagTemplateField {
@@ -1176,6 +1198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTagTemplateField(
       request: DeleteTagTemplateFieldRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1228,6 +1251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTag(
       request: CreateTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Tag {
@@ -1314,6 +1338,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTag(
       request: UpdateTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.Tag {
@@ -1406,6 +1431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTag(
       request: DeleteTagRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1491,6 +1517,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTags(
       request: ListTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.ListTagsResponse {
@@ -1580,6 +1607,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reconcileTags(
       request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1633,6 +1661,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func starEntry(
       request: StarEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.StarEntryResponse {
@@ -1686,6 +1715,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func unstarEntry(
       request: UnstarEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.UnstarEntryResponse {
@@ -1739,6 +1769,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1825,6 +1856,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1944,6 +1976,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2063,6 +2096,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importEntries(
       request: ImportEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2116,6 +2150,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setConfig(
       request: SetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.MigrationConfig {
@@ -2199,6 +2234,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func retrieveConfig(
       request: RetrieveConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.OrganizationConfig {
@@ -2248,6 +2284,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func retrieveEffectiveConfig(
       request: RetrieveEffectiveConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataCatalogV1.MigrationConfig {
@@ -2328,6 +2365,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2383,6 +2421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2433,6 +2472,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2483,6 +2523,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

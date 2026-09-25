@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listOrchestrationClusters(
       request: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOrchestrationCluster(
       request: GetOrchestrationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.OrchestrationCluster {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createOrchestrationCluster(
       request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOrchestrationCluster(
       request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -247,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEdgeSlms(
       request: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEdgeSlm(
       request: GetEdgeSlmRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.EdgeSlm {
@@ -350,6 +356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEdgeSlm(
       request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -404,6 +411,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEdgeSlm(
       request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -456,6 +464,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBlueprint(
       request: CreateBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -511,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBlueprint(
       request: UpdateBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -568,6 +578,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBlueprint(
       request: GetBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -622,6 +633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBlueprint(
       request: DeleteBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -674,6 +686,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBlueprints(
       request: ListBlueprintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse {
@@ -728,6 +741,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func approveBlueprint(
       request: ApproveBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -783,6 +797,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func proposeBlueprint(
       request: ProposeBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -838,6 +853,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rejectBlueprint(
       request: RejectBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -893,6 +909,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBlueprintRevisions(
       request: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse {
@@ -949,6 +966,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchBlueprintRevisions(
       request: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse {
@@ -1004,6 +1022,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchDeploymentRevisions(
       request: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse {
@@ -1059,6 +1078,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func discardBlueprintChanges(
       request: DiscardBlueprintChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.DiscardBlueprintChangesResponse {
@@ -1115,6 +1135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listPublicBlueprints(
       request: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse {
@@ -1167,6 +1188,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getPublicBlueprint(
       request: GetPublicBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.PublicBlueprint {
@@ -1217,6 +1239,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDeployment(
       request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -1272,6 +1295,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDeployment(
       request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -1329,6 +1353,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDeployment(
       request: GetDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -1383,6 +1408,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeDeployment(
       request: RemoveDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1438,6 +1464,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse {
@@ -1492,6 +1519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDeploymentRevisions(
       request: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse {
@@ -1548,6 +1576,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func discardDeploymentChanges(
       request: DiscardDeploymentChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.DiscardDeploymentChangesResponse {
@@ -1604,6 +1633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func applyDeployment(
       request: ApplyDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -1659,6 +1689,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func computeDeploymentStatus(
       request: ComputeDeploymentStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ComputeDeploymentStatusResponse {
@@ -1712,6 +1743,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rollbackDeployment(
       request: RollbackDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -1767,6 +1799,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getHydratedDeployment(
       request: GetHydratedDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
@@ -1820,6 +1853,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listHydratedDeployments(
       request: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse {
@@ -1876,6 +1910,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateHydratedDeployment(
       request: UpdateHydratedDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
@@ -1934,6 +1969,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func applyHydratedDeployment(
       request: ApplyHydratedDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
@@ -1990,6 +2026,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2038,6 +2075,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2086,6 +2124,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2143,6 +2182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2193,6 +2233,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2243,6 +2284,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

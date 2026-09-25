@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func placeOrder(
       request: PlaceOrderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOrder(
       request: GetOrderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.Order {
@@ -129,6 +131,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOrders(
       request: ListOrdersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse {
@@ -178,6 +181,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func modifyOrder(
       request: ModifyOrderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -230,6 +234,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOrder(
       request: CancelOrderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -282,6 +287,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

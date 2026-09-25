@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listApprovalRequests(
       request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse {
@@ -143,6 +144,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getApprovalRequest(
       request: GetApprovalRequestMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -259,6 +261,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func approveApprovalRequest(
       request: ApproveApprovalRequestMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -378,6 +381,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func dismissApprovalRequest(
       request: DismissApprovalRequestMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -497,6 +501,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func invalidateApprovalRequest(
       request: InvalidateApprovalRequestMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -616,6 +621,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAccessApprovalSettings(
       request: GetAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
@@ -724,6 +730,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAccessApprovalSettings(
       request: UpdateAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
@@ -841,6 +848,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAccessApprovalSettings(
       request: DeleteAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
     ) async throws {
@@ -949,6 +957,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAccessApprovalServiceAccount(
       request: GetAccessApprovalServiceAccountMessage, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount {

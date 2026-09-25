@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createBudget(
       request: CreateBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBudget(
       request: UpdateBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -133,6 +135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBudget(
       request: GetBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -182,6 +185,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBudgets(
       request: ListBudgetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse {
@@ -230,6 +234,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBudget(
       request: DeleteBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws {

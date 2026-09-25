@@ -35,6 +35,7 @@
         )
       }
 
+      @concurrent
       public func createConversation(
         request: CreateConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
@@ -120,6 +121,7 @@
         ).get()
       }
 
+      @concurrent
       public func listConversations(
         request: ListConversationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationsResponse {
@@ -204,6 +206,7 @@
         ).get()
       }
 
+      @concurrent
       public func getConversation(
         request: GetConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
@@ -288,6 +291,7 @@
         ).get()
       }
 
+      @concurrent
       public func completeConversation(
         request: CompleteConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
@@ -375,6 +379,7 @@
         ).get()
       }
 
+      @concurrent
       public func ingestContextReferences(
         request: IngestContextReferencesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.IngestContextReferencesResponse {
@@ -430,6 +435,7 @@
         ).get()
       }
 
+      @concurrent
       public func listMessages(
         request: ListMessagesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse {
@@ -522,6 +528,7 @@
         ).get()
       }
 
+      @concurrent
       public func suggestConversationSummary(
         request: SuggestConversationSummaryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestConversationSummaryResponse {
@@ -610,6 +617,7 @@
         ).get()
       }
 
+      @concurrent
       public func generateStatelessSummary(
         request: GenerateStatelessSummaryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateStatelessSummaryResponse {
@@ -694,6 +702,7 @@
         ).get()
       }
 
+      @concurrent
       public func generateStatelessSuggestion(
         request: GenerateStatelessSuggestionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateStatelessSuggestionResponse {
@@ -747,6 +756,7 @@
         ).get()
       }
 
+      @concurrent
       public func searchKnowledge(
         request: SearchKnowledgeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SearchKnowledgeResponse {
@@ -892,6 +902,7 @@
         ).get()
       }
 
+      @concurrent
       public func generateSuggestions(
         request: GenerateSuggestionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateSuggestionsResponse {
@@ -979,6 +990,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1028,6 +1040,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -1077,6 +1090,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1167,6 +1181,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1249,6 +1264,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {

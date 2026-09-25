@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createSnooze(
       request: CreateSnoozeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSnoozes(
       request: ListSnoozesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse {
@@ -127,6 +129,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSnooze(
       request: GetSnoozeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -175,6 +178,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSnooze(
       request: UpdateSnoozeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze {

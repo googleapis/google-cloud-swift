@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listIngressRules(
       request: ListIngressRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.ListIngressRulesResponse {
@@ -82,6 +83,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchUpdateIngressRules(
       request: BatchUpdateIngressRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.BatchUpdateIngressRulesResponse {
@@ -129,6 +131,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIngressRule(
       request: CreateIngressRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.FirewallRule {
@@ -176,6 +179,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIngressRule(
       request: GetIngressRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.FirewallRule {
@@ -226,6 +230,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIngressRule(
       request: UpdateIngressRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.FirewallRule {
@@ -281,6 +286,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIngressRule(
       request: DeleteIngressRuleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -331,6 +337,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -382,6 +389,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

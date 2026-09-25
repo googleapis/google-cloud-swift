@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.Instance {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInstance(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCertificateAuthority(
       request: GetCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
@@ -350,6 +356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSharedRegionalCertificateAuthority(
       request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
@@ -401,6 +408,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func rescheduleMaintenance(
       request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -454,6 +462,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackupCollections(
       request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
@@ -505,6 +514,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackupCollection(
       request: GetBackupCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
@@ -555,6 +565,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
@@ -608,6 +619,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.Backup {
@@ -660,6 +672,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackup(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -714,6 +727,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportBackup(
       request: ExportBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -769,6 +783,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func backupInstance(
       request: BackupInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -822,6 +837,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startMigration(
       request: StartMigrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -875,6 +891,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func finishMigration(
       request: FinishMigrationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -928,6 +945,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTokenAuthUsers(
       request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
@@ -983,6 +1001,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getTokenAuthUser(
       request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
@@ -1035,6 +1054,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAuthTokens(
       request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
@@ -1092,6 +1112,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAuthToken(
       request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
@@ -1144,6 +1165,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addTokenAuthUser(
       request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1197,6 +1219,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTokenAuthUser(
       request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1252,6 +1275,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addAuthToken(
       request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1307,6 +1331,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAuthToken(
       request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1359,6 +1384,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1407,6 +1433,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1455,6 +1482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1510,6 +1538,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1560,6 +1589,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1610,6 +1640,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -44,6 +44,7 @@ final class HTTPClientHolder: _HTTPClientProtocol {
     }
   }
 
+  @concurrent
   func execute(request: HTTPClientRequest, timeout: Duration) async throws -> HTTPClientResponse {
     try await self.inner.execute(request, timeout: .init(timeout), logger: nil)
   }

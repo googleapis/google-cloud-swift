@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createCompany(
       request: CreateCompanyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Company {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCompany(
       request: GetCompanyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Company {
@@ -134,6 +136,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCompany(
       request: UpdateCompanyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Company {
@@ -189,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCompany(
       request: DeleteCompanyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -239,6 +243,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCompanies(
       request: ListCompaniesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListCompaniesResponse {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

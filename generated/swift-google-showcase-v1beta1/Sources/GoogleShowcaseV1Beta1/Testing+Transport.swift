@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createSession(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.Session {
@@ -67,6 +68,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSession(
       request: GetSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.Session {
@@ -111,6 +113,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.ListSessionsResponse {
@@ -143,6 +146,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSession(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -187,6 +191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func reportSession(
       request: ReportSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.ReportSessionResponse {
@@ -231,6 +236,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTests(
       request: ListTestsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.ListTestsResponse {
@@ -278,6 +284,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTest(
       request: DeleteTestRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -326,6 +333,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func verifyTest(
       request: VerifyTestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleShowcaseV1Beta1.VerifyTestResponse {
@@ -377,6 +385,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -425,6 +434,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -473,6 +483,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -603,6 +614,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -738,6 +750,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -868,6 +881,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -905,6 +919,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -949,6 +964,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -993,6 +1009,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

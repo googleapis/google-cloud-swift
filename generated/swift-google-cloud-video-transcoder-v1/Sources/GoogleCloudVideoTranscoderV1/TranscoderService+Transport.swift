@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse {
@@ -136,6 +138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJob(
       request: GetJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -186,6 +189,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteJob(
       request: DeleteJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -238,6 +242,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createJobTemplate(
       request: CreateJobTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listJobTemplates(
       request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse {
@@ -345,6 +351,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJobTemplate(
       request: GetJobTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -395,6 +402,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteJobTemplate(
       request: DeleteJobTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {

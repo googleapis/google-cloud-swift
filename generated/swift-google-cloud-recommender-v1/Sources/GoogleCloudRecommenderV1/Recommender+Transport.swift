@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listInsights(
       request: ListInsightsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse {
@@ -197,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInsight(
       request: GetInsightRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -351,6 +353,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func markInsightAccepted(
       request: MarkInsightAcceptedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -508,6 +511,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRecommendations(
       request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse {
@@ -673,6 +677,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRecommendation(
       request: GetRecommendationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -830,6 +835,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func markRecommendationDismissed(
       request: MarkRecommendationDismissedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -990,6 +996,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func markRecommendationClaimed(
       request: MarkRecommendationClaimedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -1150,6 +1157,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func markRecommendationSucceeded(
       request: MarkRecommendationSucceededRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -1310,6 +1318,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func markRecommendationFailed(
       request: MarkRecommendationFailedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -1470,6 +1479,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRecommenderConfig(
       request: GetRecommenderConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -1586,6 +1596,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRecommenderConfig(
       request: UpdateRecommenderConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -1714,6 +1725,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInsightTypeConfig(
       request: GetInsightTypeConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
@@ -1830,6 +1842,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInsightTypeConfig(
       request: UpdateInsightTypeConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {

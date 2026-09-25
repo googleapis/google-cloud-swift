@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createMigrationWorkflow(
       request: CreateMigrationWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMigrationWorkflow(
       request: GetMigrationWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMigrationWorkflows(
       request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse {
@@ -188,6 +191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMigrationWorkflow(
       request: DeleteMigrationWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -238,6 +242,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startMigrationWorkflow(
       request: StartMigrationWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -291,6 +296,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMigrationSubtask(
       request: GetMigrationSubtaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationSubtask {
@@ -343,6 +349,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMigrationSubtasks(
       request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse {

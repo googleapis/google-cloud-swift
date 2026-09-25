@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: TargetHttpsProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpsProxyAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -152,6 +154,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: TargetHttpsProxiesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpsProxy {
@@ -212,6 +215,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -262,6 +266,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: TargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList {
@@ -315,6 +320,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -380,6 +386,7 @@
         ).get()
       }
 
+      @concurrent
       public func setCertificateMap(
         request: TargetHttpsProxiesClient.SetCertificateMapRequest,
         options: GoogleGax.RequestOptions
@@ -446,6 +453,7 @@
         ).get()
       }
 
+      @concurrent
       public func setQuicOverride(
         request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -511,6 +519,7 @@
         ).get()
       }
 
+      @concurrent
       public func setSslCertificates(
         request: TargetHttpsProxiesClient.SetSslCertificatesRequest,
         options: GoogleGax.RequestOptions
@@ -577,6 +586,7 @@
         ).get()
       }
 
+      @concurrent
       public func setSslPolicy(
         request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -642,6 +652,7 @@
         ).get()
       }
 
+      @concurrent
       public func setUrlMap(
         request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -707,6 +718,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

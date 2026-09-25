@@ -33,6 +33,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: SqlOperationsGetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -94,6 +95,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.OperationsListResponse {
@@ -144,6 +146,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancel(
         request: SqlOperationsCancelRequest, options: GoogleGax.RequestOptions
       ) async throws {

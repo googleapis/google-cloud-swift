@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listMirroringEndpointGroups(
       request: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMirroringEndpointGroup(
       request: GetMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroup {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMirroringEndpointGroup(
       request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -196,6 +199,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMirroringEndpointGroup(
       request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -252,6 +256,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMirroringEndpointGroup(
       request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -304,6 +309,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMirroringEndpointGroupAssociations(
       request: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse {
@@ -358,6 +364,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMirroringEndpointGroupAssociation(
       request: GetMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroupAssociation {
@@ -409,6 +416,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMirroringEndpointGroupAssociation(
       request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -466,6 +474,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMirroringEndpointGroupAssociation(
       request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -522,6 +531,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMirroringEndpointGroupAssociation(
       request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -574,6 +584,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMirroringDeploymentGroups(
       request: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse {
@@ -628,6 +639,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMirroringDeploymentGroup(
       request: GetMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeploymentGroup {
@@ -678,6 +690,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMirroringDeploymentGroup(
       request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -734,6 +747,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMirroringDeploymentGroup(
       request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -790,6 +804,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMirroringDeploymentGroup(
       request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -842,6 +857,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMirroringDeployments(
       request: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse {
@@ -896,6 +912,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMirroringDeployment(
       request: GetMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeployment {
@@ -946,6 +963,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMirroringDeployment(
       request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1002,6 +1020,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMirroringDeployment(
       request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1058,6 +1077,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteMirroringDeployment(
       request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1110,6 +1130,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1189,6 +1210,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1269,6 +1291,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1454,6 +1477,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1646,6 +1670,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1864,6 +1889,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1958,6 +1984,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2041,6 +2068,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2124,6 +2152,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

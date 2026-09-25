@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createDataPolicy(
       request: CreateDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDataPolicy(
       request: UpdateDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameDataPolicy(
       request: RenameDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataPolicy(
       request: DeleteDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataPolicy(
       request: GetDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
@@ -292,6 +297,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataPolicies(
       request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse {
@@ -344,6 +350,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -397,6 +404,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -450,6 +458,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {

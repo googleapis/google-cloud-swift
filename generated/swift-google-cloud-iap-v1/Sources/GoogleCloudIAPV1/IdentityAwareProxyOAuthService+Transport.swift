@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listBrands(
       request: ListBrandsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListBrandsResponse {
@@ -76,6 +77,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBrand(
       request: CreateBrandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.Brand {
@@ -123,6 +125,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBrand(
       request: GetBrandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.Brand {
@@ -171,6 +174,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIdentityAwareProxyClient(
       request: CreateIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -222,6 +226,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIdentityAwareProxyClients(
       request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse {
@@ -273,6 +278,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIdentityAwareProxyClient(
       request: GetIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -323,6 +329,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetIdentityAwareProxyClientSecret(
       request: ResetIdentityAwareProxyClientSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
@@ -376,6 +383,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIdentityAwareProxyClient(
       request: DeleteIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
     ) async throws {

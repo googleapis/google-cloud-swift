@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func submitJob(
       request: SubmitJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.Job {
@@ -96,6 +97,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func submitJobAsOperation(
       request: SubmitJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -157,6 +159,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getJob(
       request: GetJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.Job {
@@ -229,6 +232,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.ListJobsResponse {
@@ -294,6 +298,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateJob(
       request: UpdateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.Job {
@@ -371,6 +376,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelJob(
       request: CancelJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.Job {
@@ -449,6 +455,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteJob(
       request: DeleteJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -521,6 +528,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -772,6 +780,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1023,6 +1032,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1274,6 +1284,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1371,6 +1382,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1454,6 +1466,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1537,6 +1550,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

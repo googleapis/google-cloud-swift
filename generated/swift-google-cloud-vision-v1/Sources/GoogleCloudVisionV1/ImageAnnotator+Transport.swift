@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func batchAnnotateImages(
       request: BatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.BatchAnnotateImagesResponse {
@@ -123,6 +124,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchAnnotateFiles(
       request: BatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.BatchAnnotateFilesResponse {
@@ -213,6 +215,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func asyncBatchAnnotateImages(
       request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -303,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func asyncBatchAnnotateFiles(
       request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -393,6 +397,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

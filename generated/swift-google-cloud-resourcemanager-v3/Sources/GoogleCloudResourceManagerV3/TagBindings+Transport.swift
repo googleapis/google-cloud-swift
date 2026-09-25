@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listTagBindings(
       request: ListTagBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagBindingsResponse {
@@ -67,6 +68,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTagBinding(
       request: CreateTagBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -101,6 +103,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTagBinding(
       request: DeleteTagBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -145,6 +148,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEffectiveTags(
       request: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListEffectiveTagsResponse {
@@ -178,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

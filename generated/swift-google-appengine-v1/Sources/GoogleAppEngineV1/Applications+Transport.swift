@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getApplication(
       request: GetApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleAppEngineV1.Application {
@@ -77,6 +78,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createApplication(
       request: CreateApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +111,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateApplication(
       request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -158,6 +161,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func repairApplication(
       request: RepairApplicationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -205,6 +209,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -256,6 +261,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

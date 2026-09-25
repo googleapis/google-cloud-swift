@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getDashboardChart(
       request: GetDashboardChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DashboardChart {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func batchGetDashboardCharts(
       request: BatchGetDashboardChartsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BatchGetDashboardChartsResponse {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -194,6 +197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -244,6 +248,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -294,6 +299,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

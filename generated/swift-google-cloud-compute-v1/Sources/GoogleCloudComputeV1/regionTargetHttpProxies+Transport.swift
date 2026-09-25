@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: RegionTargetHttpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -108,6 +109,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RegionTargetHttpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpProxy {
@@ -182,6 +184,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RegionTargetHttpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -247,6 +250,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RegionTargetHttpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TargetHttpProxyList {
@@ -315,6 +319,7 @@
         ).get()
       }
 
+      @concurrent
       public func setUrlMap(
         request: RegionTargetHttpProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -394,6 +399,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createSupportEventSubscription(
       request: CreateSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -79,6 +80,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSupportEventSubscription(
       request: GetSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -129,6 +131,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSupportEventSubscriptions(
       request: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse {
@@ -179,6 +182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSupportEventSubscription(
       request: UpdateSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -234,6 +238,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSupportEventSubscription(
       request: DeleteSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -284,6 +289,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteSupportEventSubscription(
       request: UndeleteSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -337,6 +343,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func expungeSupportEventSubscription(
       request: ExpungeSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws {

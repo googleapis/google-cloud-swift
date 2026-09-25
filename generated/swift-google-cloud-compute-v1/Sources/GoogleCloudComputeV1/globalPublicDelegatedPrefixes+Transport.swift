@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: GlobalPublicDelegatedPrefixesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
@@ -95,6 +96,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: GlobalPublicDelegatedPrefixesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefix {
@@ -155,6 +157,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: GlobalPublicDelegatedPrefixesClient.InsertRequest,
         options: GoogleGax.RequestOptions
@@ -206,6 +209,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList {
@@ -259,6 +263,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -324,6 +329,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

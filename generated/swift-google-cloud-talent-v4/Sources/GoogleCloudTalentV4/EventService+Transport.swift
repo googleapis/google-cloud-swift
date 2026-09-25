@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createClientEvent(
       request: CreateClientEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ClientEvent {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

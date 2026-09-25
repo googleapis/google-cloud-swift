@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createDashboard(
       request: CreateDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -81,6 +82,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDashboards(
       request: ListDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse {
@@ -129,6 +131,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDashboard(
       request: GetDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -177,6 +180,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDashboard(
       request: DeleteDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -225,6 +229,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDashboard(
       request: UpdateDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {

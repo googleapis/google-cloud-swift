@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func resolveService(
       request: ResolveServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceDirectoryV1.ResolveServiceResponse {
@@ -85,6 +86,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -133,6 +135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {

@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listOrgPolicyViolationsPreviews(
       request: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOrgPolicyViolationsPreview(
       request: GetOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.OrgPolicyViolationsPreview {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createOrgPolicyViolationsPreview(
       request: CreateOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +196,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOrgPolicyViolations(
       request: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsResponse {
@@ -247,6 +251,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -418,6 +423,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

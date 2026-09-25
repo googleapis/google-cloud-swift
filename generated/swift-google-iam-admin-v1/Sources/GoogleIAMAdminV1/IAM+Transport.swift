@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listServiceAccounts(
       request: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
@@ -80,6 +81,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServiceAccount(
       request: GetServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -130,6 +132,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServiceAccount(
       request: CreateServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -177,6 +180,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -233,6 +237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func patchServiceAccount(
       request: PatchServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -286,6 +291,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteServiceAccount(
       request: DeleteServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -336,6 +342,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteServiceAccount(
       request: UndeleteServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse {
@@ -389,6 +396,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableServiceAccount(
       request: EnableServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -442,6 +450,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableServiceAccount(
       request: DisableServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -495,6 +504,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listServiceAccountKeys(
       request: ListServiceAccountKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
@@ -547,6 +557,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServiceAccountKey(
       request: GetServiceAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -600,6 +611,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createServiceAccountKey(
       request: CreateServiceAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -653,6 +665,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func uploadServiceAccountKey(
       request: UploadServiceAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -706,6 +719,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteServiceAccountKey(
       request: DeleteServiceAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -756,6 +770,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableServiceAccountKey(
       request: DisableServiceAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -809,6 +824,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableServiceAccountKey(
       request: EnableServiceAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -862,6 +878,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -918,6 +935,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -974,6 +992,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1026,6 +1045,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1079,6 +1099,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1132,6 +1153,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryGrantableRoles(
       request: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {
@@ -1162,6 +1184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRoles(
       request: ListRolesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.ListRolesResponse {
@@ -1261,6 +1284,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRole(
       request: GetRoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.Role {
@@ -1367,6 +1391,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRole(
       request: CreateRoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.Role {
@@ -1441,6 +1466,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRole(
       request: UpdateRoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.Role {
@@ -1527,6 +1553,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRole(
       request: DeleteRoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.Role {
@@ -1610,6 +1637,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeleteRole(
       request: UndeleteRoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.Role {
@@ -1692,6 +1720,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryTestablePermissions(
       request: QueryTestablePermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse {
@@ -1722,6 +1751,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryAuditableServices(
       request: QueryAuditableServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse {
@@ -1752,6 +1782,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lintPolicy(
       request: LintPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMAdminV1.LintPolicyResponse {

@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListInstancesResponse {
@@ -87,6 +88,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Instance {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateInstance(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameInstance(
       request: RenameInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Instance {
@@ -245,6 +249,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetInstance(
       request: ResetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startInstance(
       request: StartInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -351,6 +357,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func stopInstance(
       request: StopInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -404,6 +411,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func enableInteractiveSerialConsole(
       request: EnableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -457,6 +465,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func disableInteractiveSerialConsole(
       request: DisableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -510,6 +519,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func detachLun(
       request: DetachLunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -563,6 +573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSshkeys(
       request: ListSSHKeysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListSSHKeysResponse {
@@ -614,6 +625,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSshkey(
       request: CreateSSHKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.SSHKey {
@@ -667,6 +679,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSshkey(
       request: DeleteSSHKeyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -717,6 +730,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVolumes(
       request: ListVolumesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListVolumesResponse {
@@ -769,6 +783,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVolume(
       request: GetVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Volume {
@@ -819,6 +834,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateVolume(
       request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -874,6 +890,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameVolume(
       request: RenameVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Volume {
@@ -927,6 +944,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func evictVolume(
       request: EvictVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -980,6 +998,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resizeVolume(
       request: ResizeVolumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1033,6 +1052,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNetworks(
       request: ListNetworksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListNetworksResponse {
@@ -1085,6 +1105,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNetworkUsage(
       request: ListNetworkUsageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListNetworkUsageResponse {
@@ -1134,6 +1155,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNetwork(
       request: GetNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Network {
@@ -1184,6 +1206,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNetwork(
       request: UpdateNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1239,6 +1262,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createVolumeSnapshot(
       request: CreateVolumeSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.VolumeSnapshot {
@@ -1292,6 +1316,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restoreVolumeSnapshot(
       request: RestoreVolumeSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1345,6 +1370,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteVolumeSnapshot(
       request: DeleteVolumeSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1395,6 +1421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVolumeSnapshot(
       request: GetVolumeSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.VolumeSnapshot {
@@ -1445,6 +1472,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVolumeSnapshots(
       request: ListVolumeSnapshotsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListVolumeSnapshotsResponse {
@@ -1499,6 +1527,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLun(
       request: GetLunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Lun {
@@ -1549,6 +1578,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLuns(
       request: ListLunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListLunsResponse {
@@ -1602,6 +1632,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func evictLun(
       request: EvictLunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1655,6 +1686,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNfsShare(
       request: GetNfsShareRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.NfsShare {
@@ -1705,6 +1737,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNfsShares(
       request: ListNfsSharesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListNfsSharesResponse {
@@ -1757,6 +1790,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNfsShare(
       request: UpdateNfsShareRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1812,6 +1846,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNfsShare(
       request: CreateNfsShareRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1863,6 +1898,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameNfsShare(
       request: RenameNfsShareRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.NfsShare {
@@ -1916,6 +1952,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNfsShare(
       request: DeleteNfsShareRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1966,6 +2003,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProvisioningQuotas(
       request: ListProvisioningQuotasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListProvisioningQuotasResponse {
@@ -2018,6 +2056,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func submitProvisioningConfig(
       request: SubmitProvisioningConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.SubmitProvisioningConfigResponse {
@@ -2070,6 +2109,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProvisioningConfig(
       request: GetProvisioningConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
@@ -2120,6 +2160,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createProvisioningConfig(
       request: CreateProvisioningConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
@@ -2173,6 +2214,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProvisioningConfig(
       request: UpdateProvisioningConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
@@ -2229,6 +2271,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func renameNetwork(
       request: RenameNetworkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.Network {
@@ -2282,6 +2325,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOsimages(
       request: ListOSImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBareMetalSolutionV2.ListOSImagesResponse {
@@ -2333,6 +2377,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -2381,6 +2426,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -2429,6 +2475,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

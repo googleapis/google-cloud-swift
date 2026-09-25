@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getTeamFolder(
       request: GetTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -86,6 +87,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createTeamFolder(
       request: CreateTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -137,6 +139,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateTeamFolder(
       request: UpdateTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTeamFolder(
       request: DeleteTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -242,6 +246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTeamFolderTree(
       request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -295,6 +300,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryTeamFolderContents(
       request: QueryTeamFolderContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryTeamFolderContentsResponse {
@@ -350,6 +356,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchTeamFolders(
       request: SearchTeamFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.SearchTeamFoldersResponse {
@@ -403,6 +410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -453,6 +461,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createFolder(
       request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -504,6 +513,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateFolder(
       request: UpdateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -559,6 +569,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFolder(
       request: DeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -609,6 +620,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteFolderTree(
       request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -662,6 +674,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryFolderContents(
       request: QueryFolderContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryFolderContentsResponse {
@@ -717,6 +730,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryUserRootContents(
       request: QueryUserRootContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryUserRootContentsResponse {
@@ -770,6 +784,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveFolder(
       request: MoveFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -823,6 +838,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListRepositoriesResponse {
@@ -876,6 +892,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -926,6 +943,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createRepository(
       request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -979,6 +997,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRepository(
       request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -1034,6 +1053,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRepository(
       request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1086,6 +1106,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveRepository(
       request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1139,6 +1160,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func commitRepositoryChanges(
       request: CommitRepositoryChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CommitRepositoryChangesResponse {
@@ -1192,6 +1214,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func readRepositoryFile(
       request: ReadRepositoryFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReadRepositoryFileResponse {
@@ -1245,6 +1268,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryRepositoryDirectoryContents(
       request: QueryRepositoryDirectoryContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryRepositoryDirectoryContentsResponse {
@@ -1301,6 +1325,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchRepositoryHistory(
       request: FetchRepositoryHistoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchRepositoryHistoryResponse {
@@ -1354,6 +1379,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func computeRepositoryAccessTokenStatus(
       request: ComputeRepositoryAccessTokenStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ComputeRepositoryAccessTokenStatusResponse {
@@ -1405,6 +1431,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchRemoteBranches(
       request: FetchRemoteBranchesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchRemoteBranchesResponse {
@@ -1455,6 +1482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listWorkspaces(
       request: ListWorkspacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListWorkspacesResponse {
@@ -1510,6 +1538,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getWorkspace(
       request: GetWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -1562,6 +1591,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createWorkspace(
       request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -1617,6 +1647,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteWorkspace(
       request: DeleteWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1669,6 +1700,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func installNpmPackages(
       request: InstallNpmPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.InstallNpmPackagesResponse {
@@ -1724,6 +1756,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pullGitCommits(
       request: PullGitCommitsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.PullGitCommitsResponse {
@@ -1779,6 +1812,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func pushGitCommits(
       request: PushGitCommitsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.PushGitCommitsResponse {
@@ -1834,6 +1868,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchFileGitStatuses(
       request: FetchFileGitStatusesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchFileGitStatusesResponse {
@@ -1886,6 +1921,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchGitAheadBehind(
       request: FetchGitAheadBehindRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchGitAheadBehindResponse {
@@ -1940,6 +1976,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func commitWorkspaceChanges(
       request: CommitWorkspaceChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CommitWorkspaceChangesResponse {
@@ -1995,6 +2032,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func resetWorkspaceChanges(
       request: ResetWorkspaceChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ResetWorkspaceChangesResponse {
@@ -2050,6 +2088,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchFileDiff(
       request: FetchFileDiffRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchFileDiffResponse {
@@ -2104,6 +2143,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryDirectoryContents(
       request: QueryDirectoryContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryDirectoryContentsResponse {
@@ -2161,6 +2201,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchFiles(
       request: SearchFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.SearchFilesResponse {
@@ -2217,6 +2258,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func makeDirectory(
       request: MakeDirectoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.MakeDirectoryResponse {
@@ -2272,6 +2314,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeDirectory(
       request: RemoveDirectoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.RemoveDirectoryResponse {
@@ -2327,6 +2370,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveDirectory(
       request: MoveDirectoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.MoveDirectoryResponse {
@@ -2382,6 +2426,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func readFile(
       request: ReadFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReadFileResponse {
@@ -2437,6 +2482,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeFile(
       request: RemoveFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.RemoveFileResponse {
@@ -2492,6 +2538,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveFile(
       request: MoveFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.MoveFileResponse {
@@ -2547,6 +2594,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func writeFile(
       request: WriteFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WriteFileResponse {
@@ -2602,6 +2650,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReleaseConfigs(
       request: ListReleaseConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListReleaseConfigsResponse {
@@ -2655,6 +2704,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getReleaseConfig(
       request: GetReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -2707,6 +2757,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createReleaseConfig(
       request: CreateReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -2763,6 +2814,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateReleaseConfig(
       request: UpdateReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -2820,6 +2872,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteReleaseConfig(
       request: DeleteReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2872,6 +2925,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCompilationResults(
       request: ListCompilationResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListCompilationResultsResponse {
@@ -2927,6 +2981,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCompilationResult(
       request: GetCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -2979,6 +3034,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCompilationResult(
       request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -3032,6 +3088,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryCompilationResultActions(
       request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryCompilationResultActionsResponse {
@@ -3089,6 +3146,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listWorkflowConfigs(
       request: ListWorkflowConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListWorkflowConfigsResponse {
@@ -3142,6 +3200,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getWorkflowConfig(
       request: GetWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -3194,6 +3253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createWorkflowConfig(
       request: CreateWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -3250,6 +3310,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateWorkflowConfig(
       request: UpdateWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -3307,6 +3368,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteWorkflowConfig(
       request: DeleteWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3359,6 +3421,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listWorkflowInvocations(
       request: ListWorkflowInvocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListWorkflowInvocationsResponse {
@@ -3414,6 +3477,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getWorkflowInvocation(
       request: GetWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -3466,6 +3530,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createWorkflowInvocation(
       request: CreateWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -3519,6 +3584,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteWorkflowInvocation(
       request: DeleteWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3571,6 +3637,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelWorkflowInvocation(
       request: CancelWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CancelWorkflowInvocationResponse {
@@ -3626,6 +3693,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryWorkflowInvocationActions(
       request: QueryWorkflowInvocationActionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryWorkflowInvocationActionsResponse {
@@ -3682,6 +3750,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConfig(
       request: GetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Config {
@@ -3732,6 +3801,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConfig(
       request: UpdateConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Config {
@@ -3787,6 +3857,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -3946,6 +4017,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -4100,6 +4172,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -4254,6 +4327,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -4302,6 +4376,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -4350,6 +4425,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -4405,6 +4481,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -4455,6 +4532,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -4505,6 +4583,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

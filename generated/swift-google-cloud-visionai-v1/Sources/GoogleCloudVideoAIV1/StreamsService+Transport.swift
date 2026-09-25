@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListClustersResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Cluster {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -300,6 +305,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listStreams(
       request: ListStreamsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListStreamsResponse {
@@ -355,6 +361,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getStream(
       request: GetStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Stream {
@@ -405,6 +412,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createStream(
       request: CreateStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -461,6 +469,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateStream(
       request: UpdateStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -517,6 +526,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteStream(
       request: DeleteStreamRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -569,6 +579,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getStreamThumbnail(
       request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -622,6 +633,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateStreamHlsToken(
       request: GenerateStreamHlsTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateStreamHlsTokenResponse {
@@ -675,6 +687,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEvents(
       request: ListEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListEventsResponse {
@@ -730,6 +743,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEvent(
       request: GetEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Event {
@@ -780,6 +794,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEvent(
       request: CreateEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -836,6 +851,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEvent(
       request: UpdateEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -892,6 +908,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEvent(
       request: DeleteEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -944,6 +961,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSeries(
       request: ListSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSeriesResponse {
@@ -999,6 +1017,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSeries(
       request: GetSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Series {
@@ -1049,6 +1068,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSeries(
       request: CreateSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1105,6 +1125,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSeries(
       request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1161,6 +1182,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSeries(
       request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1213,6 +1235,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func materializeChannel(
       request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1269,6 +1292,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1317,6 +1341,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1365,6 +1390,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1420,6 +1446,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1711,6 +1738,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1761,6 +1789,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

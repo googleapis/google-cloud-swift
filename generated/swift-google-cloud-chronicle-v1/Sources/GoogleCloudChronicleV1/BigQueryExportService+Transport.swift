@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getBigQueryExport(
       request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBigQueryExport(
       request: UpdateBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func provisionBigQueryExport(
       request: ProvisionBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -191,6 +194,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -298,6 +303,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -348,6 +354,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

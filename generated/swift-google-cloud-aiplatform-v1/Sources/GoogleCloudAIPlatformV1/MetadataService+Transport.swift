@@ -37,6 +37,7 @@
         )
       }
 
+      @concurrent
       public func createMetadataStore(
         request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -92,6 +93,7 @@
         ).get()
       }
 
+      @concurrent
       public func getMetadataStore(
         request: GetMetadataStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.MetadataStore {
@@ -143,6 +145,7 @@
         ).get()
       }
 
+      @concurrent
       public func listMetadataStores(
         request: ListMetadataStoresRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListMetadataStoresResponse {
@@ -195,6 +198,7 @@
         ).get()
       }
 
+      @concurrent
       #if hasAttribute(diagnose)
         @diagnose(DeprecatedDeclaration, as: ignored)
       #endif
@@ -251,6 +255,7 @@
         ).get()
       }
 
+      @concurrent
       public func createArtifact(
         request: CreateArtifactRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -307,6 +312,7 @@
         ).get()
       }
 
+      @concurrent
       public func getArtifact(
         request: GetArtifactRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -360,6 +366,7 @@
         ).get()
       }
 
+      @concurrent
       public func listArtifacts(
         request: ListArtifactsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListArtifactsResponse {
@@ -416,6 +423,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateArtifact(
         request: UpdateArtifactRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -476,6 +484,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteArtifact(
         request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -531,6 +540,7 @@
         ).get()
       }
 
+      @concurrent
       public func purgeArtifacts(
         request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -585,6 +595,7 @@
         ).get()
       }
 
+      @concurrent
       public func createContext(
         request: CreateContextRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -641,6 +652,7 @@
         ).get()
       }
 
+      @concurrent
       public func getContext(
         request: GetContextRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -694,6 +706,7 @@
         ).get()
       }
 
+      @concurrent
       public func listContexts(
         request: ListContextsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListContextsResponse {
@@ -750,6 +763,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateContext(
         request: UpdateContextRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -810,6 +824,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteContext(
         request: DeleteContextRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -866,6 +881,7 @@
         ).get()
       }
 
+      @concurrent
       public func purgeContexts(
         request: PurgeContextsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -920,6 +936,7 @@
         ).get()
       }
 
+      @concurrent
       public func addContextArtifactsAndExecutions(
         request: AddContextArtifactsAndExecutionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.AddContextArtifactsAndExecutionsResponse {
@@ -977,6 +994,7 @@
         ).get()
       }
 
+      @concurrent
       public func addContextChildren(
         request: AddContextChildrenRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.AddContextChildrenResponse {
@@ -1033,6 +1051,7 @@
         ).get()
       }
 
+      @concurrent
       public func removeContextChildren(
         request: RemoveContextChildrenRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.RemoveContextChildrenResponse {
@@ -1090,6 +1109,7 @@
         ).get()
       }
 
+      @concurrent
       public func queryContextLineageSubgraph(
         request: QueryContextLineageSubgraphRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -1143,6 +1163,7 @@
         ).get()
       }
 
+      @concurrent
       public func createExecution(
         request: CreateExecutionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -1199,6 +1220,7 @@
         ).get()
       }
 
+      @concurrent
       public func getExecution(
         request: GetExecutionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -1252,6 +1274,7 @@
         ).get()
       }
 
+      @concurrent
       public func listExecutions(
         request: ListExecutionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListExecutionsResponse {
@@ -1308,6 +1331,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateExecution(
         request: UpdateExecutionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -1368,6 +1392,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteExecution(
         request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1423,6 +1448,7 @@
         ).get()
       }
 
+      @concurrent
       public func purgeExecutions(
         request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1477,6 +1503,7 @@
         ).get()
       }
 
+      @concurrent
       public func addExecutionEvents(
         request: AddExecutionEventsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.AddExecutionEventsResponse {
@@ -1533,6 +1560,7 @@
         ).get()
       }
 
+      @concurrent
       public func queryExecutionInputsAndOutputs(
         request: QueryExecutionInputsAndOutputsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -1586,6 +1614,7 @@
         ).get()
       }
 
+      @concurrent
       public func createMetadataSchema(
         request: CreateMetadataSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -1643,6 +1672,7 @@
         ).get()
       }
 
+      @concurrent
       public func getMetadataSchema(
         request: GetMetadataSchemaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -1696,6 +1726,7 @@
         ).get()
       }
 
+      @concurrent
       public func listMetadataSchemas(
         request: ListMetadataSchemasRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListMetadataSchemasResponse {
@@ -1751,6 +1782,7 @@
         ).get()
       }
 
+      @concurrent
       public func queryArtifactLineageSubgraph(
         request: QueryArtifactLineageSubgraphRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -1807,6 +1839,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1887,6 +1920,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -1967,6 +2001,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -2458,6 +2493,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -3009,6 +3045,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -3525,6 +3562,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -7608,6 +7646,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -11149,6 +11188,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteOperation(
         request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -14581,6 +14621,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -17772,6 +17813,7 @@
         ).get()
       }
 
+      @concurrent
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

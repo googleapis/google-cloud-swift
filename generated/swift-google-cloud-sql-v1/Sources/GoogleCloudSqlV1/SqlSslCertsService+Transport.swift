@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: SqlSslCertsDeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
@@ -106,6 +107,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: SqlSslCertsGetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SslCert {
@@ -180,6 +182,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: SqlSslCertsInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SslCertsInsertResponse {
@@ -242,6 +245,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: SqlSslCertsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.SslCertsListResponse {

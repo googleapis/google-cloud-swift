@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.ListClustersResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.Cluster {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -192,6 +195,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCluster(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +252,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func upgradeCluster(
       request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCluster(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -353,6 +359,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateAccessToken(
       request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.GenerateAccessTokenResponse {
@@ -403,6 +410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateOfflineCredential(
       request: GenerateOfflineCredentialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.GenerateOfflineCredentialResponse {
@@ -454,6 +462,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listNodePools(
       request: ListNodePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.ListNodePoolsResponse {
@@ -509,6 +518,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getNodePool(
       request: GetNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.NodePool {
@@ -559,6 +569,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createNodePool(
       request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -615,6 +626,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateNodePool(
       request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -671,6 +683,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteNodePool(
       request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -723,6 +736,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMachines(
       request: ListMachinesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.ListMachinesResponse {
@@ -776,6 +790,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMachine(
       request: GetMachineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.Machine {
@@ -826,6 +841,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listVpnConnections(
       request: ListVpnConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.ListVpnConnectionsResponse {
@@ -879,6 +895,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getVpnConnection(
       request: GetVpnConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.VpnConnection {
@@ -929,6 +946,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createVpnConnection(
       request: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -984,6 +1002,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteVpnConnection(
       request: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1036,6 +1055,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getServerConfig(
       request: GetServerConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEdgeContainerV1.ServerConfig {
@@ -1084,6 +1104,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1132,6 +1153,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1180,6 +1202,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1235,6 +1258,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1285,6 +1309,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1335,6 +1360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

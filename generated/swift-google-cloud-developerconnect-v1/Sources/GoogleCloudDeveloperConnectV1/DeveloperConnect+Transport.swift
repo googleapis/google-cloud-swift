@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listConnections(
       request: ListConnectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse {
@@ -88,6 +89,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getConnection(
       request: GetConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.Connection {
@@ -138,6 +140,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createConnection(
       request: CreateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +196,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateConnection(
       request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -251,6 +255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteConnection(
       request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -305,6 +310,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGitRepositoryLink(
       request: CreateGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -364,6 +370,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteGitRepositoryLink(
       request: DeleteGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -420,6 +427,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGitRepositoryLinks(
       request: ListGitRepositoryLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListGitRepositoryLinksResponse {
@@ -476,6 +484,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGitRepositoryLink(
       request: GetGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.GitRepositoryLink {
@@ -528,6 +537,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchReadWriteToken(
       request: FetchReadWriteTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadWriteTokenResponse {
@@ -584,6 +594,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchReadToken(
       request: FetchReadTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadTokenResponse {
@@ -639,6 +650,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchLinkableGitRepositories(
       request: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse {
@@ -693,6 +705,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchGitHubInstallations(
       request: FetchGitHubInstallationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitHubInstallationsResponse {
@@ -744,6 +757,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchGitRefs(
       request: FetchGitRefsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse {
@@ -800,6 +814,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAccountConnectors(
       request: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse {
@@ -854,6 +869,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAccountConnector(
       request: GetAccountConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.AccountConnector {
@@ -904,6 +920,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAccountConnector(
       request: CreateAccountConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -961,6 +978,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAccountConnector(
       request: UpdateAccountConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1019,6 +1037,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAccountConnector(
       request: DeleteAccountConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1074,6 +1093,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchAccessToken(
       request: FetchAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FetchAccessTokenResponse {
@@ -1127,6 +1147,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listUsers(
       request: ListUsersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.ListUsersResponse {
@@ -1182,6 +1203,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteUser(
       request: DeleteUserRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1238,6 +1260,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func fetchSelf(
       request: FetchSelfRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.User {
@@ -1288,6 +1311,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSelf(
       request: DeleteSelfRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1338,6 +1362,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func startOauth(
       request: StartOAuthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.StartOAuthResponse {
@@ -1388,6 +1413,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func finishOauth(
       request: FinishOAuthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeveloperConnectV1.FinishOAuthResponse {
@@ -1449,6 +1475,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1497,6 +1524,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1545,6 +1573,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1600,6 +1629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1650,6 +1680,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1700,6 +1731,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

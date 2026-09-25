@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listDataSets(
       request: ListDataSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse {
@@ -113,6 +114,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDataSet(
       request: CreateDataSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.DataSet {
@@ -191,6 +193,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataSet(
       request: DeleteDataSetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -272,6 +275,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func appendEvents(
       request: AppendEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.AppendEventsResponse {
@@ -356,6 +360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryDataSet(
       request: QueryDataSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.QueryDataSetResponse {
@@ -440,6 +445,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func evaluateSlice(
       request: EvaluateSliceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.EvaluatedSlice {
@@ -524,6 +530,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func evaluateTimeseries(
       request: EvaluateTimeseriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.EvaluatedSlice {

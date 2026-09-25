@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func `get`(
         request: HostsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Host {
@@ -120,6 +121,7 @@
         ).get()
       }
 
+      @concurrent
       public func getVersion(
         request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -213,6 +215,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: HostsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HostsListResponse {
@@ -295,6 +298,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func createMembers(
         request: InterconnectGroupsClient.CreateMembersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -95,6 +96,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: InterconnectGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -157,6 +159,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: InterconnectGroupsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectGroup {
@@ -217,6 +220,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: InterconnectGroupsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -281,6 +285,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperationalStatus(
         request: InterconnectGroupsClient.GetOperationalStatusRequest,
         options: GoogleGax.RequestOptions
@@ -343,6 +348,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: InterconnectGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -393,6 +399,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: InterconnectGroupsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.InterconnectGroupsListResponse {
@@ -446,6 +453,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: InterconnectGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -512,6 +520,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: InterconnectGroupsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -575,6 +584,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: InterconnectGroupsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -639,6 +649,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

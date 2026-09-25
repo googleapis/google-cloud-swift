@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +168,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: StoragePoolsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePool {
@@ -240,6 +243,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: StoragePoolsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -318,6 +322,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -382,6 +387,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePoolList {
@@ -449,6 +455,7 @@
         ).get()
       }
 
+      @concurrent
       public func listDisks(
         request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.StoragePoolListDisks {
@@ -531,6 +538,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: StoragePoolsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -608,6 +616,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: StoragePoolsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -685,6 +694,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -765,6 +775,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

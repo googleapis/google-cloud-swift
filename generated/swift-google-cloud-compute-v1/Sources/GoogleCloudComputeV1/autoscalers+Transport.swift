@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: AutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +168,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: AutoscalersClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Autoscaler {
@@ -240,6 +243,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: AutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -304,6 +308,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.AutoscalerList {
@@ -371,6 +376,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: AutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -436,6 +442,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: AutoscalersClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -513,6 +520,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: AutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -578,6 +586,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

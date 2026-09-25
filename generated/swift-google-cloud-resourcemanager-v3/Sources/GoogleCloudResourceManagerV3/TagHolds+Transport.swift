@@ -34,6 +34,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createTagHold(
       request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -83,6 +84,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteTagHold(
       request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -133,6 +135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listTagHolds(
       request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse {
@@ -181,6 +184,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

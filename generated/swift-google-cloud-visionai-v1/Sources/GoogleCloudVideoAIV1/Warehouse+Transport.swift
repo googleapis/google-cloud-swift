@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createAsset(
       request: CreateAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAsset(
       request: UpdateAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset {
@@ -145,6 +147,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAsset(
       request: GetAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAssets(
       request: ListAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse {
@@ -249,6 +253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAsset(
       request: DeleteAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -299,6 +304,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func uploadAsset(
       request: UploadAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -352,6 +358,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateRetrievalUrl(
       request: GenerateRetrievalUrlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateRetrievalUrlResponse {
@@ -405,6 +412,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeAsset(
       request: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -458,6 +466,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func indexAsset(
       request: IndexAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -511,6 +520,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeIndexAsset(
       request: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -564,6 +574,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func viewIndexedAssets(
       request: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse {
@@ -618,6 +629,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIndex(
       request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -673,6 +685,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIndex(
       request: UpdateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -728,6 +741,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIndex(
       request: GetIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Index {
@@ -778,6 +792,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIndexes(
       request: ListIndexesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse {
@@ -831,6 +846,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIndex(
       request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -881,6 +897,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCorpus(
       request: CreateCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -932,6 +949,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCorpus(
       request: GetCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Corpus {
@@ -982,6 +1000,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCorpus(
       request: UpdateCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Corpus {
@@ -1037,6 +1056,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCorpora(
       request: ListCorporaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse {
@@ -1089,6 +1109,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCorpus(
       request: DeleteCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1139,6 +1160,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func analyzeCorpus(
       request: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1192,6 +1214,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createDataSchema(
       request: CreateDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.DataSchema {
@@ -1245,6 +1268,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateDataSchema(
       request: UpdateDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.DataSchema {
@@ -1300,6 +1324,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getDataSchema(
       request: GetDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.DataSchema {
@@ -1350,6 +1375,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteDataSchema(
       request: DeleteDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1400,6 +1426,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listDataSchemas(
       request: ListDataSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse {
@@ -1453,6 +1480,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createAnnotation(
       request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Annotation {
@@ -1508,6 +1536,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getAnnotation(
       request: GetAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Annotation {
@@ -1560,6 +1589,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listAnnotations(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse {
@@ -1614,6 +1644,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateAnnotation(
       request: UpdateAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Annotation {
@@ -1671,6 +1702,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteAnnotation(
       request: DeleteAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1723,6 +1755,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func clipAsset(
       request: ClipAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ClipAssetResponse {
@@ -1776,6 +1809,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func generateHlsUri(
       request: GenerateHlsUriRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateHlsUriResponse {
@@ -1829,6 +1863,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func importAssets(
       request: ImportAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1882,6 +1917,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSearchConfig(
       request: CreateSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
@@ -1938,6 +1974,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSearchConfig(
       request: UpdateSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
@@ -1994,6 +2031,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSearchConfig(
       request: GetSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
@@ -2045,6 +2083,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSearchConfig(
       request: DeleteSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2096,6 +2135,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSearchConfigs(
       request: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse {
@@ -2149,6 +2189,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSearchHypernym(
       request: CreateSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
@@ -2205,6 +2246,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateSearchHypernym(
       request: UpdateSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
@@ -2262,6 +2304,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSearchHypernym(
       request: GetSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
@@ -2314,6 +2357,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSearchHypernym(
       request: DeleteSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -2366,6 +2410,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSearchHypernyms(
       request: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse {
@@ -2419,6 +2464,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchAssets(
       request: SearchAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse {
@@ -2472,6 +2518,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchIndexEndpoint(
       request: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse {
@@ -2525,6 +2572,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createIndexEndpoint(
       request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2579,6 +2627,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIndexEndpoint(
       request: GetIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.IndexEndpoint {
@@ -2629,6 +2678,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listIndexEndpoints(
       request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse {
@@ -2681,6 +2731,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateIndexEndpoint(
       request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2736,6 +2787,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteIndexEndpoint(
       request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2786,6 +2838,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2839,6 +2892,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2892,6 +2946,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCollection(
       request: CreateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2947,6 +3002,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteCollection(
       request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2997,6 +3053,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getCollection(
       request: GetCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Collection {
@@ -3047,6 +3104,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCollection(
       request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Collection {
@@ -3102,6 +3160,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCollections(
       request: ListCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse {
@@ -3155,6 +3214,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func addCollectionItem(
       request: AddCollectionItemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.AddCollectionItemResponse {
@@ -3208,6 +3268,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func removeCollectionItem(
       request: RemoveCollectionItemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.RemoveCollectionItemResponse {
@@ -3261,6 +3322,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func viewCollectionItems(
       request: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse {
@@ -3314,6 +3376,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -3362,6 +3425,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -3410,6 +3474,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -3465,6 +3530,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -3756,6 +3822,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -3806,6 +3873,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

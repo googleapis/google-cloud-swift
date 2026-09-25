@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listSingleTenantHsmInstances(
       request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse {
@@ -90,6 +91,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSingleTenantHsmInstance(
       request: GetSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstance {
@@ -140,6 +142,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSingleTenantHsmInstance(
       request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -195,6 +198,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createSingleTenantHsmInstanceProposal(
       request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -253,6 +257,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func approveSingleTenantHsmInstanceProposal(
       request: ApproveSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse {
@@ -309,6 +314,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func executeSingleTenantHsmInstanceProposal(
       request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -364,6 +370,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getSingleTenantHsmInstanceProposal(
       request: GetSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal {
@@ -416,6 +423,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listSingleTenantHsmInstanceProposals(
       request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse {
@@ -473,6 +481,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteSingleTenantHsmInstanceProposal(
       request: DeleteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -525,6 +534,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -573,6 +583,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -621,6 +632,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -806,6 +818,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -998,6 +1011,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1183,6 +1197,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

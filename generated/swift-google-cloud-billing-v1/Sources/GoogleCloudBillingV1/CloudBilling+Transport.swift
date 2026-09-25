@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getBillingAccount(
       request: GetBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -76,6 +77,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBillingAccounts(
       request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse {
@@ -172,6 +174,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateBillingAccount(
       request: UpdateBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -221,6 +224,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBillingAccount(
       request: CreateBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -309,6 +313,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listProjectBillingInfo(
       request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse {
@@ -356,6 +361,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getProjectBillingInfo(
       request: GetProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
@@ -400,6 +406,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateProjectBillingInfo(
       request: UpdateProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
@@ -447,6 +454,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -493,6 +501,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -540,6 +549,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -587,6 +597,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveBillingAccount(
       request: MoveBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {

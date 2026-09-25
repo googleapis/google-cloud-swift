@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createRuleSet(
       request: CreateRuleSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getRuleSet(
       request: GetRuleSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -134,6 +136,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateRuleSet(
       request: UpdateRuleSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -187,6 +190,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteRuleSet(
       request: DeleteRuleSetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -237,6 +241,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listRuleSets(
       request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse {
@@ -288,6 +293,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

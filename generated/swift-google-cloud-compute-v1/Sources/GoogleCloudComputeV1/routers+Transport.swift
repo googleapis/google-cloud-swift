@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +168,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteNamedSet(
         request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -243,6 +246,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteRoutePolicy(
         request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -320,6 +324,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: RoutersClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Router {
@@ -394,6 +399,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNamedSet(
         request: RoutersClient.GetNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersGetNamedSetResponse {
@@ -470,6 +476,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNatIpInfo(
         request: RoutersClient.GetNatIpInfoRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NatIpInfoResponse {
@@ -546,6 +553,7 @@
         ).get()
       }
 
+      @concurrent
       public func getNatMappingInfo(
         request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VmEndpointNatMappingsList {
@@ -629,6 +637,7 @@
         ).get()
       }
 
+      @concurrent
       public func getRoutePolicy(
         request: RoutersClient.GetRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersGetRoutePolicyResponse {
@@ -705,6 +714,7 @@
         ).get()
       }
 
+      @concurrent
       public func getRouterStatus(
         request: RoutersClient.GetRouterStatusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterStatusResponse {
@@ -779,6 +789,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -843,6 +854,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterList {
@@ -910,6 +922,7 @@
         ).get()
       }
 
+      @concurrent
       public func listBgpRoutes(
         request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersListBgpRoutes {
@@ -1001,6 +1014,7 @@
         ).get()
       }
 
+      @concurrent
       public func listNamedSets(
         request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersListNamedSets {
@@ -1083,6 +1097,7 @@
         ).get()
       }
 
+      @concurrent
       public func listRoutePolicies(
         request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersListRoutePolicies {
@@ -1165,6 +1180,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1244,6 +1260,7 @@
         ).get()
       }
 
+      @concurrent
       public func patchNamedSet(
         request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1323,6 +1340,7 @@
         ).get()
       }
 
+      @concurrent
       public func patchRoutePolicy(
         request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1402,6 +1420,7 @@
         ).get()
       }
 
+      @concurrent
       public func preview(
         request: RoutersClient.PreviewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersPreviewResponse {
@@ -1479,6 +1498,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1558,6 +1578,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateNamedSet(
         request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1637,6 +1658,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateRoutePolicy(
         request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1716,6 +1738,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

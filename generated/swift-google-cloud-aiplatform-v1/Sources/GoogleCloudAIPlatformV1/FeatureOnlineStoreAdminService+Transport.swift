@@ -37,6 +37,7 @@
         )
       }
 
+      @concurrent
       public func createFeatureOnlineStore(
         request: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -93,6 +94,7 @@
         ).get()
       }
 
+      @concurrent
       public func getFeatureOnlineStore(
         request: GetFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.FeatureOnlineStore {
@@ -144,6 +146,7 @@
         ).get()
       }
 
+      @concurrent
       public func listFeatureOnlineStores(
         request: ListFeatureOnlineStoresRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeatureOnlineStoresResponse {
@@ -199,6 +202,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateFeatureOnlineStore(
         request: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -255,6 +259,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteFeatureOnlineStore(
         request: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -308,6 +313,7 @@
         ).get()
       }
 
+      @concurrent
       public func createFeatureView(
         request: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -368,6 +374,7 @@
         ).get()
       }
 
+      @concurrent
       public func getFeatureView(
         request: GetFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.FeatureView {
@@ -421,6 +428,7 @@
         ).get()
       }
 
+      @concurrent
       public func listFeatureViews(
         request: ListFeatureViewsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeatureViewsResponse {
@@ -477,6 +485,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateFeatureView(
         request: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -535,6 +544,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteFeatureView(
         request: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -588,6 +598,7 @@
         ).get()
       }
 
+      @concurrent
       public func syncFeatureView(
         request: SyncFeatureViewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.SyncFeatureViewResponse {
@@ -644,6 +655,7 @@
         ).get()
       }
 
+      @concurrent
       public func getFeatureViewSync(
         request: GetFeatureViewSyncRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.FeatureViewSync {
@@ -698,6 +710,7 @@
         ).get()
       }
 
+      @concurrent
       public func listFeatureViewSyncs(
         request: ListFeatureViewSyncsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListFeatureViewSyncsResponse {
@@ -756,6 +769,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -836,6 +850,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -916,6 +931,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -1407,6 +1423,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -1958,6 +1975,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2474,6 +2492,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -6557,6 +6576,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -10098,6 +10118,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteOperation(
         request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -13530,6 +13551,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -16721,6 +16743,7 @@
         ).get()
       }
 
+      @concurrent
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

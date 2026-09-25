@@ -41,6 +41,7 @@ extension Clients {
       self.inner = inner
     }
 
+    @concurrent
     public func createFolder(
       request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> Folder {
@@ -68,6 +69,7 @@ extension Clients {
       return try Folder(proto: protoResponse)
     }
 
+    @concurrent
     public func deleteFolder(
       request: DeleteFolderRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -95,6 +97,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> Folder {
@@ -124,6 +127,7 @@ extension Clients {
       return try Folder(proto: protoResponse)
     }
 
+    @concurrent
     public func listFolders(
       request: ListFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListFoldersResponse {
@@ -151,6 +155,7 @@ extension Clients {
       return try ListFoldersResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func renameFolder(
       request: RenameFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -180,6 +185,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func deleteFolderRecursive(
       request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -209,6 +215,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func getStorageLayout(
       request: GetStorageLayoutRequest, options: GoogleGax.RequestOptions
     ) async throws -> StorageLayout {
@@ -238,6 +245,7 @@ extension Clients {
       return try StorageLayout(proto: protoResponse)
     }
 
+    @concurrent
     public func createManagedFolder(
       request: CreateManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
@@ -265,6 +273,7 @@ extension Clients {
       return try ManagedFolder(proto: protoResponse)
     }
 
+    @concurrent
     public func deleteManagedFolder(
       request: DeleteManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -292,6 +301,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getManagedFolder(
       request: GetManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
@@ -321,6 +331,7 @@ extension Clients {
       return try ManagedFolder(proto: protoResponse)
     }
 
+    @concurrent
     public func listManagedFolders(
       request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListManagedFoldersResponse {
@@ -348,6 +359,7 @@ extension Clients {
       return try ListManagedFoldersResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func updateManagedFolder(
       request: UpdateManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
@@ -377,6 +389,7 @@ extension Clients {
       return try ManagedFolder(proto: protoResponse)
     }
 
+    @concurrent
     public func createAnywhereCache(
       request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -404,6 +417,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func updateAnywhereCache(
       request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -433,6 +447,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func disableAnywhereCache(
       request: DisableAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
@@ -462,6 +477,7 @@ extension Clients {
       return try AnywhereCache(proto: protoResponse)
     }
 
+    @concurrent
     public func pauseAnywhereCache(
       request: PauseAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
@@ -491,6 +507,7 @@ extension Clients {
       return try AnywhereCache(proto: protoResponse)
     }
 
+    @concurrent
     public func resumeAnywhereCache(
       request: ResumeAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
@@ -520,6 +537,7 @@ extension Clients {
       return try AnywhereCache(proto: protoResponse)
     }
 
+    @concurrent
     public func getAnywhereCache(
       request: GetAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
@@ -549,6 +567,7 @@ extension Clients {
       return try AnywhereCache(proto: protoResponse)
     }
 
+    @concurrent
     public func listAnywhereCaches(
       request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListAnywhereCachesResponse {
@@ -576,6 +595,7 @@ extension Clients {
       return try ListAnywhereCachesResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func createRapidCache(
       request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -603,6 +623,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func updateRapidCache(
       request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -632,6 +653,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func disableRapidCache(
       request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -661,6 +683,7 @@ extension Clients {
       return try GoogleLongRunning.Operation(proto: protoResponse)
     }
 
+    @concurrent
     public func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> RapidCache {
@@ -690,6 +713,7 @@ extension Clients {
       return try RapidCache(proto: protoResponse)
     }
 
+    @concurrent
     public func listRapidCaches(
       request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListRapidCachesResponse {
@@ -717,6 +741,7 @@ extension Clients {
       return try ListRapidCachesResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -744,6 +769,7 @@ extension Clients {
       return try IntelligenceConfig(proto: protoResponse)
     }
 
+    @concurrent
     public func updateProjectIntelligenceConfig(
       request: UpdateProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -771,6 +797,7 @@ extension Clients {
       return try IntelligenceConfig(proto: protoResponse)
     }
 
+    @concurrent
     public func getFolderIntelligenceConfig(
       request: GetFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -798,6 +825,7 @@ extension Clients {
       return try IntelligenceConfig(proto: protoResponse)
     }
 
+    @concurrent
     public func updateFolderIntelligenceConfig(
       request: UpdateFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -825,6 +853,7 @@ extension Clients {
       return try IntelligenceConfig(proto: protoResponse)
     }
 
+    @concurrent
     public func getOrganizationIntelligenceConfig(
       request: GetOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -852,6 +881,7 @@ extension Clients {
       return try IntelligenceConfig(proto: protoResponse)
     }
 
+    @concurrent
     public func updateOrganizationIntelligenceConfig(
       request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
@@ -879,6 +909,7 @@ extension Clients {
       return try IntelligenceConfig(proto: protoResponse)
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -913,6 +944,7 @@ extension Clients {
       return try GoogleIAMV1.Policy(proto: protoResponse)
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -947,6 +979,7 @@ extension Clients {
       return try GoogleIAMV1.Policy(proto: protoResponse)
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -989,6 +1022,7 @@ extension Clients {
       return try GoogleIAMV1.TestIamPermissionsResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func getIntelligenceFinding(
       request: GetIntelligenceFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceFinding {
@@ -1016,6 +1050,7 @@ extension Clients {
       return try IntelligenceFinding(proto: protoResponse)
     }
 
+    @concurrent
     public func listIntelligenceFindings(
       request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListIntelligenceFindingsResponse {
@@ -1044,6 +1079,7 @@ extension Clients {
       return try ListIntelligenceFindingsResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func summarizeIntelligenceFindings(
       request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> SummarizeIntelligenceFindingsResponse {
@@ -1072,6 +1108,7 @@ extension Clients {
       return try SummarizeIntelligenceFindingsResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func getIntelligenceFindingRevision(
       request: GetIntelligenceFindingRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceFindingRevision {
@@ -1100,6 +1137,7 @@ extension Clients {
       return try IntelligenceFindingRevision(proto: protoResponse)
     }
 
+    @concurrent
     public func listIntelligenceFindingRevisions(
       request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListIntelligenceFindingRevisionsResponse {
@@ -1128,6 +1166,7 @@ extension Clients {
       return try ListIntelligenceFindingRevisionsResponse(proto: protoResponse)
     }
 
+    @concurrent
     public func viewObjectFullContext(
       request: ViewObjectFullContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> ObjectFullContext {
@@ -1157,6 +1196,7 @@ extension Clients {
       return try ObjectFullContext(proto: protoResponse)
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

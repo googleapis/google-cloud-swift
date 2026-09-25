@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getCase(
       request: GetCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
@@ -111,6 +112,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listCases(
       request: ListCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCasesResponse {
@@ -190,6 +192,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchCases(
       request: SearchCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SearchCasesResponse {
@@ -269,6 +272,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createCase(
       request: CreateCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
@@ -343,6 +347,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateCase(
       request: UpdateCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
@@ -429,6 +434,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func escalateCase(
       request: EscalateCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
@@ -511,6 +517,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func closeCase(
       request: CloseCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
@@ -593,6 +600,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchCaseClassifications(
       request: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse {

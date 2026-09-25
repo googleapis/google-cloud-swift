@@ -102,6 +102,7 @@ public final class _GRPCClient: Sendable {
   ///   - clientHeader: The `x-goog-api-client` header value.
   ///   - routingParams: A list of `key=value` routing parameters (per AIP-4222) to send in the `x-goog-request-params` header. The parameters must already be percent-encoded by the caller.
   /// - Returns: The protobuf response message.
+  @concurrent
   public func execute<Req: SwiftProtobuf.Message, Resp: SwiftProtobuf.Message>(
     path: String,
     request: Req,

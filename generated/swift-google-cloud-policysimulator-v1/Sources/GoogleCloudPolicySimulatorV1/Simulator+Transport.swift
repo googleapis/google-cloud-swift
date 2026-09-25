@@ -33,6 +33,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func getReplay(
       request: GetReplayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.Replay {
@@ -149,6 +150,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createReplay(
       request: CreateReplayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -263,6 +265,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listReplayResults(
       request: ListReplayResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPolicySimulatorV1.ListReplayResultsResponse {
@@ -388,6 +391,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -559,6 +563,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {

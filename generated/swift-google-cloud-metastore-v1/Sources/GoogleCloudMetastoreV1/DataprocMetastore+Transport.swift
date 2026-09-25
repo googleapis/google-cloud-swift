@@ -36,6 +36,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.ListServicesResponse {
@@ -89,6 +90,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.Service {
@@ -139,6 +141,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +196,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateService(
       request: UpdateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -249,6 +253,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteService(
       request: DeleteServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -301,6 +306,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listMetadataImports(
       request: ListMetadataImportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.ListMetadataImportsResponse {
@@ -356,6 +362,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getMetadataImport(
       request: GetMetadataImportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.MetadataImport {
@@ -408,6 +415,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createMetadataImport(
       request: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -465,6 +473,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateMetadataImport(
       request: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -523,6 +532,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func exportMetadata(
       request: ExportMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -576,6 +586,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func restoreService(
       request: RestoreServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -629,6 +640,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.ListBackupsResponse {
@@ -684,6 +696,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMetastoreV1.Backup {
@@ -734,6 +747,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createBackup(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -790,6 +804,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteBackup(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -842,6 +857,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func queryMetadata(
       request: QueryMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -895,6 +911,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func moveTableToDatabase(
       request: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -948,6 +965,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func alterMetadataResourceLocation(
       request: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1001,6 +1019,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1049,6 +1068,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1097,6 +1117,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1216,6 +1237,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -1338,6 +1360,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1424,6 +1447,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1479,6 +1503,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1529,6 +1554,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1579,6 +1605,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

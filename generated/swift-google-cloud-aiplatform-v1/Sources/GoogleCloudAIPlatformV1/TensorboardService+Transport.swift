@@ -37,6 +37,7 @@
         )
       }
 
+      @concurrent
       public func createTensorboard(
         request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -89,6 +90,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTensorboard(
         request: GetTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Tensorboard {
@@ -140,6 +142,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTensorboard(
         request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -196,6 +199,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTensorboards(
         request: ListTensorboardsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse {
@@ -251,6 +255,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteTensorboard(
         request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -302,6 +307,7 @@
         ).get()
       }
 
+      @concurrent
       public func readTensorboardUsage(
         request: ReadTensorboardUsageRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardUsageResponse {
@@ -353,6 +359,7 @@
         ).get()
       }
 
+      @concurrent
       public func readTensorboardSize(
         request: ReadTensorboardSizeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardSizeResponse {
@@ -404,6 +411,7 @@
         ).get()
       }
 
+      @concurrent
       public func createTensorboardExperiment(
         request: CreateTensorboardExperimentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -462,6 +470,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTensorboardExperiment(
         request: GetTensorboardExperimentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -515,6 +524,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTensorboardExperiment(
         request: UpdateTensorboardExperimentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -573,6 +583,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTensorboardExperiments(
         request: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse {
@@ -631,6 +642,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteTensorboardExperiment(
         request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -684,6 +696,7 @@
         ).get()
       }
 
+      @concurrent
       public func createTensorboardRun(
         request: CreateTensorboardRunRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -743,6 +756,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchCreateTensorboardRuns(
         request: BatchCreateTensorboardRunsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardRunsResponse {
@@ -800,6 +814,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTensorboardRun(
         request: GetTensorboardRunRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -853,6 +868,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTensorboardRun(
         request: UpdateTensorboardRunRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -911,6 +927,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTensorboardRuns(
         request: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse {
@@ -970,6 +987,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteTensorboardRun(
         request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1023,6 +1041,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchCreateTensorboardTimeSeries(
         request: BatchCreateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardTimeSeriesResponse {
@@ -1080,6 +1099,7 @@
         ).get()
       }
 
+      @concurrent
       public func createTensorboardTimeSeries(
         request: CreateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -1140,6 +1160,7 @@
         ).get()
       }
 
+      @concurrent
       public func getTensorboardTimeSeries(
         request: GetTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -1195,6 +1216,7 @@
         ).get()
       }
 
+      @concurrent
       public func updateTensorboardTimeSeries(
         request: UpdateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -1255,6 +1277,7 @@
         ).get()
       }
 
+      @concurrent
       public func listTensorboardTimeSeries(
         request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse {
@@ -1315,6 +1338,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteTensorboardTimeSeries(
         request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -1370,6 +1394,7 @@
         ).get()
       }
 
+      @concurrent
       public func batchReadTensorboardTimeSeriesData(
         request: BatchReadTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchReadTensorboardTimeSeriesDataResponse {
@@ -1424,6 +1449,7 @@
         ).get()
       }
 
+      @concurrent
       public func readTensorboardTimeSeriesData(
         request: ReadTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse {
@@ -1484,6 +1510,7 @@
         ).get()
       }
 
+      @concurrent
       public func writeTensorboardExperimentData(
         request: WriteTensorboardExperimentDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse {
@@ -1541,6 +1568,7 @@
         ).get()
       }
 
+      @concurrent
       public func writeTensorboardRunData(
         request: WriteTensorboardRunDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardRunDataResponse {
@@ -1598,6 +1626,7 @@
         ).get()
       }
 
+      @concurrent
       public func exportTensorboardTimeSeriesData(
         request: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse {
@@ -1657,6 +1686,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1737,6 +1767,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -1817,6 +1848,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -2308,6 +2340,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
@@ -2859,6 +2892,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -3375,6 +3409,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -7458,6 +7493,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -10999,6 +11035,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteOperation(
         request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -14431,6 +14468,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -17622,6 +17660,7 @@
         ).get()
       }
 
+      @concurrent
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {

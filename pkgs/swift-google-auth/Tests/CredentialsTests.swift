@@ -113,4 +113,10 @@ import Testing
     let headers = try await credentials.headers()
     #expect(headers == [("x-goog-api-key", "test-api-key")])
   }
+
+  @Test @MainActor func credentialsCalledFromMainActor() async throws {
+    let credentials = try Credentials(configuration: .apiKey("test-key"))
+    let headers = try await credentials.headers()
+    #expect(headers == [("x-goog-api-key", "test-key")])
+  }
 }

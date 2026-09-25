@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func createEntityReconciliationJob(
       request: CreateEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob {
@@ -84,6 +85,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEntityReconciliationJob(
       request: GetEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob {
@@ -135,6 +137,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEntityReconciliationJobs(
       request: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse {
@@ -188,6 +191,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func cancelEntityReconciliationJob(
       request: CancelEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -241,6 +245,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEntityReconciliationJob(
       request: DeleteEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -291,6 +296,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookup(
       request: LookupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.LookupResponse {
@@ -342,6 +348,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func search(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.SearchResponse {
@@ -395,6 +402,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func lookupPublicKg(
       request: LookupPublicKgRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.LookupPublicKgResponse {
@@ -447,6 +455,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchPublicKg(
       request: SearchPublicKgRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.SearchPublicKgResponse {

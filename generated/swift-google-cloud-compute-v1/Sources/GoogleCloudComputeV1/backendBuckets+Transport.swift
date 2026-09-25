@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func addSignedUrlKey(
         request: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -97,6 +98,7 @@
         ).get()
       }
 
+      @concurrent
       public func aggregatedList(
         request: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketAggregatedList {
@@ -155,6 +157,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -217,6 +220,7 @@
         ).get()
       }
 
+      @concurrent
       public func deleteSignedUrlKey(
         request: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -280,6 +284,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: BackendBucketsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucket {
@@ -340,6 +345,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: BackendBucketsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -404,6 +410,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -454,6 +461,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketList {
@@ -507,6 +515,7 @@
         ).get()
       }
 
+      @concurrent
       public func listUsable(
         request: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.BackendBucketListUsable {
@@ -560,6 +569,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -625,6 +635,7 @@
         ).get()
       }
 
+      @concurrent
       public func setEdgeSecurityPolicy(
         request: BackendBucketsClient.SetEdgeSecurityPolicyRequest,
         options: GoogleGax.RequestOptions
@@ -691,6 +702,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: BackendBucketsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -754,6 +766,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: BackendBucketsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -817,6 +830,7 @@
         ).get()
       }
 
+      @concurrent
       public func update(
         request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -882,6 +896,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

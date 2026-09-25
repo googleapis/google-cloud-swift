@@ -100,6 +100,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   ///
   /// - Returns: A valid `Token` containing the exchanged access token string and expiration date.
   /// - Throws: An error if subject token acquisition fails or STS rejects the exchange request.
+  @concurrent
   func fetchToken() async throws -> Token {
     let subjectToken = try await subjectTokenProvider.subjectToken()
 

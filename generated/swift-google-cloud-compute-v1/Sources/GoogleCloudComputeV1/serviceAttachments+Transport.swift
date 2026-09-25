@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func aggregatedList(
         request: ServiceAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ServiceAttachmentAggregatedList {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func delete(
         request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +168,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: ServiceAttachmentsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ServiceAttachment {
@@ -242,6 +245,7 @@
         ).get()
       }
 
+      @concurrent
       public func getIamPolicy(
         request: ServiceAttachmentsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -320,6 +324,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -385,6 +390,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: ServiceAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ServiceAttachmentList {
@@ -453,6 +459,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: ServiceAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -532,6 +539,7 @@
         ).get()
       }
 
+      @concurrent
       public func setIamPolicy(
         request: ServiceAttachmentsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
@@ -609,6 +617,7 @@
         ).get()
       }
 
+      @concurrent
       public func testIamPermissions(
         request: ServiceAttachmentsClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
@@ -687,6 +696,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

@@ -32,6 +32,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func updateQuotaAdjusterSettings(
       request: UpdateQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
@@ -160,6 +161,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getQuotaAdjusterSettings(
       request: GetQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {

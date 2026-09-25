@@ -35,6 +35,7 @@ extension Clients {
       )
     }
 
+    @concurrent
     public func checkOnboardingStatus(
       request: CheckOnboardingStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.CheckOnboardingStatusResponse {
@@ -147,6 +148,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listEntitlements(
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListEntitlementsResponse {
@@ -274,6 +276,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchEntitlements(
       request: SearchEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.SearchEntitlementsResponse {
@@ -404,6 +407,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getEntitlement(
       request: GetEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Entitlement {
@@ -520,6 +524,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createEntitlement(
       request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -646,6 +651,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteEntitlement(
       request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -771,6 +777,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func updateEntitlement(
       request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -896,6 +903,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listGrants(
       request: ListGrantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListGrantsResponse {
@@ -1028,6 +1036,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func searchGrants(
       request: SearchGrantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.SearchGrantsResponse {
@@ -1166,6 +1175,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getGrant(
       request: GetGrantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant {
@@ -1283,6 +1293,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func createGrant(
       request: CreateGrantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant {
@@ -1408,6 +1419,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func approveGrant(
       request: ApproveGrantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant {
@@ -1528,6 +1540,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func denyGrant(
       request: DenyGrantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant {
@@ -1648,6 +1661,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func revokeGrant(
       request: RevokeGrantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -1768,6 +1782,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1878,6 +1893,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -1989,6 +2005,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2121,6 +2138,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -2237,6 +2255,7 @@ extension Clients {
       ).get()
     }
 
+    @concurrent
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -32,6 +32,7 @@
         )
       }
 
+      @concurrent
       public func delete(
         request: GlobalForwardingRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -94,6 +95,7 @@
         ).get()
       }
 
+      @concurrent
       public func `get`(
         request: GlobalForwardingRulesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ForwardingRule {
@@ -156,6 +158,7 @@
         ).get()
       }
 
+      @concurrent
       public func insert(
         request: GlobalForwardingRulesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -206,6 +209,7 @@
         ).get()
       }
 
+      @concurrent
       public func list(
         request: GlobalForwardingRulesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ForwardingRuleList {
@@ -259,6 +263,7 @@
         ).get()
       }
 
+      @concurrent
       public func patch(
         request: GlobalForwardingRulesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -324,6 +329,7 @@
         ).get()
       }
 
+      @concurrent
       public func setLabels(
         request: GlobalForwardingRulesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -387,6 +393,7 @@
         ).get()
       }
 
+      @concurrent
       public func setTarget(
         request: GlobalForwardingRulesClient.SetTargetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
@@ -452,6 +459,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {

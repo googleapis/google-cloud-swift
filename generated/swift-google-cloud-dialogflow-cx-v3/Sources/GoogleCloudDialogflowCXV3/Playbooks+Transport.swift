@@ -36,6 +36,7 @@
         )
       }
 
+      @concurrent
       public func createPlaybook(
         request: CreatePlaybookRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -90,6 +91,7 @@
         ).get()
       }
 
+      @concurrent
       public func deletePlaybook(
         request: DeletePlaybookRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -141,6 +143,7 @@
         ).get()
       }
 
+      @concurrent
       public func listPlaybooks(
         request: ListPlaybooksRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse {
@@ -195,6 +198,7 @@
         ).get()
       }
 
+      @concurrent
       public func getPlaybook(
         request: GetPlaybookRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -246,6 +250,7 @@
         ).get()
       }
 
+      @concurrent
       public func exportPlaybook(
         request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -300,6 +305,7 @@
         ).get()
       }
 
+      @concurrent
       public func importPlaybook(
         request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -354,6 +360,7 @@
         ).get()
       }
 
+      @concurrent
       public func updatePlaybook(
         request: UpdatePlaybookRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -410,6 +417,7 @@
         ).get()
       }
 
+      @concurrent
       public func createPlaybookVersion(
         request: CreatePlaybookVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -464,6 +472,7 @@
         ).get()
       }
 
+      @concurrent
       public func getPlaybookVersion(
         request: GetPlaybookVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -517,6 +526,7 @@
         ).get()
       }
 
+      @concurrent
       public func restorePlaybookVersion(
         request: RestorePlaybookVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.RestorePlaybookVersionResponse {
@@ -574,6 +584,7 @@
         ).get()
       }
 
+      @concurrent
       public func listPlaybookVersions(
         request: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse {
@@ -629,6 +640,7 @@
         ).get()
       }
 
+      @concurrent
       public func deletePlaybookVersion(
         request: DeletePlaybookVersionRequest, options: GoogleGax.RequestOptions
       ) async throws {
@@ -682,6 +694,7 @@
         ).get()
       }
 
+      @concurrent
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -731,6 +744,7 @@
         ).get()
       }
 
+      @concurrent
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
@@ -780,6 +794,7 @@
         ).get()
       }
 
+      @concurrent
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -870,6 +885,7 @@
         ).get()
       }
 
+      @concurrent
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
@@ -952,6 +968,7 @@
         ).get()
       }
 
+      @concurrent
       public func cancelOperation(
         request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
       ) async throws {
