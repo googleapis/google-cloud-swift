@@ -170,4 +170,13 @@ import GoogleWKT
     #expect(mock.insertPollingOptionsCalled)
     _ = try await poller2.wait()
   }
+
+  @Test func enumStringValueIsNonOptional() {
+    let status: GoogleCloudComputeV1.Operation.Status = .done
+    let str: Swift.String = status.stringValue
+    #expect(str == "DONE")
+    let unknown: GoogleCloudComputeV1.Operation.Status = .unknownStringValue("CUSTOM")
+    let unknownStr: Swift.String = unknown.stringValue
+    #expect(unknownStr == "CUSTOM")
+  }
 }

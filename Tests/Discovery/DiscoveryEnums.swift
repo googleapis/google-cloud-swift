@@ -77,11 +77,16 @@ import Testing
   }
 
   @Test func stringValueAndInitializers() {
-    #expect(Status.active.stringValue == "ACTIVE")
-    #expect(Status.deleting.stringValue == "DELETING")
-    #expect(Status.error.stringValue == "ERROR")
-    #expect(Status.pending.stringValue == "PENDING")
-    #expect(Status.unknownStringValue("OTHER").stringValue == "OTHER")
+    let activeString: Swift.String = Status.active.stringValue
+    #expect(activeString == "ACTIVE")
+    let deletingString: Swift.String = Status.deleting.stringValue
+    #expect(deletingString == "DELETING")
+    let errorString: Swift.String = Status.error.stringValue
+    #expect(errorString == "ERROR")
+    let pendingString: Swift.String = Status.pending.stringValue
+    #expect(pendingString == "PENDING")
+    let customString: Swift.String = Status.unknownStringValue("OTHER").stringValue
+    #expect(customString == "OTHER")
 
     #expect(Status(stringValue: "ACTIVE") == .active)
     #expect(Status(stringValue: "DELETING") == .deleting)
