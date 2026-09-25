@@ -110,8 +110,10 @@ extension ByteChunk {
 
   /// The underlying contents as a `Foundation.Data` instance.
   ///
-  /// - Returns: The original `Data` with zero copies if backed by `Data`,
-  ///   or copies the bytes into a new `Data` instance if backed by an internal network buffer.
+  /// - Returns: The original `Data` with zero copies if backed by `Data`, or a `Data` instance
+  ///   created via SwiftNIO's automatic byte transfer strategy if backed by an internal network
+  ///   buffer (copying buffers up to 256 KiB and sharing underlying buffer storage without copying
+  ///   for larger buffers).
   public var data: Data {
     switch storage {
     case .data(let data):
