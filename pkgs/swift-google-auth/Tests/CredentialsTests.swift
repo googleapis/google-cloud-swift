@@ -28,9 +28,6 @@ import Testing
 
     let headers = try await credentials.headers()
     #expect(headers.isEmpty)
-
-    let ud = await credentials.universeDomain()
-    #expect(ud == nil)
   }
 
   @Test func resolveProviderForADC() async throws {
@@ -83,9 +80,6 @@ import Testing
     #expect(
       String(describing: type(of: credentials.credentialsProvider)).contains("UserCredentials")
     )
-
-    let ud = await credentials.universeDomain()
-    #expect(ud == nil)
   }
 
   @Test func resolveProviderForProgrammaticExternalAccount() async throws {
@@ -107,9 +101,6 @@ import Testing
     )
 
     #expect(credentials.credentialsProvider is ExternalAccountCredentials)
-
-    let ud = await credentials.universeDomain()
-    #expect(ud == "my-universe.com")
   }
 
   @Test func resolveProviderForApiKey() async throws {
@@ -121,8 +112,5 @@ import Testing
 
     let headers = try await credentials.headers()
     #expect(headers == [("x-goog-api-key", "test-api-key")])
-
-    let ud = await credentials.universeDomain()
-    #expect(ud == nil)
   }
 }

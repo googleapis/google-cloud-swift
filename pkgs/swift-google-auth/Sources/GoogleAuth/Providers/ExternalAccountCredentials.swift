@@ -298,13 +298,6 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     }
     return headers
   }
-
-  /// Retrieves the configured Google Cloud universe domain.
-  ///
-  /// - Returns: The universe domain string, or `nil` if using the default `googleapis.com`.
-  func universeDomain() async -> String? {
-    return self.universeDomain
-  }
 }
 
 /// Helper function to validate if the audience refers to a global workforce pool.

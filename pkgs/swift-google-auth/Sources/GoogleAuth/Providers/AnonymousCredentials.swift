@@ -29,8 +29,4 @@ struct AnonymousCredentials: CredentialsProvider {
     // Dummy empty implementation for skeleton phase
     return []
   }
-
-  func universeDomain() async -> String? {
-    return nil
-  }
 }

@@ -20,7 +20,7 @@ import AsyncHTTPClient
 typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
 @Suite struct UserCredentialsTest {
-  @Test func userProviderHeadersAndUniverseDomain() async throws {
+  @Test func userProviderInitialization() async throws {
     let targetURL = URL(string: "https://mock.example.com")!
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in
@@ -53,9 +53,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     // Trigger headers to ensure background task is resolved or handled
     _ = try? await provider.headers()
-
-    let ud = await provider.universeDomain()
-    #expect(ud == defaultUniverseDomain)
   }
 
   @Test func credentialProviderWithTokenUri() async throws {

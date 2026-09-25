@@ -109,14 +109,4 @@ struct MDSCredentials: CredentialsProvider, Sendable {
     }
     return headers
   }
-
-  /// Retrieves the universe domain string override.
-  ///
-  /// For MDS credentials in the default Google Cloud [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones),
-  /// returns `nil` to indicate the standard `googleapis.com` domain.
-  ///
-  /// - Returns: Always `nil` for default MDS credentials.
-  func universeDomain() async -> String? {
-    return nil
-  }
 }

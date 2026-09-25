@@ -21,9 +21,6 @@ struct MockCredentialsProvider: CredentialsProvider {
   func headers() async throws -> AuthHeaders {
     return [("Authorization", "Bearer mock")]
   }
-  func universeDomain() async -> String? {
-    return nil
-  }
 }
 
 struct MockParser: CredentialSourceParser {

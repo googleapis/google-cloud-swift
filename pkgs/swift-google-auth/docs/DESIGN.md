@@ -129,9 +129,6 @@ public struct Credentials: Sendable {
 
   /// Asynchronously retrieves the request headers required to authenticate a request.
   public func headers() async throws -> AuthHeaders
-
-  /// Retrieves the universe domain associated with the credentials.
-  public func universeDomain() async -> String?
 }
 ```
 
@@ -182,9 +179,6 @@ protocol CredentialsProvider: Sendable {
   ///
   /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
-
-  /// Retrieves the universe domain associated with the credentials.
-  func universeDomain() async -> String?
 }
 ```
 
