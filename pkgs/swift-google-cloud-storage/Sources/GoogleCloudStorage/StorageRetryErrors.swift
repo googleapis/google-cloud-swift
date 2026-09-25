@@ -19,8 +19,8 @@ import GoogleGax
 /// In Google Cloud Storage, retryable errors include transient HTTP status codes (408, 429, 5xx)
 /// and transient gRPC status codes (`unavailable`, `resourceExhausted`, `deadlineExceeded`,
 /// and `internal`). The client library must be prepared to retry all of them.
-final class StorageRetryErrors: RetryPolicy, Sendable {
-  public init() {}
+struct StorageRetryErrors: RetryPolicy, Sendable, Equatable {
+  init() {}
 
   public func onError(state: RetryState, error: RequestError) -> RetryResult {
     if isRetryable(error) {

@@ -25,10 +25,10 @@ import GoogleRpc
 /// Use ``defaultPolicy`` for the standard bounded configuration (60-second time limit and
 /// 10-attempt limit), or ``unbounded()`` decorated with `withTimeLimit(_:)`
 /// and/or `withAttemptLimit(_:)` to configure custom limits.
-public final class StorageBaseRetryPolicy: Sendable {
+public struct StorageBaseRetryPolicy: Sendable, Equatable {
   let inner: StrictIdempotency<ContinueOnIO<StorageRetryErrors>>
 
-  init() {
+  public init() {
     self.inner = StorageRetryErrors().retryOnIO().strictIdempotency()
   }
 

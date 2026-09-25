@@ -161,4 +161,14 @@ import Testing
     }
     #expect(isExhausted(policy.onError(state: exhaustedTime, error: err503)))
   }
+
+  @Test func equatable() {
+    let a = StorageBaseRetryPolicy()
+    let b = StorageBaseRetryPolicy.unbounded()
+    #expect(a == b)
+
+    let errorsA = StorageRetryErrors()
+    let errorsB = StorageRetryErrors()
+    #expect(errorsA == errorsB)
+  }
 }
