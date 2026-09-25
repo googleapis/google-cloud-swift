@@ -127,15 +127,6 @@ public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringCon
     try self.init(key: symmetricKey, algorithm: algorithm)
   }
 
-  /// Creates a `CustomerEncryptionKeyOptions` from pre-computed values.
-  public init(
-    algorithm: CustomerEncryptionAlgorithm = .aes256, keyBase64: String, keyHashBase64: String
-  ) {
-    let keyData = Data(base64Encoded: keyBase64) ?? Data(keyBase64.utf8)
-    self.algorithm = algorithm
-    self.key = SymmetricKey(data: keyData)
-  }
-
   /// Creates a `CustomerEncryptionKeyOptions` from raw key bytes (`Data`).
   ///
   /// For the default `.aes256` algorithm, the key must be exactly 32 bytes (256 bits).

@@ -74,27 +74,27 @@ import Testing
     #expect(csek.keyHashBase64 == sample.keyHashBase64)
   }
 
-  @Test func createFromPrecomputedValues() {
-    let sample = sampleKey()
-    let csek = CustomerEncryptionKeyOptions(
-      algorithm: .aes256,
-      keyBase64: sample.keyBase64,
-      keyHashBase64: sample.keyHashBase64
-    )
-    #expect(csek.algorithm == .aes256)
-    #expect(csek.keyBase64 == sample.keyBase64)
-    #expect(csek.keyHashBase64 == sample.keyHashBase64)
-  }
-
   @Test func invalidKeyLengthThrows() {
     let shortKey = Data(repeating: 0x01, count: 16)
     #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)) {
       try CustomerEncryptionKeyOptions(key: shortKey)
     }
+    #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)) {
+      try CustomerEncryptionKeyOptions(keyBytes: Array(shortKey))
+    }
+    #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)) {
+      try CustomerEncryptionKeyOptions(symmetricKey: SymmetricKey(data: shortKey))
+    }
+    #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 16, expected: 32)) {
+      try CustomerEncryptionKeyOptions(keyBase64: shortKey.base64EncodedString())
+    }
 
     let longKey = Data(repeating: 0x01, count: 33)
     #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 33, expected: 32)) {
       try CustomerEncryptionKeyOptions(key: longKey)
+    }
+    #expect(throws: CustomerEncryptionKeyError.invalidKeyLength(actual: 33, expected: 32)) {
+      try CustomerEncryptionKeyOptions(keyBase64: longKey.base64EncodedString())
     }
   }
 

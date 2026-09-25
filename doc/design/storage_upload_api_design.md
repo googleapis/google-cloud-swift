@@ -247,12 +247,19 @@ public struct WriteObjectMetadata: Sendable {
 Options for Customer-Supplied Encryption Keys (CSEK).
 
 ```swift
-public struct CustomerEncryptionKeyOptions: Sendable {
-    public let algorithm: String
-    public let keyBase64: String
-    public let keyHashBase64: String
+public struct CustomerEncryptionKeyOptions: Sendable, Equatable, CustomStringConvertible,
+    CustomDebugStringConvertible
+{
+    public let algorithm: CustomerEncryptionAlgorithm
+    public let key: SymmetricKey
+    public var keyBase64: String { get }
+    public var keyHashBase64: String { get }
 
-    public init(algorithm: String = "AES256", keyBase64: String, keyHashBase64: String)
+    public init(key: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
+    public init(symmetricKey: SymmetricKey, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
+    public init(key: Data, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
+    public init(keyBytes: [UInt8], algorithm: CustomerEncryptionAlgorithm = .aes256) throws
+    public init(keyBase64: String, algorithm: CustomerEncryptionAlgorithm = .aes256) throws
 }
 ```
 
