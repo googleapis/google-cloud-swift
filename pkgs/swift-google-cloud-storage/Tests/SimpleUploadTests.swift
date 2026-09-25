@@ -923,7 +923,9 @@ import Testing
     let client = try makeClient(registry: registry)
 
     let task = Task {
-      withUnsafeCurrentTask { $0?.cancel() }
+      // SAFETY: The `UnsafeCurrentTask` reference is only used synchronously to cancel the current
+      // task and does not escape the closure.
+      unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
       return try await client.writeObject(source, to: bucket, as: objectName)
     }
 

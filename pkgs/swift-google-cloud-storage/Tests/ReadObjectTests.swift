@@ -1462,6 +1462,8 @@ import Testing
     let download: ReadObjectHandle = client.readObject(from: bucket, object: objectName)
 
     let task = Task {
+      // SAFETY: The `UnsafeCurrentTask` reference is only used synchronously to cancel the current
+      // task and does not escape the closure.
       unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
       return try await download.metadata
     }
@@ -1498,6 +1500,8 @@ import Testing
       var received = Data()
       for try await chunk in download.body {
         received.append(contentsOf: chunk)
+        // SAFETY: The `UnsafeCurrentTask` reference is only used synchronously to cancel the
+        // current task and does not escape the closure.
         unsafe withUnsafeCurrentTask { unsafe $0?.cancel() }
       }
       return received
