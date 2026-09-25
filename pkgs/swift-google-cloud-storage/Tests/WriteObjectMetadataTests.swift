@@ -36,12 +36,13 @@ import Testing
       $0.entity = "user-test@example.com"
       $0.role = "READER"
     }
-    let retention = ObjectRetention().with {
-      $0.mode = "Unlocked"
+    let retention = Object.Retention().with {
+      $0.mode = .unlocked
       $0.retainUntilTime = customTime
     }
-    let owner = ObjectOwner().with {
+    let owner = Owner().with {
       $0.entity = "user-owner@example.com"
+      $0.entityId = "user-owner-id"
     }
 
     let uploadMetadata = WriteObjectMetadata().with {
@@ -70,6 +71,11 @@ import Testing
     #expect(jsonString.contains("gzip"))
     #expect(jsonString.contains("NEARLINE"))
     #expect(jsonString.contains("user-test@example.com"))
+    #expect(jsonString.contains("\"retention\":"))
+    #expect(jsonString.contains("\"UNLOCKED\""))
+    #expect(jsonString.contains("\"owner\":"))
+    #expect(jsonString.contains("\"user-owner@example.com\""))
+    #expect(jsonString.contains("\"user-owner-id\""))
 
     let decoder = _ProtoJSONDecoder()
     let decoded = try decoder.decode(WriteObjectMetadata.self, from: data)
@@ -87,7 +93,35 @@ import Testing
     #expect(decoded.temporaryHold == false)
     #expect(decoded.acl == [aclEntry])
     #expect(decoded.retention == retention)
+    #expect(decoded.retention?.mode == .unlocked)
+    #expect(decoded.retention?.retainUntilTime == customTime)
     #expect(decoded.owner == owner)
+    #expect(decoded.owner?.entity == "user-owner@example.com")
+    #expect(decoded.owner?.entityId == "user-owner-id")
+  }
+
+  @Test func assignExistingObjectRetentionAndOwnerToWriteObjectMetadata() throws {
+    let customTime = try GoogleWKT.WKTTimestamp(seconds: 1_700_000_000, nanos: 0)
+    let object = Object().with {
+      $0.retention = Object.Retention().with {
+        $0.mode = .locked
+        $0.retainUntilTime = customTime
+      }
+      $0.owner = Owner().with {
+        $0.entity = "user-uploader@example.com"
+        $0.entityId = "uploader-123"
+      }
+    }
+
+    let uploadMetadata = WriteObjectMetadata().with {
+      $0.retention = object.retention
+      $0.owner = object.owner
+    }
+
+    #expect(uploadMetadata.retention?.mode == .locked)
+    #expect(uploadMetadata.retention?.retainUntilTime == customTime)
+    #expect(uploadMetadata.owner?.entity == "user-uploader@example.com")
+    #expect(uploadMetadata.owner?.entityId == "uploader-123")
   }
 
   @Test func simpleUploadWithWriteObjectMetadataInWriteObjectOptions() async throws {

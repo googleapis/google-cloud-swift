@@ -224,34 +224,6 @@ public enum PredefinedAcl: String, Sendable, Equatable {
   case publicRead
 }
 
-/// Object retention policy configuration for a GCS Object.
-public struct ObjectRetention: Sendable, Codable, Equatable {
-  public var mode: String?
-  public var retainUntilTime: GoogleWKT.WKTTimestamp?
-
-  public init() {}
-
-  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
-    var copy = self
-    try config(&copy)
-    return copy
-  }
-}
-
-/// Owner metadata for a GCS Object.
-public struct ObjectOwner: Sendable, Codable, Equatable {
-  public var entity: String?
-  public var entityId: String?
-
-  public init() {}
-
-  public func with(_ config: (inout Self) throws -> Void) rethrows -> Self {
-    var copy = self
-    try config(&copy)
-    return copy
-  }
-}
-
 /// Payload for a custom context entry on a Cloud Storage object.
 extension ObjectCustomContextPayload: ExpressibleByStringLiteral {
   public init(
@@ -323,10 +295,10 @@ public struct WriteObjectMetadata: Sendable, Codable, Equatable {
   public var acl: [ObjectAccessControl]?
 
   /// Object retention configuration.
-  public var retention: ObjectRetention?
+  public var retention: Object.Retention?
 
   /// Owner information for the object.
-  public var owner: ObjectOwner?
+  public var owner: Owner?
 
   /// Object contexts associated with the object.
   public var contexts: ObjectContexts?
