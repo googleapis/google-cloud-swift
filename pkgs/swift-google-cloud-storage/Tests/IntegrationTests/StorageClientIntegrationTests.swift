@@ -130,7 +130,11 @@ struct StorageClientIntegrationTests {
 
     let storage = try StorageClient()
 
-    let uploadedObject = try await storage.writeObject(data, to: bucketName, as: objectName)
+    let options = WriteObjectOptions().with {
+      $0.preconditions = .init().with { $0.ifGenerationMatch = 0 }
+    }
+    let uploadedObject = try await storage.writeObject(
+      data, to: bucketName, as: objectName, options: options)
     #expect(uploadedObject.bucket == bucketResource)
     #expect(uploadedObject.name == objectName)
     #expect(uploadedObject.size == Int64(data.count))
@@ -463,6 +467,7 @@ struct StorageClientIntegrationTests {
           "environment": "integration-test", "team": "swift-sdk",
         ])
       }
+      $0.preconditions = .init().with { $0.ifGenerationMatch = 0 }
     }
 
     let object = try await storage.writeObject(

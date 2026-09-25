@@ -179,7 +179,11 @@ struct StorageControlClientIntegrationTests: Sendable {
     }
   }
 
-  @Test func testObjectLifecycleAndMetadata() async throws {
+  @Test(
+    .disabled(
+      "Flakes due to backend internal error without retry; see https://github.com/googleapis/google-cloud-swift/issues/1167"
+    ))
+  func testObjectLifecycleAndMetadata() async throws {
     let uniqueId = UUID().uuidString
     let originalName = "test-ctrl-obj-\(uniqueId)/original.txt"
     let movedName = "test-ctrl-obj-\(uniqueId)/moved.txt"
