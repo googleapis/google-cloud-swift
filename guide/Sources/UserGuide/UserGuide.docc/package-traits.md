@@ -21,8 +21,8 @@ client.
 ## Default traits
 
 Packages that use traits define a sensible set of default traits for commonly
-used services. For example, Compute Engine enables `Instances`, `Images`, and
-`ZoneOperations` by default.
+used services. For example, Compute Engine enables only `Instances` (and
+transitively `ZoneOperations`) by default.
 
 When you add a dependency without specifying any traits, Swift Package Manager
 enables the default traits automatically:
