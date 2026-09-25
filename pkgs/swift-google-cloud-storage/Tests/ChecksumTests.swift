@@ -26,7 +26,8 @@ import Testing
     let combinedData = data1 + data2
 
     let source = BytesSource(data: combinedData)
-    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: .auto))
 
     // Read first chunk
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
@@ -52,7 +53,8 @@ import Testing
     let combinedData = data1 + data2
 
     let source = BytesSource(data: combinedData)
-    var checksummedSource = ChecksummedSource(source: source, validation: .md5)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: nil, md5: .auto))
 
     // Read first chunk
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)
@@ -98,7 +100,9 @@ import Testing
     }
 
     let client = try StorageClient(options, mock: registry)
-    let uploadOptions = WriteObjectOptions().with { $0.validation = .crc32c }
+    let uploadOptions = WriteObjectOptions().with {
+      $0.checksums = ChecksumOptions(crc32c: .auto)
+    }
 
     let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
@@ -143,7 +147,9 @@ import Testing
     }
 
     let client = try StorageClient(options, mock: registry)
-    let uploadOptions = WriteObjectOptions().with { $0.validation = .md5 }
+    let uploadOptions = WriteObjectOptions().with {
+      $0.checksums = ChecksumOptions(crc32c: nil, md5: .auto)
+    }
 
     let error = await expectError(WriteObjectError.self) {
       try await client.writeObject(source, to: bucket, as: objectName, options: uploadOptions)
@@ -241,7 +247,8 @@ import Testing
   @Test func testChecksummedSourceSeekBackwardsDoesNotDuplicateHashes() async throws {
     let data = Data("Hello, World!".utf8)  // CRC32C: TVUQaA==
     let source = BytesSource(data: data)
-    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: .auto))
 
     // 1. Seek forward to byte 7 ("Hello, ") -> bytesHashed becomes 7
     try await checksummedSource.seek(to: 7)
@@ -267,7 +274,8 @@ import Testing
   @Test func testChecksummedSourceSeekForwardFromIntermediateOffset() async throws {
     let data = Data("Hello, World!".utf8)  // CRC32C: TVUQaA==
     let source = BytesSource(data: data)
-    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: .auto))
 
     // 1. Seek to byte 3 -> hashes 0..<3
     try await checksummedSource.seek(to: 3)
@@ -353,7 +361,8 @@ import Testing
   @Test func testChecksummedSourceRewindAndReReadMatchesDirectHashCRC32C() async throws {
     let data = Data("Hello, World!".utf8)  // CRC32C: TVUQaA==
     let source = BytesSource(data: data)
-    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: .auto))
 
     // 1. Read chunk 1: 5 bytes ("Hello")
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 5)
@@ -384,7 +393,8 @@ import Testing
   @Test func testChecksummedSourceRewindAndReReadMatchesDirectHashMD5() async throws {
     let data = Data("Hello, World!".utf8)  // MD5: ZajifYh5KDgxtmS9i38K1A==
     let source = BytesSource(data: data)
-    var checksummedSource = ChecksummedSource(source: source, validation: .md5)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: nil, md5: .auto))
 
     // 1. Read chunk 1: 5 bytes ("Hello")
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 5)
@@ -415,7 +425,8 @@ import Testing
   @Test func testChecksummedSourceRewindWithUnalignedChunkSizes() async throws {
     let data = Data((0..<100).map { UInt8($0) })
     let source = BytesSource(data: data)
-    var checksummedSource = ChecksummedSource(source: source, validation: .crc32c)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: .auto))
 
     // 1. Read first 30 bytes: 0..<30 -> bytesHashed becomes 30
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 30)
@@ -478,7 +489,8 @@ import Testing
     let fullData = part1 + part2
     let source = BytesSource(data: fullData)
 
-    var checksummedSource = ChecksummedSource(source: source, validation: .md5)
+    var checksummedSource = ChecksummedSource(
+      source: source, options: ChecksumOptions(crc32c: nil, md5: .auto))
 
     // Read first chunk (7 bytes: "Hello, ") -> MD5 hashes 0..<7
     let chunk1 = try await checksummedSource.readChunk(maxBytes: 7)

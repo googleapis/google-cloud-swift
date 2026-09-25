@@ -14,22 +14,6 @@
 
 import Foundation
 
-/// Strategy for data integrity validation.
-///
-/// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
-///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
-///   clause in `switch` statements.
-public enum ChecksumValidation: Sendable {
-  /// Do not perform client-side checksum validation.
-  case none
-
-  /// Automatically calculate and validate CRC32C (recommended).
-  case crc32c
-
-  /// Automatically calculate and validate MD5.
-  case md5
-}
-
 /// Configuration options for checksum validation.
 public struct ChecksumOptions: Sendable, Hashable {
   /// Checksum mode / value for CRC32C.

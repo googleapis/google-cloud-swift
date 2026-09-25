@@ -565,29 +565,6 @@ public struct WriteObjectOptions: Sendable {
   /// retried on transient errors, or `false` to suppress retries even when preconditions are present.
   public var idempotency: Bool? = nil
 
-  /// Legacy validation enum property for backward compatibility.
-  public var validation: ChecksumValidation {
-    get {
-      if checksums.crc32c == .auto && checksums.md5 == nil {
-        return .crc32c
-      } else if checksums.md5 == .auto && checksums.crc32c == nil {
-        return .md5
-      } else {
-        return .none
-      }
-    }
-    set {
-      switch newValue {
-      case .none:
-        checksums = .none
-      case .crc32c:
-        checksums = ChecksumOptions(crc32c: .auto, md5: nil)
-      case .md5:
-        checksums = ChecksumOptions(crc32c: nil, md5: .auto)
-      }
-    }
-  }
-
   public static var `default`: WriteObjectOptions { WriteObjectOptions() }
 
   public init() {}

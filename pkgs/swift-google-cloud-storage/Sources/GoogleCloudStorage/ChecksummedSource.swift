@@ -40,19 +40,6 @@ struct ChecksummedSource<S: WriteObjectSource> {
     self.calculators = options.makeUploadCalculators()
   }
 
-  init(source: S, validation: ChecksumValidation) {
-    self.source = source
-    switch validation {
-    case .none:
-      self.options = .none
-    case .crc32c:
-      self.options = ChecksumOptions(crc32c: .auto, md5: nil)
-    case .md5:
-      self.options = ChecksumOptions(crc32c: nil, md5: .auto)
-    }
-    self.calculators = self.options.makeUploadCalculators()
-  }
-
   /// Reseeds the CRC32C calculator with a running hash seed provided by GCS.
   ///
   /// Because the other hash algorithm used by Cloud Storage (MD5) does not support
