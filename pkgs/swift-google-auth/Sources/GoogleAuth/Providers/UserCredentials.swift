@@ -35,7 +35,7 @@ internal struct UserCredentialsParser: CredentialSourceParser {
       keyJSON: keyJSON,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain,
-      scopes: scopes.isEmpty ? nil : scopes
+      scopes: scopes
     )
   }
 }
@@ -70,7 +70,7 @@ where C.Instant.Duration == Duration {
     user: UserAccountData,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    scopes: [String]? = nil,
+    scopes: [String] = [],
     httpClient: AuthHTTPClient,
     retryConfiguration: RetryConfiguration,
     clock: C
@@ -124,13 +124,13 @@ extension UserCredentialsGeneric where C == ContinuousClock {
   ///   - keyJSON: The JSON data containing the user account credentials.
   ///   - quotaProjectID: An optional project ID used for quota and billing purposes.
   ///   - universeDomain: An optional universe domain to constrain the credentials to (defaults to `googleapis.com`).
-  ///   - scopes: An optional array of OAuth 2.0 scopes to request.
+  ///   - scopes: Scopes requested for the access token.
   /// - Throws: A `CredentialsError.parseError` if the JSON data is invalid or missing required fields.
   init(
     keyJSON: Data,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    scopes: [String]? = nil
+    scopes: [String] = []
   ) throws {
     let key: UserAccountData
     do {

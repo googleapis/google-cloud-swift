@@ -58,7 +58,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   ///   - endpoint: An optional custom URL override for the metadata server. When `nil`,
   ///     the provider checks `GCE_METADATA_HOST` or defaults to `http://metadata.google.internal`.
   ///   - quotaProjectID: An optional Google Cloud project ID for quota and billing attribution.
-  ///   - scopes: An optional array of OAuth 2.0 scopes requested for the minted access tokens.
+  ///   - scopes: Scopes requested for the minted access tokens.
   ///   - retryConfiguration: Optional retry policy configuration for metadata server HTTP calls.
   ///   - client: The HTTP client used to execute requests against the metadata server.
   ///   - fromADC: A boolean indicating whether these credentials were created as part of the
@@ -68,7 +68,7 @@ struct MDSCredentials: CredentialsProvider, Sendable {
   init(
     endpoint: URL? = nil,
     quotaProjectID: String? = nil,
-    scopes: [String]? = nil,
+    scopes: [String] = [],
     retryConfiguration: RetryConfiguration? = nil,
     client: AuthHTTPClient = AuthHTTPClient(),
     fromADC: Bool = false,

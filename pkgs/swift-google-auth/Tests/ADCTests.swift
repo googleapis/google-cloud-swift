@@ -34,4 +34,16 @@ import Testing
 
     #expect(mdsCreds.provider.environment["GCE_METADATA_HOST"] == customHost)
   }
+
+  @Test func propagatesScopesToMDS() async throws {
+    let customScopes = ["scope1", "scope2"]
+    let provider = try ADC.resolve(scopes: customScopes, environment: [:])
+
+    guard let mdsCreds = provider as? MDSCredentials else {
+      Issue.record("Expected MDSCredentials")
+      return
+    }
+
+    #expect(mdsCreds.provider.scopes == customScopes)
+  }
 }

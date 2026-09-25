@@ -33,8 +33,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// An optional Google Cloud project ID for quota and billing attribution.
   let quotaProjectID: String?
 
-  /// An optional list of OAuth 2.0 scopes requested for the token.
-  let scopes: [String]?
+  /// The list of OAuth 2.0 scopes requested for the token.
+  let scopes: [String]
 
   /// The HTTP client used to execute requests against the metadata server.
   let client: AuthHTTPClient
@@ -56,7 +56,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// - Parameters:
   ///   - endpoint: Custom base URL override for the metadata server.
   ///   - quotaProjectID: Optional quota project ID to include in headers.
-  ///   - scopes: Optional OAuth 2.0 scopes requested for the token.
+  ///   - scopes: Scopes requested for the token.
   ///   - retryConfiguration: Retry policy configuration for network requests.
   ///   - client: HTTP client instance.
   ///   - fromADC: Set to `true` if instantiated during ADC resolution.
@@ -64,7 +64,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   init(
     endpoint: URL? = nil,
     quotaProjectID: String? = nil,
-    scopes: [String]? = nil,
+    scopes: [String] = [],
     retryConfiguration: RetryConfiguration? = nil,
     client: AuthHTTPClient = AuthHTTPClient(),
     fromADC: Bool = false,
@@ -150,9 +150,9 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false)!
     urlComponents.path = "/computeMetadata/v1/instance/service-accounts/default/token"
 
-    if let scopes = self.scopes, !scopes.isEmpty {
+    if !self.scopes.isEmpty {
       urlComponents.queryItems = [
-        URLQueryItem(name: "scopes", value: scopes.joined(separator: ","))
+        URLQueryItem(name: "scopes", value: self.scopes.joined(separator: ","))
       ]
     }
 

@@ -91,7 +91,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
@@ -185,8 +184,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
   }
 
-  @Test(arguments: [nil, []] as [[String]?])
-  func credentialProviderOmitsNilOrEmptyScopes(scopes: [String]?) async throws {
+  @Test func credentialProviderOmitsEmptyScopes() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
     let responsePayload = Oauth2RefreshResponse(
       accessToken: "test-access-token-without-scopes",
@@ -245,7 +243,7 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: scopes,
+      scopes: [],
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
@@ -288,7 +286,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig,
       clock: TestClock()
@@ -321,7 +318,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
@@ -356,7 +352,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
@@ -428,7 +423,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: .defaultConfiguration,
       clock: TestClock()
@@ -494,7 +488,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig,
       clock: clock
@@ -589,7 +582,6 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
 
     let source = try UserCredentials(
       user: data,
-      scopes: nil,
       httpClient: AuthHTTPClient(mock: mock),
       retryConfiguration: retryConfig,
       clock: clock

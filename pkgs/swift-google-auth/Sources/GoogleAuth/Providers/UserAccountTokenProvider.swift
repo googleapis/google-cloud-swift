@@ -30,8 +30,8 @@ struct UserAccountTokenProvider: TokenProvider {
   /// The underlying user account credential data containing the client ID, secret, and refresh token.
   let user: UserAccountData
 
-  /// The optional list of OAuth 2.0 scopes requested for the access token.
-  let scopes: [String]?
+  /// The list of OAuth 2.0 scopes requested for the access token.
+  let scopes: [String]
 
   /// The OAuth 2.0 token endpoint URL.
   let tokenUri: URL
@@ -48,7 +48,7 @@ struct UserAccountTokenProvider: TokenProvider {
   /// - Throws: An `AuthHTTPError` or network error if the token endpoint cannot be reached or rejects the request.
   @concurrent
   func fetchToken() async throws -> Token {
-    let scopesStr = scopes.flatMap { $0.isEmpty ? nil : $0.joined(separator: " ") }
+    let scopesStr = scopes.isEmpty ? nil : scopes.joined(separator: " ")
 
     let requestBody = Oauth2RefreshRequest(
       grantType: "refresh_token",

@@ -162,12 +162,12 @@ public enum CredentialsConfiguration: Sendable {
   ///   - keyJSON: The raw Authorized User JSON file contents.
   ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
   ///   - universeDomain: An optional universe domain (must be `googleapis.com` or nil).
-  ///   - scopes: Optional OAuth 2.0 scopes to request.
+  ///   - scopes: Scopes requested for the access token.
   case user(
     keyJSON: Data,
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    scopes: [String]? = nil
+    scopes: [String] = []
   )
 
   /// Programmatic credentials configuration for Workload and Workforce Identity Federation.
