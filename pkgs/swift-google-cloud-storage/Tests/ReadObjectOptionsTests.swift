@@ -102,6 +102,30 @@ import Testing
     #expect(metadata.updated == now)
   }
 
+  @Test func generationTypeInteroperability() {
+    var object = Object()
+    object.generation = 12345
+    object.metageneration = 67890
+
+    // ReadObjectOptions.generation can be assigned directly from Object.generation without casting
+    let options = ReadObjectOptions().with {
+      $0.generation = object.generation
+    }
+    #expect(options.generation == 12345)
+
+    // ReadObjectMetadata generation and metageneration can be assigned directly to StoragePreconditions without casting
+    let metadata = ReadObjectMetadata().with {
+      $0.generation = object.generation
+      $0.metageneration = object.metageneration
+    }
+    let preconditions = StoragePreconditions().with {
+      $0.ifGenerationMatch = metadata.generation
+      $0.ifMetagenerationMatch = metadata.metageneration
+    }
+    #expect(preconditions.ifGenerationMatch == 12345)
+    #expect(preconditions.ifMetagenerationMatch == 67890)
+  }
+
   @Test func calculateResumeRangeScenarios() {
     // Entire
     #expect(

@@ -85,13 +85,13 @@ extension StorageClient {
     }
 
     if let genStr = headers.first(name: "x-goog-generation"),
-      let gen = UInt64(genStr)
+      let gen = Int64(genStr)
     {
       metadata.generation = gen
     }
 
     if let metaGenStr = headers.first(name: "x-goog-metageneration"),
-      let metaGen = UInt64(metaGenStr)
+      let metaGen = Int64(metaGenStr)
     {
       metadata.metageneration = metaGen
     }

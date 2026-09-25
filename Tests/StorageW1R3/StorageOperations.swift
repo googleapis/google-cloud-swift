@@ -63,7 +63,7 @@ enum StorageOperations {
     client: StorageClient, object: GoogleCloudStorage.Object, crc32cEnabled: Bool
   ) async -> (transferSize: Int, error: (any Error)?) {
     let options = ReadObjectOptions().with {
-      $0.generation = if object.generation > 0 { UInt64(object.generation) } else { nil }
+      $0.generation = if object.generation > 0 { object.generation } else { nil }
       $0.checksums = crc32cEnabled ? .default : .none
     }
 

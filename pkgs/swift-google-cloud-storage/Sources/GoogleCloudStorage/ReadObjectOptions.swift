@@ -211,8 +211,8 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 /// > object, not partial or decompressed bytes. Pre-computed expected values (`.value(...)`)
 /// > are always verified.
 public struct ReadObjectOptions: Sendable {
-  /// Object generation (`UInt64?`) to read a specific revision of an object.
-  public var generation: UInt64?
+  /// Object generation (`Int64?`) to read a specific revision of an object.
+  public var generation: Int64?
 
   /// Preconditions to ensure operations execute only when condition constraints pass.
   public var preconditions: StoragePreconditions?

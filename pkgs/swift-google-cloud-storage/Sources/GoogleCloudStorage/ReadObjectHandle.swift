@@ -74,10 +74,10 @@ public struct ReadObjectMetadata: Sendable, Hashable, Equatable {
   public var storedContentLength: UInt64?
 
   /// Generation revision number of the object.
-  public var generation: UInt64 = 0
+  public var generation: Int64 = 0
 
   /// Metageneration revision number of the object metadata.
-  public var metageneration: UInt64?
+  public var metageneration: Int64?
 
   /// HTTP ETag representing the object's entity state.
   public var etag: String?
