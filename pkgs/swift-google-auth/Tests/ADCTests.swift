@@ -20,9 +20,6 @@ import Testing
   @Test func resolvesToMDSCredentials() async throws {
     let provider = try ADC.resolve(environment: [:])
     #expect(provider is MDSCredentials)
-
-    let ud = await provider.universeDomain()
-    #expect(ud == nil)
   }
 
   @Test func propagatesEnvironmentToMDS() async throws {

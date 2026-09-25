@@ -71,7 +71,7 @@
       request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -87,7 +87,8 @@
       let rawOp = try await self.delete(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -130,7 +131,7 @@
       request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -146,7 +147,8 @@
       let rawOp = try await self.insert(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -194,7 +196,7 @@
       request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -210,7 +212,8 @@
       let rawOp = try await self.patch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -242,7 +245,7 @@
       request: TargetHttpsProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -258,7 +261,8 @@
       let rawOp = try await self.setCertificateMap(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -290,7 +294,7 @@
       request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -306,7 +310,8 @@
       let rawOp = try await self.setQuicOverride(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -338,7 +343,7 @@
       request: TargetHttpsProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -354,7 +359,8 @@
       let rawOp = try await self.setSslCertificates(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -392,7 +398,7 @@
       request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -408,7 +414,8 @@
       let rawOp = try await self.setSslPolicy(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -440,7 +447,7 @@
       request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let extractStatus = {
-        (op: GoogleCloudComputeV1.Operation) throws
+        @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         guard op._done() else {
           return .init(done: false, result: nil)
@@ -456,7 +463,8 @@
       let rawOp = try await self.setUrlMap(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         let op = try await self.getOperation(
           request: .init().with {
             $0.operation = rawOp._name()
@@ -619,7 +627,8 @@
       request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -682,7 +691,8 @@
       request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -765,7 +775,8 @@
       request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -807,7 +818,8 @@
       request: TargetHttpsProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -849,7 +861,8 @@
       request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -891,7 +904,8 @@
       request: TargetHttpsProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -933,7 +947,8 @@
       request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -975,7 +990,8 @@
       request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

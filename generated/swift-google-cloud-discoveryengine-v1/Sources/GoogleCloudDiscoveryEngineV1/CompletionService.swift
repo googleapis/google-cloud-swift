@@ -75,14 +75,14 @@
       request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportSuggestionDenyListEntriesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportSuggestionDenyListEntriesResponse>.State in
         return try op._extractStatus(ImportSuggestionDenyListEntriesResponse.self)
       }
       let rawOp = try await self.importSuggestionDenyListEntries(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<ImportSuggestionDenyListEntriesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
@@ -120,14 +120,14 @@
       request: PurgeSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeSuggestionDenyListEntriesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeSuggestionDenyListEntriesResponse>.State in
         return try op._extractStatus(PurgeSuggestionDenyListEntriesResponse.self)
       }
       let rawOp = try await self.purgeSuggestionDenyListEntries(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<PurgeSuggestionDenyListEntriesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
@@ -165,14 +165,14 @@
       request: ImportCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportCompletionSuggestionsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportCompletionSuggestionsResponse>.State in
         return try op._extractStatus(ImportCompletionSuggestionsResponse.self)
       }
       let rawOp = try await self.importCompletionSuggestions(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<ImportCompletionSuggestionsResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
@@ -210,14 +210,14 @@
       request: PurgeCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeCompletionSuggestionsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeCompletionSuggestionsResponse>.State in
         return try op._extractStatus(PurgeCompletionSuggestionsResponse.self)
       }
       let rawOp = try await self.purgeCompletionSuggestions(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<PurgeCompletionSuggestionsResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
@@ -366,7 +366,7 @@
       request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportSuggestionDenyListEntriesResponse> {
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<ImportSuggestionDenyListEntriesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -397,7 +397,7 @@
       request: PurgeSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeSuggestionDenyListEntriesResponse> {
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<PurgeSuggestionDenyListEntriesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -427,7 +427,7 @@
       request: ImportCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportCompletionSuggestionsResponse> {
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<ImportCompletionSuggestionsResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
@@ -457,7 +457,7 @@
       request: PurgeCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeCompletionSuggestionsResponse> {
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<PurgeCompletionSuggestionsResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }

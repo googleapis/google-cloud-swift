@@ -246,11 +246,12 @@ public struct ReadObjectOptions: Sendable {
 
 ```swift
 /// Errors thrown by object read and download operations.
-public enum ReadObjectError: Error, Sendable, Equatable {
+public enum ReadObjectError: Error, Sendable {
   case checksumMismatch(expected: String, actual: String, algorithm: String)
-  case invalidRange(String)
-  case resumeFailed(bytesReceived: UInt64, message: String)
+  case invalidRangeHeader(String)
+  case resumeFailed(bytesReceived: UInt64, underlyingError: RequestError)
   case unexpectedServerResponse(statusCode: Int, message: String)
+  case requestError(RequestError)
 }
 ```
 

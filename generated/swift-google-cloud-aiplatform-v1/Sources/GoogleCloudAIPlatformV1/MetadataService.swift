@@ -61,13 +61,14 @@
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MetadataStore> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
         return try op._extractStatus(MetadataStore.self)
       }
       let rawOp = try await self.createMetadataStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -116,13 +117,14 @@
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteMetadataStore(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -187,13 +189,14 @@
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteArtifact(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -222,14 +225,15 @@
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeArtifactsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State in
         return try op._extractStatus(PurgeArtifactsResponse.self)
       }
       let rawOp = try await self.purgeArtifacts(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -294,13 +298,14 @@
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteContext(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -329,14 +334,15 @@
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeContextsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State in
         return try op._extractStatus(PurgeContextsResponse.self)
       }
       let rawOp = try await self.purgeContexts(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -446,13 +452,14 @@
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteExecution(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -481,14 +488,15 @@
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeExecutionsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State in
         return try op._extractStatus(PurgeExecutionsResponse.self)
       }
       let rawOp = try await self.purgeExecutions(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -950,7 +958,8 @@
     public func createMetadataStorePollingUntilDone(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MetadataStore> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1055,7 +1064,8 @@
     public func deleteMetadataStorePollingUntilDone(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1207,7 +1217,8 @@
     public func deleteArtifactPollingUntilDone(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1245,7 +1256,8 @@
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeArtifactsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1394,7 +1406,8 @@
     public func deleteContextPollingUntilDone(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1432,7 +1445,8 @@
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeContextsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1673,7 +1687,8 @@
     public func deleteExecutionPollingUntilDone(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1711,7 +1726,8 @@
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<PurgeExecutionsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

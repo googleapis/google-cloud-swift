@@ -212,22 +212,6 @@ struct ServiceAccountTests {
     #expect(token2.accessToken == token1.accessToken)
   }
 
-  @Test("Universe domain parses correctly from key JSON and respects explicit overrides")
-  func universeDomainParsingAndOverrides() async throws {
-    let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
-
-    // Default universe domain resolving from key JSON
-    let credsDefault = try ServiceAccountCredentials(keyJSON: mockKeyJSON)
-    let udDefault = await credsDefault.universeDomain()
-    #expect(udDefault == "test-universe-domain")
-
-    // Universe domain explicitly overridden
-    let credsOverride = try ServiceAccountCredentials(
-      keyJSON: mockKeyJSON, universeDomain: "custom.universe.domain")
-    let udOverride = await credsOverride.universeDomain()
-    #expect(udOverride == "custom.universe.domain")
-  }
-
   @Test("Service Account JWS signing fails gracefully when given invalid private key PEM format")
   func invalidKeySigningFailure() async throws {
     let badKeyJSON = Data(

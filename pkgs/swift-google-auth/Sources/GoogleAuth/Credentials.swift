@@ -315,11 +315,6 @@ protocol CredentialsProvider: Sendable {
   ///
   /// - Returns: The HTTP header fields to apply to the request.
   func headers() async throws -> AuthHeaders
-
-  /// Retrieves the universe domain associated with the credentials.
-  ///
-  /// - Returns: The universe domain string, or nil if not configured or available.
-  func universeDomain() async -> String?
 }
 
 /// The public entry point to authenticate Google Cloud API requests.
@@ -369,14 +364,6 @@ public struct Credentials: Sendable {
   /// - Returns: The HTTP header fields to apply to the request.
   public func headers() async throws -> AuthHeaders {
     return try await self.credentialsProvider.headers()
-  }
-
-  /// Retrieves the universe domain associated with the credentials.
-  ///
-  /// Returns `nil` for the default Google Cloud [universe](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones)
-  /// (`googleapis.com`), or the custom domain string if configured.
-  public func universeDomain() async -> String? {
-    return await self.credentialsProvider.universeDomain()
   }
 
   // MARK: - Backend Resolvers

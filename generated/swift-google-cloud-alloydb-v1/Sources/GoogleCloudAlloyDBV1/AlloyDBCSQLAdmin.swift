@@ -58,12 +58,13 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
     request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
     let rawOp = try await self.restoreFromCloudSql(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -206,7 +207,7 @@ extension Clients.AlloyDBCSQLAdminProtocol {
   public func restoreFromCloudSqlPollingUntilDone(
     request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -70,14 +70,15 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
     request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchCreateJobsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchCreateJobsResponse>.State in
       return try op._extractStatus(BatchCreateJobsResponse.self)
     }
     let rawOp = try await self.batchCreateJobs(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchCreateJobsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchCreateJobsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -128,14 +129,15 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
     request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchUpdateJobsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchUpdateJobsResponse>.State in
       return try op._extractStatus(BatchUpdateJobsResponse.self)
     }
     let rawOp = try await self.batchUpdateJobs(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateJobsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateJobsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -176,14 +178,15 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
     request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchDeleteJobsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchDeleteJobsResponse>.State in
       return try op._extractStatus(BatchDeleteJobsResponse.self)
     }
     let rawOp = try await self.batchDeleteJobs(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchDeleteJobsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchDeleteJobsResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -377,7 +380,8 @@ extension Clients.JobServiceProtocol {
     request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchCreateJobsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchCreateJobsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchCreateJobsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -457,7 +461,8 @@ extension Clients.JobServiceProtocol {
     request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchUpdateJobsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateJobsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateJobsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -516,7 +521,8 @@ extension Clients.JobServiceProtocol {
     request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BatchDeleteJobsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<BatchDeleteJobsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchDeleteJobsResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

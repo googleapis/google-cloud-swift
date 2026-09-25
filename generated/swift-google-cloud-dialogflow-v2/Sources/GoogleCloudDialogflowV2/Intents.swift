@@ -149,14 +149,15 @@
       request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
         return try op._extractStatus(BatchUpdateIntentsResponse.self)
       }
       let rawOp = try await self.batchUpdateIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -211,13 +212,14 @@
       request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.batchDeleteIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -573,7 +575,8 @@
       request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -623,7 +626,8 @@
     public func batchDeleteIntentsPollingUntilDone(
       request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

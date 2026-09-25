@@ -78,13 +78,14 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: CreateResourceBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ResourceBundle> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
       return try op._extractStatus(ResourceBundle.self)
     }
     let rawOp = try await self.createResourceBundle(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -113,13 +114,14 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: UpdateResourceBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ResourceBundle> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
       return try op._extractStatus(ResourceBundle.self)
     }
     let rawOp = try await self.updateResourceBundle(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -148,13 +150,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: DeleteResourceBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteResourceBundle(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -201,13 +203,14 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: CreateFleetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FleetPackage> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
       return try op._extractStatus(FleetPackage.self)
     }
     let rawOp = try await self.createFleetPackage(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -236,13 +239,14 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: UpdateFleetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FleetPackage> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
       return try op._extractStatus(FleetPackage.self)
     }
     let rawOp = try await self.updateFleetPackage(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -271,13 +275,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: DeleteFleetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteFleetPackage(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -324,12 +328,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: CreateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Release> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Release>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Release>.State in
       return try op._extractStatus(Release.self)
     }
     let rawOp = try await self.createRelease(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -358,12 +363,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: UpdateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Release> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Release>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Release>.State in
       return try op._extractStatus(Release.self)
     }
     let rawOp = try await self.updateRelease(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -392,13 +398,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: DeleteReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteRelease(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -447,12 +453,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: CreateVariantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Variant> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Variant>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Variant>.State in
       return try op._extractStatus(Variant.self)
     }
     let rawOp = try await self.createVariant(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -481,12 +488,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: UpdateVariantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Variant> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Variant>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Variant>.State in
       return try op._extractStatus(Variant.self)
     }
     let rawOp = try await self.updateVariant(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -515,13 +523,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: DeleteVariantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteVariant(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -568,12 +576,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: SuspendRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Rollout>.State in
       return try op._extractStatus(Rollout.self)
     }
     let rawOp = try await self.suspendRollout(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -602,12 +611,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: ResumeRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Rollout>.State in
       return try op._extractStatus(Rollout.self)
     }
     let rawOp = try await self.resumeRollout(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -636,12 +646,13 @@ public final class ConfigDeliveryClient: Clients.ConfigDeliveryProtocol, Sendabl
     request: AbortRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Rollout>.State in
       return try op._extractStatus(Rollout.self)
     }
     let rawOp = try await self.abortRollout(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1038,7 +1049,8 @@ extension Clients.ConfigDeliveryProtocol {
   public func createResourceBundlePollingUntilDone(
     request: CreateResourceBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ResourceBundle> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1079,7 +1091,8 @@ extension Clients.ConfigDeliveryProtocol {
   public func updateResourceBundlePollingUntilDone(
     request: UpdateResourceBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ResourceBundle> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ResourceBundle>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1118,7 +1131,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func deleteResourceBundlePollingUntilDone(
     request: DeleteResourceBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1219,7 +1232,8 @@ extension Clients.ConfigDeliveryProtocol {
   public func createFleetPackagePollingUntilDone(
     request: CreateFleetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FleetPackage> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1260,7 +1274,8 @@ extension Clients.ConfigDeliveryProtocol {
   public func updateFleetPackagePollingUntilDone(
     request: UpdateFleetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FleetPackage> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FleetPackage>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1299,7 +1314,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func deleteFleetPackagePollingUntilDone(
     request: DeleteFleetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1400,7 +1415,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func createReleasePollingUntilDone(
     request: CreateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Release> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1441,7 +1456,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func updateReleasePollingUntilDone(
     request: UpdateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Release> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Release>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1480,7 +1495,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func deleteReleasePollingUntilDone(
     request: DeleteReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1581,7 +1596,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func createVariantPollingUntilDone(
     request: CreateVariantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Variant> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1622,7 +1637,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func updateVariantPollingUntilDone(
     request: UpdateVariantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Variant> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Variant>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1661,7 +1676,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func deleteVariantPollingUntilDone(
     request: DeleteVariantRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1762,7 +1777,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func suspendRolloutPollingUntilDone(
     request: SuspendRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1799,7 +1814,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func resumeRolloutPollingUntilDone(
     request: ResumeRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1835,7 +1850,7 @@ extension Clients.ConfigDeliveryProtocol {
   public func abortRolloutPollingUntilDone(
     request: AbortRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Rollout> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Rollout>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

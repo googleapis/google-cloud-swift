@@ -128,13 +128,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.instantiateWorkflowTemplate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -225,13 +225,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.instantiateInlineWorkflowTemplate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -506,7 +506,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -555,7 +555,7 @@ extension Clients.WorkflowTemplateServiceProtocol {
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

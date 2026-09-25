@@ -78,13 +78,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Instance>.State in
       return try op._extractStatus(Instance.self)
     }
     let rawOp = try await self.createInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -113,13 +113,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Instance>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Instance>.State in
       return try op._extractStatus(Instance.self)
     }
     let rawOp = try await self.updateInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -148,13 +148,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -189,14 +189,15 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
       return try op._extractStatus(ImportRegisteredPartiesResponse.self)
     }
     let rawOp = try await self.importRegisteredParties(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -231,14 +232,15 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
       return try op._extractStatus(ExportRegisteredPartiesResponse.self)
     }
     let rawOp = try await self.exportRegisteredParties(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -285,12 +287,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: CreateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Dataset>.State in
       return try op._extractStatus(Dataset.self)
     }
     let rawOp = try await self.createDataset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -319,12 +322,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Dataset>.State in
       return try op._extractStatus(Dataset.self)
     }
     let rawOp = try await self.updateDataset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -353,13 +357,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDataset(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -406,12 +410,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Model>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Model>.State in
       return try op._extractStatus(Model.self)
     }
     let rawOp = try await self.createModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -440,12 +445,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Model>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Model>.State in
       return try op._extractStatus(Model.self)
     }
     let rawOp = try await self.updateModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -480,14 +486,15 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
       return try op._extractStatus(ExportModelMetadataResponse.self)
     }
     let rawOp = try await self.exportModelMetadata(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -516,13 +523,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -569,13 +576,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
       return try op._extractStatus(EngineConfig.self)
     }
     let rawOp = try await self.createEngineConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -604,13 +612,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
       return try op._extractStatus(EngineConfig.self)
     }
     let rawOp = try await self.updateEngineConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -645,15 +654,15 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State in
       return try op._extractStatus(ExportEngineConfigMetadataResponse.self)
     }
     let rawOp = try await self.exportEngineConfigMetadata(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -682,13 +691,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteEngineConfig(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -753,13 +762,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
       return try op._extractStatus(PredictionResult.self)
     }
     let rawOp = try await self.createPredictionResult(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -788,13 +798,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
       return try op._extractStatus(PredictionResult.self)
     }
     let rawOp = try await self.updatePredictionResult(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -829,14 +840,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportPredictionResultMetadataResponse>.State in
       return try op._extractStatus(ExportPredictionResultMetadataResponse.self)
     }
     let rawOp = try await self.exportPredictionResultMetadata(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws
+      @Sendable () async throws
         -> GoogleGax._PollableOperationImpl<ExportPredictionResultMetadataResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
@@ -866,13 +877,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePredictionResult(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -919,13 +930,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
       return try op._extractStatus(BacktestResult.self)
     }
     let rawOp = try await self.createBacktestResult(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -954,13 +966,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
       return try op._extractStatus(BacktestResult.self)
     }
     let rawOp = try await self.updateBacktestResult(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -995,14 +1008,14 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportBacktestResultMetadataResponse>.State in
       return try op._extractStatus(ExportBacktestResultMetadataResponse.self)
     }
     let rawOp = try await self.exportBacktestResultMetadata(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws
+      @Sendable () async throws
         -> GoogleGax._PollableOperationImpl<ExportBacktestResultMetadataResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
@@ -1032,13 +1045,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
     request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteBacktestResult(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1545,7 +1558,7 @@ extension Clients.AMLProtocol {
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1586,7 +1599,7 @@ extension Clients.AMLProtocol {
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1625,7 +1638,7 @@ extension Clients.AMLProtocol {
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1663,7 +1676,8 @@ extension Clients.AMLProtocol {
     request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1707,7 +1721,8 @@ extension Clients.AMLProtocol {
     request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1812,7 +1827,7 @@ extension Clients.AMLProtocol {
   public func createDatasetPollingUntilDone(
     request: CreateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1853,7 +1868,7 @@ extension Clients.AMLProtocol {
   public func updateDatasetPollingUntilDone(
     request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Dataset> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1892,7 +1907,7 @@ extension Clients.AMLProtocol {
   public func deleteDatasetPollingUntilDone(
     request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1991,7 +2006,7 @@ extension Clients.AMLProtocol {
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2030,7 +2045,7 @@ extension Clients.AMLProtocol {
   public func updateModelPollingUntilDone(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2070,7 +2085,8 @@ extension Clients.AMLProtocol {
     request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2107,7 +2123,7 @@ extension Clients.AMLProtocol {
   public func deleteModelPollingUntilDone(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2208,7 +2224,8 @@ extension Clients.AMLProtocol {
   public func createEngineConfigPollingUntilDone(
     request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2249,7 +2266,8 @@ extension Clients.AMLProtocol {
   public func updateEngineConfigPollingUntilDone(
     request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2289,8 +2307,8 @@ extension Clients.AMLProtocol {
     request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State
-      in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2329,7 +2347,7 @@ extension Clients.AMLProtocol {
   public func deleteEngineConfigPollingUntilDone(
     request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2494,7 +2512,8 @@ extension Clients.AMLProtocol {
   public func createPredictionResultPollingUntilDone(
     request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2535,7 +2554,8 @@ extension Clients.AMLProtocol {
   public func updatePredictionResultPollingUntilDone(
     request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2576,7 +2596,7 @@ extension Clients.AMLProtocol {
     request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse> {
     let poll = {
-      () async throws
+      @Sendable () async throws
         -> GoogleGax._PollableOperationImpl<ExportPredictionResultMetadataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2616,7 +2636,7 @@ extension Clients.AMLProtocol {
   public func deletePredictionResultPollingUntilDone(
     request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2717,7 +2737,8 @@ extension Clients.AMLProtocol {
   public func createBacktestResultPollingUntilDone(
     request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2758,7 +2779,8 @@ extension Clients.AMLProtocol {
   public func updateBacktestResultPollingUntilDone(
     request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2798,7 +2820,7 @@ extension Clients.AMLProtocol {
     request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse> {
     let poll = {
-      () async throws
+      @Sendable () async throws
         -> GoogleGax._PollableOperationImpl<ExportBacktestResultMetadataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
@@ -2838,7 +2860,7 @@ extension Clients.AMLProtocol {
   public func deleteBacktestResultPollingUntilDone(
     request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -42,10 +42,6 @@ struct ApiKeyCredentials: CredentialsProvider, Sendable, CustomDebugStringConver
     return [("x-goog-api-key", self.apiKey)]
   }
 
-  func universeDomain() async -> String? {
-    return nil
-  }
-
   // MARK: - CustomDebugStringConvertible
 
   var debugDescription: String {

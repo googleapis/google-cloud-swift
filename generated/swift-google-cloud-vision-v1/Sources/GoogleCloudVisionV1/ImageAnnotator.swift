@@ -99,14 +99,15 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
     request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
       return try op._extractStatus(AsyncBatchAnnotateImagesResponse.self)
     }
     let rawOp = try await self.asyncBatchAnnotateImages(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -145,14 +146,15 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
     request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
       return try op._extractStatus(AsyncBatchAnnotateFilesResponse.self)
     }
     let rawOp = try await self.asyncBatchAnnotateFiles(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -282,7 +284,8 @@ extension Clients.ImageAnnotatorProtocol {
     request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateImagesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateImagesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -322,7 +325,8 @@ extension Clients.ImageAnnotatorProtocol {
     request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AsyncBatchAnnotateFilesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AsyncBatchAnnotateFilesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

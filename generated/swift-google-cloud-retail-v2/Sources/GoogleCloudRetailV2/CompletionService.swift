@@ -88,14 +88,15 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
     request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportCompletionDataResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
       return try op._extractStatus(ImportCompletionDataResponse.self)
     }
     let rawOp = try await self.importCompletionData(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -196,7 +197,8 @@ extension Clients.CompletionServiceProtocol {
     request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportCompletionDataResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportCompletionDataResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

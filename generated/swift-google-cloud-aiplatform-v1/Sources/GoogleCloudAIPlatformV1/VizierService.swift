@@ -125,14 +125,15 @@
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
         return try op._extractStatus(SuggestTrialsResponse.self)
       }
       let rawOp = try await self.suggestTrials(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -226,14 +227,14 @@
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<CheckTrialEarlyStoppingStateResponse>.State in
         return try op._extractStatus(CheckTrialEarlyStoppingStateResponse.self)
       }
       let rawOp = try await self.checkTrialEarlyStoppingState(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<CheckTrialEarlyStoppingStateResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
@@ -668,7 +669,8 @@
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -826,7 +828,7 @@
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
       let poll = {
-        () async throws
+        @Sendable () async throws
           -> GoogleGax._PollableOperationImpl<CheckTrialEarlyStoppingStateResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }

@@ -67,13 +67,14 @@ public final class AuditClient: Clients.AuditProtocol, Sendable {
     request: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FrameworkAudit> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
       return try op._extractStatus(FrameworkAudit.self)
     }
     let rawOp = try await self.createFrameworkAudit(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -291,7 +292,8 @@ extension Clients.AuditProtocol {
   public func createFrameworkAuditPollingUntilDone(
     request: CreateFrameworkAuditRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<FrameworkAudit> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FrameworkAudit>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

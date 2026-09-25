@@ -20,17 +20,8 @@ public import GoogleGax
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WriteObjectError: Error, Sendable {
-  /// The resumable session has expired (usually after 7 days) or was not found.
-  case sessionExpired(uploadId: String, underlyingError: Error?)
-
-  /// The upload was cancelled by the user.
-  case cancelled
-
   /// GCS returned an unexpected response.
   case unexpectedServerResponse(statusCode: Int, message: String)
-
-  /// Network error during upload.
-  case networkError(underlyingError: Error)
 
   /// Internal error in the upload library.
   case internalError(String)

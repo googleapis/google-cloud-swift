@@ -77,13 +77,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
     request: CreateSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SACRealm> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<SACRealm>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<SACRealm>.State in
       return try op._extractStatus(SACRealm.self)
     }
     let rawOp = try await self.createSacrealm(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SACRealm>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<SACRealm>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -112,13 +112,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
     request: DeleteSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSacrealm(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -165,13 +165,14 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
     request: CreateSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SACAttachment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SACAttachment>.State in
       return try op._extractStatus(SACAttachment.self)
     }
     let rawOp = try await self.createSacattachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SACAttachment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SACAttachment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -200,13 +201,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
     request: DeleteSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSacattachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -533,7 +534,7 @@ extension Clients.SSERealmServiceProtocol {
   public func createSacrealmPollingUntilDone(
     request: CreateSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SACRealm> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SACRealm>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<SACRealm>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -574,7 +575,7 @@ extension Clients.SSERealmServiceProtocol {
   public func deleteSacrealmPollingUntilDone(
     request: DeleteSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -675,7 +676,8 @@ extension Clients.SSERealmServiceProtocol {
   public func createSacattachmentPollingUntilDone(
     request: CreateSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SACAttachment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SACAttachment>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SACAttachment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -716,7 +718,7 @@ extension Clients.SSERealmServiceProtocol {
   public func deleteSacattachmentPollingUntilDone(
     request: DeleteSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

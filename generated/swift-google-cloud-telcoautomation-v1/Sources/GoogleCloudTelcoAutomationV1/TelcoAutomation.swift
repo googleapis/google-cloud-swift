@@ -81,13 +81,14 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
       return try op._extractStatus(OrchestrationCluster.self)
     }
     let rawOp = try await self.createOrchestrationCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -116,13 +117,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteOrchestrationCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -169,12 +170,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EdgeSlm> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
       return try op._extractStatus(EdgeSlm.self)
     }
     let rawOp = try await self.createEdgeSlm(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -203,13 +205,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
     request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteEdgeSlm(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -865,7 +867,8 @@ extension Clients.TelcoAutomationProtocol {
   public func createOrchestrationClusterPollingUntilDone(
     request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -906,7 +909,7 @@ extension Clients.TelcoAutomationProtocol {
   public func deleteOrchestrationClusterPollingUntilDone(
     request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1007,7 +1010,7 @@ extension Clients.TelcoAutomationProtocol {
   public func createEdgeSlmPollingUntilDone(
     request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EdgeSlm> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1048,7 +1051,7 @@ extension Clients.TelcoAutomationProtocol {
   public func deleteEdgeSlmPollingUntilDone(
     request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

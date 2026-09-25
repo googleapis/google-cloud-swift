@@ -104,14 +104,15 @@
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportPlaybookResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State in
         return try op._extractStatus(ExportPlaybookResponse.self)
       }
       let rawOp = try await self.exportPlaybook(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -140,14 +141,15 @@
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportPlaybookResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State in
         return try op._extractStatus(ImportPlaybookResponse.self)
       }
       let rawOp = try await self.importPlaybook(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -513,7 +515,8 @@
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportPlaybookResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -542,7 +545,8 @@
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportPlaybookResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

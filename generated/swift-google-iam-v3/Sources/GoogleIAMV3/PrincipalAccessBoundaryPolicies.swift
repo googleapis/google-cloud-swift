@@ -64,7 +64,7 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
     request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       return try op._extractStatus(PrincipalAccessBoundaryPolicy.self)
     }
@@ -72,7 +72,8 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -110,7 +111,7 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
     request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       return try op._extractStatus(PrincipalAccessBoundaryPolicy.self)
     }
@@ -118,7 +119,8 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -147,14 +149,14 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
     request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePrincipalAccessBoundaryPolicy(
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -278,7 +280,8 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
     request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -342,7 +345,8 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
     request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrincipalAccessBoundaryPolicy> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<PrincipalAccessBoundaryPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -382,7 +386,7 @@ extension Clients.PrincipalAccessBoundaryPoliciesProtocol {
   public func deletePrincipalAccessBoundaryPolicyPollingUntilDone(
     request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

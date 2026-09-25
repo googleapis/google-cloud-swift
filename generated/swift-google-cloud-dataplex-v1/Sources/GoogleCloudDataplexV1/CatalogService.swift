@@ -64,13 +64,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryType> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<EntryType>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<EntryType>.State in
       return try op._extractStatus(EntryType.self)
     }
     let rawOp = try await self.createEntryType(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -99,13 +99,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryType> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<EntryType>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<EntryType>.State in
       return try op._extractStatus(EntryType.self)
     }
     let rawOp = try await self.updateEntryType(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -134,13 +134,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteEntryType(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -187,13 +187,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AspectType> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<AspectType>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AspectType>.State in
       return try op._extractStatus(AspectType.self)
     }
     let rawOp = try await self.createAspectType(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -222,13 +222,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AspectType> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<AspectType>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AspectType>.State in
       return try op._extractStatus(AspectType.self)
     }
     let rawOp = try await self.updateAspectType(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -257,13 +257,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAspectType(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -310,13 +310,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
       return try op._extractStatus(EntryGroup.self)
     }
     let rawOp = try await self.createEntryGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -345,13 +345,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
       return try op._extractStatus(EntryGroup.self)
     }
     let rawOp = try await self.updateEntryGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -380,13 +380,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteEntryGroup(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -507,13 +507,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataJob> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
       return try op._extractStatus(MetadataJob.self)
     }
     let rawOp = try await self.createMetadataJob(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -628,13 +628,14 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
       return try op._extractStatus(MetadataFeed.self)
     }
     let rawOp = try await self.createMetadataFeed(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -681,13 +682,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteMetadataFeed(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -716,13 +717,14 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
       return try op._extractStatus(MetadataFeed.self)
     }
     let rawOp = try await self.updateMetadataFeed(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1180,7 +1182,7 @@ extension Clients.CatalogServiceProtocol {
   public func createEntryTypePollingUntilDone(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryType> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1221,7 +1223,7 @@ extension Clients.CatalogServiceProtocol {
   public func updateEntryTypePollingUntilDone(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryType> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1260,7 +1262,7 @@ extension Clients.CatalogServiceProtocol {
   public func deleteEntryTypePollingUntilDone(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1361,7 +1363,7 @@ extension Clients.CatalogServiceProtocol {
   public func createAspectTypePollingUntilDone(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AspectType> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1402,7 +1404,7 @@ extension Clients.CatalogServiceProtocol {
   public func updateAspectTypePollingUntilDone(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AspectType> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1441,7 +1443,7 @@ extension Clients.CatalogServiceProtocol {
   public func deleteAspectTypePollingUntilDone(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1542,7 +1544,7 @@ extension Clients.CatalogServiceProtocol {
   public func createEntryGroupPollingUntilDone(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1583,7 +1585,7 @@ extension Clients.CatalogServiceProtocol {
   public func updateEntryGroupPollingUntilDone(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1622,7 +1624,7 @@ extension Clients.CatalogServiceProtocol {
   public func deleteEntryGroupPollingUntilDone(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1911,7 +1913,7 @@ extension Clients.CatalogServiceProtocol {
   public func createMetadataJobPollingUntilDone(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataJob> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2169,7 +2171,8 @@ extension Clients.CatalogServiceProtocol {
   public func createMetadataFeedPollingUntilDone(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2274,7 +2277,7 @@ extension Clients.CatalogServiceProtocol {
   public func deleteMetadataFeedPollingUntilDone(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2311,7 +2314,8 @@ extension Clients.CatalogServiceProtocol {
   public func updateMetadataFeedPollingUntilDone(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

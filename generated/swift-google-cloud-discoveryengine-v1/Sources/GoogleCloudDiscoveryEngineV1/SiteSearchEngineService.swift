@@ -77,13 +77,14 @@
       request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         return try op._extractStatus(TargetSite.self)
       }
       let rawOp = try await self.createTargetSite(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -118,14 +119,15 @@
       request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
         return try op._extractStatus(BatchCreateTargetSitesResponse.self)
       }
       let rawOp = try await self.batchCreateTargetSites(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -169,13 +171,14 @@
       request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         return try op._extractStatus(TargetSite.self)
       }
       let rawOp = try await self.updateTargetSite(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -208,13 +211,14 @@
       request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteTargetSite(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -258,13 +262,13 @@
       request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Sitemap> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Sitemap>.State
-        in
+        @Sendable (op: GoogleLongRunning.Operation) throws
+          -> GoogleGax._PollableOperationImpl<Sitemap>.State in
         return try op._extractStatus(Sitemap.self)
       }
       let rawOp = try await self.createSitemap(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Sitemap>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Sitemap>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -297,13 +301,14 @@
       request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteSitemap(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -345,15 +350,15 @@
       request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State in
         return try op._extractStatus(EnableAdvancedSiteSearchResponse.self)
       }
       let rawOp = try await self.enableAdvancedSiteSearch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State
-        in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -382,15 +387,15 @@
       request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State in
         return try op._extractStatus(DisableAdvancedSiteSearchResponse.self)
       }
       let rawOp = try await self.disableAdvancedSiteSearch(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State
-        in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -419,13 +424,14 @@
       request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RecrawlUrisResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
         return try op._extractStatus(RecrawlUrisResponse.self)
       }
       let rawOp = try await self.recrawlUris(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -458,14 +464,15 @@
       request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
         return try op._extractStatus(BatchVerifyTargetSitesResponse.self)
       }
       let rawOp = try await self.batchVerifyTargetSites(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -711,7 +718,8 @@
     public func createTargetSitePollingUntilDone(
       request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -751,7 +759,8 @@
       request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchCreateTargetSitesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchCreateTargetSitesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -800,7 +809,8 @@
     public func updateTargetSitePollingUntilDone(
       request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TargetSite> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<TargetSite>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -837,7 +847,8 @@
     public func deleteTargetSitePollingUntilDone(
       request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -919,7 +930,7 @@
     public func createSitemapPollingUntilDone(
       request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Sitemap> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Sitemap>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Sitemap>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -958,7 +969,8 @@
     public func deleteSitemapPollingUntilDone(
       request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1017,8 +1029,8 @@
       request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<EnableAdvancedSiteSearchResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State
-        in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<EnableAdvancedSiteSearchResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1047,8 +1059,8 @@
       request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DisableAdvancedSiteSearchResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State
-        in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<DisableAdvancedSiteSearchResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1075,7 +1087,8 @@
     public func recrawlUrisPollingUntilDone(
       request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<RecrawlUrisResponse> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<RecrawlUrisResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -1104,7 +1117,8 @@
       request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<BatchVerifyTargetSitesResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<BatchVerifyTargetSitesResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

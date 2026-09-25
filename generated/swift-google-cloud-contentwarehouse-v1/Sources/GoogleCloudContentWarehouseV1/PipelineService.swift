@@ -57,13 +57,14 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
       return try op._extractStatus(RunPipelineResponse.self)
     }
     let rawOp = try await self.runPipeline(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -128,7 +129,8 @@ extension Clients.PipelineServiceProtocol {
   public func runPipelinePollingUntilDone(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

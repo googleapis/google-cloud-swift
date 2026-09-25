@@ -61,13 +61,13 @@
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Endpoint>.State
-        in
+        @Sendable (op: GoogleLongRunning.Operation) throws
+          -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         return try op._extractStatus(Endpoint.self)
       }
       let rawOp = try await self.createEndpoint(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -123,13 +123,13 @@
       request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Endpoint>.State
-        in
+        @Sendable (op: GoogleLongRunning.Operation) throws
+          -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         return try op._extractStatus(Endpoint.self)
       }
       let rawOp = try await self.updateEndpointLongRunning(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -158,13 +158,14 @@
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         return try op._extractStatusEmpty()
       }
       let rawOp = try await self.deleteEndpoint(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -193,13 +194,14 @@
       request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
         return try op._extractStatus(DeployModelResponse.self)
       }
       let rawOp = try await self.deployModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -230,14 +232,15 @@
       request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State in
         return try op._extractStatus(UndeployModelResponse.self)
       }
       let rawOp = try await self.undeployModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -272,14 +275,15 @@
       request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
         return try op._extractStatus(MutateDeployedModelResponse.self)
       }
       let rawOp = try await self.mutateDeployedModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -556,7 +560,7 @@
     public func createEndpointPollingUntilDone(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -695,7 +699,7 @@
     public func updateEndpointLongRunningPollingUntilDone(
       request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
+      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -732,7 +736,8 @@
     public func deleteEndpointPollingUntilDone(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -768,7 +773,8 @@
     public func deployModelPollingUntilDone(
       request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<DeployModelResponse> {
-      let poll = { () async throws -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
+      let poll = {
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<DeployModelResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -810,7 +816,8 @@
       request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<UndeployModelResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<UndeployModelResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -852,7 +859,8 @@
       request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<MutateDeployedModelResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<MutateDeployedModelResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

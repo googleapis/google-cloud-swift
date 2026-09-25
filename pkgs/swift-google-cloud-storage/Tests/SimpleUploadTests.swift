@@ -911,4 +911,64 @@ import Testing
       registry.lastRequest(for: simpleUploadUrl)?.value(forHTTPHeaderField: "x-goog-user-project")
         == expected)
   }
+
+  /// Tests that task cancellation before or during simple upload throws `CancellationError`.
+  @Test func simpleUploadTaskCancellationThrowsCancellationError() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancelled-upload"
+    let data = Data("Cancel Test".utf8)
+    let source = BytesSource(data: data)
+
+    let client = try makeClient(registry: registry)
+
+    let task = Task {
+      withUnsafeCurrentTask { $0?.cancel() }
+      return try await client.writeObject(source, to: bucket, as: objectName)
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
+
+  /// Tests that task cancellation during retry backoff in simple upload throws `CancellationError`.
+  @Test func simpleUploadTaskCancellationDuringBackoffThrowsCancellationError() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancel-backoff-simple"
+    let data = Data("Retry then cancel".utf8)
+    let source = BytesSource(data: data)
+
+    let uploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: uploadUrl)
+
+    let client = try makeClient(registry: registry)
+    let backoff = try ExponentialBackoff(
+      config: ExponentialBackoffConfig().with {
+        $0.initialDelay = .seconds(10)
+        $0.maximumDelay = .seconds(30)
+      })
+    let options = WriteObjectOptions().with {
+      $0.idempotency = true
+      $0.backoffPolicy = backoff
+    }
+
+    let task = Task {
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
+    }
+
+    try await Task.sleep(for: .milliseconds(50))
+    task.cancel()
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
 }

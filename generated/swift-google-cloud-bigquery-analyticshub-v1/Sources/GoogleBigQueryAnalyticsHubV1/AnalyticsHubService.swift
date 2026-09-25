@@ -185,14 +185,15 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
       return try op._extractStatus(SubscribeDataExchangeResponse.self)
     }
     let rawOp = try await self.subscribeDataExchange(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -225,14 +226,15 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
       return try op._extractStatus(RefreshSubscriptionResponse.self)
     }
     let rawOp = try await self.refreshSubscription(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -297,13 +299,13 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
     request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteSubscription(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -934,7 +936,8 @@ extension Clients.AnalyticsHubServiceProtocol {
     request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -972,7 +975,8 @@ extension Clients.AnalyticsHubServiceProtocol {
     request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1137,7 +1141,7 @@ extension Clients.AnalyticsHubServiceProtocol {
   public func deleteSubscriptionPollingUntilDone(
     request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

@@ -110,6 +110,11 @@ public struct ClientOptions: Sendable {
   /// By default the clients use a per-attempt timeout of 15 seconds (approximately 1/4 of the
   /// default 60-second retry loop maximum duration). Setting this to `nil` disables the per-attempt
   /// timeout, leaving the attempt duration bounded only by the overall retry policy.
+  ///
+  /// Individual requests can override this timeout using ``RequestOptions/attemptTimeout``. Note that
+  /// setting ``RequestOptions/attemptTimeout`` to `nil` inherits this client-level configuration rather
+  /// than disabling it. Setting a very long timeout (such as days or `.seconds(Int64.max)`) on
+  /// `RequestOptions` is effectively the same as disabling the timeout.
   public var attemptTimeout: Duration? = defaultAttemptTimeout()
 
   /// Configures the client's retry policy.

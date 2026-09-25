@@ -64,12 +64,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Key>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Key>.State in
       return try op._extractStatus(Key.self)
     }
     let rawOp = try await self.createKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -144,12 +145,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Key>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Key>.State in
       return try op._extractStatus(Key.self)
     }
     let rawOp = try await self.updateKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -186,12 +188,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Key>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Key>.State in
       return try op._extractStatus(Key.self)
     }
     let rawOp = try await self.deleteKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -226,12 +229,13 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
     request: UndeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Key>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Key>.State in
       return try op._extractStatus(Key.self)
     }
     let rawOp = try await self.undeleteKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -359,7 +363,7 @@ extension Clients.ApiKeysProtocol {
   public func createKeyPollingUntilDone(
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -483,7 +487,7 @@ extension Clients.ApiKeysProtocol {
   public func updateKeyPollingUntilDone(
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -520,7 +524,7 @@ extension Clients.ApiKeysProtocol {
   public func deleteKeyPollingUntilDone(
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -555,7 +559,7 @@ extension Clients.ApiKeysProtocol {
   public func undeleteKeyPollingUntilDone(
     request: UndeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Key> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Key>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

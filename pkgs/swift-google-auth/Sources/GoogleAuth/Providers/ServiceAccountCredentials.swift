@@ -55,7 +55,6 @@ internal struct ServiceAccountParser: CredentialSourceParser {
 struct ServiceAccountCredentials: CredentialsProvider, Sendable {
   private let tokenProvider: TokenCache<ContinuousClock>
   private let quotaProjectID: String?
-  private let universeDomain: String?
 
   init(
     keyJSON: Data,
@@ -74,7 +73,7 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
 
     self.tokenProvider = TokenCache(provider: provider)
     self.quotaProjectID = quotaProjectID
-    self.universeDomain = universeDomain ?? key.universeDomain
+    _ = universeDomain
   }
 
   func headers() async throws -> AuthHeaders {
@@ -84,9 +83,5 @@ struct ServiceAccountCredentials: CredentialsProvider, Sendable {
       headers.append(name: "x-goog-user-project", value: quotaProjectID)
     }
     return headers
-  }
-
-  func universeDomain() async -> String? {
-    return self.universeDomain
   }
 }

@@ -159,13 +159,14 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
     request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
       return try op._extractStatus(SearchBlurbsResponse.self)
     }
     let rawOp = try await self.searchBlurbs(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -601,7 +602,8 @@ extension Clients.MessagingProtocol {
   public func searchBlurbsPollingUntilDone(
     request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

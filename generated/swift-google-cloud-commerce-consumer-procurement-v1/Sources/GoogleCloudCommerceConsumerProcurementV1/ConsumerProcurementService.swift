@@ -93,12 +93,13 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
     request: PlaceOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Order> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Order>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Order>.State in
       return try op._extractStatus(Order.self)
     }
     let rawOp = try await self.placeOrder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -158,12 +159,13 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
     request: ModifyOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Order> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Order>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Order>.State in
       return try op._extractStatus(Order.self)
     }
     let rawOp = try await self.modifyOrder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -200,12 +202,13 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
     request: CancelOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Order> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Order>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Order>.State in
       return try op._extractStatus(Order.self)
     }
     let rawOp = try await self.cancelOrder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -300,7 +303,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
   public func placeOrderPollingUntilDone(
     request: PlaceOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Order> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -394,7 +397,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
   public func modifyOrderPollingUntilDone(
     request: ModifyOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Order> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -420,7 +423,7 @@ extension Clients.ConsumerProcurementServiceProtocol {
   public func cancelOrderPollingUntilDone(
     request: CancelOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Order> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Order>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

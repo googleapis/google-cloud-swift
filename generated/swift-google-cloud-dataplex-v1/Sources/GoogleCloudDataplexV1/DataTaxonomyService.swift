@@ -65,13 +65,14 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       return try op._extractStatus(DataTaxonomy.self)
     }
     let rawOp = try await self.createDataTaxonomy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -102,13 +103,14 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       return try op._extractStatus(DataTaxonomy.self)
     }
     let rawOp = try await self.updateDataTaxonomy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -141,13 +143,13 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDataTaxonomy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -198,13 +200,14 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       return try op._extractStatus(DataAttributeBinding.self)
     }
     let rawOp = try await self.createDataAttributeBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -235,13 +238,14 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       return try op._extractStatus(DataAttributeBinding.self)
     }
     let rawOp = try await self.updateDataAttributeBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -276,13 +280,13 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDataAttributeBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -333,13 +337,14 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       return try op._extractStatus(DataAttribute.self)
     }
     let rawOp = try await self.createDataAttribute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -370,13 +375,14 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       return try op._extractStatus(DataAttribute.self)
     }
     let rawOp = try await self.updateDataAttribute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -407,13 +413,13 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
     request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteDataAttribute(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -786,7 +792,8 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func createDataTaxonomyPollingUntilDone(
     request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -832,7 +839,8 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func updateDataTaxonomyPollingUntilDone(
     request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataTaxonomy> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataTaxonomy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -876,7 +884,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func deleteDataTaxonomyPollingUntilDone(
     request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -990,7 +998,8 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func createDataAttributeBindingPollingUntilDone(
     request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1036,7 +1045,8 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func updateDataAttributeBindingPollingUntilDone(
     request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttributeBinding> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttributeBinding>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1080,7 +1090,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func deleteDataAttributeBindingPollingUntilDone(
     request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1194,7 +1204,8 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func createDataAttributePollingUntilDone(
     request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1240,7 +1251,8 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func updateDataAttributePollingUntilDone(
     request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DataAttribute> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataAttribute>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1284,7 +1296,7 @@ extension Clients.DataTaxonomyServiceProtocol {
   public func deleteDataAttributePollingUntilDone(
     request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

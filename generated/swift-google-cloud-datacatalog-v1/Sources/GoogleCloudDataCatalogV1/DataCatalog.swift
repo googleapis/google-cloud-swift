@@ -517,13 +517,14 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ReconcileTagsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
       return try op._extractStatus(ReconcileTagsResponse.self)
     }
     let rawOp = try await self.reconcileTags(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -701,13 +702,14 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportEntriesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
       return try op._extractStatus(ImportEntriesResponse.self)
     }
     let rawOp = try await self.importEntries(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1915,7 +1917,8 @@ extension Clients.DataCatalogProtocol {
   public func reconcileTagsPollingUntilDone(
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ReconcileTagsResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2059,7 +2062,8 @@ extension Clients.DataCatalogProtocol {
   public func importEntriesPollingUntilDone(
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportEntriesResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

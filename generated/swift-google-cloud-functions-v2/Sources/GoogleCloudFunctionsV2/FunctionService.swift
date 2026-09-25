@@ -87,13 +87,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
     request: CreateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Function> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Function>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Function>.State in
       return try op._extractStatus(Function.self)
     }
     let rawOp = try await self.createFunction(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -122,13 +122,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
     request: UpdateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Function> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Function>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Function>.State in
       return try op._extractStatus(Function.self)
     }
     let rawOp = try await self.updateFunction(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -161,13 +161,13 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
     request: DeleteFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteFunction(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -479,7 +479,7 @@ extension Clients.FunctionServiceProtocol {
   public func createFunctionPollingUntilDone(
     request: CreateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Function> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -520,7 +520,7 @@ extension Clients.FunctionServiceProtocol {
   public func updateFunctionPollingUntilDone(
     request: UpdateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Function> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Function>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -559,7 +559,7 @@ extension Clients.FunctionServiceProtocol {
   public func deleteFunctionPollingUntilDone(
     request: DeleteFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

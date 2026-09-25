@@ -158,13 +158,14 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PurgeProductsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PurgeProductsResponse>.State in
       return try op._extractStatus(PurgeProductsResponse.self)
     }
     let rawOp = try await self.purgeProducts(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PurgeProductsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeProductsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -209,14 +210,14 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: ImportProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportProductsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportProductsResponse>.State in
       return try op._extractStatus(ImportProductsResponse.self)
     }
     let rawOp = try await self.importProducts(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportProductsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportProductsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -367,13 +368,14 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: SetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SetInventoryResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SetInventoryResponse>.State in
       return try op._extractStatus(SetInventoryResponse.self)
     }
     let rawOp = try await self.setInventory(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SetInventoryResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SetInventoryResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -478,14 +480,15 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddFulfillmentPlacesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddFulfillmentPlacesResponse>.State in
       return try op._extractStatus(AddFulfillmentPlacesResponse.self)
     }
     let rawOp = try await self.addFulfillmentPlaces(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AddFulfillmentPlacesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AddFulfillmentPlacesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -590,14 +593,15 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveFulfillmentPlacesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RemoveFulfillmentPlacesResponse>.State in
       return try op._extractStatus(RemoveFulfillmentPlacesResponse.self)
     }
     let rawOp = try await self.removeFulfillmentPlaces(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RemoveFulfillmentPlacesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RemoveFulfillmentPlacesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -696,14 +700,15 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddLocalInventoriesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddLocalInventoriesResponse>.State in
       return try op._extractStatus(AddLocalInventoriesResponse.self)
     }
     let rawOp = try await self.addLocalInventories(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AddLocalInventoriesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AddLocalInventoriesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -798,14 +803,15 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
     request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveLocalInventoriesResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RemoveLocalInventoriesResponse>.State in
       return try op._extractStatus(RemoveLocalInventoriesResponse.self)
     }
     let rawOp = try await self.removeLocalInventories(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RemoveLocalInventoriesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RemoveLocalInventoriesResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1103,7 +1109,8 @@ extension Clients.ProductServiceProtocol {
   public func purgeProductsPollingUntilDone(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PurgeProductsResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PurgeProductsResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeProductsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1132,7 +1139,7 @@ extension Clients.ProductServiceProtocol {
     request: ImportProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportProductsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportProductsResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportProductsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1159,7 +1166,8 @@ extension Clients.ProductServiceProtocol {
   public func setInventoryPollingUntilDone(
     request: SetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SetInventoryResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<SetInventoryResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SetInventoryResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1199,7 +1207,8 @@ extension Clients.ProductServiceProtocol {
     request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddFulfillmentPlacesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AddFulfillmentPlacesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AddFulfillmentPlacesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1237,7 +1246,8 @@ extension Clients.ProductServiceProtocol {
     request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveFulfillmentPlacesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RemoveFulfillmentPlacesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RemoveFulfillmentPlacesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1275,7 +1285,8 @@ extension Clients.ProductServiceProtocol {
     request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddLocalInventoriesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AddLocalInventoriesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AddLocalInventoriesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1313,7 +1324,8 @@ extension Clients.ProductServiceProtocol {
     request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemoveLocalInventoriesResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RemoveLocalInventoriesResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<RemoveLocalInventoriesResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

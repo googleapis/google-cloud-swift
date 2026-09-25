@@ -90,13 +90,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       return try op._extractStatus(PrivateCloud.self)
     }
     let rawOp = try await self.createPrivateCloud(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -139,13 +140,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       return try op._extractStatus(PrivateCloud.self)
     }
     let rawOp = try await self.updatePrivateCloud(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -202,13 +204,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       return try op._extractStatus(PrivateCloud.self)
     }
     let rawOp = try await self.deletePrivateCloud(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -243,13 +246,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UndeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       return try op._extractStatus(PrivateCloud.self)
     }
     let rawOp = try await self.undeletePrivateCloud(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -302,12 +306,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
     let rawOp = try await self.createCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -348,12 +353,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Cluster>.State in
       return try op._extractStatus(Cluster.self)
     }
     let rawOp = try await self.updateCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -388,13 +394,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -474,13 +480,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAddress> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
       return try op._extractStatus(ExternalAddress.self)
     }
     let rawOp = try await self.createExternalAddress(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -521,13 +528,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAddress> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
       return try op._extractStatus(ExternalAddress.self)
     }
     let rawOp = try await self.updateExternalAddress(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -560,13 +568,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteExternalAddress(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -623,12 +631,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Subnet>.State in
       return try op._extractStatus(Subnet.self)
     }
     let rawOp = try await self.updateSubnet(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -675,13 +684,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAccessRule> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
       return try op._extractStatus(ExternalAccessRule.self)
     }
     let rawOp = try await self.createExternalAccessRule(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -712,13 +722,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAccessRule> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
       return try op._extractStatus(ExternalAccessRule.self)
     }
     let rawOp = try await self.updateExternalAccessRule(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -747,13 +758,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteExternalAccessRule(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -801,13 +812,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoggingServer> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
       return try op._extractStatus(LoggingServer.self)
     }
     let rawOp = try await self.createLoggingServer(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -838,13 +850,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoggingServer> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
       return try op._extractStatus(LoggingServer.self)
     }
     let rawOp = try await self.updateLoggingServer(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -873,13 +886,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteLoggingServer(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -944,13 +957,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: ResetNsxCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       return try op._extractStatus(PrivateCloud.self)
     }
     let rawOp = try await self.resetNsxCredentials(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -979,13 +993,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: ResetVcenterCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       return try op._extractStatus(PrivateCloud.self)
     }
     let rawOp = try await self.resetVcenterCredentials(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1025,13 +1040,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateDnsForwardingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DnsForwarding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DnsForwarding>.State in
       return try op._extractStatus(DnsForwarding.self)
     }
     let rawOp = try await self.updateDnsForwarding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DnsForwarding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DnsForwarding>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1086,13 +1102,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPeering> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
       return try op._extractStatus(NetworkPeering.self)
     }
     let rawOp = try await self.createNetworkPeering(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1127,13 +1144,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteNetworkPeering(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1166,13 +1183,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPeering> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
       return try op._extractStatus(NetworkPeering.self)
     }
     let rawOp = try await self.updateNetworkPeering(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1211,13 +1229,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateHcxActivationKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<HcxActivationKey> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<HcxActivationKey>.State in
       return try op._extractStatus(HcxActivationKey.self)
     }
     let rawOp = try await self.createHcxActivationKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<HcxActivationKey>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<HcxActivationKey>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1286,13 +1305,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
       return try op._extractStatus(NetworkPolicy.self)
     }
     let rawOp = try await self.createNetworkPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1343,13 +1363,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
       return try op._extractStatus(NetworkPolicy.self)
     }
     let rawOp = try await self.updateNetworkPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1382,13 +1403,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteNetworkPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1447,14 +1468,15 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
       return try op._extractStatus(ManagementDnsZoneBinding.self)
     }
     let rawOp = try await self.createManagementDnsZoneBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1485,14 +1507,15 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
       return try op._extractStatus(ManagementDnsZoneBinding.self)
     }
     let rawOp = try await self.updateManagementDnsZoneBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1525,13 +1548,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteManagementDnsZoneBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1562,14 +1585,15 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: RepairManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
       return try op._extractStatus(ManagementDnsZoneBinding.self)
     }
     let rawOp = try await self.repairManagementDnsZoneBinding(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1598,13 +1622,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VmwareEngineNetwork> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
       return try op._extractStatus(VmwareEngineNetwork.self)
     }
     let rawOp = try await self.createVmwareEngineNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1637,13 +1662,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VmwareEngineNetwork> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
       return try op._extractStatus(VmwareEngineNetwork.self)
     }
     let rawOp = try await self.updateVmwareEngineNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1678,13 +1704,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeleteVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteVmwareEngineNetwork(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1736,13 +1762,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       return try op._extractStatus(PrivateConnection.self)
     }
     let rawOp = try await self.createPrivateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1795,13 +1822,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: UpdatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       return try op._extractStatus(PrivateConnection.self)
     }
     let rawOp = try await self.updatePrivateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1834,13 +1862,13 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePrivateConnection(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1884,13 +1912,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: GrantDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DnsBindPermission> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
       return try op._extractStatus(DnsBindPermission.self)
     }
     let rawOp = try await self.grantDnsBindPermission(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1934,13 +1963,14 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
     request: RevokeDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DnsBindPermission> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
       return try op._extractStatus(DnsBindPermission.self)
     }
     let rawOp = try await self.revokeDnsBindPermission(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -2739,7 +2769,8 @@ extension Clients.VmwareEngineProtocol {
   public func createPrivateCloudPollingUntilDone(
     request: CreatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2780,7 +2811,8 @@ extension Clients.VmwareEngineProtocol {
   public func updatePrivateCloudPollingUntilDone(
     request: UpdatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2819,7 +2851,8 @@ extension Clients.VmwareEngineProtocol {
   public func deletePrivateCloudPollingUntilDone(
     request: DeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2856,7 +2889,8 @@ extension Clients.VmwareEngineProtocol {
   public func undeletePrivateCloudPollingUntilDone(
     request: UndeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2957,7 +2991,7 @@ extension Clients.VmwareEngineProtocol {
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2998,7 +3032,7 @@ extension Clients.VmwareEngineProtocol {
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3037,7 +3071,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3244,7 +3278,8 @@ extension Clients.VmwareEngineProtocol {
   public func createExternalAddressPollingUntilDone(
     request: CreateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAddress> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3285,7 +3320,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateExternalAddressPollingUntilDone(
     request: UpdateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAddress> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAddress>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3324,7 +3360,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteExternalAddressPollingUntilDone(
     request: DeleteExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3423,7 +3459,7 @@ extension Clients.VmwareEngineProtocol {
   public func updateSubnetPollingUntilDone(
     request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Subnet> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Subnet>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3526,7 +3562,8 @@ extension Clients.VmwareEngineProtocol {
   public func createExternalAccessRulePollingUntilDone(
     request: CreateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAccessRule> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3567,7 +3604,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateExternalAccessRulePollingUntilDone(
     request: UpdateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExternalAccessRule> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExternalAccessRule>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3606,7 +3644,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteExternalAccessRulePollingUntilDone(
     request: DeleteExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3708,7 +3746,8 @@ extension Clients.VmwareEngineProtocol {
   public func createLoggingServerPollingUntilDone(
     request: CreateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoggingServer> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3749,7 +3788,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateLoggingServerPollingUntilDone(
     request: UpdateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<LoggingServer> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LoggingServer>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3788,7 +3828,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteLoggingServerPollingUntilDone(
     request: DeleteLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3931,7 +3971,8 @@ extension Clients.VmwareEngineProtocol {
   public func resetNsxCredentialsPollingUntilDone(
     request: ResetNsxCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -3968,7 +4009,8 @@ extension Clients.VmwareEngineProtocol {
   public func resetVcenterCredentialsPollingUntilDone(
     request: ResetVcenterCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateCloud> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateCloud>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4026,7 +4068,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateDnsForwardingPollingUntilDone(
     request: UpdateDnsForwardingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DnsForwarding> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DnsForwarding>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DnsForwarding>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4130,7 +4173,8 @@ extension Clients.VmwareEngineProtocol {
   public func createNetworkPeeringPollingUntilDone(
     request: CreateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPeering> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4171,7 +4215,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteNetworkPeeringPollingUntilDone(
     request: DeleteNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4208,7 +4252,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateNetworkPeeringPollingUntilDone(
     request: UpdateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPeering> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPeering>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4291,7 +4336,8 @@ extension Clients.VmwareEngineProtocol {
   public func createHcxActivationKeyPollingUntilDone(
     request: CreateHcxActivationKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<HcxActivationKey> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<HcxActivationKey>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<HcxActivationKey>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4460,7 +4506,8 @@ extension Clients.VmwareEngineProtocol {
   public func createNetworkPolicyPollingUntilDone(
     request: CreateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPolicy> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4501,7 +4548,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateNetworkPolicyPollingUntilDone(
     request: UpdateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<NetworkPolicy> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<NetworkPolicy>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4540,7 +4588,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteNetworkPolicyPollingUntilDone(
     request: DeleteNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4643,7 +4691,8 @@ extension Clients.VmwareEngineProtocol {
     request: CreateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4686,7 +4735,8 @@ extension Clients.VmwareEngineProtocol {
     request: UpdateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4726,7 +4776,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteManagementDnsZoneBindingPollingUntilDone(
     request: DeleteManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4765,7 +4815,8 @@ extension Clients.VmwareEngineProtocol {
     request: RepairManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ManagementDnsZoneBinding> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ManagementDnsZoneBinding>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4802,7 +4853,8 @@ extension Clients.VmwareEngineProtocol {
   public func createVmwareEngineNetworkPollingUntilDone(
     request: CreateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VmwareEngineNetwork> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4843,7 +4895,8 @@ extension Clients.VmwareEngineProtocol {
   public func updateVmwareEngineNetworkPollingUntilDone(
     request: UpdateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<VmwareEngineNetwork> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VmwareEngineNetwork>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4882,7 +4935,7 @@ extension Clients.VmwareEngineProtocol {
   public func deleteVmwareEngineNetworkPollingUntilDone(
     request: DeleteVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -4983,7 +5036,8 @@ extension Clients.VmwareEngineProtocol {
   public func createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -5088,7 +5142,8 @@ extension Clients.VmwareEngineProtocol {
   public func updatePrivateConnectionPollingUntilDone(
     request: UpdatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<PrivateConnection> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PrivateConnection>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -5127,7 +5182,7 @@ extension Clients.VmwareEngineProtocol {
   public func deletePrivateConnectionPollingUntilDone(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -5207,7 +5262,8 @@ extension Clients.VmwareEngineProtocol {
   public func grantDnsBindPermissionPollingUntilDone(
     request: GrantDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DnsBindPermission> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -5267,7 +5323,8 @@ extension Clients.VmwareEngineProtocol {
   public func revokeDnsBindPermissionPollingUntilDone(
     request: RevokeDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<DnsBindPermission> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DnsBindPermission>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

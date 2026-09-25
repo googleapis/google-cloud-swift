@@ -399,12 +399,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Folder> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Folder>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Folder>.State in
       return try op._extractStatus(Folder.self)
     }
     let rawOp = try await self.renameFolder(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Folder>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -431,13 +432,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteFolderRecursive(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -505,13 +506,14 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
       return try op._extractStatus(AnywhereCache.self)
     }
     let rawOp = try await self.createAnywhereCache(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -538,13 +540,14 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AnywhereCache> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
       return try op._extractStatus(AnywhereCache.self)
     }
     let rawOp = try await self.updateAnywhereCache(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -607,13 +610,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<RapidCache>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       return try op._extractStatus(RapidCache.self)
     }
     let rawOp = try await self.createRapidCache(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -638,13 +641,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<RapidCache>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       return try op._extractStatus(RapidCache.self)
     }
     let rawOp = try await self.updateRapidCache(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -669,13 +672,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<RapidCache>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       return try op._extractStatus(RapidCache.self)
     }
     let rawOp = try await self.disableRapidCache(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RapidCache>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)

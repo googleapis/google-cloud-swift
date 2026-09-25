@@ -31,11 +31,4 @@ import Testing
 
     #expect(headers == [("x-goog-api-key", "test-api-key")])
   }
-
-  @Test func universeDomainReturnsNil() async {
-    let credentials = ApiKeyCredentials(apiKey: "test-api-key")
-    let universeDomain = await credentials.universeDomain()
-
-    #expect(universeDomain == nil)
-  }
 }

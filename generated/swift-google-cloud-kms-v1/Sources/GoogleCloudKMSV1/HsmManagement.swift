@@ -104,14 +104,15 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
       return try op._extractStatus(SingleTenantHsmInstance.self)
     }
     let rawOp = try await self.createSingleTenantHsmInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -152,7 +153,7 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
       return try op._extractStatus(SingleTenantHsmInstanceProposal.self)
     }
@@ -160,7 +161,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -229,7 +231,7 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ) async throws -> any GoogleGax.PollableOperation<ExecuteSingleTenantHsmInstanceProposalResponse>
   {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExecuteSingleTenantHsmInstanceProposalResponse>.State in
       return try op._extractStatus(ExecuteSingleTenantHsmInstanceProposalResponse.self)
     }
@@ -237,7 +239,7 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
       request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws
+      @Sendable () async throws
         -> GoogleGax._PollableOperationImpl<ExecuteSingleTenantHsmInstanceProposalResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
@@ -559,7 +561,8 @@ extension Clients.HsmManagementProtocol {
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstance> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstance>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -602,7 +605,8 @@ extension Clients.HsmManagementProtocol {
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<SingleTenantHsmInstanceProposal> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<SingleTenantHsmInstanceProposal>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -670,7 +674,7 @@ extension Clients.HsmManagementProtocol {
   ) async throws -> any GoogleGax.PollableOperation<ExecuteSingleTenantHsmInstanceProposalResponse>
   {
     let poll = {
-      () async throws
+      @Sendable () async throws
         -> GoogleGax._PollableOperationImpl<ExecuteSingleTenantHsmInstanceProposalResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }

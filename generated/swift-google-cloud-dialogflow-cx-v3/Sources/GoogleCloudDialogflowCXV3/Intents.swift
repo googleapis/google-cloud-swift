@@ -143,14 +143,15 @@
       request: ImportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportIntentsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State in
         return try op._extractStatus(ImportIntentsResponse.self)
       }
       let rawOp = try await self.importIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -203,14 +204,15 @@
       request: ExportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportIntentsResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State in
         return try op._extractStatus(ExportIntentsResponse.self)
       }
       let rawOp = try await self.exportIntents(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State
+        in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -519,7 +521,8 @@
       request: ImportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ImportIntentsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportIntentsResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
@@ -548,7 +551,8 @@
       request: ExportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<ExportIntentsResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State in
+        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportIntentsResponse>.State
+        in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(

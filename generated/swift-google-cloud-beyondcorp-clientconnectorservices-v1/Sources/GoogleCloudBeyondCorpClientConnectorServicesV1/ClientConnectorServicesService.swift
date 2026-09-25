@@ -93,14 +93,14 @@ public final class ClientConnectorServicesServiceClient: Clients
     request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
       return try op._extractStatus(ClientConnectorService.self)
     }
     let rawOp = try await self.createClientConnectorService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -129,14 +129,14 @@ public final class ClientConnectorServicesServiceClient: Clients
     request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
       return try op._extractStatus(ClientConnectorService.self)
     }
     let rawOp = try await self.updateClientConnectorService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -165,13 +165,13 @@ public final class ClientConnectorServicesServiceClient: Clients
     request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteClientConnectorService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -465,7 +465,7 @@ extension Clients.ClientConnectorServicesServiceProtocol {
     request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -507,7 +507,7 @@ extension Clients.ClientConnectorServicesServiceProtocol {
     request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -546,7 +546,7 @@ extension Clients.ClientConnectorServicesServiceProtocol {
   public func deleteClientConnectorServicePollingUntilDone(
     request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

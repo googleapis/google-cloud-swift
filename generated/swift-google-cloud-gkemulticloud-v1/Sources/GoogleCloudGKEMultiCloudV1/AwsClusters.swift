@@ -78,13 +78,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
       return try op._extractStatus(AwsCluster.self)
     }
     let rawOp = try await self.createAwsCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -119,13 +119,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsCluster> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
       return try op._extractStatus(AwsCluster.self)
     }
     let rawOp = try await self.updateAwsCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -206,13 +206,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAwsCluster(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -284,13 +284,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       return try op._extractStatus(AwsNodePool.self)
     }
     let rawOp = try await self.createAwsNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -325,13 +325,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       return try op._extractStatus(AwsNodePool.self)
     }
     let rawOp = try await self.updateAwsNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -376,13 +376,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       return try op._extractStatus(AwsNodePool.self)
     }
     let rawOp = try await self.rollbackAwsNodePoolUpdate(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -457,13 +457,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
     request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAwsNodePool(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -748,7 +748,7 @@ extension Clients.AwsClustersProtocol {
   public func createAwsClusterPollingUntilDone(
     request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -794,7 +794,7 @@ extension Clients.AwsClustersProtocol {
   public func updateAwsClusterPollingUntilDone(
     request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsCluster> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsCluster>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -913,7 +913,7 @@ extension Clients.AwsClustersProtocol {
   public func deleteAwsClusterPollingUntilDone(
     request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -983,7 +983,7 @@ extension Clients.AwsClustersProtocol {
   public func createAwsNodePoolPollingUntilDone(
     request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1029,7 +1029,7 @@ extension Clients.AwsClustersProtocol {
   public func updateAwsNodePoolPollingUntilDone(
     request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1073,7 +1073,7 @@ extension Clients.AwsClustersProtocol {
   public func rollbackAwsNodePoolUpdatePollingUntilDone(
     request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AwsNodePool> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AwsNodePool>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1192,7 +1192,7 @@ extension Clients.AwsClustersProtocol {
   public func deleteAwsNodePoolPollingUntilDone(
     request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

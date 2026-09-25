@@ -64,13 +64,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: CreateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Collector>.State in
       return try op._extractStatus(Collector.self)
     }
     let rawOp = try await self.createCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -99,13 +99,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Annotation> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Annotation>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Annotation>.State in
       return try op._extractStatus(Annotation.self)
     }
     let rawOp = try await self.createAnnotation(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -161,13 +161,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Collector>.State in
       return try op._extractStatus(Collector.self)
     }
     let rawOp = try await self.updateCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -198,13 +198,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Collector>.State in
       return try op._extractStatus(Collector.self)
     }
     let rawOp = try await self.deleteCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -233,13 +233,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Collector>.State in
       return try op._extractStatus(Collector.self)
     }
     let rawOp = try await self.resumeCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -268,13 +268,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Collector>.State in
       return try op._extractStatus(Collector.self)
     }
     let rawOp = try await self.registerCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -303,13 +303,13 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
     request: PauseCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Collector>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Collector>.State in
       return try op._extractStatus(Collector.self)
     }
     let rawOp = try await self.pauseCollector(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -527,7 +527,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func createCollectorPollingUntilDone(
     request: CreateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -568,7 +568,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func createAnnotationPollingUntilDone(
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Annotation> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Annotation>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -692,7 +692,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func updateCollectorPollingUntilDone(
     request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -731,7 +731,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func deleteCollectorPollingUntilDone(
     request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -768,7 +768,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func resumeCollectorPollingUntilDone(
     request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -805,7 +805,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func registerCollectorPollingUntilDone(
     request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -842,7 +842,7 @@ extension Clients.RapidMigrationAssessmentProtocol {
   public func pauseCollectorPollingUntilDone(
     request: PauseCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Collector> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Collector>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

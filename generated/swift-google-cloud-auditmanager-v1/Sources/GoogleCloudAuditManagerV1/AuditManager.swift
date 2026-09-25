@@ -128,13 +128,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuditReport>.State in
       return try op._extractStatus(AuditReport.self)
     }
     let rawOp = try await self.generateAuditReport(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -560,7 +560,7 @@ extension Clients.AuditManagerProtocol {
   public func generateAuditReportPollingUntilDone(
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

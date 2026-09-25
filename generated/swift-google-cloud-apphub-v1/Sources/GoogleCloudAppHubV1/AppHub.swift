@@ -79,14 +79,15 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: CreateServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceProjectAttachment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceProjectAttachment>.State in
       return try op._extractStatus(ServiceProjectAttachment.self)
     }
     let rawOp = try await self.createServiceProjectAttachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceProjectAttachment>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceProjectAttachment>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -124,13 +125,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: DeleteServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteServiceProjectAttachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -208,12 +209,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Service>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Service>.State in
       return try op._extractStatus(Service.self)
     }
     let rawOp = try await self.createService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -251,12 +253,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Service>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Service>.State in
       return try op._extractStatus(Service.self)
     }
     let rawOp = try await self.updateService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -285,13 +288,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteService(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -358,13 +361,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Workload>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Workload>.State in
       return try op._extractStatus(Workload.self)
     }
     let rawOp = try await self.createWorkload(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -402,13 +405,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: UpdateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Workload>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Workload>.State in
       return try op._extractStatus(Workload.self)
     }
     let rawOp = try await self.updateWorkload(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -437,13 +440,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteWorkload(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -481,13 +484,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
       return try op._extractStatus(Application.self)
     }
     let rawOp = try await self.createApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -525,13 +528,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
       return try op._extractStatus(Application.self)
     }
     let rawOp = try await self.updateApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -560,13 +563,13 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteApplication(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1008,7 +1011,8 @@ extension Clients.AppHubProtocol {
     request: CreateServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceProjectAttachment> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceProjectAttachment>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceProjectAttachment>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1071,7 +1075,7 @@ extension Clients.AppHubProtocol {
   public func deleteServiceProjectAttachmentPollingUntilDone(
     request: DeleteServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1259,7 +1263,7 @@ extension Clients.AppHubProtocol {
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1319,7 +1323,7 @@ extension Clients.AppHubProtocol {
   public func updateServicePollingUntilDone(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Service> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Service>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1358,7 +1362,7 @@ extension Clients.AppHubProtocol {
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1525,7 +1529,7 @@ extension Clients.AppHubProtocol {
   public func createWorkloadPollingUntilDone(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1586,7 +1590,7 @@ extension Clients.AppHubProtocol {
   public func updateWorkloadPollingUntilDone(
     request: UpdateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Workload> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Workload>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1625,7 +1629,7 @@ extension Clients.AppHubProtocol {
   public func deleteWorkloadPollingUntilDone(
     request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1705,7 +1709,7 @@ extension Clients.AppHubProtocol {
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1767,7 +1771,7 @@ extension Clients.AppHubProtocol {
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Application> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1806,7 +1810,7 @@ extension Clients.AppHubProtocol {
   public func deleteApplicationPollingUntilDone(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

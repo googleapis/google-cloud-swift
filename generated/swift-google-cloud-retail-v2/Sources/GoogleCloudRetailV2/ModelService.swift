@@ -69,12 +69,13 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Model>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Model>.State in
       return try op._extractStatus(Model.self)
     }
     let rawOp = try await self.createModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -160,13 +161,14 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
     request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
       return try op._extractStatus(TuneModelResponse.self)
     }
     let rawOp = try await self.tuneModel(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -287,7 +289,7 @@ extension Clients.ModelServiceProtocol {
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Model> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -463,7 +465,8 @@ extension Clients.ModelServiceProtocol {
   public func tuneModelPollingUntilDone(
     request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<TuneModelResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TuneModelResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

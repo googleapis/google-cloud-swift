@@ -176,16 +176,19 @@ struct StorageClientIntegrationTests {
   @Test func testSimpleUploadWithChecksumValidation() async throws {
     let storage = try StorageClient()
 
-    for validation in [ChecksumValidation.crc32c, ChecksumValidation.md5] {
+    for checksums in [
+      ChecksumOptions(crc32c: .auto, md5: nil),
+      ChecksumOptions(crc32c: nil, md5: .auto),
+    ] {
       let objectName = "test-checksum-simple-\(UUID().uuidString).txt"
-      let content = "Hello Google Cloud Storage checksum validation: \(validation)"
+      let content = "Hello Google Cloud Storage checksum: \(checksums)"
       let fileURL = FileManager.default.temporaryDirectory.appendingPathComponent(objectName)
       try content.write(to: fileURL, atomically: true, encoding: .utf8)
       defer {
         try? FileManager.default.removeItem(at: fileURL)
       }
 
-      let options = WriteObjectOptions().with { $0.validation = validation }
+      let options = WriteObjectOptions().with { $0.checksums = checksums }
       let object = try await storage.writeObject(
         fileURL, to: bucketName, as: objectName, options: options)
 
@@ -193,14 +196,17 @@ struct StorageClientIntegrationTests {
       #expect(object.name == objectName)
       #expect(object.size == Int64(content.utf8.count))
 
-      print("Simple upload with \(validation) successful: \(object)")
+      print("Simple upload with \(checksums) successful: \(object)")
     }
   }
 
   @Test func testResumableUploadWithChecksumValidation() async throws {
     let storage = try StorageClient()
 
-    for validation in [ChecksumValidation.crc32c, ChecksumValidation.md5] {
+    for checksums in [
+      ChecksumOptions(crc32c: .auto, md5: nil),
+      ChecksumOptions(crc32c: nil, md5: .auto),
+    ] {
       let objectName = "test-checksum-resumable-\(UUID().uuidString).bin"
       let fileSize = 10 * 1024 * 1024
       var data = Data(count: fileSize)
@@ -213,7 +219,7 @@ struct StorageClientIntegrationTests {
         try? FileManager.default.removeItem(at: fileURL)
       }
 
-      let options = WriteObjectOptions().with { $0.validation = validation }
+      let options = WriteObjectOptions().with { $0.checksums = checksums }
       let object = try await storage.writeObject(
         fileURL, to: bucketName, as: objectName, options: options)
 
@@ -221,7 +227,7 @@ struct StorageClientIntegrationTests {
       #expect(object.name == objectName)
       #expect(object.size == Int64(fileSize))
 
-      print("Resumable upload with \(validation) successful: \(object)")
+      print("Resumable upload with \(checksums) successful: \(object)")
     }
   }
 

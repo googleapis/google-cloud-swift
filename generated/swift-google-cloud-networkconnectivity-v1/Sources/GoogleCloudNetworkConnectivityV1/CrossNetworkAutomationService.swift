@@ -81,13 +81,14 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: CreateServiceConnectionMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionMap> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
       return try op._extractStatus(ServiceConnectionMap.self)
     }
     let rawOp = try await self.createServiceConnectionMap(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -116,13 +117,14 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: UpdateServiceConnectionMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionMap> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
       return try op._extractStatus(ServiceConnectionMap.self)
     }
     let rawOp = try await self.updateServiceConnectionMap(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -151,13 +153,13 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: DeleteServiceConnectionMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteServiceConnectionMap(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -204,14 +206,15 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: CreateServiceConnectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State in
       return try op._extractStatus(ServiceConnectionPolicy.self)
     }
     let rawOp = try await self.createServiceConnectionPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -240,14 +243,15 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: UpdateServiceConnectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionPolicy> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State in
       return try op._extractStatus(ServiceConnectionPolicy.self)
     }
     let rawOp = try await self.updateServiceConnectionPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -276,13 +280,13 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: DeleteServiceConnectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteServiceConnectionPolicy(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -329,13 +333,14 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: UpdateServiceClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceClass> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceClass>.State in
       return try op._extractStatus(ServiceClass.self)
     }
     let rawOp = try await self.updateServiceClass(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceClass>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceClass>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -364,13 +369,13 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: DeleteServiceClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteServiceClass(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -417,14 +422,14 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: CreateServiceConnectionTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionToken> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServiceConnectionToken>.State in
       return try op._extractStatus(ServiceConnectionToken.self)
     }
     let rawOp = try await self.createServiceConnectionToken(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionToken>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionToken>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -453,13 +458,13 @@ public final class CrossNetworkAutomationServiceClient: Clients
     request: DeleteServiceConnectionTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteServiceConnectionToken(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -849,7 +854,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func createServiceConnectionMapPollingUntilDone(
     request: CreateServiceConnectionMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionMap> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -890,7 +896,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func updateServiceConnectionMapPollingUntilDone(
     request: UpdateServiceConnectionMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionMap> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionMap>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -929,7 +936,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func deleteServiceConnectionMapPollingUntilDone(
     request: DeleteServiceConnectionMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1031,7 +1038,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
     request: CreateServiceConnectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionPolicy> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1073,7 +1081,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
     request: UpdateServiceConnectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionPolicy> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionPolicy>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1112,7 +1121,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func deleteServiceConnectionPolicyPollingUntilDone(
     request: DeleteServiceConnectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1213,7 +1222,8 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func updateServiceClassPollingUntilDone(
     request: UpdateServiceClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceClass> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ServiceClass>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceClass>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1252,7 +1262,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func deleteServiceClassPollingUntilDone(
     request: DeleteServiceClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1354,7 +1364,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
     request: CreateServiceConnectionTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ServiceConnectionToken> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionToken>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServiceConnectionToken>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1395,7 +1405,7 @@ extension Clients.CrossNetworkAutomationServiceProtocol {
   public func deleteServiceConnectionTokenPollingUntilDone(
     request: DeleteServiceConnectionTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

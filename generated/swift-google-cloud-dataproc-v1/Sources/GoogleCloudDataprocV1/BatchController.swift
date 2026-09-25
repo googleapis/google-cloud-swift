@@ -58,12 +58,13 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Batch> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Batch>.State in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Batch>.State in
       return try op._extractStatus(Batch.self)
     }
     let rawOp = try await self.createBatch(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -276,7 +277,7 @@ extension Clients.BatchControllerProtocol {
   public func createBatchPollingUntilDone(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Batch> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

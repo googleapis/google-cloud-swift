@@ -82,14 +82,15 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
     request: StartEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<StartEnvironmentResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StartEnvironmentResponse>.State in
       return try op._extractStatus(StartEnvironmentResponse.self)
     }
     let rawOp = try await self.startEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<StartEnvironmentResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<StartEnvironmentResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -124,14 +125,15 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
     request: AuthorizeEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AuthorizeEnvironmentResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthorizeEnvironmentResponse>.State in
       return try op._extractStatus(AuthorizeEnvironmentResponse.self)
     }
     let rawOp = try await self.authorizeEnvironment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AuthorizeEnvironmentResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AuthorizeEnvironmentResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -164,13 +166,14 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
     request: AddPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddPublicKeyResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddPublicKeyResponse>.State in
       return try op._extractStatus(AddPublicKeyResponse.self)
     }
     let rawOp = try await self.addPublicKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AddPublicKeyResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddPublicKeyResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -205,14 +208,15 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
     request: RemovePublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemovePublicKeyResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RemovePublicKeyResponse>.State in
       return try op._extractStatus(RemovePublicKeyResponse.self)
     }
     let rawOp = try await self.removePublicKey(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RemovePublicKeyResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RemovePublicKeyResponse>.State
+      in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -336,7 +340,8 @@ extension Clients.CloudShellServiceProtocol {
     request: StartEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<StartEnvironmentResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<StartEnvironmentResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<StartEnvironmentResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -365,7 +370,8 @@ extension Clients.CloudShellServiceProtocol {
     request: AuthorizeEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AuthorizeEnvironmentResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<AuthorizeEnvironmentResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<AuthorizeEnvironmentResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -392,7 +398,8 @@ extension Clients.CloudShellServiceProtocol {
   public func addPublicKeyPollingUntilDone(
     request: AddPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<AddPublicKeyResponse> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<AddPublicKeyResponse>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddPublicKeyResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -421,7 +428,8 @@ extension Clients.CloudShellServiceProtocol {
     request: RemovePublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<RemovePublicKeyResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<RemovePublicKeyResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RemovePublicKeyResponse>.State
+      in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

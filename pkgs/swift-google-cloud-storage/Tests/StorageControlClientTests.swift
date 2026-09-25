@@ -246,8 +246,8 @@ import Testing
     #expect(names == ["bucket-1", "bucket-2"])
   }
 
-  struct MockPollableOperation<ResponseType>: PollableOperation {
-    let result: Result<ResponseType, any Error>
+  struct MockPollableOperation<ResponseType: Sendable>: PollableOperation {
+    let result: Result<ResponseType, any Error & Sendable>
     func wait() async throws -> ResponseType {
       try result.get()
     }

@@ -40,19 +40,6 @@ struct ChecksummedSource<S: WriteObjectSource> {
     self.calculators = options.makeUploadCalculators()
   }
 
-  init(source: S, validation: ChecksumValidation) {
-    self.source = source
-    switch validation {
-    case .none:
-      self.options = .none
-    case .crc32c:
-      self.options = ChecksumOptions(crc32c: .auto, md5: nil)
-    case .md5:
-      self.options = ChecksumOptions(crc32c: nil, md5: .auto)
-    }
-    self.calculators = self.options.makeUploadCalculators()
-  }
-
   /// Reseeds the CRC32C calculator with a running hash seed provided by GCS.
   ///
   /// Because the other hash algorithm used by Cloud Storage (MD5) does not support
@@ -103,6 +90,8 @@ struct ChecksummedSource<S: WriteObjectSource> {
     if !isInitialized {
       do {
         nextChunk = try await source.read(maxBytes: maxBytes)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }
@@ -118,6 +107,8 @@ struct ChecksummedSource<S: WriteObjectSource> {
 
     do {
       nextChunk = try await source.read(maxBytes: maxBytes)
+    } catch is CancellationError {
+      throw CancellationError()
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
@@ -159,6 +150,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     guard offset > bytesHashed && !calculators.isEmpty else {
       do {
         try await source.seek(to: offset)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }
@@ -168,6 +161,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     // Catch up checksum calculation from `bytesHashed` to `offset`
     do {
       try await source.seek(to: bytesHashed)
+    } catch is CancellationError {
+      throw CancellationError()
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
@@ -179,6 +174,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
       let chunk: ByteChunk?
       do {
         chunk = try await source.read(maxBytes: toRead)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }

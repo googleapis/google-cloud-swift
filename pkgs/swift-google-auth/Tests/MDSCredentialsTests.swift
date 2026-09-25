@@ -130,14 +130,6 @@ import Testing
     )
   }
 
-  @Test func mdsProviderUniverseDomainIsNil() async throws {
-    let mock = MockHTTPClient([])
-    let client = AuthHTTPClient(mock: mock)
-    let provider = MDSCredentials(client: client, environment: [:])
-    let ud = await provider.universeDomain()
-    #expect(ud == nil, "Universe domain should be nil for MDS provider")
-  }
-
   @Test func adcNoMDS() async throws {
     let mock = MockHTTPClient([
       { (request: HTTPClientRequest) in

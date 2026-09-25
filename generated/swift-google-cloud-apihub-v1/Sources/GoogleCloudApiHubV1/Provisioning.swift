@@ -58,13 +58,14 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
     request: CreateApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ApiHubInstance> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ApiHubInstance>.State in
       return try op._extractStatus(ApiHubInstance.self)
     }
     let rawOp = try await self.createApiHubInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ApiHubInstance>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ApiHubInstance>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -93,13 +94,13 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
     request: DeleteApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteApiHubInstance(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -281,7 +282,8 @@ extension Clients.ProvisioningProtocol {
   public func createApiHubInstancePollingUntilDone(
     request: CreateApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ApiHubInstance> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<ApiHubInstance>.State in
+    let poll = {
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ApiHubInstance>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -322,7 +324,7 @@ extension Clients.ProvisioningProtocol {
   public func deleteApiHubInstancePollingUntilDone(
     request: DeleteApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

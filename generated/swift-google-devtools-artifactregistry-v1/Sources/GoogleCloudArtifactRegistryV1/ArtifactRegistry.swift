@@ -150,14 +150,15 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportAptArtifactsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportAptArtifactsResponse>.State in
       return try op._extractStatus(ImportAptArtifactsResponse.self)
     }
     let rawOp = try await self.importAptArtifacts(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportAptArtifactsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportAptArtifactsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -192,14 +193,15 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportYumArtifactsResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportYumArtifactsResponse>.State in
       return try op._extractStatus(ImportYumArtifactsResponse.self)
     }
     let rawOp = try await self.importYumArtifacts(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportYumArtifactsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportYumArtifactsResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -248,13 +250,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Repository>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Repository>.State in
       return try op._extractStatus(Repository.self)
     }
     let rawOp = try await self.createRepository(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -296,13 +298,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteRepository(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -351,13 +353,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: DeletePackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deletePackage(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -406,13 +408,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteVersion(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -443,13 +445,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.batchDeleteVersions(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -509,13 +511,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: DeleteFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteFile(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -735,13 +737,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Attachment> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Attachment>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Attachment>.State in
       return try op._extractStatus(Attachment.self)
     }
     let rawOp = try await self.createAttachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Attachment>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Attachment>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -774,13 +776,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State
-      in
+      @Sendable (op: GoogleLongRunning.Operation) throws
+        -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       return try op._extractStatusEmpty()
     }
     let rawOp = try await self.deleteAttachment(request: request, options: options)
     let initialState = try extractStatus(rawOp)
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -809,14 +811,14 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
     request: ExportArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportArtifactResponse> {
     let extractStatus = {
-      (op: GoogleLongRunning.Operation) throws
+      @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportArtifactResponse>.State in
       return try op._extractStatus(ExportArtifactResponse.self)
     }
     let rawOp = try await self.exportArtifact(request: request, options: options)
     let initialState = try extractStatus(rawOp)
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportArtifactResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportArtifactResponse>.State in
       let op = try await self.getOperation(
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
@@ -1470,7 +1472,8 @@ extension Clients.ArtifactRegistryProtocol {
     request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportAptArtifactsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportAptArtifactsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportAptArtifactsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1499,7 +1502,8 @@ extension Clients.ArtifactRegistryProtocol {
     request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ImportYumArtifactsResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ImportYumArtifactsResponse>.State in
+      @Sendable () async throws
+        -> GoogleGax._PollableOperationImpl<ImportYumArtifactsResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1591,7 +1595,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Repository> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1655,7 +1659,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1756,7 +1760,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func deletePackagePollingUntilDone(
     request: DeletePackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1857,7 +1861,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func deleteVersionPollingUntilDone(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -1894,7 +1898,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func batchDeleteVersionsPollingUntilDone(
     request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2016,7 +2020,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func deleteFilePollingUntilDone(
     request: DeleteFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2543,7 +2547,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func createAttachmentPollingUntilDone(
     request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Attachment> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Attachment>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Attachment>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2584,7 +2588,7 @@ extension Clients.ArtifactRegistryProtocol {
   public func deleteAttachmentPollingUntilDone(
     request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
+    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(
@@ -2622,7 +2626,7 @@ extension Clients.ArtifactRegistryProtocol {
     request: ExportArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> any GoogleGax.PollableOperation<ExportArtifactResponse> {
     let poll = {
-      () async throws -> GoogleGax._PollableOperationImpl<ExportArtifactResponse>.State in
+      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportArtifactResponse>.State in
       throw GoogleGax.RequestError.unimplemented
     }
     return GoogleGax._PollableOperationImpl(

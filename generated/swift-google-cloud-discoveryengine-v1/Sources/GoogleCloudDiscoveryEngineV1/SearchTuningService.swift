@@ -59,14 +59,15 @@
       request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TrainCustomModelResponse> {
       let extractStatus = {
-        (op: GoogleLongRunning.Operation) throws
+        @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
         return try op._extractStatus(TrainCustomModelResponse.self)
       }
       let rawOp = try await self.trainCustomModel(request: request, options: options)
       let initialState = try extractStatus(rawOp)
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
         let op = try await self.getOperation(
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
@@ -180,7 +181,8 @@
       request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> any GoogleGax.PollableOperation<TrainCustomModelResponse> {
       let poll = {
-        () async throws -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
+        @Sendable () async throws
+          -> GoogleGax._PollableOperationImpl<TrainCustomModelResponse>.State in
         throw GoogleGax.RequestError.unimplemented
       }
       return GoogleGax._PollableOperationImpl(
