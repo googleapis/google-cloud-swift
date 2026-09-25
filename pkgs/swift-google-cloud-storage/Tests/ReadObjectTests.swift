@@ -1110,8 +1110,13 @@ import Testing
     do {
       for try await _ in result.body {}
       Issue.record("Expected error to be thrown when resumePolicy is NeverResume")
-    } catch ReadObjectError.resumeFailed(let bytesReceived, _) {
+    } catch ReadObjectError.resumeFailed(let bytesReceived, let underlyingError) {
       #expect(bytesReceived == UInt64(chunk1.count))
+      if case .io(let underlying) = underlyingError {
+        #expect(underlying is MockNetworkError)
+      } else {
+        Issue.record("Expected underlyingError to be .io(MockNetworkError), got \(underlyingError)")
+      }
     } catch {
       Issue.record("Expected ReadObjectError.resumeFailed, but got \(error)")
     }
@@ -1159,6 +1164,55 @@ import Testing
       #expect(String(data: details.payload, encoding: .utf8) == "Object deleted")
     } catch {
       Issue.record("Expected ReadObjectError.requestError(.http) 404, got \(error)")
+    }
+  }
+
+  @Test func downloadObjectStreamingResumeRequestFailureThrowsResumeFailed() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "resume-io-error.bin"
+    let chunk1 = Data("InitialData".utf8)
+
+    let initialUrl = registry.url("/storage/v1/b/\(bucket)/o/\(objectName)?alt=media")
+    let resumeUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=222")
+
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [chunk1],
+        error: MockNetworkError(),
+        headers: [
+          "Content-Length": "50",
+          "x-goog-generation": "222",
+        ]
+      ),
+      for: initialUrl
+    )
+
+    registry.register(
+      response: .failure(MockNetworkError()),
+      for: resumeUrl
+    )
+
+    let client = try makeClient(registry: registry)
+    let options = ReadObjectOptions().with {
+      $0.resumePolicy = StorageResumePolicy<ReadObjectDetails>.unbounded().withTotalResumeLimit(1)
+    }
+    let result = client.readObject(from: bucket, object: objectName, options: options)
+
+    do {
+      for try await _ in result.body {}
+      Issue.record("Expected error when resume request fails")
+    } catch ReadObjectError.resumeFailed(let bytesReceived, let underlyingError) {
+      #expect(bytesReceived == UInt64(chunk1.count))
+      if case .io(let underlying) = underlyingError {
+        #expect(underlying is MockNetworkError)
+      } else {
+        Issue.record("Expected underlyingError to be .io(MockNetworkError), got \(underlyingError)")
+      }
+    } catch {
+      Issue.record("Expected ReadObjectError.resumeFailed, got \(error)")
     }
   }
 

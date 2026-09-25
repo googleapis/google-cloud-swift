@@ -334,7 +334,7 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
             throw ReadObjectError.requestError(err)
           }
           throw ReadObjectError.resumeFailed(
-            bytesReceived: bytesReceived, message: err.localizedDescription)
+            bytesReceived: bytesReceived, underlyingError: err)
         } catch {
           lock.withLock { isFinished = true }
           throw error
@@ -482,15 +482,14 @@ package final class ReadObjectCoordinator: @unchecked Sendable {
       if let downloadError = error as? ReadObjectError {
         throw downloadError
       }
-      if let reqError = error as? RequestError {
-        if case .http = reqError {
-          throw ReadObjectError.requestError(reqError)
-        } else if case .service = reqError {
-          throw ReadObjectError.requestError(reqError)
-        }
+      let reqError = (error as? RequestError) ?? .io(error)
+      if case .http = reqError {
+        throw ReadObjectError.requestError(reqError)
+      } else if case .service = reqError {
+        throw ReadObjectError.requestError(reqError)
       }
       throw ReadObjectError.resumeFailed(
-        bytesReceived: bytesReceived, message: error.localizedDescription)
+        bytesReceived: bytesReceived, underlyingError: reqError)
     }
   }
 
