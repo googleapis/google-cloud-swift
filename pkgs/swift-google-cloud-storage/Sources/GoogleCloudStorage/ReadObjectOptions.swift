@@ -17,31 +17,31 @@ public import GoogleGax
 
 /// Specifies a byte range for ranged reads.
 public struct ReadObjectRange: Sendable, Hashable, Equatable {
-  package enum Store: Sendable, Hashable, Equatable {
+  fileprivate enum Store: Sendable, Hashable, Equatable {
     /// Read the entire object (default).
     case entire
 
-    /// Read all bytes starting from `offset` to the end of the object (HTTP `bytes=N-`).
+    /// Read zero bytes (HTTP `bytes=0-0` for metadata/headers only).
+    case zero
+
+    /// Read all bytes starting from `offset > 0` to the end of the object (HTTP `bytes=N-`).
     case fromOffset(Int64)
 
-    /// Read the first `count` bytes of the object (HTTP `bytes=0-N`).
-    case prefix(Int64)
-
-    /// Read the last `count` bytes of the object (HTTP `bytes=-N`).
+    /// Read the last `count > 0` bytes of the object (HTTP `bytes=-N`).
     case suffix(Int64)
 
     /// Read a bounded range of bytes from `range.lowerBound` to `range.upperBound` inclusive (HTTP `bytes=start-end`).
     case bounded(ClosedRange<Int64>)
 
     /// Converts the range specification to an HTTP `Range` header value string.
-    public var headerValue: String? {
+    var headerValue: String? {
       switch self {
       case .entire:
         return nil
+      case .zero:
+        return "bytes=0-0"
       case .fromOffset(let offset):
         return "bytes=\(offset)-"
-      case .prefix(let count):
-        return count > 0 ? "bytes=0-\(count - 1)" : "bytes=0-0"
       case .suffix(let count):
         return "bytes=-\(count)"
       case .bounded(let range):
@@ -50,11 +50,7 @@ public struct ReadObjectRange: Sendable, Hashable, Equatable {
     }
   }
 
-  package let store: Store
-
-  package init(store: Store) {
-    self.store = store
-  }
+  fileprivate let store: Store
 
   /// Returns a range representing the entire object.
   public init() {
@@ -73,25 +69,17 @@ public struct ReadObjectRange: Sendable, Hashable, Equatable {
 
   /// Convenience initializer for Swift `ClosedRange<UInt64>`.
   public init?(range: ClosedRange<UInt64>) {
-    guard let lower = Int64(exactly: range.lowerBound) else { return nil }
-    guard let upper = Int64(exactly: range.upperBound) else { return nil }
-    self.store = .bounded(lower...upper)
+    self.init(start: range.lowerBound, end: range.upperBound)
   }
 
   /// Convenience initializer for Swift `PartialRangeFrom<UInt64>` (e.g. `1024...`).
   public init?(range: PartialRangeFrom<UInt64>) {
-    guard range.lowerBound <= UInt64(Int64.max) else { return nil }
-    guard range.lowerBound != 0 else {
-      self.store = .entire
-      return
-    }
-    self.store = .fromOffset(Int64(range.lowerBound))
+    self.init(fromOffset: range.lowerBound)
   }
 
   /// Convenience initializer for Swift `PartialRangeThrough<UInt64>` (e.g. `...1024`).
   public init?(range: PartialRangeThrough<UInt64>) {
-    guard range.upperBound <= UInt64(Int64.max) else { return nil }
-    self.store = .bounded(0...Int64(range.upperBound))
+    self.init(start: 0, end: range.upperBound)
   }
 
   /// Creates a bounded range from `start` to `end` inclusive, or returns `nil` if `end < start`.
@@ -116,26 +104,25 @@ public struct ReadObjectRange: Sendable, Hashable, Equatable {
   /// Creates a range for the first `count` bytes of the object (HTTP `bytes=0-N`).
   public init?(prefix: UInt64) {
     guard let p = Int64(exactly: prefix) else { return nil }
-    self.store = .prefix(p)
+    guard p != 0 else {
+      self.store = .zero
+      return
+    }
+    self.store = .bounded(0...(p - 1))
   }
 
   /// Creates a range for the last `count` bytes of the object (HTTP `bytes=-N`).
   public init?(suffix: UInt64) {
     guard let s = Int64(exactly: suffix) else { return nil }
     guard s != 0 else {
-      self.store = .prefix(0)
+      self.store = .zero
       return
     }
     self.store = .suffix(s)
   }
 
   package var isZeroBytes: Bool {
-    switch store {
-    case .prefix(0), .suffix(0):
-      return true
-    default:
-      return false
-    }
+    store == .zero
   }
 }
 
@@ -196,8 +183,10 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 /// Configure `ReadObjectOptions` using the `.with` closure builder.
 ///
 /// ```swift
-/// let options = ReadObjectOptions().with {
-///   $0.range = .bounded(0...1024)
+/// if let range = ReadObjectRange(range: 0...1024) {
+///   let options = ReadObjectOptions().with {
+///     $0.range = range
+///   }
 /// }
 /// ```
 ///
@@ -224,8 +213,10 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 /// Read specific byte ranges using `ReadObjectRange`:
 ///
 /// ```swift
-/// let options = ReadObjectOptions().with {
-///   $0.range = .fromOffset(1024) // Read from byte 1024 to the end
+/// if let range = ReadObjectRange(fromOffset: 1024) {
+///   let options = ReadObjectOptions().with {
+///     $0.range = range // Read from byte 1024 to the end
+///   }
 /// }
 /// ```
 ///
@@ -374,30 +365,27 @@ package func calculateResumeRange(
   bytesReceived: UInt64,
   totalSize: UInt64?
 ) -> ReadObjectRange? {
-  guard let received = Int64(exactly: bytesReceived) else { return nil }
-  let total = totalSize.flatMap { Int64(exactly: $0) }
+  guard Int64(exactly: bytesReceived) != nil else { return nil }
   switch originalRange.store {
   case .entire:
-    guard received != 0 else { return .entire }
-    return .init(store: .fromOffset(received))
+    return ReadObjectRange(fromOffset: bytesReceived)
+  case .zero:
+    return nil
   case .fromOffset(let offset):
-    return .init(store: .fromOffset(offset + received))
-  case .prefix(let count):
-    guard count > received else { return nil }
-    return .init(store: .bounded(received...(count - 1)))
+    return ReadObjectRange(fromOffset: UInt64(offset) + bytesReceived)
   case .bounded(let range):
-    let newStart = range.lowerBound + received
-    guard newStart <= range.upperBound else { return nil }
-    return .init(store: .bounded(newStart...range.upperBound))
+    return ReadObjectRange(
+      start: UInt64(range.lowerBound) + bytesReceived,
+      end: UInt64(range.upperBound)
+    )
   case .suffix(let count):
-    guard count > received else { return nil }
-    guard let totalSize = total else {
-      return .init(store: .suffix(count - received))
+    let count = UInt64(count)
+    guard count > bytesReceived else { return nil }
+    guard let totalSize else {
+      return ReadObjectRange(suffix: count - bytesReceived)
     }
     guard totalSize > 0 else { return nil }
     let startOffset = totalSize > count ? (totalSize - count) : 0
-    let newStart = startOffset + received
-    guard newStart < totalSize else { return nil }
-    return .init(store: .bounded(newStart...(totalSize - 1)))
+    return ReadObjectRange(start: startOffset + bytesReceived, end: totalSize - 1)
   }
 }

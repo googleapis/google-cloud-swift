@@ -23,9 +23,16 @@ import Testing
     #expect(ReadObjectRange(fromOffset: 1024)?.headerValue == "bytes=1024-")
     #expect(ReadObjectRange(fromOffset: 0) == ReadObjectRange.entire)
     #expect(ReadObjectRange(prefix: 500)?.headerValue == "bytes=0-499")
+    #expect(ReadObjectRange(prefix: 500) == ReadObjectRange(start: 0, end: 499))
+    #expect(ReadObjectRange(prefix: 500) == ReadObjectRange(range: 0...499))
+    #expect(ReadObjectRange(prefix: 500) == ReadObjectRange(range: ...499))
     #expect(ReadObjectRange(prefix: 0)?.headerValue == "bytes=0-0")
     #expect(ReadObjectRange(suffix: 100)?.headerValue == "bytes=-100")
     #expect(ReadObjectRange(suffix: 0)?.headerValue == "bytes=0-0")
+    #expect(ReadObjectRange(suffix: 0) == ReadObjectRange(prefix: 0))
+    #expect(ReadObjectRange(suffix: 0)?.isZeroBytes == true)
+    #expect(ReadObjectRange(prefix: 0)?.isZeroBytes == true)
+    #expect(ReadObjectRange.entire.isZeroBytes == false)
     #expect(ReadObjectRange(range: 10...50)?.headerValue == "bytes=10-50")
     #expect(ReadObjectRange(range: 10...)?.headerValue == "bytes=10-")
     #expect(ReadObjectRange(range: 0...) == ReadObjectRange.entire)
@@ -144,6 +151,9 @@ import Testing
         == ReadObjectRange(fromOffset: 150)!)
 
     // Prefix
+    #expect(
+      calculateResumeRange(
+        originalRange: ReadObjectRange(prefix: 0)!, bytesReceived: 0, totalSize: 1000) == nil)
     #expect(
       calculateResumeRange(
         originalRange: ReadObjectRange(prefix: 100)!, bytesReceived: 40, totalSize: 1000)
