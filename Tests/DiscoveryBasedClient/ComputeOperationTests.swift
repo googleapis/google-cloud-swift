@@ -137,4 +137,37 @@ import GoogleWKT
       Issue.record("Unexpected error: \(error)")
     }
   }
+
+  @Test func protocolDispatchesPollingUntilDone() async throws {
+    struct MockPoller: PollableOperation {
+      typealias ResponseType = GoogleCloudComputeV1.Operation
+      func wait() async throws -> GoogleCloudComputeV1.Operation {
+        GoogleCloudComputeV1.Operation()
+      }
+    }
+
+    final class MockInstances: Clients.InstancesProtocol, @unchecked Sendable {
+      var insertPollingOptionsCalled = false
+      func insertPollingUntilDone(
+        request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
+      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+        insertPollingOptionsCalled = true
+        return MockPoller()
+      }
+    }
+
+    let mock = MockInstances()
+    let poller = try await mock.insertPollingUntilDone(request: InstancesClient.InsertRequest())
+    #expect(mock.insertPollingOptionsCalled)
+    _ = try await poller.wait()
+
+    mock.insertPollingOptionsCalled = false
+    let poller2 = try await mock.insertPollingUntilDone(
+      project: "test-project",
+      zone: "us-central1-a",
+      body: nil
+    )
+    #expect(mock.insertPollingOptionsCalled)
+    _ = try await poller2.wait()
+  }
 }
