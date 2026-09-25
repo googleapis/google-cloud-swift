@@ -188,6 +188,79 @@ typealias UserCredentials = UserCredentialsGeneric<TestClock>
     )
   }
 
+  @Test(arguments: [nil, []] as [[String]?])
+  func credentialProviderOmitsNilOrEmptyScopes(scopes: [String]?) async throws {
+    let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
+    let responsePayload = Oauth2RefreshResponse(
+      accessToken: "test-access-token-without-scopes",
+      expiresIn: 3600,
+      tokenType: "test-token-type"
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(responsePayload)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        #expect(request.url == targetURL.absoluteString)
+        #expect(request.method == .POST)
+
+        guard let bodyData = try await request.body?.collect(upTo: 1024 * 1024) else {
+          fatalError("Expected HTTP body")
+        }
+
+        if let jsonObject = try? JSONSerialization.jsonObject(with: bodyData) as? [String: Any] {
+          #expect(jsonObject["grant_type"] as? String == "refresh_token")
+          #expect(jsonObject["client_id"] as? String == "test-client-id")
+          #expect(jsonObject["client_secret"] as? String == "test-client-secret")
+          #expect(jsonObject["refresh_token"] as? String == "test-refresh-token")
+          #expect(jsonObject["scopes"] == nil)
+        }
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        do {
+          let requestPayload = try decoder.decode(Oauth2RefreshRequest.self, from: bodyData)
+          #expect(requestPayload.scopes == nil)
+          #expect(requestPayload.clientId == "test-client-id")
+          #expect(requestPayload.clientSecret == "test-client-secret")
+          #expect(requestPayload.refreshToken == "test-refresh-token")
+          #expect(requestPayload.grantType == "refresh_token")
+        } catch {
+          Issue.record("Failed to decode request body: \(error)")
+        }
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedData)),
+        )
+      }
+    ])
+
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token"
+    )
+
+    let source = try UserCredentials(
+      user: data,
+      scopes: scopes,
+      httpClient: AuthHTTPClient(mock: mock),
+      retryConfiguration: .defaultConfiguration,
+      clock: TestClock()
+    )
+
+    let headers = try await source.headers()
+    #expect(
+      headers["Authorization"] == "test-token-type test-access-token-without-scopes",
+      "Missing authorization header in \(headers)"
+    )
+  }
+
   @Test func credentialProviderRetryableError() async throws {
     let targetURL = URL(string: "https://oauth2.googleapis.com/token")!
 

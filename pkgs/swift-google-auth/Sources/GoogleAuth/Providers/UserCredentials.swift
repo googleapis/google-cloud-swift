@@ -35,7 +35,7 @@ internal struct UserCredentialsParser: CredentialSourceParser {
       keyJSON: keyJSON,
       quotaProjectID: quotaProjectID,
       universeDomain: universeDomain,
-      scopes: scopes
+      scopes: scopes.isEmpty ? nil : scopes
     )
   }
 }

@@ -47,7 +47,7 @@ struct UserAccountTokenProvider: TokenProvider {
   /// - Returns: A valid `Token` containing the access token string and expiration date.
   /// - Throws: An `AuthHTTPError` or network error if the token endpoint cannot be reached or rejects the request.
   func fetchToken() async throws -> Token {
-    let scopesStr = scopes?.joined(separator: " ")
+    let scopesStr = scopes.flatMap { $0.isEmpty ? nil : $0.joined(separator: " ") }
 
     let requestBody = Oauth2RefreshRequest(
       grantType: "refresh_token",
