@@ -103,6 +103,8 @@ struct ChecksummedSource<S: WriteObjectSource> {
     if !isInitialized {
       do {
         nextChunk = try await source.read(maxBytes: maxBytes)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }
@@ -118,6 +120,8 @@ struct ChecksummedSource<S: WriteObjectSource> {
 
     do {
       nextChunk = try await source.read(maxBytes: maxBytes)
+    } catch is CancellationError {
+      throw CancellationError()
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
@@ -159,6 +163,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     guard offset > bytesHashed && !calculators.isEmpty else {
       do {
         try await source.seek(to: offset)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }
@@ -168,6 +174,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
     // Catch up checksum calculation from `bytesHashed` to `offset`
     do {
       try await source.seek(to: bytesHashed)
+    } catch is CancellationError {
+      throw CancellationError()
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
@@ -179,6 +187,8 @@ extension ChecksummedSource where S: SeekableWriteObjectSource {
       let chunk: ByteChunk?
       do {
         chunk = try await source.read(maxBytes: toRead)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }

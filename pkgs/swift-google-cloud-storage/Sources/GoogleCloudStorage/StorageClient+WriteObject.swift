@@ -88,7 +88,12 @@ extension StorageClient {
           resumeLoop: resumeLoop
         )
       }
+    } catch is CancellationError {
+      throw CancellationError()
     } catch let error as WriteObjectError {
+      if case .sourceError(let underlying) = error, underlying is CancellationError {
+        throw CancellationError()
+      }
       throw error
     } catch let error as RequestError {
       throw WriteObjectError.requestError(error)
@@ -154,7 +159,12 @@ extension StorageClient {
           resumeLoop: resumeLoop
         )
       }
+    } catch is CancellationError {
+      throw CancellationError()
     } catch let error as WriteObjectError {
+      if case .sourceError(let underlying) = error, underlying is CancellationError {
+        throw CancellationError()
+      }
       throw error
     } catch let error as RequestError {
       throw WriteObjectError.requestError(error)
@@ -859,7 +869,12 @@ extension StorageClient {
         options: effectiveOptions,
         resumeLoop: resumeLoop
       )
+    } catch is CancellationError {
+      throw CancellationError()
     } catch let error as WriteObjectError {
+      if case .sourceError(let underlying) = error, underlying is CancellationError {
+        throw CancellationError()
+      }
       throw error
     } catch let error as RequestError {
       throw WriteObjectError.requestError(error)

@@ -54,6 +54,8 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
     if var seekable = source as? (any SeekableWriteObjectSource) {
       do {
         try await seekable.seek(to: 0)
+      } catch is CancellationError {
+        throw CancellationError()
       } catch {
         throw WriteObjectError.fromSourceError(error)
       }
@@ -113,6 +115,8 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         }
         preparedSource = BytesSource(buffer: ByteChunk(buffer))
       }
+    } catch is CancellationError {
+      throw CancellationError()
     } catch {
       throw WriteObjectError.fromSourceError(error)
     }
@@ -183,6 +187,8 @@ struct MultipartUploadStream: AsyncSequence, Sendable {
         let chunk: ByteChunk?
         do {
           chunk = try await source.read(maxBytes: chunkSize)
+        } catch is CancellationError {
+          throw CancellationError()
         } catch {
           throw WriteObjectError.fromSourceError(error)
         }

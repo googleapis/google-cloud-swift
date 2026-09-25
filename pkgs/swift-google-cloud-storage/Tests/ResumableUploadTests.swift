@@ -2755,6 +2755,106 @@ import Testing
       Issue.record("Expected .unexpectedServerResponse, got \(String(describing: error))")
     }
   }
+
+  /// Tests that task cancellation before or during resumable seekable upload throws `CancellationError`.
+  @Test func resumableUploadSeekableTaskCancellationThrowsCancellationError() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancelled-resumable"
+    let data = Data(repeating: 0x42, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let client = try makeClient(registry: registry)
+
+    let task = Task {
+      withUnsafeCurrentTask { $0?.cancel() }
+      return try await client.writeObject(source, to: bucket, as: objectName)
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
+
+  /// Tests that task cancellation before or during resumable streaming upload throws `CancellationError`.
+  @Test func resumableUploadStreamingTaskCancellationThrowsCancellationError() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancelled-resumable-stream"
+    let chunk = Data(repeating: 0x42, count: 1024)
+    let sequence = [chunk].async
+    let source = StreamSource(sequence: sequence)
+
+    let client = try makeClient(registry: registry)
+
+    let task = Task {
+      withUnsafeCurrentTask { $0?.cancel() }
+      return try await client.writeObject(source, to: bucket, as: objectName)
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
+
+  /// Tests that task cancellation during retry backoff in resumable upload throws `CancellationError`.
+  @Test func resumableUploadTaskCancellationDuringBackoffThrowsCancellationError() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "cancel-backoff-resumable"
+    let data = Data(repeating: 0x42, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+
+    let sessionInitUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+
+    registry.register(
+      response: .success(
+        statusCode: 503, data: Data("Service Unavailable".utf8),
+        headers: nil),
+      for: sessionInitUrl)
+
+    let client = try makeClient(registry: registry)
+    let backoff = try ExponentialBackoff(
+      config: ExponentialBackoffConfig().with {
+        $0.initialDelay = .seconds(10)
+        $0.maximumDelay = .seconds(30)
+      })
+    let options = WriteObjectOptions().with {
+      $0.backoffPolicy = backoff
+    }
+
+    let task = Task {
+      try await client.writeObject(source, to: bucket, as: objectName, options: options)
+    }
+
+    try await Task.sleep(for: .milliseconds(50))
+    task.cancel()
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
+
+  /// Tests that task cancellation during resumeWriteObject throws `CancellationError`.
+  @Test func resumeWriteObjectTaskCancellationThrowsCancellationError() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let data = Data(repeating: 0x42, count: 10 * 1024 * 1024)
+    let source = BytesSource(data: data)
+    let queryUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=cancelled-test-id")
+
+    let client = try makeClient(registry: registry)
+
+    let task = Task {
+      withUnsafeCurrentTask { $0?.cancel() }
+      return try await client.resumeWriteObject(source, uploadId: queryUrl.absoluteString)
+    }
+
+    await #expect(throws: CancellationError.self) {
+      _ = try await task.value
+    }
+  }
 }
 
 // MARK: - Test Helper Sources

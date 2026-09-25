@@ -103,7 +103,7 @@ If a file is truncated on disk after an upload is interrupted, its size may be s
 
 #### 2. Session Expiration
 GCS Resumable Session URIs expire after 7 days. If a developer attempts to resume using an expired URI, GCS returns a `404 Not Found` or `400 Bad Request`.
-*   **Mitigation:** The library catches these specific GCS error codes during the session query phase and maps them to `WriteObjectError.sessionExpired`.
+*   **Mitigation:** The library surfaces these GCS error codes during the session query phase as `WriteObjectError.requestError`.
 
 #### 3. Data Integrity (Checksums)
 To prevent network corruption, GCS supports MD5 and CRC32C checksum validation.
@@ -179,15 +179,20 @@ Errors thrown by the upload API.
 
 ```swift
 public enum WriteObjectError: Error, Sendable {
-    /// The local source is smaller than the offset reported by GCS.
-    /// Indicates the source was modified or truncated.
-    case localSourceTooSmall(localSize: Int64, gcsOffset: Int64)
-
-    /// The resumable session has expired (usually after 7 days) or was not found.
-    case sessionExpired(sessionURI: URL, underlyingError: Error?)
-
     /// GCS returned an unexpected response.
     case unexpectedServerResponse(statusCode: Int, message: String)
+
+    /// Internal error in the upload library.
+    case internalError(String)
+
+    /// The range header returned by GCS is invalid.
+    case invalidRangeHeader(String)
+
+    /// A request or service error occurred during the write operation.
+    case requestError(RequestError)
+
+    /// An error occurred while reading from or seeking the write object source.
+    case sourceError(any Error)
 }
 ```
 
