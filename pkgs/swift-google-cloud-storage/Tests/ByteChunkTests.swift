@@ -23,7 +23,7 @@ import Testing
     let empty = ByteChunk()
     #expect(empty.isEmpty)
     #expect(empty.count == 0)
-    #expect(empty.byteArray.isEmpty)
+    #expect(Array(empty).isEmpty)
     #expect(empty.data.isEmpty)
     #expect(empty.byteBuffer.readableBytes == 0)
   }
@@ -34,7 +34,7 @@ import Testing
     #expect(!storage.isEmpty)
     #expect(storage.count == 4)
     #expect(storage.data == original)
-    #expect(storage.byteArray == [0x01, 0x02, 0x03, 0x04])
+    #expect(Array(storage) == [0x01, 0x02, 0x03, 0x04])
 
     var buffer = storage.byteBuffer
     #expect(buffer.readableBytes == 4)
@@ -48,7 +48,7 @@ import Testing
     #expect(!storage.isEmpty)
     #expect(storage.count == 4)
     #expect(storage.data == Data([0x0A, 0x0B, 0x0C, 0x0D]))
-    #expect(storage.byteArray == [0x0A, 0x0B, 0x0C, 0x0D])
+    #expect(Array(storage) == [0x0A, 0x0B, 0x0C, 0x0D])
     #expect(storage.byteBuffer == buffer)
   }
 
@@ -56,7 +56,7 @@ import Testing
     let bytes: [UInt8] = [0xDE, 0xAD, 0xBE, 0xEF]
     let storage = ByteChunk(bytes)
     #expect(storage.count == 4)
-    #expect(storage.byteArray == bytes)
+    #expect(Array(storage) == bytes)
     #expect(storage.data == Data(bytes))
   }
 
@@ -68,14 +68,14 @@ import Testing
     unsafe Data(bytes).withUnsafeBytes { rawBuffer in
       let storage = ByteChunk(rawBuffer)
       #expect(storage.count == 3)
-      #expect(storage.byteArray == bytes)
+      #expect(Array(storage) == bytes)
     }
   }
 
   @Test func arrayLiteral() {
     let storage: ByteChunk = [1, 2, 3]
     #expect(storage.count == 3)
-    #expect(storage.byteArray == [1, 2, 3])
+    #expect(Array(storage) == [1, 2, 3])
   }
 
   @Test func withUnsafeBytes() throws {

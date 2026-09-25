@@ -136,13 +136,6 @@ extension ByteChunk {
     }
   }
 
-  /// Returns the bytes as a newly allocated `[UInt8]` array.
-  @inlinable
-  public var byteArray: [UInt8] {
-    // SAFETY: `Array(_:)` copies the bytes out of the pointer bounded by `withUnsafeBytes`.
-    withUnsafeBytes { unsafe Array($0) }
-  }
-
   /// Returns a zero-copy sub-chunk within the specified byte range.
   public func subdata(in range: Range<Int>) -> ByteChunk {
     switch storage {
