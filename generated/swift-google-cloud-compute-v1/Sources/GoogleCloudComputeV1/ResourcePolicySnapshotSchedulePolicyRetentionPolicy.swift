@@ -110,7 +110,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .applyRetentionPolicy: return "APPLY_RETENTION_POLICY"
         case .keepAutoSnapshots: return "KEEP_AUTO_SNAPSHOTS"

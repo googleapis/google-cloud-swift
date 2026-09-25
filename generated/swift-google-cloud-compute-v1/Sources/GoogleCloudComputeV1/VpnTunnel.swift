@@ -420,7 +420,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allocatingResources: return "ALLOCATING_RESOURCES"
         case .authorizationError: return "AUTHORIZATION_ERROR"

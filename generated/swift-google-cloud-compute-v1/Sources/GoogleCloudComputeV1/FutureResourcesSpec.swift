@@ -127,7 +127,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .dense: return "DENSE"
         case .unspecified: return "DEPLOYMENT_TYPE_UNSPECIFIED"

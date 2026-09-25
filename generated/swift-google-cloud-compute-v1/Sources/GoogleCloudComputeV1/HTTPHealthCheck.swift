@@ -178,7 +178,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .useFixedPort: return "USE_FIXED_PORT"
         case .useNamedPort: return "USE_NAMED_PORT"
@@ -239,7 +239,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .`none`: return "NONE"
         case .proxyV1: return "PROXY_V1"

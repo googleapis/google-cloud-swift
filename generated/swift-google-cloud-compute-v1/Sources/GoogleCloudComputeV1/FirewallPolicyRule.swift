@@ -272,7 +272,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .egress: return "EGRESS"
         case .ingress: return "INGRESS"
@@ -330,7 +330,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .instances: return "INSTANCES"
         case .internalManagedLb: return "INTERNAL_MANAGED_LB"

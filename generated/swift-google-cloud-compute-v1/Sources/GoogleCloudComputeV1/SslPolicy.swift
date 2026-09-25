@@ -481,7 +481,7 @@
         case unknownStringValue(Swift.String)
 
         /// Returns the string value (or name) associated with the enumeration.
-        public var stringValue: Swift.String? {
+        public var stringValue: Swift.String {
           switch self {
           case .cleanupFailed: return "CLEANUP_FAILED"
           case .deprecatedResourceUsed: return "DEPRECATED_RESOURCE_USED"
@@ -652,7 +652,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .tls10: return "TLS_1_0"
         case .tls11: return "TLS_1_1"
@@ -720,7 +720,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .`default`: return "DEFAULT"
         case .deferred: return "DEFERRED"
@@ -795,7 +795,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .compatible: return "COMPATIBLE"
         case .custom: return "CUSTOM"

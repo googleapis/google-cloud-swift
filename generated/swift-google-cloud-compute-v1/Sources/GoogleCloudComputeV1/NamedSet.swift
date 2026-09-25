@@ -149,7 +149,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .namedSetTypeCommunity: return "NAMED_SET_TYPE_COMMUNITY"
         case .namedSetTypePrefix: return "NAMED_SET_TYPE_PREFIX"

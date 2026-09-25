@@ -105,7 +105,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .project: return "PROJECT"
         case .xpnResourceTypeUnspecified: return "XPN_RESOURCE_TYPE_UNSPECIFIED"

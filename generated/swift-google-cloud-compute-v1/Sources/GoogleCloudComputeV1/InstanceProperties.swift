@@ -329,7 +329,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .unspecified: return "KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED"
         case .`none`: return "NONE"
@@ -401,7 +401,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ephemeralKeyEncryption: return "EPHEMERAL_KEY_ENCRYPTION"
         case .unspecified: return "LOCAL_SSD_ENCRYPTION_MODE_UNSPECIFIED"
@@ -473,7 +473,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .enableBidirectionalAccessToGoogle: return "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
         case .enableOutboundVmAccessToGoogle: return "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE"

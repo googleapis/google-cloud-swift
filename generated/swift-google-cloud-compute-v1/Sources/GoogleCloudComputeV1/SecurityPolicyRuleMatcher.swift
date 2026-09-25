@@ -137,7 +137,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .srcIpsV1: return "SRC_IPS_V1"
         case .unknownStringValue(let v): return v

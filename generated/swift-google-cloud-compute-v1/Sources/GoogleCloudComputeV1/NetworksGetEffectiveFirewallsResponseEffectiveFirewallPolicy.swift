@@ -156,7 +156,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .hierarchy: return "HIERARCHY"
         case .network: return "NETWORK"

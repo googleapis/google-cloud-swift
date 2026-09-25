@@ -120,7 +120,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .connectionRedundancyMet: return "CONNECTION_REDUNDANCY_MET"
         case .connectionRedundancyNotMet: return "CONNECTION_REDUNDANCY_NOT_MET"
@@ -178,7 +178,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .incompleteTunnelsCoverage: return "INCOMPLETE_TUNNELS_COVERAGE"
         case .unknownStringValue(let v): return v

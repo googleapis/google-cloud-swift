@@ -337,7 +337,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .custom: return "CUSTOM"
         case .`default`: return "DEFAULT"
@@ -395,7 +395,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allSubnets: return "ALL_SUBNETS"
         case .unknownStringValue(let v): return v
@@ -450,7 +450,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .`false`: return "FALSE"
         case .`true`: return "TRUE"
@@ -516,7 +516,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .managedByAttachment: return "MANAGED_BY_ATTACHMENT"
         case .managedByUser: return "MANAGED_BY_USER"

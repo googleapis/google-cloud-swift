@@ -218,7 +218,7 @@ public struct ManagedZone: Codable, Equatable, GoogleWKT._AnyPackable,
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .`public`: return "public"
       case .`private`: return "private"

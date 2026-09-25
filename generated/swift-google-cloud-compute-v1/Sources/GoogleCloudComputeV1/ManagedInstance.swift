@@ -283,7 +283,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .abandoning: return "ABANDONING"
         case .creating: return "CREATING"
@@ -400,7 +400,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .deprovisioning: return "DEPROVISIONING"
         case .pending: return "PENDING"
@@ -499,7 +499,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .abandoned: return "ABANDONED"
         case .deleted: return "DELETED"

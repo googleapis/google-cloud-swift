@@ -133,7 +133,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .any: return "ANY"
         case .anySingleZone: return "ANY_SINGLE_ZONE"

@@ -130,7 +130,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .zonalAffinityDisabled: return "ZONAL_AFFINITY_DISABLED"
         case .zonalAffinitySpillCrossZone: return "ZONAL_AFFINITY_SPILL_CROSS_ZONE"

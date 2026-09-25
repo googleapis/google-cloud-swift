@@ -261,7 +261,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .delete: return "DELETE"
         case .unspecified: return "INSTANCE_TERMINATION_ACTION_UNSPECIFIED"
@@ -329,7 +329,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .migrate: return "MIGRATE"
         case .terminate: return "TERMINATE"
@@ -394,7 +394,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .flexStart: return "FLEX_START"
         case .reservationBound: return "RESERVATION_BOUND"

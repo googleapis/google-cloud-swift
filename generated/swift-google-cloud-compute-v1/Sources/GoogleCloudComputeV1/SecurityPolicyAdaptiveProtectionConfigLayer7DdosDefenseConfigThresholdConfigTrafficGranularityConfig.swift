@@ -121,7 +121,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .httpHeaderHost: return "HTTP_HEADER_HOST"
         case .httpPath: return "HTTP_PATH"

@@ -109,7 +109,7 @@ public struct GoogleIamV1AuditLogConfig: Codable, Equatable, GoogleWKT._AnyPacka
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .unspecified: return "LOG_TYPE_UNSPECIFIED"
       case .adminRead: return "ADMIN_READ"

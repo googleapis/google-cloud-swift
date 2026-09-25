@@ -298,7 +298,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .africa: return "AFRICA"
         case .asiaPac: return "ASIA_PAC"
@@ -370,7 +370,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .supported: return "LACP_SUPPORTED"
         case .unsupported: return "LACP_UNSUPPORTED"
@@ -432,7 +432,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .available: return "AVAILABLE"
         case .closed: return "CLOSED"

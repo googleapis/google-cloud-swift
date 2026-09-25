@@ -189,7 +189,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .failureDisk: return "FAILURE_DISK"
         case .failureGpu: return "FAILURE_GPU"
@@ -303,7 +303,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ongoing: return "ONGOING"
         case .pending: return "PENDING"
@@ -373,7 +373,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .multiple: return "MULTIPLE"
         case .scheduled: return "SCHEDULED"

@@ -305,7 +305,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ifCrossSiteNetwork: return "IF_CROSS_SITE_NETWORK"
         case .ifL2Forwarding: return "IF_L2_FORWARDING"
@@ -371,7 +371,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .linkTypeEthernet100GLr: return "LINK_TYPE_ETHERNET_100G_LR"
         case .linkTypeEthernet10GLr: return "LINK_TYPE_ETHERNET_10G_LR"
@@ -440,7 +440,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .africa: return "AFRICA"
         case .asiaPac: return "ASIA_PAC"
@@ -524,7 +524,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .available: return "AVAILABLE"
         case .closed: return "CLOSED"

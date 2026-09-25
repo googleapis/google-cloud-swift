@@ -584,7 +584,7 @@
         case unknownStringValue(Swift.String)
 
         /// Returns the string value (or name) associated with the enumeration.
-        public var stringValue: Swift.String? {
+        public var stringValue: Swift.String {
           switch self {
           case .tar: return "TAR"
           case .unknownStringValue(let v): return v
@@ -654,7 +654,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .unspecified: return "ARCHITECTURE_UNSPECIFIED"
         case .arm64: return "ARM64"
@@ -714,7 +714,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .raw: return "RAW"
         case .unknownStringValue(let v): return v
@@ -775,7 +775,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .deleting: return "DELETING"
         case .failed: return "FAILED"

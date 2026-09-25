@@ -146,7 +146,7 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleWK
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .undefined: return "undefined"
       case .tcp: return "tcp"
@@ -210,7 +210,7 @@ public struct RRSetRoutingPolicyLoadBalancerTarget: Codable, Equatable, GoogleWK
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .`none`: return "none"
       case .globalL7Ilb: return "globalL7ilb"

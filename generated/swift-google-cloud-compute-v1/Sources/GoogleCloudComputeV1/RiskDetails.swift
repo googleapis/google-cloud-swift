@@ -134,7 +134,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .critical: return "CRITICAL"
         case .high: return "HIGH"
@@ -203,7 +203,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .globalDns: return "GLOBAL_DNS"
         case .riskTypeUnspecified: return "RISK_TYPE_UNSPECIFIED"

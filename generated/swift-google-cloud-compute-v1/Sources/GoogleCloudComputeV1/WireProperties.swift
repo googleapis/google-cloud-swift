@@ -134,7 +134,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allocatePerWire: return "ALLOCATE_PER_WIRE"
         case .sharedWithWireGroup: return "SHARED_WITH_WIRE_GROUP"
@@ -195,7 +195,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .disablePort: return "DISABLE_PORT"
         case .`none`: return "NONE"

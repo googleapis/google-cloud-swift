@@ -130,7 +130,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .batch: return "DELIMITER_BATCH"
         case .location: return "DELIMITER_LOCATION"
@@ -199,7 +199,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .minimum: return "TYPE_MINIMUM"
         case .offset: return "TYPE_OFFSET"

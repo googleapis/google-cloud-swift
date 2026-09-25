@@ -137,7 +137,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .inSlo: return "AVAILABILITY_SLO_STATUS_IN_SLO"
         case .outOfSlo: return "AVAILABILITY_SLO_STATUS_OUT_OF_SLO"
@@ -205,7 +205,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .healthy: return "HEALTH_STATUS_HEALTHY"
         case .unhealthy: return "HEALTH_STATUS_UNHEALTHY"
@@ -275,7 +275,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .criticalFailure: return "REPAIR_CATEGORY_CRITICAL_FAILURE"
         case .emergentMaintenance: return "REPAIR_CATEGORY_EMERGENT_MAINTENANCE"
@@ -351,7 +351,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .pendingUserApproval: return "UNHEALTHY_REASON_PENDING_USER_APPROVAL"
         case .repairing: return "UNHEALTHY_REASON_REPAIRING"

@@ -282,7 +282,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .a2Cpus: return "A2_CPUS"
         case .affinityGroups: return "AFFINITY_GROUPS"

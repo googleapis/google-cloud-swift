@@ -135,7 +135,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .disabled: return "DISABLED"
         case .standard: return "STANDARD"
@@ -196,7 +196,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .normal: return "NORMAL"
         case .verbose: return "VERBOSE"

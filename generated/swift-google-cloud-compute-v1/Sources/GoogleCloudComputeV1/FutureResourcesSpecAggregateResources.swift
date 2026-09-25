@@ -119,7 +119,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .cloudTpuDeviceCt3: return "VM_FAMILY_CLOUD_TPU_DEVICE_CT3"
         case .cloudTpuLiteDeviceCt5L: return "VM_FAMILY_CLOUD_TPU_LITE_DEVICE_CT5L"
@@ -207,7 +207,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .batch: return "BATCH"
         case .serving: return "SERVING"

@@ -130,7 +130,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .bgpOriginEgp: return "BGP_ORIGIN_EGP"
         case .bgpOriginIgp: return "BGP_ORIGIN_IGP"

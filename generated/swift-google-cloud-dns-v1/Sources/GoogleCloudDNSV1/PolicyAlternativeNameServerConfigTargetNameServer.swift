@@ -117,7 +117,7 @@ public struct PolicyAlternativeNameServerConfigTargetNameServer: Codable, Equata
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .`default`: return "default"
       case .`private`: return "private"

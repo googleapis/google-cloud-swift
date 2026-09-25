@@ -157,7 +157,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .interval10Min: return "INTERVAL_10_MIN"
         case .interval15Min: return "INTERVAL_15_MIN"
@@ -228,7 +228,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .customMetadata: return "CUSTOM_METADATA"
         case .excludeAllMetadata: return "EXCLUDE_ALL_METADATA"

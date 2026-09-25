@@ -149,7 +149,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .routePolicyTypeExport: return "ROUTE_POLICY_TYPE_EXPORT"
         case .routePolicyTypeImport: return "ROUTE_POLICY_TYPE_IMPORT"

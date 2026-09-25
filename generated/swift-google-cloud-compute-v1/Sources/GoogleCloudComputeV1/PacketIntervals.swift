@@ -135,7 +135,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .unspecified: return "DURATION_UNSPECIFIED"
         case .hour: return "HOUR"
@@ -205,7 +205,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .loopback: return "LOOPBACK"
         case .receive: return "RECEIVE"

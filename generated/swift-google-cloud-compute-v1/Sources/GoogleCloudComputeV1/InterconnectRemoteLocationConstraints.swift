@@ -145,7 +145,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .portPairMatchingRemoteLocation: return "PORT_PAIR_MATCHING_REMOTE_LOCATION"
         case .portPairUnconstrainedRemoteLocation: return "PORT_PAIR_UNCONSTRAINED_REMOTE_LOCATION"
@@ -212,7 +212,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .portPairMatchingVlan: return "PORT_PAIR_MATCHING_VLAN"
         case .portPairUnconstrainedVlan: return "PORT_PAIR_UNCONSTRAINED_VLAN"

@@ -470,7 +470,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .external: return "EXTERNAL"
         case .`internal`: return "INTERNAL"
@@ -528,7 +528,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .vmAndFr: return "VM_AND_FR"
         case .vmOnly: return "VM_ONLY"
@@ -590,7 +590,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .disableGoogleAccess: return "DISABLE_GOOGLE_ACCESS"
         case .enableBidirectionalAccessToGoogle: return "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
@@ -670,7 +670,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .globalManagedProxy: return "GLOBAL_MANAGED_PROXY"
         case .internalHttpsLoadBalancer: return "INTERNAL_HTTPS_LOAD_BALANCER"
@@ -757,7 +757,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .arpAllRanges: return "ARP_ALL_RANGES"
         case .arpBroadcastPrimaryRange: return "ARP_BROADCAST_PRIMARY_RANGE"
@@ -826,7 +826,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .active: return "ACTIVE"
         case .backup: return "BACKUP"
@@ -888,7 +888,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ipv4Ipv6: return "IPV4_IPV6"
         case .ipv4Only: return "IPV4_ONLY"
@@ -951,7 +951,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .draining: return "DRAINING"
         case .ready: return "READY"

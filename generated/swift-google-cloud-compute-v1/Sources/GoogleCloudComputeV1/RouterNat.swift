@@ -391,7 +391,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .fixedStandard: return "FIXED_STANDARD"
         case .premium: return "PREMIUM"
@@ -462,7 +462,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .endpointTypeManagedProxyLb: return "ENDPOINT_TYPE_MANAGED_PROXY_LB"
         case .endpointTypeSwg: return "ENDPOINT_TYPE_SWG"
@@ -527,7 +527,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .autoOnly: return "AUTO_ONLY"
         case .manualOnly: return "MANUAL_ONLY"
@@ -590,7 +590,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allSubnetworksAllIpRanges: return "ALL_SUBNETWORKS_ALL_IP_RANGES"
         case .allSubnetworksAllPrimaryIpRanges: return "ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES"
@@ -658,7 +658,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allIpv6Subnetworks: return "ALL_IPV6_SUBNETWORKS"
         case .listOfIpv6Subnetworks: return "LIST_OF_IPV6_SUBNETWORKS"
@@ -719,7 +719,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .`private`: return "PRIVATE"
         case .`public`: return "PUBLIC"

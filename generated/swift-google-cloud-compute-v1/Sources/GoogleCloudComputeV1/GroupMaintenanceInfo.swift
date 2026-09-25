@@ -175,7 +175,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .grouped: return "GROUPED"
         case .groupMaintenanceTypeUnspecified: return "GROUP_MAINTENANCE_TYPE_UNSPECIFIED"

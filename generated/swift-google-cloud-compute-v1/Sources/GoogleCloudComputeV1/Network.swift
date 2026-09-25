@@ -302,7 +302,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .afterClassicFirewall: return "AFTER_CLASSIC_FIREWALL"
         case .beforeClassicFirewall: return "BEFORE_CLASSIC_FIREWALL"

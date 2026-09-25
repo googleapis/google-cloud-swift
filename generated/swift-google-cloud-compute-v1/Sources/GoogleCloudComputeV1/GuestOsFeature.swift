@@ -133,7 +133,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .bareMetalLinuxCompatible: return "BARE_METAL_LINUX_COMPATIBLE"
         case .ccaCapable: return "CCA_CAPABLE"

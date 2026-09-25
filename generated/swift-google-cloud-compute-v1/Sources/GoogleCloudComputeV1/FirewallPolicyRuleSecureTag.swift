@@ -105,7 +105,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .effective: return "EFFECTIVE"
         case .ineffective: return "INEFFECTIVE"

@@ -366,7 +366,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .bmsai: return "CONFIDENTIAL_COMPUTE_TYPE_BMSAI"
         case .tdx: return "CONFIDENTIAL_COMPUTE_TYPE_TDX"
@@ -428,7 +428,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .dense: return "DENSE"
         case .unspecified: return "DEPLOYMENT_TYPE_UNSPECIFIED"
@@ -490,7 +490,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .noEarlyAccess: return "NO_EARLY_ACCESS"
         case .wave1: return "WAVE1"
@@ -563,7 +563,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .capacityOptimized: return "CAPACITY_OPTIMIZED"
         case .unspecified: return "PROTECTION_TIER_UNSPECIFIED"
@@ -629,7 +629,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .grouped: return "GROUPED"
         case .groupMaintenanceTypeUnspecified: return "GROUP_MAINTENANCE_TYPE_UNSPECIFIED"
@@ -699,7 +699,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .creating: return "CREATING"
         case .deleting: return "DELETING"

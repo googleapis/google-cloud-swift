@@ -295,7 +295,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .cacheAllStatic: return "CACHE_ALL_STATIC"
         case .forceCacheAll: return "FORCE_CACHE_ALL"

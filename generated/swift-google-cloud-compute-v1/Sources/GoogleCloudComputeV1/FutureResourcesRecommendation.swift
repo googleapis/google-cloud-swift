@@ -144,7 +144,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .futureReservation: return "FUTURE_RESERVATION"
         case .unspecified: return "RECOMMENDATION_TYPE_UNSPECIFIED"

@@ -155,7 +155,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .legacy: return "LEGACY"
         case .standard: return "STANDARD"
@@ -213,7 +213,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .addCostToMed: return "ADD_COST_TO_MED"
         case .`default`: return "DEFAULT"
@@ -271,7 +271,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .addCostToMed: return "ADD_COST_TO_MED"
         case .`default`: return "DEFAULT"
@@ -329,7 +329,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .global: return "GLOBAL"
         case .regional: return "REGIONAL"

@@ -230,7 +230,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .caEnterpriseAnnual: return "CA_ENTERPRISE_ANNUAL"
         case .caEnterprisePaygo: return "CA_ENTERPRISE_PAYGO"
@@ -300,7 +300,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .fixedStandard: return "FIXED_STANDARD"
         case .premium: return "PREMIUM"
@@ -367,7 +367,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .globalDefault: return "GLOBAL_DEFAULT"
         case .unspecifiedVmDnsSetting: return "UNSPECIFIED_VM_DNS_SETTING"
@@ -431,7 +431,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .host: return "HOST"
         case .unspecifiedXpnProjectStatus: return "UNSPECIFIED_XPN_PROJECT_STATUS"

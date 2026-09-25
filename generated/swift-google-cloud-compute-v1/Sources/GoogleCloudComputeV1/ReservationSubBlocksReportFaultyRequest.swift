@@ -117,7 +117,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .unspecified: return "DISRUPTION_SCHEDULE_UNSPECIFIED"
         case .immediate: return "IMMEDIATE"
@@ -178,7 +178,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .unspecified: return "FAILURE_COMPONENT_UNSPECIFIED"
         case .multipleFaultyHosts: return "MULTIPLE_FAULTY_HOSTS"

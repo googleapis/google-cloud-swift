@@ -256,7 +256,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .asNeeded: return "AS_NEEDED"
         case .recurrent: return "RECURRENT"
@@ -327,7 +327,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .`default`: return "DEFAULT"
         case .unspecified: return "MAINTENANCE_POLICY_UNSPECIFIED"
@@ -393,7 +393,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .creating: return "CREATING"
         case .deleting: return "DELETING"

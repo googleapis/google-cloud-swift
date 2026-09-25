@@ -165,7 +165,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .incompatibleMetros: return "INCOMPATIBLE_METROS"
         case .notAvailable: return "NOT_AVAILABLE"

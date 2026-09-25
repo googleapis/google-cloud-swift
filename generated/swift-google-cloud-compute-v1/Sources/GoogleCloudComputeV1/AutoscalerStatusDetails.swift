@@ -211,7 +211,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allInstancesUnhealthy: return "ALL_INSTANCES_UNHEALTHY"
         case .backendServiceDoesNotExist: return "BACKEND_SERVICE_DOES_NOT_EXIST"

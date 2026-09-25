@@ -249,7 +249,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .down: return "DOWN"
         case .unknown: return "UNKNOWN"
@@ -319,7 +319,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ipv4PeerOnIpv6OnlyConnection: return "IPV4_PEER_ON_IPV6_ONLY_CONNECTION"
         case .ipv6PeerOnIpv4OnlyConnection: return "IPV6_PEER_ON_IPV4_ONLY_CONNECTION"

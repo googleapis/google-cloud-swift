@@ -142,7 +142,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .lacp: return "BUNDLE_AGGREGATION_TYPE_LACP"
         case .`static`: return "BUNDLE_AGGREGATION_TYPE_STATIC"
@@ -208,7 +208,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .down: return "BUNDLE_OPERATIONAL_STATUS_DOWN"
         case .up: return "BUNDLE_OPERATIONAL_STATUS_UP"

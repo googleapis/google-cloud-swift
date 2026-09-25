@@ -340,7 +340,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .unspecified: return "CATEGORY_UNSPECIFIED"
         case .license: return "LICENSE"
@@ -402,7 +402,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .invalid: return "INVALID"
         case .thirtySixMonth: return "THIRTY_SIX_MONTH"
@@ -468,7 +468,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .active: return "ACTIVE"
         case .cancelled: return "CANCELLED"
@@ -590,7 +590,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .acceleratorOptimized: return "ACCELERATOR_OPTIMIZED"
         case .acceleratorOptimizedA3: return "ACCELERATOR_OPTIMIZED_A3"

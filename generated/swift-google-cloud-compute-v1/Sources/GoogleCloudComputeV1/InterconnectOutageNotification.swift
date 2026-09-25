@@ -193,7 +193,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .itOutage: return "IT_OUTAGE"
         case .itPartialOutage: return "IT_PARTIAL_OUTAGE"
@@ -259,7 +259,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .google: return "GOOGLE"
         case .nsrcGoogle: return "NSRC_GOOGLE"
@@ -330,7 +330,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .active: return "ACTIVE"
         case .cancelled: return "CANCELLED"

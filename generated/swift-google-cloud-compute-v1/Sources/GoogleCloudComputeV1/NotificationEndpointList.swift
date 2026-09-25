@@ -377,7 +377,7 @@
         case unknownStringValue(Swift.String)
 
         /// Returns the string value (or name) associated with the enumeration.
-        public var stringValue: Swift.String? {
+        public var stringValue: Swift.String {
           switch self {
           case .cleanupFailed: return "CLEANUP_FAILED"
           case .deprecatedResourceUsed: return "DEPRECATED_RESOURCE_USED"

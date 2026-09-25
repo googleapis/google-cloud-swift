@@ -348,7 +348,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .cloudArmor: return "CLOUD_ARMOR"
         case .cloudArmorEdge: return "CLOUD_ARMOR_EDGE"

@@ -116,7 +116,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .asPathTypeSequence: return "AS_PATH_TYPE_SEQUENCE"
         case .asPathTypeSet: return "AS_PATH_TYPE_SET"

@@ -109,7 +109,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .locationRolloutStateCompleted: return "LOCATION_ROLLOUT_STATE_COMPLETED"
         case .locationRolloutStateFailed: return "LOCATION_ROLLOUT_STATE_FAILED"

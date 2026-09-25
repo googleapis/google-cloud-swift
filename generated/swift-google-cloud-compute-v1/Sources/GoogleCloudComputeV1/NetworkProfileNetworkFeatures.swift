@@ -460,7 +460,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .dnsResolver: return "DNS_RESOLVER"
         case .gceEndpoint: return "GCE_ENDPOINT"
@@ -536,7 +536,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .addressCreationAllowed: return "ADDRESS_CREATION_ALLOWED"
         case .addressCreationBlocked: return "ADDRESS_CREATION_BLOCKED"
@@ -594,7 +594,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .aliasIpRangesAllowed: return "ALIAS_IP_RANGES_ALLOWED"
         case .aliasIpRangesBlocked: return "ALIAS_IP_RANGES_BLOCKED"
@@ -652,7 +652,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .autoModeSubnetAllowed: return "AUTO_MODE_SUBNET_ALLOWED"
         case .autoModeSubnetBlocked: return "AUTO_MODE_SUBNET_BLOCKED"
@@ -710,7 +710,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .classDFirewallsAllowed: return "CLASS_D_FIREWALLS_ALLOWED"
         case .classDFirewallsBlocked: return "CLASS_D_FIREWALLS_BLOCKED"
@@ -768,7 +768,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .cloudNatAllowed: return "CLOUD_NAT_ALLOWED"
         case .cloudNatBlocked: return "CLOUD_NAT_BLOCKED"
@@ -826,7 +826,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .cloudRouterAllowed: return "CLOUD_ROUTER_ALLOWED"
         case .cloudRouterBlocked: return "CLOUD_ROUTER_BLOCKED"
@@ -884,7 +884,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .defaultNicAttachmentAllowed: return "DEFAULT_NIC_ATTACHMENT_ALLOWED"
         case .defaultNicAttachmentBlocked: return "DEFAULT_NIC_ATTACHMENT_BLOCKED"
@@ -944,7 +944,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .externalIpAccessAllowed: return "EXTERNAL_IP_ACCESS_ALLOWED"
         case .externalIpAccessBlocked: return "EXTERNAL_IP_ACCESS_BLOCKED"
@@ -1002,7 +1002,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .firewallPolicyAllowed: return "FIREWALL_POLICY_ALLOWED"
         case .firewallPolicyBlocked: return "FIREWALL_POLICY_BLOCKED"
@@ -1060,7 +1060,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .interconnectAllowed: return "INTERCONNECT_ALLOWED"
         case .interconnectBlocked: return "INTERCONNECT_BLOCKED"
@@ -1118,7 +1118,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ipForwardingAllowed: return "IP_FORWARDING_ALLOWED"
         case .ipForwardingBlocked: return "IP_FORWARDING_BLOCKED"
@@ -1176,7 +1176,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .loadBalancingAllowed: return "LOAD_BALANCING_ALLOWED"
         case .loadBalancingBlocked: return "LOAD_BALANCING_BLOCKED"
@@ -1234,7 +1234,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .multiNicInSameNetworkAllowed: return "MULTI_NIC_IN_SAME_NETWORK_ALLOWED"
         case .multiNicInSameNetworkBlocked: return "MULTI_NIC_IN_SAME_NETWORK_BLOCKED"
@@ -1294,7 +1294,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .multiNicInSameSubnetworkAllowed: return "MULTI_NIC_IN_SAME_SUBNETWORK_ALLOWED"
         case .multiNicInSameSubnetworkBlocked: return "MULTI_NIC_IN_SAME_SUBNETWORK_BLOCKED"
@@ -1354,7 +1354,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .multicastAllowed: return "MULTICAST_ALLOWED"
         case .multicastBlocked: return "MULTICAST_BLOCKED"
@@ -1412,7 +1412,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .nccAllowed: return "NCC_ALLOWED"
         case .nccBlocked: return "NCC_BLOCKED"
@@ -1470,7 +1470,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .networkMigrationAllowed: return "NETWORK_MIGRATION_ALLOWED"
         case .networkMigrationBlocked: return "NETWORK_MIGRATION_BLOCKED"
@@ -1528,7 +1528,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .packetMirroringAllowed: return "PACKET_MIRRORING_ALLOWED"
         case .packetMirroringBlocked: return "PACKET_MIRRORING_BLOCKED"
@@ -1586,7 +1586,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .privateGoogleAccessAllowed: return "PRIVATE_GOOGLE_ACCESS_ALLOWED"
         case .privateGoogleAccessBlocked: return "PRIVATE_GOOGLE_ACCESS_BLOCKED"
@@ -1646,7 +1646,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .pscAllowed: return "PSC_ALLOWED"
         case .pscBlocked: return "PSC_BLOCKED"
@@ -1704,7 +1704,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .sameNetworkUnicastAllowed: return "SAME_NETWORK_UNICAST_ALLOWED"
         case .sameNetworkUnicastBlocked: return "SAME_NETWORK_UNICAST_BLOCKED"
@@ -1762,7 +1762,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .staticRoutesAllowed: return "STATIC_ROUTES_ALLOWED"
         case .staticRoutesBlocked: return "STATIC_ROUTES_BLOCKED"
@@ -1820,7 +1820,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .subinterfacesAllowed: return "SUBINTERFACES_ALLOWED"
         case .subinterfacesBlocked: return "SUBINTERFACES_BLOCKED"
@@ -1878,7 +1878,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .subnetworkCreationAllowed: return "SUBNETWORK_CREATION_ALLOWED"
         case .subnetworkCreationBlocked: return "SUBNETWORK_CREATION_BLOCKED"
@@ -1936,7 +1936,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .vpcFirewallRulesAllowed: return "VPC_FIREWALL_RULES_ALLOWED"
         case .vpcFirewallRulesBlocked: return "VPC_FIREWALL_RULES_BLOCKED"
@@ -1994,7 +1994,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .vpcPeeringAllowed: return "VPC_PEERING_ALLOWED"
         case .vpcPeeringBlocked: return "VPC_PEERING_BLOCKED"
@@ -2052,7 +2052,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .vpnAllowed: return "VPN_ALLOWED"
         case .vpnBlocked: return "VPN_BLOCKED"
@@ -2111,7 +2111,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .rdmaRocePolicy: return "RDMA_ROCE_POLICY"
         case .ullPolicy: return "ULL_POLICY"
@@ -2182,7 +2182,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .gvnic: return "GVNIC"
         case .idpf: return "IDPF"
@@ -2252,7 +2252,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .sdn: return "MULTICAST_SDN"
         case .ull: return "MULTICAST_ULL"
@@ -2310,7 +2310,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .subnetPurposeCustomHardware: return "SUBNET_PURPOSE_CUSTOM_HARDWARE"
         case .subnetPurposePrivate: return "SUBNET_PURPOSE_PRIVATE"
@@ -2370,7 +2370,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .subnetStackTypeIpv4Ipv6: return "SUBNET_STACK_TYPE_IPV4_IPV6"
         case .subnetStackTypeIpv4Only: return "SUBNET_STACK_TYPE_IPV4_ONLY"
@@ -2448,7 +2448,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .globalManagedProxy: return "GLOBAL_MANAGED_PROXY"
         case .internalHttpsLoadBalancer: return "INTERNAL_HTTPS_LOAD_BALANCER"
@@ -2528,7 +2528,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .ipv4Ipv6: return "IPV4_IPV6"
         case .ipv4Only: return "IPV4_ONLY"
@@ -2589,7 +2589,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .sdn: return "UNICAST_SDN"
         case .ull: return "UNICAST_ULL"

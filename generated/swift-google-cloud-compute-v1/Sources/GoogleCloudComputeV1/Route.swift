@@ -605,7 +605,7 @@
         case unknownStringValue(Swift.String)
 
         /// Returns the string value (or name) associated with the enumeration.
-        public var stringValue: Swift.String? {
+        public var stringValue: Swift.String {
           switch self {
           case .cleanupFailed: return "CLEANUP_FAILED"
           case .deprecatedResourceUsed: return "DEPRECATED_RESOURCE_USED"
@@ -771,7 +771,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .egp: return "EGP"
         case .igp: return "IGP"
@@ -842,7 +842,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .active: return "ACTIVE"
         case .dropped: return "DROPPED"
@@ -908,7 +908,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .bgp: return "BGP"
         case .`static`: return "STATIC"

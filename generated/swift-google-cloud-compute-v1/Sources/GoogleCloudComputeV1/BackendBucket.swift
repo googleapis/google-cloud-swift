@@ -238,7 +238,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .automatic: return "AUTOMATIC"
         case .disabled: return "DISABLED"
@@ -299,7 +299,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .externalManaged: return "EXTERNAL_MANAGED"
         case .internalManaged: return "INTERNAL_MANAGED"

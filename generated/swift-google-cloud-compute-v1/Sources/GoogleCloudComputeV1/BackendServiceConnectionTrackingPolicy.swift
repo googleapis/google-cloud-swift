@@ -176,7 +176,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .alwaysPersist: return "ALWAYS_PERSIST"
         case .defaultForProtocol: return "DEFAULT_FOR_PROTOCOL"
@@ -238,7 +238,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .invalidTrackingMode: return "INVALID_TRACKING_MODE"
         case .perConnection: return "PER_CONNECTION"

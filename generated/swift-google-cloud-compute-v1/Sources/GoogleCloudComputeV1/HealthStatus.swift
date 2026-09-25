@@ -175,7 +175,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .healthy: return "HEALTHY"
         case .unhealthy: return "UNHEALTHY"
@@ -233,7 +233,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .healthy: return "HEALTHY"
         case .unhealthy: return "UNHEALTHY"
@@ -309,7 +309,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .invalidWeight: return "INVALID_WEIGHT"
         case .missingWeight: return "MISSING_WEIGHT"

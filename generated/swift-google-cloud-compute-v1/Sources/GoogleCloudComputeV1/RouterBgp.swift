@@ -174,7 +174,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .custom: return "CUSTOM"
         case .`default`: return "DEFAULT"
@@ -232,7 +232,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .allSubnets: return "ALL_SUBNETS"
         case .unknownStringValue(let v): return v

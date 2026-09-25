@@ -130,7 +130,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .md5Optional: return "MD5_OPTIONAL"
         case .md5Required: return "MD5_REQUIRED"

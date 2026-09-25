@@ -121,7 +121,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .deleteAcknowledged: return "DELETE_ACKNOWLEDGED"
         case .unspecified: return "DELETE_STATUS_UNSPECIFIED"
@@ -198,7 +198,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .inSync: return "IN_SYNC"
         case .pendingLocalAcknowledment: return "PENDING_LOCAL_ACKNOWLEDMENT"

@@ -126,7 +126,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .autoConnect: return "AUTO_CONNECT"
         case .provisionOnly: return "PROVISION_ONLY"
@@ -188,7 +188,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .block: return "BLOCK"
         case .cluster: return "CLUSTER"
@@ -252,7 +252,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .highAvailability: return "HIGH_AVAILABILITY"
         case .highThroughput: return "HIGH_THROUGHPUT"

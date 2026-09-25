@@ -116,7 +116,7 @@ public struct DnsKeySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .rsasha1: return "rsasha1"
       case .rsasha256: return "rsasha256"
@@ -181,7 +181,7 @@ public struct DnsKeySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     case unknownStringValue(Swift.String)
 
     /// Returns the string value (or name) associated with the enumeration.
-    public var stringValue: Swift.String? {
+    public var stringValue: Swift.String {
       switch self {
       case .keySigning: return "keySigning"
       case .zoneSigning: return "zoneSigning"

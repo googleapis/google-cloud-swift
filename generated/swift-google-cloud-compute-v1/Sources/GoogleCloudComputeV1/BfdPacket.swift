@@ -229,7 +229,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .administrativelyDown: return "ADMINISTRATIVELY_DOWN"
         case .concatenatedPathDown: return "CONCATENATED_PATH_DOWN"
@@ -317,7 +317,7 @@
       case unknownStringValue(Swift.String)
 
       /// Returns the string value (or name) associated with the enumeration.
-      public var stringValue: Swift.String? {
+      public var stringValue: Swift.String {
         switch self {
         case .adminDown: return "ADMIN_DOWN"
         case .down: return "DOWN"
