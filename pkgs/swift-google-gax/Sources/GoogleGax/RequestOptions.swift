@@ -38,6 +38,11 @@ public struct RequestOptions: Sendable {
   /// For methods that wrap RPCs, the client libraries make at least one attempt on the RPC. The timeout for each
   /// attempt is overridden using this value. Note that the overall time for the request is also controlled by the retry
   /// policy.
+  ///
+  /// When this value is `nil` (the default), the request inherits the per-attempt timeout configured on
+  /// ``ClientOptions/attemptTimeout``. Note that `nil` does *not* disable the timeout if `ClientOptions`
+  /// has a timeout configured. Setting a very long timeout (such as days or `.seconds(Int64.max)`) is
+  /// effectively the same as disabling the timeout.
   public var attemptTimeout: Duration? = nil
 
   /// Overrides the request idempotency.
