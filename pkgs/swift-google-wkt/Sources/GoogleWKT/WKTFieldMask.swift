@@ -24,9 +24,11 @@ import Foundation
 /// For example, the `WKTFieldMask` `paths: ["user.display_name", "photo"]` is
 /// represented in JSON as `"user.displayName,photo"`.
 public struct WKTFieldMask: Codable, Equatable, Sendable {
-  public let paths: [String]
+  /// The set of field mask paths.
+  public var paths: [String] = []
 
-  public init(paths: [String]) {
+  /// Initialize a new instance of `WKTFieldMask`.
+  public init(paths: [String] = []) {
     self.paths = paths
   }
 

@@ -101,4 +101,13 @@ import Testing
       #"{"content":{"@type":"type.googleapis.com/google.protobuf.FieldMask","value":"a,b,cD"}}"#
     #expect(got == want)
   }
+
+  @Test func defaultInitAndMutation() {
+    var fieldMask = WKTFieldMask()
+    #expect(fieldMask.paths.isEmpty)
+
+    fieldMask.paths.append("user.display_name")
+    fieldMask.paths.append("photo")
+    #expect(fieldMask.paths == ["user.display_name", "photo"])
+  }
 }
