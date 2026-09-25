@@ -17,13 +17,13 @@ public import SwiftProtobuf
 
 extension GoogleWKT.WKTTimestamp {
   public init(proto: SwiftProtobuf.Google_Protobuf_Timestamp) throws {
-    try self.init(seconds: proto.seconds, nanos: Int64(proto.nanos))
+    try self.init(seconds: proto.seconds, nanos: proto.nanos)
   }
 
   public func toProto() throws -> SwiftProtobuf.Google_Protobuf_Timestamp {
     var proto = SwiftProtobuf.Google_Protobuf_Timestamp()
     proto.seconds = self.seconds
-    proto.nanos = Int32(self.nanos)
+    proto.nanos = self.nanos
     return proto
   }
 }

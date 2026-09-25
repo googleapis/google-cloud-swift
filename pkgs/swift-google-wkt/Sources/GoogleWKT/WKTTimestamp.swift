@@ -70,10 +70,10 @@ public struct WKTTimestamp: Codable, Equatable, Sendable {
   static public let maxSeconds: Int64 = 253_402_300_799
 
   /// The maximum value for the `nanos` component.
-  static public let maxNanos: Int64 = nanosPerSecond - 1
+  static public let maxNanos: Int32 = nanosPerSecond - 1
 
   /// The minimum value for the `nanos` component.
-  static public let minNanos: Int64 = 0
+  static public let minNanos: Int32 = 0
 
   /// Represents seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z. Must
   /// be between -62135596800 and 253402300799 inclusive (which corresponds to
@@ -85,18 +85,19 @@ public struct WKTTimestamp: Codable, Equatable, Sendable {
   /// Negative second values with fractions must still have non-negative nanos
   /// values that count forward in time. Must be between 0 and 999,999,999
   /// inclusive.
-  public let nanos: Int64
+  public let nanos: Int32
 
   /// Create a new instance, validating the inputs.
   ///
   /// - Parameters:
   ///   - seconds: the number of seconds from the epoch.
   ///   - nanos: the number of nanoseconds counting forward in time. Must be >= 0.
+  ///     Defaults to 0.
   ///
   /// - Throws: `WKTTimestampError.outOfRange` if the seconds are outside the
   ///   [`minSeconds`, `maxSeconds`] range **or** the nanoseconds are
-  ///   outside the [`minNanoseconds`, `maxNanoseconds`] range.
-  public init(seconds: Int64, nanos: Int64) throws {
+  ///   outside the [`minNanos`, `maxNanos`] range.
+  public init(seconds: Int64, nanos: Int32 = 0) throws {
     if seconds < Self.minSeconds || seconds > Self.maxSeconds {
       throw WKTTimestampError.outOfRange
     }
@@ -230,7 +231,7 @@ public struct WKTTimestamp: Codable, Equatable, Sendable {
     return Int64(hour) * secondsPerHour + Int64(minute) * secondsPerMinute + Int64(second)
   }
 
-  private static func parseNanosSegment(_ rfc3339: String, at pos: inout String.Index) -> Int64 {
+  private static func parseNanosSegment(_ rfc3339: String, at pos: inout String.Index) -> Int32 {
     guard pos < rfc3339.endIndex && rfc3339[pos] == "." else {
       return 0
     }
@@ -244,7 +245,7 @@ public struct WKTTimestamp: Codable, Equatable, Sendable {
       return 0
     }
     let paddedFrac = fracStr.padding(toLength: 9, withPad: "0", startingAt: 0).prefix(9)
-    return Int64(paddedFrac) ?? 0
+    return Int32(paddedFrac) ?? 0
   }
 
   private static func parseTimezoneOffset(_ rfc3339: String, at pos: String.Index) throws -> Int64 {

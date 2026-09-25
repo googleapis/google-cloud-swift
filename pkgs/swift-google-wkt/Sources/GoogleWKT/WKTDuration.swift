@@ -40,27 +40,27 @@ public struct WKTDuration: Codable, Equatable, Sendable {
   public static let minSeconds: Int64 = -maxSeconds
 
   /// The maximum value for the `nanos` component.
-  public static let maxNanos: Int64 = nanosPerSecond - 1
+  public static let maxNanos: Int32 = nanosPerSecond - 1
 
   /// The minimum value for the `nanos` component.
-  public static let minNanos: Int64 = -maxNanos
+  public static let minNanos: Int32 = -maxNanos
 
   public let seconds: Int64
-  public let nanos: Int64
+  public let nanos: Int32
 
   /// Create a new instance, validating the inputs.
   ///
   /// - Parameters:
   ///   - seconds: the number of seconds in the span of time.
   ///   - nanos: the number of nanoseconds in the span of time. The sign must
-  ///     match the sign in the seconds.
+  ///     match the sign in the seconds. Defaults to 0.
   ///
   /// - Throws: `WKTDurationError.mismatchedSigns` if the seconds and nanoseconds
   ///     do not have matching signs.
   /// - Throws: `WKTDurationError.outOfRange` if the seconds are outside the
   ///   [`minSeconds`, `maxSeconds`] range **or** the nanoseconds are
-  ///   outside the [`minNanoseconds`, `maxNanoseconds`] range.
-  public init(seconds: Int64, nanos: Int64) throws {
+  ///   outside the [`minNanos`, `maxNanos`] range.
+  public init(seconds: Int64, nanos: Int32 = 0) throws {
     if (seconds < 0 && nanos > 0) || (seconds > 0 && nanos < 0) {
       throw WKTDurationError.mismatchedSigns
     }
@@ -119,10 +119,10 @@ public struct WKTDuration: Codable, Equatable, Sendable {
       throw WKTDurationError.invalidFormat
     }
 
-    var nanos: Int64 = 0
+    var nanos: Int32 = 0
     if parts.count == 2 {
       let nanosStr = String(parts[1]).padding(toLength: 9, withPad: "0", startingAt: 0)
-      guard let pNanos = Int64(nanosStr) else {
+      guard let pNanos = Int32(nanosStr) else {
         throw WKTDurationError.invalidFormat
       }
       nanos = pNanos
@@ -133,11 +133,11 @@ public struct WKTDuration: Codable, Equatable, Sendable {
   }
 }
 
-private let nanosFormatStyle = IntegerFormatStyle<Int64>(locale: Locale(identifier: "en_US_POSIX"))
+private let nanosFormatStyle = IntegerFormatStyle<Int32>(locale: Locale(identifier: "en_US_POSIX"))
   .grouping(.never)
   .precision(.integerLength(9))
 
-func formatNanos(nanos: Int64) -> String {
+func formatNanos(nanos: Int32) -> String {
   var result = nanos.formatted(nanosFormatStyle)
   // ProtoJSON requires either millisecond, microsecond, or nanosecond precision.
   if result.hasSuffix("000") {
@@ -185,4 +185,4 @@ public enum WKTDurationError: Error {
 }
 
 /// The number of nanoseconds in a second.
-let nanosPerSecond: Int64 = 1_000_000_000
+let nanosPerSecond: Int32 = 1_000_000_000

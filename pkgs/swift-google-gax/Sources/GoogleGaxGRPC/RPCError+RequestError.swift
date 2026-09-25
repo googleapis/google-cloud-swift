@@ -121,7 +121,7 @@ extension StatusDetail {
     } else if let retryInfo = detail.retryInfo {
       var item = GoogleRpc.RetryInfo()
       let seconds = retryInfo.delay.components.seconds
-      let nanos = Int64(retryInfo.delay.components.attoseconds / 1_000_000_000)
+      let nanos = Int32(retryInfo.delay.components.attoseconds / 1_000_000_000)
       item.retryDelay = try? GoogleWKT.WKTDuration(seconds: seconds, nanos: nanos)
       self = .retryInfo(item)
     } else if let protoAny = detail.any {

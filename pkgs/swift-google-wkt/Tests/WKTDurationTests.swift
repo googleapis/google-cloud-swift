@@ -19,15 +19,46 @@ import Testing
 @Suite struct WKTDurationTests {
   @Test(
     "Duration initializer",
-    arguments: [(123, 456), (-123, -456), (123, 0), (-123, 0), (0, 456), (0, -456)])
-  func initNormal(_ args: (Int64, Int64)) throws {
+    arguments: [
+      (Int64(123), Int32(456)),
+      (Int64(-123), Int32(-456)),
+      (Int64(123), Int32(0)),
+      (Int64(-123), Int32(0)),
+      (Int64(0), Int32(456)),
+      (Int64(0), Int32(-456)),
+    ])
+  func initNormal(_ args: (Int64, Int32)) throws {
     let got = try GoogleWKT.WKTDuration(seconds: args.0, nanos: args.1)
     #expect(got.seconds == args.0)
     #expect(got.nanos == args.1)
   }
 
-  @Test("Duration detect mismatched signs", arguments: [(123, -456), (-123, 456)])
-  func mismatchedSigns(_ args: (Int64, Int64)) throws {
+  @Test("Duration default nanos is 0")
+  func defaultNanos() throws {
+    let d = try GoogleWKT.WKTDuration(seconds: 42)
+    #expect(d.seconds == 42)
+    #expect(d.nanos == 0)
+  }
+
+  @Test(
+    "Duration boundary nanos",
+    arguments: [
+      (Int64(1), GoogleWKT.WKTDuration.maxNanos),
+      (Int64(-1), GoogleWKT.WKTDuration.minNanos),
+    ])
+  func boundaryNanos(_ args: (Int64, Int32)) throws {
+    let d = try GoogleWKT.WKTDuration(seconds: args.0, nanos: args.1)
+    #expect(d.seconds == args.0)
+    #expect(d.nanos == args.1)
+  }
+
+  @Test(
+    "Duration detect mismatched signs",
+    arguments: [
+      (Int64(123), Int32(-456)),
+      (Int64(-123), Int32(456)),
+    ])
+  func mismatchedSigns(_ args: (Int64, Int32)) throws {
     #expect(throws: GoogleWKT.WKTDurationError.mismatchedSigns) {
       try GoogleWKT.WKTDuration(seconds: args.0, nanos: args.1)
     }
@@ -44,8 +75,8 @@ import Testing
 
   @Test(
     "Duration detect out of range nanos",
-    arguments: [1_000_000_000, -1_000_000_000])
-  func outOfRangeNanos(_ nanos: Int64) throws {
+    arguments: [Int32(1_000_000_000), Int32(-1_000_000_000)])
+  func outOfRangeNanos(_ nanos: Int32) throws {
     #expect(throws: GoogleWKT.WKTDurationError.outOfRange) {
       try GoogleWKT.WKTDuration(seconds: 0, nanos: nanos)
     }
@@ -58,29 +89,29 @@ import Testing
   @Test(
     "Duration JSON Encoding",
     arguments: [
-      (1, 0, "{\"value\":\"1s\"}"),
-      (1, 1000, "{\"value\":\"1.000001s\"}"),
-      (1, 1_000_000, "{\"value\":\"1.001s\"}"),
-      (1, 70_000_000, "{\"value\":\"1.070s\"}"),
-      (1, 70_000, "{\"value\":\"1.000070s\"}"),
-      (1, 70, "{\"value\":\"1.000000070s\"}"),
-      (0, 1, "{\"value\":\"0.000000001s\"}"),
-      (-1, 0, "{\"value\":\"-1s\"}"),
-      (-1, -1_000_000, "{\"value\":\"-1.001s\"}"),
-      (-1, -70_000_000, "{\"value\":\"-1.070s\"}"),
-      (-1, -70_000, "{\"value\":\"-1.000070s\"}"),
-      (-1, -70, "{\"value\":\"-1.000000070s\"}"),
-      (0, -1_000_000, "{\"value\":\"-0.001s\"}"),
-      (42, 0, "{\"value\":\"42s\"}"),
-      (-42, 0, "{\"value\":\"-42s\"}"),
-      (42, 1_000_000, "{\"value\":\"42.001s\"}"),
-      (-42, -1_000_000, "{\"value\":\"-42.001s\"}"),
-      (315_576_000_000, 0, "{\"value\":\"315576000000s\"}"),
-      (-315_576_000_000, 0, "{\"value\":\"-315576000000s\"}"),
-      (315_576_000_000, 999_999_999, "{\"value\":\"315576000000.999999999s\"}"),
-      (-315_576_000_000, -999_999_999, "{\"value\":\"-315576000000.999999999s\"}"),
+      (Int64(1), Int32(0), "{\"value\":\"1s\"}"),
+      (Int64(1), Int32(1000), "{\"value\":\"1.000001s\"}"),
+      (Int64(1), Int32(1_000_000), "{\"value\":\"1.001s\"}"),
+      (Int64(1), Int32(70_000_000), "{\"value\":\"1.070s\"}"),
+      (Int64(1), Int32(70_000), "{\"value\":\"1.000070s\"}"),
+      (Int64(1), Int32(70), "{\"value\":\"1.000000070s\"}"),
+      (Int64(0), Int32(1), "{\"value\":\"0.000000001s\"}"),
+      (Int64(-1), Int32(0), "{\"value\":\"-1s\"}"),
+      (Int64(-1), Int32(-1_000_000), "{\"value\":\"-1.001s\"}"),
+      (Int64(-1), Int32(-70_000_000), "{\"value\":\"-1.070s\"}"),
+      (Int64(-1), Int32(-70_000), "{\"value\":\"-1.000070s\"}"),
+      (Int64(-1), Int32(-70), "{\"value\":\"-1.000000070s\"}"),
+      (Int64(0), Int32(-1_000_000), "{\"value\":\"-0.001s\"}"),
+      (Int64(42), Int32(0), "{\"value\":\"42s\"}"),
+      (Int64(-42), Int32(0), "{\"value\":\"-42s\"}"),
+      (Int64(42), Int32(1_000_000), "{\"value\":\"42.001s\"}"),
+      (Int64(-42), Int32(-1_000_000), "{\"value\":\"-42.001s\"}"),
+      (Int64(315_576_000_000), Int32(0), "{\"value\":\"315576000000s\"}"),
+      (Int64(-315_576_000_000), Int32(0), "{\"value\":\"-315576000000s\"}"),
+      (Int64(315_576_000_000), Int32(999_999_999), "{\"value\":\"315576000000.999999999s\"}"),
+      (Int64(-315_576_000_000), Int32(-999_999_999), "{\"value\":\"-315576000000.999999999s\"}"),
     ])
-  func encodeJSON(_ args: (Int64, Int64, String)) throws {
+  func encodeJSON(_ args: (Int64, Int32, String)) throws {
     let duration = try GoogleWKT.WKTDuration(seconds: args.0, nanos: args.1)
     let wrapped = WrappedDuration(value: duration)
     let encoder = _ProtoJSONEncoder()
@@ -96,31 +127,31 @@ import Testing
   @Test(
     "Duration JSON Decoding",
     arguments: [
-      ("{\"value\":\"1s\"}", 1, 0),
-      ("{\"value\":\"1.001s\"}", 1, 1_000_000),
-      ("{\"value\":\"1.070s\"}", 1, 70_000_000),
-      ("{\"value\":\"1.07s\"}", 1, 70_000_000),
-      ("{\"value\":\"1.1s\"}", 1, 100_000_000),
-      ("{\"value\":\"1.12s\"}", 1, 120_000_000),
-      ("{\"value\":\"1.1234s\"}", 1, 123_400_000),
-      ("{\"value\":\"1.12345s\"}", 1, 123_450_000),
-      ("{\"value\":\"1.1234567s\"}", 1, 123_456_700),
-      ("{\"value\":\"1.12345678s\"}", 1, 123_456_780),
-      ("{\"value\":\"0.000000001s\"}", 0, 1),
-      ("{\"value\":\"-1s\"}", -1, 0),
-      ("{\"value\":\"-1.070s\"}", -1, -70_000_000),
-      ("{\"value\":\"-1.001s\"}", -1, -1_000_000),
-      ("{\"value\":\"-0.001s\"}", 0, -1_000_000),
-      ("{\"value\":\"42s\"}", 42, 0),
-      ("{\"value\":\"-42s\"}", -42, 0),
-      ("{\"value\":\"42.001s\"}", 42, 1_000_000),
-      ("{\"value\":\"-42.001s\"}", -42, -1_000_000),
-      ("{\"value\":\"315576000000s\"}", 315_576_000_000, 0),
-      ("{\"value\":\"-315576000000s\"}", -315_576_000_000, 0),
-      ("{\"value\":\"315576000000.999999999s\"}", 315_576_000_000, 999_999_999),
-      ("{\"value\":\"-315576000000.999999999s\"}", -315_576_000_000, -999_999_999),
+      ("{\"value\":\"1s\"}", Int64(1), Int32(0)),
+      ("{\"value\":\"1.001s\"}", Int64(1), Int32(1_000_000)),
+      ("{\"value\":\"1.070s\"}", Int64(1), Int32(70_000_000)),
+      ("{\"value\":\"1.07s\"}", Int64(1), Int32(70_000_000)),
+      ("{\"value\":\"1.1s\"}", Int64(1), Int32(100_000_000)),
+      ("{\"value\":\"1.12s\"}", Int64(1), Int32(120_000_000)),
+      ("{\"value\":\"1.1234s\"}", Int64(1), Int32(123_400_000)),
+      ("{\"value\":\"1.12345s\"}", Int64(1), Int32(123_450_000)),
+      ("{\"value\":\"1.1234567s\"}", Int64(1), Int32(123_456_700)),
+      ("{\"value\":\"1.12345678s\"}", Int64(1), Int32(123_456_780)),
+      ("{\"value\":\"0.000000001s\"}", Int64(0), Int32(1)),
+      ("{\"value\":\"-1s\"}", Int64(-1), Int32(0)),
+      ("{\"value\":\"-1.070s\"}", Int64(-1), Int32(-70_000_000)),
+      ("{\"value\":\"-1.001s\"}", Int64(-1), Int32(-1_000_000)),
+      ("{\"value\":\"-0.001s\"}", Int64(0), Int32(-1_000_000)),
+      ("{\"value\":\"42s\"}", Int64(42), Int32(0)),
+      ("{\"value\":\"-42s\"}", Int64(-42), Int32(0)),
+      ("{\"value\":\"42.001s\"}", Int64(42), Int32(1_000_000)),
+      ("{\"value\":\"-42.001s\"}", Int64(-42), Int32(-1_000_000)),
+      ("{\"value\":\"315576000000s\"}", Int64(315_576_000_000), Int32(0)),
+      ("{\"value\":\"-315576000000s\"}", Int64(-315_576_000_000), Int32(0)),
+      ("{\"value\":\"315576000000.999999999s\"}", Int64(315_576_000_000), Int32(999_999_999)),
+      ("{\"value\":\"-315576000000.999999999s\"}", Int64(-315_576_000_000), Int32(-999_999_999)),
     ])
-  func decodeJSON(_ args: (String, Int64, Int64)) throws {
+  func decodeJSON(_ args: (String, Int64, Int32)) throws {
     let data = Data(args.0.utf8)
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedDurationDecode.self, from: data)

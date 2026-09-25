@@ -31,25 +31,56 @@ import Testing
   }
 
   @Test(
+    "Timestamp detect out of range nanos",
+    arguments: [
+      -1,
+      1_000_000_000,
+    ])
+  func outOfRangeNanos(_ nanos: Int32) throws {
+    #expect(throws: GoogleWKT.WKTTimestampError.outOfRange) {
+      try GoogleWKT.WKTTimestamp(seconds: 0, nanos: nanos)
+    }
+  }
+
+  @Test("Timestamp default nanos is 0")
+  func defaultNanos() throws {
+    let ts = try GoogleWKT.WKTTimestamp(seconds: 12345)
+    #expect(ts.seconds == 12345)
+    #expect(ts.nanos == 0)
+  }
+
+  @Test(
+    "Timestamp boundary nanos",
+    arguments: [
+      GoogleWKT.WKTTimestamp.minNanos,
+      GoogleWKT.WKTTimestamp.maxNanos,
+    ])
+  func boundaryNanos(_ nanos: Int32) throws {
+    let ts = try GoogleWKT.WKTTimestamp(seconds: 0, nanos: nanos)
+    #expect(ts.seconds == 0)
+    #expect(ts.nanos == nanos)
+  }
+
+  @Test(
     "Timestamp parsing of known values",
     arguments: [
-      ("0001-01-01T00:00:00Z", GoogleWKT.WKTTimestamp.minSeconds, 0),
-      ("1970-01-01T00:00:00Z", 0, 0),
-      ("1970-01-01T00:00:12Z", 12, 0),
-      ("1970-01-01T00:00:12.34Z", 12, 340_000_000),
-      ("1970-01-01T00:00:12.340Z", 12, 340_000_000),
-      ("1970-01-01T00:00:12.345678912Z", 12, 345_678_912),
-      ("1969-12-31T23:59:59Z", -1, 0),
-      ("1969-12-31T23:59:48.123456789Z", -12, 123_456_789),
-      ("9999-12-31T23:59:59Z", GoogleWKT.WKTTimestamp.maxSeconds, 0),
-      ("1970-01-01T01:00:00+01:00", 0, 0),
-      ("1970-01-01T00:00:00+01:00", -3600, 0),
-      ("1969-12-31T23:00:00-01:00", 0, 0),
-      ("1970-01-01T00:00:00-01:00", 3600, 0),
-      ("1970-01-01T00:00:00+00:00", 0, 0),
-      ("1970-01-01T00:00:00+05:30", -19800, 0),
+      ("0001-01-01T00:00:00Z", GoogleWKT.WKTTimestamp.minSeconds, Int32(0)),
+      ("1970-01-01T00:00:00Z", 0, Int32(0)),
+      ("1970-01-01T00:00:12Z", 12, Int32(0)),
+      ("1970-01-01T00:00:12.34Z", 12, Int32(340_000_000)),
+      ("1970-01-01T00:00:12.340Z", 12, Int32(340_000_000)),
+      ("1970-01-01T00:00:12.345678912Z", 12, Int32(345_678_912)),
+      ("1969-12-31T23:59:59Z", -1, Int32(0)),
+      ("1969-12-31T23:59:48.123456789Z", -12, Int32(123_456_789)),
+      ("9999-12-31T23:59:59Z", GoogleWKT.WKTTimestamp.maxSeconds, Int32(0)),
+      ("1970-01-01T01:00:00+01:00", 0, Int32(0)),
+      ("1970-01-01T00:00:00+01:00", -3600, Int32(0)),
+      ("1969-12-31T23:00:00-01:00", 0, Int32(0)),
+      ("1970-01-01T00:00:00-01:00", 3600, Int32(0)),
+      ("1970-01-01T00:00:00+00:00", 0, Int32(0)),
+      ("1970-01-01T00:00:00+05:30", -19800, Int32(0)),
     ])
-  func fromString(input: String, wantSeconds: Int64, wantNanos: Int64) throws {
+  func fromString(input: String, wantSeconds: Int64, wantNanos: Int32) throws {
     let got = try WKTTimestamp(fromString: input)
     #expect(got.seconds == wantSeconds)
     #expect(got.nanos == wantNanos)
@@ -188,14 +219,14 @@ import Testing
   @Test(
     "Timestamp JSON Encoding",
     arguments: [
-      (0, 0, "{\"value\":\"1970-01-01T00:00:00Z\"}"),
-      (12, 340_000_000, "{\"value\":\"1970-01-01T00:00:12.340Z\"}"),
-      (12, 345_678_912, "{\"value\":\"1970-01-01T00:00:12.345678912Z\"}"),
-      (-1, 0, "{\"value\":\"1969-12-31T23:59:59Z\"}"),
-      (GoogleWKT.WKTTimestamp.minSeconds, 0, "{\"value\":\"0001-01-01T00:00:00Z\"}"),
+      (0, Int32(0), "{\"value\":\"1970-01-01T00:00:00Z\"}"),
+      (12, Int32(340_000_000), "{\"value\":\"1970-01-01T00:00:12.340Z\"}"),
+      (12, Int32(345_678_912), "{\"value\":\"1970-01-01T00:00:12.345678912Z\"}"),
+      (-1, Int32(0), "{\"value\":\"1969-12-31T23:59:59Z\"}"),
+      (GoogleWKT.WKTTimestamp.minSeconds, Int32(0), "{\"value\":\"0001-01-01T00:00:00Z\"}"),
     ]
   )
-  func encodeJSON(_ args: (Int64, Int64, String)) throws {
+  func encodeJSON(_ args: (Int64, Int32, String)) throws {
     let ts = try WKTTimestamp(seconds: args.0, nanos: args.1)
     let wrapped = WrappedTimestamp(value: ts)
     let encoder = _ProtoJSONEncoder()
@@ -207,15 +238,15 @@ import Testing
   @Test(
     "Timestamp JSON Decoding",
     arguments: [
-      ("{\"value\":\"1970-01-01T00:00:00Z\"}", 0, 0),
-      ("{\"value\":\"1970-01-01T00:00:12.34Z\"}", 12, 340_000_000),
-      ("{\"value\":\"1970-01-01T00:00:12.345678912Z\"}", 12, 345_678_912),
-      ("{\"value\":\"1969-12-31T23:59:59Z\"}", -1, 0),
-      ("{\"value\":\"0001-01-01T00:00:00Z\"}", GoogleWKT.WKTTimestamp.minSeconds, 0),
-      ("{\"value\":\"1970-01-01T01:00:00+01:00\"}", 0, 0),
+      ("{\"value\":\"1970-01-01T00:00:00Z\"}", 0, Int32(0)),
+      ("{\"value\":\"1970-01-01T00:00:12.34Z\"}", 12, Int32(340_000_000)),
+      ("{\"value\":\"1970-01-01T00:00:12.345678912Z\"}", 12, Int32(345_678_912)),
+      ("{\"value\":\"1969-12-31T23:59:59Z\"}", -1, Int32(0)),
+      ("{\"value\":\"0001-01-01T00:00:00Z\"}", GoogleWKT.WKTTimestamp.minSeconds, Int32(0)),
+      ("{\"value\":\"1970-01-01T01:00:00+01:00\"}", 0, Int32(0)),
     ]
   )
-  func decodeJSON(_ args: (String, Int64, Int64)) throws {
+  func decodeJSON(_ args: (String, Int64, Int32)) throws {
     let data = Data(args.0.utf8)
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedTimestampDecode.self, from: data)
