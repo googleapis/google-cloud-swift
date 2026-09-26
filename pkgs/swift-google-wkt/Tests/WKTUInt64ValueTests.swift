@@ -83,7 +83,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTUInt64ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.UInt64Value")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.UInt64Value")
 
     let got = try WKTUInt64Value(fromAny: any)
     let want = UInt64(123)
@@ -98,7 +98,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTUInt64ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.UInt64Value")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.UInt64Value")
 
     let got = try WKTUInt64Value(fromAny: any)
     let want = UInt64(123)
@@ -113,7 +113,7 @@ import Testing
     let wrapped = try decoder.decode(WKTUInt64ValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTUInt64Value(fromAny: any) }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test("Pack UInt64Value into Any")

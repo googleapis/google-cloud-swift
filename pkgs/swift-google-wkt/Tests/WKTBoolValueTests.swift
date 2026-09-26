@@ -81,7 +81,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTBoolValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.BoolValue")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.BoolValue")
 
     let got = try WKTBoolValue(fromAny: any)
     let want = true
@@ -96,7 +96,7 @@ import Testing
     let wrapped = try decoder.decode(WKTBoolValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTBoolValue(fromAny: any) }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test("Pack BoolValue into Any")

@@ -81,7 +81,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTFloatValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.FloatValue")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.FloatValue")
 
     let got = try WKTFloatValue(fromAny: any)
     let want = Float(123.45)
@@ -96,7 +96,7 @@ import Testing
     let wrapped = try decoder.decode(WKTFloatValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTFloatValue(fromAny: any) }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test(

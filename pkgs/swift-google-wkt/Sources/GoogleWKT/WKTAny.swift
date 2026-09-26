@@ -29,24 +29,24 @@ public struct WKTAny: Codable, Equatable, Sendable {
   ///
   /// Values without a typeURL indicate a decoding error. The contents
   /// cannot be extracted.
-  public var typeUrl: String {
+  public var typeURL: String {
     get {
       return self._type
     }
   }
 
   enum CodingKeys: String, CodingKey {
-    case type = "@type"  // must be literal, cannot use `typeUrlField`
+    case type = "@type"  // must be literal, cannot use `typeURLField`
   }
 
   public init(from decoder: Decoder) throws {
     var fields = try WKTStruct(from: decoder)
-    guard case let .string(ty)? = fields.removeValue(forKey: Self.typeUrlField) else {
+    guard case let .string(ty)? = fields.removeValue(forKey: Self.typeURLField) else {
       throw DecodingError.keyNotFound(
         CodingKeys.type,
         DecodingError.Context(
           codingPath: decoder.codingPath,
-          debugDescription: "\(Self.typeUrlField) is required for Any"))
+          debugDescription: "\(Self.typeURLField) is required for Any"))
     }
     self._type = ty
     self.fields = fields
@@ -55,7 +55,7 @@ public struct WKTAny: Codable, Equatable, Sendable {
   public func encode(to encoder: any Encoder) throws {
     // This should be efficient, as the dictionary is a copy-on-write data structure.
     var fields = self.fields
-    fields[Self.typeUrlField] = WKTValue(string: self._type)
+    fields[Self.typeURLField] = WKTValue(string: self._type)
     try fields.encode(to: encoder)
   }
 
@@ -72,12 +72,12 @@ extension WKTAny: _AnyPackable {
   }
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
-      throw WKTAnyError.mismatchedTypeUrl
+      throw WKTAnyError.mismatchedTypeURL
     }
     guard case var .object(fields)? = any.fields["value"] else {
       throw WKTAnyError.invalidValueField
     }
-    guard case let .string(_type)? = fields.removeValue(forKey: Self.typeUrlField) else {
+    guard case let .string(_type)? = fields.removeValue(forKey: Self.typeURLField) else {
       throw WKTAnyError.invalidNestedAnyType
     }
     self._type = _type
@@ -85,12 +85,12 @@ extension WKTAny: _AnyPackable {
   }
   public func _pack() throws -> WKTStruct {
     var fields = self.fields
-    fields[Self.typeUrlField] = WKTValue(string: self._type)
+    fields[Self.typeURLField] = WKTValue(string: self._type)
     return [Self.valueField: WKTValue(object: fields)]
   }
 
-  // The JSON field used to store an Any's typeUrl.
-  static private let typeUrlField = "@type"
+  // The JSON field used to store an Any's typeURL.
+  static private let typeURLField = "@type"
   // The JSON field used to store types with custom encoding.
   static internal let valueField = "value"
 }

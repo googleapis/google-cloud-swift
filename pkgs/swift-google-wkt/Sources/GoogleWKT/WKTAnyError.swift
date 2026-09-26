@@ -20,12 +20,12 @@ import Foundation
 ///   enumeration in minor or patch releases. Always handle unexpected cases using an `@unknown default:`
 ///   clause in `switch` statements.
 public enum WKTAnyError: Error {
-  /// The typeUrl of the message does not match the contents in the `WKTAny`.
+  /// The type URL of the message does not match the contents in the `WKTAny`.
   ///
   /// Each `WKTAny` carries a field indicating the type URL of its contents. This error indicates that
   /// the caller attempted to extract a message from the `WKTAny` that has a different type URL from
   /// the contents of the Any itself.
-  case mismatchedTypeUrl
+  case mismatchedTypeURL
 
   /// The @type field in a nested `WKTAny` is missing or invalid.
   ///
@@ -38,7 +38,7 @@ public enum WKTAnyError: Error {
   /// Some messages, notably many well-known types, are JSON encoded to strings. When stored in a
   /// `WKTAny`, such messages are stored as:
   ///
-  ///     {"@type": "<typeUrl>", "value": "<encoded-JSON-string-value>"}
+  ///     {"@type": "<typeURL>", "value": "<encoded-JSON-string-value>"}
   ///
   /// For example, a ``WKTDuration`` of 123.45s would be encoded as:
   ///
@@ -52,7 +52,7 @@ public enum WKTAnyError: Error {
   /// Some messages, notably many well-known types, are JSON encoded to strings. When stored in a
   /// `WKTAny`, such messages are stored as:
   ///
-  ///     {"@type": "<typeUrl>", "value": "<encoded-JSON-string-value>"}
+  ///     {"@type": "<typeURL>", "value": "<encoded-JSON-string-value>"}
   ///
   /// For example, a ``WKTDuration`` of 123.45s would be encoded as:
   ///

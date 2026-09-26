@@ -541,7 +541,7 @@ import Testing
       Issue.record("Expected .other detail, got \(serviceError.details[0])")
       return
     }
-    #expect(other.typeUrl == "type.googleapis.com/custom.unknown.Message")
+    #expect(other.typeURL == "type.googleapis.com/custom.unknown.Message")
   }
 
   @Test func fallsBackOnCorruptedDetails() {

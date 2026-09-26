@@ -81,7 +81,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTBytesValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.BytesValue")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.BytesValue")
 
     let got = try WKTBytesValue(fromAny: any)
     let want = Data("hello".utf8)
@@ -96,7 +96,7 @@ import Testing
     let wrapped = try decoder.decode(WKTBytesValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTBytesValue(fromAny: any) }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test("Pack BytesValue into Any")

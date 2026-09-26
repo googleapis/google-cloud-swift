@@ -34,7 +34,7 @@ func testDecodingGetSecretRequestMessage() throws {
   let decoder = _ProtoJSONDecoder()
   let wrapped = try decoder.decode(WrappedAny.self, from: data)
   let any = wrapped.value
-  #expect(any.typeUrl == "type.googleapis.com/google.cloud.secretmanager.v1.GetSecretRequest")
+  #expect(any.typeURL == "type.googleapis.com/google.cloud.secretmanager.v1.GetSecretRequest")
   let got = try GetSecretRequest(fromAny: any)
   let want = GetSecretRequest().with { $0.name = "projects/test-project/secrets/my-secret" }
   #expect(got == want)
@@ -64,7 +64,7 @@ func testDecodingListSecretVersionsRequestMessage() throws {
   let wrapped = try decoder.decode(WrappedAny.self, from: data)
   let any = wrapped.value
   #expect(
-    any.typeUrl == "type.googleapis.com/google.cloud.secretmanager.v1.ListSecretVersionsRequest")
+    any.typeURL == "type.googleapis.com/google.cloud.secretmanager.v1.ListSecretVersionsRequest")
   let got = try ListSecretVersionsRequest(fromAny: any)
   let want = ListSecretVersionsRequest().with {
     $0.parent = "projects/test-project/secrets/my-secret"

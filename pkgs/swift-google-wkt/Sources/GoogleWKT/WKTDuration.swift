@@ -164,7 +164,7 @@ extension WKTDuration: _AnyPackable {
 
   public init(fromAny any: WKTAny) throws {
     if Self._anyTypeUrl != any._type {
-      throw WKTAnyError.mismatchedTypeUrl
+      throw WKTAnyError.mismatchedTypeURL
     }
     guard case let .string(v)? = any.fields[WKTAny.valueField] else {
       throw WKTAnyError.invalidValueField

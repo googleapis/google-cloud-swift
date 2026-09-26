@@ -112,7 +112,7 @@ internal enum StorageControlLROAnyConverter {
   internal static func toProto(
     _ any: GoogleWKT.WKTAny
   ) throws -> SwiftProtobuf.Google_Protobuf_Any {
-    switch any.typeUrl {
+    switch any.typeURL {
     case "type.googleapis.com/google.protobuf.Empty":
       return try .init(message: GoogleWKT.WKTEmpty(fromAny: any).toProto())
     case "type.googleapis.com/google.storage.control.v2.AnywhereCache":
@@ -139,7 +139,7 @@ internal enum StorageControlLROAnyConverter {
       do {
         return try any.toProto()
       } catch {
-        throw ProtobufConversionError.unknownTypeUrl(typeUrl: any.typeUrl)
+        throw ProtobufConversionError.unknownTypeUrl(typeUrl: any.typeURL)
       }
     }
   }

@@ -167,7 +167,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Duration")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.Duration")
 
     let got = try WKTDuration(fromAny: any)
     let want = try WKTDuration(seconds: 123, nanos: 450_000_000)
@@ -182,7 +182,7 @@ import Testing
     let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTDuration(fromAny: any) }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test("Pack Duration into Any")
