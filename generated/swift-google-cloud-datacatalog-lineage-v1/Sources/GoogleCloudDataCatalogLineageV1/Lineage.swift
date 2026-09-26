@@ -56,7 +56,11 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   public func processOpenLineageRunEvent(
     request: ProcessOpenLineageRunEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse {
-    try await self.inner.processOpenLineageRunEvent(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.inner.processOpenLineageRunEvent(request: request, options: options)
   }
 
   /// Creates a new process.
@@ -65,7 +69,11 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   public func createProcess(
     request: CreateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
-    try await self.inner.createProcess(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.inner.createProcess(request: request, options: options)
   }
 
   /// Updates a process.
@@ -74,7 +82,11 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   public func updateProcess(
     request: UpdateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
-    try await self.inner.updateProcess(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.inner.updateProcess(request: request, options: options)
   }
 
   /// Gets the details of the specified process.
@@ -137,7 +149,11 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   public func createRun(
     request: CreateRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Run {
-    try await self.inner.createRun(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.inner.createRun(request: request, options: options)
   }
 
   /// Updates a run.
@@ -209,7 +225,11 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   public func createLineageEvent(
     request: CreateLineageEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.LineageEvent {
-    try await self.inner.createLineageEvent(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.inner.createLineageEvent(request: request, options: options)
   }
 
   /// Gets details of a specified lineage event.

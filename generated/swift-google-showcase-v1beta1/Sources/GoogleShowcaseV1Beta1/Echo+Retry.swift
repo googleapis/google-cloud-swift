@@ -58,7 +58,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: EchoRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleShowcaseV1Beta1.EchoResponse

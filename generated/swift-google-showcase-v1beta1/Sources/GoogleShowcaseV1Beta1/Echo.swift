@@ -55,7 +55,14 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   public func echo(
     request: EchoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
-    try await self.inner.echo(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    if request.otherRequestId?.isEmpty ?? true {
+      request.otherRequestId = UUID().uuidString
+    }
+    return try await self.inner.echo(request: request, options: options)
   }
 
   /// This method returns error details in a repeated "google.protobuf.Any"

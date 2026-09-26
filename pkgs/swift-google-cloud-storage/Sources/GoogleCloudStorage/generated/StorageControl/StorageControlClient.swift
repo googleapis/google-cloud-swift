@@ -354,7 +354,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func createFolder(
     request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
-    try await self.control.createFolder(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.createFolder(request: request, options: options)
   }
 
   /// Permanently deletes an empty folder. This operation is only applicable to a
@@ -362,6 +366,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func deleteFolder(
     request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
     try await self.control.deleteFolder(request: request, options: options)
   }
 
@@ -370,7 +378,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func getFolder(
     request: GetFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
-    try await self.control.getFolder(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.getFolder(request: request, options: options)
   }
 
   /// Retrieves a list of folders. This operation is only applicable to a
@@ -388,7 +400,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func renameFolder(
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.renameFolder(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.renameFolder(request: request, options: options)
   }
 
   /// Renames a source folder to a destination folder. This operation is only
@@ -423,7 +439,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func deleteFolderRecursive(
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.deleteFolderRecursive(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.deleteFolderRecursive(request: request, options: options)
   }
 
   /// Deletes a folder recursively. This operation is only applicable to a
@@ -455,20 +475,32 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func getStorageLayout(
     request: GetStorageLayoutRequest, options: GoogleGax.RequestOptions
   ) async throws -> StorageLayout {
-    try await self.control.getStorageLayout(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.getStorageLayout(request: request, options: options)
   }
 
   /// Creates a new managed folder.
   public func createManagedFolder(
     request: CreateManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedFolder {
-    try await self.control.createManagedFolder(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.createManagedFolder(request: request, options: options)
   }
 
   /// Permanently deletes an empty managed folder.
   public func deleteManagedFolder(
     request: DeleteManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
     try await self.control.deleteManagedFolder(request: request, options: options)
   }
 
@@ -476,14 +508,22 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func getManagedFolder(
     request: GetManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedFolder {
-    try await self.control.getManagedFolder(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.getManagedFolder(request: request, options: options)
   }
 
   /// Retrieves a list of managed folders for a given bucket.
   public func listManagedFolders(
     request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListManagedFoldersResponse {
-    try await self.control.listManagedFolders(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.listManagedFolders(request: request, options: options)
   }
 
   /// Updates a managed folder. Currently, this RPC only supports updating the
@@ -498,7 +538,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func createAnywhereCache(
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.createAnywhereCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.createAnywhereCache(request: request, options: options)
   }
 
   /// Creates an Anywhere Cache instance.
@@ -531,7 +575,11 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func updateAnywhereCache(
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
-    try await self.control.updateAnywhereCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.updateAnywhereCache(request: request, options: options)
   }
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
@@ -567,35 +615,55 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   public func disableAnywhereCache(
     request: DisableAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
-    try await self.control.disableAnywhereCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.disableAnywhereCache(request: request, options: options)
   }
 
   /// Pauses an Anywhere Cache instance.
   public func pauseAnywhereCache(
     request: PauseAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
-    try await self.control.pauseAnywhereCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.pauseAnywhereCache(request: request, options: options)
   }
 
   /// Resumes a disabled or paused Anywhere Cache instance.
   public func resumeAnywhereCache(
     request: ResumeAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
-    try await self.control.resumeAnywhereCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.resumeAnywhereCache(request: request, options: options)
   }
 
   /// Gets an Anywhere Cache instance.
   public func getAnywhereCache(
     request: GetAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
-    try await self.control.getAnywhereCache(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.getAnywhereCache(request: request, options: options)
   }
 
   /// Lists Anywhere Cache instances for a given bucket.
   public func listAnywhereCaches(
     request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListAnywhereCachesResponse {
-    try await self.control.listAnywhereCaches(request: request, options: options)
+    var request = request
+    if request.requestId.isEmpty {
+      request.requestId = UUID().uuidString
+    }
+    return try await self.control.listAnywhereCaches(request: request, options: options)
   }
 
   /// Creates a Rapid Cache instance.

@@ -56,7 +56,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: ProcessOpenLineageRunEventRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse
@@ -71,7 +71,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateProcessRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleCloudDataCatalogLineageV1.Process
@@ -86,7 +86,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateProcessRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleCloudDataCatalogLineageV1.Process
@@ -146,7 +146,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateRunRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleCloudDataCatalogLineageV1.Run
@@ -221,7 +221,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateLineageEventRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleCloudDataCatalogLineageV1.LineageEvent
