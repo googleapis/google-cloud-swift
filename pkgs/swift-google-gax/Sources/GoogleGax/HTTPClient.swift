@@ -98,6 +98,9 @@ import struct AsyncHTTPClient.HTTPClientResponse
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+    for (key, value) in options.headers {
+      request.addHeader(name: key, value: value)
+    }
     return request
   }
 
@@ -122,6 +125,9 @@ import struct AsyncHTTPClient.HTTPClientResponse
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+    for (key, value) in options.headers {
+      request.addHeader(name: key, value: value)
+    }
     return request
   }
 
@@ -138,6 +144,9 @@ import struct AsyncHTTPClient.HTTPClientResponse
       request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
     }
     request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+    for (key, value) in options.headers {
+      request.addHeader(name: key, value: value)
+    }
     return request
   }
 

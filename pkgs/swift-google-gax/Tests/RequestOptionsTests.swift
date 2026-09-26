@@ -58,5 +58,13 @@ import GoogleGax
     #expect(got.attemptTimeout == nil)
     #expect(got.quotaProject == nil)
     #expect(got.pollingBackoffPolicy == nil)
+    #expect(got.headers.isEmpty)
+  }
+
+  @Test func headers() {
+    let got = RequestOptions().with {
+      $0.headers["x-custom-header"] = "custom-value"
+    }
+    #expect(got.headers["x-custom-header"] == "custom-value")
   }
 }

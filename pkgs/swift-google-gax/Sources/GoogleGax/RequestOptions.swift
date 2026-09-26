@@ -107,4 +107,7 @@ public struct RequestOptions: Sendable {
   ///
   /// [Service Usage Consumer]: https://cloud.google.com/service-usage/docs/access-control
   public var quotaProject: String? = nil
+
+  /// Additional HTTP headers or gRPC metadata to send with this request.
+  public var headers: [String: String] = [:]
 }

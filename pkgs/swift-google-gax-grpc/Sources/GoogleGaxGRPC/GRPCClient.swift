@@ -135,6 +135,9 @@ public final class _GRPCClient: Sendable {
         forKey: _HeaderNames.requestParams
       )
     }
+    for (key, value) in options.headers {
+      metadata.addString(value, forKey: key)
+    }
 
     let normalizedPath = path.hasPrefix("/") ? String(path.dropFirst()) : path
     let parts = normalizedPath.split(separator: "/", maxSplits: 1, omittingEmptySubsequences: true)

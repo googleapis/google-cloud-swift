@@ -108,6 +108,36 @@ import NIOHTTP1
     #expect(buf == buffer)
   }
 
+  @Test func requestOptionsHeaders() async throws {
+    let endpoint = "http://localhost:1234"
+    let credentials = try Credentials(configuration: .anonymous)
+    let options = ClientOptions().with { $0.credentials = credentials }
+    let client = try _HTTPClient(from: options, withDefaultEndpoint: endpoint)
+    let reqOptions = RequestOptions().with {
+      $0.headers["x-goog-gcs-idempotency-token"] = "test-token"
+      $0.headers["custom-header"] = "custom-val"
+    }
+    let request = try await client.newRequest(path: "/test", query: [], options: reqOptions)
+    #expect(request.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
+    #expect(request.headers["custom-header"] == ["custom-val"])
+
+    let percentEncodedRequest = try await client.newRequest(
+      percentEncodedPath: "/test", query: [], options: reqOptions
+    )
+    #expect(percentEncodedRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
+    #expect(percentEncodedRequest.headers["custom-header"] == ["custom-val"])
+
+    guard let components = URLComponents(string: "http://localhost:1234/test") else {
+      Issue.record("failed to create components")
+      return
+    }
+    let componentsRequest = try await client.newRequest(
+      urlComponents: components, options: reqOptions
+    )
+    #expect(componentsRequest.headers["x-goog-gcs-idempotency-token"] == ["test-token"])
+    #expect(componentsRequest.headers["custom-header"] == ["custom-val"])
+  }
+
   @Test(arguments: [
     "bad-bad-bad",
     "htt://localhost:1",
