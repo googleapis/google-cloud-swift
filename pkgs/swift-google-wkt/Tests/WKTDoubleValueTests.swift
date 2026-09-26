@@ -82,7 +82,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTDoubleValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.DoubleValue")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.DoubleValue")
 
     let got = try WKTDoubleValue(fromAny: any)
     let want = 123.45
@@ -97,7 +97,7 @@ import Testing
     let wrapped = try decoder.decode(WKTDoubleValueTests.WrappedAny.self, from: data)
     let any = wrapped.content
     let error = #expect(throws: WKTAnyError.self) { let _ = try WKTDoubleValue(fromAny: any) }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test("Pack DoubleValue into Any")

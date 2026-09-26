@@ -29,7 +29,7 @@ extension WKTAnyTests {
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/test.BasicMessage")
+    #expect(any.typeURL == "type.googleapis.com/test.BasicMessage")
 
     let inner = try BasicMessage(fromAny: any)
     #expect(inner == BasicMessage(field0: "0", field1: "1"))
@@ -45,7 +45,7 @@ extension WKTAnyTests {
     let error = #expect(throws: WKTAnyError.self) {
       let _ = try BasicMessage(fromAny: any)
     }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test func decodeBasicMessageMissing() throws {
@@ -55,7 +55,7 @@ extension WKTAnyTests {
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/test.BasicMessage")
+    #expect(any.typeURL == "type.googleapis.com/test.BasicMessage")
 
     let inner = try BasicMessage(fromAny: any)
     #expect(inner == BasicMessage(field0: "0", field1: ""))

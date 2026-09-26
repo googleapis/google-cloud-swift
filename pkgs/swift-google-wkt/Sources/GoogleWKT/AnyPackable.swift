@@ -33,7 +33,7 @@ public func _slowAnyDeserialize<M: Decodable & _AnyPackable>(
   _ type: M.Type, from: WKTAny
 ) throws -> M {
   if M._anyTypeUrl != from._type {
-    throw WKTAnyError.mismatchedTypeUrl
+    throw WKTAnyError.mismatchedTypeURL
   }
   let encoder = _ProtoJSONEncoder()
   let data = try encoder.encode(from.fields)

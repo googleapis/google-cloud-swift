@@ -87,7 +87,7 @@ import Testing
     let proto = try SwiftProtobuf.Google_Protobuf_Any(message: durationProto)
 
     let native = try GoogleWKT.WKTAny(proto: proto)
-    #expect(native.typeUrl == "type.googleapis.com/google.protobuf.Duration")
+    #expect(native.typeURL == "type.googleapis.com/google.protobuf.Duration")
 
     let unpackedDuration = try GoogleWKT.WKTDuration(fromAny: native)
     #expect(unpackedDuration.seconds == 123)

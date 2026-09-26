@@ -181,7 +181,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Timestamp")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.Timestamp")
 
     let got = try WKTTimestamp(fromAny: any)
     let want = try WKTTimestamp(fromString: "2026-04-21T12:34:56.789123456Z")
@@ -198,7 +198,7 @@ import Testing
     let error = #expect(throws: WKTAnyError.self) {
       let _ = try WKTTimestamp(fromAny: any)
     }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test("Pack Timestamp into Any")

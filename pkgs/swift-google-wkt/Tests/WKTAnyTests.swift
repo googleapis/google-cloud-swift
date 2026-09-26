@@ -30,10 +30,10 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == "type.googleapis.com/google.protobuf.Any")
+    #expect(any.typeURL == "type.googleapis.com/google.protobuf.Any")
 
     let innerAny = try WKTAny(fromAny: any)
-    #expect(innerAny.typeUrl == "type.googleapis.com/google.protobuf.Duration")
+    #expect(innerAny.typeURL == "type.googleapis.com/google.protobuf.Duration")
 
     let got = try WKTDuration(fromAny: innerAny)
     let want = try WKTDuration(seconds: 123, nanos: 450_000_000)
@@ -47,10 +47,10 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WrappedAny.self, from: data)
     let any = wrapped.content
-    let error = #expect(throws: WKTAnyError.mismatchedTypeUrl) {
+    let error = #expect(throws: WKTAnyError.mismatchedTypeURL) {
       let _ = try WKTAny(fromAny: any)
     }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   // Storing an Any into an Any is probably a bad idea, but that won't stop them.

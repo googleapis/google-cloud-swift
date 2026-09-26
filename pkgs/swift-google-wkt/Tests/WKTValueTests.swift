@@ -168,7 +168,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == expectedUrl)
+    #expect(any.typeURL == expectedUrl)
 
     let got = try WKTValue(fromAny: any)
     #expect(got == want)
@@ -183,7 +183,7 @@ import Testing
     let error = #expect(throws: WKTAnyError.self) {
       let _ = try WKTValue(fromAny: any)
     }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test(
@@ -226,7 +226,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == expectedUrl)
+    #expect(any.typeURL == expectedUrl)
 
     let got = try WKTStruct(fromAny: any)
     #expect(got == want)
@@ -241,7 +241,7 @@ import Testing
     let error = #expect(throws: WKTAnyError.self) {
       let _ = try WKTStruct(fromAny: any)
     }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test(
@@ -282,7 +282,7 @@ import Testing
     let decoder = _ProtoJSONDecoder()
     let wrapped = try decoder.decode(WKTAnyTests.WrappedAny.self, from: data)
     let any = wrapped.content
-    #expect(any.typeUrl == expectedUrl)
+    #expect(any.typeURL == expectedUrl)
 
     let got = try WKTListValue(fromAny: any)
     #expect(got == want)
@@ -297,7 +297,7 @@ import Testing
     let error = #expect(throws: WKTAnyError.self) {
       let _ = try WKTListValue(fromAny: any)
     }
-    #expect(error == .mismatchedTypeUrl)
+    #expect(error == .mismatchedTypeURL)
   }
 
   @Test(
