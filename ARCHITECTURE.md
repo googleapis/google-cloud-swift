@@ -460,6 +460,54 @@ Keeping execution options (timeouts, retry policies, backoff parameters, quota
 project IDs) distinct from request fields prevents naming collisions when
 services introduce new fields with names like `timeout` or `options`.
 
+### Casing and naming conventions in generated code
+
+The vast majority of types, methods, and properties in `google-cloud-swift` are
+automatically generated from source specifications (Protobuf definitions in
+`googleapis/googleapis` and Google Discovery documents). Casing in generated
+code is largely inherited from the source schemas, with deterministic
+transformations applied to align with the [Google Swift Style
+Guide](https://google.github.io/swift/) and [Swift API Design
+Guidelines](https://www.swift.org/documentation/api-design-guidelines/) as
+closely as possible:
+
+- **AIP adherence and accepted deviations:** Google APIs follow
+  [AIP-190](https://google.aip.dev/190) (Protobuf naming) and
+  [AIP-191](https://google.aip.dev/191) (client library casing and
+  conventions). However, because most rules in those AIPs are recommendations
+  ("should"), source specifications occasionally deviate. When an upstream API
+  does not follow the standard AIP conventions, our generator mapping may fail
+  to produce idiomatic Swift style; this is an accepted design trade-off to avoid
+  fragile per-service manual interventions.
+- **Messages, services, and enums:** Typically `PascalCase` in Protobuf; we
+  preserve the same casing in Swift to match standard Swift type naming.
+- **Methods:** Typically `PascalCase` in Protobuf service definitions (e.g.
+  `rpc GetSecret`); we convert them to `camelCase` in Swift (e.g.
+  `func getSecret`).
+- **Acronyms:** Protobuf style capitalizes only the first letter of acronyms
+  (e.g., `Http` and `Url`) rather than keeping all letters uppercase (`HTTP` and
+  `URL`) as preferred by Swift style. Generated code preserves the source
+  capitalization and makes no attempt to alter acronym casing.
+- **Fields:** Protobuf fields (including oneof cases) are `snake_case` (e.g.
+  `secret_id`); we convert them to `camelCase` (e.g. `secretId`).
+- **Oneofs:** Protobuf oneof group names are `snake_case` (e.g. `replication`);
+  we convert them to `PascalCase` and append `OneOf` for the Swift enum type
+  (e.g. `ReplicationOneOf`).
+- **Enums:** Protobuf enum types are `PascalCase`; we keep the name modulo
+  Swift reserved words.
+- **Enum values:** Protobuf enum values use `SCREAMING_SNAKE_CASE` (e.g.
+  `STATE_ENABLED`); we convert them to `camelCase` and strip the containing enum
+  name prefix when present (yielding `.enabled`). When the value prefix does not
+  match the enum type name (for instance, `google.protobuf.Field.Kind` with
+  `TYPE_INT32`), prefix stripping does not match, and cases retain the prefix
+  (e.g. `.typeInt32`).
+- **Discovery services:** Discovery documents use `camelCase` for service and
+  resource names; we convert them to `PascalCase` for generated service client
+  types.
+- **Reserved words:** Swift reserved words and keywords are escaped with backticks
+  (for example, `` `Self` ``). When backticks are not syntactically permitted in
+  Swift (such as type names like `Type`), an underscore is appended (e.g. `Type_`).
+
 ### Authentication architecture (`swift-google-auth`)
 
 The authentication library provides the `Credentials` struct, which acts as the
@@ -543,6 +591,8 @@ specifications and Google Discovery documents using Google's `librarian` tool
 The generation process is driven by `librarian.yaml`, which specifies source
 commits for `googleapis/googleapis` and `protobuf`, tool versions, and package
 metadata. Generated code lives in `generated/` and is never edited manually.
+See [Casing and naming conventions in generated code](#casing-and-naming-conventions-in-generated-code)
+for details on how schema identifiers map to Swift conventions.
 
 ## Where is the code?
 
