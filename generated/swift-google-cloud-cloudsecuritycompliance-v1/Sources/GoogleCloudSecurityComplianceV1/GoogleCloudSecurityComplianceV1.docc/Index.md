@@ -3,14 +3,17 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AuditClient``
-- ``CmEnrollmentServiceClient``
-- ``ConfigClient``
-- ``DeploymentClient``
-- ``MonitoringClient``
+- ``AuditClient``: Service describing handlers for resources. (Recommended starting point)
+- ``CmEnrollmentServiceClient``: Service describing CmEnrollment related RPCs for complianceManager.
+- ``ConfigClient``: Config Service manages compliance frameworks, cloud controls, and their configurations.
+- ``DeploymentClient``: Deployment service allows users to manage deployments of Frameworks and Cloud Controls on a target resource.
+- ``MonitoringClient``: Service describing handlers for resources.
+
+## Quickstart
+
+The following example demonstrates using ``AuditClient``:
+
+@Snippet(path: "AuditQuickstart")
 

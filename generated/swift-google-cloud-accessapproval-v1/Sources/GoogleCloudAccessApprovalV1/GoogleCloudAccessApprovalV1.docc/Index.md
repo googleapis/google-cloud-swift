@@ -5,10 +5,13 @@ An API for controlling access to data by Google personnel.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AccessApprovalClient``
+- ``AccessApprovalClient``: The service also periodically emails a list of recipients, defined at the Project/Folder/Organization level in the accessApprovalSettings, when there is a pending ApprovalRequest for them to act on.
+
+## Quickstart
+
+The following example demonstrates using ``AccessApprovalClient``:
+
+@Snippet(path: "AccessApprovalQuickstart")
 

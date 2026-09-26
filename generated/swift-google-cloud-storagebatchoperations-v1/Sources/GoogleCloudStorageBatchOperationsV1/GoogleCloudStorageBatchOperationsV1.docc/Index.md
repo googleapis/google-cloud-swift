@@ -3,10 +3,13 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``StorageBatchOperationsClient``
+- ``StorageBatchOperationsClient``: Storage Batch Operations offers a managed experience to perform batch operations on millions of Cloud Storage objects in a serverless fashion.
+
+## Quickstart
+
+The following example demonstrates using ``StorageBatchOperationsClient``:
+
+@Snippet(path: "StorageBatchOperationsQuickstart")
 

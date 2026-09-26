@@ -6,10 +6,13 @@ regional extension located near a Google Cloud data center.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``BareMetalSolutionClient``
+- ``BareMetalSolutionClient``: Performs management operations on Bare Metal Solution servers.
+
+## Quickstart
+
+The following example demonstrates using ``BareMetalSolutionClient``:
+
+@Snippet(path: "BareMetalSolutionQuickstart")
 

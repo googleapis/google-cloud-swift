@@ -5,18 +5,21 @@ A unified, intelligent governance solution for data and AI assets.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``BusinessGlossaryServiceClient``
-- ``CatalogServiceClient``
-- ``CmekServiceClient``
-- ``ContentServiceClient``
-- ``DataProductServiceClient``
-- ``DataTaxonomyServiceClient``
-- ``DataScanServiceClient``
-- ``MetadataServiceClient``
-- ``DataplexServiceClient``
+- ``BusinessGlossaryServiceClient``: BusinessGlossaryService provides APIs for managing business glossary resources for enterprise customers.
+- ``CatalogServiceClient``: The primary resources offered by this service are EntryGroups, EntryTypes, AspectTypes, Entries and EntryLinks.
+- ``CmekServiceClient``: Dataplex Universal Catalog Customer Managed Encryption Keys (CMEK) Service.
+- ``ContentServiceClient``: ContentService manages Notebook and SQL Scripts for Dataplex Universal Catalog.
+- ``DataProductServiceClient``: DataProductService provides APIs for managing data products and the underlying data assets.
+- ``DataTaxonomyServiceClient``: DataTaxonomyService enables attribute-based governance.
+- ``DataScanServiceClient``: DataScanService manages DataScan resources which can be configured to run various types of data scanning workload and generate enriched metadata (e.g.
+- ``MetadataServiceClient``: Metadata service manages metadata resources such as tables, filesets and partitions.
+- ``DataplexServiceClient``: Dataplex service provides data lakes as a service. (Recommended starting point)
+
+## Quickstart
+
+The following example demonstrates using ``DataplexServiceClient``:
+
+@Snippet(path: "DataplexServiceQuickstart")
 

@@ -3,10 +3,13 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``CloudDeployClient``
+- ``CloudDeployClient``: CloudDeploy service creates and manages Continuous Delivery operations on Google Cloud Platform via Skaffold (https://skaffold.dev).
+
+## Quickstart
+
+The following example demonstrates using ``CloudDeployClient``:
+
+@Snippet(path: "CloudDeployQuickstart")
 

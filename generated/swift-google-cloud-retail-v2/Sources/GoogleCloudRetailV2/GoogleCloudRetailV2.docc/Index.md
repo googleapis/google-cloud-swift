@@ -8,21 +8,24 @@ models, across your websites and mobile applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AnalyticsServiceClient``
-- ``CatalogServiceClient``
-- ``CompletionServiceClient``
-- ``ControlServiceClient``
-- ``ConversationalSearchServiceClient``
-- ``GenerativeQuestionServiceClient``
-- ``ModelServiceClient``
-- ``PredictionServiceClient``
-- ``ProductServiceClient``
-- ``SearchServiceClient``
-- ``ServingConfigServiceClient``
-- ``UserEventServiceClient``
+- ``AnalyticsServiceClient``: Service for managing & accessing retail search business metric.
+- ``CatalogServiceClient``: Service for managing catalog configuration. (Recommended starting point)
+- ``CompletionServiceClient``: Autocomplete service for retail.
+- ``ControlServiceClient``: Service for modifying Control.
+- ``ConversationalSearchServiceClient``: Service for retail conversational search.
+- ``GenerativeQuestionServiceClient``: Service for managing LLM generated questions in search serving.
+- ``ModelServiceClient``: Service for performing CRUD operations on models.
+- ``PredictionServiceClient``: Service for making recommendation prediction.
+- ``ProductServiceClient``: Service for ingesting Product information of the customer's website.
+- ``SearchServiceClient``: Service for search.
+- ``ServingConfigServiceClient``: Service for modifying ServingConfig.
+- ``UserEventServiceClient``: Service for ingesting end user actions on the customer website.
+
+## Quickstart
+
+The following example demonstrates using ``CatalogServiceClient``:
+
+@Snippet(path: "CatalogServiceQuickstart")
 

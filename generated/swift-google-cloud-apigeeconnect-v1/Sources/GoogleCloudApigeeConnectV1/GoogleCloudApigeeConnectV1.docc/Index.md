@@ -3,11 +3,14 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ConnectionServiceClient``
-- ``TetherClient``
+- ``ConnectionServiceClient``: Service Interface for the Apigee Connect connection management APIs. (Recommended starting point)
+- ``TetherClient``: Tether provides a way for the control plane to send HTTP API requests to services in data planes that runs in a remote datacenter without requiring customers to open firewalls on their runtime plane.
+
+## Quickstart
+
+The following example demonstrates using ``ConnectionServiceClient``:
+
+@Snippet(path: "ConnectionServiceQuickstart")
 

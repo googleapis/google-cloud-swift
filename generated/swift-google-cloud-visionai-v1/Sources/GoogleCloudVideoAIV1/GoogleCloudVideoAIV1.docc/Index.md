@@ -3,15 +3,18 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``HealthCheckServiceClient``
-- ``LiveVideoAnalyticsClient``
-- ``AppPlatformClient``
-- ``StreamingServiceClient``
-- ``StreamsServiceClient``
-- ``WarehouseClient``
+- ``HealthCheckServiceClient``: HealthCheckService provides an interface for Vertex AI Vision Cluster Health Check.
+- ``LiveVideoAnalyticsClient``: Service describing handlers for resources. (Recommended starting point)
+- ``AppPlatformClient``: Service describing handlers for resources.
+- ``StreamingServiceClient``: Streaming service for receiving and sending packets.
+- ``StreamsServiceClient``: Service describing handlers for resources.
+- ``WarehouseClient``: Service that manages media content + metadata for streaming.
+
+## Quickstart
+
+The following example demonstrates using ``LiveVideoAnalyticsClient``:
+
+@Snippet(path: "LiveVideoAnalyticsQuickstart")
 

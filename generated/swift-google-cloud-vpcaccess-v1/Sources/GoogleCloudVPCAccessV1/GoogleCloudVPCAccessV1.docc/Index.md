@@ -5,10 +5,13 @@ API for managing VPC access connectors.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``VpcAccessServiceClient``
+- ``VpcAccessServiceClient``: Serverless VPC Access API allows users to create and manage connectors for App Engine, Cloud Functions and Cloud Run to have internal connections to Virtual Private Cloud networks.
+
+## Quickstart
+
+The following example demonstrates using ``VpcAccessServiceClient``:
+
+@Snippet(path: "VpcAccessServiceQuickstart")
 

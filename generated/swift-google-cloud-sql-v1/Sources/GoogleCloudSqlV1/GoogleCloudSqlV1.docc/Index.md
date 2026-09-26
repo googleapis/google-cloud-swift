@@ -5,27 +5,30 @@ Cloud SQL Admin API
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``SqlAvailableDatabaseVersionsServiceClient``: enabled by the `SqlAvailableDatabaseVersionsService` trait.
-- ``SqlBackupRunsServiceClient``: enabled by the `SqlBackupRunsService` trait.
-- ``SqlBackupsServiceClient``: enabled by the `SqlBackupsService` trait.
-- ``SqlConnectServiceClient``: enabled by the `SqlConnectService` trait.
-- ``SqlDatabasesServiceClient``: enabled by the `SqlDatabasesService` trait.
-- ``SqlEventsServiceClient``: enabled by the `SqlEventsService` trait.
-- ``SqlFeatureEligibilityServiceClient``: enabled by the `SqlFeatureEligibilityService` trait.
-- ``SqlFlagsServiceClient``: enabled by the `SqlFlagsService` trait.
-- ``SqlIamPoliciesServiceClient``: enabled by the `SqlIamPoliciesService` trait.
-- ``SqlInstanceNamesServiceClient``: enabled by the `SqlInstanceNamesService` trait.
-- ``SqlInstancesServiceClient``: enabled by the `SqlInstancesService` trait.
-- ``SqlOperationsServiceClient``: enabled by the `SqlOperationsService` trait.
-- ``SqlRegionsServiceClient``: enabled by the `SqlRegionsService` trait.
-- ``SqlSslCertsServiceClient``: enabled by the `SqlSslCertsService` trait.
-- ``SqlTiersServiceClient``: enabled by the `SqlTiersService` trait.
-- ``SqlUsersServiceClient``: enabled by the `SqlUsersService` trait.
+- ``SqlAvailableDatabaseVersionsServiceClient``: Service that exposes Cloud SQL database versions information. (enabled by the `SqlAvailableDatabaseVersionsService` trait)
+- ``SqlBackupRunsServiceClient``: Service for managing database backups. (enabled by the `SqlBackupRunsService` trait)
+- ``SqlBackupsServiceClient``: Client for the SqlBackupsService. (Recommended starting point) (enabled by the `SqlBackupsService` trait)
+- ``SqlConnectServiceClient``: Cloud SQL connect service. (enabled by the `SqlConnectService` trait)
+- ``SqlDatabasesServiceClient``: Service to manage databases. (enabled by the `SqlDatabasesService` trait)
+- ``SqlEventsServiceClient``: Service that exposes Cloud SQL event information. (enabled by the `SqlEventsService` trait)
+- ``SqlFeatureEligibilityServiceClient``: Service to verify the eligibility of an instance for a given operation. (enabled by the `SqlFeatureEligibilityService` trait)
+- ``SqlFlagsServiceClient``: Service to manage database flags for Cloud SQL instances. (enabled by the `SqlFlagsService` trait)
+- ``SqlIamPoliciesServiceClient``: Service for providing IAM Meta APIs for Cloud SQL. (enabled by the `SqlIamPoliciesService` trait)
+- ``SqlInstanceNamesServiceClient``: Cloud SQL instance names service. (enabled by the `SqlInstanceNamesService` trait)
+- ``SqlInstancesServiceClient``: Client for the SqlInstancesService. (enabled by the `SqlInstancesService` trait)
+- ``SqlOperationsServiceClient``: Service to fetch operations for database instances. (enabled by the `SqlOperationsService` trait)
+- ``SqlRegionsServiceClient``: Service that exposes Cloud SQL region information. (enabled by the `SqlRegionsService` trait)
+- ``SqlSslCertsServiceClient``: Service to manage SSL certs for Cloud SQL instances. (enabled by the `SqlSslCertsService` trait)
+- ``SqlTiersServiceClient``: Service for providing machine types (tiers) for Cloud SQL instances. (enabled by the `SqlTiersService` trait)
+- ``SqlUsersServiceClient``: Cloud SQL users service. (enabled by the `SqlUsersService` trait)
+
+## Quickstart
+
+The following example demonstrates using ``SqlBackupsServiceClient``:
+
+@Snippet(path: "SqlBackupsServiceQuickstart")
 
 ## See Also
 

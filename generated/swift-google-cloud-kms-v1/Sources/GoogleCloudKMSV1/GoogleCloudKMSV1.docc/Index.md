@@ -6,14 +6,17 @@ service, for direct use by other cloud resources and applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AutokeyClient``
-- ``AutokeyAdminClient``
-- ``EkmServiceClient``
-- ``HsmManagementClient``
-- ``KeyManagementServiceClient``
+- ``AutokeyClient``: Provides interfaces for using Cloud KMS Autokey to provision new CryptoKeys, ready for Customer Managed Encryption Key (CMEK) use, on-demand. (Recommended starting point)
+- ``AutokeyAdminClient``: Provides interfaces for managing Cloud KMS Autokey folder-level or project-level configurations.
+- ``EkmServiceClient``: Manages external cryptographic keys and operations using those keys.
+- ``HsmManagementClient``: Provides interfaces for managing HSM instances.
+- ``KeyManagementServiceClient``: Manages cryptographic keys and operations using those keys.
+
+## Quickstart
+
+The following example demonstrates using ``AutokeyClient``:
+
+@Snippet(path: "AutokeyQuickstart")
 

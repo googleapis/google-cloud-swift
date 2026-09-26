@@ -5,11 +5,14 @@ Enables consumers to procure products served by Cloud Marketplace platform
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``LicenseManagementServiceClient``
-- ``ConsumerProcurementServiceClient``
+- ``LicenseManagementServiceClient``: Service for managing licenses. (Recommended starting point)
+- ``ConsumerProcurementServiceClient``: ConsumerProcurementService allows customers to make purchases of products served by the Cloud Commerce platform.
+
+## Quickstart
+
+The following example demonstrates using ``LicenseManagementServiceClient``:
+
+@Snippet(path: "LicenseManagementServiceQuickstart")
 

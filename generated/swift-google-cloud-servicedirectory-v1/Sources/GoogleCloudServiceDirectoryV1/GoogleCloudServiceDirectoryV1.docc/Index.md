@@ -6,11 +6,14 @@ services.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``LookupServiceClient``
-- ``RegistrationServiceClient``
+- ``LookupServiceClient``: Service Directory API for looking up service data at runtime.
+- ``RegistrationServiceClient``: Service Directory API for registering services. (Recommended starting point)
+
+## Quickstart
+
+The following example demonstrates using ``RegistrationServiceClient``:
+
+@Snippet(path: "RegistrationServiceQuickstart")
 

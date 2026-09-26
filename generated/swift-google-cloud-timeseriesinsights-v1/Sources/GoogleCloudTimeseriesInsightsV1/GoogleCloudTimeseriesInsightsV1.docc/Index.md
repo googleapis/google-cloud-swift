@@ -10,10 +10,13 @@ applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``TimeseriesInsightsControllerClient``
+- ``TimeseriesInsightsControllerClient``: Client for the TimeseriesInsightsController.
+
+## Quickstart
+
+The following example demonstrates using ``TimeseriesInsightsControllerClient``:
+
+@Snippet(path: "TimeseriesInsightsControllerQuickstart")
 

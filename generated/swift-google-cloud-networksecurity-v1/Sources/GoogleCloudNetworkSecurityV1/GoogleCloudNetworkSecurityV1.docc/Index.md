@@ -3,19 +3,22 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AddressGroupServiceClient``
-- ``OrganizationAddressGroupServiceClient``
-- ``DnsThreatDetectorServiceClient``
-- ``FirewallActivationClient``
-- ``InterceptClient``
-- ``MirroringClient``
-- ``NetworkSecurityClient``
-- ``SecurityProfileGroupServiceClient``
-- ``OrganizationSecurityProfileGroupServiceClient``
-- ``SSERealmServiceClient``
+- ``AddressGroupServiceClient``: AddressGroup is a resource that manages a collection of IP or Domain Names, it can be used in Firewall Policy to represent allow or deny traffic from all the IP or Domain Names from the Address Group.
+- ``OrganizationAddressGroupServiceClient``: Organization AddressGroup is created under organization.
+- ``DnsThreatDetectorServiceClient``: The Network Security API for DNS Threat Detectors.
+- ``FirewallActivationClient``: Service for managing Firewall Endpoints and Associations.
+- ``InterceptClient``: Service for Third-Party Packet Intercept (TPPI).
+- ``MirroringClient``: PM2 is the "out-of-band" flavor of the Network Security Integrations product.
+- ``NetworkSecurityClient``: Network Security API provides resources to configure authentication and authorization policies. (Recommended starting point)
+- ``SecurityProfileGroupServiceClient``: SecurityProfileGroup is a resource that defines an action for specific threat signatures or severity levels.
+- ``OrganizationSecurityProfileGroupServiceClient``: Organization SecurityProfileGroup is created under organization.
+- ``SSERealmServiceClient``: Service describing handlers for resources.
+
+## Quickstart
+
+The following example demonstrates using ``NetworkSecurityClient``:
+
+@Snippet(path: "NetworkSecurityQuickstart")
 

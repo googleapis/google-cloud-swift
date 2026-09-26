@@ -3,13 +3,16 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AgentServiceClient``
-- ``SessionServiceClient``
-- ``ToolServiceClient``
-- ``WidgetServiceClient``
+- ``AgentServiceClient``: The service that manages agent-related resources in Gemini Enterprise for Customer Engagement (CES). (Recommended starting point)
+- ``SessionServiceClient``: Session service provides APIs for interacting with CES agents.
+- ``ToolServiceClient``: Tool service provides APIs for interacting with CES tools.
+- ``WidgetServiceClient``: Provides APIs for widgets to interact with CES APIs.
+
+## Quickstart
+
+The following example demonstrates using ``AgentServiceClient``:
+
+@Snippet(path: "AgentServiceQuickstart")
 

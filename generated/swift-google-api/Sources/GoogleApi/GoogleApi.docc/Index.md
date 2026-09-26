@@ -5,6 +5,6 @@ Lets you define and config your API service.
 
 ## Overview
 
-This is a type-only library. You will not find functions to make RPCs in this
-library. Its types are used in other libraries that access Google Cloud.
+This is a type-only library containing a collection of common types used by other
+Google Cloud packages. It does not contain client types to make RPCs.
 

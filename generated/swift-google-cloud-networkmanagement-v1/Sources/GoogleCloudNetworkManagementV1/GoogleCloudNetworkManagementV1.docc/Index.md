@@ -6,12 +6,15 @@ monitoring and diagnostic capabilities.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ReachabilityServiceClient``
-- ``VpcFlowLogsServiceClient``
-- ``OrganizationVpcFlowLogsServiceClient``
+- ``ReachabilityServiceClient``: The Reachability service in the Google Cloud Network Management API provides services that analyze the reachability within a single Google Virtual Private Cloud (VPC) network, between peered VPC networks, between VPC and on-premises networks, or between VPC networks and internet hosts. (Recommended starting point)
+- ``VpcFlowLogsServiceClient``: The VPC Flow Logs service in the Google Cloud Network Management API provides configurations that generate Flow Logs.
+- ``OrganizationVpcFlowLogsServiceClient``: The VPC Flow Logs organization service in the Google Cloud Network Management API provides organization level configurations that generate Flow Logs.
+
+## Quickstart
+
+The following example demonstrates using ``ReachabilityServiceClient``:
+
+@Snippet(path: "ReachabilityServiceQuickstart")
 

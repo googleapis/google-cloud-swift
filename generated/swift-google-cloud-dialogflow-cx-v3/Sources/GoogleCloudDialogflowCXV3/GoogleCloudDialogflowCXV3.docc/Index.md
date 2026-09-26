@@ -6,31 +6,34 @@ apps and devices).
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AgentsClient``: enabled by the `Agents` trait.
-- ``ChangelogsClient``: enabled by the `Changelogs` trait.
-- ``DeploymentsClient``: enabled by the `Deployments` trait.
-- ``EntityTypesClient``: enabled by the `EntityTypes` trait.
-- ``EnvironmentsClient``: enabled by the `Environments` trait.
-- ``ExamplesClient``: enabled by the `Examples` trait.
-- ``ExperimentsClient``: enabled by the `Experiments` trait.
-- ``FlowsClient``: enabled by the `Flows` trait.
-- ``GeneratorsClient``: enabled by the `Generators` trait.
-- ``IntentsClient``: enabled by the `Intents` trait.
-- ``PagesClient``: enabled by the `Pages` trait.
-- ``PlaybooksClient``: enabled by the `Playbooks` trait.
-- ``SecuritySettingsServiceClient``: enabled by the `SecuritySettingsService` trait.
-- ``SessionsClient``: enabled by the `Sessions` trait.
-- ``SessionEntityTypesClient``: enabled by the `SessionEntityTypes` trait.
-- ``TestCasesClient``: enabled by the `TestCases` trait.
-- ``ToolsClient``: enabled by the `Tools` trait.
-- ``TransitionRouteGroupsClient``: enabled by the `TransitionRouteGroups` trait.
-- ``VersionsClient``: enabled by the `Versions` trait.
-- ``WebhooksClient``: enabled by the `Webhooks` trait.
+- ``AgentsClient``: Service for managing Agents. (Recommended starting point) (enabled by the `Agents` trait)
+- ``ChangelogsClient``: Service for managing Changelogs. (enabled by the `Changelogs` trait)
+- ``DeploymentsClient``: Service for managing Deployments. (enabled by the `Deployments` trait)
+- ``EntityTypesClient``: Service for managing EntityTypes. (enabled by the `EntityTypes` trait)
+- ``EnvironmentsClient``: Service for managing Environments. (enabled by the `Environments` trait)
+- ``ExamplesClient``: Service for managing Examples. (enabled by the `Examples` trait)
+- ``ExperimentsClient``: Service for managing Experiments. (enabled by the `Experiments` trait)
+- ``FlowsClient``: Service for managing Flows. (enabled by the `Flows` trait)
+- ``GeneratorsClient``: Service for managing Generators. (enabled by the `Generators` trait)
+- ``IntentsClient``: Service for managing Intents. (enabled by the `Intents` trait)
+- ``PagesClient``: Service for managing Pages. (enabled by the `Pages` trait)
+- ``PlaybooksClient``: Service for managing Playbooks. (enabled by the `Playbooks` trait)
+- ``SecuritySettingsServiceClient``: Service for managing security settings for Dialogflow. (enabled by the `SecuritySettingsService` trait)
+- ``SessionsClient``: A session represents an interaction with a user. (enabled by the `Sessions` trait)
+- ``SessionEntityTypesClient``: Service for managing SessionEntityTypes. (enabled by the `SessionEntityTypes` trait)
+- ``TestCasesClient``: Service for managing Test Cases and Test Case Results. (enabled by the `TestCases` trait)
+- ``ToolsClient``: Service for managing Tools. (enabled by the `Tools` trait)
+- ``TransitionRouteGroupsClient``: Service for managing TransitionRouteGroups. (enabled by the `TransitionRouteGroups` trait)
+- ``VersionsClient``: Service for managing Versions. (enabled by the `Versions` trait)
+- ``WebhooksClient``: Service for managing Webhooks. (enabled by the `Webhooks` trait)
+
+## Quickstart
+
+The following example demonstrates using ``AgentsClient``:
+
+@Snippet(path: "AgentsQuickstart")
 
 ## See Also
 

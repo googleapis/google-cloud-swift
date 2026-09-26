@@ -6,13 +6,16 @@ offerings.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``CaseAttachmentServiceClient``
-- ``CaseServiceClient``
-- ``CommentServiceClient``
-- ``SupportEventSubscriptionServiceClient``
+- ``CaseAttachmentServiceClient``: A service to manage file attachments for Google Cloud support cases. (Recommended starting point)
+- ``CaseServiceClient``: A service to manage Google Cloud support cases.
+- ``CommentServiceClient``: A service to manage comments on cases.
+- ``SupportEventSubscriptionServiceClient``: Service for managing customer support event subscriptions.
+
+## Quickstart
+
+The following example demonstrates using ``CaseAttachmentServiceClient``:
+
+@Snippet(path: "CaseAttachmentServiceQuickstart")
 

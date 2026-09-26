@@ -5,18 +5,21 @@
 
 This client library was generated from the "20260714" revision of the API.
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ChangesClient``
-- ``DnsKeysClient``
-- ``ManagedZoneOperationsClient``
-- ``ManagedZonesClient``
-- ``PoliciesClient``
-- ``ProjectsClient``
-- ``ResourceRecordSetsClient``
-- ``ResponsePoliciesClient``
-- ``ResponsePolicyRulesClient``
+- ``ChangesClient``: Service for the changes resource.
+- ``DnsKeysClient``: Service for the dnsKeys resource. (Recommended starting point)
+- ``ManagedZoneOperationsClient``: Service for the managedZoneOperations resource.
+- ``ManagedZonesClient``: Service for the managedZones resource.
+- ``PoliciesClient``: Service for the policies resource.
+- ``ProjectsClient``: Service for the projects resource.
+- ``ResourceRecordSetsClient``: Service for the resourceRecordSets resource.
+- ``ResponsePoliciesClient``: Service for the responsePolicies resource.
+- ``ResponsePolicyRulesClient``: Service for the responsePolicyRules resource.
+
+## Quickstart
+
+The following example demonstrates using ``DnsKeysClient``:
+
+@Snippet(path: "dnsKeysQuickstart")
 

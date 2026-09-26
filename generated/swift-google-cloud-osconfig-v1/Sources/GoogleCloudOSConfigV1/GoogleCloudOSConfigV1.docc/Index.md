@@ -6,11 +6,14 @@ compliance, and configuration management on VM instances.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``OsConfigServiceClient``
-- ``OsConfigZonalServiceClient``
+- ``OsConfigServiceClient``: The OS Config service is a server-side component that you can use to manage package installations and patch jobs for virtual machine instances. (Recommended starting point)
+- ``OsConfigZonalServiceClient``: The OS Config service is the server-side component that allows users to manage package installations and patch jobs for Compute Engine VM instances.
+
+## Quickstart
+
+The following example demonstrates using ``OsConfigServiceClient``:
+
+@Snippet(path: "OsConfigServiceQuickstart")
 

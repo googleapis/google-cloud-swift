@@ -13,12 +13,15 @@ command-line tools.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AttachedClustersClient``
-- ``AwsClustersClient``
-- ``AzureClustersClient``
+- ``AttachedClustersClient``: The AttachedClusters API provides a single centrally managed service to register and manage Anthos attached clusters that run on customer's owned infrastructure. (Recommended starting point)
+- ``AwsClustersClient``: The AwsClusters API provides a single centrally managed service to create and manage Anthos clusters that run on AWS infrastructure.
+- ``AzureClustersClient``: The AzureClusters API provides a single centrally managed service to create and manage Anthos clusters that run on Azure infrastructure.
+
+## Quickstart
+
+The following example demonstrates using ``AttachedClustersClient``:
+
+@Snippet(path: "AttachedClustersQuickstart")
 

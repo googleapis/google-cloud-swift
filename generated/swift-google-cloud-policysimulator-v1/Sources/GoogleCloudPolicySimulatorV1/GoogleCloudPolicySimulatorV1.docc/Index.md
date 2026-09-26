@@ -14,11 +14,14 @@ proposed policy.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``OrgPolicyViolationsPreviewServiceClient``
-- ``SimulatorClient``
+- ``OrgPolicyViolationsPreviewServiceClient``: Violations Preview API service for OrgPolicy. (Recommended starting point)
+- ``SimulatorClient``: Policy Simulator API service.
+
+## Quickstart
+
+The following example demonstrates using ``OrgPolicyViolationsPreviewServiceClient``:
+
+@Snippet(path: "OrgPolicyViolationsPreviewServiceQuickstart")
 

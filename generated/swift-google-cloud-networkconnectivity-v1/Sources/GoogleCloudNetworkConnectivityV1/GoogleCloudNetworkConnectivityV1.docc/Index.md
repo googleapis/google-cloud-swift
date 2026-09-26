@@ -5,14 +5,17 @@ This API enables connectivity with and between Google Cloud resources.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``CrossNetworkAutomationServiceClient``
-- ``DataTransferServiceClient``
-- ``HubServiceClient``
-- ``InternalRangeServiceClient``
-- ``PolicyBasedRoutingServiceClient``
+- ``CrossNetworkAutomationServiceClient``: The service for CrossNetworkAutomation resources. (Recommended starting point)
+- ``DataTransferServiceClient``: DataTransferService is the service for the Data Transfer API.
+- ``HubServiceClient``: Network Connectivity Center is a hub-and-spoke abstraction for network connectivity management in Google Cloud.
+- ``InternalRangeServiceClient``: The CLH-based service for internal range resources used to perform IPAM operations within a VPC network.
+- ``PolicyBasedRoutingServiceClient``: Policy-Based Routing allows GCP customers to specify flexibile routing policies for Layer 4 traffic traversing through the connected service.
+
+## Quickstart
+
+The following example demonstrates using ``CrossNetworkAutomationServiceClient``:
+
+@Snippet(path: "CrossNetworkAutomationServiceQuickstart")
 

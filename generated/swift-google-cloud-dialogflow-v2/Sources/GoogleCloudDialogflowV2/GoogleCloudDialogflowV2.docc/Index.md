@@ -6,33 +6,36 @@ apps and devices).
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AgentsClient``: enabled by the `Agents` trait.
-- ``AnswerRecordsClient``: enabled by the `AnswerRecords` trait.
-- ``ContextsClient``: enabled by the `Contexts` trait.
-- ``ConversationsClient``: enabled by the `Conversations` trait.
-- ``ConversationDatasetsClient``: enabled by the `ConversationDatasets` trait.
-- ``ConversationModelsClient``: enabled by the `ConversationModels` trait.
-- ``ConversationProfilesClient``: enabled by the `ConversationProfiles` trait.
-- ``DocumentsClient``: enabled by the `Documents` trait.
-- ``EncryptionSpecServiceClient``: enabled by the `EncryptionSpecService` trait.
-- ``EntityTypesClient``: enabled by the `EntityTypes` trait.
-- ``EnvironmentsClient``: enabled by the `Environments` trait.
-- ``FulfillmentsClient``: enabled by the `Fulfillments` trait.
-- ``GeneratorsClient``: enabled by the `Generators` trait.
-- ``GeneratorEvaluationsClient``: enabled by the `GeneratorEvaluations` trait.
-- ``IntentsClient``: enabled by the `Intents` trait.
-- ``KnowledgeBasesClient``: enabled by the `KnowledgeBases` trait.
-- ``ParticipantsClient``: enabled by the `Participants` trait.
-- ``SessionsClient``: enabled by the `Sessions` trait.
-- ``SessionEntityTypesClient``: enabled by the `SessionEntityTypes` trait.
-- ``SipTrunksClient``: enabled by the `SipTrunks` trait.
-- ``ToolsClient``: enabled by the `Tools` trait.
-- ``VersionsClient``: enabled by the `Versions` trait.
+- ``AgentsClient``: Service for managing Agents. (enabled by the `Agents` trait)
+- ``AnswerRecordsClient``: Service for managing AnswerRecords. (Recommended starting point) (enabled by the `AnswerRecords` trait)
+- ``ContextsClient``: Service for managing Contexts. (enabled by the `Contexts` trait)
+- ``ConversationsClient``: Service for managing Conversations. (enabled by the `Conversations` trait)
+- ``ConversationDatasetsClient``: Conversation datasets. (enabled by the `ConversationDatasets` trait)
+- ``ConversationModelsClient``: Manages a collection of models for human agent assistant. (enabled by the `ConversationModels` trait)
+- ``ConversationProfilesClient``: Service for managing ConversationProfiles. (enabled by the `ConversationProfiles` trait)
+- ``DocumentsClient``: Service for managing knowledge Documents. (enabled by the `Documents` trait)
+- ``EncryptionSpecServiceClient``: Manages encryption spec settings for Dialogflow and Agent Assist. (enabled by the `EncryptionSpecService` trait)
+- ``EntityTypesClient``: Service for managing EntityTypes. (enabled by the `EntityTypes` trait)
+- ``EnvironmentsClient``: Service for managing Environments. (enabled by the `Environments` trait)
+- ``FulfillmentsClient``: Service for managing Fulfillments. (enabled by the `Fulfillments` trait)
+- ``GeneratorsClient``: Generator Service for LLM powered Agent Assist. (enabled by the `Generators` trait)
+- ``GeneratorEvaluationsClient``: Service for managing generator evaluations. (enabled by the `GeneratorEvaluations` trait)
+- ``IntentsClient``: Service for managing Intents. (enabled by the `Intents` trait)
+- ``KnowledgeBasesClient``: Service for managing KnowledgeBases. (enabled by the `KnowledgeBases` trait)
+- ``ParticipantsClient``: Service for managing Participants. (enabled by the `Participants` trait)
+- ``SessionsClient``: A service used for session interactions. (enabled by the `Sessions` trait)
+- ``SessionEntityTypesClient``: Service for managing SessionEntityTypes. (enabled by the `SessionEntityTypes` trait)
+- ``SipTrunksClient``: Service for managing SipTrunks. (enabled by the `SipTrunks` trait)
+- ``ToolsClient``: Tool Service for LLM powered Agent Assist. (enabled by the `Tools` trait)
+- ``VersionsClient``: Service for managing Versions. (enabled by the `Versions` trait)
+
+## Quickstart
+
+The following example demonstrates using ``AnswerRecordsClient``:
+
+@Snippet(path: "AnswerRecordsQuickstart")
 
 ## See Also
 

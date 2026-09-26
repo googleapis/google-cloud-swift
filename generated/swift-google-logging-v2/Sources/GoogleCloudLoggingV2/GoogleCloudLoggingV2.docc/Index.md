@@ -5,12 +5,15 @@ Writes log entries and manages your Cloud Logging configuration.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``LoggingServiceV2Client``
-- ``ConfigServiceV2Client``
-- ``MetricsServiceV2Client``
+- ``LoggingServiceV2Client``: Service for ingesting and querying logs. (Recommended starting point)
+- ``ConfigServiceV2Client``: Service for configuring sinks used to route log entries.
+- ``MetricsServiceV2Client``: Service for configuring logs-based metrics.
+
+## Quickstart
+
+The following example demonstrates using ``LoggingServiceV2Client``:
+
+@Snippet(path: "LoggingServiceV2Quickstart")
 

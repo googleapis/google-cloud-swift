@@ -7,11 +7,14 @@ of explicit content, into applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ImageAnnotatorClient``
-- ``ProductSearchClient``
+- ``ImageAnnotatorClient``: Service that performs Google Cloud Vision API detection tasks over client images, such as face, landmark, logo, label, and text detection.
+- ``ProductSearchClient``: In parallel,. (Recommended starting point)
+
+## Quickstart
+
+The following example demonstrates using ``ProductSearchClient``:
+
+@Snippet(path: "ProductSearchQuickstart")
 

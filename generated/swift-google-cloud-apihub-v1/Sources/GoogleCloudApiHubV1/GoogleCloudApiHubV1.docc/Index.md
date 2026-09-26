@@ -3,19 +3,22 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ApiHubClient``
-- ``ApiHubDependenciesClient``
-- ``ApiHubCollectClient``
-- ``ApiHubCurateClient``
-- ``ApiHubDiscoveryClient``
-- ``HostProjectRegistrationServiceClient``
-- ``LintingServiceClient``
-- ``ApiHubPluginClient``
-- ``ProvisioningClient``
-- ``RuntimeProjectAttachmentServiceClient``
+- ``ApiHubClient``: This service provides all methods related to the API hub. (Recommended starting point)
+- ``ApiHubDependenciesClient``: This service provides methods for various operations related to a Dependency in the API hub.
+- ``ApiHubCollectClient``: This service exposes methods used for collecting various types of data from different first party and third party sources and push it to Hub's collect layer.
+- ``ApiHubCurateClient``: This service is used for managing curations for processing API data consumed from collect layer.
+- ``ApiHubDiscoveryClient``: This service exposes methods used to manage DiscoveredApiObservations and DiscoveredApiOperations.
+- ``HostProjectRegistrationServiceClient``: This service is used for managing the host project registrations.
+- ``LintingServiceClient``: This service provides all methods related to the 1p Linter.
+- ``ApiHubPluginClient``: This service is used for managing plugins inside the API Hub.
+- ``ProvisioningClient``: This service is used for managing the data plane provisioning of the API hub.
+- ``RuntimeProjectAttachmentServiceClient``: This service is used for managing the runtime project attachments.
+
+## Quickstart
+
+The following example demonstrates using ``ApiHubClient``:
+
+@Snippet(path: "ApiHubQuickstart")
 

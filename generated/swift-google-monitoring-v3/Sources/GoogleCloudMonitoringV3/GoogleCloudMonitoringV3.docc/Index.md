@@ -5,17 +5,20 @@ Manages your Cloud Monitoring data and configurations.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``AlertPolicyServiceClient``
-- ``GroupServiceClient``
-- ``MetricServiceClient``
-- ``NotificationChannelServiceClient``
-- ``QueryServiceClient``
-- ``ServiceMonitoringServiceClient``
-- ``SnoozeServiceClient``
-- ``UptimeCheckServiceClient``
+- ``AlertPolicyServiceClient``: The AlertPolicyService API is used to manage (list, create, delete, edit) alert policies in Cloud Monitoring.
+- ``GroupServiceClient``: The Group API lets you inspect and manage your groups.
+- ``MetricServiceClient``: Manages metric descriptors, monitored resource descriptors, and time series data.
+- ``NotificationChannelServiceClient``: The Notification Channel API provides access to configuration that controls how messages related to incidents are sent.
+- ``QueryServiceClient``: The QueryService API is used to manage time series data in Cloud Monitoring.
+- ``ServiceMonitoringServiceClient``: The Cloud Monitoring Service-Oriented Monitoring API has endpoints for managing and querying aspects of a Metrics Scope's services. (Recommended starting point)
+- ``SnoozeServiceClient``: The SnoozeService API is used to temporarily prevent an alert policy from generating alerts.
+- ``UptimeCheckServiceClient``: The UptimeCheckService API is used to manage (list, create, delete, edit) Uptime check configurations in the Cloud Monitoring product.
+
+## Quickstart
+
+The following example demonstrates using ``ServiceMonitoringServiceClient``:
+
+@Snippet(path: "ServiceMonitoringServiceQuickstart")
 

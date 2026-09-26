@@ -8,17 +8,20 @@ API standards, as described in https://google.aip.dev/.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``BuildsClient``
-- ``ExecutionsClient``
-- ``InstancesClient``
-- ``JobsClient``
-- ``RevisionsClient``
-- ``ServicesClient``
-- ``TasksClient``
-- ``WorkerPoolsClient``
+- ``BuildsClient``: Cloud Run Build Control Plane API.
+- ``ExecutionsClient``: Cloud Run Execution Control Plane API. (Recommended starting point)
+- ``InstancesClient``: The Cloud Run Instances API allows you to manage Cloud Run Instances.
+- ``JobsClient``: Cloud Run Job Control Plane API.
+- ``RevisionsClient``: Cloud Run Revision Control Plane API.
+- ``ServicesClient``: Cloud Run Service Control Plane API.
+- ``TasksClient``: Cloud Run Task Control Plane API.
+- ``WorkerPoolsClient``: Cloud Run WorkerPool Control Plane API.
+
+## Quickstart
+
+The following example demonstrates using ``ExecutionsClient``:
+
+@Snippet(path: "ExecutionsQuickstart")
 

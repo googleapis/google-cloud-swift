@@ -6,15 +6,18 @@ client library generator consumption.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ComplianceClient``
-- ``EchoClient``
-- ``IdentityClient``
-- ``MessagingClient``
-- ``SequenceServiceClient``
-- ``TestingClient``
+- ``ComplianceClient``: This service is used to test that GAPICs implement various REST-related features correctly.
+- ``EchoClient``: This service is used showcase the four main types of rpcs - unary, server side streaming, client side streaming, and bidirectional streaming.
+- ``IdentityClient``: A simple identity service. (Recommended starting point)
+- ``MessagingClient``: A simple messaging service that implements chat rooms and profile posts.
+- ``SequenceServiceClient``: A service that enables testing of unary and server streaming calls by specifying a specific, predictable sequence of responses from the service.
+- ``TestingClient``: A service to facilitate running discrete sets of tests against Showcase.
+
+## Quickstart
+
+The following example demonstrates using ``IdentityClient``:
+
+@Snippet(path: "IdentityQuickstart")
 

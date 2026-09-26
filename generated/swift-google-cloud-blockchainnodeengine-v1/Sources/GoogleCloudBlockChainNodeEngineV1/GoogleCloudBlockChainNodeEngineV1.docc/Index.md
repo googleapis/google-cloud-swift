@@ -3,10 +3,13 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``BlockchainNodeEngineClient``
+- ``BlockchainNodeEngineClient``: This service is the control plane API for Blockchain Node Engine, and can be used to create, read, and delete blockchain nodes.
+
+## Quickstart
+
+The following example demonstrates using ``BlockchainNodeEngineClient``:
+
+@Snippet(path: "BlockchainNodeEngineQuickstart")
 

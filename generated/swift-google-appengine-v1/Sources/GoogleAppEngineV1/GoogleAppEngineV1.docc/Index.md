@@ -5,17 +5,20 @@ Provisions and manages developers' App Engine applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library. A default initialized
-client will let you interact with the API. The methods in the client type
-corresponds to RPCs in the API. Many APIs have more than one client, exposing
-different aspects of the API, consult the reference documentation for details.
+Most applications use the `*Client` types in this library:
 
-- ``ApplicationsClient``
-- ``ServicesClient``
-- ``VersionsClient``
-- ``InstancesClient``
-- ``FirewallClient``
-- ``AuthorizedDomainsClient``
-- ``AuthorizedCertificatesClient``
-- ``DomainMappingsClient``
+- ``ApplicationsClient``: Manages App Engine applications.
+- ``ServicesClient``: Manages services of an application.
+- ``VersionsClient``: Manages versions of a service.
+- ``InstancesClient``: Manages instances of a version. (Recommended starting point)
+- ``FirewallClient``: Firewall resources are used to define a collection of access control rules for an Application.
+- ``AuthorizedDomainsClient``: Manages domains a user is authorized to administer.
+- ``AuthorizedCertificatesClient``: Manages SSL certificates a user is authorized to administer.
+- ``DomainMappingsClient``: Manages domains serving an application.
+
+## Quickstart
+
+The following example demonstrates using ``InstancesClient``:
+
+@Snippet(path: "InstancesQuickstart")
 
