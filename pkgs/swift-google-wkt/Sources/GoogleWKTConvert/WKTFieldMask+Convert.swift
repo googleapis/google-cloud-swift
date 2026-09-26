@@ -15,6 +15,7 @@
 public import GoogleWKT
 public import SwiftProtobuf
 
+@_spi(GoogleCloudInternal)
 extension GoogleWKT.WKTFieldMask {
   public init(proto: SwiftProtobuf.Google_Protobuf_FieldMask) throws {
     self.init(paths: proto.paths)

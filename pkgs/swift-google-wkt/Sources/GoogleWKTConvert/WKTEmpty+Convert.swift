@@ -15,6 +15,7 @@
 public import GoogleWKT
 public import SwiftProtobuf
 
+@_spi(GoogleCloudInternal)
 extension GoogleWKT.WKTEmpty {
   public init(proto: SwiftProtobuf.Google_Protobuf_Empty) throws {
     self.init()

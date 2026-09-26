@@ -15,6 +15,7 @@
 public import GoogleWKT
 public import SwiftProtobuf
 
+@_spi(GoogleCloudInternal)
 extension GoogleWKT.WKTDuration {
   public init(proto: SwiftProtobuf.Google_Protobuf_Duration) throws {
     try self.init(seconds: proto.seconds, nanos: proto.nanos)
