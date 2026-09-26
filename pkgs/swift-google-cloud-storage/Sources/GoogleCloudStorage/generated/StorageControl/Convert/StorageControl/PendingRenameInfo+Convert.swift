@@ -19,7 +19,7 @@ import GoogleGax
 internal import StorageControlProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension PendingRenameInfo {
   internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_PendingRenameInfo

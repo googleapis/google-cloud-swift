@@ -22,7 +22,7 @@ import GoogleRpc
 import GoogleType
 import GoogleWKT
 internal import StorageControlProtos
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 internal import SwiftProtobuf
 
 /// Converts the `Any` values carried by the long-running operations of this

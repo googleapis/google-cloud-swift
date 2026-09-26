@@ -21,7 +21,7 @@ internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleLongRunning.Operation {
   internal typealias ProtoType = StorageControlProtos.Google_Longrunning_Operation

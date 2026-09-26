@@ -20,7 +20,7 @@ internal import StorageControlProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleLongRunning
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleLongRunning.CancelOperationRequest {
   internal typealias ProtoType = StorageControlProtos.Google_Longrunning_CancelOperationRequest

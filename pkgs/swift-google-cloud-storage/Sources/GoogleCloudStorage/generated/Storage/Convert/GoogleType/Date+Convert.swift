@@ -20,7 +20,7 @@ internal import StorageProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleType
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleType.Date {
   internal typealias ProtoType = StorageProtos.Google_Type_Date

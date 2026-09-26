@@ -19,7 +19,7 @@ import GoogleGax
 internal import StorageProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension UpdateBucketRequest {
   internal typealias ProtoType = StorageProtos.Google_Storage_V2_UpdateBucketRequest

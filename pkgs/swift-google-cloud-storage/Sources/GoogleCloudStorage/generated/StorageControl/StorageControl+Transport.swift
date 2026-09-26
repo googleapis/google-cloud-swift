@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleRpc
 import GoogleWKT
 internal import StorageControlProtos
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 internal import SwiftProtobuf
 
 extension Clients {

@@ -20,7 +20,7 @@ internal import StorageControlProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleIAMV1.SetIamPolicyRequest {
   internal typealias ProtoType = StorageControlProtos.Google_Iam_V1_SetIamPolicyRequest
