@@ -139,7 +139,7 @@ import Testing
 
     let native = try GoogleLongRunning.Operation(proto: sent)
 
-    #expect(try #require(native.metadata).typeUrl == typeUrl)
+    #expect(try #require(native.metadata).typeURL == typeUrl)
   }
 
   // An `Any` with no type URL has nothing to resolve, and `GoogleWKT.WKTAny`
