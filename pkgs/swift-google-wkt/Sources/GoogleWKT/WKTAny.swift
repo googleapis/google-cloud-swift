@@ -55,7 +55,7 @@ public struct WKTAny: Codable, Equatable, Sendable {
   public func encode(to encoder: any Encoder) throws {
     // This should be efficient, as the dictionary is a copy-on-write data structure.
     var fields = self.fields
-    fields[Self.typeUrlField] = WKTValue(string: self._type)
+    fields[Self.typeUrlField] = .string(self._type)
     try fields.encode(to: encoder)
   }
 
@@ -85,8 +85,8 @@ extension WKTAny: _AnyPackable {
   }
   public func _pack() throws -> WKTStruct {
     var fields = self.fields
-    fields[Self.typeUrlField] = WKTValue(string: self._type)
-    return [Self.valueField: WKTValue(object: fields)]
+    fields[Self.typeUrlField] = .string(self._type)
+    return [Self.valueField: .object(fields)]
   }
 
   // The JSON field used to store an Any's typeUrl.

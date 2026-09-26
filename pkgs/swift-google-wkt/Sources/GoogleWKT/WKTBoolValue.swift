@@ -36,6 +36,6 @@ extension Swift.Bool: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(bool: self)]
+    return [WKTAny.valueField: .bool(self)]
   }
 }
