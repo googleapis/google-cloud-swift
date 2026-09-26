@@ -38,16 +38,13 @@ func sample(projectId: String, location: String, workflowId: String) async throw
       """
     )
   }
-  let operation = try await client.createWorkflowPollingUntilDone(
+  let response = try await client.createWorkflowPollingUntilDone(
     parent: "projects/\(projectId)/locations/\(location)",
     workflow: workflow,
     workflowId: workflowId
   )
-  // snippet.end [END swift_long_running_operations_call]
-  // snippet.wait [START swift_long_running_operations_wait]
-  let response = try await operation.wait()
   print("Workflow created: \(response.name)")
-  // snippet.end [END swift_long_running_operations_wait]
+  // snippet.end [END swift_long_running_operations_call]
 }
 
 // snippet.hide

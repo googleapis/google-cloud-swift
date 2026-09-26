@@ -136,10 +136,7 @@ import Testing
     var listBucketsHandler:
       ((ListBucketsRequest, GoogleGax.RequestOptions) async throws -> ListBucketsResponse)?
     var renameFolderHandler:
-      (
-        (RenameFolderRequest, GoogleGax.RequestOptions) async throws -> any GoogleGax
-          .PollableOperation<Folder>
-      )?
+      ((RenameFolderRequest, GoogleGax.RequestOptions) async throws -> Folder)?
 
     func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
@@ -152,7 +149,7 @@ import Testing
 
     func renameFolderPollingUntilDone(
       request: RenameFolderRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Folder> {
+    ) async throws -> Folder {
       if let handler = renameFolderHandler {
         return try await handler(request, options)
       }
@@ -246,25 +243,16 @@ import Testing
     #expect(names == ["bucket-1", "bucket-2"])
   }
 
-  struct MockPollableOperation<ResponseType: Sendable>: PollableOperation {
-    let result: Result<ResponseType, any Error & Sendable>
-    func wait() async throws -> ResponseType {
-      try result.get()
-    }
-  }
-
   @Test func mockLROConvenienceOverloadDelegation() async throws {
     let mock = MockStorageControl()
     mock.renameFolderHandler = { req, opts in
       #expect(req.name == "projects/_/buckets/b/folders/f1")
-      let folder = Folder().with { $0.name = "projects/_/buckets/b/folders/f2" }
-      return MockPollableOperation(result: .success(folder))
+      return Folder().with { $0.name = "projects/_/buckets/b/folders/f2" }
     }
 
     let client: any StorageControlProtocol = mock
-    let op = try await client.renameFolderPollingUntilDone(
+    let folder = try await client.renameFolderPollingUntilDone(
       request: .init().with { $0.name = "projects/_/buckets/b/folders/f1" })
-    let folder = try await op.wait()
     #expect(folder.name == "projects/_/buckets/b/folders/f2")
   }
 }

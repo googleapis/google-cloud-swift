@@ -32,9 +32,8 @@ For complete setup instructions for the Swift client libraries, see
 ## Make an API request with a long-running operation
 
 In this example, you use the `WorkflowsClient` to create a workflow. The
-`createWorkflow` method initiates the operation and returns a `PollableOperation`
-instance. You then call `wait()` on this object to automatically poll until the
-operation completes, returning the created `Workflow` object.
+`createWorkflowPollingUntilDone` method initiates the operation and automatically
+polls until the operation completes, returning the created `Workflow` object.
 
 1. Add the imports needed to use the client library:
    @Snippet(path: "LongRunningOperations", slice: "imports")
@@ -42,12 +41,8 @@ operation completes, returning the created `Workflow` object.
    @Snippet(path: "LongRunningOperations", slice: "function")
 3. Initialize the client using the default options:
    @Snippet(path: "LongRunningOperations", slice: "client")
-4. Start the long-running operation to create the workflow. Note the return type
-   is an operation:
+4. Create the workflow and automatically poll until completion:
    @Snippet(path: "LongRunningOperations", slice: "call")
-5. Wait for the operation to complete. Note the return type is the created
-   workflow:
-   @Snippet(path: "LongRunningOperations", slice: "wait")
 
 ## Next steps
 
