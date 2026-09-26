@@ -50,7 +50,7 @@ extension Clients {
     public func `get`(
       request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func list(
       request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZoneOperationsListResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

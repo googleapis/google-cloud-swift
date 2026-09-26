@@ -51,7 +51,7 @@
       public func delete(
         request: MachineImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -66,7 +66,7 @@
       public func `get`(
         request: MachineImagesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.MachineImage {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -81,7 +81,7 @@
       public func getIamPolicy(
         request: MachineImagesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -96,7 +96,7 @@
       public func insert(
         request: MachineImagesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -111,7 +111,7 @@
       public func list(
         request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.MachineImageList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -126,7 +126,7 @@
       public func setIamPolicy(
         request: MachineImagesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -141,7 +141,7 @@
       public func setLabels(
         request: MachineImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -156,7 +156,7 @@
       public func testIamPermissions(
         request: MachineImagesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -171,7 +171,7 @@
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

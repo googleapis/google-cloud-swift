@@ -56,7 +56,7 @@
       public func uploadModel(
         request: UploadModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -71,7 +71,7 @@
       public func getModel(
         request: GetModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Model {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -86,7 +86,7 @@
       public func listModels(
         request: ListModelsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListModelsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -101,7 +101,7 @@
       public func listModelVersions(
         request: ListModelVersionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListModelVersionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -116,7 +116,7 @@
       public func listModelVersionCheckpoints(
         request: ListModelVersionCheckpointsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListModelVersionCheckpointsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -131,7 +131,7 @@
       public func updateModel(
         request: UpdateModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Model {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -146,7 +146,7 @@
       public func updateExplanationDataset(
         request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -161,7 +161,7 @@
       public func deleteModel(
         request: DeleteModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -176,7 +176,7 @@
       public func deleteModelVersion(
         request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -191,7 +191,7 @@
       public func mergeVersionAliases(
         request: MergeVersionAliasesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.Model {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -206,7 +206,7 @@
       public func exportModel(
         request: ExportModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -221,7 +221,7 @@
       public func copyModel(
         request: CopyModelRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -236,7 +236,7 @@
       public func importModelEvaluation(
         request: ImportModelEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -251,7 +251,7 @@
       public func batchImportModelEvaluationSlices(
         request: BatchImportModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchImportModelEvaluationSlicesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -266,7 +266,7 @@
       public func batchImportEvaluatedAnnotations(
         request: BatchImportEvaluatedAnnotationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.BatchImportEvaluatedAnnotationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -281,7 +281,7 @@
       public func getModelEvaluation(
         request: GetModelEvaluationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -296,7 +296,7 @@
       public func listModelEvaluations(
         request: ListModelEvaluationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListModelEvaluationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -311,7 +311,7 @@
       public func getModelEvaluationSlice(
         request: GetModelEvaluationSliceRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluationSlice {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -326,7 +326,7 @@
       public func listModelEvaluationSlices(
         request: ListModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListModelEvaluationSlicesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -341,7 +341,7 @@
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -356,7 +356,7 @@
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -371,7 +371,7 @@
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -386,7 +386,7 @@
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -401,7 +401,7 @@
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -416,7 +416,7 @@
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -431,7 +431,7 @@
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -474,7 +474,7 @@
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,

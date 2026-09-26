@@ -51,7 +51,7 @@ extension Clients {
     public func listQuotaInfos(
       request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func getQuotaInfo(
       request: GetQuotaInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaInfo {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func listQuotaPreferences(
       request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func getQuotaPreference(
       request: GetQuotaPreferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func createQuotaPreference(
       request: CreateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -126,7 +126,7 @@ extension Clients {
     public func updateQuotaPreference(
       request: UpdateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

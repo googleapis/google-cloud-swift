@@ -51,7 +51,7 @@
       public func aggregatedList(
         request: AutoscalersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.AutoscalerAggregatedList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -66,7 +66,7 @@
       public func delete(
         request: AutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -81,7 +81,7 @@
       public func `get`(
         request: AutoscalersClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Autoscaler {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -96,7 +96,7 @@
       public func insert(
         request: AutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -111,7 +111,7 @@
       public func list(
         request: AutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.AutoscalerList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -126,7 +126,7 @@
       public func patch(
         request: AutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -141,7 +141,7 @@
       public func testIamPermissions(
         request: AutoscalersClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -156,7 +156,7 @@
       public func update(
         request: AutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -171,7 +171,7 @@
       public func getOperation(
         request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

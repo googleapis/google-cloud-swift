@@ -51,7 +51,7 @@ extension Clients {
     public func updateQuotaAdjusterSettings(
       request: UpdateQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func getQuotaAdjusterSettings(
       request: GetQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

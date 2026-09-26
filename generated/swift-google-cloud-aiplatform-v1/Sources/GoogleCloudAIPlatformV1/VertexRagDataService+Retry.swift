@@ -56,7 +56,7 @@
       public func createRagCorpus(
         request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -71,7 +71,7 @@
       public func updateRagCorpus(
         request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -86,7 +86,7 @@
       public func getRagCorpus(
         request: GetRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.RagCorpus {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -101,7 +101,7 @@
       public func listRagCorpora(
         request: ListRagCorporaRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListRagCorporaResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -116,7 +116,7 @@
       public func deleteRagCorpus(
         request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -131,7 +131,7 @@
       public func uploadRagFile(
         request: UploadRagFileRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.UploadRagFileResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -146,7 +146,7 @@
       public func importRagFiles(
         request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -161,7 +161,7 @@
       public func getRagFile(
         request: GetRagFileRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.RagFile {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -176,7 +176,7 @@
       public func listRagFiles(
         request: ListRagFilesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.ListRagFilesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -191,7 +191,7 @@
       public func deleteRagFile(
         request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -206,7 +206,7 @@
       public func updateRagEngineConfig(
         request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -221,7 +221,7 @@
       public func getRagEngineConfig(
         request: GetRagEngineConfigRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudAIPlatformV1.RagEngineConfig {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -236,7 +236,7 @@
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -251,7 +251,7 @@
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -266,7 +266,7 @@
       public func setIamPolicy(
         request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -281,7 +281,7 @@
       public func getIamPolicy(
         request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -296,7 +296,7 @@
       public func testIamPermissions(
         request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -311,7 +311,7 @@
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -326,7 +326,7 @@
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -369,7 +369,7 @@
       public func waitOperation(
         request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,

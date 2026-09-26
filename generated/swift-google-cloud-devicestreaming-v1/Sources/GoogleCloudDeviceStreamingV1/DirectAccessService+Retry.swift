@@ -51,7 +51,7 @@ extension Clients {
     public func createDeviceSession(
       request: CreateDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func listDeviceSessions(
       request: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getDeviceSession(
       request: GetDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -109,7 +109,7 @@ extension Clients {
     public func updateDeviceSession(
       request: UpdateDeviceSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

@@ -52,7 +52,7 @@
         request: NetworkFirewallPoliciesClient.AddAssociationRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -68,7 +68,7 @@
         request: NetworkFirewallPoliciesClient.AddPacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -85,7 +85,7 @@
       public func addRule(
         request: NetworkFirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -101,7 +101,7 @@
         request: NetworkFirewallPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NetworkFirewallPolicyAggregatedList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -116,7 +116,7 @@
       public func cloneRules(
         request: NetworkFirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -131,7 +131,7 @@
       public func delete(
         request: NetworkFirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -146,7 +146,7 @@
       public func `get`(
         request: NetworkFirewallPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -162,7 +162,7 @@
         request: NetworkFirewallPoliciesClient.GetAssociationRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyAssociation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -178,7 +178,7 @@
         request: NetworkFirewallPoliciesClient.GetIamPolicyRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -194,7 +194,7 @@
         request: NetworkFirewallPoliciesClient.GetPacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -211,7 +211,7 @@
       public func getRule(
         request: NetworkFirewallPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -226,7 +226,7 @@
       public func insert(
         request: NetworkFirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -241,7 +241,7 @@
       public func list(
         request: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.FirewallPolicyList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -256,7 +256,7 @@
       public func patch(
         request: NetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -272,7 +272,7 @@
         request: NetworkFirewallPoliciesClient.PatchPacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -289,7 +289,7 @@
       public func patchRule(
         request: NetworkFirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -305,7 +305,7 @@
         request: NetworkFirewallPoliciesClient.RemoveAssociationRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -321,7 +321,7 @@
         request: NetworkFirewallPoliciesClient.RemovePacketMirroringRuleRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -338,7 +338,7 @@
       public func removeRule(
         request: NetworkFirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -354,7 +354,7 @@
         request: NetworkFirewallPoliciesClient.SetIamPolicyRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Policy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -370,7 +370,7 @@
         request: NetworkFirewallPoliciesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -387,7 +387,7 @@
       public func getOperation(
         request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

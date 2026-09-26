@@ -51,7 +51,7 @@ extension Clients {
     public func createService(
       request: CreateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Service {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func getService(
       request: GetServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Service {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListServicesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func updateService(
       request: UpdateServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Service {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -123,7 +123,7 @@ extension Clients {
     public func createServiceLevelObjective(
       request: CreateServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -138,7 +138,7 @@ extension Clients {
     public func getServiceLevelObjective(
       request: GetServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -153,7 +153,7 @@ extension Clients {
     public func listServiceLevelObjectives(
       request: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -168,7 +168,7 @@ extension Clients {
     public func updateServiceLevelObjective(
       request: UpdateServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

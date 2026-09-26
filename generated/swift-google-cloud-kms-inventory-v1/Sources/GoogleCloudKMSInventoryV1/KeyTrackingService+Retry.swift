@@ -50,7 +50,7 @@ extension Clients {
     public func getProtectedResourcesSummary(
       request: GetProtectedResourcesSummaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func searchProtectedResources(
       request: SearchProtectedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudKMSInventoryV1.SearchProtectedResourcesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

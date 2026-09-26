@@ -54,7 +54,7 @@
       public func createConversation(
         request: CreateConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -69,7 +69,7 @@
       public func listConversations(
         request: ListConversationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListConversationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -84,7 +84,7 @@
       public func getConversation(
         request: GetConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -99,7 +99,7 @@
       public func completeConversation(
         request: CompleteConversationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Conversation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -114,7 +114,7 @@
       public func ingestContextReferences(
         request: IngestContextReferencesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.IngestContextReferencesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -129,7 +129,7 @@
       public func listMessages(
         request: ListMessagesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -144,7 +144,7 @@
       public func suggestConversationSummary(
         request: SuggestConversationSummaryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestConversationSummaryResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -159,7 +159,7 @@
       public func generateStatelessSummary(
         request: GenerateStatelessSummaryRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateStatelessSummaryResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -174,7 +174,7 @@
       public func generateStatelessSuggestion(
         request: GenerateStatelessSuggestionRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateStatelessSuggestionResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -189,7 +189,7 @@
       public func searchKnowledge(
         request: SearchKnowledgeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SearchKnowledgeResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -204,7 +204,7 @@
       public func generateSuggestions(
         request: GenerateSuggestionsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.GenerateSuggestionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -219,7 +219,7 @@
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -234,7 +234,7 @@
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -249,7 +249,7 @@
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -264,7 +264,7 @@
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

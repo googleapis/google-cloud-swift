@@ -51,7 +51,7 @@ extension Clients {
     public func createContact(
       request: CreateContactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func updateContact(
       request: UpdateContactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func listContacts(
       request: ListContactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.ListContactsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func getContact(
       request: GetContactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.Contact {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -123,7 +123,7 @@ extension Clients {
     public func computeContacts(
       request: ComputeContactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEssentialContactsV1.ComputeContactsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

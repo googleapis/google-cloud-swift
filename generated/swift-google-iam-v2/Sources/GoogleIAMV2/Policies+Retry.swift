@@ -52,7 +52,7 @@ extension Clients {
     public func listPolicies(
       request: ListPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV2.ListPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func getPolicy(
       request: GetPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV2.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func createPolicy(
       request: CreatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -96,7 +96,7 @@ extension Clients {
     public func updatePolicy(
       request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func deletePolicy(
       request: DeletePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -126,7 +126,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

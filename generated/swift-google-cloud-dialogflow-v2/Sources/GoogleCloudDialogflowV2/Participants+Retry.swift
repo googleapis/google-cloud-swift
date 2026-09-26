@@ -54,7 +54,7 @@
       public func createParticipant(
         request: CreateParticipantRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -69,7 +69,7 @@
       public func getParticipant(
         request: GetParticipantRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -84,7 +84,7 @@
       public func listParticipants(
         request: ListParticipantsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.ListParticipantsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -99,7 +99,7 @@
       public func updateParticipant(
         request: UpdateParticipantRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.Participant {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -114,7 +114,7 @@
       public func analyzeContent(
         request: AnalyzeContentRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -129,7 +129,7 @@
       public func suggestArticles(
         request: SuggestArticlesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestArticlesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -144,7 +144,7 @@
       public func suggestFaqAnswers(
         request: SuggestFaqAnswersRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestFaqAnswersResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -159,7 +159,7 @@
       public func suggestSmartReplies(
         request: SuggestSmartRepliesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestSmartRepliesResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -174,7 +174,7 @@
       public func suggestKnowledgeAssist(
         request: SuggestKnowledgeAssistRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudDialogflowV2.SuggestKnowledgeAssistResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -189,7 +189,7 @@
       public func listLocations(
         request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -204,7 +204,7 @@
       public func getLocation(
         request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudLocation.Location {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -219,7 +219,7 @@
       public func listOperations(
         request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.ListOperationsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -234,7 +234,7 @@
       public func getOperation(
         request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleLongRunning.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

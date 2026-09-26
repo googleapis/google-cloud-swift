@@ -51,7 +51,7 @@
       public func calendarMode(
         request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,

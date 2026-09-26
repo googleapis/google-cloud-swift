@@ -51,7 +51,7 @@ extension Clients {
     public func getAuthorization(
       request: GetAuthorizationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func createDeployment(
       request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func replaceDeployment(
       request: ReplaceDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func getDeployment(
       request: GetDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -163,7 +163,7 @@ extension Clients {
     public func getInstallStatus(
       request: GetInstallStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGSuiteAddOnsV1.InstallStatus {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

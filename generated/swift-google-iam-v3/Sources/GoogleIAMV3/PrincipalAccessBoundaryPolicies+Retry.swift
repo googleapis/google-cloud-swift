@@ -54,7 +54,7 @@ extension Clients {
     public func createPrincipalAccessBoundaryPolicy(
       request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func getPrincipalAccessBoundaryPolicy(
       request: GetPrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.PrincipalAccessBoundaryPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -84,7 +84,7 @@ extension Clients {
     public func updatePrincipalAccessBoundaryPolicy(
       request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -99,7 +99,7 @@ extension Clients {
     public func deletePrincipalAccessBoundaryPolicy(
       request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -114,7 +114,7 @@ extension Clients {
     public func listPrincipalAccessBoundaryPolicies(
       request: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -129,7 +129,7 @@ extension Clients {
     public func searchPrincipalAccessBoundaryPolicyBindings(
       request: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -145,7 +145,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

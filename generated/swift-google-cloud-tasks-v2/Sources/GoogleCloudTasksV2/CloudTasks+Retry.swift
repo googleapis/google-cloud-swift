@@ -53,7 +53,7 @@ extension Clients {
     public func listQueues(
       request: ListQueuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListQueuesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -68,7 +68,7 @@ extension Clients {
     public func getQueue(
       request: GetQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func createQueue(
       request: CreateQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateQueue(
       request: UpdateQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -124,7 +124,7 @@ extension Clients {
     public func purgeQueue(
       request: PurgeQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -139,7 +139,7 @@ extension Clients {
     public func pauseQueue(
       request: PauseQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -154,7 +154,7 @@ extension Clients {
     public func resumeQueue(
       request: ResumeQueueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Queue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -169,7 +169,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -184,7 +184,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -199,7 +199,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -214,7 +214,7 @@ extension Clients {
     public func listTasks(
       request: ListTasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.ListTasksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -229,7 +229,7 @@ extension Clients {
     public func getTask(
       request: GetTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -243,7 +243,7 @@ extension Clients {
     public func createTask(
       request: CreateTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -270,7 +270,7 @@ extension Clients {
     public func runTask(
       request: RunTaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTasksV2.Task {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -284,7 +284,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -299,7 +299,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

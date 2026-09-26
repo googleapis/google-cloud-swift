@@ -51,7 +51,7 @@ extension Clients {
     public func getMcpServer(
       request: GetMcpServerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.McpServer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func listMcpServers(
       request: ListMcpServersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.ListMcpServersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getMcpTool(
       request: GetMcpToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.McpTool {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func listMcpTools(
       request: ListMcpToolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudApiRegistryV1.ListMcpToolsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -126,7 +126,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

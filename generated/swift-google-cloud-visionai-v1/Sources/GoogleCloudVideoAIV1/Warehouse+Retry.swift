@@ -54,7 +54,7 @@ extension Clients {
     public func createAsset(
       request: CreateAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func updateAsset(
       request: UpdateAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -84,7 +84,7 @@ extension Clients {
     public func getAsset(
       request: GetAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Asset {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -99,7 +99,7 @@ extension Clients {
     public func listAssets(
       request: ListAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -114,7 +114,7 @@ extension Clients {
     public func deleteAsset(
       request: DeleteAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -129,7 +129,7 @@ extension Clients {
     public func uploadAsset(
       request: UploadAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -144,7 +144,7 @@ extension Clients {
     public func generateRetrievalUrl(
       request: GenerateRetrievalUrlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateRetrievalUrlResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -159,7 +159,7 @@ extension Clients {
     public func analyzeAsset(
       request: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -174,7 +174,7 @@ extension Clients {
     public func indexAsset(
       request: IndexAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -189,7 +189,7 @@ extension Clients {
     public func removeIndexAsset(
       request: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -204,7 +204,7 @@ extension Clients {
     public func viewIndexedAssets(
       request: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -219,7 +219,7 @@ extension Clients {
     public func createIndex(
       request: CreateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -234,7 +234,7 @@ extension Clients {
     public func updateIndex(
       request: UpdateIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -249,7 +249,7 @@ extension Clients {
     public func getIndex(
       request: GetIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Index {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -264,7 +264,7 @@ extension Clients {
     public func listIndexes(
       request: ListIndexesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -279,7 +279,7 @@ extension Clients {
     public func deleteIndex(
       request: DeleteIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -294,7 +294,7 @@ extension Clients {
     public func createCorpus(
       request: CreateCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -309,7 +309,7 @@ extension Clients {
     public func getCorpus(
       request: GetCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Corpus {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -324,7 +324,7 @@ extension Clients {
     public func updateCorpus(
       request: UpdateCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Corpus {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -339,7 +339,7 @@ extension Clients {
     public func listCorpora(
       request: ListCorporaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -366,7 +366,7 @@ extension Clients {
     public func analyzeCorpus(
       request: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -381,7 +381,7 @@ extension Clients {
     public func createDataSchema(
       request: CreateDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.DataSchema {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -396,7 +396,7 @@ extension Clients {
     public func updateDataSchema(
       request: UpdateDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.DataSchema {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -411,7 +411,7 @@ extension Clients {
     public func getDataSchema(
       request: GetDataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.DataSchema {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -438,7 +438,7 @@ extension Clients {
     public func listDataSchemas(
       request: ListDataSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -453,7 +453,7 @@ extension Clients {
     public func createAnnotation(
       request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Annotation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -468,7 +468,7 @@ extension Clients {
     public func getAnnotation(
       request: GetAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Annotation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -483,7 +483,7 @@ extension Clients {
     public func listAnnotations(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -498,7 +498,7 @@ extension Clients {
     public func updateAnnotation(
       request: UpdateAnnotationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Annotation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -525,7 +525,7 @@ extension Clients {
     public func clipAsset(
       request: ClipAssetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ClipAssetResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -540,7 +540,7 @@ extension Clients {
     public func generateHlsUri(
       request: GenerateHlsUriRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.GenerateHlsUriResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -555,7 +555,7 @@ extension Clients {
     public func importAssets(
       request: ImportAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -570,7 +570,7 @@ extension Clients {
     public func createSearchConfig(
       request: CreateSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -585,7 +585,7 @@ extension Clients {
     public func updateSearchConfig(
       request: UpdateSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -600,7 +600,7 @@ extension Clients {
     public func getSearchConfig(
       request: GetSearchConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -628,7 +628,7 @@ extension Clients {
     public func listSearchConfigs(
       request: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -643,7 +643,7 @@ extension Clients {
     public func createSearchHypernym(
       request: CreateSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -658,7 +658,7 @@ extension Clients {
     public func updateSearchHypernym(
       request: UpdateSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -673,7 +673,7 @@ extension Clients {
     public func getSearchHypernym(
       request: GetSearchHypernymRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -701,7 +701,7 @@ extension Clients {
     public func listSearchHypernyms(
       request: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -716,7 +716,7 @@ extension Clients {
     public func searchAssets(
       request: SearchAssetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchAssetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -731,7 +731,7 @@ extension Clients {
     public func searchIndexEndpoint(
       request: SearchIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.SearchIndexEndpointResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -746,7 +746,7 @@ extension Clients {
     public func createIndexEndpoint(
       request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -761,7 +761,7 @@ extension Clients {
     public func getIndexEndpoint(
       request: GetIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.IndexEndpoint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -776,7 +776,7 @@ extension Clients {
     public func listIndexEndpoints(
       request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -791,7 +791,7 @@ extension Clients {
     public func updateIndexEndpoint(
       request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -806,7 +806,7 @@ extension Clients {
     public func deleteIndexEndpoint(
       request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -821,7 +821,7 @@ extension Clients {
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -836,7 +836,7 @@ extension Clients {
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -851,7 +851,7 @@ extension Clients {
     public func createCollection(
       request: CreateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -866,7 +866,7 @@ extension Clients {
     public func deleteCollection(
       request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -881,7 +881,7 @@ extension Clients {
     public func getCollection(
       request: GetCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Collection {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -896,7 +896,7 @@ extension Clients {
     public func updateCollection(
       request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.Collection {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -911,7 +911,7 @@ extension Clients {
     public func listCollections(
       request: ListCollectionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -926,7 +926,7 @@ extension Clients {
     public func addCollectionItem(
       request: AddCollectionItemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.AddCollectionItemResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -941,7 +941,7 @@ extension Clients {
     public func removeCollectionItem(
       request: RemoveCollectionItemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.RemoveCollectionItemResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -956,7 +956,7 @@ extension Clients {
     public func viewCollectionItems(
       request: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -971,7 +971,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -986,7 +986,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1001,7 +1001,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1016,7 +1016,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

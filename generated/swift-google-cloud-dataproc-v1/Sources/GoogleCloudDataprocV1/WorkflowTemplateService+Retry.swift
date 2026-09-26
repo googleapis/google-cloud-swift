@@ -54,7 +54,7 @@ extension Clients {
     public func createWorkflowTemplate(
       request: CreateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func getWorkflowTemplate(
       request: GetWorkflowTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -84,7 +84,7 @@ extension Clients {
     public func instantiateWorkflowTemplate(
       request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -99,7 +99,7 @@ extension Clients {
     public func instantiateInlineWorkflowTemplate(
       request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -114,7 +114,7 @@ extension Clients {
     public func updateWorkflowTemplate(
       request: UpdateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -129,7 +129,7 @@ extension Clients {
     public func listWorkflowTemplates(
       request: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -157,7 +157,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -172,7 +172,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -187,7 +187,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -202,7 +202,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -217,7 +217,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

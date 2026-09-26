@@ -53,7 +53,7 @@ extension Clients {
     public func createOspolicyAssignment(
       request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -68,7 +68,7 @@ extension Clients {
     public func updateOspolicyAssignment(
       request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -83,7 +83,7 @@ extension Clients {
     public func getOspolicyAssignment(
       request: GetOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -98,7 +98,7 @@ extension Clients {
     public func listOspolicyAssignments(
       request: ListOSPolicyAssignmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -113,7 +113,7 @@ extension Clients {
     public func listOspolicyAssignmentRevisions(
       request: ListOSPolicyAssignmentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentRevisionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -128,7 +128,7 @@ extension Clients {
     public func deleteOspolicyAssignment(
       request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -143,7 +143,7 @@ extension Clients {
     public func getOspolicyAssignmentReport(
       request: GetOSPolicyAssignmentReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignmentReport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -158,7 +158,7 @@ extension Clients {
     public func listOspolicyAssignmentReports(
       request: ListOSPolicyAssignmentReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentReportsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -173,7 +173,7 @@ extension Clients {
     public func getInventory(
       request: GetInventoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.Inventory {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -188,7 +188,7 @@ extension Clients {
     public func listInventories(
       request: ListInventoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListInventoriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -203,7 +203,7 @@ extension Clients {
     public func getVulnerabilityReport(
       request: GetVulnerabilityReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.VulnerabilityReport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -218,7 +218,7 @@ extension Clients {
     public func listVulnerabilityReports(
       request: ListVulnerabilityReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListVulnerabilityReportsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -233,7 +233,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

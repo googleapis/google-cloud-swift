@@ -54,7 +54,7 @@ extension Clients {
     public func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Instance {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -84,7 +84,7 @@ extension Clients {
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -99,7 +99,7 @@ extension Clients {
     public func updateInstance(
       request: Instance, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Instance {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -114,7 +114,7 @@ extension Clients {
     public func partialUpdateInstance(
       request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -141,7 +141,7 @@ extension Clients {
     public func createCluster(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -156,7 +156,7 @@ extension Clients {
     public func getCluster(
       request: GetClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.Cluster {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -171,7 +171,7 @@ extension Clients {
     public func listClusters(
       request: ListClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -186,7 +186,7 @@ extension Clients {
     public func updateCluster(
       request: Cluster, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -200,7 +200,7 @@ extension Clients {
     public func partialUpdateCluster(
       request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -227,7 +227,7 @@ extension Clients {
     public func updateMemoryLayer(
       request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -242,7 +242,7 @@ extension Clients {
     public func listMemoryLayers(
       request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -257,7 +257,7 @@ extension Clients {
     public func getMemoryLayer(
       request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -272,7 +272,7 @@ extension Clients {
     public func createAppProfile(
       request: CreateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -287,7 +287,7 @@ extension Clients {
     public func getAppProfile(
       request: GetAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -302,7 +302,7 @@ extension Clients {
     public func listAppProfiles(
       request: ListAppProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -317,7 +317,7 @@ extension Clients {
     public func updateAppProfile(
       request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -344,7 +344,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -359,7 +359,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -374,7 +374,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -389,7 +389,7 @@ extension Clients {
     public func listHotTablets(
       request: ListHotTabletsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -404,7 +404,7 @@ extension Clients {
     public func createLogicalView(
       request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -419,7 +419,7 @@ extension Clients {
     public func getLogicalView(
       request: GetLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.LogicalView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -434,7 +434,7 @@ extension Clients {
     public func listLogicalViews(
       request: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -449,7 +449,7 @@ extension Clients {
     public func updateLogicalView(
       request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -476,7 +476,7 @@ extension Clients {
     public func createMaterializedView(
       request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -491,7 +491,7 @@ extension Clients {
     public func getMaterializedView(
       request: GetMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -506,7 +506,7 @@ extension Clients {
     public func listMaterializedViews(
       request: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -521,7 +521,7 @@ extension Clients {
     public func updateMaterializedView(
       request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -549,7 +549,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -564,7 +564,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

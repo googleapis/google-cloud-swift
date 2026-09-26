@@ -50,7 +50,7 @@ extension Clients {
     public func allocateQuota(
       request: AllocateQuotaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.AllocateQuotaResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

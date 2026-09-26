@@ -51,7 +51,7 @@ extension Clients {
     public func createCatalog(
       request: CreateCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func deleteCatalog(
       request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func getCatalog(
       request: GetCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func listCatalogs(
       request: ListCatalogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func createDatabase(
       request: CreateDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -126,7 +126,7 @@ extension Clients {
     public func deleteDatabase(
       request: DeleteDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -141,7 +141,7 @@ extension Clients {
     public func updateDatabase(
       request: UpdateDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -156,7 +156,7 @@ extension Clients {
     public func getDatabase(
       request: GetDatabaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Database {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -171,7 +171,7 @@ extension Clients {
     public func listDatabases(
       request: ListDatabasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -186,7 +186,7 @@ extension Clients {
     public func createTable(
       request: CreateTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -201,7 +201,7 @@ extension Clients {
     public func deleteTable(
       request: DeleteTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -216,7 +216,7 @@ extension Clients {
     public func updateTable(
       request: UpdateTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -231,7 +231,7 @@ extension Clients {
     public func renameTable(
       request: RenameTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -246,7 +246,7 @@ extension Clients {
     public func getTable(
       request: GetTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.Table {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -261,7 +261,7 @@ extension Clients {
     public func listTables(
       request: ListTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

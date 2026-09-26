@@ -51,7 +51,7 @@ extension Clients {
     public func listEvents(
       request: ListEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func getEvent(
       request: GetEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.Event {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func listOrganizationEvents(
       request: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func getOrganizationEvent(
       request: GetOrganizationEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.OrganizationEvent {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func listOrganizationImpacts(
       request: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -126,7 +126,7 @@ extension Clients {
     public func getOrganizationImpact(
       request: GetOrganizationImpactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudServiceHealthV1.OrganizationImpact {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -141,7 +141,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -156,7 +156,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

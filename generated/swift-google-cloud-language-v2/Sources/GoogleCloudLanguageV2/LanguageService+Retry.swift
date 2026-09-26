@@ -50,7 +50,7 @@ extension Clients {
     public func analyzeSentiment(
       request: AnalyzeSentimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -65,7 +65,7 @@ extension Clients {
     public func analyzeEntities(
       request: AnalyzeEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -80,7 +80,7 @@ extension Clients {
     public func classifyText(
       request: ClassifyTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -95,7 +95,7 @@ extension Clients {
     public func moderateText(
       request: ModerateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -110,7 +110,7 @@ extension Clients {
     public func annotateText(
       request: AnnotateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

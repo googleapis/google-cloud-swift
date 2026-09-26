@@ -54,7 +54,7 @@
         request: RegionHealthAggregationPoliciesClient.AggregatedListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthAggregationPolicyAggregatedList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -72,7 +72,7 @@
         request: RegionHealthAggregationPoliciesClient.DeleteRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -87,7 +87,7 @@
       public func `get`(
         request: RegionHealthAggregationPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthAggregationPolicy {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -103,7 +103,7 @@
         request: RegionHealthAggregationPoliciesClient.InsertRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -119,7 +119,7 @@
         request: RegionHealthAggregationPoliciesClient.ListRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.HealthAggregationPolicyList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -135,7 +135,7 @@
         request: RegionHealthAggregationPoliciesClient.PatchRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -151,7 +151,7 @@
         request: RegionHealthAggregationPoliciesClient.TestIamPermissionsRequest,
         options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -168,7 +168,7 @@
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

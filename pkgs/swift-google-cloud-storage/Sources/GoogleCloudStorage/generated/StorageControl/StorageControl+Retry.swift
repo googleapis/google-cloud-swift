@@ -54,7 +54,7 @@ extension Clients {
     public func createFolder(
       request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> Folder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -80,7 +80,7 @@ extension Clients {
     public func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> Folder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -94,7 +94,7 @@ extension Clients {
     public func listFolders(
       request: ListFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListFoldersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -108,7 +108,7 @@ extension Clients {
     public func renameFolder(
       request: RenameFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -123,7 +123,7 @@ extension Clients {
     public func deleteFolderRecursive(
       request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -138,7 +138,7 @@ extension Clients {
     public func getStorageLayout(
       request: GetStorageLayoutRequest, options: GoogleGax.RequestOptions
     ) async throws -> StorageLayout {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -152,7 +152,7 @@ extension Clients {
     public func createManagedFolder(
       request: CreateManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -179,7 +179,7 @@ extension Clients {
     public func getManagedFolder(
       request: GetManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -193,7 +193,7 @@ extension Clients {
     public func listManagedFolders(
       request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListManagedFoldersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -208,7 +208,7 @@ extension Clients {
     public func updateManagedFolder(
       request: UpdateManagedFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedFolder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -222,7 +222,7 @@ extension Clients {
     public func createAnywhereCache(
       request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -237,7 +237,7 @@ extension Clients {
     public func updateAnywhereCache(
       request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -252,7 +252,7 @@ extension Clients {
     public func disableAnywhereCache(
       request: DisableAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -267,7 +267,7 @@ extension Clients {
     public func pauseAnywhereCache(
       request: PauseAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -281,7 +281,7 @@ extension Clients {
     public func resumeAnywhereCache(
       request: ResumeAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -295,7 +295,7 @@ extension Clients {
     public func getAnywhereCache(
       request: GetAnywhereCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> AnywhereCache {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -309,7 +309,7 @@ extension Clients {
     public func listAnywhereCaches(
       request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListAnywhereCachesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -324,7 +324,7 @@ extension Clients {
     public func createRapidCache(
       request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -339,7 +339,7 @@ extension Clients {
     public func updateRapidCache(
       request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -354,7 +354,7 @@ extension Clients {
     public func disableRapidCache(
       request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -369,7 +369,7 @@ extension Clients {
     public func getRapidCache(
       request: GetRapidCacheRequest, options: GoogleGax.RequestOptions
     ) async throws -> RapidCache {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -383,7 +383,7 @@ extension Clients {
     public func listRapidCaches(
       request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListRapidCachesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -398,7 +398,7 @@ extension Clients {
     public func getProjectIntelligenceConfig(
       request: GetProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -413,7 +413,7 @@ extension Clients {
     public func updateProjectIntelligenceConfig(
       request: UpdateProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -428,7 +428,7 @@ extension Clients {
     public func getFolderIntelligenceConfig(
       request: GetFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -443,7 +443,7 @@ extension Clients {
     public func updateFolderIntelligenceConfig(
       request: UpdateFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -458,7 +458,7 @@ extension Clients {
     public func getOrganizationIntelligenceConfig(
       request: GetOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -473,7 +473,7 @@ extension Clients {
     public func updateOrganizationIntelligenceConfig(
       request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -488,7 +488,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -503,7 +503,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -518,7 +518,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -533,7 +533,7 @@ extension Clients {
     public func getIntelligenceFinding(
       request: GetIntelligenceFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceFinding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -548,7 +548,7 @@ extension Clients {
     public func listIntelligenceFindings(
       request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListIntelligenceFindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -563,7 +563,7 @@ extension Clients {
     public func summarizeIntelligenceFindings(
       request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> SummarizeIntelligenceFindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -578,7 +578,7 @@ extension Clients {
     public func getIntelligenceFindingRevision(
       request: GetIntelligenceFindingRevisionRequest, options: GoogleGax.RequestOptions
     ) async throws -> IntelligenceFindingRevision {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -593,7 +593,7 @@ extension Clients {
     public func listIntelligenceFindingRevisions(
       request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListIntelligenceFindingRevisionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -608,7 +608,7 @@ extension Clients {
     public func viewObjectFullContext(
       request: ViewObjectFullContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> ObjectFullContext {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -623,7 +623,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

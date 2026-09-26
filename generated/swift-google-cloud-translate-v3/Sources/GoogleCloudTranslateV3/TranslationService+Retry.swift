@@ -54,7 +54,7 @@ extension Clients {
     public func translateText(
       request: TranslateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateTextResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func romanizeText(
       request: RomanizeTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.RomanizeTextResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -84,7 +84,7 @@ extension Clients {
     public func detectLanguage(
       request: DetectLanguageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.DetectLanguageResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -99,7 +99,7 @@ extension Clients {
     public func getSupportedLanguages(
       request: GetSupportedLanguagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.SupportedLanguages {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -114,7 +114,7 @@ extension Clients {
     public func translateDocument(
       request: TranslateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.TranslateDocumentResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -129,7 +129,7 @@ extension Clients {
     public func batchTranslateText(
       request: BatchTranslateTextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -144,7 +144,7 @@ extension Clients {
     public func batchTranslateDocument(
       request: BatchTranslateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -159,7 +159,7 @@ extension Clients {
     public func createGlossary(
       request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -174,7 +174,7 @@ extension Clients {
     public func updateGlossary(
       request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -189,7 +189,7 @@ extension Clients {
     public func listGlossaries(
       request: ListGlossariesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListGlossariesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -204,7 +204,7 @@ extension Clients {
     public func getGlossary(
       request: GetGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.Glossary {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -219,7 +219,7 @@ extension Clients {
     public func deleteGlossary(
       request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -234,7 +234,7 @@ extension Clients {
     public func getGlossaryEntry(
       request: GetGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.GlossaryEntry {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -249,7 +249,7 @@ extension Clients {
     public func listGlossaryEntries(
       request: ListGlossaryEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListGlossaryEntriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -264,7 +264,7 @@ extension Clients {
     public func createGlossaryEntry(
       request: CreateGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.GlossaryEntry {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -279,7 +279,7 @@ extension Clients {
     public func updateGlossaryEntry(
       request: UpdateGlossaryEntryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.GlossaryEntry {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -307,7 +307,7 @@ extension Clients {
     public func createDataset(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -322,7 +322,7 @@ extension Clients {
     public func getDataset(
       request: GetDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.Dataset {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -337,7 +337,7 @@ extension Clients {
     public func listDatasets(
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListDatasetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -352,7 +352,7 @@ extension Clients {
     public func deleteDataset(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -367,7 +367,7 @@ extension Clients {
     public func createAdaptiveMtDataset(
       request: CreateAdaptiveMtDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtDataset {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -395,7 +395,7 @@ extension Clients {
     public func getAdaptiveMtDataset(
       request: GetAdaptiveMtDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtDataset {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -410,7 +410,7 @@ extension Clients {
     public func listAdaptiveMtDatasets(
       request: ListAdaptiveMtDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListAdaptiveMtDatasetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -425,7 +425,7 @@ extension Clients {
     public func adaptiveMtTranslate(
       request: AdaptiveMtTranslateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtTranslateResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -440,7 +440,7 @@ extension Clients {
     public func getAdaptiveMtFile(
       request: GetAdaptiveMtFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.AdaptiveMtFile {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -468,7 +468,7 @@ extension Clients {
     public func importAdaptiveMtFile(
       request: ImportAdaptiveMtFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ImportAdaptiveMtFileResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -483,7 +483,7 @@ extension Clients {
     public func listAdaptiveMtFiles(
       request: ListAdaptiveMtFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListAdaptiveMtFilesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -498,7 +498,7 @@ extension Clients {
     public func listAdaptiveMtSentences(
       request: ListAdaptiveMtSentencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListAdaptiveMtSentencesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -513,7 +513,7 @@ extension Clients {
     public func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -528,7 +528,7 @@ extension Clients {
     public func exportData(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -543,7 +543,7 @@ extension Clients {
     public func listExamples(
       request: ListExamplesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListExamplesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -558,7 +558,7 @@ extension Clients {
     public func createModel(
       request: CreateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -573,7 +573,7 @@ extension Clients {
     public func listModels(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.ListModelsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -588,7 +588,7 @@ extension Clients {
     public func getModel(
       request: GetModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTranslateV3.Model {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -603,7 +603,7 @@ extension Clients {
     public func deleteModel(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -618,7 +618,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -633,7 +633,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -648,7 +648,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -663,7 +663,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -706,7 +706,7 @@ extension Clients {
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

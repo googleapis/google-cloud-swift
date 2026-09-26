@@ -52,7 +52,7 @@ extension Clients {
     public func createTenant(
       request: CreateTenantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func getTenant(
       request: GetTenantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func updateTenant(
       request: UpdateTenantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Tenant {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -109,7 +109,7 @@ extension Clients {
     public func listTenants(
       request: ListTenantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListTenantsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -124,7 +124,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

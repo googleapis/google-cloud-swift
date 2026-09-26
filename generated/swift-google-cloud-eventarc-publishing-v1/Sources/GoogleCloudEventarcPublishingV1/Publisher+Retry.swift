@@ -50,7 +50,7 @@ extension Clients {
     public func publishChannelConnectionEvents(
       request: PublishChannelConnectionEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishChannelConnectionEventsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -65,7 +65,7 @@ extension Clients {
     public func publishEvents(
       request: PublishEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishEventsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -80,7 +80,7 @@ extension Clients {
     public func publish(
       request: PublishRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEventarcPublishingV1.PublishResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

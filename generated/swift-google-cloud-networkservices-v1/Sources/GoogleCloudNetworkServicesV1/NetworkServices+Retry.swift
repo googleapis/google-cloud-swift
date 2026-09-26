@@ -55,7 +55,7 @@ extension Clients {
     public func listEndpointPolicies(
       request: ListEndpointPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListEndpointPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -70,7 +70,7 @@ extension Clients {
     public func getEndpointPolicy(
       request: GetEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.EndpointPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -85,7 +85,7 @@ extension Clients {
     public func createEndpointPolicy(
       request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -100,7 +100,7 @@ extension Clients {
     public func updateEndpointPolicy(
       request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -115,7 +115,7 @@ extension Clients {
     public func deleteEndpointPolicy(
       request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -130,7 +130,7 @@ extension Clients {
     public func listWasmPluginVersions(
       request: ListWasmPluginVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginVersionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -145,7 +145,7 @@ extension Clients {
     public func getWasmPluginVersion(
       request: GetWasmPluginVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.WasmPluginVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -160,7 +160,7 @@ extension Clients {
     public func createWasmPluginVersion(
       request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -175,7 +175,7 @@ extension Clients {
     public func deleteWasmPluginVersion(
       request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -190,7 +190,7 @@ extension Clients {
     public func listWasmPlugins(
       request: ListWasmPluginsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -205,7 +205,7 @@ extension Clients {
     public func getWasmPlugin(
       request: GetWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.WasmPlugin {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -220,7 +220,7 @@ extension Clients {
     public func createWasmPlugin(
       request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -235,7 +235,7 @@ extension Clients {
     public func updateWasmPlugin(
       request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -250,7 +250,7 @@ extension Clients {
     public func deleteWasmPlugin(
       request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -265,7 +265,7 @@ extension Clients {
     public func listGateways(
       request: ListGatewaysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListGatewaysResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -280,7 +280,7 @@ extension Clients {
     public func getGateway(
       request: GetGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.Gateway {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -295,7 +295,7 @@ extension Clients {
     public func createGateway(
       request: CreateGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -310,7 +310,7 @@ extension Clients {
     public func updateGateway(
       request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -325,7 +325,7 @@ extension Clients {
     public func deleteGateway(
       request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -340,7 +340,7 @@ extension Clients {
     public func listGrpcRoutes(
       request: ListGrpcRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListGrpcRoutesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -355,7 +355,7 @@ extension Clients {
     public func getGrpcRoute(
       request: GetGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.GrpcRoute {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -370,7 +370,7 @@ extension Clients {
     public func createGrpcRoute(
       request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -385,7 +385,7 @@ extension Clients {
     public func updateGrpcRoute(
       request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -400,7 +400,7 @@ extension Clients {
     public func deleteGrpcRoute(
       request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -415,7 +415,7 @@ extension Clients {
     public func listHttpRoutes(
       request: ListHttpRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListHttpRoutesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -430,7 +430,7 @@ extension Clients {
     public func getHttpRoute(
       request: GetHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.HttpRoute {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -445,7 +445,7 @@ extension Clients {
     public func createHttpRoute(
       request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -460,7 +460,7 @@ extension Clients {
     public func updateHttpRoute(
       request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -475,7 +475,7 @@ extension Clients {
     public func deleteHttpRoute(
       request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -490,7 +490,7 @@ extension Clients {
     public func listTcpRoutes(
       request: ListTcpRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListTcpRoutesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -505,7 +505,7 @@ extension Clients {
     public func getTcpRoute(
       request: GetTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.TcpRoute {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -520,7 +520,7 @@ extension Clients {
     public func createTcpRoute(
       request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -535,7 +535,7 @@ extension Clients {
     public func updateTcpRoute(
       request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -550,7 +550,7 @@ extension Clients {
     public func deleteTcpRoute(
       request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -565,7 +565,7 @@ extension Clients {
     public func listTlsRoutes(
       request: ListTlsRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListTlsRoutesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -580,7 +580,7 @@ extension Clients {
     public func getTlsRoute(
       request: GetTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.TlsRoute {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -595,7 +595,7 @@ extension Clients {
     public func createTlsRoute(
       request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -610,7 +610,7 @@ extension Clients {
     public func updateTlsRoute(
       request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -625,7 +625,7 @@ extension Clients {
     public func deleteTlsRoute(
       request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -640,7 +640,7 @@ extension Clients {
     public func listServiceBindings(
       request: ListServiceBindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListServiceBindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -655,7 +655,7 @@ extension Clients {
     public func getServiceBinding(
       request: GetServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ServiceBinding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -670,7 +670,7 @@ extension Clients {
     public func createServiceBinding(
       request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -685,7 +685,7 @@ extension Clients {
     public func updateServiceBinding(
       request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -700,7 +700,7 @@ extension Clients {
     public func deleteServiceBinding(
       request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -715,7 +715,7 @@ extension Clients {
     public func listMeshes(
       request: ListMeshesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListMeshesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -730,7 +730,7 @@ extension Clients {
     public func getMesh(
       request: GetMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.Mesh {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -745,7 +745,7 @@ extension Clients {
     public func createMesh(
       request: CreateMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -760,7 +760,7 @@ extension Clients {
     public func updateMesh(
       request: UpdateMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -775,7 +775,7 @@ extension Clients {
     public func deleteMesh(
       request: DeleteMeshRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -790,7 +790,7 @@ extension Clients {
     public func listServiceLbPolicies(
       request: ListServiceLbPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListServiceLbPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -805,7 +805,7 @@ extension Clients {
     public func getServiceLbPolicy(
       request: GetServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ServiceLbPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -820,7 +820,7 @@ extension Clients {
     public func createServiceLbPolicy(
       request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -835,7 +835,7 @@ extension Clients {
     public func updateServiceLbPolicy(
       request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -850,7 +850,7 @@ extension Clients {
     public func deleteServiceLbPolicy(
       request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -865,7 +865,7 @@ extension Clients {
     public func getGatewayRouteView(
       request: GetGatewayRouteViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.GatewayRouteView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -880,7 +880,7 @@ extension Clients {
     public func getMeshRouteView(
       request: GetMeshRouteViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.MeshRouteView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -895,7 +895,7 @@ extension Clients {
     public func listGatewayRouteViews(
       request: ListGatewayRouteViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListGatewayRouteViewsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -910,7 +910,7 @@ extension Clients {
     public func listMeshRouteViews(
       request: ListMeshRouteViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListMeshRouteViewsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -925,7 +925,7 @@ extension Clients {
     public func listAgentGateways(
       request: ListAgentGatewaysRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.ListAgentGatewaysResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -940,7 +940,7 @@ extension Clients {
     public func getAgentGateway(
       request: GetAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudNetworkServicesV1.AgentGateway {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -955,7 +955,7 @@ extension Clients {
     public func createAgentGateway(
       request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -970,7 +970,7 @@ extension Clients {
     public func updateAgentGateway(
       request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -985,7 +985,7 @@ extension Clients {
     public func deleteAgentGateway(
       request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1000,7 +1000,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1015,7 +1015,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1030,7 +1030,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1045,7 +1045,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1060,7 +1060,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1075,7 +1075,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1090,7 +1090,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

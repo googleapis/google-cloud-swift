@@ -54,7 +54,7 @@ extension Clients {
     public func batchCreateResourceValueConfigs(
       request: BatchCreateResourceValueConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BatchCreateResourceValueConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func bulkMuteFindings(
       request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -84,7 +84,7 @@ extension Clients {
     public func createBigQueryExport(
       request: CreateBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -99,7 +99,7 @@ extension Clients {
     public func createFinding(
       request: CreateFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -114,7 +114,7 @@ extension Clients {
     public func createMuteConfig(
       request: CreateMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -129,7 +129,7 @@ extension Clients {
     public func createNotificationConfig(
       request: CreateNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -144,7 +144,7 @@ extension Clients {
     public func createSource(
       request: CreateSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Source {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -210,7 +210,7 @@ extension Clients {
     public func getBigQueryExport(
       request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -225,7 +225,7 @@ extension Clients {
     public func getSimulation(
       request: GetSimulationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Simulation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -240,7 +240,7 @@ extension Clients {
     public func getValuedResource(
       request: GetValuedResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ValuedResource {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -255,7 +255,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -270,7 +270,7 @@ extension Clients {
     public func getMuteConfig(
       request: GetMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -285,7 +285,7 @@ extension Clients {
     public func getNotificationConfig(
       request: GetNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -300,7 +300,7 @@ extension Clients {
     public func getResourceValueConfig(
       request: GetResourceValueConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ResourceValueConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -315,7 +315,7 @@ extension Clients {
     public func getSource(
       request: GetSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Source {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -330,7 +330,7 @@ extension Clients {
     public func groupFindings(
       request: GroupFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.GroupFindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -345,7 +345,7 @@ extension Clients {
     public func listAttackPaths(
       request: ListAttackPathsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListAttackPathsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -360,7 +360,7 @@ extension Clients {
     public func listBigQueryExports(
       request: ListBigQueryExportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListBigQueryExportsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -375,7 +375,7 @@ extension Clients {
     public func listFindings(
       request: ListFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListFindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -390,7 +390,7 @@ extension Clients {
     public func listMuteConfigs(
       request: ListMuteConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListMuteConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -405,7 +405,7 @@ extension Clients {
     public func listNotificationConfigs(
       request: ListNotificationConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListNotificationConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -420,7 +420,7 @@ extension Clients {
     public func listResourceValueConfigs(
       request: ListResourceValueConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListResourceValueConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -435,7 +435,7 @@ extension Clients {
     public func listSources(
       request: ListSourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListSourcesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -450,7 +450,7 @@ extension Clients {
     public func listValuedResources(
       request: ListValuedResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ListValuedResourcesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -465,7 +465,7 @@ extension Clients {
     public func setFindingState(
       request: SetFindingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -480,7 +480,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -495,7 +495,7 @@ extension Clients {
     public func setMute(
       request: SetMuteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -510,7 +510,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -525,7 +525,7 @@ extension Clients {
     public func updateBigQueryExport(
       request: UpdateBigQueryExportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -540,7 +540,7 @@ extension Clients {
     public func updateExternalSystem(
       request: UpdateExternalSystemRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ExternalSystem {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -555,7 +555,7 @@ extension Clients {
     public func updateFinding(
       request: UpdateFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Finding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -570,7 +570,7 @@ extension Clients {
     public func updateMuteConfig(
       request: UpdateMuteConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -585,7 +585,7 @@ extension Clients {
     public func updateNotificationConfig(
       request: UpdateNotificationConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -600,7 +600,7 @@ extension Clients {
     public func updateResourceValueConfig(
       request: UpdateResourceValueConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.ResourceValueConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -615,7 +615,7 @@ extension Clients {
     public func updateSecurityMarks(
       request: UpdateSecurityMarksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.SecurityMarks {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -630,7 +630,7 @@ extension Clients {
     public func updateSource(
       request: UpdateSourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterV2.Source {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -645,7 +645,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -660,7 +660,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

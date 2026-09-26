@@ -52,7 +52,7 @@ extension Clients {
     public func getReferenceList(
       request: GetReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func listReferenceLists(
       request: ListReferenceListsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListReferenceListsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func createReferenceList(
       request: CreateReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateReferenceList(
       request: UpdateReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ReferenceList {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -112,7 +112,7 @@ extension Clients {
     public func verifyReferenceList(
       request: VerifyReferenceListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.VerifyReferenceListResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -127,7 +127,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -142,7 +142,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

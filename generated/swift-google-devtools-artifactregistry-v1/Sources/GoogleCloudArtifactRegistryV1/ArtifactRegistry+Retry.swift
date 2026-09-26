@@ -55,7 +55,7 @@ extension Clients {
     public func listDockerImages(
       request: ListDockerImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -70,7 +70,7 @@ extension Clients {
     public func getDockerImage(
       request: GetDockerImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.DockerImage {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -85,7 +85,7 @@ extension Clients {
     public func listMavenArtifacts(
       request: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListMavenArtifactsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -100,7 +100,7 @@ extension Clients {
     public func getMavenArtifact(
       request: GetMavenArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.MavenArtifact {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -115,7 +115,7 @@ extension Clients {
     public func listNpmPackages(
       request: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListNpmPackagesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -130,7 +130,7 @@ extension Clients {
     public func getNpmPackage(
       request: GetNpmPackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.NpmPackage {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -145,7 +145,7 @@ extension Clients {
     public func listPythonPackages(
       request: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListPythonPackagesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -160,7 +160,7 @@ extension Clients {
     public func getPythonPackage(
       request: GetPythonPackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.PythonPackage {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -175,7 +175,7 @@ extension Clients {
     public func importAptArtifacts(
       request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -190,7 +190,7 @@ extension Clients {
     public func importYumArtifacts(
       request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -205,7 +205,7 @@ extension Clients {
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListRepositoriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -220,7 +220,7 @@ extension Clients {
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -235,7 +235,7 @@ extension Clients {
     public func createRepository(
       request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -250,7 +250,7 @@ extension Clients {
     public func updateRepository(
       request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -265,7 +265,7 @@ extension Clients {
     public func deleteRepository(
       request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -280,7 +280,7 @@ extension Clients {
     public func listPackages(
       request: ListPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListPackagesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -295,7 +295,7 @@ extension Clients {
     public func getPackage(
       request: GetPackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Package {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -310,7 +310,7 @@ extension Clients {
     public func deletePackage(
       request: DeletePackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -325,7 +325,7 @@ extension Clients {
     public func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListVersionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -340,7 +340,7 @@ extension Clients {
     public func getVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Version {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -355,7 +355,7 @@ extension Clients {
     public func deleteVersion(
       request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -370,7 +370,7 @@ extension Clients {
     public func batchDeleteVersions(
       request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -385,7 +385,7 @@ extension Clients {
     public func updateVersion(
       request: UpdateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Version {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -400,7 +400,7 @@ extension Clients {
     public func listFiles(
       request: ListFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListFilesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -415,7 +415,7 @@ extension Clients {
     public func getFile(
       request: GetFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.File {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -430,7 +430,7 @@ extension Clients {
     public func deleteFile(
       request: DeleteFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -445,7 +445,7 @@ extension Clients {
     public func updateFile(
       request: UpdateFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.File {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -460,7 +460,7 @@ extension Clients {
     public func listTags(
       request: ListTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListTagsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -475,7 +475,7 @@ extension Clients {
     public func getTag(
       request: GetTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -490,7 +490,7 @@ extension Clients {
     public func createTag(
       request: CreateTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -505,7 +505,7 @@ extension Clients {
     public func updateTag(
       request: UpdateTagRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -532,7 +532,7 @@ extension Clients {
     public func createRule(
       request: CreateRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -547,7 +547,7 @@ extension Clients {
     public func listRules(
       request: ListRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListRulesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -562,7 +562,7 @@ extension Clients {
     public func getRule(
       request: GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -577,7 +577,7 @@ extension Clients {
     public func updateRule(
       request: UpdateRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -604,7 +604,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -619,7 +619,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -634,7 +634,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -649,7 +649,7 @@ extension Clients {
     public func getProjectSettings(
       request: GetProjectSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -664,7 +664,7 @@ extension Clients {
     public func updateProjectSettings(
       request: UpdateProjectSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -679,7 +679,7 @@ extension Clients {
     public func getVpcscconfig(
       request: GetVPCSCConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -694,7 +694,7 @@ extension Clients {
     public func updateVpcscconfig(
       request: UpdateVPCSCConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -709,7 +709,7 @@ extension Clients {
     public func updatePackage(
       request: UpdatePackageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Package {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -724,7 +724,7 @@ extension Clients {
     public func listAttachments(
       request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.ListAttachmentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -739,7 +739,7 @@ extension Clients {
     public func getAttachment(
       request: GetAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudArtifactRegistryV1.Attachment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -754,7 +754,7 @@ extension Clients {
     public func createAttachment(
       request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -769,7 +769,7 @@ extension Clients {
     public func deleteAttachment(
       request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -784,7 +784,7 @@ extension Clients {
     public func exportArtifact(
       request: ExportArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -799,7 +799,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -814,7 +814,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -829,7 +829,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

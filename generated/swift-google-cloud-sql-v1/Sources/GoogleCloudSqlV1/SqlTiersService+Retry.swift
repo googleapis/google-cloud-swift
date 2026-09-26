@@ -51,7 +51,7 @@
       public func list(
         request: SqlTiersListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.TiersListResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

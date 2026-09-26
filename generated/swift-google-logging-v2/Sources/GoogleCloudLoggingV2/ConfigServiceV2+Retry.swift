@@ -53,7 +53,7 @@ extension Clients {
     public func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListBucketsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -68,7 +68,7 @@ extension Clients {
     public func getBucket(
       request: GetBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogBucket {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -83,7 +83,7 @@ extension Clients {
     public func createBucketAsync(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -98,7 +98,7 @@ extension Clients {
     public func updateBucketAsync(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -113,7 +113,7 @@ extension Clients {
     public func createBucket(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogBucket {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -128,7 +128,7 @@ extension Clients {
     public func updateBucket(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogBucket {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -167,7 +167,7 @@ extension Clients {
     public func listViews(
       request: ListViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListViewsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -182,7 +182,7 @@ extension Clients {
     public func getView(
       request: GetViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -197,7 +197,7 @@ extension Clients {
     public func createView(
       request: CreateViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -212,7 +212,7 @@ extension Clients {
     public func updateView(
       request: UpdateViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogView {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -239,7 +239,7 @@ extension Clients {
     public func listSinks(
       request: ListSinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListSinksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -254,7 +254,7 @@ extension Clients {
     public func getSink(
       request: GetSinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogSink {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -269,7 +269,7 @@ extension Clients {
     public func createSink(
       request: CreateSinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogSink {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -284,7 +284,7 @@ extension Clients {
     public func updateSink(
       request: UpdateSinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogSink {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -311,7 +311,7 @@ extension Clients {
     public func createLink(
       request: CreateLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -326,7 +326,7 @@ extension Clients {
     public func deleteLink(
       request: DeleteLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -341,7 +341,7 @@ extension Clients {
     public func listLinks(
       request: ListLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListLinksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -356,7 +356,7 @@ extension Clients {
     public func getLink(
       request: GetLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.Link {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -370,7 +370,7 @@ extension Clients {
     public func listExclusions(
       request: ListExclusionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -385,7 +385,7 @@ extension Clients {
     public func getExclusion(
       request: GetExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogExclusion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -400,7 +400,7 @@ extension Clients {
     public func createExclusion(
       request: CreateExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogExclusion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -415,7 +415,7 @@ extension Clients {
     public func updateExclusion(
       request: UpdateExclusionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.LogExclusion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -442,7 +442,7 @@ extension Clients {
     public func getCmekSettings(
       request: GetCmekSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.CmekSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -457,7 +457,7 @@ extension Clients {
     public func updateCmekSettings(
       request: UpdateCmekSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.CmekSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -472,7 +472,7 @@ extension Clients {
     public func getSettings(
       request: GetSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.Settings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -487,7 +487,7 @@ extension Clients {
     public func updateSettings(
       request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLoggingV2.Settings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -502,7 +502,7 @@ extension Clients {
     public func copyLogEntries(
       request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -517,7 +517,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -532,7 +532,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

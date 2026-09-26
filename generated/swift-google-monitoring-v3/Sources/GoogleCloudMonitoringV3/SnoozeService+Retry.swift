@@ -51,7 +51,7 @@ extension Clients {
     public func createSnooze(
       request: CreateSnoozeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func listSnoozes(
       request: ListSnoozesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getSnooze(
       request: GetSnoozeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func updateSnooze(
       request: UpdateSnoozeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Snooze {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

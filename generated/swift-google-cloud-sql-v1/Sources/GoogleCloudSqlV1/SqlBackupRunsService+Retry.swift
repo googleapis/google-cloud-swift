@@ -51,7 +51,7 @@
       public func delete(
         request: SqlBackupRunsDeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -66,7 +66,7 @@
       public func `get`(
         request: SqlBackupRunsGetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.BackupRun {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -81,7 +81,7 @@
       public func insert(
         request: SqlBackupRunsInsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -96,7 +96,7 @@
       public func list(
         request: SqlBackupRunsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.BackupRunsListResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

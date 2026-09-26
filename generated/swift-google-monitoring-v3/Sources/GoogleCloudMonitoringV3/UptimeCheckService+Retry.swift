@@ -51,7 +51,7 @@ extension Clients {
     public func listUptimeCheckConfigs(
       request: ListUptimeCheckConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func getUptimeCheckConfig(
       request: GetUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func createUptimeCheckConfig(
       request: CreateUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -96,7 +96,7 @@ extension Clients {
     public func updateUptimeCheckConfig(
       request: UpdateUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -124,7 +124,7 @@ extension Clients {
     public func listUptimeCheckIps(
       request: ListUptimeCheckIpsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckIpsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

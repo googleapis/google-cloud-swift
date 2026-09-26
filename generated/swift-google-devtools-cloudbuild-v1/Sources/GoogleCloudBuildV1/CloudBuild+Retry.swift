@@ -53,7 +53,7 @@ extension Clients {
     public func createBuild(
       request: CreateBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -68,7 +68,7 @@ extension Clients {
     public func getBuild(
       request: GetBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.Build {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func listBuilds(
       request: ListBuildsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.ListBuildsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -97,7 +97,7 @@ extension Clients {
     public func cancelBuild(
       request: CancelBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.Build {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -112,7 +112,7 @@ extension Clients {
     public func retryBuild(
       request: RetryBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -127,7 +127,7 @@ extension Clients {
     public func approveBuild(
       request: ApproveBuildRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -142,7 +142,7 @@ extension Clients {
     public func createBuildTrigger(
       request: CreateBuildTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.BuildTrigger {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -157,7 +157,7 @@ extension Clients {
     public func getBuildTrigger(
       request: GetBuildTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.BuildTrigger {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -172,7 +172,7 @@ extension Clients {
     public func listBuildTriggers(
       request: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -200,7 +200,7 @@ extension Clients {
     public func updateBuildTrigger(
       request: UpdateBuildTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.BuildTrigger {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -215,7 +215,7 @@ extension Clients {
     public func runBuildTrigger(
       request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -230,7 +230,7 @@ extension Clients {
     public func receiveTriggerWebhook(
       request: ReceiveTriggerWebhookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.ReceiveTriggerWebhookResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -245,7 +245,7 @@ extension Clients {
     public func createWorkerPool(
       request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -260,7 +260,7 @@ extension Clients {
     public func getWorkerPool(
       request: GetWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.WorkerPool {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -275,7 +275,7 @@ extension Clients {
     public func deleteWorkerPool(
       request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -290,7 +290,7 @@ extension Clients {
     public func updateWorkerPool(
       request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -305,7 +305,7 @@ extension Clients {
     public func listWorkerPools(
       request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -320,7 +320,7 @@ extension Clients {
     public func getDefaultServiceAccount(
       request: GetDefaultServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBuildV1.DefaultServiceAccount {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -335,7 +335,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

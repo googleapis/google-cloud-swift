@@ -54,7 +54,7 @@ extension Clients {
     public func listDataExchanges(
       request: ListDataExchangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -69,7 +69,7 @@ extension Clients {
     public func listOrgDataExchanges(
       request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -84,7 +84,7 @@ extension Clients {
     public func getDataExchange(
       request: GetDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -99,7 +99,7 @@ extension Clients {
     public func createDataExchange(
       request: CreateDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -114,7 +114,7 @@ extension Clients {
     public func updateDataExchange(
       request: UpdateDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -142,7 +142,7 @@ extension Clients {
     public func listListings(
       request: ListListingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -157,7 +157,7 @@ extension Clients {
     public func getListing(
       request: GetListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -172,7 +172,7 @@ extension Clients {
     public func createListing(
       request: CreateListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -187,7 +187,7 @@ extension Clients {
     public func updateListing(
       request: UpdateListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -214,7 +214,7 @@ extension Clients {
     public func subscribeListing(
       request: SubscribeListingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -229,7 +229,7 @@ extension Clients {
     public func subscribeDataExchange(
       request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -244,7 +244,7 @@ extension Clients {
     public func refreshSubscription(
       request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -259,7 +259,7 @@ extension Clients {
     public func getSubscription(
       request: GetSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.Subscription {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -274,7 +274,7 @@ extension Clients {
     public func listSubscriptions(
       request: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -289,7 +289,7 @@ extension Clients {
     public func listSharedResourceSubscriptions(
       request: ListSharedResourceSubscriptionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSharedResourceSubscriptionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -304,7 +304,7 @@ extension Clients {
     public func revokeSubscription(
       request: RevokeSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -319,7 +319,7 @@ extension Clients {
     public func deleteSubscription(
       request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -334,7 +334,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -349,7 +349,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -364,7 +364,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -379,7 +379,7 @@ extension Clients {
     public func createQueryTemplate(
       request: CreateQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -394,7 +394,7 @@ extension Clients {
     public func getQueryTemplate(
       request: GetQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -409,7 +409,7 @@ extension Clients {
     public func listQueryTemplates(
       request: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -424,7 +424,7 @@ extension Clients {
     public func updateQueryTemplate(
       request: UpdateQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -452,7 +452,7 @@ extension Clients {
     public func submitQueryTemplate(
       request: SubmitQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -467,7 +467,7 @@ extension Clients {
     public func approveQueryTemplate(
       request: ApproveQueryTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -482,7 +482,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

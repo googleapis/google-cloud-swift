@@ -51,7 +51,7 @@ extension Clients {
     public func completeQuery(
       request: CompleteQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.CompleteQueryResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

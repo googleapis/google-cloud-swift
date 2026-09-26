@@ -51,7 +51,7 @@ extension Clients {
     public func listBrands(
       request: ListBrandsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListBrandsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func createBrand(
       request: CreateBrandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.Brand {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func getBrand(
       request: GetBrandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.Brand {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -95,7 +95,7 @@ extension Clients {
     public func createIdentityAwareProxyClient(
       request: CreateIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -110,7 +110,7 @@ extension Clients {
     public func listIdentityAwareProxyClients(
       request: ListIdentityAwareProxyClientsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListIdentityAwareProxyClientsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -125,7 +125,7 @@ extension Clients {
     public func getIdentityAwareProxyClient(
       request: GetIdentityAwareProxyClientRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -140,7 +140,7 @@ extension Clients {
     public func resetIdentityAwareProxyClientSecret(
       request: ResetIdentityAwareProxyClientSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IdentityAwareProxyClient {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

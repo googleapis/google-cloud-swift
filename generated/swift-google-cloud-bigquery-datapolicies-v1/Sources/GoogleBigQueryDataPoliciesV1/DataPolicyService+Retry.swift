@@ -52,7 +52,7 @@ extension Clients {
     public func createDataPolicy(
       request: CreateDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func updateDataPolicy(
       request: UpdateDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -82,7 +82,7 @@ extension Clients {
     public func renameDataPolicy(
       request: RenameDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -109,7 +109,7 @@ extension Clients {
     public func getDataPolicy(
       request: GetDataPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.DataPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -124,7 +124,7 @@ extension Clients {
     public func listDataPolicies(
       request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryDataPoliciesV1.ListDataPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -139,7 +139,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -154,7 +154,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -169,7 +169,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

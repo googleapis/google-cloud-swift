@@ -51,7 +51,7 @@ extension Clients {
     public func createMigrationWorkflow(
       request: CreateMigrationWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func getMigrationWorkflow(
       request: GetMigrationWorkflowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func listMigrationWorkflows(
       request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -122,7 +122,7 @@ extension Clients {
     public func getMigrationSubtask(
       request: GetMigrationSubtaskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.MigrationSubtask {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -137,7 +137,7 @@ extension Clients {
     public func listMigrationSubtasks(
       request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

@@ -52,7 +52,7 @@ extension Clients {
     public func listGroups(
       request: ListGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func getGroup(
       request: GetGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Group {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func createGroup(
       request: CreateGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Group {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateGroup(
       request: UpdateGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.Group {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -124,7 +124,7 @@ extension Clients {
     public func listGroupMembers(
       request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

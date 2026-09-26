@@ -55,7 +55,7 @@ extension Clients {
     public func listInstances(
       request: ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListInstancesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -70,7 +70,7 @@ extension Clients {
     public func getInstance(
       request: GetInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.Instance {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -85,7 +85,7 @@ extension Clients {
     public func createInstance(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -100,7 +100,7 @@ extension Clients {
     public func deleteInstance(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -115,7 +115,7 @@ extension Clients {
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListRepositoriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -130,7 +130,7 @@ extension Clients {
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.Repository {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -145,7 +145,7 @@ extension Clients {
     public func createRepository(
       request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -160,7 +160,7 @@ extension Clients {
     public func updateRepository(
       request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -175,7 +175,7 @@ extension Clients {
     public func deleteRepository(
       request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -190,7 +190,7 @@ extension Clients {
     public func listHooks(
       request: ListHooksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListHooksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -205,7 +205,7 @@ extension Clients {
     public func getHook(
       request: GetHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.Hook {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -220,7 +220,7 @@ extension Clients {
     public func createHook(
       request: CreateHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -235,7 +235,7 @@ extension Clients {
     public func updateHook(
       request: UpdateHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -250,7 +250,7 @@ extension Clients {
     public func deleteHook(
       request: DeleteHookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -265,7 +265,7 @@ extension Clients {
     public func getIamPolicyRepo(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -280,7 +280,7 @@ extension Clients {
     public func setIamPolicyRepo(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -295,7 +295,7 @@ extension Clients {
     public func testIamPermissionsRepo(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -310,7 +310,7 @@ extension Clients {
     public func createBranchRule(
       request: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -325,7 +325,7 @@ extension Clients {
     public func listBranchRules(
       request: ListBranchRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListBranchRulesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -340,7 +340,7 @@ extension Clients {
     public func getBranchRule(
       request: GetBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.BranchRule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -355,7 +355,7 @@ extension Clients {
     public func updateBranchRule(
       request: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -370,7 +370,7 @@ extension Clients {
     public func deleteBranchRule(
       request: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -385,7 +385,7 @@ extension Clients {
     public func createPullRequest(
       request: CreatePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -400,7 +400,7 @@ extension Clients {
     public func getPullRequest(
       request: GetPullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.PullRequest {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -415,7 +415,7 @@ extension Clients {
     public func listPullRequests(
       request: ListPullRequestsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListPullRequestsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -430,7 +430,7 @@ extension Clients {
     public func updatePullRequest(
       request: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -445,7 +445,7 @@ extension Clients {
     public func mergePullRequest(
       request: MergePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -460,7 +460,7 @@ extension Clients {
     public func openPullRequest(
       request: OpenPullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -475,7 +475,7 @@ extension Clients {
     public func closePullRequest(
       request: ClosePullRequestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -490,7 +490,7 @@ extension Clients {
     public func listPullRequestFileDiffs(
       request: ListPullRequestFileDiffsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListPullRequestFileDiffsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -505,7 +505,7 @@ extension Clients {
     public func fetchTree(
       request: FetchTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.FetchTreeResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -520,7 +520,7 @@ extension Clients {
     public func fetchBlob(
       request: FetchBlobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -535,7 +535,7 @@ extension Clients {
     public func fetchRefs(
       request: FetchRefsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -550,7 +550,7 @@ extension Clients {
     public func createIssue(
       request: CreateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -565,7 +565,7 @@ extension Clients {
     public func getIssue(
       request: GetIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.Issue {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -580,7 +580,7 @@ extension Clients {
     public func listIssues(
       request: ListIssuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListIssuesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -595,7 +595,7 @@ extension Clients {
     public func updateIssue(
       request: UpdateIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -610,7 +610,7 @@ extension Clients {
     public func deleteIssue(
       request: DeleteIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -625,7 +625,7 @@ extension Clients {
     public func openIssue(
       request: OpenIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -640,7 +640,7 @@ extension Clients {
     public func closeIssue(
       request: CloseIssueRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -655,7 +655,7 @@ extension Clients {
     public func getPullRequestComment(
       request: GetPullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.PullRequestComment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -670,7 +670,7 @@ extension Clients {
     public func listPullRequestComments(
       request: ListPullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListPullRequestCommentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -685,7 +685,7 @@ extension Clients {
     public func createPullRequestComment(
       request: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -700,7 +700,7 @@ extension Clients {
     public func updatePullRequestComment(
       request: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -715,7 +715,7 @@ extension Clients {
     public func deletePullRequestComment(
       request: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -730,7 +730,7 @@ extension Clients {
     public func batchCreatePullRequestComments(
       request: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -745,7 +745,7 @@ extension Clients {
     public func resolvePullRequestComments(
       request: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -760,7 +760,7 @@ extension Clients {
     public func unresolvePullRequestComments(
       request: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -775,7 +775,7 @@ extension Clients {
     public func createIssueComment(
       request: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -790,7 +790,7 @@ extension Clients {
     public func getIssueComment(
       request: GetIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.IssueComment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -805,7 +805,7 @@ extension Clients {
     public func listIssueComments(
       request: ListIssueCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecureSourceManagerV1.ListIssueCommentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -820,7 +820,7 @@ extension Clients {
     public func updateIssueComment(
       request: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -835,7 +835,7 @@ extension Clients {
     public func deleteIssueComment(
       request: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -850,7 +850,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -865,7 +865,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -880,7 +880,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -895,7 +895,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -910,7 +910,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -925,7 +925,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -940,7 +940,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

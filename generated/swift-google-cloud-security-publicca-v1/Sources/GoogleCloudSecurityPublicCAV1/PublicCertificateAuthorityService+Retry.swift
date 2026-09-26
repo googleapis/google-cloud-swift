@@ -52,7 +52,7 @@ extension Clients {
     public func createExternalAccountKey(
       request: CreateExternalAccountKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

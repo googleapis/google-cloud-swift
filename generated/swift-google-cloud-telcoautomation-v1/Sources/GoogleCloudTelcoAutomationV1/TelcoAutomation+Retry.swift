@@ -54,7 +54,7 @@ extension Clients {
     public func listOrchestrationClusters(
       request: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -69,7 +69,7 @@ extension Clients {
     public func getOrchestrationCluster(
       request: GetOrchestrationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.OrchestrationCluster {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -84,7 +84,7 @@ extension Clients {
     public func createOrchestrationCluster(
       request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -99,7 +99,7 @@ extension Clients {
     public func deleteOrchestrationCluster(
       request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -114,7 +114,7 @@ extension Clients {
     public func listEdgeSlms(
       request: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -129,7 +129,7 @@ extension Clients {
     public func getEdgeSlm(
       request: GetEdgeSlmRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.EdgeSlm {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -144,7 +144,7 @@ extension Clients {
     public func createEdgeSlm(
       request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -159,7 +159,7 @@ extension Clients {
     public func deleteEdgeSlm(
       request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -174,7 +174,7 @@ extension Clients {
     public func createBlueprint(
       request: CreateBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -189,7 +189,7 @@ extension Clients {
     public func updateBlueprint(
       request: UpdateBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -204,7 +204,7 @@ extension Clients {
     public func getBlueprint(
       request: GetBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -231,7 +231,7 @@ extension Clients {
     public func listBlueprints(
       request: ListBlueprintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -246,7 +246,7 @@ extension Clients {
     public func approveBlueprint(
       request: ApproveBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -261,7 +261,7 @@ extension Clients {
     public func proposeBlueprint(
       request: ProposeBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -276,7 +276,7 @@ extension Clients {
     public func rejectBlueprint(
       request: RejectBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -291,7 +291,7 @@ extension Clients {
     public func listBlueprintRevisions(
       request: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -306,7 +306,7 @@ extension Clients {
     public func searchBlueprintRevisions(
       request: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -321,7 +321,7 @@ extension Clients {
     public func searchDeploymentRevisions(
       request: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -336,7 +336,7 @@ extension Clients {
     public func discardBlueprintChanges(
       request: DiscardBlueprintChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.DiscardBlueprintChangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -351,7 +351,7 @@ extension Clients {
     public func listPublicBlueprints(
       request: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -366,7 +366,7 @@ extension Clients {
     public func getPublicBlueprint(
       request: GetPublicBlueprintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.PublicBlueprint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -381,7 +381,7 @@ extension Clients {
     public func createDeployment(
       request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -396,7 +396,7 @@ extension Clients {
     public func updateDeployment(
       request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -411,7 +411,7 @@ extension Clients {
     public func getDeployment(
       request: GetDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -438,7 +438,7 @@ extension Clients {
     public func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -453,7 +453,7 @@ extension Clients {
     public func listDeploymentRevisions(
       request: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -468,7 +468,7 @@ extension Clients {
     public func discardDeploymentChanges(
       request: DiscardDeploymentChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.DiscardDeploymentChangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -483,7 +483,7 @@ extension Clients {
     public func applyDeployment(
       request: ApplyDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -498,7 +498,7 @@ extension Clients {
     public func computeDeploymentStatus(
       request: ComputeDeploymentStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ComputeDeploymentStatusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -513,7 +513,7 @@ extension Clients {
     public func rollbackDeployment(
       request: RollbackDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -528,7 +528,7 @@ extension Clients {
     public func getHydratedDeployment(
       request: GetHydratedDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -543,7 +543,7 @@ extension Clients {
     public func listHydratedDeployments(
       request: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -558,7 +558,7 @@ extension Clients {
     public func updateHydratedDeployment(
       request: UpdateHydratedDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -573,7 +573,7 @@ extension Clients {
     public func applyHydratedDeployment(
       request: ApplyHydratedDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -588,7 +588,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -603,7 +603,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -618,7 +618,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -633,7 +633,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

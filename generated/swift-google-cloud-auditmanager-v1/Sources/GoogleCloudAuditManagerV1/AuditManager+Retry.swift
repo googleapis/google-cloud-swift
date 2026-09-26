@@ -54,7 +54,7 @@ extension Clients {
     public func createAuditSchedule(
       request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -69,7 +69,7 @@ extension Clients {
     public func updateAuditSchedule(
       request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -84,7 +84,7 @@ extension Clients {
     public func getAuditSchedule(
       request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -99,7 +99,7 @@ extension Clients {
     public func listAuditSchedules(
       request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -114,7 +114,7 @@ extension Clients {
     public func enrollResource(
       request: EnrollResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.Enrollment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -129,7 +129,7 @@ extension Clients {
     public func generateAuditScopeReport(
       request: GenerateAuditScopeReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.AuditScopeReport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -144,7 +144,7 @@ extension Clients {
     public func generateAuditReport(
       request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -159,7 +159,7 @@ extension Clients {
     public func listAuditReports(
       request: ListAuditReportsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -174,7 +174,7 @@ extension Clients {
     public func getAuditReport(
       request: GetAuditReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -189,7 +189,7 @@ extension Clients {
     public func getResourceEnrollmentStatus(
       request: GetResourceEnrollmentStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -204,7 +204,7 @@ extension Clients {
     public func listResourceEnrollmentStatuses(
       request: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -219,7 +219,7 @@ extension Clients {
     public func listControls(
       request: ListControlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -234,7 +234,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -249,7 +249,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -264,7 +264,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -279,7 +279,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

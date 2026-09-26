@@ -52,7 +52,7 @@ extension Clients {
     public func createSshPublicKey(
       request: CreateSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -93,7 +93,7 @@ extension Clients {
     public func getLoginProfile(
       request: GetLoginProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginV1.LoginProfile {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -108,7 +108,7 @@ extension Clients {
     public func getSshPublicKey(
       request: GetSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -123,7 +123,7 @@ extension Clients {
     public func importSshPublicKey(
       request: ImportSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginV1.ImportSshPublicKeyResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -138,7 +138,7 @@ extension Clients {
     public func updateSshPublicKey(
       request: UpdateSshPublicKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

@@ -53,7 +53,7 @@ extension Clients {
     public func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func batchCreateJobs(
       request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -82,7 +82,7 @@ extension Clients {
     public func getJob(
       request: GetJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func updateJob(
       request: UpdateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.Job {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -110,7 +110,7 @@ extension Clients {
     public func batchUpdateJobs(
       request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -137,7 +137,7 @@ extension Clients {
     public func batchDeleteJobs(
       request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -152,7 +152,7 @@ extension Clients {
     public func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.ListJobsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -167,7 +167,7 @@ extension Clients {
     public func searchJobs(
       request: SearchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.SearchJobsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -182,7 +182,7 @@ extension Clients {
     public func searchJobsForAlert(
       request: SearchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTalentV4.SearchJobsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -197,7 +197,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

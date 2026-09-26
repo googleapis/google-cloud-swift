@@ -51,7 +51,7 @@ extension Clients {
     public func getOccurrence(
       request: GetOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func listOccurrences(
       request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListOccurrencesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -93,7 +93,7 @@ extension Clients {
     public func createOccurrence(
       request: CreateOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -108,7 +108,7 @@ extension Clients {
     public func batchCreateOccurrences(
       request: BatchCreateOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.BatchCreateOccurrencesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -123,7 +123,7 @@ extension Clients {
     public func updateOccurrence(
       request: UpdateOccurrenceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Occurrence {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -138,7 +138,7 @@ extension Clients {
     public func getOccurrenceNote(
       request: GetOccurrenceNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -153,7 +153,7 @@ extension Clients {
     public func getNote(
       request: GetNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -167,7 +167,7 @@ extension Clients {
     public func listNotes(
       request: ListNotesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListNotesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -194,7 +194,7 @@ extension Clients {
     public func createNote(
       request: CreateNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -208,7 +208,7 @@ extension Clients {
     public func batchCreateNotes(
       request: BatchCreateNotesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.BatchCreateNotesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -223,7 +223,7 @@ extension Clients {
     public func updateNote(
       request: UpdateNoteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.Note {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -237,7 +237,7 @@ extension Clients {
     public func listNoteOccurrences(
       request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

@@ -51,7 +51,7 @@ extension Clients {
     public func listNotificationChannelDescriptors(
       request: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func getNotificationChannelDescriptor(
       request: GetNotificationChannelDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannelDescriptor {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func listNotificationChannels(
       request: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func getNotificationChannel(
       request: GetNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func createNotificationChannel(
       request: CreateNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -126,7 +126,7 @@ extension Clients {
     public func updateNotificationChannel(
       request: UpdateNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -169,7 +169,7 @@ extension Clients {
     public func getNotificationChannelVerificationCode(
       request: GetNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.GetNotificationChannelVerificationCodeResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -184,7 +184,7 @@ extension Clients {
     public func verifyNotificationChannel(
       request: VerifyNotificationChannelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

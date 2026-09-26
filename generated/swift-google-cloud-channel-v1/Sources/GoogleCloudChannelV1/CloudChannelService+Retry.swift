@@ -53,7 +53,7 @@ extension Clients {
     public func listCustomers(
       request: ListCustomersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -68,7 +68,7 @@ extension Clients {
     public func getCustomer(
       request: GetCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -83,7 +83,7 @@ extension Clients {
     public func checkCloudIdentityAccountsExist(
       request: CheckCloudIdentityAccountsExistRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CheckCloudIdentityAccountsExistResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -98,7 +98,7 @@ extension Clients {
     public func createCustomer(
       request: CreateCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -113,7 +113,7 @@ extension Clients {
     public func updateCustomer(
       request: UpdateCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func importCustomer(
       request: ImportCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Customer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -155,7 +155,7 @@ extension Clients {
     public func provisionCloudIdentity(
       request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -170,7 +170,7 @@ extension Clients {
     public func listEntitlements(
       request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListEntitlementsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -185,7 +185,7 @@ extension Clients {
     public func listTransferableSkus(
       request: ListTransferableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListTransferableSkusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -200,7 +200,7 @@ extension Clients {
     public func listTransferableOffers(
       request: ListTransferableOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListTransferableOffersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -215,7 +215,7 @@ extension Clients {
     public func getEntitlement(
       request: GetEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Entitlement {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -230,7 +230,7 @@ extension Clients {
     public func createEntitlement(
       request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -245,7 +245,7 @@ extension Clients {
     public func changeParameters(
       request: ChangeParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -260,7 +260,7 @@ extension Clients {
     public func changeRenewalSettings(
       request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -275,7 +275,7 @@ extension Clients {
     public func changeOffer(
       request: ChangeOfferRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -290,7 +290,7 @@ extension Clients {
     public func startPaidService(
       request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -305,7 +305,7 @@ extension Clients {
     public func suspendEntitlement(
       request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -320,7 +320,7 @@ extension Clients {
     public func cancelEntitlement(
       request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -335,7 +335,7 @@ extension Clients {
     public func activateEntitlement(
       request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -350,7 +350,7 @@ extension Clients {
     public func transferEntitlements(
       request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -365,7 +365,7 @@ extension Clients {
     public func transferEntitlementsToGoogle(
       request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -380,7 +380,7 @@ extension Clients {
     public func listChannelPartnerLinks(
       request: ListChannelPartnerLinksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListChannelPartnerLinksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -395,7 +395,7 @@ extension Clients {
     public func getChannelPartnerLink(
       request: GetChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -410,7 +410,7 @@ extension Clients {
     public func createChannelPartnerLink(
       request: CreateChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -425,7 +425,7 @@ extension Clients {
     public func updateChannelPartnerLink(
       request: UpdateChannelPartnerLinkRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerLink {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -440,7 +440,7 @@ extension Clients {
     public func getCustomerRepricingConfig(
       request: GetCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -455,7 +455,7 @@ extension Clients {
     public func listCustomerRepricingConfigs(
       request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -470,7 +470,7 @@ extension Clients {
     public func createCustomerRepricingConfig(
       request: CreateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -485,7 +485,7 @@ extension Clients {
     public func updateCustomerRepricingConfig(
       request: UpdateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -514,7 +514,7 @@ extension Clients {
     public func getChannelPartnerRepricingConfig(
       request: GetChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -529,7 +529,7 @@ extension Clients {
     public func listChannelPartnerRepricingConfigs(
       request: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -544,7 +544,7 @@ extension Clients {
     public func createChannelPartnerRepricingConfig(
       request: CreateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -559,7 +559,7 @@ extension Clients {
     public func updateChannelPartnerRepricingConfig(
       request: UpdateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -588,7 +588,7 @@ extension Clients {
     public func listSkuGroups(
       request: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -603,7 +603,7 @@ extension Clients {
     public func listSkuGroupBillableSkus(
       request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -618,7 +618,7 @@ extension Clients {
     public func lookupOffer(
       request: LookupOfferRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.Offer {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -633,7 +633,7 @@ extension Clients {
     public func listProducts(
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListProductsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -648,7 +648,7 @@ extension Clients {
     public func listSkus(
       request: ListSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSkusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -663,7 +663,7 @@ extension Clients {
     public func listOffers(
       request: ListOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListOffersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -678,7 +678,7 @@ extension Clients {
     public func listPurchasableSkus(
       request: ListPurchasableSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListPurchasableSkusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -693,7 +693,7 @@ extension Clients {
     public func listPurchasableOffers(
       request: ListPurchasableOffersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListPurchasableOffersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -708,7 +708,7 @@ extension Clients {
     public func queryEligibleBillingAccounts(
       request: QueryEligibleBillingAccountsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.QueryEligibleBillingAccountsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -723,7 +723,7 @@ extension Clients {
     public func registerSubscriber(
       request: RegisterSubscriberRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.RegisterSubscriberResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -738,7 +738,7 @@ extension Clients {
     public func unregisterSubscriber(
       request: UnregisterSubscriberRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.UnregisterSubscriberResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -753,7 +753,7 @@ extension Clients {
     public func listSubscribers(
       request: ListSubscribersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListSubscribersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -768,7 +768,7 @@ extension Clients {
     public func listEntitlementChanges(
       request: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -783,7 +783,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -798,7 +798,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

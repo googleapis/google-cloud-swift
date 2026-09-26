@@ -50,7 +50,7 @@ extension Clients {
     public func create(
       request: ResourceRecordSetsClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -65,7 +65,7 @@ extension Clients {
     public func delete(
       request: ResourceRecordSetsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSetsDeleteResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -80,7 +80,7 @@ extension Clients {
     public func `get`(
       request: ResourceRecordSetsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -95,7 +95,7 @@ extension Clients {
     public func list(
       request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSetsListResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -110,7 +110,7 @@ extension Clients {
     public func patch(
       request: ResourceRecordSetsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> ResourceRecordSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

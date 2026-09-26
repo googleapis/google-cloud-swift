@@ -51,7 +51,7 @@ extension Clients {
     public func listAlertPolicies(
       request: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func getAlertPolicy(
       request: GetAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func createAlertPolicy(
       request: CreateAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -108,7 +108,7 @@ extension Clients {
     public func updateAlertPolicy(
       request: UpdateAlertPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

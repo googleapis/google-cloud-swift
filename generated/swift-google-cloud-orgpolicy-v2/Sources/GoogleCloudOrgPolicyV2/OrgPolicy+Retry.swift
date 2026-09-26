@@ -51,7 +51,7 @@ extension Clients {
     public func listConstraints(
       request: ListConstraintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func listPolicies(
       request: ListPoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getPolicy(
       request: GetPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func getEffectivePolicy(
       request: GetEffectivePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func createPolicy(
       request: CreatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -126,7 +126,7 @@ extension Clients {
     public func updatePolicy(
       request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -153,7 +153,7 @@ extension Clients {
     public func createCustomConstraint(
       request: CreateCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -168,7 +168,7 @@ extension Clients {
     public func updateCustomConstraint(
       request: UpdateCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -183,7 +183,7 @@ extension Clients {
     public func getCustomConstraint(
       request: GetCustomConstraintRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -198,7 +198,7 @@ extension Clients {
     public func listCustomConstraints(
       request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

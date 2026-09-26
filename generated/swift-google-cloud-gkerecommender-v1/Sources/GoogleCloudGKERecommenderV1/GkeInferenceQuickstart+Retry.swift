@@ -50,7 +50,7 @@ extension Clients {
     public func fetchModels(
       request: FetchModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func fetchModelServers(
       request: FetchModelServersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -80,7 +80,7 @@ extension Clients {
     public func fetchModelServerVersions(
       request: FetchModelServerVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -95,7 +95,7 @@ extension Clients {
     public func fetchProfiles(
       request: FetchProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -110,7 +110,7 @@ extension Clients {
     public func generateOptimizedManifest(
       request: GenerateOptimizedManifestRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func fetchBenchmarkingData(
       request: FetchBenchmarkingDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

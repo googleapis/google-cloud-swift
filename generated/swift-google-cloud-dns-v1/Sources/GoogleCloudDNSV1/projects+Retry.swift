@@ -50,7 +50,7 @@ extension Clients {
     public func `get`(
       request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Project {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

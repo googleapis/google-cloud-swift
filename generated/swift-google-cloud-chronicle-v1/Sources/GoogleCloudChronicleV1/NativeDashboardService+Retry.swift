@@ -52,7 +52,7 @@ extension Clients {
     public func createNativeDashboard(
       request: CreateNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func getNativeDashboard(
       request: GetNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func listNativeDashboards(
       request: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListNativeDashboardsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateNativeDashboard(
       request: UpdateNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -112,7 +112,7 @@ extension Clients {
     public func duplicateNativeDashboard(
       request: DuplicateNativeDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func addChart(
       request: AddChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.AddChartResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -155,7 +155,7 @@ extension Clients {
     public func removeChart(
       request: RemoveChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -170,7 +170,7 @@ extension Clients {
     public func editChart(
       request: EditChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.EditChartResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -185,7 +185,7 @@ extension Clients {
     public func duplicateChart(
       request: DuplicateChartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DuplicateChartResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -200,7 +200,7 @@ extension Clients {
     public func exportNativeDashboards(
       request: ExportNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ExportNativeDashboardsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -215,7 +215,7 @@ extension Clients {
     public func importNativeDashboards(
       request: ImportNativeDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ImportNativeDashboardsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -230,7 +230,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -245,7 +245,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

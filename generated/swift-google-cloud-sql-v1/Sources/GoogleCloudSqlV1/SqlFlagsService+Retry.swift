@@ -51,7 +51,7 @@
       public func list(
         request: SqlFlagsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.FlagsListResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

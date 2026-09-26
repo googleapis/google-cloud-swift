@@ -56,7 +56,7 @@ extension Clients {
       -> GoogleCloudSecurityCenterManagementV1
       .ListEffectiveSecurityHealthAnalyticsCustomModulesResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -77,7 +77,7 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.EffectiveSecurityHealthAnalyticsCustomModule
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.ListSecurityHealthAnalyticsCustomModulesResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -118,7 +118,7 @@ extension Clients {
       -> GoogleCloudSecurityCenterManagementV1
       .ListDescendantSecurityHealthAnalyticsCustomModulesResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -138,7 +138,7 @@ extension Clients {
     public func getSecurityHealthAnalyticsCustomModule(
       request: GetSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -154,7 +154,7 @@ extension Clients {
     public func createSecurityHealthAnalyticsCustomModule(
       request: CreateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -171,7 +171,7 @@ extension Clients {
     public func updateSecurityHealthAnalyticsCustomModule(
       request: UpdateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -205,7 +205,7 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.SimulateSecurityHealthAnalyticsCustomModuleResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -227,7 +227,7 @@ extension Clients {
       -> GoogleCloudSecurityCenterManagementV1
       .ListEffectiveEventThreatDetectionCustomModulesResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -248,7 +248,7 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -267,7 +267,7 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.ListEventThreatDetectionCustomModulesResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -287,7 +287,7 @@ extension Clients {
       -> GoogleCloudSecurityCenterManagementV1
       .ListDescendantEventThreatDetectionCustomModulesResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -305,7 +305,7 @@ extension Clients {
     public func getEventThreatDetectionCustomModule(
       request: GetEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -320,7 +320,7 @@ extension Clients {
     public func createEventThreatDetectionCustomModule(
       request: CreateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -335,7 +335,7 @@ extension Clients {
     public func updateEventThreatDetectionCustomModule(
       request: UpdateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -366,7 +366,7 @@ extension Clients {
     ) async throws
       -> GoogleCloudSecurityCenterManagementV1.ValidateEventThreatDetectionCustomModuleResponse
     {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -384,7 +384,7 @@ extension Clients {
     public func getSecurityCenterService(
       request: GetSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -399,7 +399,7 @@ extension Clients {
     public func listSecurityCenterServices(
       request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -414,7 +414,7 @@ extension Clients {
     public func updateSecurityCenterService(
       request: UpdateSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -429,7 +429,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -444,7 +444,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

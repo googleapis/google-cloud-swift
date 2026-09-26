@@ -53,7 +53,7 @@ extension Clients {
     public func createModel(
       request: CreateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -68,7 +68,7 @@ extension Clients {
     public func getModel(
       request: GetModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Model {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -83,7 +83,7 @@ extension Clients {
     public func pauseModel(
       request: PauseModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Model {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -98,7 +98,7 @@ extension Clients {
     public func resumeModel(
       request: ResumeModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Model {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func listModels(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.ListModelsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -140,7 +140,7 @@ extension Clients {
     public func updateModel(
       request: UpdateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudRetailV2.Model {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -155,7 +155,7 @@ extension Clients {
     public func tuneModel(
       request: TuneModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -170,7 +170,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -185,7 +185,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

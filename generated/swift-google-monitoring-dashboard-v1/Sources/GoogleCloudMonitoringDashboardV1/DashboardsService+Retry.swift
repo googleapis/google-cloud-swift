@@ -51,7 +51,7 @@ extension Clients {
     public func createDashboard(
       request: CreateDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func listDashboards(
       request: ListDashboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getDashboard(
       request: GetDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -108,7 +108,7 @@ extension Clients {
     public func updateDashboard(
       request: UpdateDashboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

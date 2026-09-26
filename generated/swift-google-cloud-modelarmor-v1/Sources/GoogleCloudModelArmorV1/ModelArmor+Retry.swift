@@ -52,7 +52,7 @@ extension Clients {
     public func listTemplates(
       request: ListTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func getTemplate(
       request: GetTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.Template {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func createTemplate(
       request: CreateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.Template {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateTemplate(
       request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.Template {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -124,7 +124,7 @@ extension Clients {
     public func getFloorSetting(
       request: GetFloorSettingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -139,7 +139,7 @@ extension Clients {
     public func updateFloorSetting(
       request: UpdateFloorSettingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -154,7 +154,7 @@ extension Clients {
     public func sanitizeUserPrompt(
       request: SanitizeUserPromptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.SanitizeUserPromptResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -169,7 +169,7 @@ extension Clients {
     public func sanitizeModelResponse(
       request: SanitizeModelResponseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudModelArmorV1.SanitizeModelResponseResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -184,7 +184,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -199,7 +199,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

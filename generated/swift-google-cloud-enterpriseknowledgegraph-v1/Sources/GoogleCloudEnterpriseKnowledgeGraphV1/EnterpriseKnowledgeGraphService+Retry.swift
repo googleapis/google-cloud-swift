@@ -52,7 +52,7 @@ extension Clients {
     public func createEntityReconciliationJob(
       request: CreateEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func getEntityReconciliationJob(
       request: GetEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func listEntityReconciliationJobs(
       request: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -125,7 +125,7 @@ extension Clients {
     public func lookup(
       request: LookupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.LookupResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -140,7 +140,7 @@ extension Clients {
     public func search(
       request: SearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.SearchResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -155,7 +155,7 @@ extension Clients {
     public func lookupPublicKg(
       request: LookupPublicKgRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.LookupPublicKgResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -170,7 +170,7 @@ extension Clients {
     public func searchPublicKg(
       request: SearchPublicKgRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.SearchPublicKgResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

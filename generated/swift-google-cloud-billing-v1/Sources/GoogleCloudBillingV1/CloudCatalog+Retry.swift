@@ -50,7 +50,7 @@ extension Clients {
     public func listServices(
       request: ListServicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListServicesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func listSkus(
       request: ListSkusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListSkusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

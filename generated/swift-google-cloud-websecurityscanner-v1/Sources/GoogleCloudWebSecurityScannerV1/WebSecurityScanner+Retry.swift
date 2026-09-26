@@ -51,7 +51,7 @@ extension Clients {
     public func createScanConfig(
       request: CreateScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -78,7 +78,7 @@ extension Clients {
     public func getScanConfig(
       request: GetScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -93,7 +93,7 @@ extension Clients {
     public func listScanConfigs(
       request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -108,7 +108,7 @@ extension Clients {
     public func updateScanConfig(
       request: UpdateScanConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -123,7 +123,7 @@ extension Clients {
     public func startScanRun(
       request: StartScanRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -138,7 +138,7 @@ extension Clients {
     public func getScanRun(
       request: GetScanRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -153,7 +153,7 @@ extension Clients {
     public func listScanRuns(
       request: ListScanRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -168,7 +168,7 @@ extension Clients {
     public func stopScanRun(
       request: StopScanRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -183,7 +183,7 @@ extension Clients {
     public func listCrawledUrls(
       request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -198,7 +198,7 @@ extension Clients {
     public func getFinding(
       request: GetFindingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.Finding {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -213,7 +213,7 @@ extension Clients {
     public func listFindings(
       request: ListFindingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -228,7 +228,7 @@ extension Clients {
     public func listFindingTypeStats(
       request: ListFindingTypeStatsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingTypeStatsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

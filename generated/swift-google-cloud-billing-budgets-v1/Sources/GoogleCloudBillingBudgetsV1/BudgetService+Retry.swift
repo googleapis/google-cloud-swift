@@ -51,7 +51,7 @@ extension Clients {
     public func createBudget(
       request: CreateBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func updateBudget(
       request: UpdateBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func getBudget(
       request: GetBudgetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func listBudgets(
       request: ListBudgetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

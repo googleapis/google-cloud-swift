@@ -51,7 +51,7 @@ extension Clients {
     public func createJob(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.Job {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func listJobs(
       request: ListJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getJob(
       request: GetJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.Job {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -108,7 +108,7 @@ extension Clients {
     public func createJobTemplate(
       request: CreateJobTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -123,7 +123,7 @@ extension Clients {
     public func listJobTemplates(
       request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -138,7 +138,7 @@ extension Clients {
     public func getJobTemplate(
       request: GetJobTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

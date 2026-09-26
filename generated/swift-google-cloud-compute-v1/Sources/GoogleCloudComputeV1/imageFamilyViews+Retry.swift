@@ -51,7 +51,7 @@
       public func `get`(
         request: ImageFamilyViewsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.ImageFamilyView {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

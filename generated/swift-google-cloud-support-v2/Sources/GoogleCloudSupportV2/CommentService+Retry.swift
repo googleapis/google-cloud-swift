@@ -50,7 +50,7 @@ extension Clients {
     public func listComments(
       request: ListCommentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCommentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func createComment(
       request: CreateCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Comment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -80,7 +80,7 @@ extension Clients {
     public func getComment(
       request: GetCommentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Comment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

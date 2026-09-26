@@ -51,7 +51,7 @@ extension Clients {
     public func createChallenge(
       request: CreateChallengeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.Challenge {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func verifyAttestation(
       request: VerifyAttestationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.VerifyAttestationResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func verifyConfidentialSpace(
       request: VerifyConfidentialSpaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.VerifyConfidentialSpaceResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -96,7 +96,7 @@ extension Clients {
     public func verifyConfidentialGke(
       request: VerifyConfidentialGkeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudConfidentialComputingV1.VerifyConfidentialGkeResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -111,7 +111,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -126,7 +126,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

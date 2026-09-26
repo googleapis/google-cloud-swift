@@ -52,7 +52,7 @@ extension Clients {
     public func executePatchJob(
       request: ExecutePatchJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func getPatchJob(
       request: GetPatchJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func cancelPatchJob(
       request: CancelPatchJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchJob {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func listPatchJobs(
       request: ListPatchJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -112,7 +112,7 @@ extension Clients {
     public func listPatchJobInstanceDetails(
       request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -127,7 +127,7 @@ extension Clients {
     public func createPatchDeployment(
       request: CreatePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -142,7 +142,7 @@ extension Clients {
     public func getPatchDeployment(
       request: GetPatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -157,7 +157,7 @@ extension Clients {
     public func listPatchDeployments(
       request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -185,7 +185,7 @@ extension Clients {
     public func updatePatchDeployment(
       request: UpdatePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -200,7 +200,7 @@ extension Clients {
     public func pausePatchDeployment(
       request: PausePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -215,7 +215,7 @@ extension Clients {
     public func resumePatchDeployment(
       request: ResumePatchDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -230,7 +230,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

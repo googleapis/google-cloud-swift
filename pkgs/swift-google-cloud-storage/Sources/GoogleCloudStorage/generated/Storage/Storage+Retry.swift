@@ -51,6 +51,7 @@ extension Clients {
     public func deleteBucket(
       request: DeleteBucketRequest, options: GoogleGax.RequestOptions
     ) async throws {
+      let options = request.resolveIdempotency(options: options)
       try await self._intercept(
         request: request,
         options: options,
@@ -63,7 +64,8 @@ extension Clients {
     public func getBucket(
       request: GetBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -77,7 +79,8 @@ extension Clients {
     public func createBucket(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -91,7 +94,8 @@ extension Clients {
     public func listBuckets(
       request: ListBucketsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListBucketsResponse {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -105,7 +109,8 @@ extension Clients {
     public func lockBucketRetentionPolicy(
       request: LockBucketRetentionPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -119,7 +124,8 @@ extension Clients {
     public func updateBucket(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> Bucket {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -133,7 +139,8 @@ extension Clients {
     public func composeObject(
       request: ComposeObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -147,6 +154,7 @@ extension Clients {
     public func deleteObject(
       request: DeleteObjectRequest, options: GoogleGax.RequestOptions
     ) async throws {
+      let options = request.resolveIdempotency(options: options)
       try await self._intercept(
         request: request,
         options: options,
@@ -159,7 +167,8 @@ extension Clients {
     public func restoreObject(
       request: RestoreObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -173,7 +182,8 @@ extension Clients {
     public func getObject(
       request: GetObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -187,7 +197,8 @@ extension Clients {
     public func updateObject(
       request: UpdateObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -201,7 +212,8 @@ extension Clients {
     public func listObjects(
       request: ListObjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ListObjectsResponse {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -215,7 +227,8 @@ extension Clients {
     public func rewriteObject(
       request: RewriteObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> RewriteResponse {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -229,7 +242,8 @@ extension Clients {
     public func moveObject(
       request: MoveObjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Object {
-      try await self._intercept(
+      let options = request.resolveIdempotency(options: options)
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

@@ -50,7 +50,7 @@ extension Clients {
     public func listAttachments(
       request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func getAttachment(
       request: GetAttachmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Attachment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

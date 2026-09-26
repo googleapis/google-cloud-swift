@@ -55,7 +55,7 @@ extension Clients {
     public func getTeamFolder(
       request: GetTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -70,7 +70,7 @@ extension Clients {
     public func createTeamFolder(
       request: CreateTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -85,7 +85,7 @@ extension Clients {
     public func updateTeamFolder(
       request: UpdateTeamFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.TeamFolder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -112,7 +112,7 @@ extension Clients {
     public func deleteTeamFolderTree(
       request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -127,7 +127,7 @@ extension Clients {
     public func queryTeamFolderContents(
       request: QueryTeamFolderContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryTeamFolderContentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -142,7 +142,7 @@ extension Clients {
     public func searchTeamFolders(
       request: SearchTeamFoldersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.SearchTeamFoldersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -157,7 +157,7 @@ extension Clients {
     public func getFolder(
       request: GetFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Folder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -172,7 +172,7 @@ extension Clients {
     public func createFolder(
       request: CreateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Folder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -187,7 +187,7 @@ extension Clients {
     public func updateFolder(
       request: UpdateFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Folder {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -214,7 +214,7 @@ extension Clients {
     public func deleteFolderTree(
       request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -229,7 +229,7 @@ extension Clients {
     public func queryFolderContents(
       request: QueryFolderContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryFolderContentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -244,7 +244,7 @@ extension Clients {
     public func queryUserRootContents(
       request: QueryUserRootContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryUserRootContentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -259,7 +259,7 @@ extension Clients {
     public func moveFolder(
       request: MoveFolderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -274,7 +274,7 @@ extension Clients {
     public func listRepositories(
       request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListRepositoriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -289,7 +289,7 @@ extension Clients {
     public func getRepository(
       request: GetRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Repository {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -304,7 +304,7 @@ extension Clients {
     public func createRepository(
       request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Repository {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -319,7 +319,7 @@ extension Clients {
     public func updateRepository(
       request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Repository {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -346,7 +346,7 @@ extension Clients {
     public func moveRepository(
       request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -361,7 +361,7 @@ extension Clients {
     public func commitRepositoryChanges(
       request: CommitRepositoryChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CommitRepositoryChangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -376,7 +376,7 @@ extension Clients {
     public func readRepositoryFile(
       request: ReadRepositoryFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReadRepositoryFileResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -391,7 +391,7 @@ extension Clients {
     public func queryRepositoryDirectoryContents(
       request: QueryRepositoryDirectoryContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryRepositoryDirectoryContentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -406,7 +406,7 @@ extension Clients {
     public func fetchRepositoryHistory(
       request: FetchRepositoryHistoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchRepositoryHistoryResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -421,7 +421,7 @@ extension Clients {
     public func computeRepositoryAccessTokenStatus(
       request: ComputeRepositoryAccessTokenStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ComputeRepositoryAccessTokenStatusResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -436,7 +436,7 @@ extension Clients {
     public func fetchRemoteBranches(
       request: FetchRemoteBranchesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchRemoteBranchesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -451,7 +451,7 @@ extension Clients {
     public func listWorkspaces(
       request: ListWorkspacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListWorkspacesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -466,7 +466,7 @@ extension Clients {
     public func getWorkspace(
       request: GetWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -481,7 +481,7 @@ extension Clients {
     public func createWorkspace(
       request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Workspace {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -508,7 +508,7 @@ extension Clients {
     public func installNpmPackages(
       request: InstallNpmPackagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.InstallNpmPackagesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -523,7 +523,7 @@ extension Clients {
     public func pullGitCommits(
       request: PullGitCommitsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.PullGitCommitsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -538,7 +538,7 @@ extension Clients {
     public func pushGitCommits(
       request: PushGitCommitsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.PushGitCommitsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -553,7 +553,7 @@ extension Clients {
     public func fetchFileGitStatuses(
       request: FetchFileGitStatusesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchFileGitStatusesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -568,7 +568,7 @@ extension Clients {
     public func fetchGitAheadBehind(
       request: FetchGitAheadBehindRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchGitAheadBehindResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -583,7 +583,7 @@ extension Clients {
     public func commitWorkspaceChanges(
       request: CommitWorkspaceChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CommitWorkspaceChangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -598,7 +598,7 @@ extension Clients {
     public func resetWorkspaceChanges(
       request: ResetWorkspaceChangesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ResetWorkspaceChangesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -613,7 +613,7 @@ extension Clients {
     public func fetchFileDiff(
       request: FetchFileDiffRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.FetchFileDiffResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -628,7 +628,7 @@ extension Clients {
     public func queryDirectoryContents(
       request: QueryDirectoryContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryDirectoryContentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -643,7 +643,7 @@ extension Clients {
     public func searchFiles(
       request: SearchFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.SearchFilesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -658,7 +658,7 @@ extension Clients {
     public func makeDirectory(
       request: MakeDirectoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.MakeDirectoryResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -673,7 +673,7 @@ extension Clients {
     public func removeDirectory(
       request: RemoveDirectoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.RemoveDirectoryResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -688,7 +688,7 @@ extension Clients {
     public func moveDirectory(
       request: MoveDirectoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.MoveDirectoryResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -703,7 +703,7 @@ extension Clients {
     public func readFile(
       request: ReadFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReadFileResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -718,7 +718,7 @@ extension Clients {
     public func removeFile(
       request: RemoveFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.RemoveFileResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -733,7 +733,7 @@ extension Clients {
     public func moveFile(
       request: MoveFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.MoveFileResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -748,7 +748,7 @@ extension Clients {
     public func writeFile(
       request: WriteFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WriteFileResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -763,7 +763,7 @@ extension Clients {
     public func listReleaseConfigs(
       request: ListReleaseConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListReleaseConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -778,7 +778,7 @@ extension Clients {
     public func getReleaseConfig(
       request: GetReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -793,7 +793,7 @@ extension Clients {
     public func createReleaseConfig(
       request: CreateReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -808,7 +808,7 @@ extension Clients {
     public func updateReleaseConfig(
       request: UpdateReleaseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -836,7 +836,7 @@ extension Clients {
     public func listCompilationResults(
       request: ListCompilationResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListCompilationResultsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -851,7 +851,7 @@ extension Clients {
     public func getCompilationResult(
       request: GetCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -866,7 +866,7 @@ extension Clients {
     public func createCompilationResult(
       request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CompilationResult {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -881,7 +881,7 @@ extension Clients {
     public func queryCompilationResultActions(
       request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryCompilationResultActionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -896,7 +896,7 @@ extension Clients {
     public func listWorkflowConfigs(
       request: ListWorkflowConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListWorkflowConfigsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -911,7 +911,7 @@ extension Clients {
     public func getWorkflowConfig(
       request: GetWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -926,7 +926,7 @@ extension Clients {
     public func createWorkflowConfig(
       request: CreateWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -941,7 +941,7 @@ extension Clients {
     public func updateWorkflowConfig(
       request: UpdateWorkflowConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -969,7 +969,7 @@ extension Clients {
     public func listWorkflowInvocations(
       request: ListWorkflowInvocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.ListWorkflowInvocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -984,7 +984,7 @@ extension Clients {
     public func getWorkflowInvocation(
       request: GetWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -999,7 +999,7 @@ extension Clients {
     public func createWorkflowInvocation(
       request: CreateWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1027,7 +1027,7 @@ extension Clients {
     public func cancelWorkflowInvocation(
       request: CancelWorkflowInvocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.CancelWorkflowInvocationResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1042,7 +1042,7 @@ extension Clients {
     public func queryWorkflowInvocationActions(
       request: QueryWorkflowInvocationActionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.QueryWorkflowInvocationActionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1057,7 +1057,7 @@ extension Clients {
     public func getConfig(
       request: GetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Config {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1072,7 +1072,7 @@ extension Clients {
     public func updateConfig(
       request: UpdateConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDataFormV1.Config {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1087,7 +1087,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1102,7 +1102,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1117,7 +1117,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -1132,7 +1132,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1147,7 +1147,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1162,7 +1162,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -1177,7 +1177,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

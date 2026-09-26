@@ -50,7 +50,7 @@ extension Clients {
     public func check(
       request: CheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.CheckResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -65,7 +65,7 @@ extension Clients {
     public func report(
       request: ReportRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApiServiceControlV1.ReportResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

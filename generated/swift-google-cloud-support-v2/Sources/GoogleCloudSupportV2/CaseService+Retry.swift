@@ -51,7 +51,7 @@ extension Clients {
     public func getCase(
       request: GetCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func listCases(
       request: ListCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.ListCasesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -80,7 +80,7 @@ extension Clients {
     public func searchCases(
       request: SearchCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SearchCasesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -95,7 +95,7 @@ extension Clients {
     public func createCase(
       request: CreateCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -110,7 +110,7 @@ extension Clients {
     public func updateCase(
       request: UpdateCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func escalateCase(
       request: EscalateCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func closeCase(
       request: CloseCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.Case {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -155,7 +155,7 @@ extension Clients {
     public func searchCaseClassifications(
       request: SearchCaseClassificationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSupportV2.SearchCaseClassificationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

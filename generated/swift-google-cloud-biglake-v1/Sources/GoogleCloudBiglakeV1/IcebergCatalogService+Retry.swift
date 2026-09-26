@@ -52,7 +52,7 @@ extension Clients {
     public func getIcebergCatalogConfig(
       request: GetIcebergCatalogConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalogConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func listIcebergNamespaces(
       request: ListIcebergNamespacesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.ListIcebergNamespacesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func getIcebergNamespace(
       request: GetIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -97,7 +97,7 @@ extension Clients {
     public func createIcebergNamespace(
       request: CreateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func updateIcebergNamespace(
       request: UpdateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.UpdateIcebergNamespaceResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func listIcebergTableIdentifiers(
       request: ListIcebergTableIdentifiersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -155,7 +155,7 @@ extension Clients {
     public func createIcebergTable(
       request: CreateIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -183,7 +183,7 @@ extension Clients {
     public func getIcebergTable(
       request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -198,7 +198,7 @@ extension Clients {
     public func loadIcebergTableCredentials(
       request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -213,7 +213,7 @@ extension Clients {
     public func updateIcebergTable(
       request: UpdateIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -228,7 +228,7 @@ extension Clients {
     public func registerIcebergTable(
       request: RegisterIcebergTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -256,7 +256,7 @@ extension Clients {
     public func getIcebergCatalog(
       request: GetIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -271,7 +271,7 @@ extension Clients {
     public func listIcebergCatalogs(
       request: ListIcebergCatalogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.ListIcebergCatalogsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -299,7 +299,7 @@ extension Clients {
     public func updateIcebergCatalog(
       request: UpdateIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -314,7 +314,7 @@ extension Clients {
     public func createIcebergCatalog(
       request: CreateIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -329,7 +329,7 @@ extension Clients {
     public func failoverIcebergCatalog(
       request: FailoverIcebergCatalogRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

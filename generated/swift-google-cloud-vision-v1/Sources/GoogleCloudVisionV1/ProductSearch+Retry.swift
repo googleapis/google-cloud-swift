@@ -53,7 +53,7 @@ extension Clients {
     public func createProductSet(
       request: CreateProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -68,7 +68,7 @@ extension Clients {
     public func listProductSets(
       request: ListProductSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListProductSetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -83,7 +83,7 @@ extension Clients {
     public func getProductSet(
       request: GetProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -98,7 +98,7 @@ extension Clients {
     public func updateProductSet(
       request: UpdateProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ProductSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func createProduct(
       request: CreateProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.Product {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func listProducts(
       request: ListProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListProductsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -155,7 +155,7 @@ extension Clients {
     public func getProduct(
       request: GetProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.Product {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -170,7 +170,7 @@ extension Clients {
     public func updateProduct(
       request: UpdateProductRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.Product {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -197,7 +197,7 @@ extension Clients {
     public func createReferenceImage(
       request: CreateReferenceImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ReferenceImage {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -225,7 +225,7 @@ extension Clients {
     public func listReferenceImages(
       request: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListReferenceImagesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -240,7 +240,7 @@ extension Clients {
     public func getReferenceImage(
       request: GetReferenceImageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ReferenceImage {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -282,7 +282,7 @@ extension Clients {
     public func listProductsInProductSet(
       request: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudVisionV1.ListProductsInProductSetResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -297,7 +297,7 @@ extension Clients {
     public func importProductSets(
       request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -312,7 +312,7 @@ extension Clients {
     public func purgeProducts(
       request: PurgeProductsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -327,7 +327,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

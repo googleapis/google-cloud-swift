@@ -52,7 +52,7 @@ extension Clients {
     public func listMonitoredResourceDescriptors(
       request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func getMonitoredResourceDescriptor(
       request: GetMonitoredResourceDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.MonitoredResourceDescriptor {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func listMetricDescriptors(
       request: ListMetricDescriptorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -97,7 +97,7 @@ extension Clients {
     public func getMetricDescriptor(
       request: GetMetricDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.MetricDescriptor {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -112,7 +112,7 @@ extension Clients {
     public func createMetricDescriptor(
       request: CreateMetricDescriptorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.MetricDescriptor {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func listTimeSeries(
       request: ListTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.ListTimeSeriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

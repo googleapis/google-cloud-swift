@@ -53,7 +53,7 @@ extension Clients {
     public func queryTimeSeries(
       request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

@@ -53,7 +53,7 @@ extension Clients {
     public func createEnvironment(
       request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -68,7 +68,7 @@ extension Clients {
     public func getEnvironment(
       request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.Environment {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -83,7 +83,7 @@ extension Clients {
     public func listEnvironments(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -98,7 +98,7 @@ extension Clients {
     public func updateEnvironment(
       request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -113,7 +113,7 @@ extension Clients {
     public func deleteEnvironment(
       request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -128,7 +128,7 @@ extension Clients {
     public func executeAirflowCommand(
       request: ExecuteAirflowCommandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ExecuteAirflowCommandResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -143,7 +143,7 @@ extension Clients {
     public func stopAirflowCommand(
       request: StopAirflowCommandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.StopAirflowCommandResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -158,7 +158,7 @@ extension Clients {
     public func pollAirflowCommand(
       request: PollAirflowCommandRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.PollAirflowCommandResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -173,7 +173,7 @@ extension Clients {
     public func listWorkloads(
       request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -188,7 +188,7 @@ extension Clients {
     public func checkUpgrade(
       request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -203,7 +203,7 @@ extension Clients {
     public func createUserWorkloadsSecret(
       request: CreateUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -218,7 +218,7 @@ extension Clients {
     public func getUserWorkloadsSecret(
       request: GetUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -233,7 +233,7 @@ extension Clients {
     public func listUserWorkloadsSecrets(
       request: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -248,7 +248,7 @@ extension Clients {
     public func updateUserWorkloadsSecret(
       request: UpdateUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -276,7 +276,7 @@ extension Clients {
     public func createUserWorkloadsConfigMap(
       request: CreateUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -291,7 +291,7 @@ extension Clients {
     public func getUserWorkloadsConfigMap(
       request: GetUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -306,7 +306,7 @@ extension Clients {
     public func listUserWorkloadsConfigMaps(
       request: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -321,7 +321,7 @@ extension Clients {
     public func updateUserWorkloadsConfigMap(
       request: UpdateUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -350,7 +350,7 @@ extension Clients {
     public func saveSnapshot(
       request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -365,7 +365,7 @@ extension Clients {
     public func loadSnapshot(
       request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -380,7 +380,7 @@ extension Clients {
     public func databaseFailover(
       request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -395,7 +395,7 @@ extension Clients {
     public func fetchDatabaseProperties(
       request: FetchDatabasePropertiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.FetchDatabasePropertiesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -410,7 +410,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -425,7 +425,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

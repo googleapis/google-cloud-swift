@@ -52,7 +52,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -82,7 +82,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func getIapSettings(
       request: GetIapSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IapSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -112,7 +112,7 @@ extension Clients {
     public func updateIapSettings(
       request: UpdateIapSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.IapSettings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -127,7 +127,7 @@ extension Clients {
     public func validateIapAttributeExpression(
       request: ValidateIapAttributeExpressionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ValidateIapAttributeExpressionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -142,7 +142,7 @@ extension Clients {
     public func listTunnelDestGroups(
       request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -157,7 +157,7 @@ extension Clients {
     public func createTunnelDestGroup(
       request: CreateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -172,7 +172,7 @@ extension Clients {
     public func getTunnelDestGroup(
       request: GetTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -200,7 +200,7 @@ extension Clients {
     public func updateTunnelDestGroup(
       request: UpdateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

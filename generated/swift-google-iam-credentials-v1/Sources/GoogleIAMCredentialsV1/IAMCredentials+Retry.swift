@@ -51,7 +51,7 @@ extension Clients {
     public func generateAccessToken(
       request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -66,7 +66,7 @@ extension Clients {
     public func generateIdToken(
       request: GenerateIdTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.GenerateIdTokenResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -81,7 +81,7 @@ extension Clients {
     public func signBlob(
       request: SignBlobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.SignBlobResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -96,7 +96,7 @@ extension Clients {
     public func signJwt(
       request: SignJwtRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMCredentialsV1.SignJwtResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

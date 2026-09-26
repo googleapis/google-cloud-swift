@@ -50,7 +50,7 @@ extension Clients {
     public func create(
       request: ChangesClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Change {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -64,7 +64,7 @@ extension Clients {
     public func `get`(
       request: ChangesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Change {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -78,7 +78,7 @@ extension Clients {
     public func list(
       request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ChangesListResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

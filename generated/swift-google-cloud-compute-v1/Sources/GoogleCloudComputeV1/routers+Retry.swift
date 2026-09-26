@@ -51,7 +51,7 @@
       public func aggregatedList(
         request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterAggregatedList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -66,7 +66,7 @@
       public func delete(
         request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -81,7 +81,7 @@
       public func deleteNamedSet(
         request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -96,7 +96,7 @@
       public func deleteRoutePolicy(
         request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -111,7 +111,7 @@
       public func `get`(
         request: RoutersClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Router {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -126,7 +126,7 @@
       public func getNamedSet(
         request: RoutersClient.GetNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersGetNamedSetResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -141,7 +141,7 @@
       public func getNatIpInfo(
         request: RoutersClient.GetNatIpInfoRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.NatIpInfoResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -156,7 +156,7 @@
       public func getNatMappingInfo(
         request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.VmEndpointNatMappingsList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -171,7 +171,7 @@
       public func getRoutePolicy(
         request: RoutersClient.GetRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersGetRoutePolicyResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -186,7 +186,7 @@
       public func getRouterStatus(
         request: RoutersClient.GetRouterStatusRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterStatusResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -201,7 +201,7 @@
       public func insert(
         request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -216,7 +216,7 @@
       public func list(
         request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RouterList {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -231,7 +231,7 @@
       public func listBgpRoutes(
         request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersListBgpRoutes {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -246,7 +246,7 @@
       public func listNamedSets(
         request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersListNamedSets {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -261,7 +261,7 @@
       public func listRoutePolicies(
         request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersListRoutePolicies {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -276,7 +276,7 @@
       public func patch(
         request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -291,7 +291,7 @@
       public func patchNamedSet(
         request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -306,7 +306,7 @@
       public func patchRoutePolicy(
         request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -321,7 +321,7 @@
       public func preview(
         request: RoutersClient.PreviewRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.RoutersPreviewResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -336,7 +336,7 @@
       public func update(
         request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -351,7 +351,7 @@
       public func updateNamedSet(
         request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -366,7 +366,7 @@
       public func updateRoutePolicy(
         request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: false,
@@ -381,7 +381,7 @@
       public func getOperation(
         request: RegionOperationsClient.GetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudComputeV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

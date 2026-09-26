@@ -52,7 +52,7 @@ extension Clients {
     public func createDataTable(
       request: CreateDataTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTable {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func listDataTables(
       request: ListDataTablesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func getDataTable(
       request: GetDataTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTable {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateDataTable(
       request: UpdateDataTableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTable {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -124,7 +124,7 @@ extension Clients {
     public func createDataTableRow(
       request: CreateDataTableRowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTableRow {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -139,7 +139,7 @@ extension Clients {
     public func updateDataTableRow(
       request: UpdateDataTableRowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTableRow {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -154,7 +154,7 @@ extension Clients {
     public func listDataTableRows(
       request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -169,7 +169,7 @@ extension Clients {
     public func getDataTableRow(
       request: GetDataTableRowRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTableRow {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -197,7 +197,7 @@ extension Clients {
     public func bulkCreateDataTableRows(
       request: BulkCreateDataTableRowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BulkCreateDataTableRowsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -212,7 +212,7 @@ extension Clients {
     public func bulkGetDataTableRows(
       request: BulkGetDataTableRowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BulkGetDataTableRowsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -227,7 +227,7 @@ extension Clients {
     public func bulkReplaceDataTableRows(
       request: BulkReplaceDataTableRowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BulkReplaceDataTableRowsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -242,7 +242,7 @@ extension Clients {
     public func bulkUpdateDataTableRows(
       request: BulkUpdateDataTableRowsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.BulkUpdateDataTableRowsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -257,7 +257,7 @@ extension Clients {
     public func getDataTableOperationErrors(
       request: GetDataTableOperationErrorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataTableOperationErrors {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -272,7 +272,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -287,7 +287,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

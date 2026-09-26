@@ -51,7 +51,7 @@ extension Clients {
     public func summarizeMaintenances(
       request: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func listResourceMaintenances(
       request: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMaintenanceApiV1.ListResourceMaintenancesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func getResourceMaintenance(
       request: GetResourceMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudMaintenanceApiV1.ResourceMaintenance {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -96,7 +96,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -111,7 +111,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

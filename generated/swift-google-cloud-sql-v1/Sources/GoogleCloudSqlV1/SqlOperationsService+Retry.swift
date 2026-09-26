@@ -52,7 +52,7 @@
       public func `get`(
         request: SqlOperationsGetRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.Operation {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,
@@ -67,7 +67,7 @@
       public func list(
         request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
       ) async throws -> GoogleCloudSqlV1.OperationsListResponse {
-        try await self._intercept(
+        return try await self._intercept(
           request: request,
           options: options,
           idempotent: true,

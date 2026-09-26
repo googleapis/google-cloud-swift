@@ -52,7 +52,7 @@ extension Clients {
     public func createDataAccessLabel(
       request: CreateDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -67,7 +67,7 @@ extension Clients {
     public func getDataAccessLabel(
       request: GetDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func listDataAccessLabels(
       request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateDataAccessLabel(
       request: UpdateDataAccessLabelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func createDataAccessScope(
       request: CreateDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func getDataAccessScope(
       request: GetDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -155,7 +155,7 @@ extension Clients {
     public func listDataAccessScopes(
       request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListDataAccessScopesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -170,7 +170,7 @@ extension Clients {
     public func updateDataAccessScope(
       request: UpdateDataAccessScopeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -198,7 +198,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -213,7 +213,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

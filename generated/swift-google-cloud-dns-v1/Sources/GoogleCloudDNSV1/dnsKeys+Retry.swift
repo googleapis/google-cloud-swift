@@ -50,7 +50,7 @@ extension Clients {
     public func `get`(
       request: DnsKeysClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> DnsKey {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -64,7 +64,7 @@ extension Clients {
     public func list(
       request: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> DnsKeysListResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

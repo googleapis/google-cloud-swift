@@ -50,7 +50,7 @@ extension Clients {
     public func listNotifications(
       request: ListNotificationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -65,7 +65,7 @@ extension Clients {
     public func getNotification(
       request: GetNotificationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.Notification {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -80,7 +80,7 @@ extension Clients {
     public func getSettings(
       request: GetSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -95,7 +95,7 @@ extension Clients {
     public func updateSettings(
       request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

@@ -51,7 +51,7 @@ extension Clients {
     public func create(
       request: ManagedZonesClient.CreateRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZone {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -79,7 +79,7 @@ extension Clients {
     public func `get`(
       request: ManagedZonesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZone {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -94,7 +94,7 @@ extension Clients {
     public func getIamPolicy(
       request: ManagedZonesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIamV1Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -109,7 +109,7 @@ extension Clients {
     public func list(
       request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> ManagedZonesListResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -124,7 +124,7 @@ extension Clients {
     public func patch(
       request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -139,7 +139,7 @@ extension Clients {
     public func setIamPolicy(
       request: ManagedZonesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIamV1Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -154,7 +154,7 @@ extension Clients {
     public func testIamPermissions(
       request: ManagedZonesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIamV1TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -169,7 +169,7 @@ extension Clients {
     public func update(
       request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -184,7 +184,7 @@ extension Clients {
     public func getOperation(
       request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

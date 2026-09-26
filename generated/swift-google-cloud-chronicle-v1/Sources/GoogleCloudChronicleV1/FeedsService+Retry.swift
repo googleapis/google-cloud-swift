@@ -53,7 +53,7 @@ extension Clients {
     public func fetchServiceAccountForCustomer(
       request: FetchServiceAccountForCustomerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FeedServiceAccount {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -68,7 +68,7 @@ extension Clients {
     public func createFeed(
       request: CreateFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Feed {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -83,7 +83,7 @@ extension Clients {
     public func getFeed(
       request: GetFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Feed {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -110,7 +110,7 @@ extension Clients {
     public func enableFeed(
       request: EnableFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Feed {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -125,7 +125,7 @@ extension Clients {
     public func disableFeed(
       request: DisableFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Feed {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -140,7 +140,7 @@ extension Clients {
     public func listFeeds(
       request: ListFeedsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListFeedsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -155,7 +155,7 @@ extension Clients {
     public func listFeedPacks(
       request: ListFeedPacksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListFeedPacksResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -170,7 +170,7 @@ extension Clients {
     public func getFeedPack(
       request: GetFeedPackRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.FeedPack {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -185,7 +185,7 @@ extension Clients {
     public func updateFeed(
       request: UpdateFeedRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.Feed {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -200,7 +200,7 @@ extension Clients {
     public func listFeedSourceTypeSchemas(
       request: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -215,7 +215,7 @@ extension Clients {
     public func listLogTypeSchemas(
       request: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -230,7 +230,7 @@ extension Clients {
     public func importPushLogs(
       request: ImportPushLogsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -244,7 +244,7 @@ extension Clients {
     public func generateSecret(
       request: GenerateSecretRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudChronicleV1.GenerateSecretResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -259,7 +259,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -274,7 +274,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

@@ -54,7 +54,7 @@ extension Clients {
     public func getSchemaRegistry(
       request: GetSchemaRegistryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -69,7 +69,7 @@ extension Clients {
     public func listSchemaRegistries(
       request: ListSchemaRegistriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -84,7 +84,7 @@ extension Clients {
     public func createSchemaRegistry(
       request: CreateSchemaRegistryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -112,7 +112,7 @@ extension Clients {
     public func getContext(
       request: GetContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Context {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -127,7 +127,7 @@ extension Clients {
     public func listContexts(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -141,7 +141,7 @@ extension Clients {
     public func getSchema(
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -156,7 +156,7 @@ extension Clients {
     public func getRawSchema(
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -170,7 +170,7 @@ extension Clients {
     public func listSchemaVersions(
       request: ListSchemaVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -185,7 +185,7 @@ extension Clients {
     public func listSchemaTypes(
       request: ListSchemaTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -200,7 +200,7 @@ extension Clients {
     public func listSubjects(
       request: ListSubjectsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -214,7 +214,7 @@ extension Clients {
     public func listSubjectsBySchemaId(
       request: ListSubjectsBySchemaIdRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -229,7 +229,7 @@ extension Clients {
     public func deleteSubject(
       request: DeleteSubjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -243,7 +243,7 @@ extension Clients {
     public func lookupVersion(
       request: LookupVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -258,7 +258,7 @@ extension Clients {
     public func getVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -273,7 +273,7 @@ extension Clients {
     public func getRawSchemaVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -287,7 +287,7 @@ extension Clients {
     public func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -301,7 +301,7 @@ extension Clients {
     public func createVersion(
       request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -316,7 +316,7 @@ extension Clients {
     public func deleteVersion(
       request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -330,7 +330,7 @@ extension Clients {
     public func listReferencedSchemas(
       request: ListReferencedSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -345,7 +345,7 @@ extension Clients {
     public func checkCompatibility(
       request: CheckCompatibilityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -360,7 +360,7 @@ extension Clients {
     public func getSchemaConfig(
       request: GetSchemaConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -375,7 +375,7 @@ extension Clients {
     public func updateSchemaConfig(
       request: UpdateSchemaConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -390,7 +390,7 @@ extension Clients {
     public func deleteSchemaConfig(
       request: DeleteSchemaConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -405,7 +405,7 @@ extension Clients {
     public func getSchemaMode(
       request: GetSchemaModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -420,7 +420,7 @@ extension Clients {
     public func updateSchemaMode(
       request: UpdateSchemaModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -435,7 +435,7 @@ extension Clients {
     public func deleteSchemaMode(
       request: DeleteSchemaModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -450,7 +450,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -465,7 +465,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -480,7 +480,7 @@ extension Clients {
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -495,7 +495,7 @@ extension Clients {
     public func getOperation(
       request: GoogleLongRunning.GetOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

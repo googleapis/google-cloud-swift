@@ -51,7 +51,7 @@ extension Clients {
     public func getBillingAccount(
       request: GetBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func listBillingAccounts(
       request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -81,7 +81,7 @@ extension Clients {
     public func updateBillingAccount(
       request: UpdateBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -96,7 +96,7 @@ extension Clients {
     public func createBillingAccount(
       request: CreateBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -111,7 +111,7 @@ extension Clients {
     public func listProjectBillingInfo(
       request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -126,7 +126,7 @@ extension Clients {
     public func getProjectBillingInfo(
       request: GetProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -141,7 +141,7 @@ extension Clients {
     public func updateProjectBillingInfo(
       request: UpdateProjectBillingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -156,7 +156,7 @@ extension Clients {
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -171,7 +171,7 @@ extension Clients {
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -186,7 +186,7 @@ extension Clients {
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -201,7 +201,7 @@ extension Clients {
     public func moveBillingAccount(
       request: MoveBillingAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudBillingV1.BillingAccount {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

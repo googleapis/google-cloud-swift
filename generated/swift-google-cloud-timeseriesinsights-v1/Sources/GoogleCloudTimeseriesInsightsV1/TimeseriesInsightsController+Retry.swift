@@ -51,7 +51,7 @@ extension Clients {
     public func listDataSets(
       request: ListDataSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.ListDataSetsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -66,7 +66,7 @@ extension Clients {
     public func createDataSet(
       request: CreateDataSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.DataSet {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -93,7 +93,7 @@ extension Clients {
     public func appendEvents(
       request: AppendEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.AppendEventsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -108,7 +108,7 @@ extension Clients {
     public func queryDataSet(
       request: QueryDataSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.QueryDataSetResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -123,7 +123,7 @@ extension Clients {
     public func evaluateSlice(
       request: EvaluateSliceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.EvaluatedSlice {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -138,7 +138,7 @@ extension Clients {
     public func evaluateTimeseries(
       request: EvaluateTimeseriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTimeseriesInsightsV1.EvaluatedSlice {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

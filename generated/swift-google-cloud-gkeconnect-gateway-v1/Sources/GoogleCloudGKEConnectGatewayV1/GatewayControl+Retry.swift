@@ -50,7 +50,7 @@ extension Clients {
     public func generateCredentials(
       request: GenerateCredentialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudGKEConnectGatewayV1.GenerateCredentialsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,

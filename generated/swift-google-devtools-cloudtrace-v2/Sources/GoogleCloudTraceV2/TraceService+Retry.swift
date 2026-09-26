@@ -63,7 +63,7 @@ extension Clients {
     public func createSpan(
       request: Span, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudTraceV2.Span {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

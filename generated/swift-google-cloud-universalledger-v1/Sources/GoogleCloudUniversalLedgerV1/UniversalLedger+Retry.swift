@@ -50,7 +50,7 @@ extension Clients {
     public func submitTransaction(
       request: SubmitTransactionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -65,7 +65,7 @@ extension Clients {
     public func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -80,7 +80,7 @@ extension Clients {
     public func getEndpoint(
       request: GetEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.Endpoint {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -95,7 +95,7 @@ extension Clients {
     public func submitOperationalTransaction(
       request: SubmitOperationalTransactionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -110,7 +110,7 @@ extension Clients {
     public func queryTransactionState(
       request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -125,7 +125,7 @@ extension Clients {
     public func queryAccount(
       request: QueryAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryAccountResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -140,7 +140,7 @@ extension Clients {
     public func queryData(
       request: QueryDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,

@@ -52,7 +52,7 @@ extension Clients {
     public func listParameters(
       request: ListParametersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListParametersResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -67,7 +67,7 @@ extension Clients {
     public func getParameter(
       request: GetParameterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Parameter {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -82,7 +82,7 @@ extension Clients {
     public func createParameter(
       request: CreateParameterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Parameter {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -97,7 +97,7 @@ extension Clients {
     public func updateParameter(
       request: UpdateParameterRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Parameter {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -124,7 +124,7 @@ extension Clients {
     public func listParameterVersions(
       request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -139,7 +139,7 @@ extension Clients {
     public func getParameterVersion(
       request: GetParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -154,7 +154,7 @@ extension Clients {
     public func renderParameterVersion(
       request: RenderParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.RenderParameterVersionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -169,7 +169,7 @@ extension Clients {
     public func createParameterVersion(
       request: CreateParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -184,7 +184,7 @@ extension Clients {
     public func updateParameterVersion(
       request: UpdateParameterVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -212,7 +212,7 @@ extension Clients {
     public func listTemplates(
       request: ListTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -227,7 +227,7 @@ extension Clients {
     public func getTemplate(
       request: GetTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Template {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -242,7 +242,7 @@ extension Clients {
     public func createTemplate(
       request: CreateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Template {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -257,7 +257,7 @@ extension Clients {
     public func updateTemplate(
       request: UpdateTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.Template {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -284,7 +284,7 @@ extension Clients {
     public func listTemplateVersions(
       request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -299,7 +299,7 @@ extension Clients {
     public func getTemplateVersion(
       request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -314,7 +314,7 @@ extension Clients {
     public func createTemplateVersion(
       request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -329,7 +329,7 @@ extension Clients {
     public func updateTemplateVersion(
       request: UpdateTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: false,
@@ -357,7 +357,7 @@ extension Clients {
     public func renderTemplateVersion(
       request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -372,7 +372,7 @@ extension Clients {
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
@@ -387,7 +387,7 @@ extension Clients {
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
-      try await self._intercept(
+      return try await self._intercept(
         request: request,
         options: options,
         idempotent: true,
