@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: NodeGroupsClient) async throws {
-    let poller = try await client.deleteNodesPollingUntilDone(
+    let response = try await client.deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

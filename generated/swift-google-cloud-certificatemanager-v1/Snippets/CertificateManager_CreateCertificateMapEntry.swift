@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String
 ) async throws {
-  let poller = try await client.createCertificateMapEntryPollingUntilDone(
+  let response = try await client.createCertificateMapEntryPollingUntilDone(
     request: CreateCertificateMapEntryRequest()
       .with {
         $0.parent =
@@ -33,7 +33,6 @@ func sample(
         $0.certificateMapEntry = CertificateMapEntry() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

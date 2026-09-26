@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: BatchControllerClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createBatchPollingUntilDone(
+  let response = try await client.createBatchPollingUntilDone(
     request: CreateBatchRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -30,7 +30,6 @@ func sample(client: BatchControllerClient, projectId: String, locationId: String
         $0.batch = Batch() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -28,7 +28,7 @@
     client: PersistentResourceServiceClient, projectId: String, locationId: String,
     persistentResourceId: String
   ) async throws {
-    let poller = try await client.updatePersistentResourcePollingUntilDone(
+    let response = try await client.updatePersistentResourcePollingUntilDone(
       request: UpdatePersistentResourceRequest()
         .with {
           $0.persistentResource = PersistentResource().with {
@@ -38,7 +38,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

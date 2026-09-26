@@ -25,14 +25,13 @@
   import GoogleWKT
 
   func sample(client: ReasoningEngineServiceClient, parent: String) async throws {
-    let poller = try await client.createReasoningEnginePollingUntilDone(
+    let response = try await client.createReasoningEnginePollingUntilDone(
       request: CreateReasoningEngineRequest()
         .with {
           $0.parent = "\(parent)"
           $0.reasoningEngine = ReasoningEngine() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

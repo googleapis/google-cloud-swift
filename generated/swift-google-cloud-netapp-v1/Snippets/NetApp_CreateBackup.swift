@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, backupVaultId: String)
   async throws
 {
-  let poller = try await client.createBackupPollingUntilDone(
+  let response = try await client.createBackupPollingUntilDone(
     request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/backupVaults/\(backupVaultId)"
@@ -33,7 +33,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, backupV
         $0.backup = Backup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

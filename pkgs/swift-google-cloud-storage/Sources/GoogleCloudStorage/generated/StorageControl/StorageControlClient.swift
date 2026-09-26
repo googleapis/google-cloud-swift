@@ -397,7 +397,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// completes.
   public func renameFolderPollingUntilDone(
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Folder> {
+  ) async throws -> Folder {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Folder>.State in
@@ -410,12 +410,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Deletes a folder recursively. This operation is only applicable to a
@@ -430,7 +431,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// hierarchical namespace enabled bucket.
   public func deleteFolderRecursivePollingUntilDone(
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -443,12 +444,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    try await poller.wait()
   }
 
   /// Returns the storage layout configuration for a given bucket.
@@ -504,7 +506,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Creates an Anywhere Cache instance.
   public func createAnywhereCachePollingUntilDone(
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AnywhereCache> {
+  ) async throws -> AnywhereCache {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
@@ -518,12 +520,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
@@ -538,7 +541,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// `admission_policy`.
   public func updateAnywhereCachePollingUntilDone(
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AnywhereCache> {
+  ) async throws -> AnywhereCache {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnywhereCache>.State in
@@ -552,12 +555,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Disables an Anywhere Cache instance. A disabled instance is read-only. The
@@ -608,7 +612,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Creates a Rapid Cache instance.
   public func createRapidCachePollingUntilDone(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
+  ) async throws -> RapidCache {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RapidCache>.State in
@@ -621,12 +625,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Updates a Rapid Cache instance.
@@ -639,7 +644,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Updates a Rapid Cache instance.
   public func updateRapidCachePollingUntilDone(
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
+  ) async throws -> RapidCache {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RapidCache>.State in
@@ -652,12 +657,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Disables a Rapid Cache instance.
@@ -670,7 +676,7 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Disables a Rapid Cache instance.
   public func disableRapidCachePollingUntilDone(
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RapidCache> {
+  ) async throws -> RapidCache {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RapidCache>.State in
@@ -683,12 +689,13 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Gets a Rapid Cache instance.

@@ -25,14 +25,13 @@
   import GoogleWKT
 
   func sample(client: IndexServiceClient, parent: String) async throws {
-    let poller = try await client.createIndexPollingUntilDone(
+    let response = try await client.createIndexPollingUntilDone(
       request: CreateIndexRequest()
         .with {
           $0.parent = "\(parent)"
           $0.index = Index() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -21,13 +21,12 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagHoldsClient, tagValueId: String, tagHoldId: String) async throws {
-  let poller = try await client.deleteTagHoldPollingUntilDone(
+  try await client.deleteTagHoldPollingUntilDone(
     request: DeleteTagHoldRequest()
       .with {
         $0.name = "tagValues/\(tagValueId)/tagHolds/\(tagHoldId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

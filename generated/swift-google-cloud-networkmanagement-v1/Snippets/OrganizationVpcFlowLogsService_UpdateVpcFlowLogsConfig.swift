@@ -27,7 +27,7 @@ func sample(
   client: OrganizationVpcFlowLogsServiceClient, projectId: String, locationId: String,
   vpcFlowLogsConfigId: String
 ) async throws {
-  let poller = try await client.updateVpcFlowLogsConfigPollingUntilDone(
+  let response = try await client.updateVpcFlowLogsConfigPollingUntilDone(
     request: UpdateVpcFlowLogsConfigRequest()
       .with {
         $0.vpcFlowLogsConfig = VpcFlowLogsConfig().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -55,7 +55,7 @@
     /// @Snippet(path: "routes_delete")
     public func deletePollingUntilDone(
       request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -82,12 +82,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns the specified Route resource.
@@ -115,7 +116,7 @@
     /// @Snippet(path: "routes_insert")
     public func insertPollingUntilDone(
       request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -142,12 +143,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the list of Route resources available to the specified project.
@@ -193,7 +195,7 @@
       /// See `RoutesClient.delete`.
       func deletePollingUntilDone(
         request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutesClient.`get``.
       func `get`(
@@ -208,7 +210,7 @@
       /// See `RoutesClient.insert`.
       func insertPollingUntilDone(
         request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RoutesClient.list`.
       func list(
@@ -238,26 +240,20 @@
 
     public func deletePollingUntilDone(
       request: RoutesClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: RoutesClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       route: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RoutesClient.DeleteRequest().with {
         $0.project = project
         $0.route = route
@@ -300,26 +296,20 @@
 
     public func insertPollingUntilDone(
       request: RoutesClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: RoutesClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       body: Route?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RoutesClient.InsertRequest().with {
         $0.project = project
         $0.body = body

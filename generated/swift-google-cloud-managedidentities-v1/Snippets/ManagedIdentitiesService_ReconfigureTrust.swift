@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ManagedIdentitiesServiceClient) async throws {
-  let poller = try await client.reconfigureTrustPollingUntilDone(
+  let response = try await client.reconfigureTrustPollingUntilDone(
     request: ReconfigureTrustRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

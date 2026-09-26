@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, volumeId: String)
   async throws
 {
-  let poller = try await client.createReplicationPollingUntilDone(
+  let response = try await client.createReplicationPollingUntilDone(
     request: CreateReplicationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"
@@ -33,7 +33,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, volumeI
         $0.replication = Replication() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

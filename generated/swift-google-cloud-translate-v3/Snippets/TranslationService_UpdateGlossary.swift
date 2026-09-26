@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: TranslationServiceClient, projectId: String, locationId: String, glossaryId: String
 ) async throws {
-  let poller = try await client.updateGlossaryPollingUntilDone(
+  let response = try await client.updateGlossaryPollingUntilDone(
     request: UpdateGlossaryRequest()
       .with {
         $0.glossary = Glossary().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

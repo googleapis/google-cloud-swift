@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.createHcxActivationKeyPollingUntilDone(
+  let response = try await client.createHcxActivationKeyPollingUntilDone(
     request: CreateHcxActivationKeyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
         $0.hcxActivationKey = HcxActivationKey() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

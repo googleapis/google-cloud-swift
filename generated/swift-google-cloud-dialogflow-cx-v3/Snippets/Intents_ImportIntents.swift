@@ -24,11 +24,10 @@
   import GoogleWKT
 
   func sample(client: IntentsClient) async throws {
-    let poller = try await client.importIntentsPollingUntilDone(
+    let response = try await client.importIntentsPollingUntilDone(
       request: ImportIntentsRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: JobServiceClient) async throws {
-  let poller = try await client.batchUpdateJobsPollingUntilDone(
+  let response = try await client.batchUpdateJobsPollingUntilDone(
     request: BatchUpdateJobsRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

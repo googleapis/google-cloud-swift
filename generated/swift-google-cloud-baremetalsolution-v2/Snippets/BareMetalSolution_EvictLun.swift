@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient) async throws {
-  let poller = try await client.evictLunPollingUntilDone(
+  try await client.evictLunPollingUntilDone(
     request: EvictLunRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

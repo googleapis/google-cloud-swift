@@ -27,7 +27,7 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let poller = try await client.updateFeaturestorePollingUntilDone(
+    let response = try await client.updateFeaturestorePollingUntilDone(
       request: UpdateFeaturestoreRequest()
         .with {
           $0.featurestore = Featurestore().with {
@@ -37,7 +37,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

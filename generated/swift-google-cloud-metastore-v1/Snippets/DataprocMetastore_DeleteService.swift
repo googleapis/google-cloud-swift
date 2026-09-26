@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String
 ) async throws {
-  let poller = try await client.deleteServicePollingUntilDone(
+  try await client.deleteServicePollingUntilDone(
     request: DeleteServiceRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

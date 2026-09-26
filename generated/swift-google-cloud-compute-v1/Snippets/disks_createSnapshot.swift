@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: DisksClient) async throws {
-    let poller = try await client.createSnapshotPollingUntilDone(
+    let response = try await client.createSnapshotPollingUntilDone(
       request: DisksClient.CreateSnapshotRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -22,7 +22,7 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: JobsClient, projectId: String, locationId: String, jobId: String) async throws {
-  let poller = try await client.updateJobPollingUntilDone(
+  let response = try await client.updateJobPollingUntilDone(
     request: UpdateJobRequest()
       .with {
         $0.job = Job().with {
@@ -30,7 +30,6 @@ func sample(client: JobsClient, projectId: String, locationId: String, jobId: St
         }
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

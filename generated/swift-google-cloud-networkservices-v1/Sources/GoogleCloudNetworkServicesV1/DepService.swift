@@ -78,7 +78,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_CreateLbTrafficExtension")
   public func createLbTrafficExtensionPollingUntilDone(
     request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
+  ) async throws -> LbTrafficExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LbTrafficExtension>.State in
@@ -92,12 +92,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of the specified `LbTrafficExtension` resource.
@@ -114,7 +115,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_UpdateLbTrafficExtension")
   public func updateLbTrafficExtensionPollingUntilDone(
     request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
+  ) async throws -> LbTrafficExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LbTrafficExtension>.State in
@@ -128,12 +129,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes the specified `LbTrafficExtension` resource.
@@ -150,7 +152,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_DeleteLbTrafficExtension")
   public func deleteLbTrafficExtensionPollingUntilDone(
     request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -163,12 +165,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists `LbRouteExtension` resources in a given project and location.
@@ -203,7 +206,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_CreateLbRouteExtension")
   public func createLbRouteExtensionPollingUntilDone(
     request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
+  ) async throws -> LbRouteExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LbRouteExtension>.State in
@@ -217,12 +220,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of the specified `LbRouteExtension` resource.
@@ -239,7 +243,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_UpdateLbRouteExtension")
   public func updateLbRouteExtensionPollingUntilDone(
     request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
+  ) async throws -> LbRouteExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LbRouteExtension>.State in
@@ -253,12 +257,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes the specified `LbRouteExtension` resource.
@@ -275,7 +280,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_DeleteLbRouteExtension")
   public func deleteLbRouteExtensionPollingUntilDone(
     request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -288,12 +293,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists `LbEdgeExtension` resources in a given project and location.
@@ -328,7 +334,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_CreateLbEdgeExtension")
   public func createLbEdgeExtensionPollingUntilDone(
     request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
+  ) async throws -> LbEdgeExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LbEdgeExtension>.State in
@@ -342,12 +348,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of the specified `LbEdgeExtension` resource.
@@ -364,7 +371,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_UpdateLbEdgeExtension")
   public func updateLbEdgeExtensionPollingUntilDone(
     request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
+  ) async throws -> LbEdgeExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LbEdgeExtension>.State in
@@ -378,12 +385,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes the specified `LbEdgeExtension` resource.
@@ -400,7 +408,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_DeleteLbEdgeExtension")
   public func deleteLbEdgeExtensionPollingUntilDone(
     request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -413,12 +421,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists `AuthzExtension` resources in a given project and location.
@@ -455,7 +464,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_CreateAuthzExtension")
   public func createAuthzExtensionPollingUntilDone(
     request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
+  ) async throws -> AuthzExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthzExtension>.State in
@@ -469,12 +478,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of the specified `AuthzExtension`
@@ -493,7 +503,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_UpdateAuthzExtension")
   public func updateAuthzExtensionPollingUntilDone(
     request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
+  ) async throws -> AuthzExtension {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthzExtension>.State in
@@ -507,12 +517,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes the specified `AuthzExtension` resource.
@@ -529,7 +540,7 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// @Snippet(path: "DepService_DeleteAuthzExtension")
   public func deleteAuthzExtensionPollingUntilDone(
     request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -542,12 +553,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -676,7 +688,7 @@ extension Clients {
     /// See `DepServiceClient.createLbTrafficExtension`.
     func createLbTrafficExtensionPollingUntilDone(
       request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension>
+    ) async throws -> LbTrafficExtension
 
     /// See `DepServiceClient.updateLbTrafficExtension`.
     func updateLbTrafficExtension(
@@ -686,7 +698,7 @@ extension Clients {
     /// See `DepServiceClient.updateLbTrafficExtension`.
     func updateLbTrafficExtensionPollingUntilDone(
       request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension>
+    ) async throws -> LbTrafficExtension
 
     /// See `DepServiceClient.deleteLbTrafficExtension`.
     func deleteLbTrafficExtension(
@@ -696,7 +708,7 @@ extension Clients {
     /// See `DepServiceClient.deleteLbTrafficExtension`.
     func deleteLbTrafficExtensionPollingUntilDone(
       request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DepServiceClient.listLbRouteExtensions`.
     func listLbRouteExtensions(
@@ -716,7 +728,7 @@ extension Clients {
     /// See `DepServiceClient.createLbRouteExtension`.
     func createLbRouteExtensionPollingUntilDone(
       request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension>
+    ) async throws -> LbRouteExtension
 
     /// See `DepServiceClient.updateLbRouteExtension`.
     func updateLbRouteExtension(
@@ -726,7 +738,7 @@ extension Clients {
     /// See `DepServiceClient.updateLbRouteExtension`.
     func updateLbRouteExtensionPollingUntilDone(
       request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension>
+    ) async throws -> LbRouteExtension
 
     /// See `DepServiceClient.deleteLbRouteExtension`.
     func deleteLbRouteExtension(
@@ -736,7 +748,7 @@ extension Clients {
     /// See `DepServiceClient.deleteLbRouteExtension`.
     func deleteLbRouteExtensionPollingUntilDone(
       request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DepServiceClient.listLbEdgeExtensions`.
     func listLbEdgeExtensions(
@@ -756,7 +768,7 @@ extension Clients {
     /// See `DepServiceClient.createLbEdgeExtension`.
     func createLbEdgeExtensionPollingUntilDone(
       request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension>
+    ) async throws -> LbEdgeExtension
 
     /// See `DepServiceClient.updateLbEdgeExtension`.
     func updateLbEdgeExtension(
@@ -766,7 +778,7 @@ extension Clients {
     /// See `DepServiceClient.updateLbEdgeExtension`.
     func updateLbEdgeExtensionPollingUntilDone(
       request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension>
+    ) async throws -> LbEdgeExtension
 
     /// See `DepServiceClient.deleteLbEdgeExtension`.
     func deleteLbEdgeExtension(
@@ -776,7 +788,7 @@ extension Clients {
     /// See `DepServiceClient.deleteLbEdgeExtension`.
     func deleteLbEdgeExtensionPollingUntilDone(
       request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DepServiceClient.listAuthzExtensions`.
     func listAuthzExtensions(
@@ -796,7 +808,7 @@ extension Clients {
     /// See `DepServiceClient.createAuthzExtension`.
     func createAuthzExtensionPollingUntilDone(
       request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuthzExtension>
+    ) async throws -> AuthzExtension
 
     /// See `DepServiceClient.updateAuthzExtension`.
     func updateAuthzExtension(
@@ -806,7 +818,7 @@ extension Clients {
     /// See `DepServiceClient.updateAuthzExtension`.
     func updateAuthzExtensionPollingUntilDone(
       request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuthzExtension>
+    ) async throws -> AuthzExtension
 
     /// See `DepServiceClient.deleteAuthzExtension`.
     func deleteAuthzExtension(
@@ -816,7 +828,7 @@ extension Clients {
     /// See `DepServiceClient.deleteAuthzExtension`.
     func deleteAuthzExtensionPollingUntilDone(
       request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DepServiceClient.listLocations`.
     func listLocations(
@@ -939,27 +951,23 @@ extension Clients.DepServiceProtocol {
   }
 
   public func createLbTrafficExtensionPollingUntilDone(request: CreateLbTrafficExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<LbTrafficExtension>
+    async throws -> LbTrafficExtension
   {
-    try await self.createLbTrafficExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.createLbTrafficExtensionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createLbTrafficExtensionPollingUntilDone(
     request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LbTrafficExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LbTrafficExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createLbTrafficExtensionPollingUntilDone(
     parent: Swift.String,
     lbTrafficExtension: LbTrafficExtension?,
     lbTrafficExtensionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
+  ) async throws -> LbTrafficExtension {
     let request = CreateLbTrafficExtensionRequest().with {
       $0.parent = parent
       $0.lbTrafficExtension = lbTrafficExtension
@@ -981,26 +989,22 @@ extension Clients.DepServiceProtocol {
   }
 
   public func updateLbTrafficExtensionPollingUntilDone(request: UpdateLbTrafficExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<LbTrafficExtension>
+    async throws -> LbTrafficExtension
   {
-    try await self.updateLbTrafficExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.updateLbTrafficExtensionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateLbTrafficExtensionPollingUntilDone(
     request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LbTrafficExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LbTrafficExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateLbTrafficExtensionPollingUntilDone(
     lbTrafficExtension: LbTrafficExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<LbTrafficExtension> {
+  ) async throws -> LbTrafficExtension {
     let request = UpdateLbTrafficExtensionRequest().with {
       $0.lbTrafficExtension = lbTrafficExtension
       $0.updateMask = updateMask
@@ -1021,28 +1025,24 @@ extension Clients.DepServiceProtocol {
   }
 
   public func deleteLbTrafficExtensionPollingUntilDone(request: DeleteLbTrafficExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteLbTrafficExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteLbTrafficExtensionPollingUntilDone(
     request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteLbTrafficExtensionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteLbTrafficExtensionRequest().with {
       $0.name = name
     }
-    return try await self.deleteLbTrafficExtensionPollingUntilDone(request: request)
+    try await self.deleteLbTrafficExtensionPollingUntilDone(request: request)
   }
 
   public func listLbRouteExtensions(request: ListLbRouteExtensionsRequest) async throws
@@ -1122,27 +1122,22 @@ extension Clients.DepServiceProtocol {
   }
 
   public func createLbRouteExtensionPollingUntilDone(request: CreateLbRouteExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<LbRouteExtension>
+    async throws -> LbRouteExtension
   {
-    try await self.createLbRouteExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.createLbRouteExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func createLbRouteExtensionPollingUntilDone(
     request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LbRouteExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LbRouteExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createLbRouteExtensionPollingUntilDone(
     parent: Swift.String,
     lbRouteExtension: LbRouteExtension?,
     lbRouteExtensionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
+  ) async throws -> LbRouteExtension {
     let request = CreateLbRouteExtensionRequest().with {
       $0.parent = parent
       $0.lbRouteExtension = lbRouteExtension
@@ -1164,26 +1159,21 @@ extension Clients.DepServiceProtocol {
   }
 
   public func updateLbRouteExtensionPollingUntilDone(request: UpdateLbRouteExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<LbRouteExtension>
+    async throws -> LbRouteExtension
   {
-    try await self.updateLbRouteExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.updateLbRouteExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func updateLbRouteExtensionPollingUntilDone(
     request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LbRouteExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LbRouteExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateLbRouteExtensionPollingUntilDone(
     lbRouteExtension: LbRouteExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<LbRouteExtension> {
+  ) async throws -> LbRouteExtension {
     let request = UpdateLbRouteExtensionRequest().with {
       $0.lbRouteExtension = lbRouteExtension
       $0.updateMask = updateMask
@@ -1204,28 +1194,24 @@ extension Clients.DepServiceProtocol {
   }
 
   public func deleteLbRouteExtensionPollingUntilDone(request: DeleteLbRouteExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteLbRouteExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteLbRouteExtensionPollingUntilDone(
     request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteLbRouteExtensionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteLbRouteExtensionRequest().with {
       $0.name = name
     }
-    return try await self.deleteLbRouteExtensionPollingUntilDone(request: request)
+    try await self.deleteLbRouteExtensionPollingUntilDone(request: request)
   }
 
   public func listLbEdgeExtensions(request: ListLbEdgeExtensionsRequest) async throws
@@ -1305,27 +1291,22 @@ extension Clients.DepServiceProtocol {
   }
 
   public func createLbEdgeExtensionPollingUntilDone(request: CreateLbEdgeExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<LbEdgeExtension>
+    async throws -> LbEdgeExtension
   {
-    try await self.createLbEdgeExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.createLbEdgeExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func createLbEdgeExtensionPollingUntilDone(
     request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LbEdgeExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LbEdgeExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createLbEdgeExtensionPollingUntilDone(
     parent: Swift.String,
     lbEdgeExtension: LbEdgeExtension?,
     lbEdgeExtensionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
+  ) async throws -> LbEdgeExtension {
     let request = CreateLbEdgeExtensionRequest().with {
       $0.parent = parent
       $0.lbEdgeExtension = lbEdgeExtension
@@ -1347,26 +1328,21 @@ extension Clients.DepServiceProtocol {
   }
 
   public func updateLbEdgeExtensionPollingUntilDone(request: UpdateLbEdgeExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<LbEdgeExtension>
+    async throws -> LbEdgeExtension
   {
-    try await self.updateLbEdgeExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.updateLbEdgeExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func updateLbEdgeExtensionPollingUntilDone(
     request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<LbEdgeExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LbEdgeExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateLbEdgeExtensionPollingUntilDone(
     lbEdgeExtension: LbEdgeExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<LbEdgeExtension> {
+  ) async throws -> LbEdgeExtension {
     let request = UpdateLbEdgeExtensionRequest().with {
       $0.lbEdgeExtension = lbEdgeExtension
       $0.updateMask = updateMask
@@ -1387,28 +1363,24 @@ extension Clients.DepServiceProtocol {
   }
 
   public func deleteLbEdgeExtensionPollingUntilDone(request: DeleteLbEdgeExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteLbEdgeExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteLbEdgeExtensionPollingUntilDone(
     request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteLbEdgeExtensionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteLbEdgeExtensionRequest().with {
       $0.name = name
     }
-    return try await self.deleteLbEdgeExtensionPollingUntilDone(request: request)
+    try await self.deleteLbEdgeExtensionPollingUntilDone(request: request)
   }
 
   public func listAuthzExtensions(request: ListAuthzExtensionsRequest) async throws
@@ -1488,27 +1460,22 @@ extension Clients.DepServiceProtocol {
   }
 
   public func createAuthzExtensionPollingUntilDone(request: CreateAuthzExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<AuthzExtension>
+    async throws -> AuthzExtension
   {
-    try await self.createAuthzExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.createAuthzExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func createAuthzExtensionPollingUntilDone(
     request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuthzExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuthzExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAuthzExtensionPollingUntilDone(
     parent: Swift.String,
     authzExtension: AuthzExtension?,
     authzExtensionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
+  ) async throws -> AuthzExtension {
     let request = CreateAuthzExtensionRequest().with {
       $0.parent = parent
       $0.authzExtension = authzExtension
@@ -1530,26 +1497,21 @@ extension Clients.DepServiceProtocol {
   }
 
   public func updateAuthzExtensionPollingUntilDone(request: UpdateAuthzExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<AuthzExtension>
+    async throws -> AuthzExtension
   {
-    try await self.updateAuthzExtensionPollingUntilDone(request: request, options: .init())
+    return try await self.updateAuthzExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func updateAuthzExtensionPollingUntilDone(
     request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuthzExtension>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuthzExtension {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateAuthzExtensionPollingUntilDone(
     authzExtension: AuthzExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<AuthzExtension> {
+  ) async throws -> AuthzExtension {
     let request = UpdateAuthzExtensionRequest().with {
       $0.authzExtension = authzExtension
       $0.updateMask = updateMask
@@ -1570,28 +1532,24 @@ extension Clients.DepServiceProtocol {
   }
 
   public func deleteAuthzExtensionPollingUntilDone(request: DeleteAuthzExtensionRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteAuthzExtensionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAuthzExtensionPollingUntilDone(
     request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAuthzExtensionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAuthzExtensionRequest().with {
       $0.name = name
     }
-    return try await self.deleteAuthzExtensionPollingUntilDone(request: request)
+    try await self.deleteAuthzExtensionPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

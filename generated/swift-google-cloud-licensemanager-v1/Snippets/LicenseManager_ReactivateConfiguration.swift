@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LicenseManagerClient) async throws {
-  let poller = try await client.reactivateConfigurationPollingUntilDone(
+  let response = try await client.reactivateConfigurationPollingUntilDone(
     request: ReactivateConfigurationRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

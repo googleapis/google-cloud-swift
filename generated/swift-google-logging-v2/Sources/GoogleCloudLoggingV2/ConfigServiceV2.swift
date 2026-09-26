@@ -78,7 +78,7 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// @Snippet(path: "ConfigServiceV2_CreateBucketAsync")
   public func createBucketAsyncPollingUntilDone(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LogBucket> {
+  ) async throws -> LogBucket {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LogBucket>.State in
@@ -91,12 +91,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates a log bucket asynchronously.
@@ -123,7 +124,7 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// @Snippet(path: "ConfigServiceV2_UpdateBucketAsync")
   public func updateBucketAsyncPollingUntilDone(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LogBucket> {
+  ) async throws -> LogBucket {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<LogBucket>.State in
@@ -136,12 +137,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a log bucket that can be used to store log entries. After a bucket
@@ -315,7 +317,7 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// @Snippet(path: "ConfigServiceV2_CreateLink")
   public func createLinkPollingUntilDone(
     request: CreateLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Link> {
+  ) async throws -> Link {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Link>.State in
@@ -328,12 +330,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a link. This will also delete the corresponding BigQuery linked
@@ -352,7 +355,7 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// @Snippet(path: "ConfigServiceV2_DeleteLink")
   public func deleteLinkPollingUntilDone(
     request: DeleteLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -365,12 +368,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists links.
@@ -540,7 +544,7 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// @Snippet(path: "ConfigServiceV2_CopyLogEntries")
   public func copyLogEntriesPollingUntilDone(
     request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CopyLogEntriesResponse> {
+  ) async throws -> CopyLogEntriesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CopyLogEntriesResponse>.State in
@@ -554,12 +558,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -621,7 +626,7 @@ extension Clients {
     /// See `ConfigServiceV2Client.createBucketAsync`.
     func createBucketAsyncPollingUntilDone(
       request: CreateBucketRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LogBucket>
+    ) async throws -> LogBucket
 
     /// See `ConfigServiceV2Client.updateBucketAsync`.
     func updateBucketAsync(
@@ -631,7 +636,7 @@ extension Clients {
     /// See `ConfigServiceV2Client.updateBucketAsync`.
     func updateBucketAsyncPollingUntilDone(
       request: UpdateBucketRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<LogBucket>
+    ) async throws -> LogBucket
 
     /// See `ConfigServiceV2Client.createBucket`.
     func createBucket(
@@ -711,7 +716,7 @@ extension Clients {
     /// See `ConfigServiceV2Client.createLink`.
     func createLinkPollingUntilDone(
       request: CreateLinkRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Link>
+    ) async throws -> Link
 
     /// See `ConfigServiceV2Client.deleteLink`.
     func deleteLink(
@@ -721,7 +726,7 @@ extension Clients {
     /// See `ConfigServiceV2Client.deleteLink`.
     func deleteLinkPollingUntilDone(
       request: DeleteLinkRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `ConfigServiceV2Client.listLinks`.
     func listLinks(
@@ -786,7 +791,7 @@ extension Clients {
     /// See `ConfigServiceV2Client.copyLogEntries`.
     func copyLogEntriesPollingUntilDone(
       request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CopyLogEntriesResponse>
+    ) async throws -> CopyLogEntriesResponse
 
     /// See `ConfigServiceV2Client.listOperations`.
     func listOperations(
@@ -867,19 +872,15 @@ extension Clients.ConfigServiceV2Protocol {
   }
 
   public func createBucketAsyncPollingUntilDone(request: CreateBucketRequest) async throws
-    -> any GoogleGax.PollableOperation<LogBucket>
+    -> LogBucket
   {
-    try await self.createBucketAsyncPollingUntilDone(request: request, options: .init())
+    return try await self.createBucketAsyncPollingUntilDone(request: request, options: .init())
   }
 
   public func createBucketAsyncPollingUntilDone(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LogBucket> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<LogBucket>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LogBucket {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBucketAsync(request: UpdateBucketRequest) async throws
@@ -895,19 +896,15 @@ extension Clients.ConfigServiceV2Protocol {
   }
 
   public func updateBucketAsyncPollingUntilDone(request: UpdateBucketRequest) async throws
-    -> any GoogleGax.PollableOperation<LogBucket>
+    -> LogBucket
   {
-    try await self.updateBucketAsyncPollingUntilDone(request: request, options: .init())
+    return try await self.updateBucketAsyncPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBucketAsyncPollingUntilDone(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<LogBucket> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<LogBucket>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> LogBucket {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBucket(request: CreateBucketRequest) async throws
@@ -1181,27 +1178,21 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createLinkPollingUntilDone(request: CreateLinkRequest) async throws -> any GoogleGax
-    .PollableOperation<Link>
-  {
-    try await self.createLinkPollingUntilDone(request: request, options: .init())
+  public func createLinkPollingUntilDone(request: CreateLinkRequest) async throws -> Link {
+    return try await self.createLinkPollingUntilDone(request: request, options: .init())
   }
 
   public func createLinkPollingUntilDone(
     request: CreateLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Link> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Link>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Link {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createLinkPollingUntilDone(
     parent: Swift.String,
     link: Link?,
     linkId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Link> {
+  ) async throws -> Link {
     let request = CreateLinkRequest().with {
       $0.parent = parent
       $0.link = link
@@ -1220,29 +1211,23 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteLinkPollingUntilDone(request: DeleteLinkRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteLinkPollingUntilDone(request: DeleteLinkRequest) async throws {
     try await self.deleteLinkPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteLinkPollingUntilDone(
     request: DeleteLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteLinkPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteLinkRequest().with {
       $0.name = name
     }
-    return try await self.deleteLinkPollingUntilDone(request: request)
+    try await self.deleteLinkPollingUntilDone(request: request)
   }
 
   public func listLinks(request: ListLinksRequest) async throws
@@ -1516,20 +1501,15 @@ extension Clients.ConfigServiceV2Protocol {
   }
 
   public func copyLogEntriesPollingUntilDone(request: CopyLogEntriesRequest) async throws
-    -> any GoogleGax.PollableOperation<CopyLogEntriesResponse>
+    -> CopyLogEntriesResponse
   {
-    try await self.copyLogEntriesPollingUntilDone(request: request, options: .init())
+    return try await self.copyLogEntriesPollingUntilDone(request: request, options: .init())
   }
 
   public func copyLogEntriesPollingUntilDone(
     request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CopyLogEntriesResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CopyLogEntriesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CopyLogEntriesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

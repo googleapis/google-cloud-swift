@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: InterceptClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createInterceptDeploymentPollingUntilDone(
+  let response = try await client.createInterceptDeploymentPollingUntilDone(
     request: CreateInterceptDeploymentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.interceptDeployment = InterceptDeployment() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

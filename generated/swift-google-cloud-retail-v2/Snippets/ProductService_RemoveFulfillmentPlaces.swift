@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProductServiceClient) async throws {
-  let poller = try await client.removeFulfillmentPlacesPollingUntilDone(
+  let response = try await client.removeFulfillmentPlacesPollingUntilDone(
     request: RemoveFulfillmentPlacesRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

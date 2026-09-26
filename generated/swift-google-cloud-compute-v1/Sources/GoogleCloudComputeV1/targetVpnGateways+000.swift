@@ -67,7 +67,7 @@
     /// @Snippet(path: "targetVpnGateways_delete")
     public func deletePollingUntilDone(
       request: TargetVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -95,12 +95,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns the specified target VPN gateway.
@@ -128,7 +129,7 @@
     /// @Snippet(path: "targetVpnGateways_insert")
     public func insertPollingUntilDone(
       request: TargetVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -156,12 +157,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves a list of target VPN gateways available to the specified
@@ -190,7 +192,7 @@
     /// @Snippet(path: "targetVpnGateways_setLabels")
     public func setLabelsPollingUntilDone(
       request: TargetVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -218,12 +220,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the specified region-specific Operations resource.
@@ -256,7 +259,7 @@
       /// See `TargetVpnGatewaysClient.delete`.
       func deletePollingUntilDone(
         request: TargetVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetVpnGatewaysClient.`get``.
       func `get`(
@@ -271,7 +274,7 @@
       /// See `TargetVpnGatewaysClient.insert`.
       func insertPollingUntilDone(
         request: TargetVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetVpnGatewaysClient.list`.
       func list(
@@ -286,7 +289,7 @@
       /// See `TargetVpnGatewaysClient.setLabels`.
       func setLabelsPollingUntilDone(
         request: TargetVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
     }
   }
 
@@ -352,27 +355,21 @@
 
     public func deletePollingUntilDone(
       request: TargetVpnGatewaysClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: TargetVpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       targetVpnGateway: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetVpnGatewaysClient.DeleteRequest().with {
         $0.project = project
         $0.region = region
@@ -420,27 +417,21 @@
 
     public func insertPollingUntilDone(
       request: TargetVpnGatewaysClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: TargetVpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       body: TargetVpnGateway?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetVpnGatewaysClient.InsertRequest().with {
         $0.project = project
         $0.region = region
@@ -508,20 +499,14 @@
 
     public func setLabelsPollingUntilDone(
       request: TargetVpnGatewaysClient.SetLabelsRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setLabelsPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setLabelsPollingUntilDone(request: request, options: .init())
     }
 
     public func setLabelsPollingUntilDone(
       request: TargetVpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setLabelsPollingUntilDone(
@@ -529,7 +514,7 @@
       region: Swift.String,
       resource: Swift.String,
       body: RegionSetLabelsRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetVpnGatewaysClient.SetLabelsRequest().with {
         $0.project = project
         $0.region = region

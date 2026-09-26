@@ -76,7 +76,7 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// @Snippet(path: "Applications_CreateApplication")
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Application> {
+  ) async throws -> Application {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
@@ -89,12 +89,13 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the specified Application resource.
@@ -121,7 +122,7 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// @Snippet(path: "Applications_UpdateApplication")
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Application> {
+  ) async throws -> Application {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
@@ -134,12 +135,13 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Recreates the required App Engine features for the specified App Engine
@@ -174,7 +176,7 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// @Snippet(path: "Applications_RepairApplication")
   public func repairApplicationPollingUntilDone(
     request: RepairApplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Application> {
+  ) async throws -> Application {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Application>.State in
@@ -187,12 +189,13 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -238,7 +241,7 @@ extension Clients {
     /// See `ApplicationsClient.createApplication`.
     func createApplicationPollingUntilDone(
       request: CreateApplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Application>
+    ) async throws -> Application
 
     /// See `ApplicationsClient.updateApplication`.
     func updateApplication(
@@ -248,7 +251,7 @@ extension Clients {
     /// See `ApplicationsClient.updateApplication`.
     func updateApplicationPollingUntilDone(
       request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Application>
+    ) async throws -> Application
 
     /// See `ApplicationsClient.repairApplication`.
     func repairApplication(
@@ -258,7 +261,7 @@ extension Clients {
     /// See `ApplicationsClient.repairApplication`.
     func repairApplicationPollingUntilDone(
       request: RepairApplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Application>
+    ) async throws -> Application
 
     /// See `ApplicationsClient.listOperations`.
     func listOperations(
@@ -303,19 +306,15 @@ extension Clients.ApplicationsProtocol {
   }
 
   public func createApplicationPollingUntilDone(request: CreateApplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Application>
+    -> Application
   {
-    try await self.createApplicationPollingUntilDone(request: request, options: .init())
+    return try await self.createApplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Application> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Application {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateApplication(request: UpdateApplicationRequest) async throws
@@ -331,19 +330,15 @@ extension Clients.ApplicationsProtocol {
   }
 
   public func updateApplicationPollingUntilDone(request: UpdateApplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Application>
+    -> Application
   {
-    try await self.updateApplicationPollingUntilDone(request: request, options: .init())
+    return try await self.updateApplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Application> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Application {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func repairApplication(request: RepairApplicationRequest) async throws
@@ -359,19 +354,15 @@ extension Clients.ApplicationsProtocol {
   }
 
   public func repairApplicationPollingUntilDone(request: RepairApplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Application>
+    -> Application
   {
-    try await self.repairApplicationPollingUntilDone(request: request, options: .init())
+    return try await self.repairApplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func repairApplicationPollingUntilDone(
     request: RepairApplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Application> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Application>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Application {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

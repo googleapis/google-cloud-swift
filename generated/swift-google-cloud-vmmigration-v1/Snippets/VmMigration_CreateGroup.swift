@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGroupPollingUntilDone(
+  let response = try await client.createGroupPollingUntilDone(
     request: CreateGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: VmMigrationClient, projectId: String, locationId: String) as
         $0.group = Group() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

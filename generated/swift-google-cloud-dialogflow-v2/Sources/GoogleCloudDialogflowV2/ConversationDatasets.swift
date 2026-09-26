@@ -85,7 +85,7 @@
     /// @Snippet(path: "ConversationDatasets_CreateConversationDataset")
     public func createConversationDatasetPollingUntilDone(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ConversationDataset> {
+    ) async throws -> ConversationDataset {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
@@ -99,12 +99,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the specified conversation dataset.
@@ -162,7 +163,7 @@
     /// @Snippet(path: "ConversationDatasets_DeleteConversationDataset")
     public func deleteConversationDatasetPollingUntilDone(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -176,12 +177,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Import data into the specified conversation dataset. Note that it
@@ -226,7 +228,7 @@
     /// @Snippet(path: "ConversationDatasets_ImportConversationData")
     public func importConversationDataPollingUntilDone(
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse> {
+    ) async throws -> ImportConversationDataOperationResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportConversationDataOperationResponse>.State in
@@ -241,12 +243,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -333,7 +336,7 @@
       /// See `ConversationDatasetsClient.createConversationDataset`.
       func createConversationDatasetPollingUntilDone(
         request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ConversationDataset>
+      ) async throws -> ConversationDataset
 
       /// See `ConversationDatasetsClient.getConversationDataset`.
       func getConversationDataset(
@@ -353,7 +356,7 @@
       /// See `ConversationDatasetsClient.deleteConversationDataset`.
       func deleteConversationDatasetPollingUntilDone(
         request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `ConversationDatasetsClient.importConversationData`.
       func importConversationData(
@@ -363,7 +366,7 @@
       /// See `ConversationDatasetsClient.importConversationData`.
       func importConversationDataPollingUntilDone(
         request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse>
+      ) async throws -> ImportConversationDataOperationResponse
 
       /// See `ConversationDatasetsClient.listLocations`.
       func listLocations(
@@ -402,26 +405,22 @@
     }
 
     public func createConversationDatasetPollingUntilDone(request: CreateConversationDatasetRequest)
-      async throws -> any GoogleGax.PollableOperation<ConversationDataset>
+      async throws -> ConversationDataset
     {
-      try await self.createConversationDatasetPollingUntilDone(request: request, options: .init())
+      return try await self.createConversationDatasetPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func createConversationDatasetPollingUntilDone(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ConversationDataset> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConversationDataset>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ConversationDataset {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createConversationDatasetPollingUntilDone(
       parent: Swift.String,
       conversationDataset: ConversationDataset?,
-    ) async throws -> any GoogleGax.PollableOperation<ConversationDataset> {
+    ) async throws -> ConversationDataset {
       let request = CreateConversationDatasetRequest().with {
         $0.parent = parent
         $0.conversationDataset = conversationDataset
@@ -507,29 +506,24 @@
     }
 
     public func deleteConversationDatasetPollingUntilDone(request: DeleteConversationDatasetRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.deleteConversationDatasetPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteConversationDatasetPollingUntilDone(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteConversationDatasetPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteConversationDatasetRequest().with {
         $0.name = name
       }
-      return try await self.deleteConversationDatasetPollingUntilDone(request: request)
+      try await self.deleteConversationDatasetPollingUntilDone(request: request)
     }
 
     public func importConversationData(request: ImportConversationDataRequest) async throws
@@ -545,21 +539,16 @@
     }
 
     public func importConversationDataPollingUntilDone(request: ImportConversationDataRequest)
-      async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse>
+      async throws -> ImportConversationDataOperationResponse
     {
-      try await self.importConversationDataPollingUntilDone(request: request, options: .init())
+      return try await self.importConversationDataPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func importConversationDataPollingUntilDone(
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportConversationDataOperationResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<ImportConversationDataOperationResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportConversationDataOperationResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: RapidMigrationAssessmentClient, projectId: String, locationId: String, collectorId: String
 ) async throws {
-  let poller = try await client.deleteCollectorPollingUntilDone(
+  let response = try await client.deleteCollectorPollingUntilDone(
     request: DeleteCollectorRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/collectors/\(collectorId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

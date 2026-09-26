@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, liveConfigId: String
 ) async throws {
-  let poller = try await client.updateLiveConfigPollingUntilDone(
+  let response = try await client.updateLiveConfigPollingUntilDone(
     request: UpdateLiveConfigRequest()
       .with {
         $0.liveConfig = LiveConfig().with {
@@ -33,7 +33,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

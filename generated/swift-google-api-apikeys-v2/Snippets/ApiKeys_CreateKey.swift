@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiKeysClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createKeyPollingUntilDone(
+  let response = try await client.createKeyPollingUntilDone(
     request: CreateKeyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -30,7 +30,6 @@ func sample(client: ApiKeysClient, projectId: String, locationId: String) async 
         $0.key = Key() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

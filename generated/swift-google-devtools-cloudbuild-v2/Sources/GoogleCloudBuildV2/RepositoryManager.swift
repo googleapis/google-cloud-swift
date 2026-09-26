@@ -57,7 +57,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_CreateConnection")
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Connection>.State in
@@ -70,12 +70,13 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets details of a single connection.
@@ -110,7 +111,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_UpdateConnection")
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Connection>.State in
@@ -123,12 +124,13 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single connection.
@@ -145,7 +147,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_DeleteConnection")
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -158,12 +160,13 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a Repository.
@@ -180,7 +183,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_CreateRepository")
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Repository> {
+  ) async throws -> Repository {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Repository>.State in
@@ -193,12 +196,13 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates multiple repositories inside a connection.
@@ -215,7 +219,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_BatchCreateRepositories")
   public func batchCreateRepositoriesPollingUntilDone(
     request: BatchCreateRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse> {
+  ) async throws -> BatchCreateRepositoriesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchCreateRepositoriesResponse>.State in
@@ -230,12 +234,13 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets details of a single repository.
@@ -270,7 +275,7 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// @Snippet(path: "RepositoryManager_DeleteRepository")
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -283,12 +288,13 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Fetches read/write token of a given repository.
@@ -404,7 +410,7 @@ extension Clients {
     /// See `RepositoryManagerClient.createConnection`.
     func createConnectionPollingUntilDone(
       request: CreateConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
+    ) async throws -> Connection
 
     /// See `RepositoryManagerClient.getConnection`.
     func getConnection(
@@ -424,7 +430,7 @@ extension Clients {
     /// See `RepositoryManagerClient.updateConnection`.
     func updateConnectionPollingUntilDone(
       request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
+    ) async throws -> Connection
 
     /// See `RepositoryManagerClient.deleteConnection`.
     func deleteConnection(
@@ -434,7 +440,7 @@ extension Clients {
     /// See `RepositoryManagerClient.deleteConnection`.
     func deleteConnectionPollingUntilDone(
       request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `RepositoryManagerClient.createRepository`.
     func createRepository(
@@ -444,7 +450,7 @@ extension Clients {
     /// See `RepositoryManagerClient.createRepository`.
     func createRepositoryPollingUntilDone(
       request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Repository>
+    ) async throws -> Repository
 
     /// See `RepositoryManagerClient.batchCreateRepositories`.
     func batchCreateRepositories(
@@ -454,7 +460,7 @@ extension Clients {
     /// See `RepositoryManagerClient.batchCreateRepositories`.
     func batchCreateRepositoriesPollingUntilDone(
       request: BatchCreateRepositoriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse>
+    ) async throws -> BatchCreateRepositoriesResponse
 
     /// See `RepositoryManagerClient.getRepository`.
     func getRepository(
@@ -474,7 +480,7 @@ extension Clients {
     /// See `RepositoryManagerClient.deleteRepository`.
     func deleteRepositoryPollingUntilDone(
       request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `RepositoryManagerClient.fetchReadWriteToken`.
     func fetchReadWriteToken(
@@ -533,26 +539,22 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func createConnectionPollingUntilDone(request: CreateConnectionRequest) async throws
-    -> any GoogleGax.PollableOperation<Connection>
+    -> Connection
   {
-    try await self.createConnectionPollingUntilDone(request: request, options: .init())
+    return try await self.createConnectionPollingUntilDone(request: request, options: .init())
   }
 
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Connection>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Connection {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createConnectionPollingUntilDone(
     parent: Swift.String,
     connection: Connection?,
     connectionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let request = CreateConnectionRequest().with {
       $0.parent = parent
       $0.connection = connection
@@ -637,25 +639,21 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func updateConnectionPollingUntilDone(request: UpdateConnectionRequest) async throws
-    -> any GoogleGax.PollableOperation<Connection>
+    -> Connection
   {
-    try await self.updateConnectionPollingUntilDone(request: request, options: .init())
+    return try await self.updateConnectionPollingUntilDone(request: request, options: .init())
   }
 
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Connection>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Connection {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateConnectionPollingUntilDone(
     connection: Connection?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection
       $0.updateMask = updateMask
@@ -675,29 +673,23 @@ extension Clients.RepositoryManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteConnectionPollingUntilDone(request: DeleteConnectionRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteConnectionPollingUntilDone(request: DeleteConnectionRequest) async throws {
     try await self.deleteConnectionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteConnectionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteConnectionRequest().with {
       $0.name = name
     }
-    return try await self.deleteConnectionPollingUntilDone(request: request)
+    try await self.deleteConnectionPollingUntilDone(request: request)
   }
 
   public func createRepository(request: CreateRepositoryRequest) async throws
@@ -713,26 +705,22 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func createRepositoryPollingUntilDone(request: CreateRepositoryRequest) async throws
-    -> any GoogleGax.PollableOperation<Repository>
+    -> Repository
   {
-    try await self.createRepositoryPollingUntilDone(request: request, options: .init())
+    return try await self.createRepositoryPollingUntilDone(request: request, options: .init())
   }
 
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Repository> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Repository>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Repository {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createRepositoryPollingUntilDone(
     parent: Swift.String,
     repository: Repository?,
     repositoryId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Repository> {
+  ) async throws -> Repository {
     let request = CreateRepositoryRequest().with {
       $0.parent = parent
       $0.repository = repository
@@ -754,27 +742,22 @@ extension Clients.RepositoryManagerProtocol {
   }
 
   public func batchCreateRepositoriesPollingUntilDone(request: BatchCreateRepositoriesRequest)
-    async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse>
+    async throws -> BatchCreateRepositoriesResponse
   {
-    try await self.batchCreateRepositoriesPollingUntilDone(request: request, options: .init())
+    return try await self.batchCreateRepositoriesPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func batchCreateRepositoriesPollingUntilDone(
     request: BatchCreateRepositoriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<BatchCreateRepositoriesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BatchCreateRepositoriesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func batchCreateRepositoriesPollingUntilDone(
     parent: Swift.String,
     requests: [CreateRepositoryRequest],
-  ) async throws -> any GoogleGax.PollableOperation<BatchCreateRepositoriesResponse> {
+  ) async throws -> BatchCreateRepositoriesResponse {
     let request = BatchCreateRepositoriesRequest().with {
       $0.parent = parent
       $0.requests = requests
@@ -857,29 +840,23 @@ extension Clients.RepositoryManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws {
     try await self.deleteRepositoryPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteRepositoryPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteRepositoryRequest().with {
       $0.name = name
     }
-    return try await self.deleteRepositoryPollingUntilDone(request: request)
+    try await self.deleteRepositoryPollingUntilDone(request: request)
   }
 
   public func fetchReadWriteToken(request: FetchReadWriteTokenRequest) async throws

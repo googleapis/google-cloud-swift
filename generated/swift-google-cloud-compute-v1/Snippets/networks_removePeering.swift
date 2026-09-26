@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: NetworksClient) async throws {
-    let poller = try await client.removePeeringPollingUntilDone(
+    let response = try await client.removePeeringPollingUntilDone(
       request: NetworksClient.RemovePeeringRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

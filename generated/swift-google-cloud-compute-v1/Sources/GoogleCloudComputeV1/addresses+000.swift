@@ -67,7 +67,7 @@
     /// @Snippet(path: "addresses_delete")
     public func deletePollingUntilDone(
       request: AddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -95,12 +95,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns the specified address resource.
@@ -128,7 +129,7 @@
     /// @Snippet(path: "addresses_insert")
     public func insertPollingUntilDone(
       request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -156,12 +157,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves a list of addresses contained within
@@ -188,7 +190,7 @@
     /// @Snippet(path: "addresses_move")
     public func movePollingUntilDone(
       request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -216,12 +218,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Sets the labels on an Address. To learn more about labels, read theLabeling
@@ -240,7 +243,7 @@
     /// @Snippet(path: "addresses_setLabels")
     public func setLabelsPollingUntilDone(
       request: AddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -268,12 +271,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns permissions that a caller has on the specified resource.
@@ -315,7 +319,7 @@
       /// See `AddressesClient.delete`.
       func deletePollingUntilDone(
         request: AddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.`get``.
       func `get`(
@@ -330,7 +334,7 @@
       /// See `AddressesClient.insert`.
       func insertPollingUntilDone(
         request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.list`.
       func list(
@@ -345,7 +349,7 @@
       /// See `AddressesClient.move`.
       func movePollingUntilDone(
         request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.setLabels`.
       func setLabels(
@@ -355,7 +359,7 @@
       /// See `AddressesClient.setLabels`.
       func setLabelsPollingUntilDone(
         request: AddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `AddressesClient.testIamPermissions`.
       func testIamPermissions(
@@ -426,27 +430,21 @@
 
     public func deletePollingUntilDone(
       request: AddressesClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: AddressesClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       address: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = AddressesClient.DeleteRequest().with {
         $0.project = project
         $0.region = region
@@ -494,27 +492,21 @@
 
     public func insertPollingUntilDone(
       request: AddressesClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: AddressesClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       body: Address?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = AddressesClient.InsertRequest().with {
         $0.project = project
         $0.region = region
@@ -582,20 +574,14 @@
 
     public func movePollingUntilDone(
       request: AddressesClient.MoveRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.movePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.movePollingUntilDone(request: request, options: .init())
     }
 
     public func movePollingUntilDone(
       request: AddressesClient.MoveRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func movePollingUntilDone(
@@ -603,7 +589,7 @@
       region: Swift.String,
       address: Swift.String,
       body: RegionAddressesMoveRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = AddressesClient.MoveRequest().with {
         $0.project = project
         $0.region = region
@@ -627,20 +613,14 @@
 
     public func setLabelsPollingUntilDone(
       request: AddressesClient.SetLabelsRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setLabelsPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setLabelsPollingUntilDone(request: request, options: .init())
     }
 
     public func setLabelsPollingUntilDone(
       request: AddressesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setLabelsPollingUntilDone(
@@ -648,7 +628,7 @@
       region: Swift.String,
       resource: Swift.String,
       body: RegionSetLabelsRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = AddressesClient.SetLabelsRequest().with {
         $0.project = project
         $0.region = region

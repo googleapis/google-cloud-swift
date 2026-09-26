@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: CloudRedisClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.updateInstancePollingUntilDone(
+  let response = try await client.updateInstancePollingUntilDone(
     request: UpdateInstanceRequest()
       .with {
         $0.instance = Instance().with {
@@ -34,7 +34,6 @@ func sample(client: CloudRedisClient, projectId: String, locationId: String, ins
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

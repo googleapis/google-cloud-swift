@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DatastreamClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createPrivateConnectionPollingUntilDone(
+  let response = try await client.createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.privateConnection = PrivateConnection() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

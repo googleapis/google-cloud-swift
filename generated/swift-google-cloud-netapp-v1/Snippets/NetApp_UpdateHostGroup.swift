@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, hostGroupId: String)
   async throws
 {
-  let poller = try await client.updateHostGroupPollingUntilDone(
+  let response = try await client.updateHostGroupPollingUntilDone(
     request: UpdateHostGroupRequest()
       .with {
         $0.hostGroup = HostGroup().with {
@@ -34,7 +34,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, hostGro
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

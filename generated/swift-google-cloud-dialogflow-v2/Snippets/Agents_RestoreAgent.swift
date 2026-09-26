@@ -23,11 +23,10 @@
   import GoogleLongRunning
 
   func sample(client: AgentsClient) async throws {
-    let poller = try await client.restoreAgentPollingUntilDone(
+    try await client.restoreAgentPollingUntilDone(
       request: RestoreAgentRequest()
         /* set fields using .with { $0... } */
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

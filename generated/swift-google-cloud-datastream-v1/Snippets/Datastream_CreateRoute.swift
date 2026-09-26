@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: DatastreamClient, projectId: String, locationId: String, privateConnectionId: String
 ) async throws {
-  let poller = try await client.createRoutePollingUntilDone(
+  let response = try await client.createRoutePollingUntilDone(
     request: CreateRouteRequest()
       .with {
         $0.parent =
@@ -34,7 +34,6 @@ func sample(
         $0.route = Route() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

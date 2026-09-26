@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, instanceId: String
 ) async throws {
-  let poller = try await client.deleteInstancePollingUntilDone(
+  try await client.deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

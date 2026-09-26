@@ -27,7 +27,7 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   loggingServerId: String
 ) async throws {
-  let poller = try await client.updateLoggingServerPollingUntilDone(
+  let response = try await client.updateLoggingServerPollingUntilDone(
     request: UpdateLoggingServerRequest()
       .with {
         $0.loggingServer = LoggingServer().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

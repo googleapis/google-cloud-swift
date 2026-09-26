@@ -25,14 +25,13 @@
   import GoogleWKT
 
   func sample(client: NotebookServiceClient, parent: String) async throws {
-    let poller = try await client.createNotebookRuntimeTemplatePollingUntilDone(
+    let response = try await client.createNotebookRuntimeTemplatePollingUntilDone(
       request: CreateNotebookRuntimeTemplateRequest()
         .with {
           $0.parent = "\(parent)"
           $0.notebookRuntimeTemplate = NotebookRuntimeTemplate() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -157,7 +157,7 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// @Snippet(path: "Messaging_SearchBlurbs")
   public func searchBlurbsPollingUntilDone(
     request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse> {
+  ) async throws -> SearchBlurbsResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
@@ -171,12 +171,13 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
@@ -344,7 +345,7 @@ extension Clients {
     /// See `MessagingClient.searchBlurbs`.
     func searchBlurbsPollingUntilDone(
       request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse>
+    ) async throws -> SearchBlurbsResponse
 
     /// See `MessagingClient.listLocations`.
     func listLocations(
@@ -594,26 +595,21 @@ extension Clients.MessagingProtocol {
   }
 
   public func searchBlurbsPollingUntilDone(request: SearchBlurbsRequest) async throws
-    -> any GoogleGax.PollableOperation<SearchBlurbsResponse>
+    -> SearchBlurbsResponse
   {
-    try await self.searchBlurbsPollingUntilDone(request: request, options: .init())
+    return try await self.searchBlurbsPollingUntilDone(request: request, options: .init())
   }
 
   public func searchBlurbsPollingUntilDone(
     request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SearchBlurbsResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SearchBlurbsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func searchBlurbsPollingUntilDone(
     parent: Swift.String,
     query: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<SearchBlurbsResponse> {
+  ) async throws -> SearchBlurbsResponse {
     let request = SearchBlurbsRequest().with {
       $0.parent = parent
       $0.query = query

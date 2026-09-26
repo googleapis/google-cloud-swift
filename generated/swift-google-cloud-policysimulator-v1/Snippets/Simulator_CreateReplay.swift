@@ -21,14 +21,13 @@ import GoogleCloudPolicySimulatorV1
 import GoogleLongRunning
 
 func sample(client: SimulatorClient, parent: String) async throws {
-  let poller = try await client.createReplayPollingUntilDone(
+  let response = try await client.createReplayPollingUntilDone(
     request: CreateReplayRequest()
       .with {
         $0.parent = "\(parent)"
         $0.replay = Replay() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

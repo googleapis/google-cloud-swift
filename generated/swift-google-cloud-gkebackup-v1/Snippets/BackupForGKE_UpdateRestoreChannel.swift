@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restoreChannelId: String
 ) async throws {
-  let poller = try await client.updateRestoreChannelPollingUntilDone(
+  let response = try await client.updateRestoreChannelPollingUntilDone(
     request: UpdateRestoreChannelRequest()
       .with {
         $0.restoreChannel = RestoreChannel().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

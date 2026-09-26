@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ReachabilityServiceClient, projectId: String, testId: String) async throws {
-  let poller = try await client.updateConnectivityTestPollingUntilDone(
+  let response = try await client.updateConnectivityTestPollingUntilDone(
     request: UpdateConnectivityTestRequest()
       .with {
         $0.resource = ConnectivityTest().with {
@@ -33,7 +33,6 @@ func sample(client: ReachabilityServiceClient, projectId: String, testId: String
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

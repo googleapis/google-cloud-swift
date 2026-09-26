@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: SpeechClient, projectId: String, locationId: String, customClassId: String)
   async throws
 {
-  let poller = try await client.updateCustomClassPollingUntilDone(
+  let response = try await client.updateCustomClassPollingUntilDone(
     request: UpdateCustomClassRequest()
       .with {
         $0.customClass = CustomClass().with {
@@ -34,7 +34,6 @@ func sample(client: SpeechClient, projectId: String, locationId: String, customC
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

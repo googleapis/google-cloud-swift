@@ -22,13 +22,12 @@
   import GoogleLongRunning
 
   func sample(client: CmekConfigServiceClient, projectId: String, locationId: String) async throws {
-    let poller = try await client.deleteCmekConfigPollingUntilDone(
+    try await client.deleteCmekConfigPollingUntilDone(
       request: DeleteCmekConfigRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/cmekConfig"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

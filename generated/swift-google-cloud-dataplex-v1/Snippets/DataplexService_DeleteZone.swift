@@ -27,13 +27,12 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String
 ) async throws {
-  let poller = try await client.deleteZonePollingUntilDone(
+  try await client.deleteZonePollingUntilDone(
     request: DeleteZoneRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

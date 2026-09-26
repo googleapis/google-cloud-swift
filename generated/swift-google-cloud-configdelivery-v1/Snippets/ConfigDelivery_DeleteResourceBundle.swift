@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String
 ) async throws {
-  let poller = try await client.deleteResourceBundlePollingUntilDone(
+  try await client.deleteResourceBundlePollingUntilDone(
     request: DeleteResourceBundleRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/resourceBundles/\(resourceBundleId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

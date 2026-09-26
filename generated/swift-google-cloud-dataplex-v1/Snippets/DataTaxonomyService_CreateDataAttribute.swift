@@ -29,14 +29,13 @@ import GoogleWKT
 func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String, dataTaxonomyId: String
 ) async throws {
-  let poller = try await client.createDataAttributePollingUntilDone(
+  let response = try await client.createDataAttributePollingUntilDone(
     request: CreateDataAttributeRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/dataTaxonomies/\(dataTaxonomyId)"
         $0.dataAttribute = DataAttribute() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

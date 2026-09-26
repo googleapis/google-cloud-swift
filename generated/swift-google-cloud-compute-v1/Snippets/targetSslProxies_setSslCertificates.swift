@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetSslProxiesClient) async throws {
-    let poller = try await client.setSslCertificatesPollingUntilDone(
+    let response = try await client.setSslCertificatesPollingUntilDone(
       request: TargetSslProxiesClient.SetSslCertificatesRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

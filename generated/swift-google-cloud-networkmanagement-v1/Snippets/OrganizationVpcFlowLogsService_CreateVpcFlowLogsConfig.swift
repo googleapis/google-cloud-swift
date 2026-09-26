@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(client: OrganizationVpcFlowLogsServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createVpcFlowLogsConfigPollingUntilDone(
+  let response = try await client.createVpcFlowLogsConfigPollingUntilDone(
     request: CreateVpcFlowLogsConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.vpcFlowLogsConfig = VpcFlowLogsConfig() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

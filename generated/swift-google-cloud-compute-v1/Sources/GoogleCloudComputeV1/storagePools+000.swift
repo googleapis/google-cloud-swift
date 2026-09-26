@@ -75,7 +75,7 @@
     /// @Snippet(path: "storagePools_delete")
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -103,12 +103,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns a specified storage pool. Gets a list of available
@@ -147,7 +148,7 @@
     /// @Snippet(path: "storagePools_insert")
     public func insertPollingUntilDone(
       request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -175,12 +176,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves a list of storage pools contained within
@@ -243,7 +245,7 @@
     /// @Snippet(path: "storagePools_update")
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -271,12 +273,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the specified zone-specific Operations resource.
@@ -309,7 +312,7 @@
       /// See `StoragePoolsClient.delete`.
       func deletePollingUntilDone(
         request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.`get``.
       func `get`(
@@ -329,7 +332,7 @@
       /// See `StoragePoolsClient.insert`.
       func insertPollingUntilDone(
         request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `StoragePoolsClient.list`.
       func list(
@@ -359,7 +362,7 @@
       /// See `StoragePoolsClient.update`.
       func updatePollingUntilDone(
         request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
     }
   }
 
@@ -425,27 +428,21 @@
 
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       storagePool: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = StoragePoolsClient.DeleteRequest().with {
         $0.project = project
         $0.zone = zone
@@ -518,27 +515,21 @@
 
     public func insertPollingUntilDone(
       request: StoragePoolsClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       body: StoragePool?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = StoragePoolsClient.InsertRequest().with {
         $0.project = project
         $0.zone = zone
@@ -706,20 +697,14 @@
 
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.updatePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.updatePollingUntilDone(request: request, options: .init())
     }
 
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updatePollingUntilDone(
@@ -727,7 +712,7 @@
       zone: Swift.String,
       storagePool: Swift.String,
       body: StoragePool?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = StoragePoolsClient.UpdateRequest().with {
         $0.project = project
         $0.zone = zone

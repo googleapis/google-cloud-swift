@@ -21,11 +21,10 @@ import GoogleIAMV2
 import GoogleLongRunning
 
 func sample(client: PoliciesClient) async throws {
-  let poller = try await client.createPolicyPollingUntilDone(
+  let response = try await client.createPolicyPollingUntilDone(
     request: CreatePolicyRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

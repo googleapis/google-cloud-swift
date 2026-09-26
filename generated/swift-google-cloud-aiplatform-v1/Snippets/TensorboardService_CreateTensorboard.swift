@@ -27,14 +27,13 @@
   func sample(
     client: TensorboardServiceClient, projectId: String, locationId: String, tensorboardId: String
   ) async throws {
-    let poller = try await client.createTensorboardPollingUntilDone(
+    let response = try await client.createTensorboardPollingUntilDone(
       request: CreateTensorboardRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/tensorboards/\(tensorboardId)"
           $0.tensorboard = Tensorboard() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

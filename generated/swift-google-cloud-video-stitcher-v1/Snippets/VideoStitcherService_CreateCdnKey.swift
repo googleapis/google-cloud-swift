@@ -23,14 +23,13 @@ import GoogleWKT
 
 func sample(client: VideoStitcherServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createCdnKeyPollingUntilDone(
+  let response = try await client.createCdnKeyPollingUntilDone(
     request: CreateCdnKeyRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.cdnKey = CdnKey() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

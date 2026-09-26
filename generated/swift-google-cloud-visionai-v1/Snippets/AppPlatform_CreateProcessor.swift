@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AppPlatformClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createProcessorPollingUntilDone(
+  let response = try await client.createProcessorPollingUntilDone(
     request: CreateProcessorRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: AppPlatformClient, projectId: String, locationId: String) as
         $0.processor = Processor() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

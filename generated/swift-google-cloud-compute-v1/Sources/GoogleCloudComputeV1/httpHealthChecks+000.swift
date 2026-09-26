@@ -55,7 +55,7 @@
     /// @Snippet(path: "httpHealthChecks_delete")
     public func deletePollingUntilDone(
       request: HttpHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -82,12 +82,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns the specified HttpHealthCheck resource.
@@ -115,7 +116,7 @@
     /// @Snippet(path: "httpHealthChecks_insert")
     public func insertPollingUntilDone(
       request: HttpHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -142,12 +143,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the list of HttpHealthCheck resources available to the specified
@@ -180,7 +182,7 @@
     /// @Snippet(path: "httpHealthChecks_patch")
     public func patchPollingUntilDone(
       request: HttpHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -207,12 +209,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns permissions that a caller has on the specified resource.
@@ -240,7 +243,7 @@
     /// @Snippet(path: "httpHealthChecks_update")
     public func updatePollingUntilDone(
       request: HttpHealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -267,12 +270,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the specified Operations resource.
@@ -300,7 +304,7 @@
       /// See `HttpHealthChecksClient.delete`.
       func deletePollingUntilDone(
         request: HttpHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `HttpHealthChecksClient.`get``.
       func `get`(
@@ -315,7 +319,7 @@
       /// See `HttpHealthChecksClient.insert`.
       func insertPollingUntilDone(
         request: HttpHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `HttpHealthChecksClient.list`.
       func list(
@@ -330,7 +334,7 @@
       /// See `HttpHealthChecksClient.patch`.
       func patchPollingUntilDone(
         request: HttpHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `HttpHealthChecksClient.testIamPermissions`.
       func testIamPermissions(
@@ -345,7 +349,7 @@
       /// See `HttpHealthChecksClient.update`.
       func updatePollingUntilDone(
         request: HttpHealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
     }
   }
 
@@ -365,26 +369,20 @@
 
     public func deletePollingUntilDone(
       request: HttpHealthChecksClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: HttpHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       httpHealthCheck: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = HttpHealthChecksClient.DeleteRequest().with {
         $0.project = project
         $0.httpHealthCheck = httpHealthCheck
@@ -429,26 +427,20 @@
 
     public func insertPollingUntilDone(
       request: HttpHealthChecksClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: HttpHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       body: HttpHealthCheck?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = HttpHealthChecksClient.InsertRequest().with {
         $0.project = project
         $0.body = body
@@ -513,27 +505,21 @@
 
     public func patchPollingUntilDone(
       request: HttpHealthChecksClient.PatchRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patchPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.patchPollingUntilDone(request: request, options: .init())
     }
 
     public func patchPollingUntilDone(
       request: HttpHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func patchPollingUntilDone(
       project: Swift.String,
       httpHealthCheck: Swift.String,
       body: HttpHealthCheck?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = HttpHealthChecksClient.PatchRequest().with {
         $0.project = project
         $0.httpHealthCheck = httpHealthCheck
@@ -581,27 +567,21 @@
 
     public func updatePollingUntilDone(
       request: HttpHealthChecksClient.UpdateRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.updatePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.updatePollingUntilDone(request: request, options: .init())
     }
 
     public func updatePollingUntilDone(
       request: HttpHealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updatePollingUntilDone(
       project: Swift.String,
       httpHealthCheck: Swift.String,
       body: HttpHealthCheck?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = HttpHealthChecksClient.UpdateRequest().with {
         $0.project = project
         $0.httpHealthCheck = httpHealthCheck

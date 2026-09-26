@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: DatastreamClient, projectId: String, locationId: String, streamId: String)
   async throws
 {
-  let poller = try await client.updateStreamPollingUntilDone(
+  let response = try await client.updateStreamPollingUntilDone(
     request: UpdateStreamRequest()
       .with {
         $0.stream = Stream().with {
@@ -34,7 +34,6 @@ func sample(client: DatastreamClient, projectId: String, locationId: String, str
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

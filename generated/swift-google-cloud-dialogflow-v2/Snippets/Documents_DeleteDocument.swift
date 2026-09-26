@@ -26,14 +26,13 @@
   func sample(
     client: DocumentsClient, projectId: String, knowledgeBaseId: String, documentId: String
   ) async throws {
-    let poller = try await client.deleteDocumentPollingUntilDone(
+    try await client.deleteDocumentPollingUntilDone(
       request: DeleteDocumentRequest()
         .with {
           $0.name =
             "projects/\(projectId)/knowledgeBases/\(knowledgeBaseId)/documents/\(documentId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

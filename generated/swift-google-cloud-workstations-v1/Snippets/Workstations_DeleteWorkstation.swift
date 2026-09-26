@@ -26,14 +26,13 @@ func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String,
   workstationConfigId: String, workstationId: String
 ) async throws {
-  let poller = try await client.deleteWorkstationPollingUntilDone(
+  let response = try await client.deleteWorkstationPollingUntilDone(
     request: DeleteWorkstationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/workstationClusters/\(workstationClusterId)/workstationConfigs/\(workstationConfigId)/workstations/\(workstationId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

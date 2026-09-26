@@ -114,7 +114,7 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// @Snippet(path: "OrgPolicyViolationsPreviewService_CreateOrgPolicyViolationsPreview")
   public func createOrgPolicyViolationsPreviewPollingUntilDone(
     request: CreateOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview> {
+  ) async throws -> OrgPolicyViolationsPreview {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<OrgPolicyViolationsPreview>.State in
@@ -129,12 +129,13 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// ListOrgPolicyViolations lists the [OrgPolicyViolations][] that are present
@@ -196,7 +197,7 @@ extension Clients {
     /// See `OrgPolicyViolationsPreviewServiceClient.createOrgPolicyViolationsPreview`.
     func createOrgPolicyViolationsPreviewPollingUntilDone(
       request: CreateOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview>
+    ) async throws -> OrgPolicyViolationsPreview
 
     /// See `OrgPolicyViolationsPreviewServiceClient.listOrgPolicyViolations`.
     func listOrgPolicyViolations(
@@ -296,28 +297,22 @@ extension Clients.OrgPolicyViolationsPreviewServiceProtocol {
 
   public func createOrgPolicyViolationsPreviewPollingUntilDone(
     request: CreateOrgPolicyViolationsPreviewRequest
-  ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview> {
-    try await self.createOrgPolicyViolationsPreviewPollingUntilDone(
+  ) async throws -> OrgPolicyViolationsPreview {
+    return try await self.createOrgPolicyViolationsPreviewPollingUntilDone(
       request: request, options: .init())
   }
 
   public func createOrgPolicyViolationsPreviewPollingUntilDone(
     request: CreateOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<OrgPolicyViolationsPreview>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> OrgPolicyViolationsPreview {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createOrgPolicyViolationsPreviewPollingUntilDone(
     parent: Swift.String,
     orgPolicyViolationsPreview: OrgPolicyViolationsPreview?,
     orgPolicyViolationsPreviewId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<OrgPolicyViolationsPreview> {
+  ) async throws -> OrgPolicyViolationsPreview {
     let request = CreateOrgPolicyViolationsPreviewRequest().with {
       $0.parent = parent
       $0.orgPolicyViolationsPreview = orgPolicyViolationsPreview

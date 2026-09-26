@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, deploymentId: String)
   async throws
 {
-  let poller = try await client.updateDeploymentPollingUntilDone(
+  let response = try await client.updateDeploymentPollingUntilDone(
     request: UpdateDeploymentRequest()
       .with {
         $0.deployment = Deployment().with {
@@ -35,7 +35,6 @@ func sample(client: ConfigClient, projectId: String, locationId: String, deploym
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

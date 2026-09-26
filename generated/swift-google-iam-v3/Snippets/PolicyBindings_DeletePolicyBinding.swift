@@ -24,14 +24,13 @@ import GoogleWKT
 func sample(
   client: PolicyBindingsClient, organizationId: String, locationId: String, policyBindingId: String
 ) async throws {
-  let poller = try await client.deletePolicyBindingPollingUntilDone(
+  try await client.deletePolicyBindingPollingUntilDone(
     request: DeletePolicyBindingRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/policyBindings/\(policyBindingId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

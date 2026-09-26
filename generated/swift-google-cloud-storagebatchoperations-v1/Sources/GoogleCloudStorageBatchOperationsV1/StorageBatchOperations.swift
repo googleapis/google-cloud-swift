@@ -78,7 +78,7 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// @Snippet(path: "StorageBatchOperations_CreateJob")
   public func createJobPollingUntilDone(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Job> {
+  ) async throws -> Job {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Job>.State in
@@ -91,12 +91,13 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a batch job.
@@ -223,7 +224,7 @@ extension Clients {
     /// See `StorageBatchOperationsClient.createJob`.
     func createJobPollingUntilDone(
       request: CreateJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Job>
+    ) async throws -> Job
 
     /// See `StorageBatchOperationsClient.deleteJob`.
     func deleteJob(
@@ -347,27 +348,21 @@ extension Clients.StorageBatchOperationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createJobPollingUntilDone(request: CreateJobRequest) async throws -> any GoogleGax
-    .PollableOperation<Job>
-  {
-    try await self.createJobPollingUntilDone(request: request, options: .init())
+  public func createJobPollingUntilDone(request: CreateJobRequest) async throws -> Job {
+    return try await self.createJobPollingUntilDone(request: request, options: .init())
   }
 
   public func createJobPollingUntilDone(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Job> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Job>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Job {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createJobPollingUntilDone(
     parent: Swift.String,
     job: Job?,
     jobId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Job> {
+  ) async throws -> Job {
     let request = CreateJobRequest().with {
       $0.parent = parent
       $0.job = job

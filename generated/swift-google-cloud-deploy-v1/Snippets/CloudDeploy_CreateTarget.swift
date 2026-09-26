@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudDeployClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createTargetPollingUntilDone(
+  let response = try await client.createTargetPollingUntilDone(
     request: CreateTargetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: CloudDeployClient, projectId: String, locationId: String) as
         $0.target = Target() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

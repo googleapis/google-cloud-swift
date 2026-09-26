@@ -58,7 +58,7 @@ public final class TextToSpeechLongAudioSynthesizeClient: Clients
   /// @Snippet(path: "TextToSpeechLongAudioSynthesize_SynthesizeLongAudio")
   public func synthesizeLongAudioPollingUntilDone(
     request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse> {
+  ) async throws -> SynthesizeLongAudioResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
@@ -73,12 +73,13 @@ public final class TextToSpeechLongAudioSynthesizeClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -119,7 +120,7 @@ extension Clients {
     /// See `TextToSpeechLongAudioSynthesizeClient.synthesizeLongAudio`.
     func synthesizeLongAudioPollingUntilDone(
       request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse>
+    ) async throws -> SynthesizeLongAudioResponse
 
     /// See `TextToSpeechLongAudioSynthesizeClient.listOperations`.
     func listOperations(
@@ -143,21 +144,15 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
   }
 
   public func synthesizeLongAudioPollingUntilDone(request: SynthesizeLongAudioRequest) async throws
-    -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse>
+    -> SynthesizeLongAudioResponse
   {
-    try await self.synthesizeLongAudioPollingUntilDone(request: request, options: .init())
+    return try await self.synthesizeLongAudioPollingUntilDone(request: request, options: .init())
   }
 
   public func synthesizeLongAudioPollingUntilDone(
     request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SynthesizeLongAudioResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<SynthesizeLongAudioResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SynthesizeLongAudioResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

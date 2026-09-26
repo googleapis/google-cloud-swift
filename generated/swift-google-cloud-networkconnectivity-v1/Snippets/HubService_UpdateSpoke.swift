@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: HubServiceClient, projectId: String, locationId: String, spokeId: String)
   async throws
 {
-  let poller = try await client.updateSpokePollingUntilDone(
+  let response = try await client.updateSpokePollingUntilDone(
     request: UpdateSpokeRequest()
       .with {
         $0.spoke = Spoke().with {
@@ -35,7 +35,6 @@ func sample(client: HubServiceClient, projectId: String, locationId: String, spo
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

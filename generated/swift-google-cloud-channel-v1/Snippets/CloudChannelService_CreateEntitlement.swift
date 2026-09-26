@@ -22,14 +22,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudChannelServiceClient, accountId: String, customerId: String) async throws {
-  let poller = try await client.createEntitlementPollingUntilDone(
+  let response = try await client.createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest()
       .with {
         $0.parent = "accounts/\(accountId)/customers/\(customerId)"
         $0.entitlement = Entitlement() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

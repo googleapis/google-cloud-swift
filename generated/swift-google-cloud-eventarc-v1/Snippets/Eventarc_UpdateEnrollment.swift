@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, enrollmentId: String)
   async throws
 {
-  let poller = try await client.updateEnrollmentPollingUntilDone(
+  let response = try await client.updateEnrollmentPollingUntilDone(
     request: UpdateEnrollmentRequest()
       .with {
         $0.enrollment = Enrollment().with {
@@ -35,7 +35,6 @@ func sample(client: EventarcClient, projectId: String, locationId: String, enrol
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -27,13 +27,12 @@
   func sample(client: ModelServiceClient, projectId: String, locationId: String, modelId: String)
     async throws
   {
-    let poller = try await client.deleteModelPollingUntilDone(
+    try await client.deleteModelPollingUntilDone(
       request: DeleteModelRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/models/\(modelId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

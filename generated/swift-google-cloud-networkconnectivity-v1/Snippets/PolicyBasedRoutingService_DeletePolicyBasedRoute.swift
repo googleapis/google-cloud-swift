@@ -25,13 +25,12 @@ import GoogleLongRunning
 func sample(client: PolicyBasedRoutingServiceClient, projectId: String, policyBasedRouteId: String)
   async throws
 {
-  let poller = try await client.deletePolicyBasedRoutePollingUntilDone(
+  try await client.deletePolicyBasedRoutePollingUntilDone(
     request: DeletePolicyBasedRouteRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/global/PolicyBasedRoutes/\(policyBasedRouteId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

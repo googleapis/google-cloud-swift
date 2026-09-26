@@ -59,7 +59,7 @@
     /// @Snippet(path: "ModelService_UploadModel")
     public func uploadModelPollingUntilDone(
       request: UploadModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UploadModelResponse> {
+    ) async throws -> UploadModelResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<UploadModelResponse>.State in
@@ -73,12 +73,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Gets a Model.
@@ -140,7 +141,7 @@
     /// @Snippet(path: "ModelService_UpdateExplanationDataset")
     public func updateExplanationDatasetPollingUntilDone(
       request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse> {
+    ) async throws -> UpdateExplanationDatasetResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<UpdateExplanationDatasetResponse>.State in
@@ -155,12 +156,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Deletes a Model.
@@ -199,7 +201,7 @@
     /// @Snippet(path: "ModelService_DeleteModel")
     public func deleteModelPollingUntilDone(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -213,12 +215,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Deletes a Model version.
@@ -253,7 +256,7 @@
     /// @Snippet(path: "ModelService_DeleteModelVersion")
     public func deleteModelVersionPollingUntilDone(
       request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -267,12 +270,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Merges a set of aliases for a Model version.
@@ -308,7 +312,7 @@
     /// @Snippet(path: "ModelService_ExportModel")
     public func exportModelPollingUntilDone(
       request: ExportModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportModelResponse> {
+    ) async throws -> ExportModelResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportModelResponse>.State in
@@ -322,12 +326,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Copies an already existing Vertex AI Model into the specified Location.
@@ -358,7 +363,7 @@
     /// @Snippet(path: "ModelService_CopyModel")
     public func copyModelPollingUntilDone(
       request: CopyModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CopyModelResponse> {
+    ) async throws -> CopyModelResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<CopyModelResponse>.State in
@@ -372,12 +377,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Imports an externally generated ModelEvaluation.
@@ -570,7 +576,7 @@
       /// See `ModelServiceClient.uploadModel`.
       func uploadModelPollingUntilDone(
         request: UploadModelRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<UploadModelResponse>
+      ) async throws -> UploadModelResponse
 
       /// See `ModelServiceClient.getModel`.
       func getModel(
@@ -605,7 +611,7 @@
       /// See `ModelServiceClient.updateExplanationDataset`.
       func updateExplanationDatasetPollingUntilDone(
         request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse>
+      ) async throws -> UpdateExplanationDatasetResponse
 
       /// See `ModelServiceClient.deleteModel`.
       func deleteModel(
@@ -615,7 +621,7 @@
       /// See `ModelServiceClient.deleteModel`.
       func deleteModelPollingUntilDone(
         request: DeleteModelRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `ModelServiceClient.deleteModelVersion`.
       func deleteModelVersion(
@@ -625,7 +631,7 @@
       /// See `ModelServiceClient.deleteModelVersion`.
       func deleteModelVersionPollingUntilDone(
         request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `ModelServiceClient.mergeVersionAliases`.
       func mergeVersionAliases(
@@ -640,7 +646,7 @@
       /// See `ModelServiceClient.exportModel`.
       func exportModelPollingUntilDone(
         request: ExportModelRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ExportModelResponse>
+      ) async throws -> ExportModelResponse
 
       /// See `ModelServiceClient.copyModel`.
       func copyModel(
@@ -650,7 +656,7 @@
       /// See `ModelServiceClient.copyModel`.
       func copyModelPollingUntilDone(
         request: CopyModelRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<CopyModelResponse>
+      ) async throws -> CopyModelResponse
 
       /// See `ModelServiceClient.importModelEvaluation`.
       func importModelEvaluation(
@@ -748,26 +754,21 @@
     }
 
     public func uploadModelPollingUntilDone(request: UploadModelRequest) async throws
-      -> any GoogleGax.PollableOperation<UploadModelResponse>
+      -> UploadModelResponse
     {
-      try await self.uploadModelPollingUntilDone(request: request, options: .init())
+      return try await self.uploadModelPollingUntilDone(request: request, options: .init())
     }
 
     public func uploadModelPollingUntilDone(
       request: UploadModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UploadModelResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<UploadModelResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> UploadModelResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func uploadModelPollingUntilDone(
       parent: Swift.String,
       model: Model?,
-    ) async throws -> any GoogleGax.PollableOperation<UploadModelResponse> {
+    ) async throws -> UploadModelResponse {
       let request = UploadModelRequest().with {
         $0.parent = parent
         $0.model = model
@@ -959,26 +960,21 @@
     }
 
     public func updateExplanationDatasetPollingUntilDone(request: UpdateExplanationDatasetRequest)
-      async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse>
+      async throws -> UpdateExplanationDatasetResponse
     {
-      try await self.updateExplanationDatasetPollingUntilDone(request: request, options: .init())
+      return try await self.updateExplanationDatasetPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func updateExplanationDatasetPollingUntilDone(
       request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<UpdateExplanationDatasetResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> UpdateExplanationDatasetResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updateExplanationDatasetPollingUntilDone(
       model: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<UpdateExplanationDatasetResponse> {
+    ) async throws -> UpdateExplanationDatasetResponse {
       let request = UpdateExplanationDatasetRequest().with {
         $0.model = model
       }
@@ -996,30 +992,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws {
       try await self.deleteModelPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteModelPollingUntilDone(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteModelPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteModelRequest().with {
         $0.name = name
       }
-      return try await self.deleteModelPollingUntilDone(request: request)
+      try await self.deleteModelPollingUntilDone(request: request)
     }
 
     public func deleteModelVersion(request: DeleteModelVersionRequest) async throws
@@ -1035,29 +1024,23 @@
     }
 
     public func deleteModelVersionPollingUntilDone(request: DeleteModelVersionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
     {
       try await self.deleteModelVersionPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteModelVersionPollingUntilDone(
       request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteModelVersionPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteModelVersionRequest().with {
         $0.name = name
       }
-      return try await self.deleteModelVersionPollingUntilDone(request: request)
+      try await self.deleteModelVersionPollingUntilDone(request: request)
     }
 
     public func mergeVersionAliases(request: MergeVersionAliasesRequest) async throws
@@ -1095,26 +1078,21 @@
     }
 
     public func exportModelPollingUntilDone(request: ExportModelRequest) async throws
-      -> any GoogleGax.PollableOperation<ExportModelResponse>
+      -> ExportModelResponse
     {
-      try await self.exportModelPollingUntilDone(request: request, options: .init())
+      return try await self.exportModelPollingUntilDone(request: request, options: .init())
     }
 
     public func exportModelPollingUntilDone(
       request: ExportModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportModelResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportModelResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ExportModelResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func exportModelPollingUntilDone(
       name: Swift.String,
       outputConfig: ExportModelRequest.OutputConfig?,
-    ) async throws -> any GoogleGax.PollableOperation<ExportModelResponse> {
+    ) async throws -> ExportModelResponse {
       let request = ExportModelRequest().with {
         $0.name = name
         $0.outputConfig = outputConfig
@@ -1132,27 +1110,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func copyModelPollingUntilDone(request: CopyModelRequest) async throws -> any GoogleGax
-      .PollableOperation<CopyModelResponse>
+    public func copyModelPollingUntilDone(request: CopyModelRequest) async throws
+      -> CopyModelResponse
     {
-      try await self.copyModelPollingUntilDone(request: request, options: .init())
+      return try await self.copyModelPollingUntilDone(request: request, options: .init())
     }
 
     public func copyModelPollingUntilDone(
       request: CopyModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CopyModelResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<CopyModelResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> CopyModelResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func copyModelPollingUntilDone(
       parent: Swift.String,
       sourceModel: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<CopyModelResponse> {
+    ) async throws -> CopyModelResponse {
       let request = CopyModelRequest().with {
         $0.parent = parent
         $0.sourceModel = sourceModel

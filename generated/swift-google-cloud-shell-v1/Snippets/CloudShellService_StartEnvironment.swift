@@ -21,11 +21,10 @@ import GoogleCloudShellV1
 import GoogleLongRunning
 
 func sample(client: CloudShellServiceClient) async throws {
-  let poller = try await client.startEnvironmentPollingUntilDone(
+  let response = try await client.startEnvironmentPollingUntilDone(
     request: StartEnvironmentRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

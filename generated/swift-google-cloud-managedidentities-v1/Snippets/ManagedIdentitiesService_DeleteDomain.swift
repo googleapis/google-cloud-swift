@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(
   client: ManagedIdentitiesServiceClient, projectId: String, locationId: String, domainId: String
 ) async throws {
-  let poller = try await client.deleteDomainPollingUntilDone(
+  try await client.deleteDomainPollingUntilDone(
     request: DeleteDomainRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/domains/\(domainId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

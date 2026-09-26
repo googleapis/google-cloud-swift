@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: SpeechClient, projectId: String, locationId: String, phraseSetId: String)
   async throws
 {
-  let poller = try await client.undeletePhraseSetPollingUntilDone(
+  let response = try await client.undeletePhraseSetPollingUntilDone(
     request: UndeletePhraseSetRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/phraseSets/\(phraseSetId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

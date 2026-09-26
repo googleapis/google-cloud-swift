@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let poller = try await client.createBackupPollingUntilDone(
+  let response = try await client.createBackupPollingUntilDone(
     request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/clusters/\(clusterId)"
@@ -33,7 +33,6 @@ func sample(
         $0.backup = Backup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

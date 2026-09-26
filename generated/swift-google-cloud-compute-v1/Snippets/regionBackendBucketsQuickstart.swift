@@ -22,11 +22,10 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionBackendBucketsClient()
-    let poller = try await client.deletePollingUntilDone(
+    let response = try await client.deletePollingUntilDone(
       request: RegionBackendBucketsClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -27,7 +27,7 @@
     client: EnvironmentsClient, projectId: String, locationId: String, agentId: String,
     environmentId: String
   ) async throws {
-    let poller = try await client.updateEnvironmentPollingUntilDone(
+    let response = try await client.updateEnvironmentPollingUntilDone(
       request: UpdateEnvironmentRequest()
         .with {
           $0.environment = Environment().with {
@@ -37,7 +37,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

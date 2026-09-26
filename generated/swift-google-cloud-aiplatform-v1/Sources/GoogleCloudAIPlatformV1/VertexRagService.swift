@@ -97,7 +97,7 @@
     /// @Snippet(path: "VertexRagService_AsyncRetrieveContexts")
     public func asyncRetrieveContextsPollingUntilDone(
       request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse> {
+    ) async throws -> AsyncRetrieveContextsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<AsyncRetrieveContextsResponse>.State in
@@ -112,12 +112,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -267,7 +268,7 @@
       /// See `VertexRagServiceClient.asyncRetrieveContexts`.
       func asyncRetrieveContextsPollingUntilDone(
         request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
+      ) async throws -> AsyncRetrieveContextsResponse
 
       /// See `VertexRagServiceClient.listLocations`.
       func listLocations(
@@ -427,27 +428,22 @@
     }
 
     public func asyncRetrieveContextsPollingUntilDone(request: AsyncRetrieveContextsRequest)
-      async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse>
+      async throws -> AsyncRetrieveContextsResponse
     {
-      try await self.asyncRetrieveContextsPollingUntilDone(request: request, options: .init())
+      return try await self.asyncRetrieveContextsPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func asyncRetrieveContextsPollingUntilDone(
       request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<AsyncRetrieveContextsResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> AsyncRetrieveContextsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func asyncRetrieveContextsPollingUntilDone(
       parent: Swift.String,
       query: RagQuery?,
-    ) async throws -> any GoogleGax.PollableOperation<AsyncRetrieveContextsResponse> {
+    ) async throws -> AsyncRetrieveContextsResponse {
       let request = AsyncRetrieveContextsRequest().with {
         $0.parent = parent
         $0.query = query

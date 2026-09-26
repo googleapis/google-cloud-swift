@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String
 ) async throws {
-  let poller = try await client.deleteWorkstationClusterPollingUntilDone(
+  let response = try await client.deleteWorkstationClusterPollingUntilDone(
     request: DeleteWorkstationClusterRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/workstationClusters/\(workstationClusterId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

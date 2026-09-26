@@ -27,14 +27,13 @@ func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restorePlanId: String,
   restoreId: String
 ) async throws {
-  let poller = try await client.deleteRestorePollingUntilDone(
+  try await client.deleteRestorePollingUntilDone(
     request: DeleteRestoreRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/restorePlans/\(restorePlanId)/restores/\(restoreId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, operatorId: String
 ) async throws {
-  let poller = try await client.deleteOperatorPollingUntilDone(
+  try await client.deleteOperatorPollingUntilDone(
     request: DeleteOperatorRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/operators/\(operatorId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

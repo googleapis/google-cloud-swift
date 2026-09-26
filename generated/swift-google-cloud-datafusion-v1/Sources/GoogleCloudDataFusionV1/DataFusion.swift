@@ -86,7 +86,7 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// @Snippet(path: "DataFusion_CreateInstance")
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -99,12 +99,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Date Fusion instance.
@@ -121,7 +122,7 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// @Snippet(path: "DataFusion_DeleteInstance")
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -134,12 +135,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates a single Data Fusion instance.
@@ -156,7 +158,7 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// @Snippet(path: "DataFusion_UpdateInstance")
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -169,12 +171,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Restart a single Data Fusion instance.
@@ -193,7 +196,7 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// @Snippet(path: "DataFusion_RestartInstance")
   public func restartInstancePollingUntilDone(
     request: RestartInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -206,12 +209,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -289,7 +293,7 @@ extension Clients {
     /// See `DataFusionClient.createInstance`.
     func createInstancePollingUntilDone(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `DataFusionClient.deleteInstance`.
     func deleteInstance(
@@ -299,7 +303,7 @@ extension Clients {
     /// See `DataFusionClient.deleteInstance`.
     func deleteInstancePollingUntilDone(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DataFusionClient.updateInstance`.
     func updateInstance(
@@ -309,7 +313,7 @@ extension Clients {
     /// See `DataFusionClient.updateInstance`.
     func updateInstancePollingUntilDone(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `DataFusionClient.restartInstance`.
     func restartInstance(
@@ -319,7 +323,7 @@ extension Clients {
     /// See `DataFusionClient.restartInstance`.
     func restartInstancePollingUntilDone(
       request: RestartInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `DataFusionClient.listOperations`.
     func listOperations(
@@ -443,26 +447,22 @@ extension Clients.DataFusionProtocol {
   }
 
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.createInstancePollingUntilDone(request: request, options: .init())
+    return try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = CreateInstanceRequest().with {
       $0.parent = parent
       $0.instance = instance
@@ -483,29 +483,23 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstancePollingUntilDone(request: request)
+    try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func updateInstance(request: UpdateInstanceRequest) async throws
@@ -521,25 +515,21 @@ extension Clients.DataFusionProtocol {
   }
 
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.updateInstancePollingUntilDone(request: request, options: .init())
+    return try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
       $0.updateMask = updateMask
@@ -560,19 +550,15 @@ extension Clients.DataFusionProtocol {
   }
 
   public func restartInstancePollingUntilDone(request: RestartInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.restartInstancePollingUntilDone(request: request, options: .init())
+    return try await self.restartInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func restartInstancePollingUntilDone(
     request: RestartInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

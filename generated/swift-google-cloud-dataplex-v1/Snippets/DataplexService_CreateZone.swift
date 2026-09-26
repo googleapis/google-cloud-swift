@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String)
   async throws
 {
-  let poller = try await client.createZonePollingUntilDone(
+  let response = try await client.createZonePollingUntilDone(
     request: CreateZoneRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)"
@@ -34,7 +34,6 @@ func sample(client: DataplexServiceClient, projectId: String, locationId: String
         $0.zone = Zone() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

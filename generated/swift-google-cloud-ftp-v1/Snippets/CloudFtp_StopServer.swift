@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFtpClient) async throws {
-  let poller = try await client.stopServerPollingUntilDone(
+  let response = try await client.stopServerPollingUntilDone(
     request: StopServerRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

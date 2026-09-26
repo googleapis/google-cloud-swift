@@ -61,7 +61,7 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// @Snippet(path: "TagHolds_CreateTagHold")
   public func createTagHoldPollingUntilDone(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TagHold> {
+  ) async throws -> TagHold {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TagHold>.State in
@@ -74,12 +74,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a TagHold.
@@ -96,7 +97,7 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// @Snippet(path: "TagHolds_DeleteTagHold")
   public func deleteTagHoldPollingUntilDone(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -109,12 +110,13 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists TagHolds under a TagValue.
@@ -153,7 +155,7 @@ extension Clients {
     /// See `TagHoldsClient.createTagHold`.
     func createTagHoldPollingUntilDone(
       request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TagHold>
+    ) async throws -> TagHold
 
     /// See `TagHoldsClient.deleteTagHold`.
     func deleteTagHold(
@@ -163,7 +165,7 @@ extension Clients {
     /// See `TagHoldsClient.deleteTagHold`.
     func deleteTagHoldPollingUntilDone(
       request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `TagHoldsClient.listTagHolds`.
     func listTagHolds(
@@ -186,26 +188,20 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createTagHoldPollingUntilDone(request: CreateTagHoldRequest) async throws
-    -> any GoogleGax.PollableOperation<TagHold>
-  {
-    try await self.createTagHoldPollingUntilDone(request: request, options: .init())
+  public func createTagHoldPollingUntilDone(request: CreateTagHoldRequest) async throws -> TagHold {
+    return try await self.createTagHoldPollingUntilDone(request: request, options: .init())
   }
 
   public func createTagHoldPollingUntilDone(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TagHold> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<TagHold>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TagHold {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createTagHoldPollingUntilDone(
     parent: Swift.String,
     tagHold: TagHold?,
-  ) async throws -> any GoogleGax.PollableOperation<TagHold> {
+  ) async throws -> TagHold {
     let request = CreateTagHoldRequest().with {
       $0.parent = parent
       $0.tagHold = tagHold
@@ -225,29 +221,23 @@ extension Clients.TagHoldsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTagHoldPollingUntilDone(request: DeleteTagHoldRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteTagHoldPollingUntilDone(request: DeleteTagHoldRequest) async throws {
     try await self.deleteTagHoldPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteTagHoldPollingUntilDone(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteTagHoldPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteTagHoldRequest().with {
       $0.name = name
     }
-    return try await self.deleteTagHoldPollingUntilDone(request: request)
+    try await self.deleteTagHoldPollingUntilDone(request: request)
   }
 
   public func listTagHolds(request: ListTagHoldsRequest) async throws

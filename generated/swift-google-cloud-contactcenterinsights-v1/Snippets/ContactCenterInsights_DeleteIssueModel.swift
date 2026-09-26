@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(
   client: ContactCenterInsightsClient, projectId: String, locationId: String, issueModelId: String
 ) async throws {
-  let poller = try await client.deleteIssueModelPollingUntilDone(
+  try await client.deleteIssueModelPollingUntilDone(
     request: DeleteIssueModelRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/issueModels/\(issueModelId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

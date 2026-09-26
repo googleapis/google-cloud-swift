@@ -23,13 +23,12 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String, nodeId: String) async throws {
-  let poller = try await client.deleteNodePollingUntilDone(
+  try await client.deleteNodePollingUntilDone(
     request: DeleteNodeRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/nodes/\(nodeId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

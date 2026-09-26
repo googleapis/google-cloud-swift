@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, accessPolicyId: String) async throws {
-  let poller = try await client.updateAccessPolicyPollingUntilDone(
+  let response = try await client.updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest()
       .with {
         $0.policy = AccessPolicy().with {
@@ -32,7 +32,6 @@ func sample(client: AccessContextManagerClient, accessPolicyId: String) async th
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

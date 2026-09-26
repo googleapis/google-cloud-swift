@@ -23,14 +23,13 @@ import GoogleLongRunning
 
 func sample(client: InsightsConfigServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createInsightsConfigPollingUntilDone(
+  let response = try await client.createInsightsConfigPollingUntilDone(
     request: CreateInsightsConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.insightsConfig = InsightsConfig() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

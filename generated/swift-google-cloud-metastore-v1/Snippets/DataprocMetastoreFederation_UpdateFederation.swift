@@ -27,7 +27,7 @@ func sample(
   client: DataprocMetastoreFederationClient, projectId: String, locationId: String,
   federationId: String
 ) async throws {
-  let poller = try await client.updateFederationPollingUntilDone(
+  let response = try await client.updateFederationPollingUntilDone(
     request: UpdateFederationRequest()
       .with {
         $0.federation = Federation().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let poller = try await client.createDeploymentGroupPollingUntilDone(
+  let response = try await client.createDeploymentGroupPollingUntilDone(
     request: CreateDeploymentGroupRequest()
       .with {
         $0.parent = "\(parent)"
         $0.deploymentGroup = DeploymentGroup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

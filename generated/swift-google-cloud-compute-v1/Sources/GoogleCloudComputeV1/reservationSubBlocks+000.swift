@@ -75,7 +75,7 @@
     /// @Snippet(path: "reservationSubBlocks_getVersion")
     public func getVersionPollingUntilDone(
       request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -103,12 +103,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves a list of reservation subBlocks under a single reservation.
@@ -136,7 +137,7 @@
     public func performMaintenancePollingUntilDone(
       request: ReservationSubBlocksClient.PerformMaintenanceRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -164,12 +165,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Allows customers to report a faulty subBlock.
@@ -186,7 +188,7 @@
     /// @Snippet(path: "reservationSubBlocks_reportFaulty")
     public func reportFaultyPollingUntilDone(
       request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -214,12 +216,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Sets the access control policy on the specified resource.
@@ -277,7 +280,7 @@
       /// See `ReservationSubBlocksClient.getVersion`.
       func getVersionPollingUntilDone(
         request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSubBlocksClient.list`.
       func list(
@@ -294,7 +297,7 @@
       func performMaintenancePollingUntilDone(
         request: ReservationSubBlocksClient.PerformMaintenanceRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSubBlocksClient.reportFaulty`.
       func reportFaulty(
@@ -304,7 +307,7 @@
       /// See `ReservationSubBlocksClient.reportFaulty`.
       func reportFaultyPollingUntilDone(
         request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `ReservationSubBlocksClient.setIamPolicy`.
       func setIamPolicy(
@@ -389,20 +392,14 @@
 
     public func getVersionPollingUntilDone(
       request: ReservationSubBlocksClient.GetVersionRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.getVersionPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.getVersionPollingUntilDone(request: request, options: .init())
     }
 
     public func getVersionPollingUntilDone(
       request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func getVersionPollingUntilDone(
@@ -411,7 +408,7 @@
       parentName: Swift.String,
       reservationSubBlock: Swift.String,
       body: ReservationSubBlocksGetVersionRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = ReservationSubBlocksClient.GetVersionRequest().with {
         $0.project = project
         $0.zone = zone
@@ -484,21 +481,15 @@
 
     public func performMaintenancePollingUntilDone(
       request: ReservationSubBlocksClient.PerformMaintenanceRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.performMaintenancePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.performMaintenancePollingUntilDone(request: request, options: .init())
     }
 
     public func performMaintenancePollingUntilDone(
       request: ReservationSubBlocksClient.PerformMaintenanceRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func performMaintenancePollingUntilDone(
@@ -506,7 +497,7 @@
       zone: Swift.String,
       parentName: Swift.String,
       reservationSubBlock: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = ReservationSubBlocksClient.PerformMaintenanceRequest().with {
         $0.project = project
         $0.zone = zone
@@ -530,20 +521,14 @@
 
     public func reportFaultyPollingUntilDone(
       request: ReservationSubBlocksClient.ReportFaultyRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.reportFaultyPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.reportFaultyPollingUntilDone(request: request, options: .init())
     }
 
     public func reportFaultyPollingUntilDone(
       request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func reportFaultyPollingUntilDone(
@@ -552,7 +537,7 @@
       parentName: Swift.String,
       reservationSubBlock: Swift.String,
       body: ReservationSubBlocksReportFaultyRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = ReservationSubBlocksClient.ReportFaultyRequest().with {
         $0.project = project
         $0.zone = zone

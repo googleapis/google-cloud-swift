@@ -26,13 +26,12 @@ func sample(
   client: ClientGatewaysServiceClient, projectId: String, locationId: String,
   clientGatewayId: String
 ) async throws {
-  let poller = try await client.deleteClientGatewayPollingUntilDone(
+  try await client.deleteClientGatewayPollingUntilDone(
     request: DeleteClientGatewayRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/clientGateways/\(clientGatewayId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

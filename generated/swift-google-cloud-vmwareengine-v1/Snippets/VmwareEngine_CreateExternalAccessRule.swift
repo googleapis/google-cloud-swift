@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPolicyId: String
 ) async throws {
-  let poller = try await client.createExternalAccessRulePollingUntilDone(
+  let response = try await client.createExternalAccessRulePollingUntilDone(
     request: CreateExternalAccessRuleRequest()
       .with {
         $0.parent =
@@ -34,7 +34,6 @@ func sample(
         $0.externalAccessRule = ExternalAccessRule() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -22,7 +22,7 @@
   import GoogleLongRunning
 
   func sample(client: CmekConfigServiceClient, projectId: String, locationId: String) async throws {
-    let poller = try await client.updateCmekConfigPollingUntilDone(
+    let response = try await client.updateCmekConfigPollingUntilDone(
       request: UpdateCmekConfigRequest()
         .with {
           $0.config = CmekConfig().with {
@@ -30,7 +30,6 @@
           }
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

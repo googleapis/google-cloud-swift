@@ -112,7 +112,7 @@
     /// @Snippet(path: "GenAiTuningService_RebaseTunedModel")
     public func rebaseTunedModelPollingUntilDone(
       request: RebaseTunedModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TuningJob> {
+    ) async throws -> TuningJob {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<TuningJob>.State in
@@ -125,12 +125,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -280,7 +281,7 @@
       /// See `GenAiTuningServiceClient.rebaseTunedModel`.
       func rebaseTunedModelPollingUntilDone(
         request: RebaseTunedModelRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<TuningJob>
+      ) async throws -> TuningJob
 
       /// See `GenAiTuningServiceClient.listLocations`.
       func listLocations(
@@ -450,25 +451,21 @@
     }
 
     public func rebaseTunedModelPollingUntilDone(request: RebaseTunedModelRequest) async throws
-      -> any GoogleGax.PollableOperation<TuningJob>
+      -> TuningJob
     {
-      try await self.rebaseTunedModelPollingUntilDone(request: request, options: .init())
+      return try await self.rebaseTunedModelPollingUntilDone(request: request, options: .init())
     }
 
     public func rebaseTunedModelPollingUntilDone(
       request: RebaseTunedModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TuningJob> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<TuningJob>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> TuningJob {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func rebaseTunedModelPollingUntilDone(
       parent: Swift.String,
       tunedModelRef: TunedModelRef?,
-    ) async throws -> any GoogleGax.PollableOperation<TuningJob> {
+    ) async throws -> TuningJob {
       let request = RebaseTunedModelRequest().with {
         $0.parent = parent
         $0.tunedModelRef = tunedModelRef

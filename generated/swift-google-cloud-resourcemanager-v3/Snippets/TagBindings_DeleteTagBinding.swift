@@ -21,13 +21,12 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagBindingsClient, tagBindingId: String) async throws {
-  let poller = try await client.deleteTagBindingPollingUntilDone(
+  try await client.deleteTagBindingPollingUntilDone(
     request: DeleteTagBindingRequest()
       .with {
         $0.name = "tagBindings/\(tagBindingId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

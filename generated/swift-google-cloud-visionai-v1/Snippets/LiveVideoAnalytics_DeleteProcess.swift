@@ -26,14 +26,13 @@ func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, clusterId: String,
   processId: String
 ) async throws {
-  let poller = try await client.deleteProcessPollingUntilDone(
+  try await client.deleteProcessPollingUntilDone(
     request: DeleteProcessRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)/processes/\(processId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

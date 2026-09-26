@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(client: BackupDRClient, projectId: String, locationId: String, backupPlanId: String)
   async throws
 {
-  let poller = try await client.deleteBackupPlanPollingUntilDone(
+  try await client.deleteBackupPlanPollingUntilDone(
     request: DeleteBackupPlanRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/backupPlans/\(backupPlanId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

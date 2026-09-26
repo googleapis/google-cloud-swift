@@ -147,7 +147,7 @@
     /// @Snippet(path: "Intents_BatchUpdateIntents")
     public func batchUpdateIntentsPollingUntilDone(
       request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
+    ) async throws -> BatchUpdateIntentsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
@@ -162,12 +162,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Deletes intents in the specified agent.
@@ -210,7 +211,7 @@
     /// @Snippet(path: "Intents_BatchDeleteIntents")
     public func batchDeleteIntentsPollingUntilDone(
       request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -224,12 +225,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -341,7 +343,7 @@
       /// See `IntentsClient.batchUpdateIntents`.
       func batchUpdateIntentsPollingUntilDone(
         request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
+      ) async throws -> BatchUpdateIntentsResponse
 
       /// See `IntentsClient.batchDeleteIntents`.
       func batchDeleteIntents(
@@ -351,7 +353,7 @@
       /// See `IntentsClient.batchDeleteIntents`.
       func batchDeleteIntentsPollingUntilDone(
         request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `IntentsClient.listLocations`.
       func listLocations(
@@ -566,27 +568,21 @@
     }
 
     public func batchUpdateIntentsPollingUntilDone(request: BatchUpdateIntentsRequest) async throws
-      -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse>
+      -> BatchUpdateIntentsResponse
     {
-      try await self.batchUpdateIntentsPollingUntilDone(request: request, options: .init())
+      return try await self.batchUpdateIntentsPollingUntilDone(request: request, options: .init())
     }
 
     public func batchUpdateIntentsPollingUntilDone(
       request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<BatchUpdateIntentsResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> BatchUpdateIntentsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchUpdateIntentsPollingUntilDone(
       parent: Swift.String,
       intentBatchUri: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
+    ) async throws -> BatchUpdateIntentsResponse {
       let request = BatchUpdateIntentsRequest().with {
         $0.parent = parent
         $0.intentBatch = .intentBatchUri(intentBatchUri)
@@ -597,7 +593,7 @@
     public func batchUpdateIntentsPollingUntilDone(
       parent: Swift.String,
       intentBatchInline: IntentBatch?,
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateIntentsResponse> {
+    ) async throws -> BatchUpdateIntentsResponse {
       let request = BatchUpdateIntentsRequest().with {
         $0.parent = parent
         $0.intentBatch = intentBatchInline.map { .intentBatchInline($0) }
@@ -618,31 +614,25 @@
     }
 
     public func batchDeleteIntentsPollingUntilDone(request: BatchDeleteIntentsRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
     {
       try await self.batchDeleteIntentsPollingUntilDone(request: request, options: .init())
     }
 
     public func batchDeleteIntentsPollingUntilDone(
       request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchDeleteIntentsPollingUntilDone(
       parent: Swift.String,
       intents: [Intent],
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchDeleteIntentsRequest().with {
         $0.parent = parent
         $0.intents = intents
       }
-      return try await self.batchDeleteIntentsPollingUntilDone(request: request)
+      try await self.batchDeleteIntentsPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

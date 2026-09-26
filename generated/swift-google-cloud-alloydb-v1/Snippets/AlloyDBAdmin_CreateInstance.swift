@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AlloyDBAdminClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let poller = try await client.createInstancePollingUntilDone(
+  let response = try await client.createInstancePollingUntilDone(
     request: CreateInstanceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
@@ -33,7 +33,6 @@ func sample(client: AlloyDBAdminClient, projectId: String, locationId: String, c
         $0.instance = Instance() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,7 +26,7 @@
   func sample(client: VertexRagDataServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let poller = try await client.updateRagEngineConfigPollingUntilDone(
+    let response = try await client.updateRagEngineConfigPollingUntilDone(
       request: UpdateRagEngineConfigRequest()
         .with {
           $0.ragEngineConfig = RagEngineConfig().with {
@@ -34,7 +34,6 @@
           }
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

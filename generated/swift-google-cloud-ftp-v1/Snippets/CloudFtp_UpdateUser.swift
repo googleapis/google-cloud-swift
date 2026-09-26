@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: CloudFtpClient, projectId: String, locationId: String, serverId: String, userId: String
 ) async throws {
-  let poller = try await client.updateUserPollingUntilDone(
+  let response = try await client.updateUserPollingUntilDone(
     request: UpdateUserRequest()
       .with {
         $0.user = User().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

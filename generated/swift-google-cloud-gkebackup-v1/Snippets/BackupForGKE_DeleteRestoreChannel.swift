@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: BackupForGKEClient, projectId: String, locationId: String, restoreChannelId: String
 ) async throws {
-  let poller = try await client.deleteRestoreChannelPollingUntilDone(
+  try await client.deleteRestoreChannelPollingUntilDone(
     request: DeleteRestoreChannelRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/restoreChannels/\(restoreChannelId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

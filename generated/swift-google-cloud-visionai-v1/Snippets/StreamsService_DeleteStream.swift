@@ -26,14 +26,13 @@ func sample(
   client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String,
   streamId: String
 ) async throws {
-  let poller = try await client.deleteStreamPollingUntilDone(
+  try await client.deleteStreamPollingUntilDone(
     request: DeleteStreamRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)/streams/\(streamId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

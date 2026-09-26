@@ -22,11 +22,10 @@
   import GoogleLongRunning
 
   func sample(client: IdentityMappingStoreServiceClient) async throws {
-    let poller = try await client.purgeIdentityMappingsPollingUntilDone(
+    try await client.purgeIdentityMappingsPollingUntilDone(
       request: PurgeIdentityMappingsRequest()
         /* set fields using .with { $0... } */
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

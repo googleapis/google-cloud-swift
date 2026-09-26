@@ -24,11 +24,10 @@
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
   func sample(client: ProjectsClient) async throws {
-    let poller = try await client.moveDiskPollingUntilDone(
+    let response = try await client.moveDiskPollingUntilDone(
       request: ProjectsClient.MoveDiskRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

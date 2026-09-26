@@ -82,7 +82,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_UpdateInstance")
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -95,12 +95,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// RenameInstance sets a new name for an instance.
@@ -129,7 +130,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_ResetInstance")
   public func resetInstancePollingUntilDone(
     request: ResetInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ResetInstanceResponse> {
+  ) async throws -> ResetInstanceResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ResetInstanceResponse>.State in
@@ -143,12 +144,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Starts a server that was shutdown.
@@ -165,7 +167,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_StartInstance")
   public func startInstancePollingUntilDone(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StartInstanceResponse> {
+  ) async throws -> StartInstanceResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StartInstanceResponse>.State in
@@ -179,12 +181,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Stop a running server.
@@ -201,7 +204,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_StopInstance")
   public func stopInstancePollingUntilDone(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StopInstanceResponse> {
+  ) async throws -> StopInstanceResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StopInstanceResponse>.State in
@@ -215,12 +218,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Enable the interactive serial console feature on an instance.
@@ -237,7 +241,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_EnableInteractiveSerialConsole")
   public func enableInteractiveSerialConsolePollingUntilDone(
     request: EnableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EnableInteractiveSerialConsoleResponse> {
+  ) async throws -> EnableInteractiveSerialConsoleResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EnableInteractiveSerialConsoleResponse>.State in
@@ -252,12 +256,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Disable the interactive serial console feature on an instance.
@@ -274,7 +279,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_DisableInteractiveSerialConsole")
   public func disableInteractiveSerialConsolePollingUntilDone(
     request: DisableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DisableInteractiveSerialConsoleResponse> {
+  ) async throws -> DisableInteractiveSerialConsoleResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DisableInteractiveSerialConsoleResponse>.State in
@@ -289,12 +294,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Detach LUN from Instance.
@@ -311,7 +317,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_DetachLun")
   public func detachLunPollingUntilDone(
     request: DetachLunRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -324,12 +330,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the public SSH keys registered for the specified project.
@@ -393,7 +400,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_UpdateVolume")
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Volume>.State in
@@ -406,12 +413,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// RenameVolume sets a new name for a volume.
@@ -440,7 +448,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_EvictVolume")
   public func evictVolumePollingUntilDone(
     request: EvictVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -453,12 +461,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Emergency Volume resize.
@@ -475,7 +484,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_ResizeVolume")
   public func resizeVolumePollingUntilDone(
     request: ResizeVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Volume>.State in
@@ -488,12 +497,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// List network in a given project and location.
@@ -538,7 +548,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_UpdateNetwork")
   public func updateNetworkPollingUntilDone(
     request: UpdateNetworkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Network> {
+  ) async throws -> Network {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Network>.State in
@@ -551,12 +561,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Takes a snapshot of a boot volume.
@@ -585,7 +596,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_RestoreVolumeSnapshot")
   public func restoreVolumeSnapshotPollingUntilDone(
     request: RestoreVolumeSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<VolumeSnapshot> {
+  ) async throws -> VolumeSnapshot {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<VolumeSnapshot>.State in
@@ -599,12 +610,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a volume snapshot.
@@ -672,7 +684,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_EvictLun")
   public func evictLunPollingUntilDone(
     request: EvictLunRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -685,12 +697,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Get details of a single NFS share.
@@ -725,7 +738,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_UpdateNfsShare")
   public func updateNfsSharePollingUntilDone(
     request: UpdateNfsShareRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
+  ) async throws -> NfsShare {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<NfsShare>.State in
@@ -738,12 +751,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Create an NFS share.
@@ -760,7 +774,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_CreateNfsShare")
   public func createNfsSharePollingUntilDone(
     request: CreateNfsShareRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
+  ) async throws -> NfsShare {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<NfsShare>.State in
@@ -773,12 +787,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// RenameNfsShare sets a new name for an nfsshare.
@@ -805,7 +820,7 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// @Snippet(path: "BareMetalSolution_DeleteNfsShare")
   public func deleteNfsSharePollingUntilDone(
     request: DeleteNfsShareRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -818,12 +833,13 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// List the budget details to provision resources on a given project.
@@ -945,7 +961,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateInstance`.
     func updateInstancePollingUntilDone(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `BareMetalSolutionClient.renameInstance`.
     func renameInstance(
@@ -960,7 +976,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.resetInstance`.
     func resetInstancePollingUntilDone(
       request: ResetInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ResetInstanceResponse>
+    ) async throws -> ResetInstanceResponse
 
     /// See `BareMetalSolutionClient.startInstance`.
     func startInstance(
@@ -970,7 +986,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.startInstance`.
     func startInstancePollingUntilDone(
       request: StartInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StartInstanceResponse>
+    ) async throws -> StartInstanceResponse
 
     /// See `BareMetalSolutionClient.stopInstance`.
     func stopInstance(
@@ -980,7 +996,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.stopInstance`.
     func stopInstancePollingUntilDone(
       request: StopInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StopInstanceResponse>
+    ) async throws -> StopInstanceResponse
 
     /// See `BareMetalSolutionClient.enableInteractiveSerialConsole`.
     func enableInteractiveSerialConsole(
@@ -990,7 +1006,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.enableInteractiveSerialConsole`.
     func enableInteractiveSerialConsolePollingUntilDone(
       request: EnableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EnableInteractiveSerialConsoleResponse>
+    ) async throws -> EnableInteractiveSerialConsoleResponse
 
     /// See `BareMetalSolutionClient.disableInteractiveSerialConsole`.
     func disableInteractiveSerialConsole(
@@ -1000,7 +1016,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.disableInteractiveSerialConsole`.
     func disableInteractiveSerialConsolePollingUntilDone(
       request: DisableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DisableInteractiveSerialConsoleResponse>
+    ) async throws -> DisableInteractiveSerialConsoleResponse
 
     /// See `BareMetalSolutionClient.detachLun`.
     func detachLun(
@@ -1010,7 +1026,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.detachLun`.
     func detachLunPollingUntilDone(
       request: DetachLunRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `BareMetalSolutionClient.listSshkeys`.
     func listSshkeys(
@@ -1045,7 +1061,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateVolume`.
     func updateVolumePollingUntilDone(
       request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Volume>
+    ) async throws -> Volume
 
     /// See `BareMetalSolutionClient.renameVolume`.
     func renameVolume(
@@ -1060,7 +1076,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.evictVolume`.
     func evictVolumePollingUntilDone(
       request: EvictVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BareMetalSolutionClient.resizeVolume`.
     func resizeVolume(
@@ -1070,7 +1086,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.resizeVolume`.
     func resizeVolumePollingUntilDone(
       request: ResizeVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Volume>
+    ) async throws -> Volume
 
     /// See `BareMetalSolutionClient.listNetworks`.
     func listNetworks(
@@ -1095,7 +1111,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateNetwork`.
     func updateNetworkPollingUntilDone(
       request: UpdateNetworkRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Network>
+    ) async throws -> Network
 
     /// See `BareMetalSolutionClient.createVolumeSnapshot`.
     func createVolumeSnapshot(
@@ -1110,7 +1126,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.restoreVolumeSnapshot`.
     func restoreVolumeSnapshotPollingUntilDone(
       request: RestoreVolumeSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<VolumeSnapshot>
+    ) async throws -> VolumeSnapshot
 
     /// See `BareMetalSolutionClient.deleteVolumeSnapshot`.
     func deleteVolumeSnapshot(
@@ -1145,7 +1161,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.evictLun`.
     func evictLunPollingUntilDone(
       request: EvictLunRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BareMetalSolutionClient.getNfsShare`.
     func getNfsShare(
@@ -1165,7 +1181,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.updateNfsShare`.
     func updateNfsSharePollingUntilDone(
       request: UpdateNfsShareRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NfsShare>
+    ) async throws -> NfsShare
 
     /// See `BareMetalSolutionClient.createNfsShare`.
     func createNfsShare(
@@ -1175,7 +1191,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.createNfsShare`.
     func createNfsSharePollingUntilDone(
       request: CreateNfsShareRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NfsShare>
+    ) async throws -> NfsShare
 
     /// See `BareMetalSolutionClient.renameNfsShare`.
     func renameNfsShare(
@@ -1190,7 +1206,7 @@ extension Clients {
     /// See `BareMetalSolutionClient.deleteNfsShare`.
     func deleteNfsSharePollingUntilDone(
       request: DeleteNfsShareRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BareMetalSolutionClient.listProvisioningQuotas`.
     func listProvisioningQuotas(
@@ -1318,25 +1334,21 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.updateInstancePollingUntilDone(request: request, options: .init())
+    return try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
       $0.updateMask = updateMask
@@ -1380,25 +1392,20 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func resetInstancePollingUntilDone(request: ResetInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<ResetInstanceResponse>
+    -> ResetInstanceResponse
   {
-    try await self.resetInstancePollingUntilDone(request: request, options: .init())
+    return try await self.resetInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func resetInstancePollingUntilDone(
     request: ResetInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ResetInstanceResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ResetInstanceResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ResetInstanceResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func resetInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ResetInstanceResponse> {
+  ) async throws -> ResetInstanceResponse {
     let request = ResetInstanceRequest().with {
       $0.name = name
     }
@@ -1418,25 +1425,20 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func startInstancePollingUntilDone(request: StartInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<StartInstanceResponse>
+    -> StartInstanceResponse
   {
-    try await self.startInstancePollingUntilDone(request: request, options: .init())
+    return try await self.startInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func startInstancePollingUntilDone(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StartInstanceResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<StartInstanceResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> StartInstanceResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func startInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<StartInstanceResponse> {
+  ) async throws -> StartInstanceResponse {
     let request = StartInstanceRequest().with {
       $0.name = name
     }
@@ -1455,25 +1457,20 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func stopInstancePollingUntilDone(request: StopInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<StopInstanceResponse>
+    -> StopInstanceResponse
   {
-    try await self.stopInstancePollingUntilDone(request: request, options: .init())
+    return try await self.stopInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func stopInstancePollingUntilDone(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StopInstanceResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<StopInstanceResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> StopInstanceResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func stopInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<StopInstanceResponse> {
+  ) async throws -> StopInstanceResponse {
     let request = StopInstanceRequest().with {
       $0.name = name
     }
@@ -1494,26 +1491,20 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func enableInteractiveSerialConsolePollingUntilDone(
     request: EnableInteractiveSerialConsoleRequest
-  ) async throws -> any GoogleGax.PollableOperation<EnableInteractiveSerialConsoleResponse> {
-    try await self.enableInteractiveSerialConsolePollingUntilDone(
+  ) async throws -> EnableInteractiveSerialConsoleResponse {
+    return try await self.enableInteractiveSerialConsolePollingUntilDone(
       request: request, options: .init())
   }
 
   public func enableInteractiveSerialConsolePollingUntilDone(
     request: EnableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EnableInteractiveSerialConsoleResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<EnableInteractiveSerialConsoleResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EnableInteractiveSerialConsoleResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func enableInteractiveSerialConsolePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EnableInteractiveSerialConsoleResponse> {
+  ) async throws -> EnableInteractiveSerialConsoleResponse {
     let request = EnableInteractiveSerialConsoleRequest().with {
       $0.name = name
     }
@@ -1534,26 +1525,20 @@ extension Clients.BareMetalSolutionProtocol {
 
   public func disableInteractiveSerialConsolePollingUntilDone(
     request: DisableInteractiveSerialConsoleRequest
-  ) async throws -> any GoogleGax.PollableOperation<DisableInteractiveSerialConsoleResponse> {
-    try await self.disableInteractiveSerialConsolePollingUntilDone(
+  ) async throws -> DisableInteractiveSerialConsoleResponse {
+    return try await self.disableInteractiveSerialConsolePollingUntilDone(
       request: request, options: .init())
   }
 
   public func disableInteractiveSerialConsolePollingUntilDone(
     request: DisableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DisableInteractiveSerialConsoleResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<DisableInteractiveSerialConsoleResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DisableInteractiveSerialConsoleResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func disableInteractiveSerialConsolePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<DisableInteractiveSerialConsoleResponse> {
+  ) async throws -> DisableInteractiveSerialConsoleResponse {
     let request = DisableInteractiveSerialConsoleRequest().with {
       $0.name = name
     }
@@ -1570,26 +1555,20 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func detachLunPollingUntilDone(request: DetachLunRequest) async throws -> any GoogleGax
-    .PollableOperation<Instance>
-  {
-    try await self.detachLunPollingUntilDone(request: request, options: .init())
+  public func detachLunPollingUntilDone(request: DetachLunRequest) async throws -> Instance {
+    return try await self.detachLunPollingUntilDone(request: request, options: .init())
   }
 
   public func detachLunPollingUntilDone(
     request: DetachLunRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func detachLunPollingUntilDone(
     instance: Swift.String,
     lun: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = DetachLunRequest().with {
       $0.instance = instance
       $0.lun = lun
@@ -1760,26 +1739,20 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateVolumePollingUntilDone(request: UpdateVolumeRequest) async throws
-    -> any GoogleGax.PollableOperation<Volume>
-  {
-    try await self.updateVolumePollingUntilDone(request: request, options: .init())
+  public func updateVolumePollingUntilDone(request: UpdateVolumeRequest) async throws -> Volume {
+    return try await self.updateVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateVolumePollingUntilDone(
     volume: Volume?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let request = UpdateVolumeRequest().with {
       $0.volume = volume
       $0.updateMask = updateMask
@@ -1820,29 +1793,23 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func evictVolumePollingUntilDone(request: EvictVolumeRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func evictVolumePollingUntilDone(request: EvictVolumeRequest) async throws {
     try await self.evictVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func evictVolumePollingUntilDone(
     request: EvictVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func evictVolumePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = EvictVolumeRequest().with {
       $0.name = name
     }
-    return try await self.evictVolumePollingUntilDone(request: request)
+    try await self.evictVolumePollingUntilDone(request: request)
   }
 
   public func resizeVolume(request: ResizeVolumeRequest) async throws -> GoogleLongRunning.Operation
@@ -1856,26 +1823,20 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func resizeVolumePollingUntilDone(request: ResizeVolumeRequest) async throws
-    -> any GoogleGax.PollableOperation<Volume>
-  {
-    try await self.resizeVolumePollingUntilDone(request: request, options: .init())
+  public func resizeVolumePollingUntilDone(request: ResizeVolumeRequest) async throws -> Volume {
+    return try await self.resizeVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func resizeVolumePollingUntilDone(
     request: ResizeVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func resizeVolumePollingUntilDone(
     volume: Swift.String,
     sizeGib: Swift.Int64,
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let request = ResizeVolumeRequest().with {
       $0.volume = volume
       $0.sizeGib = sizeGib
@@ -1980,26 +1941,20 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateNetworkPollingUntilDone(request: UpdateNetworkRequest) async throws
-    -> any GoogleGax.PollableOperation<Network>
-  {
-    try await self.updateNetworkPollingUntilDone(request: request, options: .init())
+  public func updateNetworkPollingUntilDone(request: UpdateNetworkRequest) async throws -> Network {
+    return try await self.updateNetworkPollingUntilDone(request: request, options: .init())
   }
 
   public func updateNetworkPollingUntilDone(
     request: UpdateNetworkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Network> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Network>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Network {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateNetworkPollingUntilDone(
     network: Network?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Network> {
+  ) async throws -> Network {
     let request = UpdateNetworkRequest().with {
       $0.network = network
       $0.updateMask = updateMask
@@ -2043,25 +1998,20 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func restoreVolumeSnapshotPollingUntilDone(request: RestoreVolumeSnapshotRequest)
-    async throws -> any GoogleGax.PollableOperation<VolumeSnapshot>
+    async throws -> VolumeSnapshot
   {
-    try await self.restoreVolumeSnapshotPollingUntilDone(request: request, options: .init())
+    return try await self.restoreVolumeSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func restoreVolumeSnapshotPollingUntilDone(
     request: RestoreVolumeSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<VolumeSnapshot> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VolumeSnapshot>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> VolumeSnapshot {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func restoreVolumeSnapshotPollingUntilDone(
     volumeSnapshot: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<VolumeSnapshot> {
+  ) async throws -> VolumeSnapshot {
     let request = RestoreVolumeSnapshotRequest().with {
       $0.volumeSnapshot = volumeSnapshot
     }
@@ -2225,29 +2175,23 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func evictLunPollingUntilDone(request: EvictLunRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func evictLunPollingUntilDone(request: EvictLunRequest) async throws {
     try await self.evictLunPollingUntilDone(request: request, options: .init())
   }
 
   public func evictLunPollingUntilDone(
     request: EvictLunRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func evictLunPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = EvictLunRequest().with {
       $0.name = name
     }
-    return try await self.evictLunPollingUntilDone(request: request)
+    try await self.evictLunPollingUntilDone(request: request)
   }
 
   public func getNfsShare(request: GetNfsShareRequest) async throws
@@ -2327,25 +2271,21 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func updateNfsSharePollingUntilDone(request: UpdateNfsShareRequest) async throws
-    -> any GoogleGax.PollableOperation<NfsShare>
+    -> NfsShare
   {
-    try await self.updateNfsSharePollingUntilDone(request: request, options: .init())
+    return try await self.updateNfsSharePollingUntilDone(request: request, options: .init())
   }
 
   public func updateNfsSharePollingUntilDone(
     request: UpdateNfsShareRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<NfsShare>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> NfsShare {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateNfsSharePollingUntilDone(
     nfsShare: NfsShare?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
+  ) async throws -> NfsShare {
     let request = UpdateNfsShareRequest().with {
       $0.nfsShare = nfsShare
       $0.updateMask = updateMask
@@ -2366,25 +2306,21 @@ extension Clients.BareMetalSolutionProtocol {
   }
 
   public func createNfsSharePollingUntilDone(request: CreateNfsShareRequest) async throws
-    -> any GoogleGax.PollableOperation<NfsShare>
+    -> NfsShare
   {
-    try await self.createNfsSharePollingUntilDone(request: request, options: .init())
+    return try await self.createNfsSharePollingUntilDone(request: request, options: .init())
   }
 
   public func createNfsSharePollingUntilDone(
     request: CreateNfsShareRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<NfsShare>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> NfsShare {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createNfsSharePollingUntilDone(
     parent: Swift.String,
     nfsShare: NfsShare?,
-  ) async throws -> any GoogleGax.PollableOperation<NfsShare> {
+  ) async throws -> NfsShare {
     let request = CreateNfsShareRequest().with {
       $0.parent = parent
       $0.nfsShare = nfsShare
@@ -2427,29 +2363,23 @@ extension Clients.BareMetalSolutionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteNfsSharePollingUntilDone(request: DeleteNfsShareRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteNfsSharePollingUntilDone(request: DeleteNfsShareRequest) async throws {
     try await self.deleteNfsSharePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteNfsSharePollingUntilDone(
     request: DeleteNfsShareRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteNfsSharePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteNfsShareRequest().with {
       $0.name = name
     }
-    return try await self.deleteNfsSharePollingUntilDone(request: request)
+    try await self.deleteNfsSharePollingUntilDone(request: request)
   }
 
   public func listProvisioningQuotas(request: ListProvisioningQuotasRequest) async throws

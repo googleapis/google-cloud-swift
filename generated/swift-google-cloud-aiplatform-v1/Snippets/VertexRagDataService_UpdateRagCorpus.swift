@@ -26,7 +26,7 @@
   func sample(
     client: VertexRagDataServiceClient, projectId: String, locationId: String, ragCorpusId: String
   ) async throws {
-    let poller = try await client.updateRagCorpusPollingUntilDone(
+    let response = try await client.updateRagCorpusPollingUntilDone(
       request: UpdateRagCorpusRequest()
         .with {
           $0.ragCorpus = RagCorpus().with {
@@ -34,7 +34,6 @@
           }
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

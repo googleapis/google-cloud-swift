@@ -26,7 +26,7 @@ func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String,
   workstationConfigId: String
 ) async throws {
-  let poller = try await client.createWorkstationPollingUntilDone(
+  let response = try await client.createWorkstationPollingUntilDone(
     request: CreateWorkstationRequest()
       .with {
         $0.parent =
@@ -35,7 +35,6 @@ func sample(
         $0.workstation = Workstation() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

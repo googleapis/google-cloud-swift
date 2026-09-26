@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String
 ) async throws {
-  let poller = try await client.deleteDeliveryPipelinePollingUntilDone(
+  try await client.deleteDeliveryPipelinePollingUntilDone(
     request: DeleteDeliveryPipelineRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/deliveryPipelines/\(deliveryPipelineId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

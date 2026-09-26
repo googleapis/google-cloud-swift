@@ -59,7 +59,7 @@
     /// @Snippet(path: "DatasetService_CreateDataset")
     public func createDatasetPollingUntilDone(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Dataset> {
+    ) async throws -> Dataset {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Dataset>.State in
@@ -72,12 +72,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Gets a Dataset.
@@ -121,7 +122,7 @@
     /// @Snippet(path: "DatasetService_DeleteDataset")
     public func deleteDatasetPollingUntilDone(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -135,12 +136,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Imports data into a Dataset.
@@ -157,7 +159,7 @@
     /// @Snippet(path: "DatasetService_ImportData")
     public func importDataPollingUntilDone(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse> {
+    ) async throws -> ImportDataResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportDataResponse>.State in
@@ -171,12 +173,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Exports data from a Dataset.
@@ -193,7 +196,7 @@
     /// @Snippet(path: "DatasetService_ExportData")
     public func exportDataPollingUntilDone(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse> {
+    ) async throws -> ExportDataResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportDataResponse>.State in
@@ -207,12 +210,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Create a version from a Dataset.
@@ -229,7 +233,7 @@
     /// @Snippet(path: "DatasetService_CreateDatasetVersion")
     public func createDatasetVersionPollingUntilDone(
       request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DatasetVersion> {
+    ) async throws -> DatasetVersion {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DatasetVersion>.State in
@@ -243,12 +247,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Updates a DatasetVersion.
@@ -274,7 +279,7 @@
     /// @Snippet(path: "DatasetService_DeleteDatasetVersion")
     public func deleteDatasetVersionPollingUntilDone(
       request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -288,12 +293,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Gets a Dataset version.
@@ -328,7 +334,7 @@
     /// @Snippet(path: "DatasetService_RestoreDatasetVersion")
     public func restoreDatasetVersionPollingUntilDone(
       request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DatasetVersion> {
+    ) async throws -> DatasetVersion {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<DatasetVersion>.State in
@@ -342,12 +348,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists DataItems in a Dataset.
@@ -391,7 +398,7 @@
     /// @Snippet(path: "DatasetService_DeleteSavedQuery")
     public func deleteSavedQueryPollingUntilDone(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -405,12 +412,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Gets an AnnotationSpec.
@@ -558,7 +566,7 @@
       /// See `DatasetServiceClient.createDataset`.
       func createDatasetPollingUntilDone(
         request: CreateDatasetRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Dataset>
+      ) async throws -> Dataset
 
       /// See `DatasetServiceClient.getDataset`.
       func getDataset(
@@ -583,7 +591,7 @@
       /// See `DatasetServiceClient.deleteDataset`.
       func deleteDatasetPollingUntilDone(
         request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `DatasetServiceClient.importData`.
       func importData(
@@ -593,7 +601,7 @@
       /// See `DatasetServiceClient.importData`.
       func importDataPollingUntilDone(
         request: ImportDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse>
+      ) async throws -> ImportDataResponse
 
       /// See `DatasetServiceClient.exportData`.
       func exportData(
@@ -603,7 +611,7 @@
       /// See `DatasetServiceClient.exportData`.
       func exportDataPollingUntilDone(
         request: ExportDataRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse>
+      ) async throws -> ExportDataResponse
 
       /// See `DatasetServiceClient.createDatasetVersion`.
       func createDatasetVersion(
@@ -613,7 +621,7 @@
       /// See `DatasetServiceClient.createDatasetVersion`.
       func createDatasetVersionPollingUntilDone(
         request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<DatasetVersion>
+      ) async throws -> DatasetVersion
 
       /// See `DatasetServiceClient.updateDatasetVersion`.
       func updateDatasetVersion(
@@ -628,7 +636,7 @@
       /// See `DatasetServiceClient.deleteDatasetVersion`.
       func deleteDatasetVersionPollingUntilDone(
         request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `DatasetServiceClient.getDatasetVersion`.
       func getDatasetVersion(
@@ -648,7 +656,7 @@
       /// See `DatasetServiceClient.restoreDatasetVersion`.
       func restoreDatasetVersionPollingUntilDone(
         request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<DatasetVersion>
+      ) async throws -> DatasetVersion
 
       /// See `DatasetServiceClient.listDataItems`.
       func listDataItems(
@@ -673,7 +681,7 @@
       /// See `DatasetServiceClient.deleteSavedQuery`.
       func deleteSavedQueryPollingUntilDone(
         request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `DatasetServiceClient.getAnnotationSpec`.
       func getAnnotationSpec(
@@ -746,26 +754,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws
-      -> any GoogleGax.PollableOperation<Dataset>
+    public func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws -> Dataset
     {
-      try await self.createDatasetPollingUntilDone(request: request, options: .init())
+      return try await self.createDatasetPollingUntilDone(request: request, options: .init())
     }
 
     public func createDatasetPollingUntilDone(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Dataset> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> Dataset {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createDatasetPollingUntilDone(
       parent: Swift.String,
       dataset: Dataset?,
-    ) async throws -> any GoogleGax.PollableOperation<Dataset> {
+    ) async throws -> Dataset {
       let request = CreateDatasetRequest().with {
         $0.parent = parent
         $0.dataset = dataset
@@ -872,30 +875,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws {
       try await self.deleteDatasetPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteDatasetPollingUntilDone(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteDatasetPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteDatasetRequest().with {
         $0.name = name
       }
-      return try await self.deleteDatasetPollingUntilDone(request: request)
+      try await self.deleteDatasetPollingUntilDone(request: request)
     }
 
     public func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation {
@@ -908,27 +904,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importDataPollingUntilDone(request: ImportDataRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportDataResponse>
+    public func importDataPollingUntilDone(request: ImportDataRequest) async throws
+      -> ImportDataResponse
     {
-      try await self.importDataPollingUntilDone(request: request, options: .init())
+      return try await self.importDataPollingUntilDone(request: request, options: .init())
     }
 
     public func importDataPollingUntilDone(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportDataResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportDataResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func importDataPollingUntilDone(
       name: Swift.String,
       importConfigs: [ImportDataConfig],
-    ) async throws -> any GoogleGax.PollableOperation<ImportDataResponse> {
+    ) async throws -> ImportDataResponse {
       let request = ImportDataRequest().with {
         $0.name = name
         $0.importConfigs = importConfigs
@@ -946,27 +937,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportDataPollingUntilDone(request: ExportDataRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportDataResponse>
+    public func exportDataPollingUntilDone(request: ExportDataRequest) async throws
+      -> ExportDataResponse
     {
-      try await self.exportDataPollingUntilDone(request: request, options: .init())
+      return try await self.exportDataPollingUntilDone(request: request, options: .init())
     }
 
     public func exportDataPollingUntilDone(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportDataResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ExportDataResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func exportDataPollingUntilDone(
       name: Swift.String,
       exportConfig: ExportDataConfig?,
-    ) async throws -> any GoogleGax.PollableOperation<ExportDataResponse> {
+    ) async throws -> ExportDataResponse {
       let request = ExportDataRequest().with {
         $0.name = name
         $0.exportConfig = exportConfig
@@ -987,26 +973,21 @@
     }
 
     public func createDatasetVersionPollingUntilDone(request: CreateDatasetVersionRequest)
-      async throws -> any GoogleGax.PollableOperation<DatasetVersion>
+      async throws -> DatasetVersion
     {
-      try await self.createDatasetVersionPollingUntilDone(request: request, options: .init())
+      return try await self.createDatasetVersionPollingUntilDone(request: request, options: .init())
     }
 
     public func createDatasetVersionPollingUntilDone(
       request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DatasetVersion> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatasetVersion>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> DatasetVersion {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createDatasetVersionPollingUntilDone(
       parent: Swift.String,
       datasetVersion: DatasetVersion?,
-    ) async throws -> any GoogleGax.PollableOperation<DatasetVersion> {
+    ) async throws -> DatasetVersion {
       let request = CreateDatasetVersionRequest().with {
         $0.parent = parent
         $0.datasetVersion = datasetVersion
@@ -1050,29 +1031,24 @@
     }
 
     public func deleteDatasetVersionPollingUntilDone(request: DeleteDatasetVersionRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.deleteDatasetVersionPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteDatasetVersionPollingUntilDone(
       request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteDatasetVersionPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteDatasetVersionRequest().with {
         $0.name = name
       }
-      return try await self.deleteDatasetVersionPollingUntilDone(request: request)
+      try await self.deleteDatasetVersionPollingUntilDone(request: request)
     }
 
     public func getDatasetVersion(request: GetDatasetVersionRequest) async throws
@@ -1152,25 +1128,21 @@
     }
 
     public func restoreDatasetVersionPollingUntilDone(request: RestoreDatasetVersionRequest)
-      async throws -> any GoogleGax.PollableOperation<DatasetVersion>
+      async throws -> DatasetVersion
     {
-      try await self.restoreDatasetVersionPollingUntilDone(request: request, options: .init())
+      return try await self.restoreDatasetVersionPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func restoreDatasetVersionPollingUntilDone(
       request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DatasetVersion> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatasetVersion>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> DatasetVersion {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func restoreDatasetVersionPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<DatasetVersion> {
+    ) async throws -> DatasetVersion {
       let request = RestoreDatasetVersionRequest().with {
         $0.name = name
       }
@@ -1312,30 +1284,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteSavedQueryPollingUntilDone(request: DeleteSavedQueryRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteSavedQueryPollingUntilDone(request: DeleteSavedQueryRequest) async throws {
       try await self.deleteSavedQueryPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteSavedQueryPollingUntilDone(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteSavedQueryPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteSavedQueryRequest().with {
         $0.name = name
       }
-      return try await self.deleteSavedQueryPollingUntilDone(request: request)
+      try await self.deleteSavedQueryPollingUntilDone(request: request)
     }
 
     public func getAnnotationSpec(request: GetAnnotationSpecRequest) async throws

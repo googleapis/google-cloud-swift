@@ -27,14 +27,13 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   tlsInspectionPolicyId: String
 ) async throws {
-  let poller = try await client.deleteTlsInspectionPolicyPollingUntilDone(
+  try await client.deleteTlsInspectionPolicyPollingUntilDone(
     request: DeleteTlsInspectionPolicyRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/tlsInspectionPolicies/\(tlsInspectionPolicyId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

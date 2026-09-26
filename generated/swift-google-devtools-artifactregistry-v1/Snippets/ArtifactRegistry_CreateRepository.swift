@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ArtifactRegistryClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createRepositoryPollingUntilDone(
+  let response = try await client.createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: ArtifactRegistryClient, projectId: String, locationId: Strin
         $0.repository = Repository() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

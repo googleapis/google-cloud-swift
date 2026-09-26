@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: InterceptClient, projectId: String, locationId: String, interceptDeploymentGroupId: String
 ) async throws {
-  let poller = try await client.updateInterceptDeploymentGroupPollingUntilDone(
+  let response = try await client.updateInterceptDeploymentGroupPollingUntilDone(
     request: UpdateInterceptDeploymentGroupRequest()
       .with {
         $0.interceptDeploymentGroup = InterceptDeploymentGroup().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

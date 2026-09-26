@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String
 ) async throws {
-  let poller = try await client.updateDataProductPollingUntilDone(
+  let response = try await client.updateDataProductPollingUntilDone(
     request: UpdateDataProductRequest()
       .with {
         $0.dataProduct = DataProduct().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DeveloperConnectClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAccountConnectorPollingUntilDone(
+  let response = try await client.createAccountConnectorPollingUntilDone(
     request: CreateAccountConnectorRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.accountConnector = AccountConnector() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

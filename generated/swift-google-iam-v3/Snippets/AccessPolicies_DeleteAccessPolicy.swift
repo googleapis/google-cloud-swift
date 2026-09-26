@@ -23,14 +23,13 @@ import GoogleLongRunning
 func sample(
   client: AccessPoliciesClient, organizationId: String, locationId: String, accessPolicyId: String
 ) async throws {
-  let poller = try await client.deleteAccessPolicyPollingUntilDone(
+  try await client.deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/accessPolicies/\(accessPolicyId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

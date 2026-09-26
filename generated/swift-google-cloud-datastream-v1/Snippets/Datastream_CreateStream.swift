@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DatastreamClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createStreamPollingUntilDone(
+  let response = try await client.createStreamPollingUntilDone(
     request: CreateStreamRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: DatastreamClient, projectId: String, locationId: String) asy
         $0.stream = Stream() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

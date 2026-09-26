@@ -102,7 +102,7 @@
     /// @Snippet(path: "Playbooks_ExportPlaybook")
     public func exportPlaybookPollingUntilDone(
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportPlaybookResponse> {
+    ) async throws -> ExportPlaybookResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State in
@@ -117,12 +117,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Imports the specified playbook to the specified agent from a binary file.
@@ -139,7 +140,7 @@
     /// @Snippet(path: "Playbooks_ImportPlaybook")
     public func importPlaybookPollingUntilDone(
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportPlaybookResponse> {
+    ) async throws -> ImportPlaybookResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State in
@@ -154,12 +155,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Updates the specified Playbook.
@@ -321,7 +323,7 @@
       /// See `PlaybooksClient.exportPlaybook`.
       func exportPlaybookPollingUntilDone(
         request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ExportPlaybookResponse>
+      ) async throws -> ExportPlaybookResponse
 
       /// See `PlaybooksClient.importPlaybook`.
       func importPlaybook(
@@ -331,7 +333,7 @@
       /// See `PlaybooksClient.importPlaybook`.
       func importPlaybookPollingUntilDone(
         request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportPlaybookResponse>
+      ) async throws -> ImportPlaybookResponse
 
       /// See `PlaybooksClient.updatePlaybook`.
       func updatePlaybook(
@@ -506,21 +508,15 @@
     }
 
     public func exportPlaybookPollingUntilDone(request: ExportPlaybookRequest) async throws
-      -> any GoogleGax.PollableOperation<ExportPlaybookResponse>
+      -> ExportPlaybookResponse
     {
-      try await self.exportPlaybookPollingUntilDone(request: request, options: .init())
+      return try await self.exportPlaybookPollingUntilDone(request: request, options: .init())
     }
 
     public func exportPlaybookPollingUntilDone(
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportPlaybookResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportPlaybookResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ExportPlaybookResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func importPlaybook(request: ImportPlaybookRequest) async throws
@@ -536,21 +532,15 @@
     }
 
     public func importPlaybookPollingUntilDone(request: ImportPlaybookRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportPlaybookResponse>
+      -> ImportPlaybookResponse
     {
-      try await self.importPlaybookPollingUntilDone(request: request, options: .init())
+      return try await self.importPlaybookPollingUntilDone(request: request, options: .init())
     }
 
     public func importPlaybookPollingUntilDone(
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportPlaybookResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportPlaybookResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportPlaybookResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updatePlaybook(request: UpdatePlaybookRequest) async throws

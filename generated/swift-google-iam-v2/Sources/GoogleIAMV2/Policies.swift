@@ -77,7 +77,7 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// @Snippet(path: "Policies_CreatePolicy")
   public func createPolicyPollingUntilDone(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
+  ) async throws -> Policy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Policy>.State in
@@ -90,12 +90,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the specified policy.
@@ -136,7 +137,7 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// @Snippet(path: "Policies_UpdatePolicy")
   public func updatePolicyPollingUntilDone(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
+  ) async throws -> Policy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Policy>.State in
@@ -149,12 +150,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a policy. This action is permanent.
@@ -171,7 +173,7 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// @Snippet(path: "Policies_DeletePolicy")
   public func deletePolicyPollingUntilDone(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
+  ) async throws -> Policy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Policy>.State in
@@ -184,12 +186,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -229,7 +232,7 @@ extension Clients {
     /// See `PoliciesClient.createPolicy`.
     func createPolicyPollingUntilDone(
       request: CreatePolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Policy>
+    ) async throws -> Policy
 
     /// See `PoliciesClient.updatePolicy`.
     func updatePolicy(
@@ -239,7 +242,7 @@ extension Clients {
     /// See `PoliciesClient.updatePolicy`.
     func updatePolicyPollingUntilDone(
       request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Policy>
+    ) async throws -> Policy
 
     /// See `PoliciesClient.deletePolicy`.
     func deletePolicy(
@@ -249,7 +252,7 @@ extension Clients {
     /// See `PoliciesClient.deletePolicy`.
     func deletePolicyPollingUntilDone(
       request: DeletePolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Policy>
+    ) async throws -> Policy
   }
 }
 
@@ -331,27 +334,21 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createPolicyPollingUntilDone(request: CreatePolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Policy>
-  {
-    try await self.createPolicyPollingUntilDone(request: request, options: .init())
+  public func createPolicyPollingUntilDone(request: CreatePolicyRequest) async throws -> Policy {
+    return try await self.createPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func createPolicyPollingUntilDone(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Policy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Policy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createPolicyPollingUntilDone(
     parent: Swift.String,
     policy: Policy?,
     policyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
+  ) async throws -> Policy {
     let request = CreatePolicyRequest().with {
       $0.parent = parent
       $0.policy = policy
@@ -371,20 +368,14 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updatePolicyPollingUntilDone(request: UpdatePolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Policy>
-  {
-    try await self.updatePolicyPollingUntilDone(request: request, options: .init())
+  public func updatePolicyPollingUntilDone(request: UpdatePolicyRequest) async throws -> Policy {
+    return try await self.updatePolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func updatePolicyPollingUntilDone(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Policy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Policy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deletePolicy(request: DeletePolicyRequest) async throws -> GoogleLongRunning.Operation
@@ -398,25 +389,19 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deletePolicyPollingUntilDone(request: DeletePolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Policy>
-  {
-    try await self.deletePolicyPollingUntilDone(request: request, options: .init())
+  public func deletePolicyPollingUntilDone(request: DeletePolicyRequest) async throws -> Policy {
+    return try await self.deletePolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deletePolicyPollingUntilDone(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Policy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Policy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deletePolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Policy> {
+  ) async throws -> Policy {
     let request = DeletePolicyRequest().with {
       $0.name = name
     }

@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(client: ConfigClient, projectId: String, locationId: String, previewId: String)
   async throws
 {
-  let poller = try await client.deletePreviewPollingUntilDone(
+  let response = try await client.deletePreviewPollingUntilDone(
     request: DeletePreviewRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/previews/\(previewId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -55,7 +55,7 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
   /// @Snippet(path: "PipelineService_RunPipeline")
   public func runPipelinePollingUntilDone(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
+  ) async throws -> RunPipelineResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
@@ -69,12 +69,13 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -104,7 +105,7 @@ extension Clients {
     /// See `PipelineServiceClient.runPipeline`.
     func runPipelinePollingUntilDone(
       request: RunPipelineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse>
+    ) async throws -> RunPipelineResponse
   }
 }
 
@@ -120,26 +121,21 @@ extension Clients.PipelineServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runPipelinePollingUntilDone(request: RunPipelineRequest) async throws -> any GoogleGax
-    .PollableOperation<RunPipelineResponse>
+  public func runPipelinePollingUntilDone(request: RunPipelineRequest) async throws
+    -> RunPipelineResponse
   {
-    try await self.runPipelinePollingUntilDone(request: request, options: .init())
+    return try await self.runPipelinePollingUntilDone(request: request, options: .init())
   }
 
   public func runPipelinePollingUntilDone(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RunPipelineResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RunPipelineResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func runPipelinePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RunPipelineResponse> {
+  ) async throws -> RunPipelineResponse {
     let request = RunPipelineRequest().with {
       $0.name = name
     }

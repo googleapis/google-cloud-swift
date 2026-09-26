@@ -27,7 +27,7 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   releaseId: String
 ) async throws {
-  let poller = try await client.createRolloutPollingUntilDone(
+  let response = try await client.createRolloutPollingUntilDone(
     request: CreateRolloutRequest()
       .with {
         $0.parent =
@@ -36,7 +36,6 @@ func sample(
         $0.rollout = Rollout() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

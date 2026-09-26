@@ -24,11 +24,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataformClient) async throws {
-  let poller = try await client.deleteFolderTreePollingUntilDone(
+  try await client.deleteFolderTreePollingUntilDone(
     request: DeleteFolderTreeRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

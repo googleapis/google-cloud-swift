@@ -27,7 +27,7 @@ func sample(
   client: DataMigrationServiceClient, projectId: String, locationId: String,
   connectionProfileId: String
 ) async throws {
-  let poller = try await client.updateConnectionProfilePollingUntilDone(
+  let response = try await client.updateConnectionProfilePollingUntilDone(
     request: UpdateConnectionProfileRequest()
       .with {
         $0.connectionProfile = ConnectionProfile().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

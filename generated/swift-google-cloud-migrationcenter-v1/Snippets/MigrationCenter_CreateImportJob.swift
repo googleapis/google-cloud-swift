@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MigrationCenterClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createImportJobPollingUntilDone(
+  let response = try await client.createImportJobPollingUntilDone(
     request: CreateImportJobRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.importJob = ImportJob() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

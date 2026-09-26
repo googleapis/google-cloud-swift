@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: ProjectsClient) async throws {
-    let poller = try await client.enableXpnResourcePollingUntilDone(
+    let response = try await client.enableXpnResourcePollingUntilDone(
       request: ProjectsClient.EnableXpnResourceRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: PrivilegedAccessManagerClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createEntitlementPollingUntilDone(
+  let response = try await client.createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -33,7 +33,6 @@ func sample(client: PrivilegedAccessManagerClient, projectId: String, locationId
         $0.entitlement = Entitlement() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String, authzPolicyId: String
 ) async throws {
-  let poller = try await client.updateAuthzPolicyPollingUntilDone(
+  let response = try await client.updateAuthzPolicyPollingUntilDone(
     request: UpdateAuthzPolicyRequest()
       .with {
         $0.authzPolicy = AuthzPolicy().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

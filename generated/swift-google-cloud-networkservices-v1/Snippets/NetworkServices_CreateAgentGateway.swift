@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAgentGatewayPollingUntilDone(
+  let response = try await client.createAgentGatewayPollingUntilDone(
     request: CreateAgentGatewayRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.agentGateway = AgentGateway() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

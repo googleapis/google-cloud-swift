@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String
 ) async throws {
-  let poller = try await client.undeleteTablePollingUntilDone(
+  let response = try await client.undeleteTablePollingUntilDone(
     request: UndeleteTableRequest()
       .with {
         $0.name = "projects/\(projectId)/instances/\(instanceId)/tables/\(tableId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

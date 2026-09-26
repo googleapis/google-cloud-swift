@@ -26,14 +26,13 @@
     client: EngineServiceClient, projectId: String, locationId: String, collectionId: String,
     engineId: String
   ) async throws {
-    let poller = try await client.deleteEnginePollingUntilDone(
+    try await client.deleteEnginePollingUntilDone(
       request: DeleteEngineRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/collections/\(collectionId)/engines/\(engineId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

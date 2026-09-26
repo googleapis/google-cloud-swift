@@ -26,7 +26,7 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let poller = try await client.createCloneJobPollingUntilDone(
+  let response = try await client.createCloneJobPollingUntilDone(
     request: CreateCloneJobRequest()
       .with {
         $0.parent =
@@ -34,7 +34,6 @@ func sample(
         $0.cloneJob = CloneJob() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

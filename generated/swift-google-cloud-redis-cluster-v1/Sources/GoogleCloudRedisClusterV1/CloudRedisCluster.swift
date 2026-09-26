@@ -105,7 +105,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_UpdateCluster")
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Cluster>.State in
@@ -118,12 +118,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a specific Redis cluster. Cluster stops serving and data is
@@ -142,7 +143,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_DeleteCluster")
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -155,12 +156,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a Redis cluster based on the specified properties.
@@ -191,7 +193,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_CreateCluster")
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Cluster>.State in
@@ -204,12 +206,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets the details of certificate authority information for Redis cluster.
@@ -245,7 +248,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_RescheduleClusterMaintenance")
   public func rescheduleClusterMaintenancePollingUntilDone(
     request: RescheduleClusterMaintenanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Cluster>.State in
@@ -258,12 +261,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists all backup collections owned by a consumer project in either the
@@ -320,7 +324,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_DeleteBackup")
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -333,12 +337,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Exports a specific backup to a customer target Cloud Storage URI.
@@ -355,7 +360,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_ExportBackup")
   public func exportBackupPollingUntilDone(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -368,12 +373,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Backup Redis Cluster.
@@ -412,7 +418,7 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
   /// @Snippet(path: "CloudRedisCluster_BackupCluster")
   public func backupClusterPollingUntilDone(
     request: BackupClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Cluster>.State in
@@ -425,12 +431,13 @@ public final class CloudRedisClusterClient: Clients.CloudRedisClusterProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -521,7 +528,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.updateCluster`.
     func updateClusterPollingUntilDone(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
+    ) async throws -> Cluster
 
     /// See `CloudRedisClusterClient.deleteCluster`.
     func deleteCluster(
@@ -531,7 +538,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.deleteCluster`.
     func deleteClusterPollingUntilDone(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CloudRedisClusterClient.createCluster`.
     func createCluster(
@@ -541,7 +548,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.createCluster`.
     func createClusterPollingUntilDone(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
+    ) async throws -> Cluster
 
     /// See `CloudRedisClusterClient.getClusterCertificateAuthority`.
     func getClusterCertificateAuthority(
@@ -561,7 +568,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.rescheduleClusterMaintenance`.
     func rescheduleClusterMaintenancePollingUntilDone(
       request: RescheduleClusterMaintenanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
+    ) async throws -> Cluster
 
     /// See `CloudRedisClusterClient.listBackupCollections`.
     func listBackupCollections(
@@ -591,7 +598,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.deleteBackup`.
     func deleteBackupPollingUntilDone(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CloudRedisClusterClient.exportBackup`.
     func exportBackup(
@@ -601,7 +608,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.exportBackup`.
     func exportBackupPollingUntilDone(
       request: ExportBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `CloudRedisClusterClient.backupCluster`.
     func backupCluster(
@@ -611,7 +618,7 @@ extension Clients {
     /// See `CloudRedisClusterClient.backupCluster`.
     func backupClusterPollingUntilDone(
       request: BackupClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
+    ) async throws -> Cluster
 
     /// See `CloudRedisClusterClient.listLocations`.
     func listLocations(
@@ -726,26 +733,20 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Cluster>
-  {
-    try await self.updateClusterPollingUntilDone(request: request, options: .init())
+  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> Cluster {
+    return try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
       $0.updateMask = updateMask
@@ -765,29 +766,23 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws {
     try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteClusterPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteClusterPollingUntilDone(request: request)
+    try await self.deleteClusterPollingUntilDone(request: request)
   }
 
   public func createCluster(request: CreateClusterRequest) async throws
@@ -802,27 +797,21 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Cluster>
-  {
-    try await self.createClusterPollingUntilDone(request: request, options: .init())
+  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> Cluster {
+    return try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
     clusterId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let request = CreateClusterRequest().with {
       $0.parent = parent
       $0.cluster = cluster
@@ -887,25 +876,22 @@ extension Clients.CloudRedisClusterProtocol {
 
   public func rescheduleClusterMaintenancePollingUntilDone(
     request: RescheduleClusterMaintenanceRequest
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    try await self.rescheduleClusterMaintenancePollingUntilDone(request: request, options: .init())
+  ) async throws -> Cluster {
+    return try await self.rescheduleClusterMaintenancePollingUntilDone(
+      request: request, options: .init())
   }
 
   public func rescheduleClusterMaintenancePollingUntilDone(
     request: RescheduleClusterMaintenanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func rescheduleClusterMaintenancePollingUntilDone(
     name: Swift.String,
     rescheduleType: RescheduleClusterMaintenanceRequest.RescheduleType,
     scheduleTime: GoogleWKT.WKTTimestamp?,
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let request = RescheduleClusterMaintenanceRequest().with {
       $0.name = name
       $0.rescheduleType = rescheduleType
@@ -1056,29 +1042,23 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupPollingUntilDone(request: request)
+    try await self.deleteBackupPollingUntilDone(request: request)
   }
 
   public func exportBackup(request: ExportBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -1092,20 +1072,14 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.exportBackupPollingUntilDone(request: request, options: .init())
+  public func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws -> Backup {
+    return try await self.exportBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func exportBackupPollingUntilDone(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func backupCluster(request: BackupClusterRequest) async throws
@@ -1120,25 +1094,19 @@ extension Clients.CloudRedisClusterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func backupClusterPollingUntilDone(request: BackupClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Cluster>
-  {
-    try await self.backupClusterPollingUntilDone(request: request, options: .init())
+  public func backupClusterPollingUntilDone(request: BackupClusterRequest) async throws -> Cluster {
+    return try await self.backupClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func backupClusterPollingUntilDone(
     request: BackupClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func backupClusterPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let request = BackupClusterRequest().with {
       $0.name = name
     }

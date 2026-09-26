@@ -26,7 +26,7 @@ func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, clusterId: String,
   processId: String
 ) async throws {
-  let poller = try await client.updateProcessPollingUntilDone(
+  let response = try await client.updateProcessPollingUntilDone(
     request: UpdateProcessRequest()
       .with {
         $0.process = Process().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

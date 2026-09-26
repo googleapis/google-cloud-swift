@@ -27,14 +27,13 @@
     client: VertexRagDataServiceClient, projectId: String, locationId: String, ragCorpusId: String,
     ragFileId: String
   ) async throws {
-    let poller = try await client.deleteRagFilePollingUntilDone(
+    try await client.deleteRagFilePollingUntilDone(
       request: DeleteRagFileRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/ragCorpora/\(ragCorpusId)/ragFiles/\(ragFileId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

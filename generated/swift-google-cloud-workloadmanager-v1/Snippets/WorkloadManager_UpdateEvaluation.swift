@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: WorkloadManagerClient, projectId: String, locationId: String, evaluationId: String
 ) async throws {
-  let poller = try await client.updateEvaluationPollingUntilDone(
+  let response = try await client.updateEvaluationPollingUntilDone(
     request: UpdateEvaluationRequest()
       .with {
         $0.evaluation = Evaluation().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

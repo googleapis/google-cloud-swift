@@ -28,7 +28,7 @@
     client: ReasoningEngineServiceClient, projectId: String, locationId: String,
     reasoningEngineId: String
   ) async throws {
-    let poller = try await client.updateReasoningEnginePollingUntilDone(
+    let response = try await client.updateReasoningEnginePollingUntilDone(
       request: UpdateReasoningEngineRequest()
         .with {
           $0.reasoningEngine = ReasoningEngine().with {
@@ -38,7 +38,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

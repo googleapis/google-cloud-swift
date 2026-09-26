@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: WorkflowsClient, projectId: String, locationId: String, workflowId: String)
   async throws
 {
-  let poller = try await client.deleteWorkflowPollingUntilDone(
+  try await client.deleteWorkflowPollingUntilDone(
     request: DeleteWorkflowRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/workflows/\(workflowId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

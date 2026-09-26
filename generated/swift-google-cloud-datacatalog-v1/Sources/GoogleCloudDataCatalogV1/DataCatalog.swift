@@ -515,7 +515,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   @available(*, deprecated)
   public func reconcileTagsPollingUntilDone(
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ReconcileTagsResponse> {
+  ) async throws -> ReconcileTagsResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
@@ -529,12 +529,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
@@ -700,7 +701,7 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   @available(*, deprecated)
   public func importEntriesPollingUntilDone(
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImportEntriesResponse> {
+  ) async throws -> ImportEntriesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
@@ -714,12 +715,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Sets the configuration related to the migration to Dataplex for an
@@ -984,7 +986,7 @@ extension Clients {
     @available(*, deprecated)
     func reconcileTagsPollingUntilDone(
       request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ReconcileTagsResponse>
+    ) async throws -> ReconcileTagsResponse
 
     /// See `DataCatalogClient.starEntry`.
     @available(*, deprecated)
@@ -1026,7 +1028,7 @@ extension Clients {
     @available(*, deprecated)
     func importEntriesPollingUntilDone(
       request: ImportEntriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportEntriesResponse>
+    ) async throws -> ImportEntriesResponse
 
     /// See `DataCatalogClient.setConfig`.
     @available(*, deprecated)
@@ -1908,21 +1910,16 @@ extension Clients.DataCatalogProtocol {
 
   @available(*, deprecated)
   public func reconcileTagsPollingUntilDone(request: ReconcileTagsRequest) async throws
-    -> any GoogleGax.PollableOperation<ReconcileTagsResponse>
+    -> ReconcileTagsResponse
   {
-    try await self.reconcileTagsPollingUntilDone(request: request, options: .init())
+    return try await self.reconcileTagsPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
   public func reconcileTagsPollingUntilDone(
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ReconcileTagsResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReconcileTagsResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ReconcileTagsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   @available(*, deprecated)
@@ -2053,21 +2050,16 @@ extension Clients.DataCatalogProtocol {
 
   @available(*, deprecated)
   public func importEntriesPollingUntilDone(request: ImportEntriesRequest) async throws
-    -> any GoogleGax.PollableOperation<ImportEntriesResponse>
+    -> ImportEntriesResponse
   {
-    try await self.importEntriesPollingUntilDone(request: request, options: .init())
+    return try await self.importEntriesPollingUntilDone(request: request, options: .init())
   }
 
   @available(*, deprecated)
   public func importEntriesPollingUntilDone(
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImportEntriesResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportEntriesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ImportEntriesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   @available(*, deprecated)

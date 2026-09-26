@@ -26,14 +26,13 @@ func sample(
   client: DeveloperConnectClient, projectId: String, locationId: String, connectionId: String,
   gitRepositoryLinkId: String
 ) async throws {
-  let poller = try await client.deleteGitRepositoryLinkPollingUntilDone(
+  try await client.deleteGitRepositoryLinkPollingUntilDone(
     request: DeleteGitRepositoryLinkRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)/gitRepositoryLinks/\(gitRepositoryLinkId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

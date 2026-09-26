@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, volumeId: String)
   async throws
 {
-  let poller = try await client.createQuotaRulePollingUntilDone(
+  let response = try await client.createQuotaRulePollingUntilDone(
     request: CreateQuotaRuleRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)"
         $0.quotaRule = QuotaRule() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

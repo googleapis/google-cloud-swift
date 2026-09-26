@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: ManagedKafkaClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let poller = try await client.deleteClusterPollingUntilDone(
+  try await client.deleteClusterPollingUntilDone(
     request: DeleteClusterRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

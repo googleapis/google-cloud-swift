@@ -27,7 +27,7 @@ func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String,
   automationId: String
 ) async throws {
-  let poller = try await client.updateAutomationPollingUntilDone(
+  let response = try await client.updateAutomationPollingUntilDone(
     request: UpdateAutomationRequest()
       .with {
         $0.automation = Automation().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

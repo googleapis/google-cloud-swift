@@ -22,11 +22,10 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.TargetPoolsClient()
-    let poller = try await client.addHealthCheckPollingUntilDone(
+    let response = try await client.addHealthCheckPollingUntilDone(
       request: TargetPoolsClient.AddHealthCheckRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

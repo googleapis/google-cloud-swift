@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String, routerId: String
 ) async throws {
-  let poller = try await client.deleteRouterPollingUntilDone(
+  try await client.deleteRouterPollingUntilDone(
     request: DeleteRouterRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)/routers/\(routerId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

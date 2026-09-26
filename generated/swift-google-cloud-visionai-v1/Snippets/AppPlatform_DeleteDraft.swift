@@ -26,14 +26,13 @@ func sample(
   client: AppPlatformClient, projectId: String, locationId: String, applicationId: String,
   draftId: String
 ) async throws {
-  let poller = try await client.deleteDraftPollingUntilDone(
+  try await client.deleteDraftPollingUntilDone(
     request: DeleteDraftRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)/drafts/\(draftId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

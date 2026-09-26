@@ -60,7 +60,7 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// @Snippet(path: "DataScanService_CreateDataScan")
   public func createDataScanPollingUntilDone(
     request: CreateDataScanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DataScan> {
+  ) async throws -> DataScan {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataScan>.State in
@@ -73,12 +73,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates a DataScan resource.
@@ -95,7 +96,7 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// @Snippet(path: "DataScanService_UpdateDataScan")
   public func updateDataScanPollingUntilDone(
     request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DataScan> {
+  ) async throws -> DataScan {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DataScan>.State in
@@ -108,12 +109,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a DataScan resource.
@@ -130,7 +132,7 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// @Snippet(path: "DataScanService_DeleteDataScan")
   public func deleteDataScanPollingUntilDone(
     request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -143,12 +145,13 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets a DataScan resource.
@@ -350,7 +353,7 @@ extension Clients {
     /// See `DataScanServiceClient.createDataScan`.
     func createDataScanPollingUntilDone(
       request: CreateDataScanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DataScan>
+    ) async throws -> DataScan
 
     /// See `DataScanServiceClient.updateDataScan`.
     func updateDataScan(
@@ -360,7 +363,7 @@ extension Clients {
     /// See `DataScanServiceClient.updateDataScan`.
     func updateDataScanPollingUntilDone(
       request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DataScan>
+    ) async throws -> DataScan
 
     /// See `DataScanServiceClient.deleteDataScan`.
     func deleteDataScan(
@@ -370,7 +373,7 @@ extension Clients {
     /// See `DataScanServiceClient.deleteDataScan`.
     func deleteDataScanPollingUntilDone(
       request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DataScanServiceClient.getDataScan`.
     func getDataScan(
@@ -464,26 +467,22 @@ extension Clients.DataScanServiceProtocol {
   }
 
   public func createDataScanPollingUntilDone(request: CreateDataScanRequest) async throws
-    -> any GoogleGax.PollableOperation<DataScan>
+    -> DataScan
   {
-    try await self.createDataScanPollingUntilDone(request: request, options: .init())
+    return try await self.createDataScanPollingUntilDone(request: request, options: .init())
   }
 
   public func createDataScanPollingUntilDone(
     request: CreateDataScanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DataScan> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataScan>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DataScan {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createDataScanPollingUntilDone(
     parent: Swift.String,
     dataScan: DataScan?,
     dataScanId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<DataScan> {
+  ) async throws -> DataScan {
     let request = CreateDataScanRequest().with {
       $0.parent = parent
       $0.dataScan = dataScan
@@ -505,25 +504,21 @@ extension Clients.DataScanServiceProtocol {
   }
 
   public func updateDataScanPollingUntilDone(request: UpdateDataScanRequest) async throws
-    -> any GoogleGax.PollableOperation<DataScan>
+    -> DataScan
   {
-    try await self.updateDataScanPollingUntilDone(request: request, options: .init())
+    return try await self.updateDataScanPollingUntilDone(request: request, options: .init())
   }
 
   public func updateDataScanPollingUntilDone(
     request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DataScan> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DataScan>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DataScan {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateDataScanPollingUntilDone(
     dataScan: DataScan?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<DataScan> {
+  ) async throws -> DataScan {
     let request = UpdateDataScanRequest().with {
       $0.dataScan = dataScan
       $0.updateMask = updateMask
@@ -543,29 +538,23 @@ extension Clients.DataScanServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDataScanPollingUntilDone(request: DeleteDataScanRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteDataScanPollingUntilDone(request: DeleteDataScanRequest) async throws {
     try await self.deleteDataScanPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteDataScanPollingUntilDone(
     request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteDataScanPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteDataScanRequest().with {
       $0.name = name
     }
-    return try await self.deleteDataScanPollingUntilDone(request: request)
+    try await self.deleteDataScanPollingUntilDone(request: request)
   }
 
   public func getDataScan(request: GetDataScanRequest) async throws

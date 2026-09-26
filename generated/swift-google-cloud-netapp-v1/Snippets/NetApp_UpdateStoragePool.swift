@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, storagePoolId: String)
   async throws
 {
-  let poller = try await client.updateStoragePoolPollingUntilDone(
+  let response = try await client.updateStoragePoolPollingUntilDone(
     request: UpdateStoragePoolRequest()
       .with {
         $0.storagePool = StoragePool().with {
@@ -34,7 +34,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, storage
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

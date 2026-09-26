@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String
 ) async throws {
-  let poller = try await client.createReleasePollingUntilDone(
+  let response = try await client.createReleasePollingUntilDone(
     request: CreateReleaseRequest()
       .with {
         $0.parent =
@@ -34,7 +34,6 @@ func sample(
         $0.release = Release() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

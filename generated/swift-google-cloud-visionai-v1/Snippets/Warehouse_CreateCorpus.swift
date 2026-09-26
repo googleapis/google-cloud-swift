@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient, parent: String) async throws {
-  let poller = try await client.createCorpusPollingUntilDone(
+  let response = try await client.createCorpusPollingUntilDone(
     request: CreateCorpusRequest()
       .with {
         $0.parent = "\(parent)"
         $0.corpus = Corpus() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

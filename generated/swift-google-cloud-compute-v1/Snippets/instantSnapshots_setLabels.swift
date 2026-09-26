@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstantSnapshotsClient) async throws {
-    let poller = try await client.setLabelsPollingUntilDone(
+    let response = try await client.setLabelsPollingUntilDone(
       request: InstantSnapshotsClient.SetLabelsRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -27,14 +27,13 @@ func sample(
   client: DataMigrationServiceClient, projectId: String, locationId: String,
   conversionWorkspaceId: String
 ) async throws {
-  let poller = try await client.deleteConversionWorkspacePollingUntilDone(
+  try await client.deleteConversionWorkspacePollingUntilDone(
     request: DeleteConversionWorkspaceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/conversionWorkspaces/\(conversionWorkspaceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

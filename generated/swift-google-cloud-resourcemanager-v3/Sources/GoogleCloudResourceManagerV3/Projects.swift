@@ -112,7 +112,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_CreateProject")
   public func createProjectPollingUntilDone(
     request: CreateProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Project>.State in
@@ -125,12 +125,13 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the `display_name` and labels of the project identified by the
@@ -157,7 +158,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_UpdateProject")
   public func updateProjectPollingUntilDone(
     request: UpdateProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Project>.State in
@@ -170,12 +171,13 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Move a project to another place in your resource hierarchy, under a new
@@ -222,7 +224,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_MoveProject")
   public func moveProjectPollingUntilDone(
     request: MoveProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Project>.State in
@@ -235,12 +237,13 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Marks the project identified by the specified
@@ -329,7 +332,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_DeleteProject")
   public func deleteProjectPollingUntilDone(
     request: DeleteProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Project>.State in
@@ -342,12 +345,13 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Restores the project identified by the specified
@@ -380,7 +384,7 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// @Snippet(path: "Projects_UndeleteProject")
   public func undeleteProjectPollingUntilDone(
     request: UndeleteProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Project>.State in
@@ -393,12 +397,13 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the IAM access control policy for the specified project, in the
@@ -513,7 +518,7 @@ extension Clients {
     /// See `ProjectsClient.createProject`.
     func createProjectPollingUntilDone(
       request: CreateProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Project>
+    ) async throws -> Project
 
     /// See `ProjectsClient.updateProject`.
     func updateProject(
@@ -523,7 +528,7 @@ extension Clients {
     /// See `ProjectsClient.updateProject`.
     func updateProjectPollingUntilDone(
       request: UpdateProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Project>
+    ) async throws -> Project
 
     /// See `ProjectsClient.moveProject`.
     func moveProject(
@@ -533,7 +538,7 @@ extension Clients {
     /// See `ProjectsClient.moveProject`.
     func moveProjectPollingUntilDone(
       request: MoveProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Project>
+    ) async throws -> Project
 
     /// See `ProjectsClient.deleteProject`.
     func deleteProject(
@@ -543,7 +548,7 @@ extension Clients {
     /// See `ProjectsClient.deleteProject`.
     func deleteProjectPollingUntilDone(
       request: DeleteProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Project>
+    ) async throws -> Project
 
     /// See `ProjectsClient.undeleteProject`.
     func undeleteProject(
@@ -553,7 +558,7 @@ extension Clients {
     /// See `ProjectsClient.undeleteProject`.
     func undeleteProjectPollingUntilDone(
       request: UndeleteProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Project>
+    ) async throws -> Project
 
     /// See `ProjectsClient.getIamPolicy`.
     func getIamPolicy(
@@ -709,25 +714,19 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createProjectPollingUntilDone(request: CreateProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<Project>
-  {
-    try await self.createProjectPollingUntilDone(request: request, options: .init())
+  public func createProjectPollingUntilDone(request: CreateProjectRequest) async throws -> Project {
+    return try await self.createProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func createProjectPollingUntilDone(
     request: CreateProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Project {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createProjectPollingUntilDone(
     project: Project?,
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let request = CreateProjectRequest().with {
       $0.project = project
     }
@@ -746,26 +745,20 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateProjectPollingUntilDone(request: UpdateProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<Project>
-  {
-    try await self.updateProjectPollingUntilDone(request: request, options: .init())
+  public func updateProjectPollingUntilDone(request: UpdateProjectRequest) async throws -> Project {
+    return try await self.updateProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func updateProjectPollingUntilDone(
     request: UpdateProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Project {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateProjectPollingUntilDone(
     project: Project?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let request = UpdateProjectRequest().with {
       $0.project = project
       $0.updateMask = updateMask
@@ -783,26 +776,20 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func moveProjectPollingUntilDone(request: MoveProjectRequest) async throws -> any GoogleGax
-    .PollableOperation<Project>
-  {
-    try await self.moveProjectPollingUntilDone(request: request, options: .init())
+  public func moveProjectPollingUntilDone(request: MoveProjectRequest) async throws -> Project {
+    return try await self.moveProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func moveProjectPollingUntilDone(
     request: MoveProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Project {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func moveProjectPollingUntilDone(
     name: Swift.String,
     destinationParent: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let request = MoveProjectRequest().with {
       $0.name = name
       $0.destinationParent = destinationParent
@@ -822,25 +809,19 @@ extension Clients.ProjectsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteProjectPollingUntilDone(request: DeleteProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<Project>
-  {
-    try await self.deleteProjectPollingUntilDone(request: request, options: .init())
+  public func deleteProjectPollingUntilDone(request: DeleteProjectRequest) async throws -> Project {
+    return try await self.deleteProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteProjectPollingUntilDone(
     request: DeleteProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Project {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteProjectPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let request = DeleteProjectRequest().with {
       $0.name = name
     }
@@ -860,24 +841,20 @@ extension Clients.ProjectsProtocol {
   }
 
   public func undeleteProjectPollingUntilDone(request: UndeleteProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<Project>
+    -> Project
   {
-    try await self.undeleteProjectPollingUntilDone(request: request, options: .init())
+    return try await self.undeleteProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func undeleteProjectPollingUntilDone(
     request: UndeleteProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Project>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Project {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func undeleteProjectPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Project> {
+  ) async throws -> Project {
     let request = UndeleteProjectRequest().with {
       $0.name = name
     }

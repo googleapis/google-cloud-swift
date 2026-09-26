@@ -28,14 +28,13 @@
     client: JobServiceClient, projectId: String, locationId: String,
     modelDeploymentMonitoringJobId: String
   ) async throws {
-    let poller = try await client.deleteModelDeploymentMonitoringJobPollingUntilDone(
+    try await client.deleteModelDeploymentMonitoringJobPollingUntilDone(
       request: DeleteModelDeploymentMonitoringJobRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/modelDeploymentMonitoringJobs/\(modelDeploymentMonitoringJobId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

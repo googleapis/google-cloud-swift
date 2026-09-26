@@ -27,13 +27,12 @@ import GoogleWKT
 func sample(client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String)
   async throws
 {
-  let poller = try await client.deleteAwsClusterPollingUntilDone(
+  try await client.deleteAwsClusterPollingUntilDone(
     request: DeleteAwsClusterRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/awsClusters/\(awsClusterId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

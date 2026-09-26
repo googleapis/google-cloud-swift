@@ -28,14 +28,13 @@
     client: MetadataServiceClient, projectId: String, locationId: String, metadataStoreId: String,
     artifactId: String
   ) async throws {
-    let poller = try await client.deleteArtifactPollingUntilDone(
+    try await client.deleteArtifactPollingUntilDone(
       request: DeleteArtifactRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/metadataStores/\(metadataStoreId)/artifacts/\(artifactId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

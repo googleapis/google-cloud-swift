@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.createExternalAddressPollingUntilDone(
+  let response = try await client.createExternalAddressPollingUntilDone(
     request: CreateExternalAddressRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
         $0.externalAddress = ExternalAddress() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -66,7 +66,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateStoragePool")
   public func createStoragePoolPollingUntilDone(
     request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
+  ) async throws -> StoragePool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StoragePool>.State in
@@ -79,12 +79,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the description of the specified storage pool by poolId.
@@ -110,7 +111,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateStoragePool")
   public func updateStoragePoolPollingUntilDone(
     request: UpdateStoragePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
+  ) async throws -> StoragePool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StoragePool>.State in
@@ -123,12 +124,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Warning! This operation will permanently delete the storage pool.
@@ -145,7 +147,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteStoragePool")
   public func deleteStoragePoolPollingUntilDone(
     request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -158,12 +160,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// ValidateDirectoryService does a connectivity check for a directory service
@@ -182,7 +185,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ValidateDirectoryService")
   public func validateDirectoryServicePollingUntilDone(
     request: ValidateDirectoryServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -195,12 +198,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// This operation will switch the active/replica zone for a regional
@@ -219,7 +223,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_SwitchActiveReplicaZone")
   public func switchActiveReplicaZonePollingUntilDone(
     request: SwitchActiveReplicaZoneRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
+  ) async throws -> StoragePool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StoragePool>.State in
@@ -232,12 +236,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists Volumes in a given project.
@@ -272,7 +277,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateVolume")
   public func createVolumePollingUntilDone(
     request: CreateVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Volume>.State in
@@ -285,12 +290,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Volume.
@@ -307,7 +313,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateVolume")
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Volume>.State in
@@ -320,12 +326,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Volume.
@@ -342,7 +349,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteVolume")
   public func deleteVolumePollingUntilDone(
     request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -355,12 +362,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Revert an existing volume to a specified snapshot.
@@ -381,7 +389,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_RevertVolume")
   public func revertVolumePollingUntilDone(
     request: RevertVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Volume>.State in
@@ -394,12 +402,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Establish volume peering. This is used to establish cluster and svm
@@ -418,7 +427,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_EstablishVolumePeering")
   public func establishVolumePeeringPollingUntilDone(
     request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Volume>.State in
@@ -431,12 +440,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns descriptions of all snapshots for a volume.
@@ -471,7 +481,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateSnapshot")
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Snapshot>.State in
@@ -484,12 +494,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a snapshot.
@@ -506,7 +517,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteSnapshot")
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -519,12 +530,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the settings of a specific snapshot.
@@ -541,7 +553,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateSnapshot")
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Snapshot>.State in
@@ -554,12 +566,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists active directories.
@@ -596,7 +609,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateActiveDirectory")
   public func createActiveDirectoryPollingUntilDone(
     request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory> {
+  ) async throws -> ActiveDirectory {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ActiveDirectory>.State in
@@ -610,12 +623,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update the parameters of an active directories.
@@ -632,7 +646,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateActiveDirectory")
   public func updateActiveDirectoryPollingUntilDone(
     request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory> {
+  ) async throws -> ActiveDirectory {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ActiveDirectory>.State in
@@ -646,12 +660,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete the active directory specified in the request.
@@ -668,7 +683,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteActiveDirectory")
   public func deleteActiveDirectoryPollingUntilDone(
     request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -681,12 +696,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Returns descriptions of all KMS configs owned by the caller.
@@ -712,7 +728,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateKmsConfig")
   public func createKmsConfigPollingUntilDone(
     request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
+  ) async throws -> KmsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<KmsConfig>.State in
@@ -725,12 +741,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the description of the specified KMS config by kms_config_id.
@@ -756,7 +773,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateKmsConfig")
   public func updateKmsConfigPollingUntilDone(
     request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
+  ) async throws -> KmsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<KmsConfig>.State in
@@ -769,12 +786,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Encrypt the existing volumes without CMEK encryption with the desired the
@@ -793,7 +811,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_EncryptVolumes")
   public func encryptVolumesPollingUntilDone(
     request: EncryptVolumesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
+  ) async throws -> KmsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<KmsConfig>.State in
@@ -806,12 +824,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Verifies KMS config reachability.
@@ -837,7 +856,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteKmsConfig")
   public func deleteKmsConfigPollingUntilDone(
     request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -850,12 +869,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Returns descriptions of all replications for a volume.
@@ -890,7 +910,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateReplication")
   public func createReplicationPollingUntilDone(
     request: CreateReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -903,12 +923,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a replication.
@@ -925,7 +946,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteReplication")
   public func deleteReplicationPollingUntilDone(
     request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -938,12 +959,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the settings of a specific replication.
@@ -960,7 +982,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateReplication")
   public func updateReplicationPollingUntilDone(
     request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -973,12 +995,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Stop Cross Region Replication.
@@ -995,7 +1018,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_StopReplication")
   public func stopReplicationPollingUntilDone(
     request: StopReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -1008,12 +1031,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Resume Cross Region Replication.
@@ -1030,7 +1054,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ResumeReplication")
   public func resumeReplicationPollingUntilDone(
     request: ResumeReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -1043,12 +1067,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Reverses direction of replication. Source becomes destination and
@@ -1067,7 +1092,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_ReverseReplicationDirection")
   public func reverseReplicationDirectionPollingUntilDone(
     request: ReverseReplicationDirectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -1080,12 +1105,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Establish replication peering.
@@ -1102,7 +1128,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_EstablishPeering")
   public func establishPeeringPollingUntilDone(
     request: EstablishPeeringRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -1115,12 +1141,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Syncs the replication. This will invoke one time volume data transfer from
@@ -1139,7 +1166,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_SyncReplication")
   public func syncReplicationPollingUntilDone(
     request: SyncReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Replication>.State in
@@ -1152,12 +1179,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates new backup vault
@@ -1174,7 +1202,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateBackupVault")
   public func createBackupVaultPollingUntilDone(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupVault> {
+  ) async throws -> BackupVault {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupVault>.State in
@@ -1187,12 +1215,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the description of the specified backup vault
@@ -1227,7 +1256,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateBackupVault")
   public func updateBackupVaultPollingUntilDone(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupVault> {
+  ) async throws -> BackupVault {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupVault>.State in
@@ -1240,12 +1269,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Warning! This operation will permanently delete the backup vault.
@@ -1262,7 +1292,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteBackupVault")
   public func deleteBackupVaultPollingUntilDone(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1275,12 +1305,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a backup from the volume specified in the request
@@ -1303,7 +1334,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateBackup")
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -1316,12 +1347,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the description of the specified backup
@@ -1356,7 +1388,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteBackup")
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1369,12 +1401,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Update backup with full spec.
@@ -1391,7 +1424,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateBackup")
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -1404,12 +1437,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates new backup policy
@@ -1426,7 +1460,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateBackupPolicy")
   public func createBackupPolicyPollingUntilDone(
     request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPolicy> {
+  ) async throws -> BackupPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupPolicy>.State in
@@ -1440,12 +1474,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the description of the specified backup policy by backup_policy_id.
@@ -1480,7 +1515,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateBackupPolicy")
   public func updateBackupPolicyPollingUntilDone(
     request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPolicy> {
+  ) async throws -> BackupPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupPolicy>.State in
@@ -1494,12 +1529,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Warning! This operation will permanently delete the backup policy.
@@ -1516,7 +1552,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteBackupPolicy")
   public func deleteBackupPolicyPollingUntilDone(
     request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1529,12 +1565,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Returns list of all quota rules in a location.
@@ -1569,7 +1606,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateQuotaRule")
   public func createQuotaRulePollingUntilDone(
     request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<QuotaRule> {
+  ) async throws -> QuotaRule {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<QuotaRule>.State in
@@ -1582,12 +1619,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates a quota rule.
@@ -1604,7 +1642,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateQuotaRule")
   public func updateQuotaRulePollingUntilDone(
     request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<QuotaRule> {
+  ) async throws -> QuotaRule {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<QuotaRule>.State in
@@ -1617,12 +1655,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a quota rule.
@@ -1639,7 +1678,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteQuotaRule")
   public func deleteQuotaRulePollingUntilDone(
     request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1652,12 +1691,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Restore files from a backup to a volume.
@@ -1674,7 +1714,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_RestoreBackupFiles")
   public func restoreBackupFilesPollingUntilDone(
     request: RestoreBackupFilesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreBackupFilesResponse> {
+  ) async throws -> RestoreBackupFilesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestoreBackupFilesResponse>.State in
@@ -1689,12 +1729,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns a list of host groups in a `location`. Use `-` as location to list
@@ -1730,7 +1771,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_CreateHostGroup")
   public func createHostGroupPollingUntilDone(
     request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<HostGroup> {
+  ) async throws -> HostGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<HostGroup>.State in
@@ -1743,12 +1784,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an existing host group.
@@ -1765,7 +1807,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_UpdateHostGroup")
   public func updateHostGroupPollingUntilDone(
     request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<HostGroup> {
+  ) async throws -> HostGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<HostGroup>.State in
@@ -1778,12 +1820,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a host group.
@@ -1800,7 +1843,7 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// @Snippet(path: "NetApp_DeleteHostGroup")
   public func deleteHostGroupPollingUntilDone(
     request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1813,12 +1856,13 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// `ExecuteOntapPost` dispatches the ONTAP `POST` request to the
@@ -1961,7 +2005,7 @@ extension Clients {
     /// See `NetAppClient.createStoragePool`.
     func createStoragePoolPollingUntilDone(
       request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StoragePool>
+    ) async throws -> StoragePool
 
     /// See `NetAppClient.getStoragePool`.
     func getStoragePool(
@@ -1976,7 +2020,7 @@ extension Clients {
     /// See `NetAppClient.updateStoragePool`.
     func updateStoragePoolPollingUntilDone(
       request: UpdateStoragePoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StoragePool>
+    ) async throws -> StoragePool
 
     /// See `NetAppClient.deleteStoragePool`.
     func deleteStoragePool(
@@ -1986,7 +2030,7 @@ extension Clients {
     /// See `NetAppClient.deleteStoragePool`.
     func deleteStoragePoolPollingUntilDone(
       request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.validateDirectoryService`.
     func validateDirectoryService(
@@ -1996,7 +2040,7 @@ extension Clients {
     /// See `NetAppClient.validateDirectoryService`.
     func validateDirectoryServicePollingUntilDone(
       request: ValidateDirectoryServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.switchActiveReplicaZone`.
     func switchActiveReplicaZone(
@@ -2006,7 +2050,7 @@ extension Clients {
     /// See `NetAppClient.switchActiveReplicaZone`.
     func switchActiveReplicaZonePollingUntilDone(
       request: SwitchActiveReplicaZoneRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StoragePool>
+    ) async throws -> StoragePool
 
     /// See `NetAppClient.listVolumes`.
     func listVolumes(
@@ -2026,7 +2070,7 @@ extension Clients {
     /// See `NetAppClient.createVolume`.
     func createVolumePollingUntilDone(
       request: CreateVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Volume>
+    ) async throws -> Volume
 
     /// See `NetAppClient.updateVolume`.
     func updateVolume(
@@ -2036,7 +2080,7 @@ extension Clients {
     /// See `NetAppClient.updateVolume`.
     func updateVolumePollingUntilDone(
       request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Volume>
+    ) async throws -> Volume
 
     /// See `NetAppClient.deleteVolume`.
     func deleteVolume(
@@ -2046,7 +2090,7 @@ extension Clients {
     /// See `NetAppClient.deleteVolume`.
     func deleteVolumePollingUntilDone(
       request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.revertVolume`.
     func revertVolume(
@@ -2056,7 +2100,7 @@ extension Clients {
     /// See `NetAppClient.revertVolume`.
     func revertVolumePollingUntilDone(
       request: RevertVolumeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Volume>
+    ) async throws -> Volume
 
     /// See `NetAppClient.establishVolumePeering`.
     func establishVolumePeering(
@@ -2066,7 +2110,7 @@ extension Clients {
     /// See `NetAppClient.establishVolumePeering`.
     func establishVolumePeeringPollingUntilDone(
       request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Volume>
+    ) async throws -> Volume
 
     /// See `NetAppClient.listSnapshots`.
     func listSnapshots(
@@ -2086,7 +2130,7 @@ extension Clients {
     /// See `NetAppClient.createSnapshot`.
     func createSnapshotPollingUntilDone(
       request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Snapshot>
+    ) async throws -> Snapshot
 
     /// See `NetAppClient.deleteSnapshot`.
     func deleteSnapshot(
@@ -2096,7 +2140,7 @@ extension Clients {
     /// See `NetAppClient.deleteSnapshot`.
     func deleteSnapshotPollingUntilDone(
       request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.updateSnapshot`.
     func updateSnapshot(
@@ -2106,7 +2150,7 @@ extension Clients {
     /// See `NetAppClient.updateSnapshot`.
     func updateSnapshotPollingUntilDone(
       request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Snapshot>
+    ) async throws -> Snapshot
 
     /// See `NetAppClient.listActiveDirectories`.
     func listActiveDirectories(
@@ -2126,7 +2170,7 @@ extension Clients {
     /// See `NetAppClient.createActiveDirectory`.
     func createActiveDirectoryPollingUntilDone(
       request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory>
+    ) async throws -> ActiveDirectory
 
     /// See `NetAppClient.updateActiveDirectory`.
     func updateActiveDirectory(
@@ -2136,7 +2180,7 @@ extension Clients {
     /// See `NetAppClient.updateActiveDirectory`.
     func updateActiveDirectoryPollingUntilDone(
       request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory>
+    ) async throws -> ActiveDirectory
 
     /// See `NetAppClient.deleteActiveDirectory`.
     func deleteActiveDirectory(
@@ -2146,7 +2190,7 @@ extension Clients {
     /// See `NetAppClient.deleteActiveDirectory`.
     func deleteActiveDirectoryPollingUntilDone(
       request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.listKmsConfigs`.
     func listKmsConfigs(
@@ -2161,7 +2205,7 @@ extension Clients {
     /// See `NetAppClient.createKmsConfig`.
     func createKmsConfigPollingUntilDone(
       request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<KmsConfig>
+    ) async throws -> KmsConfig
 
     /// See `NetAppClient.getKmsConfig`.
     func getKmsConfig(
@@ -2176,7 +2220,7 @@ extension Clients {
     /// See `NetAppClient.updateKmsConfig`.
     func updateKmsConfigPollingUntilDone(
       request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<KmsConfig>
+    ) async throws -> KmsConfig
 
     /// See `NetAppClient.encryptVolumes`.
     func encryptVolumes(
@@ -2186,7 +2230,7 @@ extension Clients {
     /// See `NetAppClient.encryptVolumes`.
     func encryptVolumesPollingUntilDone(
       request: EncryptVolumesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<KmsConfig>
+    ) async throws -> KmsConfig
 
     /// See `NetAppClient.verifyKmsConfig`.
     func verifyKmsConfig(
@@ -2201,7 +2245,7 @@ extension Clients {
     /// See `NetAppClient.deleteKmsConfig`.
     func deleteKmsConfigPollingUntilDone(
       request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.listReplications`.
     func listReplications(
@@ -2221,7 +2265,7 @@ extension Clients {
     /// See `NetAppClient.createReplication`.
     func createReplicationPollingUntilDone(
       request: CreateReplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.deleteReplication`.
     func deleteReplication(
@@ -2231,7 +2275,7 @@ extension Clients {
     /// See `NetAppClient.deleteReplication`.
     func deleteReplicationPollingUntilDone(
       request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.updateReplication`.
     func updateReplication(
@@ -2241,7 +2285,7 @@ extension Clients {
     /// See `NetAppClient.updateReplication`.
     func updateReplicationPollingUntilDone(
       request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.stopReplication`.
     func stopReplication(
@@ -2251,7 +2295,7 @@ extension Clients {
     /// See `NetAppClient.stopReplication`.
     func stopReplicationPollingUntilDone(
       request: StopReplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.resumeReplication`.
     func resumeReplication(
@@ -2261,7 +2305,7 @@ extension Clients {
     /// See `NetAppClient.resumeReplication`.
     func resumeReplicationPollingUntilDone(
       request: ResumeReplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.reverseReplicationDirection`.
     func reverseReplicationDirection(
@@ -2271,7 +2315,7 @@ extension Clients {
     /// See `NetAppClient.reverseReplicationDirection`.
     func reverseReplicationDirectionPollingUntilDone(
       request: ReverseReplicationDirectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.establishPeering`.
     func establishPeering(
@@ -2281,7 +2325,7 @@ extension Clients {
     /// See `NetAppClient.establishPeering`.
     func establishPeeringPollingUntilDone(
       request: EstablishPeeringRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.syncReplication`.
     func syncReplication(
@@ -2291,7 +2335,7 @@ extension Clients {
     /// See `NetAppClient.syncReplication`.
     func syncReplicationPollingUntilDone(
       request: SyncReplicationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Replication>
+    ) async throws -> Replication
 
     /// See `NetAppClient.createBackupVault`.
     func createBackupVault(
@@ -2301,7 +2345,7 @@ extension Clients {
     /// See `NetAppClient.createBackupVault`.
     func createBackupVaultPollingUntilDone(
       request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupVault>
+    ) async throws -> BackupVault
 
     /// See `NetAppClient.getBackupVault`.
     func getBackupVault(
@@ -2321,7 +2365,7 @@ extension Clients {
     /// See `NetAppClient.updateBackupVault`.
     func updateBackupVaultPollingUntilDone(
       request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupVault>
+    ) async throws -> BackupVault
 
     /// See `NetAppClient.deleteBackupVault`.
     func deleteBackupVault(
@@ -2331,7 +2375,7 @@ extension Clients {
     /// See `NetAppClient.deleteBackupVault`.
     func deleteBackupVaultPollingUntilDone(
       request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.createBackup`.
     func createBackup(
@@ -2341,7 +2385,7 @@ extension Clients {
     /// See `NetAppClient.createBackup`.
     func createBackupPollingUntilDone(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `NetAppClient.getBackup`.
     func getBackup(
@@ -2361,7 +2405,7 @@ extension Clients {
     /// See `NetAppClient.deleteBackup`.
     func deleteBackupPollingUntilDone(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.updateBackup`.
     func updateBackup(
@@ -2371,7 +2415,7 @@ extension Clients {
     /// See `NetAppClient.updateBackup`.
     func updateBackupPollingUntilDone(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `NetAppClient.createBackupPolicy`.
     func createBackupPolicy(
@@ -2381,7 +2425,7 @@ extension Clients {
     /// See `NetAppClient.createBackupPolicy`.
     func createBackupPolicyPollingUntilDone(
       request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupPolicy>
+    ) async throws -> BackupPolicy
 
     /// See `NetAppClient.getBackupPolicy`.
     func getBackupPolicy(
@@ -2401,7 +2445,7 @@ extension Clients {
     /// See `NetAppClient.updateBackupPolicy`.
     func updateBackupPolicyPollingUntilDone(
       request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupPolicy>
+    ) async throws -> BackupPolicy
 
     /// See `NetAppClient.deleteBackupPolicy`.
     func deleteBackupPolicy(
@@ -2411,7 +2455,7 @@ extension Clients {
     /// See `NetAppClient.deleteBackupPolicy`.
     func deleteBackupPolicyPollingUntilDone(
       request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.listQuotaRules`.
     func listQuotaRules(
@@ -2431,7 +2475,7 @@ extension Clients {
     /// See `NetAppClient.createQuotaRule`.
     func createQuotaRulePollingUntilDone(
       request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<QuotaRule>
+    ) async throws -> QuotaRule
 
     /// See `NetAppClient.updateQuotaRule`.
     func updateQuotaRule(
@@ -2441,7 +2485,7 @@ extension Clients {
     /// See `NetAppClient.updateQuotaRule`.
     func updateQuotaRulePollingUntilDone(
       request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<QuotaRule>
+    ) async throws -> QuotaRule
 
     /// See `NetAppClient.deleteQuotaRule`.
     func deleteQuotaRule(
@@ -2451,7 +2495,7 @@ extension Clients {
     /// See `NetAppClient.deleteQuotaRule`.
     func deleteQuotaRulePollingUntilDone(
       request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.restoreBackupFiles`.
     func restoreBackupFiles(
@@ -2461,7 +2505,7 @@ extension Clients {
     /// See `NetAppClient.restoreBackupFiles`.
     func restoreBackupFilesPollingUntilDone(
       request: RestoreBackupFilesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RestoreBackupFilesResponse>
+    ) async throws -> RestoreBackupFilesResponse
 
     /// See `NetAppClient.listHostGroups`.
     func listHostGroups(
@@ -2481,7 +2525,7 @@ extension Clients {
     /// See `NetAppClient.createHostGroup`.
     func createHostGroupPollingUntilDone(
       request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<HostGroup>
+    ) async throws -> HostGroup
 
     /// See `NetAppClient.updateHostGroup`.
     func updateHostGroup(
@@ -2491,7 +2535,7 @@ extension Clients {
     /// See `NetAppClient.updateHostGroup`.
     func updateHostGroupPollingUntilDone(
       request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<HostGroup>
+    ) async throws -> HostGroup
 
     /// See `NetAppClient.deleteHostGroup`.
     func deleteHostGroup(
@@ -2501,7 +2545,7 @@ extension Clients {
     /// See `NetAppClient.deleteHostGroup`.
     func deleteHostGroupPollingUntilDone(
       request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetAppClient.executeOntapPost`.
     func executeOntapPost(
@@ -2608,26 +2652,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createStoragePoolPollingUntilDone(request: CreateStoragePoolRequest) async throws
-    -> any GoogleGax.PollableOperation<StoragePool>
+    -> StoragePool
   {
-    try await self.createStoragePoolPollingUntilDone(request: request, options: .init())
+    return try await self.createStoragePoolPollingUntilDone(request: request, options: .init())
   }
 
   public func createStoragePoolPollingUntilDone(
     request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<StoragePool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> StoragePool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createStoragePoolPollingUntilDone(
     parent: Swift.String,
     storagePool: StoragePool?,
     storagePoolId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
+  ) async throws -> StoragePool {
     let request = CreateStoragePoolRequest().with {
       $0.parent = parent
       $0.storagePool = storagePool
@@ -2670,25 +2710,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateStoragePoolPollingUntilDone(request: UpdateStoragePoolRequest) async throws
-    -> any GoogleGax.PollableOperation<StoragePool>
+    -> StoragePool
   {
-    try await self.updateStoragePoolPollingUntilDone(request: request, options: .init())
+    return try await self.updateStoragePoolPollingUntilDone(request: request, options: .init())
   }
 
   public func updateStoragePoolPollingUntilDone(
     request: UpdateStoragePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<StoragePool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> StoragePool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateStoragePoolPollingUntilDone(
     storagePool: StoragePool?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
+  ) async throws -> StoragePool {
     let request = UpdateStoragePoolRequest().with {
       $0.storagePool = storagePool
       $0.updateMask = updateMask
@@ -2708,29 +2744,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteStoragePoolPollingUntilDone(request: DeleteStoragePoolRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteStoragePoolPollingUntilDone(request: DeleteStoragePoolRequest) async throws {
     try await self.deleteStoragePoolPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteStoragePoolPollingUntilDone(
     request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteStoragePoolPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteStoragePoolRequest().with {
       $0.name = name
     }
-    return try await self.deleteStoragePoolPollingUntilDone(request: request)
+    try await self.deleteStoragePoolPollingUntilDone(request: request)
   }
 
   public func validateDirectoryService(request: ValidateDirectoryServiceRequest) async throws
@@ -2746,19 +2776,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func validateDirectoryServicePollingUntilDone(request: ValidateDirectoryServiceRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.validateDirectoryServicePollingUntilDone(request: request, options: .init())
   }
 
   public func validateDirectoryServicePollingUntilDone(
     request: ValidateDirectoryServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func switchActiveReplicaZone(request: SwitchActiveReplicaZoneRequest) async throws
@@ -2774,19 +2800,16 @@ extension Clients.NetAppProtocol {
   }
 
   public func switchActiveReplicaZonePollingUntilDone(request: SwitchActiveReplicaZoneRequest)
-    async throws -> any GoogleGax.PollableOperation<StoragePool>
+    async throws -> StoragePool
   {
-    try await self.switchActiveReplicaZonePollingUntilDone(request: request, options: .init())
+    return try await self.switchActiveReplicaZonePollingUntilDone(
+      request: request, options: .init())
   }
 
   public func switchActiveReplicaZonePollingUntilDone(
     request: SwitchActiveReplicaZoneRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StoragePool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<StoragePool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> StoragePool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listVolumes(request: ListVolumesRequest) async throws
@@ -2861,27 +2884,21 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createVolumePollingUntilDone(request: CreateVolumeRequest) async throws
-    -> any GoogleGax.PollableOperation<Volume>
-  {
-    try await self.createVolumePollingUntilDone(request: request, options: .init())
+  public func createVolumePollingUntilDone(request: CreateVolumeRequest) async throws -> Volume {
+    return try await self.createVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func createVolumePollingUntilDone(
     request: CreateVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createVolumePollingUntilDone(
     parent: Swift.String,
     volume: Volume?,
     volumeId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let request = CreateVolumeRequest().with {
       $0.parent = parent
       $0.volume = volume
@@ -2901,26 +2918,20 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateVolumePollingUntilDone(request: UpdateVolumeRequest) async throws
-    -> any GoogleGax.PollableOperation<Volume>
-  {
-    try await self.updateVolumePollingUntilDone(request: request, options: .init())
+  public func updateVolumePollingUntilDone(request: UpdateVolumeRequest) async throws -> Volume {
+    return try await self.updateVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateVolumePollingUntilDone(
     volume: Volume?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
+  ) async throws -> Volume {
     let request = UpdateVolumeRequest().with {
       $0.volume = volume
       $0.updateMask = updateMask
@@ -2939,29 +2950,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteVolumePollingUntilDone(request: DeleteVolumeRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteVolumePollingUntilDone(request: DeleteVolumeRequest) async throws {
     try await self.deleteVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteVolumePollingUntilDone(
     request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteVolumePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteVolumeRequest().with {
       $0.name = name
     }
-    return try await self.deleteVolumePollingUntilDone(request: request)
+    try await self.deleteVolumePollingUntilDone(request: request)
   }
 
   public func revertVolume(request: RevertVolumeRequest) async throws -> GoogleLongRunning.Operation
@@ -2975,20 +2980,14 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func revertVolumePollingUntilDone(request: RevertVolumeRequest) async throws
-    -> any GoogleGax.PollableOperation<Volume>
-  {
-    try await self.revertVolumePollingUntilDone(request: request, options: .init())
+  public func revertVolumePollingUntilDone(request: RevertVolumeRequest) async throws -> Volume {
+    return try await self.revertVolumePollingUntilDone(request: request, options: .init())
   }
 
   public func revertVolumePollingUntilDone(
     request: RevertVolumeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func establishVolumePeering(request: EstablishVolumePeeringRequest) async throws
@@ -3004,19 +3003,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func establishVolumePeeringPollingUntilDone(request: EstablishVolumePeeringRequest)
-    async throws -> any GoogleGax.PollableOperation<Volume>
+    async throws -> Volume
   {
-    try await self.establishVolumePeeringPollingUntilDone(request: request, options: .init())
+    return try await self.establishVolumePeeringPollingUntilDone(request: request, options: .init())
   }
 
   public func establishVolumePeeringPollingUntilDone(
     request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Volume> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Volume>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Volume {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listSnapshots(request: ListSnapshotsRequest) async throws
@@ -3094,26 +3089,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createSnapshotPollingUntilDone(request: CreateSnapshotRequest) async throws
-    -> any GoogleGax.PollableOperation<Snapshot>
+    -> Snapshot
   {
-    try await self.createSnapshotPollingUntilDone(request: request, options: .init())
+    return try await self.createSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Snapshot>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Snapshot {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createSnapshotPollingUntilDone(
     parent: Swift.String,
     snapshot: Snapshot?,
     snapshotId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let request = CreateSnapshotRequest().with {
       $0.parent = parent
       $0.snapshot = snapshot
@@ -3134,29 +3125,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSnapshotPollingUntilDone(request: DeleteSnapshotRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteSnapshotPollingUntilDone(request: DeleteSnapshotRequest) async throws {
     try await self.deleteSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSnapshotPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSnapshotRequest().with {
       $0.name = name
     }
-    return try await self.deleteSnapshotPollingUntilDone(request: request)
+    try await self.deleteSnapshotPollingUntilDone(request: request)
   }
 
   public func updateSnapshot(request: UpdateSnapshotRequest) async throws
@@ -3172,25 +3157,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateSnapshotPollingUntilDone(request: UpdateSnapshotRequest) async throws
-    -> any GoogleGax.PollableOperation<Snapshot>
+    -> Snapshot
   {
-    try await self.updateSnapshotPollingUntilDone(request: request, options: .init())
+    return try await self.updateSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Snapshot>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Snapshot {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateSnapshotPollingUntilDone(
     snapshot: Snapshot?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let request = UpdateSnapshotRequest().with {
       $0.snapshot = snapshot
       $0.updateMask = updateMask
@@ -3275,27 +3256,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createActiveDirectoryPollingUntilDone(request: CreateActiveDirectoryRequest)
-    async throws -> any GoogleGax.PollableOperation<ActiveDirectory>
+    async throws -> ActiveDirectory
   {
-    try await self.createActiveDirectoryPollingUntilDone(request: request, options: .init())
+    return try await self.createActiveDirectoryPollingUntilDone(request: request, options: .init())
   }
 
   public func createActiveDirectoryPollingUntilDone(
     request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ActiveDirectory>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ActiveDirectory {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createActiveDirectoryPollingUntilDone(
     parent: Swift.String,
     activeDirectory: ActiveDirectory?,
     activeDirectoryId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory> {
+  ) async throws -> ActiveDirectory {
     let request = CreateActiveDirectoryRequest().with {
       $0.parent = parent
       $0.activeDirectory = activeDirectory
@@ -3317,26 +3293,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateActiveDirectoryPollingUntilDone(request: UpdateActiveDirectoryRequest)
-    async throws -> any GoogleGax.PollableOperation<ActiveDirectory>
+    async throws -> ActiveDirectory
   {
-    try await self.updateActiveDirectoryPollingUntilDone(request: request, options: .init())
+    return try await self.updateActiveDirectoryPollingUntilDone(request: request, options: .init())
   }
 
   public func updateActiveDirectoryPollingUntilDone(
     request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ActiveDirectory>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ActiveDirectory {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateActiveDirectoryPollingUntilDone(
     activeDirectory: ActiveDirectory?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<ActiveDirectory> {
+  ) async throws -> ActiveDirectory {
     let request = UpdateActiveDirectoryRequest().with {
       $0.activeDirectory = activeDirectory
       $0.updateMask = updateMask
@@ -3357,28 +3328,24 @@ extension Clients.NetAppProtocol {
   }
 
   public func deleteActiveDirectoryPollingUntilDone(request: DeleteActiveDirectoryRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteActiveDirectoryPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteActiveDirectoryPollingUntilDone(
     request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteActiveDirectoryPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteActiveDirectoryRequest().with {
       $0.name = name
     }
-    return try await self.deleteActiveDirectoryPollingUntilDone(request: request)
+    try await self.deleteActiveDirectoryPollingUntilDone(request: request)
   }
 
   public func listKmsConfigs(request: ListKmsConfigsRequest) async throws
@@ -3436,26 +3403,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createKmsConfigPollingUntilDone(request: CreateKmsConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<KmsConfig>
+    -> KmsConfig
   {
-    try await self.createKmsConfigPollingUntilDone(request: request, options: .init())
+    return try await self.createKmsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func createKmsConfigPollingUntilDone(
     request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<KmsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> KmsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createKmsConfigPollingUntilDone(
     parent: Swift.String,
     kmsConfig: KmsConfig?,
     kmsConfigId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
+  ) async throws -> KmsConfig {
     let request = CreateKmsConfigRequest().with {
       $0.parent = parent
       $0.kmsConfig = kmsConfig
@@ -3498,25 +3461,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateKmsConfigPollingUntilDone(request: UpdateKmsConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<KmsConfig>
+    -> KmsConfig
   {
-    try await self.updateKmsConfigPollingUntilDone(request: request, options: .init())
+    return try await self.updateKmsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func updateKmsConfigPollingUntilDone(
     request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<KmsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> KmsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateKmsConfigPollingUntilDone(
     kmsConfig: KmsConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
+  ) async throws -> KmsConfig {
     let request = UpdateKmsConfigRequest().with {
       $0.kmsConfig = kmsConfig
       $0.updateMask = updateMask
@@ -3537,19 +3496,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func encryptVolumesPollingUntilDone(request: EncryptVolumesRequest) async throws
-    -> any GoogleGax.PollableOperation<KmsConfig>
+    -> KmsConfig
   {
-    try await self.encryptVolumesPollingUntilDone(request: request, options: .init())
+    return try await self.encryptVolumesPollingUntilDone(request: request, options: .init())
   }
 
   public func encryptVolumesPollingUntilDone(
     request: EncryptVolumesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KmsConfig> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<KmsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> KmsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func verifyKmsConfig(request: VerifyKmsConfigRequest) async throws
@@ -3576,29 +3531,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteKmsConfigPollingUntilDone(request: DeleteKmsConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteKmsConfigPollingUntilDone(request: DeleteKmsConfigRequest) async throws {
     try await self.deleteKmsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteKmsConfigPollingUntilDone(
     request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteKmsConfigPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteKmsConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteKmsConfigPollingUntilDone(request: request)
+    try await self.deleteKmsConfigPollingUntilDone(request: request)
   }
 
   public func listReplications(request: ListReplicationsRequest) async throws
@@ -3678,26 +3627,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createReplicationPollingUntilDone(request: CreateReplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Replication>
+    -> Replication
   {
-    try await self.createReplicationPollingUntilDone(request: request, options: .init())
+    return try await self.createReplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func createReplicationPollingUntilDone(
     request: CreateReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createReplicationPollingUntilDone(
     parent: Swift.String,
     replication: Replication?,
     replicationId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let request = CreateReplicationRequest().with {
       $0.parent = parent
       $0.replication = replication
@@ -3718,29 +3663,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteReplicationPollingUntilDone(request: DeleteReplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteReplicationPollingUntilDone(request: DeleteReplicationRequest) async throws {
     try await self.deleteReplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteReplicationPollingUntilDone(
     request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteReplicationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteReplicationRequest().with {
       $0.name = name
     }
-    return try await self.deleteReplicationPollingUntilDone(request: request)
+    try await self.deleteReplicationPollingUntilDone(request: request)
   }
 
   public func updateReplication(request: UpdateReplicationRequest) async throws
@@ -3756,25 +3695,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateReplicationPollingUntilDone(request: UpdateReplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Replication>
+    -> Replication
   {
-    try await self.updateReplicationPollingUntilDone(request: request, options: .init())
+    return try await self.updateReplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func updateReplicationPollingUntilDone(
     request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateReplicationPollingUntilDone(
     replication: Replication?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
+  ) async throws -> Replication {
     let request = UpdateReplicationRequest().with {
       $0.replication = replication
       $0.updateMask = updateMask
@@ -3795,19 +3730,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func stopReplicationPollingUntilDone(request: StopReplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Replication>
+    -> Replication
   {
-    try await self.stopReplicationPollingUntilDone(request: request, options: .init())
+    return try await self.stopReplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func stopReplicationPollingUntilDone(
     request: StopReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func resumeReplication(request: ResumeReplicationRequest) async throws
@@ -3823,19 +3754,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func resumeReplicationPollingUntilDone(request: ResumeReplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Replication>
+    -> Replication
   {
-    try await self.resumeReplicationPollingUntilDone(request: request, options: .init())
+    return try await self.resumeReplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func resumeReplicationPollingUntilDone(
     request: ResumeReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func reverseReplicationDirection(request: ReverseReplicationDirectionRequest) async throws
@@ -3852,18 +3779,15 @@ extension Clients.NetAppProtocol {
 
   public func reverseReplicationDirectionPollingUntilDone(
     request: ReverseReplicationDirectionRequest
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    try await self.reverseReplicationDirectionPollingUntilDone(request: request, options: .init())
+  ) async throws -> Replication {
+    return try await self.reverseReplicationDirectionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func reverseReplicationDirectionPollingUntilDone(
     request: ReverseReplicationDirectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func establishPeering(request: EstablishPeeringRequest) async throws
@@ -3879,19 +3803,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func establishPeeringPollingUntilDone(request: EstablishPeeringRequest) async throws
-    -> any GoogleGax.PollableOperation<Replication>
+    -> Replication
   {
-    try await self.establishPeeringPollingUntilDone(request: request, options: .init())
+    return try await self.establishPeeringPollingUntilDone(request: request, options: .init())
   }
 
   public func establishPeeringPollingUntilDone(
     request: EstablishPeeringRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func syncReplication(request: SyncReplicationRequest) async throws
@@ -3907,19 +3827,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func syncReplicationPollingUntilDone(request: SyncReplicationRequest) async throws
-    -> any GoogleGax.PollableOperation<Replication>
+    -> Replication
   {
-    try await self.syncReplicationPollingUntilDone(request: request, options: .init())
+    return try await self.syncReplicationPollingUntilDone(request: request, options: .init())
   }
 
   public func syncReplicationPollingUntilDone(
     request: SyncReplicationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Replication> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Replication>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Replication {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupVault(request: CreateBackupVaultRequest) async throws
@@ -3935,26 +3851,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createBackupVaultPollingUntilDone(request: CreateBackupVaultRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupVault>
+    -> BackupVault
   {
-    try await self.createBackupVaultPollingUntilDone(request: request, options: .init())
+    return try await self.createBackupVaultPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupVaultPollingUntilDone(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupVault> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupVault>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupVault {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupVaultPollingUntilDone(
     parent: Swift.String,
     backupVault: BackupVault?,
     backupVaultId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BackupVault> {
+  ) async throws -> BackupVault {
     let request = CreateBackupVaultRequest().with {
       $0.parent = parent
       $0.backupVault = backupVault
@@ -4040,25 +3952,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateBackupVaultPollingUntilDone(request: UpdateBackupVaultRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupVault>
+    -> BackupVault
   {
-    try await self.updateBackupVaultPollingUntilDone(request: request, options: .init())
+    return try await self.updateBackupVaultPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupVaultPollingUntilDone(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupVault> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupVault>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupVault {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupVaultPollingUntilDone(
     backupVault: BackupVault?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<BackupVault> {
+  ) async throws -> BackupVault {
     let request = UpdateBackupVaultRequest().with {
       $0.backupVault = backupVault
       $0.updateMask = updateMask
@@ -4078,29 +3986,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupVaultPollingUntilDone(request: DeleteBackupVaultRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupVaultPollingUntilDone(request: DeleteBackupVaultRequest) async throws {
     try await self.deleteBackupVaultPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupVaultPollingUntilDone(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupVaultPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupVaultRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupVaultPollingUntilDone(request: request)
+    try await self.deleteBackupVaultPollingUntilDone(request: request)
   }
 
   public func createBackup(request: CreateBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -4114,27 +4016,21 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.createBackupPollingUntilDone(request: request, options: .init())
+  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws -> Backup {
+    return try await self.createBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupPollingUntilDone(
     parent: Swift.String,
     backup: Backup?,
     backupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let request = CreateBackupRequest().with {
       $0.parent = parent
       $0.backup = backup
@@ -4215,29 +4111,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupPollingUntilDone(request: request)
+    try await self.deleteBackupPollingUntilDone(request: request)
   }
 
   public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -4251,26 +4141,20 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.updateBackupPollingUntilDone(request: request, options: .init())
+  public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws -> Backup {
+    return try await self.updateBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupPollingUntilDone(
     backup: Backup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
       $0.updateMask = updateMask
@@ -4291,27 +4175,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createBackupPolicyPollingUntilDone(request: CreateBackupPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupPolicy>
+    -> BackupPolicy
   {
-    try await self.createBackupPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createBackupPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupPolicyPollingUntilDone(
     request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupPolicyPollingUntilDone(
     parent: Swift.String,
     backupPolicy: BackupPolicy?,
     backupPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BackupPolicy> {
+  ) async throws -> BackupPolicy {
     let request = CreateBackupPolicyRequest().with {
       $0.parent = parent
       $0.backupPolicy = backupPolicy
@@ -4397,26 +4276,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateBackupPolicyPollingUntilDone(request: UpdateBackupPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupPolicy>
+    -> BackupPolicy
   {
-    try await self.updateBackupPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateBackupPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupPolicyPollingUntilDone(
     request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupPolicyPollingUntilDone(
     backupPolicy: BackupPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<BackupPolicy> {
+  ) async throws -> BackupPolicy {
     let request = UpdateBackupPolicyRequest().with {
       $0.backupPolicy = backupPolicy
       $0.updateMask = updateMask
@@ -4436,29 +4310,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupPolicyPollingUntilDone(request: DeleteBackupPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupPolicyPollingUntilDone(request: DeleteBackupPolicyRequest) async throws {
     try await self.deleteBackupPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupPolicyPollingUntilDone(
     request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupPolicyPollingUntilDone(request: request)
+    try await self.deleteBackupPolicyPollingUntilDone(request: request)
   }
 
   public func listQuotaRules(request: ListQuotaRulesRequest) async throws
@@ -4537,26 +4405,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createQuotaRulePollingUntilDone(request: CreateQuotaRuleRequest) async throws
-    -> any GoogleGax.PollableOperation<QuotaRule>
+    -> QuotaRule
   {
-    try await self.createQuotaRulePollingUntilDone(request: request, options: .init())
+    return try await self.createQuotaRulePollingUntilDone(request: request, options: .init())
   }
 
   public func createQuotaRulePollingUntilDone(
     request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<QuotaRule> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<QuotaRule>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> QuotaRule {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createQuotaRulePollingUntilDone(
     parent: Swift.String,
     quotaRule: QuotaRule?,
     quotaRuleId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<QuotaRule> {
+  ) async throws -> QuotaRule {
     let request = CreateQuotaRuleRequest().with {
       $0.parent = parent
       $0.quotaRule = quotaRule
@@ -4578,25 +4442,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateQuotaRulePollingUntilDone(request: UpdateQuotaRuleRequest) async throws
-    -> any GoogleGax.PollableOperation<QuotaRule>
+    -> QuotaRule
   {
-    try await self.updateQuotaRulePollingUntilDone(request: request, options: .init())
+    return try await self.updateQuotaRulePollingUntilDone(request: request, options: .init())
   }
 
   public func updateQuotaRulePollingUntilDone(
     request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<QuotaRule> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<QuotaRule>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> QuotaRule {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateQuotaRulePollingUntilDone(
     quotaRule: QuotaRule?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<QuotaRule> {
+  ) async throws -> QuotaRule {
     let request = UpdateQuotaRuleRequest().with {
       $0.quotaRule = quotaRule
       $0.updateMask = updateMask
@@ -4616,29 +4476,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteQuotaRulePollingUntilDone(request: DeleteQuotaRuleRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteQuotaRulePollingUntilDone(request: DeleteQuotaRuleRequest) async throws {
     try await self.deleteQuotaRulePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteQuotaRulePollingUntilDone(
     request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteQuotaRulePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteQuotaRuleRequest().with {
       $0.name = name
     }
-    return try await self.deleteQuotaRulePollingUntilDone(request: request)
+    try await self.deleteQuotaRulePollingUntilDone(request: request)
   }
 
   public func restoreBackupFiles(request: RestoreBackupFilesRequest) async throws
@@ -4654,21 +4508,15 @@ extension Clients.NetAppProtocol {
   }
 
   public func restoreBackupFilesPollingUntilDone(request: RestoreBackupFilesRequest) async throws
-    -> any GoogleGax.PollableOperation<RestoreBackupFilesResponse>
+    -> RestoreBackupFilesResponse
   {
-    try await self.restoreBackupFilesPollingUntilDone(request: request, options: .init())
+    return try await self.restoreBackupFilesPollingUntilDone(request: request, options: .init())
   }
 
   public func restoreBackupFilesPollingUntilDone(
     request: RestoreBackupFilesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreBackupFilesResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<RestoreBackupFilesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RestoreBackupFilesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listHostGroups(request: ListHostGroupsRequest) async throws
@@ -4748,26 +4596,22 @@ extension Clients.NetAppProtocol {
   }
 
   public func createHostGroupPollingUntilDone(request: CreateHostGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<HostGroup>
+    -> HostGroup
   {
-    try await self.createHostGroupPollingUntilDone(request: request, options: .init())
+    return try await self.createHostGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func createHostGroupPollingUntilDone(
     request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<HostGroup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<HostGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> HostGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createHostGroupPollingUntilDone(
     parent: Swift.String,
     hostGroup: HostGroup?,
     hostGroupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<HostGroup> {
+  ) async throws -> HostGroup {
     let request = CreateHostGroupRequest().with {
       $0.parent = parent
       $0.hostGroup = hostGroup
@@ -4789,25 +4633,21 @@ extension Clients.NetAppProtocol {
   }
 
   public func updateHostGroupPollingUntilDone(request: UpdateHostGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<HostGroup>
+    -> HostGroup
   {
-    try await self.updateHostGroupPollingUntilDone(request: request, options: .init())
+    return try await self.updateHostGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateHostGroupPollingUntilDone(
     request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<HostGroup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<HostGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> HostGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateHostGroupPollingUntilDone(
     hostGroup: HostGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<HostGroup> {
+  ) async throws -> HostGroup {
     let request = UpdateHostGroupRequest().with {
       $0.hostGroup = hostGroup
       $0.updateMask = updateMask
@@ -4827,29 +4667,23 @@ extension Clients.NetAppProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteHostGroupPollingUntilDone(request: DeleteHostGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteHostGroupPollingUntilDone(request: DeleteHostGroupRequest) async throws {
     try await self.deleteHostGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteHostGroupPollingUntilDone(
     request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteHostGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteHostGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteHostGroupPollingUntilDone(request: request)
+    try await self.deleteHostGroupPollingUntilDone(request: request)
   }
 
   public func executeOntapPost(request: ExecuteOntapPostRequest) async throws

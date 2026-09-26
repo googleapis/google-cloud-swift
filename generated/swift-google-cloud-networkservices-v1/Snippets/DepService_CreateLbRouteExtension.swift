@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DepServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createLbRouteExtensionPollingUntilDone(
+  let response = try await client.createLbRouteExtensionPollingUntilDone(
     request: CreateLbRouteExtensionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.lbRouteExtension = LbRouteExtension() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

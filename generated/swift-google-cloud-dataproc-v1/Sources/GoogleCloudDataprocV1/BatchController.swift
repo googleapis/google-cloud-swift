@@ -56,7 +56,7 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// @Snippet(path: "BatchController_CreateBatch")
   public func createBatchPollingUntilDone(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Batch> {
+  ) async throws -> Batch {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Batch>.State in
@@ -69,12 +69,13 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets the batch workload resource representation.
@@ -207,7 +208,7 @@ extension Clients {
     /// See `BatchControllerClient.createBatch`.
     func createBatchPollingUntilDone(
       request: CreateBatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Batch>
+    ) async throws -> Batch
 
     /// See `BatchControllerClient.getBatch`.
     func getBatch(
@@ -268,27 +269,21 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBatchPollingUntilDone(request: CreateBatchRequest) async throws -> any GoogleGax
-    .PollableOperation<Batch>
-  {
-    try await self.createBatchPollingUntilDone(request: request, options: .init())
+  public func createBatchPollingUntilDone(request: CreateBatchRequest) async throws -> Batch {
+    return try await self.createBatchPollingUntilDone(request: request, options: .init())
   }
 
   public func createBatchPollingUntilDone(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Batch> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Batch>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Batch {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBatchPollingUntilDone(
     parent: Swift.String,
     batch: Batch?,
     batchId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Batch> {
+  ) async throws -> Batch {
     let request = CreateBatchRequest().with {
       $0.parent = parent
       $0.batch = batch

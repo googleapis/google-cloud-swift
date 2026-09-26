@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(client: SecurityPostureClient, organizationId: String, locationId: String) async throws
 {
-  let poller = try await client.createPosturePollingUntilDone(
+  let response = try await client.createPosturePollingUntilDone(
     request: CreatePostureRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: SecurityPostureClient, organizationId: String, locationId: S
         $0.posture = Posture() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

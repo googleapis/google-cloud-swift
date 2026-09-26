@@ -27,14 +27,13 @@ func sample(
   client: OrganizationSecurityProfileGroupServiceClient, organizationId: String, locationId: String,
   securityProfileGroupId: String
 ) async throws {
-  let poller = try await client.deleteSecurityProfileGroupPollingUntilDone(
+  try await client.deleteSecurityProfileGroupPollingUntilDone(
     request: DeleteSecurityProfileGroupRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/securityProfileGroups/\(securityProfileGroupId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

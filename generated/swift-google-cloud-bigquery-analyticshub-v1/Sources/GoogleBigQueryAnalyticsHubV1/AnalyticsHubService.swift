@@ -183,7 +183,7 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// @Snippet(path: "AnalyticsHubService_SubscribeDataExchange")
   public func subscribeDataExchangePollingUntilDone(
     request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse> {
+  ) async throws -> SubscribeDataExchangeResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
@@ -198,12 +198,13 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Refreshes a Subscription to a Data Exchange. A Data Exchange can become
@@ -224,7 +225,7 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// @Snippet(path: "AnalyticsHubService_RefreshSubscription")
   public func refreshSubscriptionPollingUntilDone(
     request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse> {
+  ) async throws -> RefreshSubscriptionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
@@ -239,12 +240,13 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets the details of a Subscription.
@@ -297,7 +299,7 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// @Snippet(path: "AnalyticsHubService_DeleteSubscription")
   public func deleteSubscriptionPollingUntilDone(
     request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -310,12 +312,13 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets the IAM policy.
@@ -495,7 +498,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.subscribeDataExchange`.
     func subscribeDataExchangePollingUntilDone(
       request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse>
+    ) async throws -> SubscribeDataExchangeResponse
 
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscription(
@@ -505,7 +508,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.refreshSubscription`.
     func refreshSubscriptionPollingUntilDone(
       request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse>
+    ) async throws -> RefreshSubscriptionResponse
 
     /// See `AnalyticsHubServiceClient.getSubscription`.
     func getSubscription(
@@ -535,7 +538,7 @@ extension Clients {
     /// See `AnalyticsHubServiceClient.deleteSubscription`.
     func deleteSubscriptionPollingUntilDone(
       request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AnalyticsHubServiceClient.getIamPolicy`.
     func getIamPolicy(
@@ -927,26 +930,20 @@ extension Clients.AnalyticsHubServiceProtocol {
   }
 
   public func subscribeDataExchangePollingUntilDone(request: SubscribeDataExchangeRequest)
-    async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse>
+    async throws -> SubscribeDataExchangeResponse
   {
-    try await self.subscribeDataExchangePollingUntilDone(request: request, options: .init())
+    return try await self.subscribeDataExchangePollingUntilDone(request: request, options: .init())
   }
 
   public func subscribeDataExchangePollingUntilDone(
     request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<SubscribeDataExchangeResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SubscribeDataExchangeResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func subscribeDataExchangePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<SubscribeDataExchangeResponse> {
+  ) async throws -> SubscribeDataExchangeResponse {
     let request = SubscribeDataExchangeRequest().with {
       $0.name = name
     }
@@ -966,26 +963,20 @@ extension Clients.AnalyticsHubServiceProtocol {
   }
 
   public func refreshSubscriptionPollingUntilDone(request: RefreshSubscriptionRequest) async throws
-    -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse>
+    -> RefreshSubscriptionResponse
   {
-    try await self.refreshSubscriptionPollingUntilDone(request: request, options: .init())
+    return try await self.refreshSubscriptionPollingUntilDone(request: request, options: .init())
   }
 
   public func refreshSubscriptionPollingUntilDone(
     request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<RefreshSubscriptionResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RefreshSubscriptionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func refreshSubscriptionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RefreshSubscriptionResponse> {
+  ) async throws -> RefreshSubscriptionResponse {
     let request = RefreshSubscriptionRequest().with {
       $0.name = name
     }
@@ -1132,29 +1123,23 @@ extension Clients.AnalyticsHubServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSubscriptionPollingUntilDone(request: DeleteSubscriptionRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteSubscriptionPollingUntilDone(request: DeleteSubscriptionRequest) async throws {
     try await self.deleteSubscriptionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSubscriptionPollingUntilDone(
     request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSubscriptionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSubscriptionRequest().with {
       $0.name = name
     }
-    return try await self.deleteSubscriptionPollingUntilDone(request: request)
+    try await self.deleteSubscriptionPollingUntilDone(request: request)
   }
 
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws

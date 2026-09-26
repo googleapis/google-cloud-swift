@@ -61,7 +61,7 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// @Snippet(path: "PolicyBindings_CreatePolicyBinding")
   public func createPolicyBindingPollingUntilDone(
     request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
+  ) async throws -> PolicyBinding {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PolicyBinding>.State in
@@ -75,12 +75,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets a policy binding.
@@ -110,7 +111,7 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// @Snippet(path: "PolicyBindings_UpdatePolicyBinding")
   public func updatePolicyBindingPollingUntilDone(
     request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
+  ) async throws -> PolicyBinding {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PolicyBinding>.State in
@@ -124,12 +125,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a policy binding and returns a long-running operation.
@@ -150,7 +152,7 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// @Snippet(path: "PolicyBindings_DeletePolicyBinding")
   public func deletePolicyBindingPollingUntilDone(
     request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -163,12 +165,13 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists policy bindings.
@@ -217,7 +220,7 @@ extension Clients {
     /// See `PolicyBindingsClient.createPolicyBinding`.
     func createPolicyBindingPollingUntilDone(
       request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PolicyBinding>
+    ) async throws -> PolicyBinding
 
     /// See `PolicyBindingsClient.getPolicyBinding`.
     func getPolicyBinding(
@@ -232,7 +235,7 @@ extension Clients {
     /// See `PolicyBindingsClient.updatePolicyBinding`.
     func updatePolicyBindingPollingUntilDone(
       request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PolicyBinding>
+    ) async throws -> PolicyBinding
 
     /// See `PolicyBindingsClient.deletePolicyBinding`.
     func deletePolicyBinding(
@@ -242,7 +245,7 @@ extension Clients {
     /// See `PolicyBindingsClient.deletePolicyBinding`.
     func deletePolicyBindingPollingUntilDone(
       request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `PolicyBindingsClient.listPolicyBindings`.
     func listPolicyBindings(
@@ -271,27 +274,22 @@ extension Clients.PolicyBindingsProtocol {
   }
 
   public func createPolicyBindingPollingUntilDone(request: CreatePolicyBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<PolicyBinding>
+    -> PolicyBinding
   {
-    try await self.createPolicyBindingPollingUntilDone(request: request, options: .init())
+    return try await self.createPolicyBindingPollingUntilDone(request: request, options: .init())
   }
 
   public func createPolicyBindingPollingUntilDone(
     request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PolicyBinding>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> PolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createPolicyBindingPollingUntilDone(
     parent: Swift.String,
     policyBinding: PolicyBinding?,
     policyBindingId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
+  ) async throws -> PolicyBinding {
     let request = CreatePolicyBindingRequest().with {
       $0.parent = parent
       $0.policyBinding = policyBinding
@@ -334,26 +332,21 @@ extension Clients.PolicyBindingsProtocol {
   }
 
   public func updatePolicyBindingPollingUntilDone(request: UpdatePolicyBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<PolicyBinding>
+    -> PolicyBinding
   {
-    try await self.updatePolicyBindingPollingUntilDone(request: request, options: .init())
+    return try await self.updatePolicyBindingPollingUntilDone(request: request, options: .init())
   }
 
   public func updatePolicyBindingPollingUntilDone(
     request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PolicyBinding>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> PolicyBinding {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updatePolicyBindingPollingUntilDone(
     policyBinding: PolicyBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<PolicyBinding> {
+  ) async throws -> PolicyBinding {
     let request = UpdatePolicyBindingRequest().with {
       $0.policyBinding = policyBinding
       $0.updateMask = updateMask
@@ -374,28 +367,23 @@ extension Clients.PolicyBindingsProtocol {
   }
 
   public func deletePolicyBindingPollingUntilDone(request: DeletePolicyBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
   {
     try await self.deletePolicyBindingPollingUntilDone(request: request, options: .init())
   }
 
   public func deletePolicyBindingPollingUntilDone(
     request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deletePolicyBindingPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeletePolicyBindingRequest().with {
       $0.name = name
     }
-    return try await self.deletePolicyBindingPollingUntilDone(request: request)
+    try await self.deletePolicyBindingPollingUntilDone(request: request)
   }
 
   public func listPolicyBindings(request: ListPolicyBindingsRequest) async throws

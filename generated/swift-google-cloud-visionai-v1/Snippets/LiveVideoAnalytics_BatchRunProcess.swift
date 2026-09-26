@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LiveVideoAnalyticsClient) async throws {
-  let poller = try await client.batchRunProcessPollingUntilDone(
+  let response = try await client.batchRunProcessPollingUntilDone(
     request: BatchRunProcessRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

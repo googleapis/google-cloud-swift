@@ -75,7 +75,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateSource")
   public func createSourcePollingUntilDone(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Source> {
+  ) async throws -> Source {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Source>.State in
@@ -88,12 +88,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Source.
@@ -110,7 +111,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_UpdateSource")
   public func updateSourcePollingUntilDone(
     request: UpdateSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Source> {
+  ) async throws -> Source {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Source>.State in
@@ -123,12 +124,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Source.
@@ -145,7 +147,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteSource")
   public func deleteSourcePollingUntilDone(
     request: DeleteSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -158,12 +160,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// List remote source's inventory of VMs.
@@ -225,7 +228,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateUtilizationReport")
   public func createUtilizationReportPollingUntilDone(
     request: CreateUtilizationReportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UtilizationReport> {
+  ) async throws -> UtilizationReport {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UtilizationReport>.State in
@@ -239,12 +242,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Utilization Report.
@@ -261,7 +265,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteUtilizationReport")
   public func deleteUtilizationReportPollingUntilDone(
     request: DeleteUtilizationReportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -274,12 +278,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists DatacenterConnectors in a given Source.
@@ -314,7 +319,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateDatacenterConnector")
   public func createDatacenterConnectorPollingUntilDone(
     request: CreateDatacenterConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DatacenterConnector> {
+  ) async throws -> DatacenterConnector {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DatacenterConnector>.State in
@@ -328,12 +333,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single DatacenterConnector.
@@ -350,7 +356,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteDatacenterConnector")
   public func deleteDatacenterConnectorPollingUntilDone(
     request: DeleteDatacenterConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -363,12 +369,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Upgrades the appliance relate to this DatacenterConnector to the in-place
@@ -387,7 +394,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_UpgradeAppliance")
   public func upgradeAppliancePollingUntilDone(
     request: UpgradeApplianceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UpgradeApplianceResponse> {
+  ) async throws -> UpgradeApplianceResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UpgradeApplianceResponse>.State in
@@ -402,12 +409,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a new MigratingVm in a given Source.
@@ -424,7 +432,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateMigratingVm")
   public func createMigratingVmPollingUntilDone(
     request: CreateMigratingVmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
+  ) async throws -> MigratingVm {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MigratingVm>.State in
@@ -437,12 +445,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists MigratingVms in a given Source.
@@ -477,7 +486,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_UpdateMigratingVm")
   public func updateMigratingVmPollingUntilDone(
     request: UpdateMigratingVmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
+  ) async throws -> MigratingVm {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MigratingVm>.State in
@@ -490,12 +499,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single MigratingVm.
@@ -512,7 +522,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteMigratingVm")
   public func deleteMigratingVmPollingUntilDone(
     request: DeleteMigratingVmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -525,12 +535,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Starts migration for a VM. Starts the process of uploading
@@ -549,7 +560,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_StartMigration")
   public func startMigrationPollingUntilDone(
     request: StartMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StartMigrationResponse> {
+  ) async throws -> StartMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<StartMigrationResponse>.State in
@@ -563,12 +574,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Resumes a migration for a VM. When called on a paused migration, will start
@@ -591,7 +603,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_ResumeMigration")
   public func resumeMigrationPollingUntilDone(
     request: ResumeMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ResumeMigrationResponse> {
+  ) async throws -> ResumeMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ResumeMigrationResponse>.State in
@@ -606,12 +618,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Pauses a migration for a VM. If cycle tasks are running they will be
@@ -632,7 +645,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_PauseMigration")
   public func pauseMigrationPollingUntilDone(
     request: PauseMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PauseMigrationResponse> {
+  ) async throws -> PauseMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PauseMigrationResponse>.State in
@@ -646,12 +659,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Marks a migration as completed, deleting migration resources that are no
@@ -670,7 +684,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_FinalizeMigration")
   public func finalizeMigrationPollingUntilDone(
     request: FinalizeMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FinalizeMigrationResponse> {
+  ) async throws -> FinalizeMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FinalizeMigrationResponse>.State in
@@ -685,12 +699,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Extend the migrating VM time to live.
@@ -707,7 +722,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_ExtendMigration")
   public func extendMigrationPollingUntilDone(
     request: ExtendMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExtendMigrationResponse> {
+  ) async throws -> ExtendMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExtendMigrationResponse>.State in
@@ -722,12 +737,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Initiates a Clone of a specific migrating VM.
@@ -744,7 +760,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateCloneJob")
   public func createCloneJobPollingUntilDone(
     request: CreateCloneJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CloneJob> {
+  ) async throws -> CloneJob {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CloneJob>.State in
@@ -757,12 +773,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Initiates the cancellation of a running clone job.
@@ -779,7 +796,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CancelCloneJob")
   public func cancelCloneJobPollingUntilDone(
     request: CancelCloneJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelCloneJobResponse> {
+  ) async throws -> CancelCloneJobResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CancelCloneJobResponse>.State in
@@ -793,12 +810,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the CloneJobs of a migrating VM. Only 25 most recent CloneJobs are
@@ -838,7 +856,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateCutoverJob")
   public func createCutoverJobPollingUntilDone(
     request: CreateCutoverJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CutoverJob> {
+  ) async throws -> CutoverJob {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CutoverJob>.State in
@@ -851,12 +869,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Initiates the cancellation of a running cutover job.
@@ -873,7 +892,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CancelCutoverJob")
   public func cancelCutoverJobPollingUntilDone(
     request: CancelCutoverJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelCutoverJobResponse> {
+  ) async throws -> CancelCutoverJobResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CancelCutoverJobResponse>.State in
@@ -888,12 +907,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the CutoverJobs of a migrating VM. Only 25 most recent CutoverJobs
@@ -947,7 +967,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateGroup")
   public func createGroupPollingUntilDone(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Group> {
+  ) async throws -> Group {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Group>.State in
@@ -960,12 +980,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Group.
@@ -982,7 +1003,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_UpdateGroup")
   public func updateGroupPollingUntilDone(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Group> {
+  ) async throws -> Group {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Group>.State in
@@ -995,12 +1016,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Group.
@@ -1017,7 +1039,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteGroup")
   public func deleteGroupPollingUntilDone(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1030,12 +1052,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Adds a MigratingVm to a Group.
@@ -1052,7 +1075,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_AddGroupMigration")
   public func addGroupMigrationPollingUntilDone(
     request: AddGroupMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddGroupMigrationResponse> {
+  ) async throws -> AddGroupMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddGroupMigrationResponse>.State in
@@ -1067,12 +1090,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Removes a MigratingVm from a Group.
@@ -1089,7 +1113,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_RemoveGroupMigration")
   public func removeGroupMigrationPollingUntilDone(
     request: RemoveGroupMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RemoveGroupMigrationResponse> {
+  ) async throws -> RemoveGroupMigrationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RemoveGroupMigrationResponse>.State in
@@ -1104,12 +1128,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists TargetProjects in a given project.
@@ -1156,7 +1181,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateTargetProject")
   public func createTargetProjectPollingUntilDone(
     request: CreateTargetProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
+  ) async throws -> TargetProject {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TargetProject>.State in
@@ -1170,12 +1195,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single TargetProject.
@@ -1198,7 +1224,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_UpdateTargetProject")
   public func updateTargetProjectPollingUntilDone(
     request: UpdateTargetProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
+  ) async throws -> TargetProject {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TargetProject>.State in
@@ -1212,12 +1238,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single TargetProject.
@@ -1240,7 +1267,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteTargetProject")
   public func deleteTargetProjectPollingUntilDone(
     request: DeleteTargetProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1253,12 +1280,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists ReplicationCycles in a given MigratingVM.
@@ -1311,7 +1339,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateImageImport")
   public func createImageImportPollingUntilDone(
     request: CreateImageImportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImageImport> {
+  ) async throws -> ImageImport {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImageImport>.State in
@@ -1324,12 +1352,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single ImageImport.
@@ -1346,7 +1375,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteImageImport")
   public func deleteImageImportPollingUntilDone(
     request: DeleteImageImportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1359,12 +1388,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists ImageImportJobs in a given project.
@@ -1399,7 +1429,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CancelImageImportJob")
   public func cancelImageImportJobPollingUntilDone(
     request: CancelImageImportJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelImageImportJobResponse> {
+  ) async throws -> CancelImageImportJobResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CancelImageImportJobResponse>.State in
@@ -1414,12 +1444,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a new disk migration job in a given Source.
@@ -1436,7 +1467,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CreateDiskMigrationJob")
   public func createDiskMigrationJobPollingUntilDone(
     request: CreateDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
+  ) async throws -> DiskMigrationJob {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DiskMigrationJob>.State in
@@ -1450,12 +1481,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists DiskMigrationJobs in a given Source.
@@ -1490,7 +1522,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_UpdateDiskMigrationJob")
   public func updateDiskMigrationJobPollingUntilDone(
     request: UpdateDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
+  ) async throws -> DiskMigrationJob {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DiskMigrationJob>.State in
@@ -1504,12 +1536,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single DiskMigrationJob.
@@ -1526,7 +1559,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_DeleteDiskMigrationJob")
   public func deleteDiskMigrationJobPollingUntilDone(
     request: DeleteDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1539,12 +1572,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Runs the disk migration job.
@@ -1561,7 +1595,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_RunDiskMigrationJob")
   public func runDiskMigrationJobPollingUntilDone(
     request: RunDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RunDiskMigrationJobResponse> {
+  ) async throws -> RunDiskMigrationJobResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RunDiskMigrationJobResponse>.State in
@@ -1576,12 +1610,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Cancels the disk migration job.
@@ -1598,7 +1633,7 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
   /// @Snippet(path: "VmMigration_CancelDiskMigrationJob")
   public func cancelDiskMigrationJobPollingUntilDone(
     request: CancelDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelDiskMigrationJobResponse> {
+  ) async throws -> CancelDiskMigrationJobResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CancelDiskMigrationJobResponse>.State in
@@ -1613,12 +1648,13 @@ public final class VmMigrationClient: Clients.VmMigrationProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -1709,7 +1745,7 @@ extension Clients {
     /// See `VmMigrationClient.createSource`.
     func createSourcePollingUntilDone(
       request: CreateSourceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Source>
+    ) async throws -> Source
 
     /// See `VmMigrationClient.updateSource`.
     func updateSource(
@@ -1719,7 +1755,7 @@ extension Clients {
     /// See `VmMigrationClient.updateSource`.
     func updateSourcePollingUntilDone(
       request: UpdateSourceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Source>
+    ) async throws -> Source
 
     /// See `VmMigrationClient.deleteSource`.
     func deleteSource(
@@ -1729,7 +1765,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteSource`.
     func deleteSourcePollingUntilDone(
       request: DeleteSourceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.fetchInventory`.
     func fetchInventory(
@@ -1759,7 +1795,7 @@ extension Clients {
     /// See `VmMigrationClient.createUtilizationReport`.
     func createUtilizationReportPollingUntilDone(
       request: CreateUtilizationReportRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UtilizationReport>
+    ) async throws -> UtilizationReport
 
     /// See `VmMigrationClient.deleteUtilizationReport`.
     func deleteUtilizationReport(
@@ -1769,7 +1805,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteUtilizationReport`.
     func deleteUtilizationReportPollingUntilDone(
       request: DeleteUtilizationReportRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.listDatacenterConnectors`.
     func listDatacenterConnectors(
@@ -1789,7 +1825,7 @@ extension Clients {
     /// See `VmMigrationClient.createDatacenterConnector`.
     func createDatacenterConnectorPollingUntilDone(
       request: CreateDatacenterConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DatacenterConnector>
+    ) async throws -> DatacenterConnector
 
     /// See `VmMigrationClient.deleteDatacenterConnector`.
     func deleteDatacenterConnector(
@@ -1799,7 +1835,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteDatacenterConnector`.
     func deleteDatacenterConnectorPollingUntilDone(
       request: DeleteDatacenterConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.upgradeAppliance`.
     func upgradeAppliance(
@@ -1809,7 +1845,7 @@ extension Clients {
     /// See `VmMigrationClient.upgradeAppliance`.
     func upgradeAppliancePollingUntilDone(
       request: UpgradeApplianceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UpgradeApplianceResponse>
+    ) async throws -> UpgradeApplianceResponse
 
     /// See `VmMigrationClient.createMigratingVm`.
     func createMigratingVm(
@@ -1819,7 +1855,7 @@ extension Clients {
     /// See `VmMigrationClient.createMigratingVm`.
     func createMigratingVmPollingUntilDone(
       request: CreateMigratingVmRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MigratingVm>
+    ) async throws -> MigratingVm
 
     /// See `VmMigrationClient.listMigratingVms`.
     func listMigratingVms(
@@ -1839,7 +1875,7 @@ extension Clients {
     /// See `VmMigrationClient.updateMigratingVm`.
     func updateMigratingVmPollingUntilDone(
       request: UpdateMigratingVmRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MigratingVm>
+    ) async throws -> MigratingVm
 
     /// See `VmMigrationClient.deleteMigratingVm`.
     func deleteMigratingVm(
@@ -1849,7 +1885,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteMigratingVm`.
     func deleteMigratingVmPollingUntilDone(
       request: DeleteMigratingVmRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.startMigration`.
     func startMigration(
@@ -1859,7 +1895,7 @@ extension Clients {
     /// See `VmMigrationClient.startMigration`.
     func startMigrationPollingUntilDone(
       request: StartMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StartMigrationResponse>
+    ) async throws -> StartMigrationResponse
 
     /// See `VmMigrationClient.resumeMigration`.
     func resumeMigration(
@@ -1869,7 +1905,7 @@ extension Clients {
     /// See `VmMigrationClient.resumeMigration`.
     func resumeMigrationPollingUntilDone(
       request: ResumeMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ResumeMigrationResponse>
+    ) async throws -> ResumeMigrationResponse
 
     /// See `VmMigrationClient.pauseMigration`.
     func pauseMigration(
@@ -1879,7 +1915,7 @@ extension Clients {
     /// See `VmMigrationClient.pauseMigration`.
     func pauseMigrationPollingUntilDone(
       request: PauseMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PauseMigrationResponse>
+    ) async throws -> PauseMigrationResponse
 
     /// See `VmMigrationClient.finalizeMigration`.
     func finalizeMigration(
@@ -1889,7 +1925,7 @@ extension Clients {
     /// See `VmMigrationClient.finalizeMigration`.
     func finalizeMigrationPollingUntilDone(
       request: FinalizeMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FinalizeMigrationResponse>
+    ) async throws -> FinalizeMigrationResponse
 
     /// See `VmMigrationClient.extendMigration`.
     func extendMigration(
@@ -1899,7 +1935,7 @@ extension Clients {
     /// See `VmMigrationClient.extendMigration`.
     func extendMigrationPollingUntilDone(
       request: ExtendMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExtendMigrationResponse>
+    ) async throws -> ExtendMigrationResponse
 
     /// See `VmMigrationClient.createCloneJob`.
     func createCloneJob(
@@ -1909,7 +1945,7 @@ extension Clients {
     /// See `VmMigrationClient.createCloneJob`.
     func createCloneJobPollingUntilDone(
       request: CreateCloneJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CloneJob>
+    ) async throws -> CloneJob
 
     /// See `VmMigrationClient.cancelCloneJob`.
     func cancelCloneJob(
@@ -1919,7 +1955,7 @@ extension Clients {
     /// See `VmMigrationClient.cancelCloneJob`.
     func cancelCloneJobPollingUntilDone(
       request: CancelCloneJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CancelCloneJobResponse>
+    ) async throws -> CancelCloneJobResponse
 
     /// See `VmMigrationClient.listCloneJobs`.
     func listCloneJobs(
@@ -1939,7 +1975,7 @@ extension Clients {
     /// See `VmMigrationClient.createCutoverJob`.
     func createCutoverJobPollingUntilDone(
       request: CreateCutoverJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CutoverJob>
+    ) async throws -> CutoverJob
 
     /// See `VmMigrationClient.cancelCutoverJob`.
     func cancelCutoverJob(
@@ -1949,7 +1985,7 @@ extension Clients {
     /// See `VmMigrationClient.cancelCutoverJob`.
     func cancelCutoverJobPollingUntilDone(
       request: CancelCutoverJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CancelCutoverJobResponse>
+    ) async throws -> CancelCutoverJobResponse
 
     /// See `VmMigrationClient.listCutoverJobs`.
     func listCutoverJobs(
@@ -1979,7 +2015,7 @@ extension Clients {
     /// See `VmMigrationClient.createGroup`.
     func createGroupPollingUntilDone(
       request: CreateGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Group>
+    ) async throws -> Group
 
     /// See `VmMigrationClient.updateGroup`.
     func updateGroup(
@@ -1989,7 +2025,7 @@ extension Clients {
     /// See `VmMigrationClient.updateGroup`.
     func updateGroupPollingUntilDone(
       request: UpdateGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Group>
+    ) async throws -> Group
 
     /// See `VmMigrationClient.deleteGroup`.
     func deleteGroup(
@@ -1999,7 +2035,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteGroup`.
     func deleteGroupPollingUntilDone(
       request: DeleteGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.addGroupMigration`.
     func addGroupMigration(
@@ -2009,7 +2045,7 @@ extension Clients {
     /// See `VmMigrationClient.addGroupMigration`.
     func addGroupMigrationPollingUntilDone(
       request: AddGroupMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AddGroupMigrationResponse>
+    ) async throws -> AddGroupMigrationResponse
 
     /// See `VmMigrationClient.removeGroupMigration`.
     func removeGroupMigration(
@@ -2019,7 +2055,7 @@ extension Clients {
     /// See `VmMigrationClient.removeGroupMigration`.
     func removeGroupMigrationPollingUntilDone(
       request: RemoveGroupMigrationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RemoveGroupMigrationResponse>
+    ) async throws -> RemoveGroupMigrationResponse
 
     /// See `VmMigrationClient.listTargetProjects`.
     func listTargetProjects(
@@ -2039,7 +2075,7 @@ extension Clients {
     /// See `VmMigrationClient.createTargetProject`.
     func createTargetProjectPollingUntilDone(
       request: CreateTargetProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TargetProject>
+    ) async throws -> TargetProject
 
     /// See `VmMigrationClient.updateTargetProject`.
     func updateTargetProject(
@@ -2049,7 +2085,7 @@ extension Clients {
     /// See `VmMigrationClient.updateTargetProject`.
     func updateTargetProjectPollingUntilDone(
       request: UpdateTargetProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TargetProject>
+    ) async throws -> TargetProject
 
     /// See `VmMigrationClient.deleteTargetProject`.
     func deleteTargetProject(
@@ -2059,7 +2095,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteTargetProject`.
     func deleteTargetProjectPollingUntilDone(
       request: DeleteTargetProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.listReplicationCycles`.
     func listReplicationCycles(
@@ -2089,7 +2125,7 @@ extension Clients {
     /// See `VmMigrationClient.createImageImport`.
     func createImageImportPollingUntilDone(
       request: CreateImageImportRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImageImport>
+    ) async throws -> ImageImport
 
     /// See `VmMigrationClient.deleteImageImport`.
     func deleteImageImport(
@@ -2099,7 +2135,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteImageImport`.
     func deleteImageImportPollingUntilDone(
       request: DeleteImageImportRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.listImageImportJobs`.
     func listImageImportJobs(
@@ -2119,7 +2155,7 @@ extension Clients {
     /// See `VmMigrationClient.cancelImageImportJob`.
     func cancelImageImportJobPollingUntilDone(
       request: CancelImageImportJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CancelImageImportJobResponse>
+    ) async throws -> CancelImageImportJobResponse
 
     /// See `VmMigrationClient.createDiskMigrationJob`.
     func createDiskMigrationJob(
@@ -2129,7 +2165,7 @@ extension Clients {
     /// See `VmMigrationClient.createDiskMigrationJob`.
     func createDiskMigrationJobPollingUntilDone(
       request: CreateDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob>
+    ) async throws -> DiskMigrationJob
 
     /// See `VmMigrationClient.listDiskMigrationJobs`.
     func listDiskMigrationJobs(
@@ -2149,7 +2185,7 @@ extension Clients {
     /// See `VmMigrationClient.updateDiskMigrationJob`.
     func updateDiskMigrationJobPollingUntilDone(
       request: UpdateDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob>
+    ) async throws -> DiskMigrationJob
 
     /// See `VmMigrationClient.deleteDiskMigrationJob`.
     func deleteDiskMigrationJob(
@@ -2159,7 +2195,7 @@ extension Clients {
     /// See `VmMigrationClient.deleteDiskMigrationJob`.
     func deleteDiskMigrationJobPollingUntilDone(
       request: DeleteDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VmMigrationClient.runDiskMigrationJob`.
     func runDiskMigrationJob(
@@ -2169,7 +2205,7 @@ extension Clients {
     /// See `VmMigrationClient.runDiskMigrationJob`.
     func runDiskMigrationJobPollingUntilDone(
       request: RunDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RunDiskMigrationJobResponse>
+    ) async throws -> RunDiskMigrationJobResponse
 
     /// See `VmMigrationClient.cancelDiskMigrationJob`.
     func cancelDiskMigrationJob(
@@ -2179,7 +2215,7 @@ extension Clients {
     /// See `VmMigrationClient.cancelDiskMigrationJob`.
     func cancelDiskMigrationJobPollingUntilDone(
       request: CancelDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CancelDiskMigrationJobResponse>
+    ) async throws -> CancelDiskMigrationJobResponse
 
     /// See `VmMigrationClient.listLocations`.
     func listLocations(
@@ -2283,27 +2319,21 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createSourcePollingUntilDone(request: CreateSourceRequest) async throws
-    -> any GoogleGax.PollableOperation<Source>
-  {
-    try await self.createSourcePollingUntilDone(request: request, options: .init())
+  public func createSourcePollingUntilDone(request: CreateSourceRequest) async throws -> Source {
+    return try await self.createSourcePollingUntilDone(request: request, options: .init())
   }
 
   public func createSourcePollingUntilDone(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Source> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Source>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Source {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createSourcePollingUntilDone(
     parent: Swift.String,
     source: Source?,
     sourceId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Source> {
+  ) async throws -> Source {
     let request = CreateSourceRequest().with {
       $0.parent = parent
       $0.source = source
@@ -2323,26 +2353,20 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateSourcePollingUntilDone(request: UpdateSourceRequest) async throws
-    -> any GoogleGax.PollableOperation<Source>
-  {
-    try await self.updateSourcePollingUntilDone(request: request, options: .init())
+  public func updateSourcePollingUntilDone(request: UpdateSourceRequest) async throws -> Source {
+    return try await self.updateSourcePollingUntilDone(request: request, options: .init())
   }
 
   public func updateSourcePollingUntilDone(
     request: UpdateSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Source> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Source>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Source {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateSourcePollingUntilDone(
     source: Source?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Source> {
+  ) async throws -> Source {
     let request = UpdateSourceRequest().with {
       $0.source = source
       $0.updateMask = updateMask
@@ -2361,29 +2385,23 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSourcePollingUntilDone(request: DeleteSourceRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteSourcePollingUntilDone(request: DeleteSourceRequest) async throws {
     try await self.deleteSourcePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSourcePollingUntilDone(
     request: DeleteSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSourcePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSourceRequest().with {
       $0.name = name
     }
-    return try await self.deleteSourcePollingUntilDone(request: request)
+    try await self.deleteSourcePollingUntilDone(request: request)
   }
 
   public func fetchInventory(request: FetchInventoryRequest) async throws
@@ -2534,27 +2552,23 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createUtilizationReportPollingUntilDone(request: CreateUtilizationReportRequest)
-    async throws -> any GoogleGax.PollableOperation<UtilizationReport>
+    async throws -> UtilizationReport
   {
-    try await self.createUtilizationReportPollingUntilDone(request: request, options: .init())
+    return try await self.createUtilizationReportPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createUtilizationReportPollingUntilDone(
     request: CreateUtilizationReportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UtilizationReport> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<UtilizationReport>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> UtilizationReport {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createUtilizationReportPollingUntilDone(
     parent: Swift.String,
     utilizationReport: UtilizationReport?,
     utilizationReportId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<UtilizationReport> {
+  ) async throws -> UtilizationReport {
     let request = CreateUtilizationReportRequest().with {
       $0.parent = parent
       $0.utilizationReport = utilizationReport
@@ -2576,28 +2590,24 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func deleteUtilizationReportPollingUntilDone(request: DeleteUtilizationReportRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteUtilizationReportPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteUtilizationReportPollingUntilDone(
     request: DeleteUtilizationReportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteUtilizationReportPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteUtilizationReportRequest().with {
       $0.name = name
     }
-    return try await self.deleteUtilizationReportPollingUntilDone(request: request)
+    try await self.deleteUtilizationReportPollingUntilDone(request: request)
   }
 
   public func listDatacenterConnectors(request: ListDatacenterConnectorsRequest) async throws
@@ -2677,27 +2687,23 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createDatacenterConnectorPollingUntilDone(request: CreateDatacenterConnectorRequest)
-    async throws -> any GoogleGax.PollableOperation<DatacenterConnector>
+    async throws -> DatacenterConnector
   {
-    try await self.createDatacenterConnectorPollingUntilDone(request: request, options: .init())
+    return try await self.createDatacenterConnectorPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createDatacenterConnectorPollingUntilDone(
     request: CreateDatacenterConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DatacenterConnector> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DatacenterConnector>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DatacenterConnector {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createDatacenterConnectorPollingUntilDone(
     parent: Swift.String,
     datacenterConnector: DatacenterConnector?,
     datacenterConnectorId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<DatacenterConnector> {
+  ) async throws -> DatacenterConnector {
     let request = CreateDatacenterConnectorRequest().with {
       $0.parent = parent
       $0.datacenterConnector = datacenterConnector
@@ -2719,28 +2725,24 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func deleteDatacenterConnectorPollingUntilDone(request: DeleteDatacenterConnectorRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteDatacenterConnectorPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteDatacenterConnectorPollingUntilDone(
     request: DeleteDatacenterConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteDatacenterConnectorPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteDatacenterConnectorRequest().with {
       $0.name = name
     }
-    return try await self.deleteDatacenterConnectorPollingUntilDone(request: request)
+    try await self.deleteDatacenterConnectorPollingUntilDone(request: request)
   }
 
   public func upgradeAppliance(request: UpgradeApplianceRequest) async throws
@@ -2756,21 +2758,15 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func upgradeAppliancePollingUntilDone(request: UpgradeApplianceRequest) async throws
-    -> any GoogleGax.PollableOperation<UpgradeApplianceResponse>
+    -> UpgradeApplianceResponse
   {
-    try await self.upgradeAppliancePollingUntilDone(request: request, options: .init())
+    return try await self.upgradeAppliancePollingUntilDone(request: request, options: .init())
   }
 
   public func upgradeAppliancePollingUntilDone(
     request: UpgradeApplianceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UpgradeApplianceResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<UpgradeApplianceResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> UpgradeApplianceResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createMigratingVm(request: CreateMigratingVmRequest) async throws
@@ -2786,26 +2782,22 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createMigratingVmPollingUntilDone(request: CreateMigratingVmRequest) async throws
-    -> any GoogleGax.PollableOperation<MigratingVm>
+    -> MigratingVm
   {
-    try await self.createMigratingVmPollingUntilDone(request: request, options: .init())
+    return try await self.createMigratingVmPollingUntilDone(request: request, options: .init())
   }
 
   public func createMigratingVmPollingUntilDone(
     request: CreateMigratingVmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MigratingVm>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MigratingVm {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createMigratingVmPollingUntilDone(
     parent: Swift.String,
     migratingVm: MigratingVm?,
     migratingVmId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
+  ) async throws -> MigratingVm {
     let request = CreateMigratingVmRequest().with {
       $0.parent = parent
       $0.migratingVm = migratingVm
@@ -2891,25 +2883,21 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func updateMigratingVmPollingUntilDone(request: UpdateMigratingVmRequest) async throws
-    -> any GoogleGax.PollableOperation<MigratingVm>
+    -> MigratingVm
   {
-    try await self.updateMigratingVmPollingUntilDone(request: request, options: .init())
+    return try await self.updateMigratingVmPollingUntilDone(request: request, options: .init())
   }
 
   public func updateMigratingVmPollingUntilDone(
     request: UpdateMigratingVmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MigratingVm>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MigratingVm {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateMigratingVmPollingUntilDone(
     migratingVm: MigratingVm?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<MigratingVm> {
+  ) async throws -> MigratingVm {
     let request = UpdateMigratingVmRequest().with {
       $0.migratingVm = migratingVm
       $0.updateMask = updateMask
@@ -2929,29 +2917,23 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMigratingVmPollingUntilDone(request: DeleteMigratingVmRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteMigratingVmPollingUntilDone(request: DeleteMigratingVmRequest) async throws {
     try await self.deleteMigratingVmPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteMigratingVmPollingUntilDone(
     request: DeleteMigratingVmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteMigratingVmPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteMigratingVmRequest().with {
       $0.name = name
     }
-    return try await self.deleteMigratingVmPollingUntilDone(request: request)
+    try await self.deleteMigratingVmPollingUntilDone(request: request)
   }
 
   public func startMigration(request: StartMigrationRequest) async throws
@@ -2967,25 +2949,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func startMigrationPollingUntilDone(request: StartMigrationRequest) async throws
-    -> any GoogleGax.PollableOperation<StartMigrationResponse>
+    -> StartMigrationResponse
   {
-    try await self.startMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.startMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func startMigrationPollingUntilDone(
     request: StartMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<StartMigrationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<StartMigrationResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> StartMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func startMigrationPollingUntilDone(
     migratingVm: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<StartMigrationResponse> {
+  ) async throws -> StartMigrationResponse {
     let request = StartMigrationRequest().with {
       $0.migratingVm = migratingVm
     }
@@ -3005,21 +2982,15 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func resumeMigrationPollingUntilDone(request: ResumeMigrationRequest) async throws
-    -> any GoogleGax.PollableOperation<ResumeMigrationResponse>
+    -> ResumeMigrationResponse
   {
-    try await self.resumeMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.resumeMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func resumeMigrationPollingUntilDone(
     request: ResumeMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ResumeMigrationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ResumeMigrationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ResumeMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func pauseMigration(request: PauseMigrationRequest) async throws
@@ -3035,20 +3006,15 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func pauseMigrationPollingUntilDone(request: PauseMigrationRequest) async throws
-    -> any GoogleGax.PollableOperation<PauseMigrationResponse>
+    -> PauseMigrationResponse
   {
-    try await self.pauseMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.pauseMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func pauseMigrationPollingUntilDone(
     request: PauseMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PauseMigrationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PauseMigrationResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> PauseMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func finalizeMigration(request: FinalizeMigrationRequest) async throws
@@ -3064,26 +3030,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func finalizeMigrationPollingUntilDone(request: FinalizeMigrationRequest) async throws
-    -> any GoogleGax.PollableOperation<FinalizeMigrationResponse>
+    -> FinalizeMigrationResponse
   {
-    try await self.finalizeMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.finalizeMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func finalizeMigrationPollingUntilDone(
     request: FinalizeMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FinalizeMigrationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FinalizeMigrationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FinalizeMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func finalizeMigrationPollingUntilDone(
     migratingVm: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<FinalizeMigrationResponse> {
+  ) async throws -> FinalizeMigrationResponse {
     let request = FinalizeMigrationRequest().with {
       $0.migratingVm = migratingVm
     }
@@ -3103,21 +3063,15 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func extendMigrationPollingUntilDone(request: ExtendMigrationRequest) async throws
-    -> any GoogleGax.PollableOperation<ExtendMigrationResponse>
+    -> ExtendMigrationResponse
   {
-    try await self.extendMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.extendMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func extendMigrationPollingUntilDone(
     request: ExtendMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExtendMigrationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExtendMigrationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExtendMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createCloneJob(request: CreateCloneJobRequest) async throws
@@ -3133,26 +3087,22 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createCloneJobPollingUntilDone(request: CreateCloneJobRequest) async throws
-    -> any GoogleGax.PollableOperation<CloneJob>
+    -> CloneJob
   {
-    try await self.createCloneJobPollingUntilDone(request: request, options: .init())
+    return try await self.createCloneJobPollingUntilDone(request: request, options: .init())
   }
 
   public func createCloneJobPollingUntilDone(
     request: CreateCloneJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CloneJob> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<CloneJob>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CloneJob {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createCloneJobPollingUntilDone(
     parent: Swift.String,
     cloneJob: CloneJob?,
     cloneJobId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<CloneJob> {
+  ) async throws -> CloneJob {
     let request = CreateCloneJobRequest().with {
       $0.parent = parent
       $0.cloneJob = cloneJob
@@ -3174,25 +3124,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func cancelCloneJobPollingUntilDone(request: CancelCloneJobRequest) async throws
-    -> any GoogleGax.PollableOperation<CancelCloneJobResponse>
+    -> CancelCloneJobResponse
   {
-    try await self.cancelCloneJobPollingUntilDone(request: request, options: .init())
+    return try await self.cancelCloneJobPollingUntilDone(request: request, options: .init())
   }
 
   public func cancelCloneJobPollingUntilDone(
     request: CancelCloneJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelCloneJobResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CancelCloneJobResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CancelCloneJobResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func cancelCloneJobPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<CancelCloneJobResponse> {
+  ) async throws -> CancelCloneJobResponse {
     let request = CancelCloneJobRequest().with {
       $0.name = name
     }
@@ -3277,26 +3222,22 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createCutoverJobPollingUntilDone(request: CreateCutoverJobRequest) async throws
-    -> any GoogleGax.PollableOperation<CutoverJob>
+    -> CutoverJob
   {
-    try await self.createCutoverJobPollingUntilDone(request: request, options: .init())
+    return try await self.createCutoverJobPollingUntilDone(request: request, options: .init())
   }
 
   public func createCutoverJobPollingUntilDone(
     request: CreateCutoverJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CutoverJob> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<CutoverJob>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CutoverJob {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createCutoverJobPollingUntilDone(
     parent: Swift.String,
     cutoverJob: CutoverJob?,
     cutoverJobId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<CutoverJob> {
+  ) async throws -> CutoverJob {
     let request = CreateCutoverJobRequest().with {
       $0.parent = parent
       $0.cutoverJob = cutoverJob
@@ -3318,26 +3259,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func cancelCutoverJobPollingUntilDone(request: CancelCutoverJobRequest) async throws
-    -> any GoogleGax.PollableOperation<CancelCutoverJobResponse>
+    -> CancelCutoverJobResponse
   {
-    try await self.cancelCutoverJobPollingUntilDone(request: request, options: .init())
+    return try await self.cancelCutoverJobPollingUntilDone(request: request, options: .init())
   }
 
   public func cancelCutoverJobPollingUntilDone(
     request: CancelCutoverJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelCutoverJobResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CancelCutoverJobResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CancelCutoverJobResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func cancelCutoverJobPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<CancelCutoverJobResponse> {
+  ) async throws -> CancelCutoverJobResponse {
     let request = CancelCutoverJobRequest().with {
       $0.name = name
     }
@@ -3480,27 +3415,21 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createGroupPollingUntilDone(request: CreateGroupRequest) async throws -> any GoogleGax
-    .PollableOperation<Group>
-  {
-    try await self.createGroupPollingUntilDone(request: request, options: .init())
+  public func createGroupPollingUntilDone(request: CreateGroupRequest) async throws -> Group {
+    return try await self.createGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func createGroupPollingUntilDone(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Group> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Group>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Group {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createGroupPollingUntilDone(
     parent: Swift.String,
     group: Group?,
     groupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Group> {
+  ) async throws -> Group {
     let request = CreateGroupRequest().with {
       $0.parent = parent
       $0.group = group
@@ -3519,26 +3448,20 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateGroupPollingUntilDone(request: UpdateGroupRequest) async throws -> any GoogleGax
-    .PollableOperation<Group>
-  {
-    try await self.updateGroupPollingUntilDone(request: request, options: .init())
+  public func updateGroupPollingUntilDone(request: UpdateGroupRequest) async throws -> Group {
+    return try await self.updateGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateGroupPollingUntilDone(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Group> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Group>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Group {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateGroupPollingUntilDone(
     group: Group?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Group> {
+  ) async throws -> Group {
     let request = UpdateGroupRequest().with {
       $0.group = group
       $0.updateMask = updateMask
@@ -3556,29 +3479,23 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteGroupPollingUntilDone(request: DeleteGroupRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteGroupPollingUntilDone(request: DeleteGroupRequest) async throws {
     try await self.deleteGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteGroupPollingUntilDone(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteGroupPollingUntilDone(request: request)
+    try await self.deleteGroupPollingUntilDone(request: request)
   }
 
   public func addGroupMigration(request: AddGroupMigrationRequest) async throws
@@ -3594,26 +3511,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func addGroupMigrationPollingUntilDone(request: AddGroupMigrationRequest) async throws
-    -> any GoogleGax.PollableOperation<AddGroupMigrationResponse>
+    -> AddGroupMigrationResponse
   {
-    try await self.addGroupMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.addGroupMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func addGroupMigrationPollingUntilDone(
     request: AddGroupMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddGroupMigrationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddGroupMigrationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AddGroupMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func addGroupMigrationPollingUntilDone(
     group: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AddGroupMigrationResponse> {
+  ) async throws -> AddGroupMigrationResponse {
     let request = AddGroupMigrationRequest().with {
       $0.group = group
     }
@@ -3633,26 +3544,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func removeGroupMigrationPollingUntilDone(request: RemoveGroupMigrationRequest)
-    async throws -> any GoogleGax.PollableOperation<RemoveGroupMigrationResponse>
+    async throws -> RemoveGroupMigrationResponse
   {
-    try await self.removeGroupMigrationPollingUntilDone(request: request, options: .init())
+    return try await self.removeGroupMigrationPollingUntilDone(request: request, options: .init())
   }
 
   public func removeGroupMigrationPollingUntilDone(
     request: RemoveGroupMigrationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RemoveGroupMigrationResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<RemoveGroupMigrationResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RemoveGroupMigrationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func removeGroupMigrationPollingUntilDone(
     group: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RemoveGroupMigrationResponse> {
+  ) async throws -> RemoveGroupMigrationResponse {
     let request = RemoveGroupMigrationRequest().with {
       $0.group = group
     }
@@ -3739,27 +3644,22 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createTargetProjectPollingUntilDone(request: CreateTargetProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<TargetProject>
+    -> TargetProject
   {
-    try await self.createTargetProjectPollingUntilDone(request: request, options: .init())
+    return try await self.createTargetProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func createTargetProjectPollingUntilDone(
     request: CreateTargetProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TargetProject>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TargetProject {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createTargetProjectPollingUntilDone(
     parent: Swift.String,
     targetProject: TargetProject?,
     targetProjectId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
+  ) async throws -> TargetProject {
     let request = CreateTargetProjectRequest().with {
       $0.parent = parent
       $0.targetProject = targetProject
@@ -3781,26 +3681,21 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func updateTargetProjectPollingUntilDone(request: UpdateTargetProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<TargetProject>
+    -> TargetProject
   {
-    try await self.updateTargetProjectPollingUntilDone(request: request, options: .init())
+    return try await self.updateTargetProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func updateTargetProjectPollingUntilDone(
     request: UpdateTargetProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TargetProject>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TargetProject {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateTargetProjectPollingUntilDone(
     targetProject: TargetProject?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<TargetProject> {
+  ) async throws -> TargetProject {
     let request = UpdateTargetProjectRequest().with {
       $0.targetProject = targetProject
       $0.updateMask = updateMask
@@ -3821,28 +3716,23 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func deleteTargetProjectPollingUntilDone(request: DeleteTargetProjectRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
   {
     try await self.deleteTargetProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteTargetProjectPollingUntilDone(
     request: DeleteTargetProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteTargetProjectPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteTargetProjectRequest().with {
       $0.name = name
     }
-    return try await self.deleteTargetProjectPollingUntilDone(request: request)
+    try await self.deleteTargetProjectPollingUntilDone(request: request)
   }
 
   public func listReplicationCycles(request: ListReplicationCyclesRequest) async throws
@@ -3986,26 +3876,22 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createImageImportPollingUntilDone(request: CreateImageImportRequest) async throws
-    -> any GoogleGax.PollableOperation<ImageImport>
+    -> ImageImport
   {
-    try await self.createImageImportPollingUntilDone(request: request, options: .init())
+    return try await self.createImageImportPollingUntilDone(request: request, options: .init())
   }
 
   public func createImageImportPollingUntilDone(
     request: CreateImageImportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImageImport> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImageImport>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ImageImport {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createImageImportPollingUntilDone(
     parent: Swift.String,
     imageImport: ImageImport?,
     imageImportId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ImageImport> {
+  ) async throws -> ImageImport {
     let request = CreateImageImportRequest().with {
       $0.parent = parent
       $0.imageImport = imageImport
@@ -4026,29 +3912,23 @@ extension Clients.VmMigrationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteImageImportPollingUntilDone(request: DeleteImageImportRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteImageImportPollingUntilDone(request: DeleteImageImportRequest) async throws {
     try await self.deleteImageImportPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteImageImportPollingUntilDone(
     request: DeleteImageImportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteImageImportPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteImageImportRequest().with {
       $0.name = name
     }
-    return try await self.deleteImageImportPollingUntilDone(request: request)
+    try await self.deleteImageImportPollingUntilDone(request: request)
   }
 
   public func listImageImportJobs(request: ListImageImportJobsRequest) async throws
@@ -4128,26 +4008,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func cancelImageImportJobPollingUntilDone(request: CancelImageImportJobRequest)
-    async throws -> any GoogleGax.PollableOperation<CancelImageImportJobResponse>
+    async throws -> CancelImageImportJobResponse
   {
-    try await self.cancelImageImportJobPollingUntilDone(request: request, options: .init())
+    return try await self.cancelImageImportJobPollingUntilDone(request: request, options: .init())
   }
 
   public func cancelImageImportJobPollingUntilDone(
     request: CancelImageImportJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelImageImportJobResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<CancelImageImportJobResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CancelImageImportJobResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func cancelImageImportJobPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<CancelImageImportJobResponse> {
+  ) async throws -> CancelImageImportJobResponse {
     let request = CancelImageImportJobRequest().with {
       $0.name = name
     }
@@ -4167,27 +4041,22 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func createDiskMigrationJobPollingUntilDone(request: CreateDiskMigrationJobRequest)
-    async throws -> any GoogleGax.PollableOperation<DiskMigrationJob>
+    async throws -> DiskMigrationJob
   {
-    try await self.createDiskMigrationJobPollingUntilDone(request: request, options: .init())
+    return try await self.createDiskMigrationJobPollingUntilDone(request: request, options: .init())
   }
 
   public func createDiskMigrationJobPollingUntilDone(
     request: CreateDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DiskMigrationJob>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DiskMigrationJob {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createDiskMigrationJobPollingUntilDone(
     parent: Swift.String,
     diskMigrationJob: DiskMigrationJob?,
     diskMigrationJobId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
+  ) async throws -> DiskMigrationJob {
     let request = CreateDiskMigrationJobRequest().with {
       $0.parent = parent
       $0.diskMigrationJob = diskMigrationJob
@@ -4273,26 +4142,21 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func updateDiskMigrationJobPollingUntilDone(request: UpdateDiskMigrationJobRequest)
-    async throws -> any GoogleGax.PollableOperation<DiskMigrationJob>
+    async throws -> DiskMigrationJob
   {
-    try await self.updateDiskMigrationJobPollingUntilDone(request: request, options: .init())
+    return try await self.updateDiskMigrationJobPollingUntilDone(request: request, options: .init())
   }
 
   public func updateDiskMigrationJobPollingUntilDone(
     request: UpdateDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DiskMigrationJob>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DiskMigrationJob {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateDiskMigrationJobPollingUntilDone(
     diskMigrationJob: DiskMigrationJob?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<DiskMigrationJob> {
+  ) async throws -> DiskMigrationJob {
     let request = UpdateDiskMigrationJobRequest().with {
       $0.diskMigrationJob = diskMigrationJob
       $0.updateMask = updateMask
@@ -4313,28 +4177,24 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func deleteDiskMigrationJobPollingUntilDone(request: DeleteDiskMigrationJobRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteDiskMigrationJobPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteDiskMigrationJobPollingUntilDone(
     request: DeleteDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteDiskMigrationJobPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteDiskMigrationJobRequest().with {
       $0.name = name
     }
-    return try await self.deleteDiskMigrationJobPollingUntilDone(request: request)
+    try await self.deleteDiskMigrationJobPollingUntilDone(request: request)
   }
 
   public func runDiskMigrationJob(request: RunDiskMigrationJobRequest) async throws
@@ -4350,26 +4210,20 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func runDiskMigrationJobPollingUntilDone(request: RunDiskMigrationJobRequest) async throws
-    -> any GoogleGax.PollableOperation<RunDiskMigrationJobResponse>
+    -> RunDiskMigrationJobResponse
   {
-    try await self.runDiskMigrationJobPollingUntilDone(request: request, options: .init())
+    return try await self.runDiskMigrationJobPollingUntilDone(request: request, options: .init())
   }
 
   public func runDiskMigrationJobPollingUntilDone(
     request: RunDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RunDiskMigrationJobResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<RunDiskMigrationJobResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RunDiskMigrationJobResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func runDiskMigrationJobPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RunDiskMigrationJobResponse> {
+  ) async throws -> RunDiskMigrationJobResponse {
     let request = RunDiskMigrationJobRequest().with {
       $0.name = name
     }
@@ -4389,21 +4243,15 @@ extension Clients.VmMigrationProtocol {
   }
 
   public func cancelDiskMigrationJobPollingUntilDone(request: CancelDiskMigrationJobRequest)
-    async throws -> any GoogleGax.PollableOperation<CancelDiskMigrationJobResponse>
+    async throws -> CancelDiskMigrationJobResponse
   {
-    try await self.cancelDiskMigrationJobPollingUntilDone(request: request, options: .init())
+    return try await self.cancelDiskMigrationJobPollingUntilDone(request: request, options: .init())
   }
 
   public func cancelDiskMigrationJobPollingUntilDone(
     request: CancelDiskMigrationJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CancelDiskMigrationJobResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<CancelDiskMigrationJobResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CancelDiskMigrationJobResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

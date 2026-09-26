@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String, modelId: String
 ) async throws {
-  let poller = try await client.updateModelPollingUntilDone(
+  let response = try await client.updateModelPollingUntilDone(
     request: UpdateModelRequest()
       .with {
         $0.model = Model().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

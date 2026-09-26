@@ -21,14 +21,13 @@ import GoogleIAMV3
 import GoogleLongRunning
 
 func sample(client: AccessPoliciesClient, organizationId: String, locationId: String) async throws {
-  let poller = try await client.createAccessPolicyPollingUntilDone(
+  let response = try await client.createAccessPolicyPollingUntilDone(
     request: CreateAccessPolicyRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.accessPolicy = AccessPolicy() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

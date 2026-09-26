@@ -22,11 +22,10 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: BatchServiceClient) async throws {
-  let poller = try await client.cancelJobPollingUntilDone(
+  let response = try await client.cancelJobPollingUntilDone(
     request: CancelJobRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.undeletePrivateCloudPollingUntilDone(
+  let response = try await client.undeletePrivateCloudPollingUntilDone(
     request: UndeletePrivateCloudRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

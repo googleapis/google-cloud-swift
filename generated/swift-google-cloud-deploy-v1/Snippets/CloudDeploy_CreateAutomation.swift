@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: CloudDeployClient, projectId: String, locationId: String, deliveryPipelineId: String
 ) async throws {
-  let poller = try await client.createAutomationPollingUntilDone(
+  let response = try await client.createAutomationPollingUntilDone(
     request: CreateAutomationRequest()
       .with {
         $0.parent =
@@ -35,7 +35,6 @@ func sample(
         $0.automation = Automation() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

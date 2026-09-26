@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: InstancesClient) async throws {
-    let poller = try await client.setSchedulingPollingUntilDone(
+    let response = try await client.setSchedulingPollingUntilDone(
       request: InstancesClient.SetSchedulingRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

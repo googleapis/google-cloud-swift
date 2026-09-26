@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String)
   async throws
 {
-  let poller = try await client.createRouterPollingUntilDone(
+  let response = try await client.createRouterPollingUntilDone(
     request: CreateRouterRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)"
@@ -33,7 +33,6 @@ func sample(client: EdgeNetworkClient, projectId: String, locationId: String, zo
         $0.router = Router() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

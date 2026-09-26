@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.createHookPollingUntilDone(
+  let response = try await client.createHookPollingUntilDone(
     request: CreateHookRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
@@ -34,7 +34,6 @@ func sample(
         $0.hook = Hook() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

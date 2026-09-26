@@ -86,7 +86,7 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// @Snippet(path: "ClientGatewaysService_CreateClientGateway")
   public func createClientGatewayPollingUntilDone(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientGateway> {
+  ) async throws -> ClientGateway {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
@@ -100,12 +100,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single ClientGateway.
@@ -122,7 +123,7 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// @Snippet(path: "ClientGatewaysService_DeleteClientGateway")
   public func deleteClientGatewayPollingUntilDone(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -135,12 +136,13 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -269,7 +271,7 @@ extension Clients {
     /// See `ClientGatewaysServiceClient.createClientGateway`.
     func createClientGatewayPollingUntilDone(
       request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ClientGateway>
+    ) async throws -> ClientGateway
 
     /// See `ClientGatewaysServiceClient.deleteClientGateway`.
     func deleteClientGateway(
@@ -279,7 +281,7 @@ extension Clients {
     /// See `ClientGatewaysServiceClient.deleteClientGateway`.
     func deleteClientGatewayPollingUntilDone(
       request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `ClientGatewaysServiceClient.listLocations`.
     func listLocations(
@@ -402,27 +404,22 @@ extension Clients.ClientGatewaysServiceProtocol {
   }
 
   public func createClientGatewayPollingUntilDone(request: CreateClientGatewayRequest) async throws
-    -> any GoogleGax.PollableOperation<ClientGateway>
+    -> ClientGateway
   {
-    try await self.createClientGatewayPollingUntilDone(request: request, options: .init())
+    return try await self.createClientGatewayPollingUntilDone(request: request, options: .init())
   }
 
   public func createClientGatewayPollingUntilDone(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientGateway> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientGateway>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ClientGateway {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createClientGatewayPollingUntilDone(
     parent: Swift.String,
     clientGateway: ClientGateway?,
     clientGatewayId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ClientGateway> {
+  ) async throws -> ClientGateway {
     let request = CreateClientGatewayRequest().with {
       $0.parent = parent
       $0.clientGateway = clientGateway
@@ -444,28 +441,23 @@ extension Clients.ClientGatewaysServiceProtocol {
   }
 
   public func deleteClientGatewayPollingUntilDone(request: DeleteClientGatewayRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
   {
     try await self.deleteClientGatewayPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteClientGatewayPollingUntilDone(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteClientGatewayPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteClientGatewayRequest().with {
       $0.name = name
     }
-    return try await self.deleteClientGatewayPollingUntilDone(request: request)
+    try await self.deleteClientGatewayPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

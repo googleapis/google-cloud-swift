@@ -24,14 +24,13 @@ import GoogleWKT
 
 func sample(client: BigtableInstanceAdminClient, projectId: String, instanceId: String) async throws
 {
-  let poller = try await client.createLogicalViewPollingUntilDone(
+  let response = try await client.createLogicalViewPollingUntilDone(
     request: CreateLogicalViewRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)"
         $0.logicalView = LogicalView() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

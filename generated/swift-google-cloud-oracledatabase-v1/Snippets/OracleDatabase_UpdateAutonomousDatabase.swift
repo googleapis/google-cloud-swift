@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, autonomousDatabaseId: String
 ) async throws {
-  let poller = try await client.updateAutonomousDatabasePollingUntilDone(
+  let response = try await client.updateAutonomousDatabasePollingUntilDone(
     request: UpdateAutonomousDatabaseRequest()
       .with {
         $0.autonomousDatabase = AutonomousDatabase().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

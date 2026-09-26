@@ -22,14 +22,13 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: ProvisioningClient, parent: String) async throws {
-  let poller = try await client.createApiHubInstancePollingUntilDone(
+  let response = try await client.createApiHubInstancePollingUntilDone(
     request: CreateApiHubInstanceRequest()
       .with {
         $0.parent = "\(parent)"
         $0.apiHubInstance = ApiHubInstance() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

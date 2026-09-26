@@ -27,7 +27,7 @@
   func sample(client: IndexServiceClient, projectId: String, locationId: String, indexId: String)
     async throws
   {
-    let poller = try await client.updateIndexPollingUntilDone(
+    let response = try await client.updateIndexPollingUntilDone(
       request: UpdateIndexRequest()
         .with {
           $0.index = Index().with {
@@ -36,7 +36,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

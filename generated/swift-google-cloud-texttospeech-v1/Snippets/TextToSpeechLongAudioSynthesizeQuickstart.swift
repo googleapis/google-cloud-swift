@@ -22,11 +22,10 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudTextToSpeechV1.TextToSpeechLongAudioSynthesizeClient()
-  let poller = try await client.synthesizeLongAudioPollingUntilDone(
+  let response = try await client.synthesizeLongAudioPollingUntilDone(
     request: SynthesizeLongAudioRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

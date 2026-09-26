@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: DepServiceClient, projectId: String, locationId: String, lbTrafficExtensionId: String
 ) async throws {
-  let poller = try await client.updateLbTrafficExtensionPollingUntilDone(
+  let response = try await client.updateLbTrafficExtensionPollingUntilDone(
     request: UpdateLbTrafficExtensionRequest()
       .with {
         $0.lbTrafficExtension = LbTrafficExtension().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

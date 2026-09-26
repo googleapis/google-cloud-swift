@@ -55,7 +55,7 @@
     /// @Snippet(path: "nodeGroups_addNodes")
     public func addNodesPollingUntilDone(
       request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -83,12 +83,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves an aggregated list of node groups.
@@ -118,7 +119,7 @@
     /// @Snippet(path: "nodeGroups_delete")
     public func deletePollingUntilDone(
       request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -146,12 +147,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Deletes specified nodes from the node group.
@@ -168,7 +170,7 @@
     /// @Snippet(path: "nodeGroups_deleteNodes")
     public func deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -196,12 +198,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns the specified NodeGroup. Get a list of available NodeGroups
@@ -242,7 +245,7 @@
     /// @Snippet(path: "nodeGroups_insert")
     public func insertPollingUntilDone(
       request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -270,12 +273,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves a list of node groups available to the specified project.
@@ -311,7 +315,7 @@
     /// @Snippet(path: "nodeGroups_patch")
     public func patchPollingUntilDone(
       request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -339,12 +343,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Perform maintenance on a subset of nodes in the node group.
@@ -361,7 +366,7 @@
     /// @Snippet(path: "nodeGroups_performMaintenance")
     public func performMaintenancePollingUntilDone(
       request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -389,12 +394,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Sets the access control policy on the specified resource.
@@ -421,7 +427,7 @@
     /// @Snippet(path: "nodeGroups_setNodeTemplate")
     public func setNodeTemplatePollingUntilDone(
       request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -449,12 +455,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Simulates maintenance event on specified nodes from the node group.
@@ -471,7 +478,7 @@
     /// @Snippet(path: "nodeGroups_simulateMaintenanceEvent")
     public func simulateMaintenanceEventPollingUntilDone(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -499,12 +506,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns permissions that a caller has on the specified resource.
@@ -541,7 +549,7 @@
       /// See `NodeGroupsClient.addNodes`.
       func addNodesPollingUntilDone(
         request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.aggregatedList`.
       func aggregatedList(
@@ -556,7 +564,7 @@
       /// See `NodeGroupsClient.delete`.
       func deletePollingUntilDone(
         request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.deleteNodes`.
       func deleteNodes(
@@ -566,7 +574,7 @@
       /// See `NodeGroupsClient.deleteNodes`.
       func deleteNodesPollingUntilDone(
         request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.`get``.
       func `get`(
@@ -586,7 +594,7 @@
       /// See `NodeGroupsClient.insert`.
       func insertPollingUntilDone(
         request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.list`.
       func list(
@@ -606,7 +614,7 @@
       /// See `NodeGroupsClient.patch`.
       func patchPollingUntilDone(
         request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.performMaintenance`.
       func performMaintenance(
@@ -616,7 +624,7 @@
       /// See `NodeGroupsClient.performMaintenance`.
       func performMaintenancePollingUntilDone(
         request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.setIamPolicy`.
       func setIamPolicy(
@@ -631,7 +639,7 @@
       /// See `NodeGroupsClient.setNodeTemplate`.
       func setNodeTemplatePollingUntilDone(
         request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.simulateMaintenanceEvent`.
       func simulateMaintenanceEvent(
@@ -641,7 +649,7 @@
       /// See `NodeGroupsClient.simulateMaintenanceEvent`.
       func simulateMaintenanceEventPollingUntilDone(
         request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `NodeGroupsClient.testIamPermissions`.
       func testIamPermissions(
@@ -666,20 +674,14 @@
 
     public func addNodesPollingUntilDone(
       request: NodeGroupsClient.AddNodesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.addNodesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.addNodesPollingUntilDone(request: request, options: .init())
     }
 
     public func addNodesPollingUntilDone(
       request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func addNodesPollingUntilDone(
@@ -687,7 +689,7 @@
       zone: Swift.String,
       nodeGroup: Swift.String,
       body: NodeGroupsAddNodesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.AddNodesRequest().with {
         $0.project = project
         $0.zone = zone
@@ -758,27 +760,21 @@
 
     public func deletePollingUntilDone(
       request: NodeGroupsClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
       nodeGroup: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.DeleteRequest().with {
         $0.project = project
         $0.zone = zone
@@ -801,20 +797,14 @@
 
     public func deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deleteNodesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deleteNodesPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteNodesPollingUntilDone(
@@ -822,7 +812,7 @@
       zone: Swift.String,
       nodeGroup: Swift.String,
       body: NodeGroupsDeleteNodesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.DeleteNodesRequest().with {
         $0.project = project
         $0.zone = zone
@@ -896,20 +886,14 @@
 
     public func insertPollingUntilDone(
       request: NodeGroupsClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
@@ -917,7 +901,7 @@
       zone: Swift.String,
       initialNodeCount: Swift.Int32,
       body: NodeGroup?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.InsertRequest().with {
         $0.project = project
         $0.zone = zone
@@ -1032,20 +1016,14 @@
 
     public func patchPollingUntilDone(
       request: NodeGroupsClient.PatchRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patchPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.patchPollingUntilDone(request: request, options: .init())
     }
 
     public func patchPollingUntilDone(
       request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func patchPollingUntilDone(
@@ -1053,7 +1031,7 @@
       zone: Swift.String,
       nodeGroup: Swift.String,
       body: NodeGroup?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.PatchRequest().with {
         $0.project = project
         $0.zone = zone
@@ -1077,20 +1055,14 @@
 
     public func performMaintenancePollingUntilDone(
       request: NodeGroupsClient.PerformMaintenanceRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.performMaintenancePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.performMaintenancePollingUntilDone(request: request, options: .init())
     }
 
     public func performMaintenancePollingUntilDone(
       request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func performMaintenancePollingUntilDone(
@@ -1098,7 +1070,7 @@
       zone: Swift.String,
       nodeGroup: Swift.String,
       body: NodeGroupsPerformMaintenanceRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.PerformMaintenanceRequest().with {
         $0.project = project
         $0.zone = zone
@@ -1149,20 +1121,14 @@
 
     public func setNodeTemplatePollingUntilDone(
       request: NodeGroupsClient.SetNodeTemplateRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setNodeTemplatePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setNodeTemplatePollingUntilDone(request: request, options: .init())
     }
 
     public func setNodeTemplatePollingUntilDone(
       request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setNodeTemplatePollingUntilDone(
@@ -1170,7 +1136,7 @@
       zone: Swift.String,
       nodeGroup: Swift.String,
       body: NodeGroupsSetNodeTemplateRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.SetNodeTemplateRequest().with {
         $0.project = project
         $0.zone = zone
@@ -1194,20 +1160,15 @@
 
     public func simulateMaintenanceEventPollingUntilDone(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.simulateMaintenanceEventPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.simulateMaintenanceEventPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func simulateMaintenanceEventPollingUntilDone(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func simulateMaintenanceEventPollingUntilDone(
@@ -1215,7 +1176,7 @@
       zone: Swift.String,
       nodeGroup: Swift.String,
       body: NodeGroupsSimulateMaintenanceEventRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = NodeGroupsClient.SimulateMaintenanceEventRequest().with {
         $0.project = project
         $0.zone = zone

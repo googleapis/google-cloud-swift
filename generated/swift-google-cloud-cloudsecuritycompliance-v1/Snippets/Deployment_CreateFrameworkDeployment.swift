@@ -22,14 +22,13 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: DeploymentClient, organizationId: String, locationId: String) async throws {
-  let poller = try await client.createFrameworkDeploymentPollingUntilDone(
+  let response = try await client.createFrameworkDeploymentPollingUntilDone(
     request: CreateFrameworkDeploymentRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.frameworkDeployment = FrameworkDeployment() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

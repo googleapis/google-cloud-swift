@@ -24,14 +24,13 @@ import GoogleLongRunning
 
 func sample(client: ClientGatewaysServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createClientGatewayPollingUntilDone(
+  let response = try await client.createClientGatewayPollingUntilDone(
     request: CreateClientGatewayRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.clientGateway = ClientGateway() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

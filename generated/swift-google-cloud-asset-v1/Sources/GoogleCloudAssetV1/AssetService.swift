@@ -82,7 +82,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_ExportAssets")
   public func exportAssetsPollingUntilDone(
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportAssetsResponse> {
+  ) async throws -> ExportAssetsResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
@@ -96,12 +96,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists assets with time and resource types and returns paged results in
@@ -247,7 +248,7 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
   public func analyzeIamPolicyLongrunningPollingUntilDone(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse> {
+  ) async throws -> AnalyzeIamPolicyLongrunningResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State in
@@ -262,12 +263,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Analyze moving a resource to a specified destination without kicking off
@@ -460,7 +462,7 @@ extension Clients {
     /// See `AssetServiceClient.exportAssets`.
     func exportAssetsPollingUntilDone(
       request: ExportAssetsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportAssetsResponse>
+    ) async throws -> ExportAssetsResponse
 
     /// See `AssetServiceClient.listAssets`.
     func listAssets(
@@ -520,7 +522,7 @@ extension Clients {
     /// See `AssetServiceClient.analyzeIamPolicyLongrunning`.
     func analyzeIamPolicyLongrunningPollingUntilDone(
       request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse>
+    ) async throws -> AnalyzeIamPolicyLongrunningResponse
 
     /// See `AssetServiceClient.analyzeMove`.
     func analyzeMove(
@@ -593,20 +595,15 @@ extension Clients.AssetServiceProtocol {
   }
 
   public func exportAssetsPollingUntilDone(request: ExportAssetsRequest) async throws
-    -> any GoogleGax.PollableOperation<ExportAssetsResponse>
+    -> ExportAssetsResponse
   {
-    try await self.exportAssetsPollingUntilDone(request: request, options: .init())
+    return try await self.exportAssetsPollingUntilDone(request: request, options: .init())
   }
 
   public func exportAssetsPollingUntilDone(
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportAssetsResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportAssetsResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportAssetsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listAssets(request: ListAssetsRequest) async throws
@@ -885,20 +882,15 @@ extension Clients.AssetServiceProtocol {
 
   public func analyzeIamPolicyLongrunningPollingUntilDone(
     request: AnalyzeIamPolicyLongrunningRequest
-  ) async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse> {
-    try await self.analyzeIamPolicyLongrunningPollingUntilDone(request: request, options: .init())
+  ) async throws -> AnalyzeIamPolicyLongrunningResponse {
+    return try await self.analyzeIamPolicyLongrunningPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func analyzeIamPolicyLongrunningPollingUntilDone(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AnalyzeIamPolicyLongrunningResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<AnalyzeIamPolicyLongrunningResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AnalyzeIamPolicyLongrunningResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func analyzeMove(request: AnalyzeMoveRequest) async throws

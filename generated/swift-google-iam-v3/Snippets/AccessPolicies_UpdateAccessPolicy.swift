@@ -23,7 +23,7 @@ import GoogleLongRunning
 func sample(
   client: AccessPoliciesClient, organizationId: String, locationId: String, accessPolicyId: String
 ) async throws {
-  let poller = try await client.updateAccessPolicyPollingUntilDone(
+  let response = try await client.updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest()
       .with {
         $0.accessPolicy = AccessPolicy().with {
@@ -32,7 +32,6 @@ func sample(
         }
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

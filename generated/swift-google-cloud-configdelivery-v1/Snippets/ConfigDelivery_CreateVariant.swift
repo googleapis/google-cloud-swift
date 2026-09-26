@@ -26,7 +26,7 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String
 ) async throws {
-  let poller = try await client.createVariantPollingUntilDone(
+  let response = try await client.createVariantPollingUntilDone(
     request: CreateVariantRequest()
       .with {
         $0.parent =
@@ -35,7 +35,6 @@ func sample(
         $0.variant = Variant() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

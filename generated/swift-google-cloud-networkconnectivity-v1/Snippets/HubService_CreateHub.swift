@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, parent: String) async throws {
-  let poller = try await client.createHubPollingUntilDone(
+  let response = try await client.createHubPollingUntilDone(
     request: CreateHubRequest()
       .with {
         $0.parent = "\(parent)"
@@ -32,7 +32,6 @@ func sample(client: HubServiceClient, parent: String) async throws {
         $0.hub = Hub() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

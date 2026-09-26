@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: CatalogServiceClient, projectId: String, locationId: String, metadataFeedId: String
 ) async throws {
-  let poller = try await client.deleteMetadataFeedPollingUntilDone(
+  try await client.deleteMetadataFeedPollingUntilDone(
     request: DeleteMetadataFeedRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/metadataFeeds/\(metadataFeedId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

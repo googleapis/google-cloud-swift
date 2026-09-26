@@ -73,7 +73,7 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// @Snippet(path: "IDS_CreateEndpoint")
   public func createEndpointPollingUntilDone(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
+  ) async throws -> Endpoint {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Endpoint>.State in
@@ -86,12 +86,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Endpoint.
@@ -108,7 +109,7 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// @Snippet(path: "IDS_DeleteEndpoint")
   public func deleteEndpointPollingUntilDone(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -121,12 +122,13 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -199,7 +201,7 @@ extension Clients {
     /// See `IDSClient.createEndpoint`.
     func createEndpointPollingUntilDone(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Endpoint>
+    ) async throws -> Endpoint
 
     /// See `IDSClient.deleteEndpoint`.
     func deleteEndpoint(
@@ -209,7 +211,7 @@ extension Clients {
     /// See `IDSClient.deleteEndpoint`.
     func deleteEndpointPollingUntilDone(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `IDSClient.listOperations`.
     func listOperations(
@@ -304,26 +306,22 @@ extension Clients.IDSProtocol {
   }
 
   public func createEndpointPollingUntilDone(request: CreateEndpointRequest) async throws
-    -> any GoogleGax.PollableOperation<Endpoint>
+    -> Endpoint
   {
-    try await self.createEndpointPollingUntilDone(request: request, options: .init())
+    return try await self.createEndpointPollingUntilDone(request: request, options: .init())
   }
 
   public func createEndpointPollingUntilDone(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Endpoint>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Endpoint {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEndpointPollingUntilDone(
     parent: Swift.String,
     endpoint: Endpoint?,
     endpointId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Endpoint> {
+  ) async throws -> Endpoint {
     let request = CreateEndpointRequest().with {
       $0.parent = parent
       $0.endpoint = endpoint
@@ -344,29 +342,23 @@ extension Clients.IDSProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws {
     try await self.deleteEndpointPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEndpointPollingUntilDone(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEndpointPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEndpointRequest().with {
       $0.name = name
     }
-    return try await self.deleteEndpointPollingUntilDone(request: request)
+    try await self.deleteEndpointPollingUntilDone(request: request)
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

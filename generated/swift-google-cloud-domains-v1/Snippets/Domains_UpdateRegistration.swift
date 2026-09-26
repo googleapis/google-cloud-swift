@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: DomainsClient, projectId: String, locationId: String, registrationId: String)
   async throws
 {
-  let poller = try await client.updateRegistrationPollingUntilDone(
+  let response = try await client.updateRegistrationPollingUntilDone(
     request: UpdateRegistrationRequest()
       .with {
         $0.registration = Registration().with {
@@ -34,7 +34,6 @@ func sample(client: DomainsClient, projectId: String, locationId: String, regist
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -27,7 +27,7 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   tlsInspectionPolicyId: String
 ) async throws {
-  let poller = try await client.updateTlsInspectionPolicyPollingUntilDone(
+  let response = try await client.updateTlsInspectionPolicyPollingUntilDone(
     request: UpdateTlsInspectionPolicyRequest()
       .with {
         $0.tlsInspectionPolicy = TlsInspectionPolicy().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

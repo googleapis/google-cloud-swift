@@ -26,14 +26,13 @@ func sample(
   client: DatastreamClient, projectId: String, locationId: String, privateConnectionId: String,
   routeId: String
 ) async throws {
-  let poller = try await client.deleteRoutePollingUntilDone(
+  try await client.deleteRoutePollingUntilDone(
     request: DeleteRouteRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/privateConnections/\(privateConnectionId)/routes/\(routeId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

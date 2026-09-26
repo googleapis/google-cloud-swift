@@ -24,11 +24,10 @@
   import GoogleWKT
 
   func sample(client: EntityTypesClient) async throws {
-    let poller = try await client.batchCreateEntitiesPollingUntilDone(
+    try await client.batchCreateEntitiesPollingUntilDone(
       request: BatchCreateEntitiesRequest()
         /* set fields using .with { $0... } */
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

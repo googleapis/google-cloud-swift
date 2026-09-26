@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: BackupForGKEClient, projectId: String, locationId: String, backupPlanId: String)
   async throws
 {
-  let poller = try await client.createBackupPollingUntilDone(
+  let response = try await client.createBackupPollingUntilDone(
     request: CreateBackupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/backupPlans/\(backupPlanId)"
@@ -34,7 +34,6 @@ func sample(client: BackupForGKEClient, projectId: String, locationId: String, b
         $0.backup = Backup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

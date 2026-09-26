@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient, folderId: String) async throws {
-  let poller = try await client.updateFolderPollingUntilDone(
+  let response = try await client.updateFolderPollingUntilDone(
     request: UpdateFolderRequest()
       .with {
         $0.folder = Folder().with {
@@ -32,7 +32,6 @@ func sample(client: FoldersClient, folderId: String) async throws {
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

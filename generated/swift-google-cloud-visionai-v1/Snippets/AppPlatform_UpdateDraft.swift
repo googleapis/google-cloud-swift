@@ -26,7 +26,7 @@ func sample(
   client: AppPlatformClient, projectId: String, locationId: String, applicationId: String,
   draftId: String
 ) async throws {
-  let poller = try await client.updateDraftPollingUntilDone(
+  let response = try await client.updateDraftPollingUntilDone(
     request: UpdateDraftRequest()
       .with {
         $0.draft = Draft().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

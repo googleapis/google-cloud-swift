@@ -24,7 +24,7 @@ import GoogleWKT
 
 func sample(client: BigtableInstanceAdminClient, projectId: String, instanceId: String) async throws
 {
-  let poller = try await client.createClusterPollingUntilDone(
+  let response = try await client.createClusterPollingUntilDone(
     request: CreateClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)"
@@ -32,7 +32,6 @@ func sample(client: BigtableInstanceAdminClient, projectId: String, instanceId: 
         $0.cluster = Cluster() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

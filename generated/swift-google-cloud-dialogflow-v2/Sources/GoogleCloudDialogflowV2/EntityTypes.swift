@@ -146,7 +146,7 @@
     /// @Snippet(path: "EntityTypes_BatchUpdateEntityTypes")
     public func batchUpdateEntityTypesPollingUntilDone(
       request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateEntityTypesResponse> {
+    ) async throws -> BatchUpdateEntityTypesResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchUpdateEntityTypesResponse>.State in
@@ -161,12 +161,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Deletes entity types in the specified agent.
@@ -209,7 +210,7 @@
     /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
     public func batchDeleteEntityTypesPollingUntilDone(
       request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -223,12 +224,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Creates multiple new entities in the specified entity type.
@@ -271,7 +273,7 @@
     /// @Snippet(path: "EntityTypes_BatchCreateEntities")
     public func batchCreateEntitiesPollingUntilDone(
       request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -285,12 +287,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Updates or creates multiple entities in the specified entity type. This
@@ -339,7 +342,7 @@
     /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
     public func batchUpdateEntitiesPollingUntilDone(
       request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -353,12 +356,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Deletes entities in the specified entity type.
@@ -401,7 +405,7 @@
     /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
     public func batchDeleteEntitiesPollingUntilDone(
       request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -415,12 +419,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -532,7 +537,7 @@
       /// See `EntityTypesClient.batchUpdateEntityTypes`.
       func batchUpdateEntityTypesPollingUntilDone(
         request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<BatchUpdateEntityTypesResponse>
+      ) async throws -> BatchUpdateEntityTypesResponse
 
       /// See `EntityTypesClient.batchDeleteEntityTypes`.
       func batchDeleteEntityTypes(
@@ -542,7 +547,7 @@
       /// See `EntityTypesClient.batchDeleteEntityTypes`.
       func batchDeleteEntityTypesPollingUntilDone(
         request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntities(
@@ -552,7 +557,7 @@
       /// See `EntityTypesClient.batchCreateEntities`.
       func batchCreateEntitiesPollingUntilDone(
         request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntities(
@@ -562,7 +567,7 @@
       /// See `EntityTypesClient.batchUpdateEntities`.
       func batchUpdateEntitiesPollingUntilDone(
         request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntities(
@@ -572,7 +577,7 @@
       /// See `EntityTypesClient.batchDeleteEntities`.
       func batchDeleteEntitiesPollingUntilDone(
         request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `EntityTypesClient.listLocations`.
       func listLocations(
@@ -784,21 +789,16 @@
     }
 
     public func batchUpdateEntityTypesPollingUntilDone(request: BatchUpdateEntityTypesRequest)
-      async throws -> any GoogleGax.PollableOperation<BatchUpdateEntityTypesResponse>
+      async throws -> BatchUpdateEntityTypesResponse
     {
-      try await self.batchUpdateEntityTypesPollingUntilDone(request: request, options: .init())
+      return try await self.batchUpdateEntityTypesPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func batchUpdateEntityTypesPollingUntilDone(
       request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateEntityTypesResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<BatchUpdateEntityTypesResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> BatchUpdateEntityTypesResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchDeleteEntityTypes(request: BatchDeleteEntityTypesRequest) async throws
@@ -814,31 +814,26 @@
     }
 
     public func batchDeleteEntityTypesPollingUntilDone(request: BatchDeleteEntityTypesRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.batchDeleteEntityTypesPollingUntilDone(request: request, options: .init())
     }
 
     public func batchDeleteEntityTypesPollingUntilDone(
       request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchDeleteEntityTypesPollingUntilDone(
       parent: Swift.String,
       entityTypeNames: [Swift.String],
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchDeleteEntityTypesRequest().with {
         $0.parent = parent
         $0.entityTypeNames = entityTypeNames
       }
-      return try await self.batchDeleteEntityTypesPollingUntilDone(request: request)
+      try await self.batchDeleteEntityTypesPollingUntilDone(request: request)
     }
 
     public func batchCreateEntities(request: BatchCreateEntitiesRequest) async throws
@@ -854,44 +849,39 @@
     }
 
     public func batchCreateEntitiesPollingUntilDone(request: BatchCreateEntitiesRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.batchCreateEntitiesPollingUntilDone(request: request, options: .init())
     }
 
     public func batchCreateEntitiesPollingUntilDone(
       request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchCreateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchCreateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
       }
-      return try await self.batchCreateEntitiesPollingUntilDone(request: request)
+      try await self.batchCreateEntitiesPollingUntilDone(request: request)
     }
 
     public func batchCreateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
       languageCode: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchCreateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
         $0.languageCode = languageCode
       }
-      return try await self.batchCreateEntitiesPollingUntilDone(request: request)
+      try await self.batchCreateEntitiesPollingUntilDone(request: request)
     }
 
     public func batchUpdateEntities(request: BatchUpdateEntitiesRequest) async throws
@@ -907,44 +897,39 @@
     }
 
     public func batchUpdateEntitiesPollingUntilDone(request: BatchUpdateEntitiesRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.batchUpdateEntitiesPollingUntilDone(request: request, options: .init())
     }
 
     public func batchUpdateEntitiesPollingUntilDone(
       request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchUpdateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchUpdateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
       }
-      return try await self.batchUpdateEntitiesPollingUntilDone(request: request)
+      try await self.batchUpdateEntitiesPollingUntilDone(request: request)
     }
 
     public func batchUpdateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
       languageCode: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchUpdateEntitiesRequest().with {
         $0.parent = parent
         $0.entities = entities
         $0.languageCode = languageCode
       }
-      return try await self.batchUpdateEntitiesPollingUntilDone(request: request)
+      try await self.batchUpdateEntitiesPollingUntilDone(request: request)
     }
 
     public func batchDeleteEntities(request: BatchDeleteEntitiesRequest) async throws
@@ -960,44 +945,39 @@
     }
 
     public func batchDeleteEntitiesPollingUntilDone(request: BatchDeleteEntitiesRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.batchDeleteEntitiesPollingUntilDone(request: request, options: .init())
     }
 
     public func batchDeleteEntitiesPollingUntilDone(
       request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchDeleteEntitiesPollingUntilDone(
       parent: Swift.String,
       entityValues: [Swift.String],
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchDeleteEntitiesRequest().with {
         $0.parent = parent
         $0.entityValues = entityValues
       }
-      return try await self.batchDeleteEntitiesPollingUntilDone(request: request)
+      try await self.batchDeleteEntitiesPollingUntilDone(request: request)
     }
 
     public func batchDeleteEntitiesPollingUntilDone(
       parent: Swift.String,
       entityValues: [Swift.String],
       languageCode: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = BatchDeleteEntitiesRequest().with {
         $0.parent = parent
         $0.entityValues = entityValues
         $0.languageCode = languageCode
       }
-      return try await self.batchDeleteEntitiesPollingUntilDone(request: request)
+      try await self.batchDeleteEntitiesPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

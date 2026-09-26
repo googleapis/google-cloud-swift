@@ -26,7 +26,7 @@
   func sample(
     client: VersionsClient, projectId: String, locationId: String, agentId: String, flowId: String
   ) async throws {
-    let poller = try await client.createVersionPollingUntilDone(
+    let response = try await client.createVersionPollingUntilDone(
       request: CreateVersionRequest()
         .with {
           $0.parent =
@@ -34,7 +34,6 @@
           $0.version = Version() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

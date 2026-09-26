@@ -21,7 +21,7 @@ import GoogleCloudIDSV1
 import GoogleLongRunning
 
 func sample(client: IDSClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createEndpointPollingUntilDone(
+  let response = try await client.createEndpointPollingUntilDone(
     request: CreateEndpointRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -29,7 +29,6 @@ func sample(client: IDSClient, projectId: String, locationId: String) async thro
         $0.endpoint = Endpoint() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

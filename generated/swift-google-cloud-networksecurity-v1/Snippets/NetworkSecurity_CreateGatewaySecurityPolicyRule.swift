@@ -27,7 +27,7 @@ func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String,
   gatewaySecurityPolicyId: String
 ) async throws {
-  let poller = try await client.createGatewaySecurityPolicyRulePollingUntilDone(
+  let response = try await client.createGatewaySecurityPolicyRulePollingUntilDone(
     request: CreateGatewaySecurityPolicyRuleRequest()
       .with {
         $0.parent =
@@ -35,7 +35,6 @@ func sample(
         $0.gatewaySecurityPolicyRule = GatewaySecurityPolicyRule() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

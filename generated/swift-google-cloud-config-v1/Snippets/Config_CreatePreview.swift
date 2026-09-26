@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, parent: String) async throws {
-  let poller = try await client.createPreviewPollingUntilDone(
+  let response = try await client.createPreviewPollingUntilDone(
     request: CreatePreviewRequest()
       .with {
         $0.parent = "\(parent)"
@@ -32,7 +32,6 @@ func sample(client: ConfigClient, parent: String) async throws {
         $0.preview = Preview() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

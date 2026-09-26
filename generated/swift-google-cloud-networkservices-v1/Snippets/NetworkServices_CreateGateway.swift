@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkServicesClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createGatewayPollingUntilDone(
+  let response = try await client.createGatewayPollingUntilDone(
     request: CreateGatewayRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: NetworkServicesClient, projectId: String, locationId: String
         $0.gateway = Gateway() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

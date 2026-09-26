@@ -63,7 +63,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_CreateChannel")
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Channel>.State in
@@ -76,12 +76,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns a list of all channels in the specified region.
@@ -116,7 +117,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_DeleteChannel")
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -129,12 +130,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the specified channel.
@@ -151,7 +153,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_UpdateChannel")
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Channel>.State in
@@ -164,12 +166,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Starts the specified channel. Part of the video pipeline will be created
@@ -188,7 +191,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_StartChannel")
   public func startChannelPollingUntilDone(
     request: StartChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State in
@@ -203,12 +206,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Stops the specified channel. Part of the video pipeline will be released
@@ -227,7 +231,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_StopChannel")
   public func stopChannelPollingUntilDone(
     request: StopChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State in
@@ -242,12 +246,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Starts distribution which delivers outputs to the destination indicated by
@@ -266,7 +271,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_StartDistribution")
   public func startDistributionPollingUntilDone(
     request: StartDistributionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State in
@@ -281,12 +286,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Stops the specified distribution.
@@ -303,7 +309,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_StopDistribution")
   public func stopDistributionPollingUntilDone(
     request: StopDistributionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State in
@@ -318,12 +324,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates an input with the provided unique ID in the specified region.
@@ -340,7 +347,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_CreateInput")
   public func createInputPollingUntilDone(
     request: CreateInputRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Input> {
+  ) async throws -> Input {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Input>.State in
@@ -353,12 +360,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns a list of all inputs in the specified region.
@@ -393,7 +401,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_DeleteInput")
   public func deleteInputPollingUntilDone(
     request: DeleteInputRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -406,12 +414,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the specified input.
@@ -428,7 +437,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_UpdateInput")
   public func updateInputPollingUntilDone(
     request: UpdateInputRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Input> {
+  ) async throws -> Input {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Input>.State in
@@ -441,12 +450,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Preview the streaming content of the specified input.
@@ -526,7 +536,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_CreateClip")
   public func createClipPollingUntilDone(
     request: CreateClipRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Clip> {
+  ) async throws -> Clip {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Clip>.State in
@@ -539,12 +549,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes the specified clip job resource. This method only deletes the clip
@@ -563,7 +574,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_DeleteClip")
   public func deleteClipPollingUntilDone(
     request: DeleteClipRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -576,12 +587,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a DVR session with the provided unique ID in the specified channel.
@@ -598,7 +610,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_CreateDvrSession")
   public func createDvrSessionPollingUntilDone(
     request: CreateDvrSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DvrSession> {
+  ) async throws -> DvrSession {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DvrSession>.State in
@@ -611,12 +623,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns a list of all DVR sessions in the specified channel.
@@ -651,7 +664,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_DeleteDvrSession")
   public func deleteDvrSessionPollingUntilDone(
     request: DeleteDvrSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -664,12 +677,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the specified DVR session.
@@ -686,7 +700,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_UpdateDvrSession")
   public func updateDvrSessionPollingUntilDone(
     request: UpdateDvrSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DvrSession> {
+  ) async throws -> DvrSession {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DvrSession>.State in
@@ -699,12 +713,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a Asset with the provided unique ID in the specified
@@ -723,7 +738,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_CreateAsset")
   public func createAssetPollingUntilDone(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Asset> {
+  ) async throws -> Asset {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Asset>.State in
@@ -736,12 +751,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes the specified asset if it is not used.
@@ -758,7 +774,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_DeleteAsset")
   public func deleteAssetPollingUntilDone(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -771,12 +787,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Returns the specified asset.
@@ -820,7 +837,7 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// @Snippet(path: "LivestreamService_UpdatePool")
   public func updatePoolPollingUntilDone(
     request: UpdatePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pool> {
+  ) async throws -> Pool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Pool>.State in
@@ -833,12 +850,13 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -919,7 +937,7 @@ extension Clients {
     /// See `LivestreamServiceClient.createChannel`.
     func createChannelPollingUntilDone(
       request: CreateChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Channel>
+    ) async throws -> Channel
 
     /// See `LivestreamServiceClient.listChannels`.
     func listChannels(
@@ -939,7 +957,7 @@ extension Clients {
     /// See `LivestreamServiceClient.deleteChannel`.
     func deleteChannelPollingUntilDone(
       request: DeleteChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LivestreamServiceClient.updateChannel`.
     func updateChannel(
@@ -949,7 +967,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updateChannel`.
     func updateChannelPollingUntilDone(
       request: UpdateChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Channel>
+    ) async throws -> Channel
 
     /// See `LivestreamServiceClient.startChannel`.
     func startChannel(
@@ -959,7 +977,7 @@ extension Clients {
     /// See `LivestreamServiceClient.startChannel`.
     func startChannelPollingUntilDone(
       request: StartChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    ) async throws -> ChannelOperationResponse
 
     /// See `LivestreamServiceClient.stopChannel`.
     func stopChannel(
@@ -969,7 +987,7 @@ extension Clients {
     /// See `LivestreamServiceClient.stopChannel`.
     func stopChannelPollingUntilDone(
       request: StopChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    ) async throws -> ChannelOperationResponse
 
     /// See `LivestreamServiceClient.startDistribution`.
     func startDistribution(
@@ -979,7 +997,7 @@ extension Clients {
     /// See `LivestreamServiceClient.startDistribution`.
     func startDistributionPollingUntilDone(
       request: StartDistributionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    ) async throws -> ChannelOperationResponse
 
     /// See `LivestreamServiceClient.stopDistribution`.
     func stopDistribution(
@@ -989,7 +1007,7 @@ extension Clients {
     /// See `LivestreamServiceClient.stopDistribution`.
     func stopDistributionPollingUntilDone(
       request: StopDistributionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    ) async throws -> ChannelOperationResponse
 
     /// See `LivestreamServiceClient.createInput`.
     func createInput(
@@ -999,7 +1017,7 @@ extension Clients {
     /// See `LivestreamServiceClient.createInput`.
     func createInputPollingUntilDone(
       request: CreateInputRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Input>
+    ) async throws -> Input
 
     /// See `LivestreamServiceClient.listInputs`.
     func listInputs(
@@ -1019,7 +1037,7 @@ extension Clients {
     /// See `LivestreamServiceClient.deleteInput`.
     func deleteInputPollingUntilDone(
       request: DeleteInputRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LivestreamServiceClient.updateInput`.
     func updateInput(
@@ -1029,7 +1047,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updateInput`.
     func updateInputPollingUntilDone(
       request: UpdateInputRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Input>
+    ) async throws -> Input
 
     /// See `LivestreamServiceClient.previewInput`.
     func previewInput(
@@ -1074,7 +1092,7 @@ extension Clients {
     /// See `LivestreamServiceClient.createClip`.
     func createClipPollingUntilDone(
       request: CreateClipRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Clip>
+    ) async throws -> Clip
 
     /// See `LivestreamServiceClient.deleteClip`.
     func deleteClip(
@@ -1084,7 +1102,7 @@ extension Clients {
     /// See `LivestreamServiceClient.deleteClip`.
     func deleteClipPollingUntilDone(
       request: DeleteClipRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LivestreamServiceClient.createDvrSession`.
     func createDvrSession(
@@ -1094,7 +1112,7 @@ extension Clients {
     /// See `LivestreamServiceClient.createDvrSession`.
     func createDvrSessionPollingUntilDone(
       request: CreateDvrSessionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DvrSession>
+    ) async throws -> DvrSession
 
     /// See `LivestreamServiceClient.listDvrSessions`.
     func listDvrSessions(
@@ -1114,7 +1132,7 @@ extension Clients {
     /// See `LivestreamServiceClient.deleteDvrSession`.
     func deleteDvrSessionPollingUntilDone(
       request: DeleteDvrSessionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LivestreamServiceClient.updateDvrSession`.
     func updateDvrSession(
@@ -1124,7 +1142,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updateDvrSession`.
     func updateDvrSessionPollingUntilDone(
       request: UpdateDvrSessionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DvrSession>
+    ) async throws -> DvrSession
 
     /// See `LivestreamServiceClient.createAsset`.
     func createAsset(
@@ -1134,7 +1152,7 @@ extension Clients {
     /// See `LivestreamServiceClient.createAsset`.
     func createAssetPollingUntilDone(
       request: CreateAssetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Asset>
+    ) async throws -> Asset
 
     /// See `LivestreamServiceClient.deleteAsset`.
     func deleteAsset(
@@ -1144,7 +1162,7 @@ extension Clients {
     /// See `LivestreamServiceClient.deleteAsset`.
     func deleteAssetPollingUntilDone(
       request: DeleteAssetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LivestreamServiceClient.getAsset`.
     func getAsset(
@@ -1169,7 +1187,7 @@ extension Clients {
     /// See `LivestreamServiceClient.updatePool`.
     func updatePoolPollingUntilDone(
       request: UpdatePoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Pool>
+    ) async throws -> Pool
 
     /// See `LivestreamServiceClient.listLocations`.
     func listLocations(
@@ -1212,27 +1230,21 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createChannelPollingUntilDone(request: CreateChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Channel>
-  {
-    try await self.createChannelPollingUntilDone(request: request, options: .init())
+  public func createChannelPollingUntilDone(request: CreateChannelRequest) async throws -> Channel {
+    return try await self.createChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Channel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Channel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createChannelPollingUntilDone(
     parent: Swift.String,
     channel: Channel?,
     channelId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let request = CreateChannelRequest().with {
       $0.parent = parent
       $0.channel = channel
@@ -1317,29 +1329,23 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteChannelPollingUntilDone(request: DeleteChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteChannelPollingUntilDone(request: DeleteChannelRequest) async throws {
     try await self.deleteChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteChannelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteChannelRequest().with {
       $0.name = name
     }
-    return try await self.deleteChannelPollingUntilDone(request: request)
+    try await self.deleteChannelPollingUntilDone(request: request)
   }
 
   public func updateChannel(request: UpdateChannelRequest) async throws
@@ -1354,26 +1360,20 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateChannelPollingUntilDone(request: UpdateChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Channel>
-  {
-    try await self.updateChannelPollingUntilDone(request: request, options: .init())
+  public func updateChannelPollingUntilDone(request: UpdateChannelRequest) async throws -> Channel {
+    return try await self.updateChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Channel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Channel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateChannelPollingUntilDone(
     channel: Channel?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let request = UpdateChannelRequest().with {
       $0.channel = channel
       $0.updateMask = updateMask
@@ -1393,26 +1393,20 @@ extension Clients.LivestreamServiceProtocol {
   }
 
   public func startChannelPollingUntilDone(request: StartChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    -> ChannelOperationResponse
   {
-    try await self.startChannelPollingUntilDone(request: request, options: .init())
+    return try await self.startChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func startChannelPollingUntilDone(
     request: StartChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ChannelOperationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func startChannelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let request = StartChannelRequest().with {
       $0.name = name
     }
@@ -1429,27 +1423,21 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func stopChannelPollingUntilDone(request: StopChannelRequest) async throws -> any GoogleGax
-    .PollableOperation<ChannelOperationResponse>
+  public func stopChannelPollingUntilDone(request: StopChannelRequest) async throws
+    -> ChannelOperationResponse
   {
-    try await self.stopChannelPollingUntilDone(request: request, options: .init())
+    return try await self.stopChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func stopChannelPollingUntilDone(
     request: StopChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ChannelOperationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func stopChannelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let request = StopChannelRequest().with {
       $0.name = name
     }
@@ -1469,27 +1457,21 @@ extension Clients.LivestreamServiceProtocol {
   }
 
   public func startDistributionPollingUntilDone(request: StartDistributionRequest) async throws
-    -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    -> ChannelOperationResponse
   {
-    try await self.startDistributionPollingUntilDone(request: request, options: .init())
+    return try await self.startDistributionPollingUntilDone(request: request, options: .init())
   }
 
   public func startDistributionPollingUntilDone(
     request: StartDistributionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ChannelOperationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func startDistributionPollingUntilDone(
     name: Swift.String,
     distributionKeys: [Swift.String],
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let request = StartDistributionRequest().with {
       $0.name = name
       $0.distributionKeys = distributionKeys
@@ -1510,27 +1492,21 @@ extension Clients.LivestreamServiceProtocol {
   }
 
   public func stopDistributionPollingUntilDone(request: StopDistributionRequest) async throws
-    -> any GoogleGax.PollableOperation<ChannelOperationResponse>
+    -> ChannelOperationResponse
   {
-    try await self.stopDistributionPollingUntilDone(request: request, options: .init())
+    return try await self.stopDistributionPollingUntilDone(request: request, options: .init())
   }
 
   public func stopDistributionPollingUntilDone(
     request: StopDistributionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ChannelOperationResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ChannelOperationResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func stopDistributionPollingUntilDone(
     name: Swift.String,
     distributionKeys: [Swift.String],
-  ) async throws -> any GoogleGax.PollableOperation<ChannelOperationResponse> {
+  ) async throws -> ChannelOperationResponse {
     let request = StopDistributionRequest().with {
       $0.name = name
       $0.distributionKeys = distributionKeys
@@ -1548,27 +1524,21 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createInputPollingUntilDone(request: CreateInputRequest) async throws -> any GoogleGax
-    .PollableOperation<Input>
-  {
-    try await self.createInputPollingUntilDone(request: request, options: .init())
+  public func createInputPollingUntilDone(request: CreateInputRequest) async throws -> Input {
+    return try await self.createInputPollingUntilDone(request: request, options: .init())
   }
 
   public func createInputPollingUntilDone(
     request: CreateInputRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Input> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Input>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Input {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInputPollingUntilDone(
     parent: Swift.String,
     input: Input?,
     inputId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Input> {
+  ) async throws -> Input {
     let request = CreateInputRequest().with {
       $0.parent = parent
       $0.input = input
@@ -1650,29 +1620,23 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInputPollingUntilDone(request: DeleteInputRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteInputPollingUntilDone(request: DeleteInputRequest) async throws {
     try await self.deleteInputPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInputPollingUntilDone(
     request: DeleteInputRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInputPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInputRequest().with {
       $0.name = name
     }
-    return try await self.deleteInputPollingUntilDone(request: request)
+    try await self.deleteInputPollingUntilDone(request: request)
   }
 
   public func updateInput(request: UpdateInputRequest) async throws -> GoogleLongRunning.Operation {
@@ -1685,26 +1649,20 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateInputPollingUntilDone(request: UpdateInputRequest) async throws -> any GoogleGax
-    .PollableOperation<Input>
-  {
-    try await self.updateInputPollingUntilDone(request: request, options: .init())
+  public func updateInputPollingUntilDone(request: UpdateInputRequest) async throws -> Input {
+    return try await self.updateInputPollingUntilDone(request: request, options: .init())
   }
 
   public func updateInputPollingUntilDone(
     request: UpdateInputRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Input> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Input>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Input {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInputPollingUntilDone(
     input: Input?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Input> {
+  ) async throws -> Input {
     let request = UpdateInputRequest().with {
       $0.input = input
       $0.updateMask = updateMask
@@ -1912,27 +1870,21 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createClipPollingUntilDone(request: CreateClipRequest) async throws -> any GoogleGax
-    .PollableOperation<Clip>
-  {
-    try await self.createClipPollingUntilDone(request: request, options: .init())
+  public func createClipPollingUntilDone(request: CreateClipRequest) async throws -> Clip {
+    return try await self.createClipPollingUntilDone(request: request, options: .init())
   }
 
   public func createClipPollingUntilDone(
     request: CreateClipRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Clip> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Clip>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Clip {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createClipPollingUntilDone(
     parent: Swift.String,
     clip: Clip?,
     clipId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Clip> {
+  ) async throws -> Clip {
     let request = CreateClipRequest().with {
       $0.parent = parent
       $0.clip = clip
@@ -1951,29 +1903,23 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteClipPollingUntilDone(request: DeleteClipRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteClipPollingUntilDone(request: DeleteClipRequest) async throws {
     try await self.deleteClipPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteClipPollingUntilDone(
     request: DeleteClipRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteClipPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteClipRequest().with {
       $0.name = name
     }
-    return try await self.deleteClipPollingUntilDone(request: request)
+    try await self.deleteClipPollingUntilDone(request: request)
   }
 
   public func createDvrSession(request: CreateDvrSessionRequest) async throws
@@ -1989,26 +1935,22 @@ extension Clients.LivestreamServiceProtocol {
   }
 
   public func createDvrSessionPollingUntilDone(request: CreateDvrSessionRequest) async throws
-    -> any GoogleGax.PollableOperation<DvrSession>
+    -> DvrSession
   {
-    try await self.createDvrSessionPollingUntilDone(request: request, options: .init())
+    return try await self.createDvrSessionPollingUntilDone(request: request, options: .init())
   }
 
   public func createDvrSessionPollingUntilDone(
     request: CreateDvrSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DvrSession> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DvrSession>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DvrSession {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createDvrSessionPollingUntilDone(
     parent: Swift.String,
     dvrSession: DvrSession?,
     dvrSessionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<DvrSession> {
+  ) async throws -> DvrSession {
     let request = CreateDvrSessionRequest().with {
       $0.parent = parent
       $0.dvrSession = dvrSession
@@ -2093,29 +2035,23 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDvrSessionPollingUntilDone(request: DeleteDvrSessionRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteDvrSessionPollingUntilDone(request: DeleteDvrSessionRequest) async throws {
     try await self.deleteDvrSessionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteDvrSessionPollingUntilDone(
     request: DeleteDvrSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteDvrSessionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteDvrSessionRequest().with {
       $0.name = name
     }
-    return try await self.deleteDvrSessionPollingUntilDone(request: request)
+    try await self.deleteDvrSessionPollingUntilDone(request: request)
   }
 
   public func updateDvrSession(request: UpdateDvrSessionRequest) async throws
@@ -2131,25 +2067,21 @@ extension Clients.LivestreamServiceProtocol {
   }
 
   public func updateDvrSessionPollingUntilDone(request: UpdateDvrSessionRequest) async throws
-    -> any GoogleGax.PollableOperation<DvrSession>
+    -> DvrSession
   {
-    try await self.updateDvrSessionPollingUntilDone(request: request, options: .init())
+    return try await self.updateDvrSessionPollingUntilDone(request: request, options: .init())
   }
 
   public func updateDvrSessionPollingUntilDone(
     request: UpdateDvrSessionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DvrSession> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<DvrSession>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DvrSession {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateDvrSessionPollingUntilDone(
     dvrSession: DvrSession?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<DvrSession> {
+  ) async throws -> DvrSession {
     let request = UpdateDvrSessionRequest().with {
       $0.dvrSession = dvrSession
       $0.updateMask = updateMask
@@ -2167,27 +2099,21 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createAssetPollingUntilDone(request: CreateAssetRequest) async throws -> any GoogleGax
-    .PollableOperation<Asset>
-  {
-    try await self.createAssetPollingUntilDone(request: request, options: .init())
+  public func createAssetPollingUntilDone(request: CreateAssetRequest) async throws -> Asset {
+    return try await self.createAssetPollingUntilDone(request: request, options: .init())
   }
 
   public func createAssetPollingUntilDone(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Asset> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Asset>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Asset {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAssetPollingUntilDone(
     parent: Swift.String,
     asset: Asset?,
     assetId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Asset> {
+  ) async throws -> Asset {
     let request = CreateAssetRequest().with {
       $0.parent = parent
       $0.asset = asset
@@ -2206,29 +2132,23 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAssetPollingUntilDone(request: DeleteAssetRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteAssetPollingUntilDone(request: DeleteAssetRequest) async throws {
     try await self.deleteAssetPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAssetPollingUntilDone(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAssetPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAssetRequest().with {
       $0.name = name
     }
-    return try await self.deleteAssetPollingUntilDone(request: request)
+    try await self.deleteAssetPollingUntilDone(request: request)
   }
 
   public func getAsset(request: GetAssetRequest) async throws -> GoogleCloudVideoLiveStreamV1.Asset
@@ -2323,26 +2243,20 @@ extension Clients.LivestreamServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updatePoolPollingUntilDone(request: UpdatePoolRequest) async throws -> any GoogleGax
-    .PollableOperation<Pool>
-  {
-    try await self.updatePoolPollingUntilDone(request: request, options: .init())
+  public func updatePoolPollingUntilDone(request: UpdatePoolRequest) async throws -> Pool {
+    return try await self.updatePoolPollingUntilDone(request: request, options: .init())
   }
 
   public func updatePoolPollingUntilDone(
     request: UpdatePoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Pool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Pool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updatePoolPollingUntilDone(
     pool: Pool?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Pool> {
+  ) async throws -> Pool {
     let request = UpdatePoolRequest().with {
       $0.pool = pool
       $0.updateMask = updateMask

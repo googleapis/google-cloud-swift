@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient) async throws {
-  let poller = try await client.validateDirectoryServicePollingUntilDone(
+  try await client.validateDirectoryServicePollingUntilDone(
     request: ValidateDirectoryServiceRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

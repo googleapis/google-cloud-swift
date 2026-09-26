@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: CloudBuildClient, projectId: String, locationId: String, workerPoolId: String)
   async throws
 {
-  let poller = try await client.updateWorkerPoolPollingUntilDone(
+  let response = try await client.updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest()
       .with {
         $0.workerPool = WorkerPool().with {
@@ -33,7 +33,6 @@ func sample(client: CloudBuildClient, projectId: String, locationId: String, wor
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

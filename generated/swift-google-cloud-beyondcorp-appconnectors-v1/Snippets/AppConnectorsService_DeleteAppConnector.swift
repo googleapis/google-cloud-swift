@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: AppConnectorsServiceClient, projectId: String, locationId: String, appConnectorId: String
 ) async throws {
-  let poller = try await client.deleteAppConnectorPollingUntilDone(
+  try await client.deleteAppConnectorPollingUntilDone(
     request: DeleteAppConnectorRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/appConnectors/\(appConnectorId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

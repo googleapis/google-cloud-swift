@@ -26,14 +26,13 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   datacenterConnectorId: String
 ) async throws {
-  let poller = try await client.deleteDatacenterConnectorPollingUntilDone(
+  try await client.deleteDatacenterConnectorPollingUntilDone(
     request: DeleteDatacenterConnectorRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)/datacenterConnectors/\(datacenterConnectorId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

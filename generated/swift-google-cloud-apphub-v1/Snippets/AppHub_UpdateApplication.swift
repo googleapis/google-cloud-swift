@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: AppHubClient, projectId: String, locationId: String, applicationId: String)
   async throws
 {
-  let poller = try await client.updateApplicationPollingUntilDone(
+  let response = try await client.updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest()
       .with {
         $0.application = Application().with {
@@ -35,7 +35,6 @@ func sample(client: AppHubClient, projectId: String, locationId: String, applica
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

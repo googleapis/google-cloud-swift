@@ -27,14 +27,13 @@ func sample(
   client: AppHubClient, projectId: String, locationId: String, applicationId: String,
   serviceId: String
 ) async throws {
-  let poller = try await client.deleteServicePollingUntilDone(
+  try await client.deleteServicePollingUntilDone(
     request: DeleteServiceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)/services/\(serviceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

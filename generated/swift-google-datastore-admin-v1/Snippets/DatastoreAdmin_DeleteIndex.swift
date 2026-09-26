@@ -21,11 +21,10 @@ import GoogleCloudDatastoreAdminV1
 import GoogleLongRunning
 
 func sample(client: DatastoreAdminClient) async throws {
-  let poller = try await client.deleteIndexPollingUntilDone(
+  let response = try await client.deleteIndexPollingUntilDone(
     request: DeleteIndexRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

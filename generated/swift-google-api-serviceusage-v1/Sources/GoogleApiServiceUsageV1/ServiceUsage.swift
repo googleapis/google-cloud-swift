@@ -59,7 +59,7 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// @Snippet(path: "ServiceUsage_EnableService")
   public func enableServicePollingUntilDone(
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EnableServiceResponse> {
+  ) async throws -> EnableServiceResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
@@ -73,12 +73,13 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Disable a service so that it can no longer be used with a project.
@@ -107,7 +108,7 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// @Snippet(path: "ServiceUsage_DisableService")
   public func disableServicePollingUntilDone(
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DisableServiceResponse> {
+  ) async throws -> DisableServiceResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
@@ -121,12 +122,13 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the service configuration and enabled state for a given service.
@@ -177,7 +179,7 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// @Snippet(path: "ServiceUsage_BatchEnableServices")
   public func batchEnableServicesPollingUntilDone(
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchEnableServicesResponse> {
+  ) async throws -> BatchEnableServicesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
@@ -192,12 +194,13 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the service configurations and enabled states for a given list of
@@ -248,7 +251,7 @@ extension Clients {
     /// See `ServiceUsageClient.enableService`.
     func enableServicePollingUntilDone(
       request: EnableServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EnableServiceResponse>
+    ) async throws -> EnableServiceResponse
 
     /// See `ServiceUsageClient.disableService`.
     func disableService(
@@ -258,7 +261,7 @@ extension Clients {
     /// See `ServiceUsageClient.disableService`.
     func disableServicePollingUntilDone(
       request: DisableServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DisableServiceResponse>
+    ) async throws -> DisableServiceResponse
 
     /// See `ServiceUsageClient.getService`.
     func getService(
@@ -278,7 +281,7 @@ extension Clients {
     /// See `ServiceUsageClient.batchEnableServices`.
     func batchEnableServicesPollingUntilDone(
       request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchEnableServicesResponse>
+    ) async throws -> BatchEnableServicesResponse
 
     /// See `ServiceUsageClient.batchGetServices`.
     func batchGetServices(
@@ -307,20 +310,15 @@ extension Clients.ServiceUsageProtocol {
   }
 
   public func enableServicePollingUntilDone(request: EnableServiceRequest) async throws
-    -> any GoogleGax.PollableOperation<EnableServiceResponse>
+    -> EnableServiceResponse
   {
-    try await self.enableServicePollingUntilDone(request: request, options: .init())
+    return try await self.enableServicePollingUntilDone(request: request, options: .init())
   }
 
   public func enableServicePollingUntilDone(
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EnableServiceResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EnableServiceResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EnableServiceResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func disableService(request: DisableServiceRequest) async throws
@@ -336,20 +334,15 @@ extension Clients.ServiceUsageProtocol {
   }
 
   public func disableServicePollingUntilDone(request: DisableServiceRequest) async throws
-    -> any GoogleGax.PollableOperation<DisableServiceResponse>
+    -> DisableServiceResponse
   {
-    try await self.disableServicePollingUntilDone(request: request, options: .init())
+    return try await self.disableServicePollingUntilDone(request: request, options: .init())
   }
 
   public func disableServicePollingUntilDone(
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DisableServiceResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DisableServiceResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DisableServiceResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func getService(request: GetServiceRequest) async throws -> GoogleApiServiceUsageV1.Service
@@ -422,21 +415,15 @@ extension Clients.ServiceUsageProtocol {
   }
 
   public func batchEnableServicesPollingUntilDone(request: BatchEnableServicesRequest) async throws
-    -> any GoogleGax.PollableOperation<BatchEnableServicesResponse>
+    -> BatchEnableServicesResponse
   {
-    try await self.batchEnableServicesPollingUntilDone(request: request, options: .init())
+    return try await self.batchEnableServicesPollingUntilDone(request: request, options: .init())
   }
 
   public func batchEnableServicesPollingUntilDone(
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchEnableServicesResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<BatchEnableServicesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BatchEnableServicesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func batchGetServices(request: BatchGetServicesRequest) async throws

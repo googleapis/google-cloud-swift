@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.createLoggingServerPollingUntilDone(
+  let response = try await client.createLoggingServerPollingUntilDone(
     request: CreateLoggingServerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
         $0.loggingServer = LoggingServer() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

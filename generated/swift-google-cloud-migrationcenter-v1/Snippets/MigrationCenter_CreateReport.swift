@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, reportConfigId: String
 ) async throws {
-  let poller = try await client.createReportPollingUntilDone(
+  let response = try await client.createReportPollingUntilDone(
     request: CreateReportRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/reportConfigs/\(reportConfigId)"
@@ -33,7 +33,6 @@ func sample(
         $0.report = Report() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, clusterId: String
 ) async throws {
-  let poller = try await client.updateMemoryLayerPollingUntilDone(
+  let response = try await client.updateMemoryLayerPollingUntilDone(
     request: UpdateMemoryLayerRequest()
       .with {
         $0.memoryLayer = MemoryLayer().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

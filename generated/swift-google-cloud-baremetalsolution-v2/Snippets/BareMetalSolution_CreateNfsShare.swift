@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BareMetalSolutionClient, parent: String) async throws {
-  let poller = try await client.createNfsSharePollingUntilDone(
+  let response = try await client.createNfsSharePollingUntilDone(
     request: CreateNfsShareRequest()
       .with {
         $0.parent = "\(parent)"
         $0.nfsShare = NfsShare() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

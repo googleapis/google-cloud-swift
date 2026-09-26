@@ -24,14 +24,13 @@ import GoogleWKT
 func sample(
   client: ContactCenterInsightsClient, projectId: String, locationId: String, conversationId: String
 ) async throws {
-  let poller = try await client.createAnalysisPollingUntilDone(
+  let response = try await client.createAnalysisPollingUntilDone(
     request: CreateAnalysisRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/conversations/\(conversationId)"
         $0.analysis = Analysis() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, fleetPackageId: String
 ) async throws {
-  let poller = try await client.deleteFleetPackagePollingUntilDone(
+  try await client.deleteFleetPackagePollingUntilDone(
     request: DeleteFleetPackageRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/fleetPackages/\(fleetPackageId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

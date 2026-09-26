@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient) async throws {
-  let poller = try await client.moveFolderPollingUntilDone(
+  let response = try await client.moveFolderPollingUntilDone(
     request: MoveFolderRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

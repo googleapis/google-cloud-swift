@@ -27,13 +27,12 @@
   func sample(client: JobServiceClient, projectId: String, locationId: String, nasJobId: String)
     async throws
   {
-    let poller = try await client.deleteNasJobPollingUntilDone(
+    try await client.deleteNasJobPollingUntilDone(
       request: DeleteNasJobRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/nasJobs/\(nasJobId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: RoutersClient) async throws {
-    let poller = try await client.patchRoutePolicyPollingUntilDone(
+    let response = try await client.patchRoutePolicyPollingUntilDone(
       request: RoutersClient.PatchRoutePolicyRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

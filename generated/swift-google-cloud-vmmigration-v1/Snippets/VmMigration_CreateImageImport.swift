@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createImageImportPollingUntilDone(
+  let response = try await client.createImageImportPollingUntilDone(
     request: CreateImageImportRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.imageImport = ImageImport() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: VmMigrationClient, projectId: String, locationId: String, sourceId: String)
   async throws
 {
-  let poller = try await client.deleteSourcePollingUntilDone(
+  try await client.deleteSourcePollingUntilDone(
     request: DeleteSourceRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/sources/\(sourceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

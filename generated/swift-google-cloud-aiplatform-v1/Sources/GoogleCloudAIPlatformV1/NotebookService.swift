@@ -59,7 +59,7 @@
     /// @Snippet(path: "NotebookService_CreateNotebookRuntimeTemplate")
     public func createNotebookRuntimeTemplatePollingUntilDone(
       request: CreateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntimeTemplate> {
+    ) async throws -> NotebookRuntimeTemplate {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<NotebookRuntimeTemplate>.State in
@@ -74,12 +74,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Gets a NotebookRuntimeTemplate.
@@ -114,7 +115,7 @@
     /// @Snippet(path: "NotebookService_DeleteNotebookRuntimeTemplate")
     public func deleteNotebookRuntimeTemplatePollingUntilDone(
       request: DeleteNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -128,12 +129,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Updates a NotebookRuntimeTemplate.
@@ -161,7 +163,7 @@
     /// @Snippet(path: "NotebookService_AssignNotebookRuntime")
     public func assignNotebookRuntimePollingUntilDone(
       request: AssignNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntime> {
+    ) async throws -> NotebookRuntime {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<NotebookRuntime>.State in
@@ -175,12 +177,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Gets a NotebookRuntime.
@@ -215,7 +218,7 @@
     /// @Snippet(path: "NotebookService_DeleteNotebookRuntime")
     public func deleteNotebookRuntimePollingUntilDone(
       request: DeleteNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -229,12 +232,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Upgrades a NotebookRuntime.
@@ -251,7 +255,7 @@
     /// @Snippet(path: "NotebookService_UpgradeNotebookRuntime")
     public func upgradeNotebookRuntimePollingUntilDone(
       request: UpgradeNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UpgradeNotebookRuntimeResponse> {
+    ) async throws -> UpgradeNotebookRuntimeResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<UpgradeNotebookRuntimeResponse>.State in
@@ -266,12 +270,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Starts a NotebookRuntime.
@@ -288,7 +293,7 @@
     /// @Snippet(path: "NotebookService_StartNotebookRuntime")
     public func startNotebookRuntimePollingUntilDone(
       request: StartNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StartNotebookRuntimeResponse> {
+    ) async throws -> StartNotebookRuntimeResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<StartNotebookRuntimeResponse>.State in
@@ -303,12 +308,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Stops a NotebookRuntime.
@@ -325,7 +331,7 @@
     /// @Snippet(path: "NotebookService_StopNotebookRuntime")
     public func stopNotebookRuntimePollingUntilDone(
       request: StopNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StopNotebookRuntimeResponse> {
+    ) async throws -> StopNotebookRuntimeResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<StopNotebookRuntimeResponse>.State in
@@ -340,12 +346,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Creates a NotebookExecutionJob.
@@ -362,7 +369,7 @@
     /// @Snippet(path: "NotebookService_CreateNotebookExecutionJob")
     public func createNotebookExecutionJobPollingUntilDone(
       request: CreateNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NotebookExecutionJob> {
+    ) async throws -> NotebookExecutionJob {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<NotebookExecutionJob>.State in
@@ -376,12 +383,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Gets a NotebookExecutionJob.
@@ -416,7 +424,7 @@
     /// @Snippet(path: "NotebookService_DeleteNotebookExecutionJob")
     public func deleteNotebookExecutionJobPollingUntilDone(
       request: DeleteNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -430,12 +438,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -565,7 +574,7 @@
       /// See `NotebookServiceClient.createNotebookRuntimeTemplate`.
       func createNotebookRuntimeTemplatePollingUntilDone(
         request: CreateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<NotebookRuntimeTemplate>
+      ) async throws -> NotebookRuntimeTemplate
 
       /// See `NotebookServiceClient.getNotebookRuntimeTemplate`.
       func getNotebookRuntimeTemplate(
@@ -585,7 +594,7 @@
       /// See `NotebookServiceClient.deleteNotebookRuntimeTemplate`.
       func deleteNotebookRuntimeTemplatePollingUntilDone(
         request: DeleteNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `NotebookServiceClient.updateNotebookRuntimeTemplate`.
       func updateNotebookRuntimeTemplate(
@@ -600,7 +609,7 @@
       /// See `NotebookServiceClient.assignNotebookRuntime`.
       func assignNotebookRuntimePollingUntilDone(
         request: AssignNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<NotebookRuntime>
+      ) async throws -> NotebookRuntime
 
       /// See `NotebookServiceClient.getNotebookRuntime`.
       func getNotebookRuntime(
@@ -620,7 +629,7 @@
       /// See `NotebookServiceClient.deleteNotebookRuntime`.
       func deleteNotebookRuntimePollingUntilDone(
         request: DeleteNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `NotebookServiceClient.upgradeNotebookRuntime`.
       func upgradeNotebookRuntime(
@@ -630,7 +639,7 @@
       /// See `NotebookServiceClient.upgradeNotebookRuntime`.
       func upgradeNotebookRuntimePollingUntilDone(
         request: UpgradeNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<UpgradeNotebookRuntimeResponse>
+      ) async throws -> UpgradeNotebookRuntimeResponse
 
       /// See `NotebookServiceClient.startNotebookRuntime`.
       func startNotebookRuntime(
@@ -640,7 +649,7 @@
       /// See `NotebookServiceClient.startNotebookRuntime`.
       func startNotebookRuntimePollingUntilDone(
         request: StartNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<StartNotebookRuntimeResponse>
+      ) async throws -> StartNotebookRuntimeResponse
 
       /// See `NotebookServiceClient.stopNotebookRuntime`.
       func stopNotebookRuntime(
@@ -650,7 +659,7 @@
       /// See `NotebookServiceClient.stopNotebookRuntime`.
       func stopNotebookRuntimePollingUntilDone(
         request: StopNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<StopNotebookRuntimeResponse>
+      ) async throws -> StopNotebookRuntimeResponse
 
       /// See `NotebookServiceClient.createNotebookExecutionJob`.
       func createNotebookExecutionJob(
@@ -660,7 +669,7 @@
       /// See `NotebookServiceClient.createNotebookExecutionJob`.
       func createNotebookExecutionJobPollingUntilDone(
         request: CreateNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<NotebookExecutionJob>
+      ) async throws -> NotebookExecutionJob
 
       /// See `NotebookServiceClient.getNotebookExecutionJob`.
       func getNotebookExecutionJob(
@@ -680,7 +689,7 @@
       /// See `NotebookServiceClient.deleteNotebookExecutionJob`.
       func deleteNotebookExecutionJobPollingUntilDone(
         request: DeleteNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `NotebookServiceClient.listLocations`.
       func listLocations(
@@ -745,28 +754,22 @@
 
     public func createNotebookRuntimeTemplatePollingUntilDone(
       request: CreateNotebookRuntimeTemplateRequest
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntimeTemplate> {
-      try await self.createNotebookRuntimeTemplatePollingUntilDone(
+    ) async throws -> NotebookRuntimeTemplate {
+      return try await self.createNotebookRuntimeTemplatePollingUntilDone(
         request: request, options: .init())
     }
 
     public func createNotebookRuntimeTemplatePollingUntilDone(
       request: CreateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntimeTemplate> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<NotebookRuntimeTemplate>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> NotebookRuntimeTemplate {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createNotebookRuntimeTemplatePollingUntilDone(
       parent: Swift.String,
       notebookRuntimeTemplate: NotebookRuntimeTemplate?,
       notebookRuntimeTemplateId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntimeTemplate> {
+    ) async throws -> NotebookRuntimeTemplate {
       let request = CreateNotebookRuntimeTemplateRequest().with {
         $0.parent = parent
         $0.notebookRuntimeTemplate = notebookRuntimeTemplate
@@ -853,29 +856,24 @@
 
     public func deleteNotebookRuntimeTemplatePollingUntilDone(
       request: DeleteNotebookRuntimeTemplateRequest
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       try await self.deleteNotebookRuntimeTemplatePollingUntilDone(
         request: request, options: .init())
     }
 
     public func deleteNotebookRuntimeTemplatePollingUntilDone(
       request: DeleteNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteNotebookRuntimeTemplatePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteNotebookRuntimeTemplateRequest().with {
         $0.name = name
       }
-      return try await self.deleteNotebookRuntimeTemplatePollingUntilDone(request: request)
+      try await self.deleteNotebookRuntimeTemplatePollingUntilDone(request: request)
     }
 
     public func updateNotebookRuntimeTemplate(request: UpdateNotebookRuntimeTemplateRequest)
@@ -914,20 +912,16 @@
     }
 
     public func assignNotebookRuntimePollingUntilDone(request: AssignNotebookRuntimeRequest)
-      async throws -> any GoogleGax.PollableOperation<NotebookRuntime>
+      async throws -> NotebookRuntime
     {
-      try await self.assignNotebookRuntimePollingUntilDone(request: request, options: .init())
+      return try await self.assignNotebookRuntimePollingUntilDone(
+        request: request, options: .init())
     }
 
     public func assignNotebookRuntimePollingUntilDone(
       request: AssignNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntime> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<NotebookRuntime>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> NotebookRuntime {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func assignNotebookRuntimePollingUntilDone(
@@ -935,7 +929,7 @@
       notebookRuntimeTemplate: Swift.String,
       notebookRuntime: NotebookRuntime?,
       notebookRuntimeId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<NotebookRuntime> {
+    ) async throws -> NotebookRuntime {
       let request = AssignNotebookRuntimeRequest().with {
         $0.parent = parent
         $0.notebookRuntimeTemplate = notebookRuntimeTemplate
@@ -1022,29 +1016,24 @@
     }
 
     public func deleteNotebookRuntimePollingUntilDone(request: DeleteNotebookRuntimeRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.deleteNotebookRuntimePollingUntilDone(request: request, options: .init())
     }
 
     public func deleteNotebookRuntimePollingUntilDone(
       request: DeleteNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteNotebookRuntimePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteNotebookRuntimeRequest().with {
         $0.name = name
       }
-      return try await self.deleteNotebookRuntimePollingUntilDone(request: request)
+      try await self.deleteNotebookRuntimePollingUntilDone(request: request)
     }
 
     public func upgradeNotebookRuntime(request: UpgradeNotebookRuntimeRequest) async throws
@@ -1060,26 +1049,21 @@
     }
 
     public func upgradeNotebookRuntimePollingUntilDone(request: UpgradeNotebookRuntimeRequest)
-      async throws -> any GoogleGax.PollableOperation<UpgradeNotebookRuntimeResponse>
+      async throws -> UpgradeNotebookRuntimeResponse
     {
-      try await self.upgradeNotebookRuntimePollingUntilDone(request: request, options: .init())
+      return try await self.upgradeNotebookRuntimePollingUntilDone(
+        request: request, options: .init())
     }
 
     public func upgradeNotebookRuntimePollingUntilDone(
       request: UpgradeNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UpgradeNotebookRuntimeResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<UpgradeNotebookRuntimeResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> UpgradeNotebookRuntimeResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func upgradeNotebookRuntimePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<UpgradeNotebookRuntimeResponse> {
+    ) async throws -> UpgradeNotebookRuntimeResponse {
       let request = UpgradeNotebookRuntimeRequest().with {
         $0.name = name
       }
@@ -1099,26 +1083,20 @@
     }
 
     public func startNotebookRuntimePollingUntilDone(request: StartNotebookRuntimeRequest)
-      async throws -> any GoogleGax.PollableOperation<StartNotebookRuntimeResponse>
+      async throws -> StartNotebookRuntimeResponse
     {
-      try await self.startNotebookRuntimePollingUntilDone(request: request, options: .init())
+      return try await self.startNotebookRuntimePollingUntilDone(request: request, options: .init())
     }
 
     public func startNotebookRuntimePollingUntilDone(
       request: StartNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StartNotebookRuntimeResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<StartNotebookRuntimeResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> StartNotebookRuntimeResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func startNotebookRuntimePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<StartNotebookRuntimeResponse> {
+    ) async throws -> StartNotebookRuntimeResponse {
       let request = StartNotebookRuntimeRequest().with {
         $0.name = name
       }
@@ -1138,26 +1116,20 @@
     }
 
     public func stopNotebookRuntimePollingUntilDone(request: StopNotebookRuntimeRequest)
-      async throws -> any GoogleGax.PollableOperation<StopNotebookRuntimeResponse>
+      async throws -> StopNotebookRuntimeResponse
     {
-      try await self.stopNotebookRuntimePollingUntilDone(request: request, options: .init())
+      return try await self.stopNotebookRuntimePollingUntilDone(request: request, options: .init())
     }
 
     public func stopNotebookRuntimePollingUntilDone(
       request: StopNotebookRuntimeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<StopNotebookRuntimeResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<StopNotebookRuntimeResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> StopNotebookRuntimeResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func stopNotebookRuntimePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<StopNotebookRuntimeResponse> {
+    ) async throws -> StopNotebookRuntimeResponse {
       let request = StopNotebookRuntimeRequest().with {
         $0.name = name
       }
@@ -1178,26 +1150,22 @@
 
     public func createNotebookExecutionJobPollingUntilDone(
       request: CreateNotebookExecutionJobRequest
-    ) async throws -> any GoogleGax.PollableOperation<NotebookExecutionJob> {
-      try await self.createNotebookExecutionJobPollingUntilDone(request: request, options: .init())
+    ) async throws -> NotebookExecutionJob {
+      return try await self.createNotebookExecutionJobPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func createNotebookExecutionJobPollingUntilDone(
       request: CreateNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<NotebookExecutionJob> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<NotebookExecutionJob>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> NotebookExecutionJob {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createNotebookExecutionJobPollingUntilDone(
       parent: Swift.String,
       notebookExecutionJob: NotebookExecutionJob?,
       notebookExecutionJobId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<NotebookExecutionJob> {
+    ) async throws -> NotebookExecutionJob {
       let request = CreateNotebookExecutionJobRequest().with {
         $0.parent = parent
         $0.notebookExecutionJob = notebookExecutionJob
@@ -1284,28 +1252,23 @@
 
     public func deleteNotebookExecutionJobPollingUntilDone(
       request: DeleteNotebookExecutionJobRequest
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       try await self.deleteNotebookExecutionJobPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteNotebookExecutionJobPollingUntilDone(
       request: DeleteNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteNotebookExecutionJobPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteNotebookExecutionJobRequest().with {
         $0.name = name
       }
-      return try await self.deleteNotebookExecutionJobPollingUntilDone(request: request)
+      try await self.deleteNotebookExecutionJobPollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

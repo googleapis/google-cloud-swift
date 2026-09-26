@@ -27,14 +27,13 @@ func sample(
   client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String,
   serviceConnectionTokenId: String
 ) async throws {
-  let poller = try await client.deleteServiceConnectionTokenPollingUntilDone(
+  try await client.deleteServiceConnectionTokenPollingUntilDone(
     request: DeleteServiceConnectionTokenRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/serviceConnectionTokens/\(serviceConnectionTokenId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

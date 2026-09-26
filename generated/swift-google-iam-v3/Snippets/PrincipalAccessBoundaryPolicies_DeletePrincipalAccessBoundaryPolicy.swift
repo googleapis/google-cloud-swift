@@ -25,14 +25,13 @@ func sample(
   client: PrincipalAccessBoundaryPoliciesClient, organizationId: String, locationId: String,
   principalAccessBoundaryPolicyId: String
 ) async throws {
-  let poller = try await client.deletePrincipalAccessBoundaryPolicyPollingUntilDone(
+  try await client.deletePrincipalAccessBoundaryPolicyPollingUntilDone(
     request: DeletePrincipalAccessBoundaryPolicyRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/principalAccessBoundaryPolicies/\(principalAccessBoundaryPolicyId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

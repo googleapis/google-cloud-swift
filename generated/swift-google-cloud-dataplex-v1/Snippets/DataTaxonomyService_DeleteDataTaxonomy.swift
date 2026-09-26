@@ -29,13 +29,12 @@ import GoogleWKT
 func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String, dataTaxonomyId: String
 ) async throws {
-  let poller = try await client.deleteDataTaxonomyPollingUntilDone(
+  try await client.deleteDataTaxonomyPollingUntilDone(
     request: DeleteDataTaxonomyRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/dataTaxonomies/\(dataTaxonomyId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

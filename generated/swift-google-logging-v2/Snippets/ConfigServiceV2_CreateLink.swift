@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: ConfigServiceV2Client, projectId: String, locationId: String, bucketId: String)
   async throws
 {
-  let poller = try await client.createLinkPollingUntilDone(
+  let response = try await client.createLinkPollingUntilDone(
     request: CreateLinkRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/buckets/\(bucketId)"
@@ -32,7 +32,6 @@ func sample(client: ConfigServiceV2Client, projectId: String, locationId: String
         $0.link = Link() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

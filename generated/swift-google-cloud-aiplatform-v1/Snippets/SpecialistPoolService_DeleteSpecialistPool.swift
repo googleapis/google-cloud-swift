@@ -28,14 +28,13 @@
     client: SpecialistPoolServiceClient, projectId: String, locationId: String,
     specialistPoolId: String
   ) async throws {
-    let poller = try await client.deleteSpecialistPoolPollingUntilDone(
+    try await client.deleteSpecialistPoolPollingUntilDone(
       request: DeleteSpecialistPoolRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/specialistPools/\(specialistPoolId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -24,11 +24,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient) async throws {
-  let poller = try await client.lockDeploymentPollingUntilDone(
+  let response = try await client.lockDeploymentPollingUntilDone(
     request: LockDeploymentRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

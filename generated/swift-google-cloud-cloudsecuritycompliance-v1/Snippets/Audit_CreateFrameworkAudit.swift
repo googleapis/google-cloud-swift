@@ -22,14 +22,13 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: AuditClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createFrameworkAuditPollingUntilDone(
+  let response = try await client.createFrameworkAuditPollingUntilDone(
     request: CreateFrameworkAuditRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.frameworkAudit = FrameworkAudit() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,7 +26,7 @@ func sample(
   client: NetAppClient, projectId: String, locationId: String, backupVaultId: String,
   backupId: String
 ) async throws {
-  let poller = try await client.updateBackupPollingUntilDone(
+  let response = try await client.updateBackupPollingUntilDone(
     request: UpdateBackupRequest()
       .with {
         $0.backup = Backup().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

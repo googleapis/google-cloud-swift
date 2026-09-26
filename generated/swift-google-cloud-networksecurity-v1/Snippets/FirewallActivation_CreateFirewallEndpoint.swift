@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(client: FirewallActivationClient, organizationId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createFirewallEndpointPollingUntilDone(
+  let response = try await client.createFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.firewallEndpoint = FirewallEndpoint() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

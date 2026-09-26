@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createUrlListPollingUntilDone(
+  let response = try await client.createUrlListPollingUntilDone(
     request: CreateUrlListRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.urlList = UrlList() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

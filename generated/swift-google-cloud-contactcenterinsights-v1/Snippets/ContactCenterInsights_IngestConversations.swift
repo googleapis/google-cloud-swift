@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient) async throws {
-  let poller = try await client.ingestConversationsPollingUntilDone(
+  let response = try await client.ingestConversationsPollingUntilDone(
     request: IngestConversationsRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

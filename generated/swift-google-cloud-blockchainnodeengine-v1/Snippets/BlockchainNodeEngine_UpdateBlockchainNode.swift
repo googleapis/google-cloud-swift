@@ -26,7 +26,7 @@ func sample(
   client: BlockchainNodeEngineClient, projectId: String, locationId: String,
   blockchainNodeId: String
 ) async throws {
-  let poller = try await client.updateBlockchainNodePollingUntilDone(
+  let response = try await client.updateBlockchainNodePollingUntilDone(
     request: UpdateBlockchainNodeRequest()
       .with {
         $0.blockchainNode = BlockchainNode().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

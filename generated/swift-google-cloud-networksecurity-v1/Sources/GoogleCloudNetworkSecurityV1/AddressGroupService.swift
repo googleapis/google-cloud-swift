@@ -79,7 +79,7 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// @Snippet(path: "AddressGroupService_CreateAddressGroup")
   public func createAddressGroupPollingUntilDone(
     request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
@@ -93,12 +93,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single address group.
@@ -115,7 +116,7 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// @Snippet(path: "AddressGroupService_UpdateAddressGroup")
   public func updateAddressGroupPollingUntilDone(
     request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
@@ -129,12 +130,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Adds items to an address group.
@@ -151,7 +153,7 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// @Snippet(path: "AddressGroupService_AddAddressGroupItems")
   public func addAddressGroupItemsPollingUntilDone(
     request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
@@ -165,12 +167,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Removes items from an address group.
@@ -187,7 +190,7 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// @Snippet(path: "AddressGroupService_RemoveAddressGroupItems")
   public func removeAddressGroupItemsPollingUntilDone(
     request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
@@ -201,12 +204,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Clones items from one address group to another.
@@ -223,7 +227,7 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// @Snippet(path: "AddressGroupService_CloneAddressGroupItems")
   public func cloneAddressGroupItemsPollingUntilDone(
     request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
@@ -237,12 +241,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single address group.
@@ -259,7 +264,7 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// @Snippet(path: "AddressGroupService_DeleteAddressGroup")
   public func deleteAddressGroupPollingUntilDone(
     request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -272,12 +277,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists references of an address group.
@@ -432,7 +438,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.createAddressGroup`.
     func createAddressGroupPollingUntilDone(
       request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    ) async throws -> AddressGroup
 
     /// See `AddressGroupServiceClient.updateAddressGroup`.
     func updateAddressGroup(
@@ -442,7 +448,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.updateAddressGroup`.
     func updateAddressGroupPollingUntilDone(
       request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    ) async throws -> AddressGroup
 
     /// See `AddressGroupServiceClient.addAddressGroupItems`.
     func addAddressGroupItems(
@@ -452,7 +458,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.addAddressGroupItems`.
     func addAddressGroupItemsPollingUntilDone(
       request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    ) async throws -> AddressGroup
 
     /// See `AddressGroupServiceClient.removeAddressGroupItems`.
     func removeAddressGroupItems(
@@ -462,7 +468,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.removeAddressGroupItems`.
     func removeAddressGroupItemsPollingUntilDone(
       request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    ) async throws -> AddressGroup
 
     /// See `AddressGroupServiceClient.cloneAddressGroupItems`.
     func cloneAddressGroupItems(
@@ -472,7 +478,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.cloneAddressGroupItems`.
     func cloneAddressGroupItemsPollingUntilDone(
       request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    ) async throws -> AddressGroup
 
     /// See `AddressGroupServiceClient.deleteAddressGroup`.
     func deleteAddressGroup(
@@ -482,7 +488,7 @@ extension Clients {
     /// See `AddressGroupServiceClient.deleteAddressGroup`.
     func deleteAddressGroupPollingUntilDone(
       request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AddressGroupServiceClient.listAddressGroupReferences`.
     func listAddressGroupReferences(
@@ -610,27 +616,22 @@ extension Clients.AddressGroupServiceProtocol {
   }
 
   public func createAddressGroupPollingUntilDone(request: CreateAddressGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<AddressGroup>
+    -> AddressGroup
   {
-    try await self.createAddressGroupPollingUntilDone(request: request, options: .init())
+    return try await self.createAddressGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func createAddressGroupPollingUntilDone(
     request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AddressGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAddressGroupPollingUntilDone(
     parent: Swift.String,
     addressGroup: AddressGroup?,
     addressGroupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let request = CreateAddressGroupRequest().with {
       $0.parent = parent
       $0.addressGroup = addressGroup
@@ -652,26 +653,21 @@ extension Clients.AddressGroupServiceProtocol {
   }
 
   public func updateAddressGroupPollingUntilDone(request: UpdateAddressGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<AddressGroup>
+    -> AddressGroup
   {
-    try await self.updateAddressGroupPollingUntilDone(request: request, options: .init())
+    return try await self.updateAddressGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateAddressGroupPollingUntilDone(
     request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AddressGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateAddressGroupPollingUntilDone(
     addressGroup: AddressGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let request = UpdateAddressGroupRequest().with {
       $0.addressGroup = addressGroup
       $0.updateMask = updateMask
@@ -692,26 +688,21 @@ extension Clients.AddressGroupServiceProtocol {
   }
 
   public func addAddressGroupItemsPollingUntilDone(request: AddAddressGroupItemsRequest)
-    async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    async throws -> AddressGroup
   {
-    try await self.addAddressGroupItemsPollingUntilDone(request: request, options: .init())
+    return try await self.addAddressGroupItemsPollingUntilDone(request: request, options: .init())
   }
 
   public func addAddressGroupItemsPollingUntilDone(
     request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AddressGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func addAddressGroupItemsPollingUntilDone(
     addressGroup: Swift.String,
     items: [Swift.String],
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let request = AddAddressGroupItemsRequest().with {
       $0.addressGroup = addressGroup
       $0.items = items
@@ -732,26 +723,22 @@ extension Clients.AddressGroupServiceProtocol {
   }
 
   public func removeAddressGroupItemsPollingUntilDone(request: RemoveAddressGroupItemsRequest)
-    async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    async throws -> AddressGroup
   {
-    try await self.removeAddressGroupItemsPollingUntilDone(request: request, options: .init())
+    return try await self.removeAddressGroupItemsPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func removeAddressGroupItemsPollingUntilDone(
     request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AddressGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func removeAddressGroupItemsPollingUntilDone(
     addressGroup: Swift.String,
     items: [Swift.String],
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let request = RemoveAddressGroupItemsRequest().with {
       $0.addressGroup = addressGroup
       $0.items = items
@@ -772,26 +759,21 @@ extension Clients.AddressGroupServiceProtocol {
   }
 
   public func cloneAddressGroupItemsPollingUntilDone(request: CloneAddressGroupItemsRequest)
-    async throws -> any GoogleGax.PollableOperation<AddressGroup>
+    async throws -> AddressGroup
   {
-    try await self.cloneAddressGroupItemsPollingUntilDone(request: request, options: .init())
+    return try await self.cloneAddressGroupItemsPollingUntilDone(request: request, options: .init())
   }
 
   public func cloneAddressGroupItemsPollingUntilDone(
     request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AddressGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AddressGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func cloneAddressGroupItemsPollingUntilDone(
     addressGroup: Swift.String,
     sourceAddressGroup: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AddressGroup> {
+  ) async throws -> AddressGroup {
     let request = CloneAddressGroupItemsRequest().with {
       $0.addressGroup = addressGroup
       $0.sourceAddressGroup = sourceAddressGroup
@@ -811,29 +793,23 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAddressGroupPollingUntilDone(request: DeleteAddressGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteAddressGroupPollingUntilDone(request: DeleteAddressGroupRequest) async throws {
     try await self.deleteAddressGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAddressGroupPollingUntilDone(
     request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAddressGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAddressGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteAddressGroupPollingUntilDone(request: request)
+    try await self.deleteAddressGroupPollingUntilDone(request: request)
   }
 
   public func listAddressGroupReferences(request: ListAddressGroupReferencesRequest) async throws

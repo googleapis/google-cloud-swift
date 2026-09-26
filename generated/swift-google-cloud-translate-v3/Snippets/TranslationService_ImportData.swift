@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TranslationServiceClient) async throws {
-  let poller = try await client.importDataPollingUntilDone(
+  try await client.importDataPollingUntilDone(
     request: ImportDataRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

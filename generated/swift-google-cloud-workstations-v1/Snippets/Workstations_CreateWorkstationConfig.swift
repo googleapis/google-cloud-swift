@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: WorkstationsClient, projectId: String, locationId: String, workstationClusterId: String
 ) async throws {
-  let poller = try await client.createWorkstationConfigPollingUntilDone(
+  let response = try await client.createWorkstationConfigPollingUntilDone(
     request: CreateWorkstationConfigRequest()
       .with {
         $0.parent =
@@ -33,7 +33,6 @@ func sample(
         $0.workstationConfig = WorkstationConfig() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

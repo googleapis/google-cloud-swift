@@ -27,14 +27,13 @@ import GoogleWKT
 func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String
 ) async throws {
-  let poller = try await client.createAzureNodePoolPollingUntilDone(
+  let response = try await client.createAzureNodePoolPollingUntilDone(
     request: CreateAzureNodePoolRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/azureClusters/\(azureClusterId)"
         $0.azureNodePool = AzureNodePool() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

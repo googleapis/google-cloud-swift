@@ -77,7 +77,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreateTrigger")
   public func createTriggerPollingUntilDone(
     request: CreateTriggerRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
+  ) async throws -> Trigger {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Trigger>.State in
@@ -90,12 +90,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single trigger.
@@ -112,7 +113,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_UpdateTrigger")
   public func updateTriggerPollingUntilDone(
     request: UpdateTriggerRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
+  ) async throws -> Trigger {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Trigger>.State in
@@ -125,12 +126,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single trigger.
@@ -147,7 +149,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeleteTrigger")
   public func deleteTriggerPollingUntilDone(
     request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
+  ) async throws -> Trigger {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Trigger>.State in
@@ -160,12 +162,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Get a single Channel.
@@ -200,7 +203,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreateChannel")
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Channel>.State in
@@ -213,12 +216,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single channel.
@@ -235,7 +239,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_UpdateChannel")
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Channel>.State in
@@ -248,12 +252,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single channel.
@@ -270,7 +275,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeleteChannel")
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Channel>.State in
@@ -283,12 +288,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Get a single Provider.
@@ -341,7 +347,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreateChannelConnection")
   public func createChannelConnectionPollingUntilDone(
     request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelConnection> {
+  ) async throws -> ChannelConnection {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ChannelConnection>.State in
@@ -355,12 +361,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single ChannelConnection.
@@ -377,7 +384,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeleteChannelConnection")
   public func deleteChannelConnectionPollingUntilDone(
     request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelConnection> {
+  ) async throws -> ChannelConnection {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ChannelConnection>.State in
@@ -391,12 +398,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Get a GoogleChannelConfig.
@@ -460,7 +468,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreateMessageBus")
   public func createMessageBusPollingUntilDone(
     request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
+  ) async throws -> MessageBus {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MessageBus>.State in
@@ -473,12 +481,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single message bus.
@@ -495,7 +504,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_UpdateMessageBus")
   public func updateMessageBusPollingUntilDone(
     request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
+  ) async throws -> MessageBus {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MessageBus>.State in
@@ -508,12 +517,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single message bus.
@@ -530,7 +540,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeleteMessageBus")
   public func deleteMessageBusPollingUntilDone(
     request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
+  ) async throws -> MessageBus {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MessageBus>.State in
@@ -543,12 +553,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Get a single Enrollment.
@@ -583,7 +594,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreateEnrollment")
   public func createEnrollmentPollingUntilDone(
     request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
+  ) async throws -> Enrollment {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Enrollment>.State in
@@ -596,12 +607,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single Enrollment.
@@ -618,7 +630,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_UpdateEnrollment")
   public func updateEnrollmentPollingUntilDone(
     request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
+  ) async throws -> Enrollment {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Enrollment>.State in
@@ -631,12 +643,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single Enrollment.
@@ -653,7 +666,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeleteEnrollment")
   public func deleteEnrollmentPollingUntilDone(
     request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
+  ) async throws -> Enrollment {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Enrollment>.State in
@@ -666,12 +679,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Get a single Pipeline.
@@ -706,7 +720,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreatePipeline")
   public func createPipelinePollingUntilDone(
     request: CreatePipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
+  ) async throws -> Pipeline {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Pipeline>.State in
@@ -719,12 +733,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single pipeline.
@@ -741,7 +756,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_UpdatePipeline")
   public func updatePipelinePollingUntilDone(
     request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
+  ) async throws -> Pipeline {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Pipeline>.State in
@@ -754,12 +769,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single pipeline.
@@ -776,7 +792,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeletePipeline")
   public func deletePipelinePollingUntilDone(
     request: DeletePipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
+  ) async throws -> Pipeline {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Pipeline>.State in
@@ -789,12 +805,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Get a single GoogleApiSource.
@@ -829,7 +846,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_CreateGoogleApiSource")
   public func createGoogleApiSourcePollingUntilDone(
     request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
+  ) async throws -> GoogleApiSource {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoogleApiSource>.State in
@@ -843,12 +860,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single GoogleApiSource.
@@ -865,7 +883,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_UpdateGoogleApiSource")
   public func updateGoogleApiSourcePollingUntilDone(
     request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
+  ) async throws -> GoogleApiSource {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoogleApiSource>.State in
@@ -879,12 +897,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete a single GoogleApiSource.
@@ -901,7 +920,7 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// @Snippet(path: "Eventarc_DeleteGoogleApiSource")
   public func deleteGoogleApiSourcePollingUntilDone(
     request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
+  ) async throws -> GoogleApiSource {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GoogleApiSource>.State in
@@ -915,12 +934,13 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -1049,7 +1069,7 @@ extension Clients {
     /// See `EventarcClient.createTrigger`.
     func createTriggerPollingUntilDone(
       request: CreateTriggerRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Trigger>
+    ) async throws -> Trigger
 
     /// See `EventarcClient.updateTrigger`.
     func updateTrigger(
@@ -1059,7 +1079,7 @@ extension Clients {
     /// See `EventarcClient.updateTrigger`.
     func updateTriggerPollingUntilDone(
       request: UpdateTriggerRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Trigger>
+    ) async throws -> Trigger
 
     /// See `EventarcClient.deleteTrigger`.
     func deleteTrigger(
@@ -1069,7 +1089,7 @@ extension Clients {
     /// See `EventarcClient.deleteTrigger`.
     func deleteTriggerPollingUntilDone(
       request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Trigger>
+    ) async throws -> Trigger
 
     /// See `EventarcClient.getChannel`.
     func getChannel(
@@ -1089,7 +1109,7 @@ extension Clients {
     /// See `EventarcClient.createChannel`.
     func createChannelPollingUntilDone(
       request: CreateChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Channel>
+    ) async throws -> Channel
 
     /// See `EventarcClient.updateChannel`.
     func updateChannel(
@@ -1099,7 +1119,7 @@ extension Clients {
     /// See `EventarcClient.updateChannel`.
     func updateChannelPollingUntilDone(
       request: UpdateChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Channel>
+    ) async throws -> Channel
 
     /// See `EventarcClient.deleteChannel`.
     func deleteChannel(
@@ -1109,7 +1129,7 @@ extension Clients {
     /// See `EventarcClient.deleteChannel`.
     func deleteChannelPollingUntilDone(
       request: DeleteChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Channel>
+    ) async throws -> Channel
 
     /// See `EventarcClient.getProvider`.
     func getProvider(
@@ -1139,7 +1159,7 @@ extension Clients {
     /// See `EventarcClient.createChannelConnection`.
     func createChannelConnectionPollingUntilDone(
       request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ChannelConnection>
+    ) async throws -> ChannelConnection
 
     /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnection(
@@ -1149,7 +1169,7 @@ extension Clients {
     /// See `EventarcClient.deleteChannelConnection`.
     func deleteChannelConnectionPollingUntilDone(
       request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ChannelConnection>
+    ) async throws -> ChannelConnection
 
     /// See `EventarcClient.getGoogleChannelConfig`.
     func getGoogleChannelConfig(
@@ -1184,7 +1204,7 @@ extension Clients {
     /// See `EventarcClient.createMessageBus`.
     func createMessageBusPollingUntilDone(
       request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MessageBus>
+    ) async throws -> MessageBus
 
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBus(
@@ -1194,7 +1214,7 @@ extension Clients {
     /// See `EventarcClient.updateMessageBus`.
     func updateMessageBusPollingUntilDone(
       request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MessageBus>
+    ) async throws -> MessageBus
 
     /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBus(
@@ -1204,7 +1224,7 @@ extension Clients {
     /// See `EventarcClient.deleteMessageBus`.
     func deleteMessageBusPollingUntilDone(
       request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MessageBus>
+    ) async throws -> MessageBus
 
     /// See `EventarcClient.getEnrollment`.
     func getEnrollment(
@@ -1224,7 +1244,7 @@ extension Clients {
     /// See `EventarcClient.createEnrollment`.
     func createEnrollmentPollingUntilDone(
       request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Enrollment>
+    ) async throws -> Enrollment
 
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollment(
@@ -1234,7 +1254,7 @@ extension Clients {
     /// See `EventarcClient.updateEnrollment`.
     func updateEnrollmentPollingUntilDone(
       request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Enrollment>
+    ) async throws -> Enrollment
 
     /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollment(
@@ -1244,7 +1264,7 @@ extension Clients {
     /// See `EventarcClient.deleteEnrollment`.
     func deleteEnrollmentPollingUntilDone(
       request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Enrollment>
+    ) async throws -> Enrollment
 
     /// See `EventarcClient.getPipeline`.
     func getPipeline(
@@ -1264,7 +1284,7 @@ extension Clients {
     /// See `EventarcClient.createPipeline`.
     func createPipelinePollingUntilDone(
       request: CreatePipelineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Pipeline>
+    ) async throws -> Pipeline
 
     /// See `EventarcClient.updatePipeline`.
     func updatePipeline(
@@ -1274,7 +1294,7 @@ extension Clients {
     /// See `EventarcClient.updatePipeline`.
     func updatePipelinePollingUntilDone(
       request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Pipeline>
+    ) async throws -> Pipeline
 
     /// See `EventarcClient.deletePipeline`.
     func deletePipeline(
@@ -1284,7 +1304,7 @@ extension Clients {
     /// See `EventarcClient.deletePipeline`.
     func deletePipelinePollingUntilDone(
       request: DeletePipelineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Pipeline>
+    ) async throws -> Pipeline
 
     /// See `EventarcClient.getGoogleApiSource`.
     func getGoogleApiSource(
@@ -1304,7 +1324,7 @@ extension Clients {
     /// See `EventarcClient.createGoogleApiSource`.
     func createGoogleApiSourcePollingUntilDone(
       request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
+    ) async throws -> GoogleApiSource
 
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSource(
@@ -1314,7 +1334,7 @@ extension Clients {
     /// See `EventarcClient.updateGoogleApiSource`.
     func updateGoogleApiSourcePollingUntilDone(
       request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
+    ) async throws -> GoogleApiSource
 
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSource(
@@ -1324,7 +1344,7 @@ extension Clients {
     /// See `EventarcClient.deleteGoogleApiSource`.
     func deleteGoogleApiSourcePollingUntilDone(
       request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
+    ) async throws -> GoogleApiSource
 
     /// See `EventarcClient.listLocations`.
     func listLocations(
@@ -1443,27 +1463,21 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createTriggerPollingUntilDone(request: CreateTriggerRequest) async throws
-    -> any GoogleGax.PollableOperation<Trigger>
-  {
-    try await self.createTriggerPollingUntilDone(request: request, options: .init())
+  public func createTriggerPollingUntilDone(request: CreateTriggerRequest) async throws -> Trigger {
+    return try await self.createTriggerPollingUntilDone(request: request, options: .init())
   }
 
   public func createTriggerPollingUntilDone(
     request: CreateTriggerRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Trigger>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Trigger {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createTriggerPollingUntilDone(
     parent: Swift.String,
     trigger: Trigger?,
     triggerId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
+  ) async throws -> Trigger {
     let request = CreateTriggerRequest().with {
       $0.parent = parent
       $0.trigger = trigger
@@ -1484,27 +1498,21 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateTriggerPollingUntilDone(request: UpdateTriggerRequest) async throws
-    -> any GoogleGax.PollableOperation<Trigger>
-  {
-    try await self.updateTriggerPollingUntilDone(request: request, options: .init())
+  public func updateTriggerPollingUntilDone(request: UpdateTriggerRequest) async throws -> Trigger {
+    return try await self.updateTriggerPollingUntilDone(request: request, options: .init())
   }
 
   public func updateTriggerPollingUntilDone(
     request: UpdateTriggerRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Trigger>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Trigger {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateTriggerPollingUntilDone(
     trigger: Trigger?,
     updateMask: GoogleWKT.WKTFieldMask?,
     allowMissing: Swift.Bool,
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
+  ) async throws -> Trigger {
     let request = UpdateTriggerRequest().with {
       $0.trigger = trigger
       $0.updateMask = updateMask
@@ -1525,26 +1533,20 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTriggerPollingUntilDone(request: DeleteTriggerRequest) async throws
-    -> any GoogleGax.PollableOperation<Trigger>
-  {
-    try await self.deleteTriggerPollingUntilDone(request: request, options: .init())
+  public func deleteTriggerPollingUntilDone(request: DeleteTriggerRequest) async throws -> Trigger {
+    return try await self.deleteTriggerPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteTriggerPollingUntilDone(
     request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Trigger>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Trigger {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteTriggerPollingUntilDone(
     name: Swift.String,
     allowMissing: Swift.Bool,
-  ) async throws -> any GoogleGax.PollableOperation<Trigger> {
+  ) async throws -> Trigger {
     let request = DeleteTriggerRequest().with {
       $0.name = name
       $0.allowMissing = allowMissing
@@ -1625,27 +1627,21 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createChannelPollingUntilDone(request: CreateChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Channel>
-  {
-    try await self.createChannelPollingUntilDone(request: request, options: .init())
+  public func createChannelPollingUntilDone(request: CreateChannelRequest) async throws -> Channel {
+    return try await self.createChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Channel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Channel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createChannelPollingUntilDone(
     parent: Swift.String,
     channel: Channel?,
     channelId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let request = CreateChannelRequest().with {
       $0.parent = parent
       $0.channel = channel
@@ -1666,26 +1662,20 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateChannelPollingUntilDone(request: UpdateChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Channel>
-  {
-    try await self.updateChannelPollingUntilDone(request: request, options: .init())
+  public func updateChannelPollingUntilDone(request: UpdateChannelRequest) async throws -> Channel {
+    return try await self.updateChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Channel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Channel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateChannelPollingUntilDone(
     channel: Channel?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let request = UpdateChannelRequest().with {
       $0.channel = channel
       $0.updateMask = updateMask
@@ -1705,25 +1695,19 @@ extension Clients.EventarcProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteChannelPollingUntilDone(request: DeleteChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Channel>
-  {
-    try await self.deleteChannelPollingUntilDone(request: request, options: .init())
+  public func deleteChannelPollingUntilDone(request: DeleteChannelRequest) async throws -> Channel {
+    return try await self.deleteChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Channel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Channel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteChannelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let request = DeleteChannelRequest().with {
       $0.name = name
     }
@@ -1870,27 +1854,23 @@ extension Clients.EventarcProtocol {
   }
 
   public func createChannelConnectionPollingUntilDone(request: CreateChannelConnectionRequest)
-    async throws -> any GoogleGax.PollableOperation<ChannelConnection>
+    async throws -> ChannelConnection
   {
-    try await self.createChannelConnectionPollingUntilDone(request: request, options: .init())
+    return try await self.createChannelConnectionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createChannelConnectionPollingUntilDone(
     request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelConnection> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ChannelConnection>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ChannelConnection {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createChannelConnectionPollingUntilDone(
     parent: Swift.String,
     channelConnection: ChannelConnection?,
     channelConnectionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ChannelConnection> {
+  ) async throws -> ChannelConnection {
     let request = CreateChannelConnectionRequest().with {
       $0.parent = parent
       $0.channelConnection = channelConnection
@@ -1912,25 +1892,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteChannelConnectionPollingUntilDone(request: DeleteChannelConnectionRequest)
-    async throws -> any GoogleGax.PollableOperation<ChannelConnection>
+    async throws -> ChannelConnection
   {
-    try await self.deleteChannelConnectionPollingUntilDone(request: request, options: .init())
+    return try await self.deleteChannelConnectionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func deleteChannelConnectionPollingUntilDone(
     request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ChannelConnection> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ChannelConnection>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ChannelConnection {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteChannelConnectionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ChannelConnection> {
+  ) async throws -> ChannelConnection {
     let request = DeleteChannelConnectionRequest().with {
       $0.name = name
     }
@@ -2079,26 +2055,22 @@ extension Clients.EventarcProtocol {
   }
 
   public func createMessageBusPollingUntilDone(request: CreateMessageBusRequest) async throws
-    -> any GoogleGax.PollableOperation<MessageBus>
+    -> MessageBus
   {
-    try await self.createMessageBusPollingUntilDone(request: request, options: .init())
+    return try await self.createMessageBusPollingUntilDone(request: request, options: .init())
   }
 
   public func createMessageBusPollingUntilDone(
     request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MessageBus>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MessageBus {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createMessageBusPollingUntilDone(
     parent: Swift.String,
     messageBus: MessageBus?,
     messageBusId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
+  ) async throws -> MessageBus {
     let request = CreateMessageBusRequest().with {
       $0.parent = parent
       $0.messageBus = messageBus
@@ -2120,25 +2092,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateMessageBusPollingUntilDone(request: UpdateMessageBusRequest) async throws
-    -> any GoogleGax.PollableOperation<MessageBus>
+    -> MessageBus
   {
-    try await self.updateMessageBusPollingUntilDone(request: request, options: .init())
+    return try await self.updateMessageBusPollingUntilDone(request: request, options: .init())
   }
 
   public func updateMessageBusPollingUntilDone(
     request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MessageBus>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MessageBus {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateMessageBusPollingUntilDone(
     messageBus: MessageBus?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
+  ) async throws -> MessageBus {
     let request = UpdateMessageBusRequest().with {
       $0.messageBus = messageBus
       $0.updateMask = updateMask
@@ -2159,25 +2127,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteMessageBusPollingUntilDone(request: DeleteMessageBusRequest) async throws
-    -> any GoogleGax.PollableOperation<MessageBus>
+    -> MessageBus
   {
-    try await self.deleteMessageBusPollingUntilDone(request: request, options: .init())
+    return try await self.deleteMessageBusPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteMessageBusPollingUntilDone(
     request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MessageBus>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MessageBus {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteMessageBusPollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<MessageBus> {
+  ) async throws -> MessageBus {
     let request = DeleteMessageBusRequest().with {
       $0.name = name
       $0.etag = etag
@@ -2262,26 +2226,22 @@ extension Clients.EventarcProtocol {
   }
 
   public func createEnrollmentPollingUntilDone(request: CreateEnrollmentRequest) async throws
-    -> any GoogleGax.PollableOperation<Enrollment>
+    -> Enrollment
   {
-    try await self.createEnrollmentPollingUntilDone(request: request, options: .init())
+    return try await self.createEnrollmentPollingUntilDone(request: request, options: .init())
   }
 
   public func createEnrollmentPollingUntilDone(
     request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Enrollment>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Enrollment {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEnrollmentPollingUntilDone(
     parent: Swift.String,
     enrollment: Enrollment?,
     enrollmentId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
+  ) async throws -> Enrollment {
     let request = CreateEnrollmentRequest().with {
       $0.parent = parent
       $0.enrollment = enrollment
@@ -2303,25 +2263,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateEnrollmentPollingUntilDone(request: UpdateEnrollmentRequest) async throws
-    -> any GoogleGax.PollableOperation<Enrollment>
+    -> Enrollment
   {
-    try await self.updateEnrollmentPollingUntilDone(request: request, options: .init())
+    return try await self.updateEnrollmentPollingUntilDone(request: request, options: .init())
   }
 
   public func updateEnrollmentPollingUntilDone(
     request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Enrollment>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Enrollment {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEnrollmentPollingUntilDone(
     enrollment: Enrollment?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
+  ) async throws -> Enrollment {
     let request = UpdateEnrollmentRequest().with {
       $0.enrollment = enrollment
       $0.updateMask = updateMask
@@ -2342,25 +2298,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteEnrollmentPollingUntilDone(request: DeleteEnrollmentRequest) async throws
-    -> any GoogleGax.PollableOperation<Enrollment>
+    -> Enrollment
   {
-    try await self.deleteEnrollmentPollingUntilDone(request: request, options: .init())
+    return try await self.deleteEnrollmentPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEnrollmentPollingUntilDone(
     request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Enrollment>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Enrollment {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEnrollmentPollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Enrollment> {
+  ) async throws -> Enrollment {
     let request = DeleteEnrollmentRequest().with {
       $0.name = name
       $0.etag = etag
@@ -2444,26 +2396,22 @@ extension Clients.EventarcProtocol {
   }
 
   public func createPipelinePollingUntilDone(request: CreatePipelineRequest) async throws
-    -> any GoogleGax.PollableOperation<Pipeline>
+    -> Pipeline
   {
-    try await self.createPipelinePollingUntilDone(request: request, options: .init())
+    return try await self.createPipelinePollingUntilDone(request: request, options: .init())
   }
 
   public func createPipelinePollingUntilDone(
     request: CreatePipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Pipeline>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Pipeline {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createPipelinePollingUntilDone(
     parent: Swift.String,
     pipeline: Pipeline?,
     pipelineId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
+  ) async throws -> Pipeline {
     let request = CreatePipelineRequest().with {
       $0.parent = parent
       $0.pipeline = pipeline
@@ -2485,25 +2433,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func updatePipelinePollingUntilDone(request: UpdatePipelineRequest) async throws
-    -> any GoogleGax.PollableOperation<Pipeline>
+    -> Pipeline
   {
-    try await self.updatePipelinePollingUntilDone(request: request, options: .init())
+    return try await self.updatePipelinePollingUntilDone(request: request, options: .init())
   }
 
   public func updatePipelinePollingUntilDone(
     request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Pipeline>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Pipeline {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updatePipelinePollingUntilDone(
     pipeline: Pipeline?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
+  ) async throws -> Pipeline {
     let request = UpdatePipelineRequest().with {
       $0.pipeline = pipeline
       $0.updateMask = updateMask
@@ -2524,25 +2468,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func deletePipelinePollingUntilDone(request: DeletePipelineRequest) async throws
-    -> any GoogleGax.PollableOperation<Pipeline>
+    -> Pipeline
   {
-    try await self.deletePipelinePollingUntilDone(request: request, options: .init())
+    return try await self.deletePipelinePollingUntilDone(request: request, options: .init())
   }
 
   public func deletePipelinePollingUntilDone(
     request: DeletePipelineRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Pipeline>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Pipeline {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deletePipelinePollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Pipeline> {
+  ) async throws -> Pipeline {
     let request = DeletePipelineRequest().with {
       $0.name = name
       $0.etag = etag
@@ -2627,27 +2567,22 @@ extension Clients.EventarcProtocol {
   }
 
   public func createGoogleApiSourcePollingUntilDone(request: CreateGoogleApiSourceRequest)
-    async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
+    async throws -> GoogleApiSource
   {
-    try await self.createGoogleApiSourcePollingUntilDone(request: request, options: .init())
+    return try await self.createGoogleApiSourcePollingUntilDone(request: request, options: .init())
   }
 
   public func createGoogleApiSourcePollingUntilDone(
     request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoogleApiSource>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GoogleApiSource {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createGoogleApiSourcePollingUntilDone(
     parent: Swift.String,
     googleApiSource: GoogleApiSource?,
     googleApiSourceId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
+  ) async throws -> GoogleApiSource {
     let request = CreateGoogleApiSourceRequest().with {
       $0.parent = parent
       $0.googleApiSource = googleApiSource
@@ -2669,26 +2604,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func updateGoogleApiSourcePollingUntilDone(request: UpdateGoogleApiSourceRequest)
-    async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
+    async throws -> GoogleApiSource
   {
-    try await self.updateGoogleApiSourcePollingUntilDone(request: request, options: .init())
+    return try await self.updateGoogleApiSourcePollingUntilDone(request: request, options: .init())
   }
 
   public func updateGoogleApiSourcePollingUntilDone(
     request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoogleApiSource>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GoogleApiSource {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateGoogleApiSourcePollingUntilDone(
     googleApiSource: GoogleApiSource?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
+  ) async throws -> GoogleApiSource {
     let request = UpdateGoogleApiSourceRequest().with {
       $0.googleApiSource = googleApiSource
       $0.updateMask = updateMask
@@ -2709,26 +2639,21 @@ extension Clients.EventarcProtocol {
   }
 
   public func deleteGoogleApiSourcePollingUntilDone(request: DeleteGoogleApiSourceRequest)
-    async throws -> any GoogleGax.PollableOperation<GoogleApiSource>
+    async throws -> GoogleApiSource
   {
-    try await self.deleteGoogleApiSourcePollingUntilDone(request: request, options: .init())
+    return try await self.deleteGoogleApiSourcePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteGoogleApiSourcePollingUntilDone(
     request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GoogleApiSource>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GoogleApiSource {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteGoogleApiSourcePollingUntilDone(
     name: Swift.String,
     etag: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GoogleApiSource> {
+  ) async throws -> GoogleApiSource {
     let request = DeleteGoogleApiSourceRequest().with {
       $0.name = name
       $0.etag = etag

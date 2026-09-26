@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, parent: String) async throws {
-  let poller = try await client.createPrivateCloudPollingUntilDone(
+  let response = try await client.createPrivateCloudPollingUntilDone(
     request: CreatePrivateCloudRequest()
       .with {
         $0.parent = "\(parent)"
         $0.privateCloud = PrivateCloud() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

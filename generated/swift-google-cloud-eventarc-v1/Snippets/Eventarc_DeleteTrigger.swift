@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, triggerId: String)
   async throws
 {
-  let poller = try await client.deleteTriggerPollingUntilDone(
+  let response = try await client.deleteTriggerPollingUntilDone(
     request: DeleteTriggerRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/triggers/\(triggerId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

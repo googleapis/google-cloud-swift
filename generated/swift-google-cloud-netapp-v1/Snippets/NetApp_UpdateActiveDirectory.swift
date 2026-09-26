@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, activeDirectoryId: String)
   async throws
 {
-  let poller = try await client.updateActiveDirectoryPollingUntilDone(
+  let response = try await client.updateActiveDirectoryPollingUntilDone(
     request: UpdateActiveDirectoryRequest()
       .with {
         $0.activeDirectory = ActiveDirectory().with {
@@ -35,7 +35,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, activeD
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

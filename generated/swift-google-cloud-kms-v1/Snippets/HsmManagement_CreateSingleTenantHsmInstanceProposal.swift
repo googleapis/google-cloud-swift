@@ -26,7 +26,7 @@ func sample(
   client: HsmManagementClient, projectId: String, locationId: String,
   singleTenantHsmInstanceId: String
 ) async throws {
-  let poller = try await client.createSingleTenantHsmInstanceProposalPollingUntilDone(
+  let response = try await client.createSingleTenantHsmInstanceProposalPollingUntilDone(
     request: CreateSingleTenantHsmInstanceProposalRequest()
       .with {
         $0.parent =
@@ -34,7 +34,6 @@ func sample(
         $0.singleTenantHsmInstanceProposal = SingleTenantHsmInstanceProposal() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

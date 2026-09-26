@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.createDatasetPollingUntilDone(
+  let response = try await client.createDatasetPollingUntilDone(
     request: CreateDatasetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
@@ -33,7 +33,6 @@ func sample(client: AMLClient, projectId: String, locationId: String, instanceId
         $0.dataset = Dataset() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

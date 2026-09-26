@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, vmwareEngineNetworkId: String
 ) async throws {
-  let poller = try await client.updateVmwareEngineNetworkPollingUntilDone(
+  let response = try await client.updateVmwareEngineNetworkPollingUntilDone(
     request: UpdateVmwareEngineNetworkRequest()
       .with {
         $0.vmwareEngineNetwork = VmwareEngineNetwork().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

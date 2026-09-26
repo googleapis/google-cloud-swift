@@ -24,13 +24,12 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, projectId: String, hubId: String) async throws {
-  let poller = try await client.deleteHubPollingUntilDone(
+  try await client.deleteHubPollingUntilDone(
     request: DeleteHubRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/global/hubs/\(hubId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

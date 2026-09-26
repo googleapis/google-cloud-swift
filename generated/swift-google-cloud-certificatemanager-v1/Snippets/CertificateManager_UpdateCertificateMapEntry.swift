@@ -26,7 +26,7 @@ func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String,
   certificateMapEntryId: String
 ) async throws {
-  let poller = try await client.updateCertificateMapEntryPollingUntilDone(
+  let response = try await client.updateCertificateMapEntryPollingUntilDone(
     request: UpdateCertificateMapEntryRequest()
       .with {
         $0.certificateMapEntry = CertificateMapEntry().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

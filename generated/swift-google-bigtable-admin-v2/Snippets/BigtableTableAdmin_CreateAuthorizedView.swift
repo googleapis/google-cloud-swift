@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String
 ) async throws {
-  let poller = try await client.createAuthorizedViewPollingUntilDone(
+  let response = try await client.createAuthorizedViewPollingUntilDone(
     request: CreateAuthorizedViewRequest()
       .with {
         $0.parent = "projects/\(projectId)/instances/\(instanceId)/tables/\(tableId)"
         $0.authorizedView = AuthorizedView() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

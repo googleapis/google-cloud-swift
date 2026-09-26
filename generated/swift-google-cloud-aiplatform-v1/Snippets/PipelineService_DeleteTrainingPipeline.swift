@@ -26,14 +26,13 @@
   func sample(
     client: PipelineServiceClient, projectId: String, locationId: String, trainingPipelineId: String
   ) async throws {
-    let poller = try await client.deleteTrainingPipelinePollingUntilDone(
+    try await client.deleteTrainingPipelinePollingUntilDone(
       request: DeleteTrainingPipelineRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/trainingPipelines/\(trainingPipelineId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

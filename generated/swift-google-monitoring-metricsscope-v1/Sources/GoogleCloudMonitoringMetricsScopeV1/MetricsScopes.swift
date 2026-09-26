@@ -79,7 +79,7 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// @Snippet(path: "MetricsScopes_CreateMonitoredProject")
   public func createMonitoredProjectPollingUntilDone(
     request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MonitoredProject> {
+  ) async throws -> MonitoredProject {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MonitoredProject>.State in
@@ -93,12 +93,13 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
@@ -115,7 +116,7 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// @Snippet(path: "MetricsScopes_DeleteMonitoredProject")
   public func deleteMonitoredProjectPollingUntilDone(
     request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -128,12 +129,13 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -174,7 +176,7 @@ extension Clients {
     /// See `MetricsScopesClient.createMonitoredProject`.
     func createMonitoredProjectPollingUntilDone(
       request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MonitoredProject>
+    ) async throws -> MonitoredProject
 
     /// See `MetricsScopesClient.deleteMonitoredProject`.
     func deleteMonitoredProject(
@@ -184,7 +186,7 @@ extension Clients {
     /// See `MetricsScopesClient.deleteMonitoredProject`.
     func deleteMonitoredProjectPollingUntilDone(
       request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
   }
 }
 
@@ -238,26 +240,21 @@ extension Clients.MetricsScopesProtocol {
   }
 
   public func createMonitoredProjectPollingUntilDone(request: CreateMonitoredProjectRequest)
-    async throws -> any GoogleGax.PollableOperation<MonitoredProject>
+    async throws -> MonitoredProject
   {
-    try await self.createMonitoredProjectPollingUntilDone(request: request, options: .init())
+    return try await self.createMonitoredProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func createMonitoredProjectPollingUntilDone(
     request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MonitoredProject> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MonitoredProject>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MonitoredProject {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createMonitoredProjectPollingUntilDone(
     parent: Swift.String,
     monitoredProject: MonitoredProject?,
-  ) async throws -> any GoogleGax.PollableOperation<MonitoredProject> {
+  ) async throws -> MonitoredProject {
     let request = CreateMonitoredProjectRequest().with {
       $0.parent = parent
       $0.monitoredProject = monitoredProject
@@ -278,28 +275,24 @@ extension Clients.MetricsScopesProtocol {
   }
 
   public func deleteMonitoredProjectPollingUntilDone(request: DeleteMonitoredProjectRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteMonitoredProjectPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteMonitoredProjectPollingUntilDone(
     request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteMonitoredProjectPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteMonitoredProjectRequest().with {
       $0.name = name
     }
-    return try await self.deleteMonitoredProjectPollingUntilDone(request: request)
+    try await self.deleteMonitoredProjectPollingUntilDone(request: request)
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

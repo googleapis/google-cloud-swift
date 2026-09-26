@@ -28,14 +28,13 @@
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String,
     sessionId: String
   ) async throws {
-    let poller = try await client.deleteSessionPollingUntilDone(
+    try await client.deleteSessionPollingUntilDone(
       request: DeleteSessionRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/reasoningEngines/\(reasoningEngineId)/sessions/\(sessionId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: ArtifactRegistryClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.createAttachmentPollingUntilDone(
+  let response = try await client.createAttachmentPollingUntilDone(
     request: CreateAttachmentRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
@@ -34,7 +34,6 @@ func sample(
         $0.attachment = Attachment() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

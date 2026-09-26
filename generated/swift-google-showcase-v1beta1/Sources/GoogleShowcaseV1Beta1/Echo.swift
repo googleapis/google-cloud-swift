@@ -137,7 +137,7 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// @Snippet(path: "Echo_Wait")
   public func waitPollingUntilDone(
     request: WaitRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WaitResponse> {
+  ) async throws -> WaitResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WaitResponse>.State in
@@ -151,12 +151,13 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// This method will block (wait) for the requested amount of time
@@ -315,7 +316,7 @@ extension Clients {
     /// See `EchoClient.wait`.
     func waitPollingUntilDone(
       request: WaitRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<WaitResponse>
+    ) async throws -> WaitResponse
 
     /// See `EchoClient.block`.
     func block(
@@ -517,21 +518,14 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func waitPollingUntilDone(request: WaitRequest) async throws -> any GoogleGax
-    .PollableOperation<WaitResponse>
-  {
-    try await self.waitPollingUntilDone(request: request, options: .init())
+  public func waitPollingUntilDone(request: WaitRequest) async throws -> WaitResponse {
+    return try await self.waitPollingUntilDone(request: request, options: .init())
   }
 
   public func waitPollingUntilDone(
     request: WaitRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WaitResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<WaitResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> WaitResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func block(request: BlockRequest) async throws -> GoogleShowcaseV1Beta1.BlockResponse {

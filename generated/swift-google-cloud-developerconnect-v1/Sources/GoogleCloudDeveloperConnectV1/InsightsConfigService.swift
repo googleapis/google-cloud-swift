@@ -74,7 +74,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_CreateInsightsConfig")
   public func createInsightsConfigPollingUntilDone(
     request: CreateInsightsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InsightsConfig> {
+  ) async throws -> InsightsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InsightsConfig>.State in
@@ -88,12 +88,13 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets details of a single Insight.
@@ -119,7 +120,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_UpdateInsightsConfig")
   public func updateInsightsConfigPollingUntilDone(
     request: UpdateInsightsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InsightsConfig> {
+  ) async throws -> InsightsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InsightsConfig>.State in
@@ -133,12 +134,13 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Insight.
@@ -155,7 +157,7 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// @Snippet(path: "InsightsConfigService_DeleteInsightsConfig")
   public func deleteInsightsConfigPollingUntilDone(
     request: DeleteInsightsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -168,12 +170,13 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets a single Deployment Event.
@@ -284,7 +287,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.createInsightsConfig`.
     func createInsightsConfigPollingUntilDone(
       request: CreateInsightsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InsightsConfig>
+    ) async throws -> InsightsConfig
 
     /// See `InsightsConfigServiceClient.getInsightsConfig`.
     func getInsightsConfig(
@@ -299,7 +302,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.updateInsightsConfig`.
     func updateInsightsConfigPollingUntilDone(
       request: UpdateInsightsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InsightsConfig>
+    ) async throws -> InsightsConfig
 
     /// See `InsightsConfigServiceClient.deleteInsightsConfig`.
     func deleteInsightsConfig(
@@ -309,7 +312,7 @@ extension Clients {
     /// See `InsightsConfigServiceClient.deleteInsightsConfig`.
     func deleteInsightsConfigPollingUntilDone(
       request: DeleteInsightsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `InsightsConfigServiceClient.getDeploymentEvent`.
     func getDeploymentEvent(
@@ -406,27 +409,22 @@ extension Clients.InsightsConfigServiceProtocol {
   }
 
   public func createInsightsConfigPollingUntilDone(request: CreateInsightsConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<InsightsConfig>
+    async throws -> InsightsConfig
   {
-    try await self.createInsightsConfigPollingUntilDone(request: request, options: .init())
+    return try await self.createInsightsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func createInsightsConfigPollingUntilDone(
     request: CreateInsightsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InsightsConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InsightsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InsightsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInsightsConfigPollingUntilDone(
     parent: Swift.String,
     insightsConfig: InsightsConfig?,
     insightsConfigId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<InsightsConfig> {
+  ) async throws -> InsightsConfig {
     let request = CreateInsightsConfigRequest().with {
       $0.parent = parent
       $0.insightsConfig = insightsConfig
@@ -469,20 +467,15 @@ extension Clients.InsightsConfigServiceProtocol {
   }
 
   public func updateInsightsConfigPollingUntilDone(request: UpdateInsightsConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<InsightsConfig>
+    async throws -> InsightsConfig
   {
-    try await self.updateInsightsConfigPollingUntilDone(request: request, options: .init())
+    return try await self.updateInsightsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func updateInsightsConfigPollingUntilDone(
     request: UpdateInsightsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InsightsConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InsightsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InsightsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInsightsConfig(request: DeleteInsightsConfigRequest) async throws
@@ -498,28 +491,24 @@ extension Clients.InsightsConfigServiceProtocol {
   }
 
   public func deleteInsightsConfigPollingUntilDone(request: DeleteInsightsConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteInsightsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInsightsConfigPollingUntilDone(
     request: DeleteInsightsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInsightsConfigPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInsightsConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteInsightsConfigPollingUntilDone(request: request)
+    try await self.deleteInsightsConfigPollingUntilDone(request: request)
   }
 
   public func getDeploymentEvent(request: GetDeploymentEventRequest) async throws

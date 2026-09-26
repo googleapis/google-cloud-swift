@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient, parent: String) async throws {
-  let poller = try await client.createEntryTypePollingUntilDone(
+  let response = try await client.createEntryTypePollingUntilDone(
     request: CreateEntryTypeRequest()
       .with {
         $0.parent = "\(parent)"
         $0.entryType = EntryType() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(client: HubServiceClient, projectId: String, locationId: String, spokeId: String)
   async throws
 {
-  let poller = try await client.deleteSpokePollingUntilDone(
+  try await client.deleteSpokePollingUntilDone(
     request: DeleteSpokeRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/spokes/\(spokeId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

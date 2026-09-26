@@ -99,7 +99,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// @Snippet(path: "managedZones_patch")
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
+  ) async throws -> Operation {
     let extractStatus = {
       @Sendable (op: Operation) throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       guard op._done() else {
@@ -124,12 +124,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
         }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
@@ -164,7 +165,7 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// @Snippet(path: "managedZones_update")
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
+  ) async throws -> Operation {
     let extractStatus = {
       @Sendable (op: Operation) throws -> GoogleGax._PollableOperationImpl<Operation>.State in
       guard op._done() else {
@@ -189,12 +190,13 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
         }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll
     )
+    return try await poller.wait()
   }
 
   /// Fetches the representation of an existing Operation.
@@ -247,7 +249,7 @@ extension Clients {
     /// See `ManagedZonesClient.patch`.
     func patchPollingUntilDone(
       request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Operation>
+    ) async throws -> Operation
 
     /// See `ManagedZonesClient.setIamPolicy`.
     func setIamPolicy(
@@ -267,7 +269,7 @@ extension Clients {
     /// See `ManagedZonesClient.update`.
     func updatePollingUntilDone(
       request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Operation>
+    ) async throws -> Operation
   }
 }
 
@@ -411,25 +413,21 @@ extension Clients.ManagedZonesProtocol {
 
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
-    try await self.patchPollingUntilDone(request: request, options: .init())
+  ) async throws -> Operation {
+    return try await self.patchPollingUntilDone(request: request, options: .init())
   }
 
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Operation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func patchPollingUntilDone(
     project: Swift.String,
     managedZone: Swift.String,
     body: ManagedZone?,
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
+  ) async throws -> Operation {
     let request = ManagedZonesClient.PatchRequest().with {
       $0.project = project
       $0.managedZone = managedZone
@@ -496,25 +494,21 @@ extension Clients.ManagedZonesProtocol {
 
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
-    try await self.updatePollingUntilDone(request: request, options: .init())
+  ) async throws -> Operation {
+    return try await self.updatePollingUntilDone(request: request, options: .init())
   }
 
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Operation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Operation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updatePollingUntilDone(
     project: Swift.String,
     managedZone: Swift.String,
     body: ManagedZone?,
-  ) async throws -> any GoogleGax.PollableOperation<Operation> {
+  ) async throws -> Operation {
     let request = ManagedZonesClient.UpdateRequest().with {
       $0.project = project
       $0.managedZone = managedZone

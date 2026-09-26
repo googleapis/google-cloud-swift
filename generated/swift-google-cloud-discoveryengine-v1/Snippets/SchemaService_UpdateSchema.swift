@@ -25,7 +25,7 @@
     client: SchemaServiceClient, projectId: String, locationId: String, dataStoreId: String,
     schemaId: String
   ) async throws {
-    let poller = try await client.updateSchemaPollingUntilDone(
+    let response = try await client.updateSchemaPollingUntilDone(
       request: UpdateSchemaRequest()
         .with {
           $0.schema = Schema().with {
@@ -34,7 +34,6 @@
           }
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: DepServiceClient, projectId: String, locationId: String, lbTrafficExtensionId: String
 ) async throws {
-  let poller = try await client.deleteLbTrafficExtensionPollingUntilDone(
+  try await client.deleteLbTrafficExtensionPollingUntilDone(
     request: DeleteLbTrafficExtensionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/lbTrafficExtensions/\(lbTrafficExtensionId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

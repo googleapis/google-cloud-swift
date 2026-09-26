@@ -24,14 +24,13 @@ import GoogleLongRunning
 func sample(
   client: NodeGroupControllerClient, projectId: String, regionId: String, clusterId: String
 ) async throws {
-  let poller = try await client.createNodeGroupPollingUntilDone(
+  let response = try await client.createNodeGroupPollingUntilDone(
     request: CreateNodeGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/regions/\(regionId)/clusters/\(clusterId)"
         $0.nodeGroup = NodeGroup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

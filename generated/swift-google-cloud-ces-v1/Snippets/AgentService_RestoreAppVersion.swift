@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AgentServiceClient) async throws {
-  let poller = try await client.restoreAppVersionPollingUntilDone(
+  let response = try await client.restoreAppVersionPollingUntilDone(
     request: RestoreAppVersionRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

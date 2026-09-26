@@ -22,14 +22,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ContactCenterInsightsClient, parent: String) async throws {
-  let poller = try await client.createIssueModelPollingUntilDone(
+  let response = try await client.createIssueModelPollingUntilDone(
     request: CreateIssueModelRequest()
       .with {
         $0.parent = "\(parent)"
         $0.issueModel = IssueModel() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

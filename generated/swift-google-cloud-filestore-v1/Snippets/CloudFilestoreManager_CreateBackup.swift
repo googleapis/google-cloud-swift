@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFilestoreManagerClient, parent: String) async throws {
-  let poller = try await client.createBackupPollingUntilDone(
+  let response = try await client.createBackupPollingUntilDone(
     request: CreateBackupRequest()
       .with {
         $0.parent = "\(parent)"
@@ -31,7 +31,6 @@ func sample(client: CloudFilestoreManagerClient, parent: String) async throws {
         $0.backup = Backup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

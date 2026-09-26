@@ -81,7 +81,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_CreateInterceptEndpointGroup")
   public func createInterceptEndpointGroupPollingUntilDone(
     request: CreateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
+  ) async throws -> InterceptEndpointGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptEndpointGroup>.State in
@@ -95,12 +95,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an endpoint group.
@@ -119,7 +120,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_UpdateInterceptEndpointGroup")
   public func updateInterceptEndpointGroupPollingUntilDone(
     request: UpdateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
+  ) async throws -> InterceptEndpointGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptEndpointGroup>.State in
@@ -133,12 +134,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an endpoint group.
@@ -157,7 +159,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_DeleteInterceptEndpointGroup")
   public func deleteInterceptEndpointGroupPollingUntilDone(
     request: DeleteInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -170,12 +172,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists associations in a given project and location.
@@ -214,7 +217,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_CreateInterceptEndpointGroupAssociation")
   public func createInterceptEndpointGroupAssociationPollingUntilDone(
     request: CreateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
+  ) async throws -> InterceptEndpointGroupAssociation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptEndpointGroupAssociation>.State in
@@ -230,12 +233,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an association.
@@ -254,7 +258,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_UpdateInterceptEndpointGroupAssociation")
   public func updateInterceptEndpointGroupAssociationPollingUntilDone(
     request: UpdateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
+  ) async throws -> InterceptEndpointGroupAssociation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptEndpointGroupAssociation>.State in
@@ -270,12 +274,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an association.
@@ -294,7 +299,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_DeleteInterceptEndpointGroupAssociation")
   public func deleteInterceptEndpointGroupAssociationPollingUntilDone(
     request: DeleteInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -308,12 +313,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists deployment groups in a given project and location.
@@ -352,7 +358,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_CreateInterceptDeploymentGroup")
   public func createInterceptDeploymentGroupPollingUntilDone(
     request: CreateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
+  ) async throws -> InterceptDeploymentGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptDeploymentGroup>.State in
@@ -367,12 +373,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates a deployment group.
@@ -391,7 +398,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_UpdateInterceptDeploymentGroup")
   public func updateInterceptDeploymentGroupPollingUntilDone(
     request: UpdateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
+  ) async throws -> InterceptDeploymentGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptDeploymentGroup>.State in
@@ -406,12 +413,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a deployment group.
@@ -430,7 +438,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_DeleteInterceptDeploymentGroup")
   public func deleteInterceptDeploymentGroupPollingUntilDone(
     request: DeleteInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -443,12 +451,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists deployments in a given project and location.
@@ -487,7 +496,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_CreateInterceptDeployment")
   public func createInterceptDeploymentPollingUntilDone(
     request: CreateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
+  ) async throws -> InterceptDeployment {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptDeployment>.State in
@@ -501,12 +510,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates a deployment.
@@ -525,7 +535,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_UpdateInterceptDeployment")
   public func updateInterceptDeploymentPollingUntilDone(
     request: UpdateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
+  ) async throws -> InterceptDeployment {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<InterceptDeployment>.State in
@@ -539,12 +549,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a deployment.
@@ -563,7 +574,7 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// @Snippet(path: "Intercept_DeleteInterceptDeployment")
   public func deleteInterceptDeploymentPollingUntilDone(
     request: DeleteInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -576,12 +587,13 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -727,7 +739,7 @@ extension Clients {
     /// See `InterceptClient.createInterceptEndpointGroup`.
     func createInterceptEndpointGroupPollingUntilDone(
       request: CreateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup>
+    ) async throws -> InterceptEndpointGroup
 
     /// See `InterceptClient.updateInterceptEndpointGroup`.
     func updateInterceptEndpointGroup(
@@ -737,7 +749,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptEndpointGroup`.
     func updateInterceptEndpointGroupPollingUntilDone(
       request: UpdateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup>
+    ) async throws -> InterceptEndpointGroup
 
     /// See `InterceptClient.deleteInterceptEndpointGroup`.
     func deleteInterceptEndpointGroup(
@@ -747,7 +759,7 @@ extension Clients {
     /// See `InterceptClient.deleteInterceptEndpointGroup`.
     func deleteInterceptEndpointGroupPollingUntilDone(
       request: DeleteInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `InterceptClient.listInterceptEndpointGroupAssociations`.
     func listInterceptEndpointGroupAssociations(
@@ -767,7 +779,7 @@ extension Clients {
     /// See `InterceptClient.createInterceptEndpointGroupAssociation`.
     func createInterceptEndpointGroupAssociationPollingUntilDone(
       request: CreateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation>
+    ) async throws -> InterceptEndpointGroupAssociation
 
     /// See `InterceptClient.updateInterceptEndpointGroupAssociation`.
     func updateInterceptEndpointGroupAssociation(
@@ -777,7 +789,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptEndpointGroupAssociation`.
     func updateInterceptEndpointGroupAssociationPollingUntilDone(
       request: UpdateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation>
+    ) async throws -> InterceptEndpointGroupAssociation
 
     /// See `InterceptClient.deleteInterceptEndpointGroupAssociation`.
     func deleteInterceptEndpointGroupAssociation(
@@ -787,7 +799,7 @@ extension Clients {
     /// See `InterceptClient.deleteInterceptEndpointGroupAssociation`.
     func deleteInterceptEndpointGroupAssociationPollingUntilDone(
       request: DeleteInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `InterceptClient.listInterceptDeploymentGroups`.
     func listInterceptDeploymentGroups(
@@ -807,7 +819,7 @@ extension Clients {
     /// See `InterceptClient.createInterceptDeploymentGroup`.
     func createInterceptDeploymentGroupPollingUntilDone(
       request: CreateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup>
+    ) async throws -> InterceptDeploymentGroup
 
     /// See `InterceptClient.updateInterceptDeploymentGroup`.
     func updateInterceptDeploymentGroup(
@@ -817,7 +829,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptDeploymentGroup`.
     func updateInterceptDeploymentGroupPollingUntilDone(
       request: UpdateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup>
+    ) async throws -> InterceptDeploymentGroup
 
     /// See `InterceptClient.deleteInterceptDeploymentGroup`.
     func deleteInterceptDeploymentGroup(
@@ -827,7 +839,7 @@ extension Clients {
     /// See `InterceptClient.deleteInterceptDeploymentGroup`.
     func deleteInterceptDeploymentGroupPollingUntilDone(
       request: DeleteInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `InterceptClient.listInterceptDeployments`.
     func listInterceptDeployments(
@@ -847,7 +859,7 @@ extension Clients {
     /// See `InterceptClient.createInterceptDeployment`.
     func createInterceptDeploymentPollingUntilDone(
       request: CreateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment>
+    ) async throws -> InterceptDeployment
 
     /// See `InterceptClient.updateInterceptDeployment`.
     func updateInterceptDeployment(
@@ -857,7 +869,7 @@ extension Clients {
     /// See `InterceptClient.updateInterceptDeployment`.
     func updateInterceptDeploymentPollingUntilDone(
       request: UpdateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment>
+    ) async throws -> InterceptDeployment
 
     /// See `InterceptClient.deleteInterceptDeployment`.
     func deleteInterceptDeployment(
@@ -867,7 +879,7 @@ extension Clients {
     /// See `InterceptClient.deleteInterceptDeployment`.
     func deleteInterceptDeploymentPollingUntilDone(
       request: DeleteInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `InterceptClient.listLocations`.
     func listLocations(
@@ -992,26 +1004,22 @@ extension Clients.InterceptProtocol {
 
   public func createInterceptEndpointGroupPollingUntilDone(
     request: CreateInterceptEndpointGroupRequest
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
-    try await self.createInterceptEndpointGroupPollingUntilDone(request: request, options: .init())
+  ) async throws -> InterceptEndpointGroup {
+    return try await self.createInterceptEndpointGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createInterceptEndpointGroupPollingUntilDone(
     request: CreateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterceptEndpointGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptEndpointGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInterceptEndpointGroupPollingUntilDone(
     parent: Swift.String,
     interceptEndpointGroup: InterceptEndpointGroup?,
     interceptEndpointGroupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
+  ) async throws -> InterceptEndpointGroup {
     let request = CreateInterceptEndpointGroupRequest().with {
       $0.parent = parent
       $0.interceptEndpointGroup = interceptEndpointGroup
@@ -1034,25 +1042,21 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptEndpointGroupPollingUntilDone(
     request: UpdateInterceptEndpointGroupRequest
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
-    try await self.updateInterceptEndpointGroupPollingUntilDone(request: request, options: .init())
+  ) async throws -> InterceptEndpointGroup {
+    return try await self.updateInterceptEndpointGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateInterceptEndpointGroupPollingUntilDone(
     request: UpdateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterceptEndpointGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptEndpointGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInterceptEndpointGroupPollingUntilDone(
     interceptEndpointGroup: InterceptEndpointGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroup> {
+  ) async throws -> InterceptEndpointGroup {
     let request = UpdateInterceptEndpointGroupRequest().with {
       $0.interceptEndpointGroup = interceptEndpointGroup
       $0.updateMask = updateMask
@@ -1074,27 +1078,23 @@ extension Clients.InterceptProtocol {
 
   public func deleteInterceptEndpointGroupPollingUntilDone(
     request: DeleteInterceptEndpointGroupRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteInterceptEndpointGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInterceptEndpointGroupPollingUntilDone(
     request: DeleteInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInterceptEndpointGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInterceptEndpointGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteInterceptEndpointGroupPollingUntilDone(request: request)
+    try await self.deleteInterceptEndpointGroupPollingUntilDone(request: request)
   }
 
   public func listInterceptEndpointGroupAssociations(
@@ -1177,28 +1177,22 @@ extension Clients.InterceptProtocol {
 
   public func createInterceptEndpointGroupAssociationPollingUntilDone(
     request: CreateInterceptEndpointGroupAssociationRequest
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
-    try await self.createInterceptEndpointGroupAssociationPollingUntilDone(
+  ) async throws -> InterceptEndpointGroupAssociation {
+    return try await self.createInterceptEndpointGroupAssociationPollingUntilDone(
       request: request, options: .init())
   }
 
   public func createInterceptEndpointGroupAssociationPollingUntilDone(
     request: CreateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<InterceptEndpointGroupAssociation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptEndpointGroupAssociation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInterceptEndpointGroupAssociationPollingUntilDone(
     parent: Swift.String,
     interceptEndpointGroupAssociation: InterceptEndpointGroupAssociation?,
     interceptEndpointGroupAssociationId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
+  ) async throws -> InterceptEndpointGroupAssociation {
     let request = CreateInterceptEndpointGroupAssociationRequest().with {
       $0.parent = parent
       $0.interceptEndpointGroupAssociation = interceptEndpointGroupAssociation
@@ -1221,27 +1215,21 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptEndpointGroupAssociationPollingUntilDone(
     request: UpdateInterceptEndpointGroupAssociationRequest
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
-    try await self.updateInterceptEndpointGroupAssociationPollingUntilDone(
+  ) async throws -> InterceptEndpointGroupAssociation {
+    return try await self.updateInterceptEndpointGroupAssociationPollingUntilDone(
       request: request, options: .init())
   }
 
   public func updateInterceptEndpointGroupAssociationPollingUntilDone(
     request: UpdateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<InterceptEndpointGroupAssociation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptEndpointGroupAssociation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInterceptEndpointGroupAssociationPollingUntilDone(
     interceptEndpointGroupAssociation: InterceptEndpointGroupAssociation?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptEndpointGroupAssociation> {
+  ) async throws -> InterceptEndpointGroupAssociation {
     let request = UpdateInterceptEndpointGroupAssociationRequest().with {
       $0.interceptEndpointGroupAssociation = interceptEndpointGroupAssociation
       $0.updateMask = updateMask
@@ -1263,28 +1251,24 @@ extension Clients.InterceptProtocol {
 
   public func deleteInterceptEndpointGroupAssociationPollingUntilDone(
     request: DeleteInterceptEndpointGroupAssociationRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteInterceptEndpointGroupAssociationPollingUntilDone(
       request: request, options: .init())
   }
 
   public func deleteInterceptEndpointGroupAssociationPollingUntilDone(
     request: DeleteInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInterceptEndpointGroupAssociationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInterceptEndpointGroupAssociationRequest().with {
       $0.name = name
     }
-    return try await self.deleteInterceptEndpointGroupAssociationPollingUntilDone(request: request)
+    try await self.deleteInterceptEndpointGroupAssociationPollingUntilDone(request: request)
   }
 
   public func listInterceptDeploymentGroups(request: ListInterceptDeploymentGroupsRequest)
@@ -1366,28 +1350,22 @@ extension Clients.InterceptProtocol {
 
   public func createInterceptDeploymentGroupPollingUntilDone(
     request: CreateInterceptDeploymentGroupRequest
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
-    try await self.createInterceptDeploymentGroupPollingUntilDone(
+  ) async throws -> InterceptDeploymentGroup {
+    return try await self.createInterceptDeploymentGroupPollingUntilDone(
       request: request, options: .init())
   }
 
   public func createInterceptDeploymentGroupPollingUntilDone(
     request: CreateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterceptDeploymentGroup>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptDeploymentGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInterceptDeploymentGroupPollingUntilDone(
     parent: Swift.String,
     interceptDeploymentGroup: InterceptDeploymentGroup?,
     interceptDeploymentGroupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
+  ) async throws -> InterceptDeploymentGroup {
     let request = CreateInterceptDeploymentGroupRequest().with {
       $0.parent = parent
       $0.interceptDeploymentGroup = interceptDeploymentGroup
@@ -1410,27 +1388,21 @@ extension Clients.InterceptProtocol {
 
   public func updateInterceptDeploymentGroupPollingUntilDone(
     request: UpdateInterceptDeploymentGroupRequest
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
-    try await self.updateInterceptDeploymentGroupPollingUntilDone(
+  ) async throws -> InterceptDeploymentGroup {
+    return try await self.updateInterceptDeploymentGroupPollingUntilDone(
       request: request, options: .init())
   }
 
   public func updateInterceptDeploymentGroupPollingUntilDone(
     request: UpdateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterceptDeploymentGroup>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptDeploymentGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInterceptDeploymentGroupPollingUntilDone(
     interceptDeploymentGroup: InterceptDeploymentGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeploymentGroup> {
+  ) async throws -> InterceptDeploymentGroup {
     let request = UpdateInterceptDeploymentGroupRequest().with {
       $0.interceptDeploymentGroup = interceptDeploymentGroup
       $0.updateMask = updateMask
@@ -1452,28 +1424,24 @@ extension Clients.InterceptProtocol {
 
   public func deleteInterceptDeploymentGroupPollingUntilDone(
     request: DeleteInterceptDeploymentGroupRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteInterceptDeploymentGroupPollingUntilDone(
       request: request, options: .init())
   }
 
   public func deleteInterceptDeploymentGroupPollingUntilDone(
     request: DeleteInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInterceptDeploymentGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInterceptDeploymentGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteInterceptDeploymentGroupPollingUntilDone(request: request)
+    try await self.deleteInterceptDeploymentGroupPollingUntilDone(request: request)
   }
 
   public func listInterceptDeployments(request: ListInterceptDeploymentsRequest) async throws
@@ -1554,27 +1522,23 @@ extension Clients.InterceptProtocol {
   }
 
   public func createInterceptDeploymentPollingUntilDone(request: CreateInterceptDeploymentRequest)
-    async throws -> any GoogleGax.PollableOperation<InterceptDeployment>
+    async throws -> InterceptDeployment
   {
-    try await self.createInterceptDeploymentPollingUntilDone(request: request, options: .init())
+    return try await self.createInterceptDeploymentPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createInterceptDeploymentPollingUntilDone(
     request: CreateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterceptDeployment>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptDeployment {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInterceptDeploymentPollingUntilDone(
     parent: Swift.String,
     interceptDeployment: InterceptDeployment?,
     interceptDeploymentId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
+  ) async throws -> InterceptDeployment {
     let request = CreateInterceptDeploymentRequest().with {
       $0.parent = parent
       $0.interceptDeployment = interceptDeployment
@@ -1596,26 +1560,22 @@ extension Clients.InterceptProtocol {
   }
 
   public func updateInterceptDeploymentPollingUntilDone(request: UpdateInterceptDeploymentRequest)
-    async throws -> any GoogleGax.PollableOperation<InterceptDeployment>
+    async throws -> InterceptDeployment
   {
-    try await self.updateInterceptDeploymentPollingUntilDone(request: request, options: .init())
+    return try await self.updateInterceptDeploymentPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateInterceptDeploymentPollingUntilDone(
     request: UpdateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<InterceptDeployment>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> InterceptDeployment {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInterceptDeploymentPollingUntilDone(
     interceptDeployment: InterceptDeployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<InterceptDeployment> {
+  ) async throws -> InterceptDeployment {
     let request = UpdateInterceptDeploymentRequest().with {
       $0.interceptDeployment = interceptDeployment
       $0.updateMask = updateMask
@@ -1636,28 +1596,24 @@ extension Clients.InterceptProtocol {
   }
 
   public func deleteInterceptDeploymentPollingUntilDone(request: DeleteInterceptDeploymentRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteInterceptDeploymentPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInterceptDeploymentPollingUntilDone(
     request: DeleteInterceptDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInterceptDeploymentPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInterceptDeploymentRequest().with {
       $0.name = name
     }
-    return try await self.deleteInterceptDeploymentPollingUntilDone(request: request)
+    try await self.deleteInterceptDeploymentPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

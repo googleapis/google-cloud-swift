@@ -24,14 +24,13 @@ import GoogleWKT
 func sample(client: ManagedIdentitiesServiceClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createMicrosoftAdDomainPollingUntilDone(
+  let response = try await client.createMicrosoftAdDomainPollingUntilDone(
     request: CreateMicrosoftAdDomainRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.domain = Domain() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

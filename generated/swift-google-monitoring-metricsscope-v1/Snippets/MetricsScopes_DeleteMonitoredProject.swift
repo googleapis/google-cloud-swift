@@ -21,13 +21,12 @@ import GoogleCloudMonitoringMetricsScopeV1
 import GoogleLongRunning
 
 func sample(client: MetricsScopesClient, metricsScopeId: String, projectId: String) async throws {
-  let poller = try await client.deleteMonitoredProjectPollingUntilDone(
+  try await client.deleteMonitoredProjectPollingUntilDone(
     request: DeleteMonitoredProjectRequest()
       .with {
         $0.name = "locations/global/metricsScopes/\(metricsScopeId)/projects/\(projectId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

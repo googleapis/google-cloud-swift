@@ -27,7 +27,7 @@ func sample(
   client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String,
   serviceClassId: String
 ) async throws {
-  let poller = try await client.updateServiceClassPollingUntilDone(
+  let response = try await client.updateServiceClassPollingUntilDone(
     request: UpdateServiceClassRequest()
       .with {
         $0.serviceClass = ServiceClass().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

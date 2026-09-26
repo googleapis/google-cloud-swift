@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: AttachedClustersClient, projectId: String, locationId: String, attachedClusterId: String
 ) async throws {
-  let poller = try await client.updateAttachedClusterPollingUntilDone(
+  let response = try await client.updateAttachedClusterPollingUntilDone(
     request: UpdateAttachedClusterRequest()
       .with {
         $0.attachedCluster = AttachedCluster().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

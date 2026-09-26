@@ -27,7 +27,7 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   taskId: String
 ) async throws {
-  let poller = try await client.updateTaskPollingUntilDone(
+  let response = try await client.updateTaskPollingUntilDone(
     request: UpdateTaskRequest()
       .with {
         $0.task = Task().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

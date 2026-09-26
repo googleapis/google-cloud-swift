@@ -24,11 +24,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: SecureSourceManagerClient) async throws {
-  let poller = try await client.batchCreatePullRequestCommentsPollingUntilDone(
+  let response = try await client.batchCreatePullRequestCommentsPollingUntilDone(
     request: BatchCreatePullRequestCommentsRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

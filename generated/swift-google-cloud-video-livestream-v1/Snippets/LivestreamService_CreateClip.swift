@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let poller = try await client.createClipPollingUntilDone(
+  let response = try await client.createClipPollingUntilDone(
     request: CreateClipRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"
@@ -33,7 +33,6 @@ func sample(
         $0.clip = Clip() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

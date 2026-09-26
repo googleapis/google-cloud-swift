@@ -25,11 +25,10 @@
   import GoogleWKT
 
   func sample(client: DeploymentResourcePoolServiceClient) async throws {
-    let poller = try await client.createDeploymentResourcePoolPollingUntilDone(
+    let response = try await client.createDeploymentResourcePoolPollingUntilDone(
       request: CreateDeploymentResourcePoolRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -75,7 +75,7 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// @Snippet(path: "LicenseManager_CreateConfiguration")
   public func createConfigurationPollingUntilDone(
     request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Configuration>.State in
@@ -89,12 +89,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Configuration.
@@ -111,7 +112,7 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// @Snippet(path: "LicenseManager_UpdateConfiguration")
   public func updateConfigurationPollingUntilDone(
     request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Configuration>.State in
@@ -125,12 +126,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Configuration.
@@ -147,7 +149,7 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// @Snippet(path: "LicenseManager_DeleteConfiguration")
   public func deleteConfigurationPollingUntilDone(
     request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -160,12 +162,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists Instances in a given project and location.
@@ -200,7 +203,7 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// @Snippet(path: "LicenseManager_DeactivateConfiguration")
   public func deactivateConfigurationPollingUntilDone(
     request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Configuration>.State in
@@ -214,12 +217,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Reactivates the given configuration.
@@ -236,7 +240,7 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// @Snippet(path: "LicenseManager_ReactivateConfiguration")
   public func reactivateConfigurationPollingUntilDone(
     request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Configuration>.State in
@@ -250,12 +254,13 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// License Usage information for a Configuration.
@@ -382,7 +387,7 @@ extension Clients {
     /// See `LicenseManagerClient.createConfiguration`.
     func createConfigurationPollingUntilDone(
       request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
+    ) async throws -> Configuration
 
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfiguration(
@@ -392,7 +397,7 @@ extension Clients {
     /// See `LicenseManagerClient.updateConfiguration`.
     func updateConfigurationPollingUntilDone(
       request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
+    ) async throws -> Configuration
 
     /// See `LicenseManagerClient.deleteConfiguration`.
     func deleteConfiguration(
@@ -402,7 +407,7 @@ extension Clients {
     /// See `LicenseManagerClient.deleteConfiguration`.
     func deleteConfigurationPollingUntilDone(
       request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LicenseManagerClient.listInstances`.
     func listInstances(
@@ -422,7 +427,7 @@ extension Clients {
     /// See `LicenseManagerClient.deactivateConfiguration`.
     func deactivateConfigurationPollingUntilDone(
       request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
+    ) async throws -> Configuration
 
     /// See `LicenseManagerClient.reactivateConfiguration`.
     func reactivateConfiguration(
@@ -432,7 +437,7 @@ extension Clients {
     /// See `LicenseManagerClient.reactivateConfiguration`.
     func reactivateConfigurationPollingUntilDone(
       request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Configuration>
+    ) async throws -> Configuration
 
     /// See `LicenseManagerClient.queryConfigurationLicenseUsage`.
     func queryConfigurationLicenseUsage(
@@ -560,27 +565,22 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func createConfigurationPollingUntilDone(request: CreateConfigurationRequest) async throws
-    -> any GoogleGax.PollableOperation<Configuration>
+    -> Configuration
   {
-    try await self.createConfigurationPollingUntilDone(request: request, options: .init())
+    return try await self.createConfigurationPollingUntilDone(request: request, options: .init())
   }
 
   public func createConfigurationPollingUntilDone(
     request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<Configuration>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Configuration {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createConfigurationPollingUntilDone(
     parent: Swift.String,
     configuration: Configuration?,
     configurationId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let request = CreateConfigurationRequest().with {
       $0.parent = parent
       $0.configuration = configuration
@@ -602,26 +602,21 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func updateConfigurationPollingUntilDone(request: UpdateConfigurationRequest) async throws
-    -> any GoogleGax.PollableOperation<Configuration>
+    -> Configuration
   {
-    try await self.updateConfigurationPollingUntilDone(request: request, options: .init())
+    return try await self.updateConfigurationPollingUntilDone(request: request, options: .init())
   }
 
   public func updateConfigurationPollingUntilDone(
     request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<Configuration>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Configuration {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateConfigurationPollingUntilDone(
     configuration: Configuration?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let request = UpdateConfigurationRequest().with {
       $0.configuration = configuration
       $0.updateMask = updateMask
@@ -642,28 +637,23 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func deleteConfigurationPollingUntilDone(request: DeleteConfigurationRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
   {
     try await self.deleteConfigurationPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteConfigurationPollingUntilDone(
     request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteConfigurationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteConfigurationRequest().with {
       $0.name = name
     }
-    return try await self.deleteConfigurationPollingUntilDone(request: request)
+    try await self.deleteConfigurationPollingUntilDone(request: request)
   }
 
   public func listInstances(request: ListInstancesRequest) async throws
@@ -743,25 +733,21 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func deactivateConfigurationPollingUntilDone(request: DeactivateConfigurationRequest)
-    async throws -> any GoogleGax.PollableOperation<Configuration>
+    async throws -> Configuration
   {
-    try await self.deactivateConfigurationPollingUntilDone(request: request, options: .init())
+    return try await self.deactivateConfigurationPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func deactivateConfigurationPollingUntilDone(
     request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<Configuration>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Configuration {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deactivateConfigurationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let request = DeactivateConfigurationRequest().with {
       $0.name = name
     }
@@ -781,25 +767,21 @@ extension Clients.LicenseManagerProtocol {
   }
 
   public func reactivateConfigurationPollingUntilDone(request: ReactivateConfigurationRequest)
-    async throws -> any GoogleGax.PollableOperation<Configuration>
+    async throws -> Configuration
   {
-    try await self.reactivateConfigurationPollingUntilDone(request: request, options: .init())
+    return try await self.reactivateConfigurationPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func reactivateConfigurationPollingUntilDone(
     request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<Configuration>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Configuration {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func reactivateConfigurationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Configuration> {
+  ) async throws -> Configuration {
     let request = ReactivateConfigurationRequest().with {
       $0.name = name
     }

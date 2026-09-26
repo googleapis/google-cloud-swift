@@ -26,14 +26,13 @@ func sample(
   client: WarehouseClient, projectNumberId: String, locationId: String, corpusId: String,
   assetId: String
 ) async throws {
-  let poller = try await client.deleteAssetPollingUntilDone(
+  try await client.deleteAssetPollingUntilDone(
     request: DeleteAssetRequest()
       .with {
         $0.name =
           "projects/\(projectNumberId)/locations/\(locationId)/corpora/\(corpusId)/assets/\(assetId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

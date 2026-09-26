@@ -78,7 +78,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_CreateCluster")
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Cluster>.State in
@@ -91,12 +91,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Cluster.
@@ -113,7 +114,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_UpdateCluster")
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Cluster>.State in
@@ -126,12 +127,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Cluster.
@@ -148,7 +150,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_DeleteCluster")
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -161,12 +163,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists Streams in a given project and location.
@@ -201,7 +204,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_CreateStream")
   public func createStreamPollingUntilDone(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Stream> {
+  ) async throws -> Stream {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Stream>.State in
@@ -214,12 +217,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Stream.
@@ -236,7 +240,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_UpdateStream")
   public func updateStreamPollingUntilDone(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Stream> {
+  ) async throws -> Stream {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Stream>.State in
@@ -249,12 +253,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Stream.
@@ -271,7 +276,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_DeleteStream")
   public func deleteStreamPollingUntilDone(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -284,12 +289,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets the thumbnail (image snapshot) of a single Stream.
@@ -306,7 +312,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_GetStreamThumbnail")
   public func getStreamThumbnailPollingUntilDone(
     request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GetStreamThumbnailResponse> {
+  ) async throws -> GetStreamThumbnailResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GetStreamThumbnailResponse>.State in
@@ -321,12 +327,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Generate the JWT auth token required to get the stream HLS contents.
@@ -370,7 +377,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_CreateEvent")
   public func createEventPollingUntilDone(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Event> {
+  ) async throws -> Event {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Event>.State in
@@ -383,12 +390,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Event.
@@ -405,7 +413,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_UpdateEvent")
   public func updateEventPollingUntilDone(
     request: UpdateEventRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Event> {
+  ) async throws -> Event {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Event>.State in
@@ -418,12 +426,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Event.
@@ -440,7 +449,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_DeleteEvent")
   public func deleteEventPollingUntilDone(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -453,12 +462,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists Series in a given project and location.
@@ -493,7 +503,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_CreateSeries")
   public func createSeriesPollingUntilDone(
     request: CreateSeriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Series> {
+  ) async throws -> Series {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Series>.State in
@@ -506,12 +516,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Event.
@@ -528,7 +539,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_UpdateSeries")
   public func updateSeriesPollingUntilDone(
     request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Series> {
+  ) async throws -> Series {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Series>.State in
@@ -541,12 +552,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Series.
@@ -563,7 +575,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_DeleteSeries")
   public func deleteSeriesPollingUntilDone(
     request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -576,12 +588,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Materialize a channel.
@@ -598,7 +611,7 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// @Snippet(path: "StreamsService_MaterializeChannel")
   public func materializeChannelPollingUntilDone(
     request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Channel>.State in
@@ -611,12 +624,13 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -707,7 +721,7 @@ extension Clients {
     /// See `StreamsServiceClient.createCluster`.
     func createClusterPollingUntilDone(
       request: CreateClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
+    ) async throws -> Cluster
 
     /// See `StreamsServiceClient.updateCluster`.
     func updateCluster(
@@ -717,7 +731,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateCluster`.
     func updateClusterPollingUntilDone(
       request: UpdateClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Cluster>
+    ) async throws -> Cluster
 
     /// See `StreamsServiceClient.deleteCluster`.
     func deleteCluster(
@@ -727,7 +741,7 @@ extension Clients {
     /// See `StreamsServiceClient.deleteCluster`.
     func deleteClusterPollingUntilDone(
       request: DeleteClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `StreamsServiceClient.listStreams`.
     func listStreams(
@@ -747,7 +761,7 @@ extension Clients {
     /// See `StreamsServiceClient.createStream`.
     func createStreamPollingUntilDone(
       request: CreateStreamRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Stream>
+    ) async throws -> Stream
 
     /// See `StreamsServiceClient.updateStream`.
     func updateStream(
@@ -757,7 +771,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateStream`.
     func updateStreamPollingUntilDone(
       request: UpdateStreamRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Stream>
+    ) async throws -> Stream
 
     /// See `StreamsServiceClient.deleteStream`.
     func deleteStream(
@@ -767,7 +781,7 @@ extension Clients {
     /// See `StreamsServiceClient.deleteStream`.
     func deleteStreamPollingUntilDone(
       request: DeleteStreamRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `StreamsServiceClient.getStreamThumbnail`.
     func getStreamThumbnail(
@@ -777,7 +791,7 @@ extension Clients {
     /// See `StreamsServiceClient.getStreamThumbnail`.
     func getStreamThumbnailPollingUntilDone(
       request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GetStreamThumbnailResponse>
+    ) async throws -> GetStreamThumbnailResponse
 
     /// See `StreamsServiceClient.generateStreamHlsToken`.
     func generateStreamHlsToken(
@@ -802,7 +816,7 @@ extension Clients {
     /// See `StreamsServiceClient.createEvent`.
     func createEventPollingUntilDone(
       request: CreateEventRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Event>
+    ) async throws -> Event
 
     /// See `StreamsServiceClient.updateEvent`.
     func updateEvent(
@@ -812,7 +826,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateEvent`.
     func updateEventPollingUntilDone(
       request: UpdateEventRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Event>
+    ) async throws -> Event
 
     /// See `StreamsServiceClient.deleteEvent`.
     func deleteEvent(
@@ -822,7 +836,7 @@ extension Clients {
     /// See `StreamsServiceClient.deleteEvent`.
     func deleteEventPollingUntilDone(
       request: DeleteEventRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `StreamsServiceClient.listSeries`.
     func listSeries(
@@ -842,7 +856,7 @@ extension Clients {
     /// See `StreamsServiceClient.createSeries`.
     func createSeriesPollingUntilDone(
       request: CreateSeriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Series>
+    ) async throws -> Series
 
     /// See `StreamsServiceClient.updateSeries`.
     func updateSeries(
@@ -852,7 +866,7 @@ extension Clients {
     /// See `StreamsServiceClient.updateSeries`.
     func updateSeriesPollingUntilDone(
       request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Series>
+    ) async throws -> Series
 
     /// See `StreamsServiceClient.deleteSeries`.
     func deleteSeries(
@@ -862,7 +876,7 @@ extension Clients {
     /// See `StreamsServiceClient.deleteSeries`.
     func deleteSeriesPollingUntilDone(
       request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `StreamsServiceClient.materializeChannel`.
     func materializeChannel(
@@ -872,7 +886,7 @@ extension Clients {
     /// See `StreamsServiceClient.materializeChannel`.
     func materializeChannelPollingUntilDone(
       request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Channel>
+    ) async throws -> Channel
 
     /// See `StreamsServiceClient.listLocations`.
     func listLocations(
@@ -976,27 +990,21 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Cluster>
-  {
-    try await self.createClusterPollingUntilDone(request: request, options: .init())
+  public func createClusterPollingUntilDone(request: CreateClusterRequest) async throws -> Cluster {
+    return try await self.createClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createClusterPollingUntilDone(
     parent: Swift.String,
     cluster: Cluster?,
     clusterId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let request = CreateClusterRequest().with {
       $0.parent = parent
       $0.cluster = cluster
@@ -1017,26 +1025,20 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Cluster>
-  {
-    try await self.updateClusterPollingUntilDone(request: request, options: .init())
+  public func updateClusterPollingUntilDone(request: UpdateClusterRequest) async throws -> Cluster {
+    return try await self.updateClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Cluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Cluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateClusterPollingUntilDone(
     cluster: Cluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Cluster> {
+  ) async throws -> Cluster {
     let request = UpdateClusterRequest().with {
       $0.cluster = cluster
       $0.updateMask = updateMask
@@ -1056,29 +1058,23 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteClusterPollingUntilDone(request: DeleteClusterRequest) async throws {
     try await self.deleteClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteClusterPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteClusterPollingUntilDone(request: request)
+    try await self.deleteClusterPollingUntilDone(request: request)
   }
 
   public func listStreams(request: ListStreamsRequest) async throws
@@ -1153,27 +1149,21 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createStreamPollingUntilDone(request: CreateStreamRequest) async throws
-    -> any GoogleGax.PollableOperation<Stream>
-  {
-    try await self.createStreamPollingUntilDone(request: request, options: .init())
+  public func createStreamPollingUntilDone(request: CreateStreamRequest) async throws -> Stream {
+    return try await self.createStreamPollingUntilDone(request: request, options: .init())
   }
 
   public func createStreamPollingUntilDone(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Stream> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Stream {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createStreamPollingUntilDone(
     parent: Swift.String,
     stream: Stream?,
     streamId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Stream> {
+  ) async throws -> Stream {
     let request = CreateStreamRequest().with {
       $0.parent = parent
       $0.stream = stream
@@ -1193,26 +1183,20 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateStreamPollingUntilDone(request: UpdateStreamRequest) async throws
-    -> any GoogleGax.PollableOperation<Stream>
-  {
-    try await self.updateStreamPollingUntilDone(request: request, options: .init())
+  public func updateStreamPollingUntilDone(request: UpdateStreamRequest) async throws -> Stream {
+    return try await self.updateStreamPollingUntilDone(request: request, options: .init())
   }
 
   public func updateStreamPollingUntilDone(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Stream> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Stream>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Stream {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateStreamPollingUntilDone(
     stream: Stream?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Stream> {
+  ) async throws -> Stream {
     let request = UpdateStreamRequest().with {
       $0.stream = stream
       $0.updateMask = updateMask
@@ -1231,29 +1215,23 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteStreamPollingUntilDone(request: DeleteStreamRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteStreamPollingUntilDone(request: DeleteStreamRequest) async throws {
     try await self.deleteStreamPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteStreamPollingUntilDone(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteStreamPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteStreamRequest().with {
       $0.name = name
     }
-    return try await self.deleteStreamPollingUntilDone(request: request)
+    try await self.deleteStreamPollingUntilDone(request: request)
   }
 
   public func getStreamThumbnail(request: GetStreamThumbnailRequest) async throws
@@ -1269,27 +1247,21 @@ extension Clients.StreamsServiceProtocol {
   }
 
   public func getStreamThumbnailPollingUntilDone(request: GetStreamThumbnailRequest) async throws
-    -> any GoogleGax.PollableOperation<GetStreamThumbnailResponse>
+    -> GetStreamThumbnailResponse
   {
-    try await self.getStreamThumbnailPollingUntilDone(request: request, options: .init())
+    return try await self.getStreamThumbnailPollingUntilDone(request: request, options: .init())
   }
 
   public func getStreamThumbnailPollingUntilDone(
     request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GetStreamThumbnailResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<GetStreamThumbnailResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GetStreamThumbnailResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func getStreamThumbnailPollingUntilDone(
     stream: Swift.String,
     gcsObjectName: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GetStreamThumbnailResponse> {
+  ) async throws -> GetStreamThumbnailResponse {
     let request = GetStreamThumbnailRequest().with {
       $0.stream = stream
       $0.gcsObjectName = gcsObjectName
@@ -1389,27 +1361,21 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createEventPollingUntilDone(request: CreateEventRequest) async throws -> any GoogleGax
-    .PollableOperation<Event>
-  {
-    try await self.createEventPollingUntilDone(request: request, options: .init())
+  public func createEventPollingUntilDone(request: CreateEventRequest) async throws -> Event {
+    return try await self.createEventPollingUntilDone(request: request, options: .init())
   }
 
   public func createEventPollingUntilDone(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Event> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Event>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Event {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEventPollingUntilDone(
     parent: Swift.String,
     event: Event?,
     eventId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Event> {
+  ) async throws -> Event {
     let request = CreateEventRequest().with {
       $0.parent = parent
       $0.event = event
@@ -1428,26 +1394,20 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateEventPollingUntilDone(request: UpdateEventRequest) async throws -> any GoogleGax
-    .PollableOperation<Event>
-  {
-    try await self.updateEventPollingUntilDone(request: request, options: .init())
+  public func updateEventPollingUntilDone(request: UpdateEventRequest) async throws -> Event {
+    return try await self.updateEventPollingUntilDone(request: request, options: .init())
   }
 
   public func updateEventPollingUntilDone(
     request: UpdateEventRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Event> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Event>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Event {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEventPollingUntilDone(
     event: Event?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Event> {
+  ) async throws -> Event {
     let request = UpdateEventRequest().with {
       $0.event = event
       $0.updateMask = updateMask
@@ -1465,29 +1425,23 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEventPollingUntilDone(request: DeleteEventRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteEventPollingUntilDone(request: DeleteEventRequest) async throws {
     try await self.deleteEventPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEventPollingUntilDone(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEventPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEventRequest().with {
       $0.name = name
     }
-    return try await self.deleteEventPollingUntilDone(request: request)
+    try await self.deleteEventPollingUntilDone(request: request)
   }
 
   public func listSeries(request: ListSeriesRequest) async throws
@@ -1562,27 +1516,21 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createSeriesPollingUntilDone(request: CreateSeriesRequest) async throws
-    -> any GoogleGax.PollableOperation<Series>
-  {
-    try await self.createSeriesPollingUntilDone(request: request, options: .init())
+  public func createSeriesPollingUntilDone(request: CreateSeriesRequest) async throws -> Series {
+    return try await self.createSeriesPollingUntilDone(request: request, options: .init())
   }
 
   public func createSeriesPollingUntilDone(
     request: CreateSeriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Series> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Series>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Series {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createSeriesPollingUntilDone(
     parent: Swift.String,
     series: Series?,
     seriesId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Series> {
+  ) async throws -> Series {
     let request = CreateSeriesRequest().with {
       $0.parent = parent
       $0.series = series
@@ -1602,26 +1550,20 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateSeriesPollingUntilDone(request: UpdateSeriesRequest) async throws
-    -> any GoogleGax.PollableOperation<Series>
-  {
-    try await self.updateSeriesPollingUntilDone(request: request, options: .init())
+  public func updateSeriesPollingUntilDone(request: UpdateSeriesRequest) async throws -> Series {
+    return try await self.updateSeriesPollingUntilDone(request: request, options: .init())
   }
 
   public func updateSeriesPollingUntilDone(
     request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Series> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Series>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Series {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateSeriesPollingUntilDone(
     series: Series?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Series> {
+  ) async throws -> Series {
     let request = UpdateSeriesRequest().with {
       $0.series = series
       $0.updateMask = updateMask
@@ -1640,29 +1582,23 @@ extension Clients.StreamsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSeriesPollingUntilDone(request: DeleteSeriesRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteSeriesPollingUntilDone(request: DeleteSeriesRequest) async throws {
     try await self.deleteSeriesPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSeriesPollingUntilDone(
     request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSeriesPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSeriesRequest().with {
       $0.name = name
     }
-    return try await self.deleteSeriesPollingUntilDone(request: request)
+    try await self.deleteSeriesPollingUntilDone(request: request)
   }
 
   public func materializeChannel(request: MaterializeChannelRequest) async throws
@@ -1678,26 +1614,22 @@ extension Clients.StreamsServiceProtocol {
   }
 
   public func materializeChannelPollingUntilDone(request: MaterializeChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Channel>
+    -> Channel
   {
-    try await self.materializeChannelPollingUntilDone(request: request, options: .init())
+    return try await self.materializeChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func materializeChannelPollingUntilDone(
     request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Channel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Channel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func materializeChannelPollingUntilDone(
     parent: Swift.String,
     channel: Channel?,
     channelId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Channel> {
+  ) async throws -> Channel {
     let request = MaterializeChannelRequest().with {
       $0.parent = parent
       $0.channel = channel

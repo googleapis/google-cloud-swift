@@ -28,7 +28,7 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String, featureViewId: String
   ) async throws {
-    let poller = try await client.updateFeatureViewPollingUntilDone(
+    let response = try await client.updateFeatureViewPollingUntilDone(
       request: UpdateFeatureViewRequest()
         .with {
           $0.featureView = FeatureView().with {
@@ -38,7 +38,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

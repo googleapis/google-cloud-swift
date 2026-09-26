@@ -147,7 +147,7 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// @Snippet(path: "StorageTransferService_RunTransferJob")
   public func runTransferJobPollingUntilDone(
     request: RunTransferJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -160,12 +160,13 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Deletes a transfer job. Deleting a transfer job sets its status to
@@ -332,7 +333,7 @@ extension Clients {
     /// See `StorageTransferServiceClient.runTransferJob`.
     func runTransferJobPollingUntilDone(
       request: RunTransferJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `StorageTransferServiceClient.deleteTransferJob`.
     func deleteTransferJob(
@@ -492,20 +493,14 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runTransferJobPollingUntilDone(request: RunTransferJobRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func runTransferJobPollingUntilDone(request: RunTransferJobRequest) async throws {
     try await self.runTransferJobPollingUntilDone(request: request, options: .init())
   }
 
   public func runTransferJobPollingUntilDone(
     request: RunTransferJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteTransferJob(request: DeleteTransferJobRequest) async throws {

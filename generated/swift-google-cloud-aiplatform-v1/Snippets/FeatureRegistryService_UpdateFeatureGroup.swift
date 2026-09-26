@@ -28,7 +28,7 @@
     client: FeatureRegistryServiceClient, projectId: String, locationId: String,
     featureGroupId: String
   ) async throws {
-    let poller = try await client.updateFeatureGroupPollingUntilDone(
+    let response = try await client.updateFeatureGroupPollingUntilDone(
       request: UpdateFeatureGroupRequest()
         .with {
           $0.featureGroup = FeatureGroup().with {
@@ -38,7 +38,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

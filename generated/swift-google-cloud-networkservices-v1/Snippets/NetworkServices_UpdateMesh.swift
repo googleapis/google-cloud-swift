@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: NetworkServicesClient, projectId: String, locationId: String, meshId: String)
   async throws
 {
-  let poller = try await client.updateMeshPollingUntilDone(
+  let response = try await client.updateMeshPollingUntilDone(
     request: UpdateMeshRequest()
       .with {
         $0.mesh = Mesh().with {
@@ -35,7 +35,6 @@ func sample(client: NetworkServicesClient, projectId: String, locationId: String
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

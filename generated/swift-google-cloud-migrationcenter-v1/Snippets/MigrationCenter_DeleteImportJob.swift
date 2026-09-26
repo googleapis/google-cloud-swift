@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, importJobId: String
 ) async throws {
-  let poller = try await client.deleteImportJobPollingUntilDone(
+  try await client.deleteImportJobPollingUntilDone(
     request: DeleteImportJobRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/importJobs/\(importJobId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

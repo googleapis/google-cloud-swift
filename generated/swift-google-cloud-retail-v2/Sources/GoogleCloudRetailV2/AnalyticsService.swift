@@ -62,7 +62,7 @@ public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sen
   /// @Snippet(path: "AnalyticsService_ExportAnalyticsMetrics")
   public func exportAnalyticsMetricsPollingUntilDone(
     request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse> {
+  ) async throws -> ExportAnalyticsMetricsResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
@@ -77,12 +77,13 @@ public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -123,7 +124,7 @@ extension Clients {
     /// See `AnalyticsServiceClient.exportAnalyticsMetrics`.
     func exportAnalyticsMetricsPollingUntilDone(
       request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse>
+    ) async throws -> ExportAnalyticsMetricsResponse
 
     /// See `AnalyticsServiceClient.listOperations`.
     func listOperations(
@@ -147,21 +148,15 @@ extension Clients.AnalyticsServiceProtocol {
   }
 
   public func exportAnalyticsMetricsPollingUntilDone(request: ExportAnalyticsMetricsRequest)
-    async throws -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse>
+    async throws -> ExportAnalyticsMetricsResponse
   {
-    try await self.exportAnalyticsMetricsPollingUntilDone(request: request, options: .init())
+    return try await self.exportAnalyticsMetricsPollingUntilDone(request: request, options: .init())
   }
 
   public func exportAnalyticsMetricsPollingUntilDone(
     request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportAnalyticsMetricsResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ExportAnalyticsMetricsResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportAnalyticsMetricsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

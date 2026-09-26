@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AccessContextManagerClient, accessPolicyId: String, servicePerimeterId: String)
   async throws
 {
-  let poller = try await client.updateServicePerimeterPollingUntilDone(
+  let response = try await client.updateServicePerimeterPollingUntilDone(
     request: UpdateServicePerimeterRequest()
       .with {
         $0.servicePerimeter = ServicePerimeter().with {
@@ -34,7 +34,6 @@ func sample(client: AccessContextManagerClient, accessPolicyId: String, serviceP
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

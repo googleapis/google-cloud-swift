@@ -24,14 +24,13 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let poller = try await client.createScopeRbacroleBindingPollingUntilDone(
+  let response = try await client.createScopeRbacroleBindingPollingUntilDone(
     request: CreateScopeRBACRoleBindingRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"
         $0.rbacrolebinding = RBACRoleBinding() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

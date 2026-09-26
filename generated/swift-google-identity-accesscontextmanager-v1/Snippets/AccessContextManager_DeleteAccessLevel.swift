@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: AccessContextManagerClient, accessPolicyId: String, accessLevelId: String)
   async throws
 {
-  let poller = try await client.deleteAccessLevelPollingUntilDone(
+  try await client.deleteAccessLevelPollingUntilDone(
     request: DeleteAccessLevelRequest()
       .with {
         $0.name = "accessPolicies/\(accessPolicyId)/accessLevels/\(accessLevelId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

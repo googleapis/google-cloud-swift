@@ -26,14 +26,13 @@ func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, resourceBundleId: String,
   releaseId: String, variantId: String
 ) async throws {
-  let poller = try await client.deleteVariantPollingUntilDone(
+  try await client.deleteVariantPollingUntilDone(
     request: DeleteVariantRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/resourceBundles/\(resourceBundleId)/releases/\(releaseId)/variants/\(variantId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

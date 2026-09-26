@@ -63,7 +63,7 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// @Snippet(path: "Deployment_CreateFrameworkDeployment")
   public func createFrameworkDeploymentPollingUntilDone(
     request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment> {
+  ) async throws -> FrameworkDeployment {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FrameworkDeployment>.State in
@@ -77,12 +77,13 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a framework deployment.
@@ -99,7 +100,7 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// @Snippet(path: "Deployment_DeleteFrameworkDeployment")
   public func deleteFrameworkDeploymentPollingUntilDone(
     request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -112,12 +113,13 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets details about a framework deployment.
@@ -251,7 +253,7 @@ extension Clients {
     /// See `DeploymentClient.createFrameworkDeployment`.
     func createFrameworkDeploymentPollingUntilDone(
       request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
+    ) async throws -> FrameworkDeployment
 
     /// See `DeploymentClient.deleteFrameworkDeployment`.
     func deleteFrameworkDeployment(
@@ -261,7 +263,7 @@ extension Clients {
     /// See `DeploymentClient.deleteFrameworkDeployment`.
     func deleteFrameworkDeploymentPollingUntilDone(
       request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DeploymentClient.getFrameworkDeployment`.
     func getFrameworkDeployment(
@@ -325,27 +327,23 @@ extension Clients.DeploymentProtocol {
   }
 
   public func createFrameworkDeploymentPollingUntilDone(request: CreateFrameworkDeploymentRequest)
-    async throws -> any GoogleGax.PollableOperation<FrameworkDeployment>
+    async throws -> FrameworkDeployment
   {
-    try await self.createFrameworkDeploymentPollingUntilDone(request: request, options: .init())
+    return try await self.createFrameworkDeploymentPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createFrameworkDeploymentPollingUntilDone(
     request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FrameworkDeployment>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FrameworkDeployment {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createFrameworkDeploymentPollingUntilDone(
     parent: Swift.String,
     frameworkDeployment: FrameworkDeployment?,
     frameworkDeploymentId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<FrameworkDeployment> {
+  ) async throws -> FrameworkDeployment {
     let request = CreateFrameworkDeploymentRequest().with {
       $0.parent = parent
       $0.frameworkDeployment = frameworkDeployment
@@ -367,28 +365,24 @@ extension Clients.DeploymentProtocol {
   }
 
   public func deleteFrameworkDeploymentPollingUntilDone(request: DeleteFrameworkDeploymentRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteFrameworkDeploymentPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteFrameworkDeploymentPollingUntilDone(
     request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteFrameworkDeploymentPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteFrameworkDeploymentRequest().with {
       $0.name = name
     }
-    return try await self.deleteFrameworkDeploymentPollingUntilDone(request: request)
+    try await self.deleteFrameworkDeploymentPollingUntilDone(request: request)
   }
 
   public func getFrameworkDeployment(request: GetFrameworkDeploymentRequest) async throws

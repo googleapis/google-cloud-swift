@@ -26,14 +26,13 @@ func sample(
   client: MigrationCenterClient, projectId: String, locationId: String, importJobId: String,
   importDataFileId: String
 ) async throws {
-  let poller = try await client.deleteImportDataFilePollingUntilDone(
+  try await client.deleteImportDataFilePollingUntilDone(
     request: DeleteImportDataFileRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/importJobs/\(importJobId)/importDataFiles/\(importDataFileId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

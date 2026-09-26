@@ -28,14 +28,13 @@
     client: FeaturestoreServiceClient, projectId: String, locationId: String,
     featurestoreId: String, entityTypeId: String
   ) async throws {
-    let poller = try await client.deleteEntityTypePollingUntilDone(
+    try await client.deleteEntityTypePollingUntilDone(
       request: DeleteEntityTypeRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/featurestores/\(featurestoreId)/entityTypes/\(entityTypeId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

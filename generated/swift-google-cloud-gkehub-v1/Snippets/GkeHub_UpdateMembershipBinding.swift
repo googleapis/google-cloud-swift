@@ -25,7 +25,7 @@ func sample(
   client: GkeHubClient, projectId: String, locationId: String, membershipId: String,
   membershipbindingId: String
 ) async throws {
-  let poller = try await client.updateMembershipBindingPollingUntilDone(
+  let response = try await client.updateMembershipBindingPollingUntilDone(
     request: UpdateMembershipBindingRequest()
       .with {
         $0.membershipBinding = MembershipBinding().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

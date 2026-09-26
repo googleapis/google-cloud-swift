@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(client: ApiKeysClient, projectId: String, locationId: String, keyId: String)
   async throws
 {
-  let poller = try await client.undeleteKeyPollingUntilDone(
+  let response = try await client.undeleteKeyPollingUntilDone(
     request: UndeleteKeyRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/keys/\(keyId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

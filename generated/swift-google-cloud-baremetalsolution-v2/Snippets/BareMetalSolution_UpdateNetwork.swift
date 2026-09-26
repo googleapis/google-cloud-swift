@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BareMetalSolutionClient, projectId: String, locationId: String, networkId: String
 ) async throws {
-  let poller = try await client.updateNetworkPollingUntilDone(
+  let response = try await client.updateNetworkPollingUntilDone(
     request: UpdateNetworkRequest()
       .with {
         $0.network = Network().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -23,13 +23,12 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ProjectsClient, projectId: String) async throws {
-  let poller = try await client.deleteProjectPollingUntilDone(
+  let response = try await client.deleteProjectPollingUntilDone(
     request: DeleteProjectRequest()
       .with {
         $0.name = "projects/\(projectId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

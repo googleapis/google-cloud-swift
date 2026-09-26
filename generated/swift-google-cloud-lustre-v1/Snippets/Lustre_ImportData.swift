@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LustreClient) async throws {
-  let poller = try await client.importDataPollingUntilDone(
+  let response = try await client.importDataPollingUntilDone(
     request: ImportDataRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

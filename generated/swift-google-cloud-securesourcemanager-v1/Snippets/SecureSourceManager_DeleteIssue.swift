@@ -27,14 +27,13 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   issueId: String
 ) async throws {
-  let poller = try await client.deleteIssuePollingUntilDone(
+  try await client.deleteIssuePollingUntilDone(
     request: DeleteIssueRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/issues/\(issueId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

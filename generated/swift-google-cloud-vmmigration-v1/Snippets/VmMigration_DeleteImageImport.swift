@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: VmMigrationClient, projectId: String, locationId: String, jobId: String)
   async throws
 {
-  let poller = try await client.deleteImageImportPollingUntilDone(
+  try await client.deleteImageImportPollingUntilDone(
     request: DeleteImageImportRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/imageImports/\(jobId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

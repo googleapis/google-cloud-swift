@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let poller = try await client.deleteScopePollingUntilDone(
+  try await client.deleteScopePollingUntilDone(
     request: DeleteScopeRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/scopes/\(scopeId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

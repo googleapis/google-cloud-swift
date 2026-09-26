@@ -27,14 +27,13 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   hookId: String
 ) async throws {
-  let poller = try await client.deleteHookPollingUntilDone(
+  try await client.deleteHookPollingUntilDone(
     request: DeleteHookRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/hooks/\(hookId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

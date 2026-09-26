@@ -24,11 +24,10 @@
   import GoogleLongRunning
 
   func sample(client: GenAiTuningServiceClient) async throws {
-    let poller = try await client.rebaseTunedModelPollingUntilDone(
+    let response = try await client.rebaseTunedModelPollingUntilDone(
       request: RebaseTunedModelRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

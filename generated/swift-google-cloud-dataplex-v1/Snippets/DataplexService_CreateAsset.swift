@@ -27,7 +27,7 @@ func sample(
   client: DataplexServiceClient, projectId: String, locationId: String, lakeId: String,
   zoneId: String
 ) async throws {
-  let poller = try await client.createAssetPollingUntilDone(
+  let response = try await client.createAssetPollingUntilDone(
     request: CreateAssetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/lakes/\(lakeId)/zones/\(zoneId)"
@@ -35,7 +35,6 @@ func sample(
         $0.asset = Asset() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

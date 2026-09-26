@@ -62,7 +62,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_CreateEntryType")
   public func createEntryTypePollingUntilDone(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryType> {
+  ) async throws -> EntryType {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EntryType>.State in
@@ -75,12 +75,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an EntryType.
@@ -97,7 +98,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_UpdateEntryType")
   public func updateEntryTypePollingUntilDone(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryType> {
+  ) async throws -> EntryType {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EntryType>.State in
@@ -110,12 +111,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an EntryType.
@@ -132,7 +134,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_DeleteEntryType")
   public func deleteEntryTypePollingUntilDone(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -145,12 +147,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists EntryType resources in a project and location.
@@ -185,7 +188,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_CreateAspectType")
   public func createAspectTypePollingUntilDone(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AspectType> {
+  ) async throws -> AspectType {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AspectType>.State in
@@ -198,12 +201,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an AspectType.
@@ -220,7 +224,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_UpdateAspectType")
   public func updateAspectTypePollingUntilDone(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AspectType> {
+  ) async throws -> AspectType {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AspectType>.State in
@@ -233,12 +237,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an AspectType.
@@ -255,7 +260,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_DeleteAspectType")
   public func deleteAspectTypePollingUntilDone(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -268,12 +273,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists AspectType resources in a project and location.
@@ -308,7 +314,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_CreateEntryGroup")
   public func createEntryGroupPollingUntilDone(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
+  ) async throws -> EntryGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
@@ -321,12 +327,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an EntryGroup.
@@ -343,7 +350,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_UpdateEntryGroup")
   public func updateEntryGroupPollingUntilDone(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
+  ) async throws -> EntryGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
@@ -356,12 +363,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an EntryGroup.
@@ -378,7 +386,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_DeleteEntryGroup")
   public func deleteEntryGroupPollingUntilDone(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -391,12 +399,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists EntryGroup resources in a project and location.
@@ -505,7 +514,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_CreateMetadataJob")
   public func createMetadataJobPollingUntilDone(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MetadataJob> {
+  ) async throws -> MetadataJob {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
@@ -518,12 +527,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets a metadata job.
@@ -626,7 +636,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_CreateMetadataFeed")
   public func createMetadataFeedPollingUntilDone(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
+  ) async throws -> MetadataFeed {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
@@ -640,12 +650,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets a MetadataFeed.
@@ -680,7 +691,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_DeleteMetadataFeed")
   public func deleteMetadataFeedPollingUntilDone(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -693,12 +704,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates a MetadataFeed.
@@ -715,7 +727,7 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// @Snippet(path: "CatalogService_UpdateMetadataFeed")
   public func updateMetadataFeedPollingUntilDone(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
+  ) async throws -> MetadataFeed {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
@@ -729,12 +741,13 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -870,7 +883,7 @@ extension Clients {
     /// See `CatalogServiceClient.createEntryType`.
     func createEntryTypePollingUntilDone(
       request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EntryType>
+    ) async throws -> EntryType
 
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryType(
@@ -880,7 +893,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryType`.
     func updateEntryTypePollingUntilDone(
       request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EntryType>
+    ) async throws -> EntryType
 
     /// See `CatalogServiceClient.deleteEntryType`.
     func deleteEntryType(
@@ -890,7 +903,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteEntryType`.
     func deleteEntryTypePollingUntilDone(
       request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CatalogServiceClient.listEntryTypes`.
     func listEntryTypes(
@@ -910,7 +923,7 @@ extension Clients {
     /// See `CatalogServiceClient.createAspectType`.
     func createAspectTypePollingUntilDone(
       request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AspectType>
+    ) async throws -> AspectType
 
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectType(
@@ -920,7 +933,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateAspectType`.
     func updateAspectTypePollingUntilDone(
       request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AspectType>
+    ) async throws -> AspectType
 
     /// See `CatalogServiceClient.deleteAspectType`.
     func deleteAspectType(
@@ -930,7 +943,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteAspectType`.
     func deleteAspectTypePollingUntilDone(
       request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CatalogServiceClient.listAspectTypes`.
     func listAspectTypes(
@@ -950,7 +963,7 @@ extension Clients {
     /// See `CatalogServiceClient.createEntryGroup`.
     func createEntryGroupPollingUntilDone(
       request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EntryGroup>
+    ) async throws -> EntryGroup
 
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroup(
@@ -960,7 +973,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateEntryGroup`.
     func updateEntryGroupPollingUntilDone(
       request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EntryGroup>
+    ) async throws -> EntryGroup
 
     /// See `CatalogServiceClient.deleteEntryGroup`.
     func deleteEntryGroup(
@@ -970,7 +983,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteEntryGroup`.
     func deleteEntryGroupPollingUntilDone(
       request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CatalogServiceClient.listEntryGroups`.
     func listEntryGroups(
@@ -1030,7 +1043,7 @@ extension Clients {
     /// See `CatalogServiceClient.createMetadataJob`.
     func createMetadataJobPollingUntilDone(
       request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MetadataJob>
+    ) async throws -> MetadataJob
 
     /// See `CatalogServiceClient.getMetadataJob`.
     func getMetadataJob(
@@ -1085,7 +1098,7 @@ extension Clients {
     /// See `CatalogServiceClient.createMetadataFeed`.
     func createMetadataFeedPollingUntilDone(
       request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MetadataFeed>
+    ) async throws -> MetadataFeed
 
     /// See `CatalogServiceClient.getMetadataFeed`.
     func getMetadataFeed(
@@ -1105,7 +1118,7 @@ extension Clients {
     /// See `CatalogServiceClient.deleteMetadataFeed`.
     func deleteMetadataFeedPollingUntilDone(
       request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeed(
@@ -1115,7 +1128,7 @@ extension Clients {
     /// See `CatalogServiceClient.updateMetadataFeed`.
     func updateMetadataFeedPollingUntilDone(
       request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MetadataFeed>
+    ) async throws -> MetadataFeed
 
     /// See `CatalogServiceClient.listLocations`.
     func listLocations(
@@ -1174,26 +1187,22 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createEntryTypePollingUntilDone(request: CreateEntryTypeRequest) async throws
-    -> any GoogleGax.PollableOperation<EntryType>
+    -> EntryType
   {
-    try await self.createEntryTypePollingUntilDone(request: request, options: .init())
+    return try await self.createEntryTypePollingUntilDone(request: request, options: .init())
   }
 
   public func createEntryTypePollingUntilDone(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryType> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EntryType {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEntryTypePollingUntilDone(
     parent: Swift.String,
     entryType: EntryType?,
     entryTypeId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EntryType> {
+  ) async throws -> EntryType {
     let request = CreateEntryTypeRequest().with {
       $0.parent = parent
       $0.entryType = entryType
@@ -1215,25 +1224,21 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateEntryTypePollingUntilDone(request: UpdateEntryTypeRequest) async throws
-    -> any GoogleGax.PollableOperation<EntryType>
+    -> EntryType
   {
-    try await self.updateEntryTypePollingUntilDone(request: request, options: .init())
+    return try await self.updateEntryTypePollingUntilDone(request: request, options: .init())
   }
 
   public func updateEntryTypePollingUntilDone(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryType> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryType>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EntryType {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEntryTypePollingUntilDone(
     entryType: EntryType?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<EntryType> {
+  ) async throws -> EntryType {
     let request = UpdateEntryTypeRequest().with {
       $0.entryType = entryType
       $0.updateMask = updateMask
@@ -1253,29 +1258,23 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEntryTypePollingUntilDone(request: DeleteEntryTypeRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteEntryTypePollingUntilDone(request: DeleteEntryTypeRequest) async throws {
     try await self.deleteEntryTypePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEntryTypePollingUntilDone(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEntryTypePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEntryTypeRequest().with {
       $0.name = name
     }
-    return try await self.deleteEntryTypePollingUntilDone(request: request)
+    try await self.deleteEntryTypePollingUntilDone(request: request)
   }
 
   public func listEntryTypes(request: ListEntryTypesRequest) async throws
@@ -1355,26 +1354,22 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createAspectTypePollingUntilDone(request: CreateAspectTypeRequest) async throws
-    -> any GoogleGax.PollableOperation<AspectType>
+    -> AspectType
   {
-    try await self.createAspectTypePollingUntilDone(request: request, options: .init())
+    return try await self.createAspectTypePollingUntilDone(request: request, options: .init())
   }
 
   public func createAspectTypePollingUntilDone(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AspectType> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AspectType {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAspectTypePollingUntilDone(
     parent: Swift.String,
     aspectType: AspectType?,
     aspectTypeId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AspectType> {
+  ) async throws -> AspectType {
     let request = CreateAspectTypeRequest().with {
       $0.parent = parent
       $0.aspectType = aspectType
@@ -1396,25 +1391,21 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateAspectTypePollingUntilDone(request: UpdateAspectTypeRequest) async throws
-    -> any GoogleGax.PollableOperation<AspectType>
+    -> AspectType
   {
-    try await self.updateAspectTypePollingUntilDone(request: request, options: .init())
+    return try await self.updateAspectTypePollingUntilDone(request: request, options: .init())
   }
 
   public func updateAspectTypePollingUntilDone(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AspectType> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AspectType>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AspectType {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateAspectTypePollingUntilDone(
     aspectType: AspectType?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<AspectType> {
+  ) async throws -> AspectType {
     let request = UpdateAspectTypeRequest().with {
       $0.aspectType = aspectType
       $0.updateMask = updateMask
@@ -1434,29 +1425,23 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAspectTypePollingUntilDone(request: DeleteAspectTypeRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteAspectTypePollingUntilDone(request: DeleteAspectTypeRequest) async throws {
     try await self.deleteAspectTypePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAspectTypePollingUntilDone(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAspectTypePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAspectTypeRequest().with {
       $0.name = name
     }
-    return try await self.deleteAspectTypePollingUntilDone(request: request)
+    try await self.deleteAspectTypePollingUntilDone(request: request)
   }
 
   public func listAspectTypes(request: ListAspectTypesRequest) async throws
@@ -1536,26 +1521,22 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createEntryGroupPollingUntilDone(request: CreateEntryGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<EntryGroup>
+    -> EntryGroup
   {
-    try await self.createEntryGroupPollingUntilDone(request: request, options: .init())
+    return try await self.createEntryGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func createEntryGroupPollingUntilDone(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EntryGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEntryGroupPollingUntilDone(
     parent: Swift.String,
     entryGroup: EntryGroup?,
     entryGroupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
+  ) async throws -> EntryGroup {
     let request = CreateEntryGroupRequest().with {
       $0.parent = parent
       $0.entryGroup = entryGroup
@@ -1577,25 +1558,21 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateEntryGroupPollingUntilDone(request: UpdateEntryGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<EntryGroup>
+    -> EntryGroup
   {
-    try await self.updateEntryGroupPollingUntilDone(request: request, options: .init())
+    return try await self.updateEntryGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateEntryGroupPollingUntilDone(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EntryGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EntryGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEntryGroupPollingUntilDone(
     entryGroup: EntryGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<EntryGroup> {
+  ) async throws -> EntryGroup {
     let request = UpdateEntryGroupRequest().with {
       $0.entryGroup = entryGroup
       $0.updateMask = updateMask
@@ -1615,29 +1592,23 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEntryGroupPollingUntilDone(request: DeleteEntryGroupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteEntryGroupPollingUntilDone(request: DeleteEntryGroupRequest) async throws {
     try await self.deleteEntryGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEntryGroupPollingUntilDone(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEntryGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEntryGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteEntryGroupPollingUntilDone(request: request)
+    try await self.deleteEntryGroupPollingUntilDone(request: request)
   }
 
   public func listEntryGroups(request: ListEntryGroupsRequest) async throws
@@ -1905,26 +1876,22 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createMetadataJobPollingUntilDone(request: CreateMetadataJobRequest) async throws
-    -> any GoogleGax.PollableOperation<MetadataJob>
+    -> MetadataJob
   {
-    try await self.createMetadataJobPollingUntilDone(request: request, options: .init())
+    return try await self.createMetadataJobPollingUntilDone(request: request, options: .init())
   }
 
   public func createMetadataJobPollingUntilDone(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MetadataJob> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataJob>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MetadataJob {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createMetadataJobPollingUntilDone(
     parent: Swift.String,
     metadataJob: MetadataJob?,
     metadataJobId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<MetadataJob> {
+  ) async throws -> MetadataJob {
     let request = CreateMetadataJobRequest().with {
       $0.parent = parent
       $0.metadataJob = metadataJob
@@ -2163,27 +2130,22 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func createMetadataFeedPollingUntilDone(request: CreateMetadataFeedRequest) async throws
-    -> any GoogleGax.PollableOperation<MetadataFeed>
+    -> MetadataFeed
   {
-    try await self.createMetadataFeedPollingUntilDone(request: request, options: .init())
+    return try await self.createMetadataFeedPollingUntilDone(request: request, options: .init())
   }
 
   public func createMetadataFeedPollingUntilDone(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MetadataFeed {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createMetadataFeedPollingUntilDone(
     parent: Swift.String,
     metadataFeed: MetadataFeed?,
     metadataFeedId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
+  ) async throws -> MetadataFeed {
     let request = CreateMetadataFeedRequest().with {
       $0.parent = parent
       $0.metadataFeed = metadataFeed
@@ -2268,29 +2230,23 @@ extension Clients.CatalogServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteMetadataFeedPollingUntilDone(request: DeleteMetadataFeedRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteMetadataFeedPollingUntilDone(request: DeleteMetadataFeedRequest) async throws {
     try await self.deleteMetadataFeedPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteMetadataFeedPollingUntilDone(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteMetadataFeedPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteMetadataFeedRequest().with {
       $0.name = name
     }
-    return try await self.deleteMetadataFeedPollingUntilDone(request: request)
+    try await self.deleteMetadataFeedPollingUntilDone(request: request)
   }
 
   public func updateMetadataFeed(request: UpdateMetadataFeedRequest) async throws
@@ -2306,26 +2262,21 @@ extension Clients.CatalogServiceProtocol {
   }
 
   public func updateMetadataFeedPollingUntilDone(request: UpdateMetadataFeedRequest) async throws
-    -> any GoogleGax.PollableOperation<MetadataFeed>
+    -> MetadataFeed
   {
-    try await self.updateMetadataFeedPollingUntilDone(request: request, options: .init())
+    return try await self.updateMetadataFeedPollingUntilDone(request: request, options: .init())
   }
 
   public func updateMetadataFeedPollingUntilDone(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataFeed>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> MetadataFeed {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateMetadataFeedPollingUntilDone(
     metadataFeed: MetadataFeed?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<MetadataFeed> {
+  ) async throws -> MetadataFeed {
     let request = UpdateMetadataFeedRequest().with {
       $0.metadataFeed = metadataFeed
       $0.updateMask = updateMask

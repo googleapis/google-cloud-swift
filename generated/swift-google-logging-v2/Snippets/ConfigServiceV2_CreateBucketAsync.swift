@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigServiceV2Client) async throws {
-  let poller = try await client.createBucketAsyncPollingUntilDone(
+  let response = try await client.createBucketAsyncPollingUntilDone(
     request: CreateBucketRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

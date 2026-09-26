@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(client: AMLClient, projectId: String, locationId: String, instanceId: String)
   async throws
 {
-  let poller = try await client.createPredictionResultPollingUntilDone(
+  let response = try await client.createPredictionResultPollingUntilDone(
     request: CreatePredictionResultRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)"
         $0.predictionResult = PredictionResult() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

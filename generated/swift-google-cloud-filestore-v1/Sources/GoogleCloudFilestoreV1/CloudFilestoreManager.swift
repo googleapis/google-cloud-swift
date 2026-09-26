@@ -101,7 +101,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -114,12 +114,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the settings of a specific instance.
@@ -136,7 +137,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -149,12 +150,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Restores an existing instance's file share from a backup.
@@ -179,7 +181,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_RestoreInstance")
   public func restoreInstancePollingUntilDone(
     request: RestoreInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -192,12 +194,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Revert an existing instance's file system to a specified snapshot.
@@ -214,7 +217,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_RevertInstance")
   public func revertInstancePollingUntilDone(
     request: RevertInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -227,12 +230,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an instance.
@@ -249,7 +253,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -262,12 +266,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists all snapshots in a project for either a specified location
@@ -303,7 +308,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Snapshot>.State in
@@ -316,12 +321,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a snapshot.
@@ -338,7 +344,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -351,12 +357,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the settings of a specific snapshot.
@@ -373,7 +380,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Snapshot>.State in
@@ -386,12 +393,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists all backups in a project for either a specified location or for all
@@ -427,7 +435,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -440,12 +448,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a backup.
@@ -462,7 +471,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -475,12 +484,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates the settings of a specific backup.
@@ -497,7 +507,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -510,12 +520,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Promote the standby instance (replica).
@@ -532,7 +543,7 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// @Snippet(path: "CloudFilestoreManager_PromoteReplica")
   public func promoteReplicaPollingUntilDone(
     request: PromoteReplicaRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -545,12 +556,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -641,7 +653,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.createInstance`.
     func createInstancePollingUntilDone(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudFilestoreManagerClient.updateInstance`.
     func updateInstance(
@@ -651,7 +663,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateInstance`.
     func updateInstancePollingUntilDone(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudFilestoreManagerClient.restoreInstance`.
     func restoreInstance(
@@ -661,7 +673,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.restoreInstance`.
     func restoreInstancePollingUntilDone(
       request: RestoreInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudFilestoreManagerClient.revertInstance`.
     func revertInstance(
@@ -671,7 +683,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.revertInstance`.
     func revertInstancePollingUntilDone(
       request: RevertInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudFilestoreManagerClient.deleteInstance`.
     func deleteInstance(
@@ -681,7 +693,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.deleteInstance`.
     func deleteInstancePollingUntilDone(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CloudFilestoreManagerClient.listSnapshots`.
     func listSnapshots(
@@ -701,7 +713,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.createSnapshot`.
     func createSnapshotPollingUntilDone(
       request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Snapshot>
+    ) async throws -> Snapshot
 
     /// See `CloudFilestoreManagerClient.deleteSnapshot`.
     func deleteSnapshot(
@@ -711,7 +723,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.deleteSnapshot`.
     func deleteSnapshotPollingUntilDone(
       request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
     func updateSnapshot(
@@ -721,7 +733,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateSnapshot`.
     func updateSnapshotPollingUntilDone(
       request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Snapshot>
+    ) async throws -> Snapshot
 
     /// See `CloudFilestoreManagerClient.listBackups`.
     func listBackups(
@@ -741,7 +753,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.createBackup`.
     func createBackupPollingUntilDone(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `CloudFilestoreManagerClient.deleteBackup`.
     func deleteBackup(
@@ -751,7 +763,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.deleteBackup`.
     func deleteBackupPollingUntilDone(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CloudFilestoreManagerClient.updateBackup`.
     func updateBackup(
@@ -761,7 +773,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.updateBackup`.
     func updateBackupPollingUntilDone(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `CloudFilestoreManagerClient.promoteReplica`.
     func promoteReplica(
@@ -771,7 +783,7 @@ extension Clients {
     /// See `CloudFilestoreManagerClient.promoteReplica`.
     func promoteReplicaPollingUntilDone(
       request: PromoteReplicaRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudFilestoreManagerClient.listLocations`.
     func listLocations(
@@ -880,26 +892,22 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.createInstancePollingUntilDone(request: request, options: .init())
+    return try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = CreateInstanceRequest().with {
       $0.parent = parent
       $0.instance = instance
@@ -921,25 +929,21 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.updateInstancePollingUntilDone(request: request, options: .init())
+    return try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
       $0.updateMask = updateMask
@@ -960,19 +964,15 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func restoreInstancePollingUntilDone(request: RestoreInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.restoreInstancePollingUntilDone(request: request, options: .init())
+    return try await self.restoreInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func restoreInstancePollingUntilDone(
     request: RestoreInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func revertInstance(request: RevertInstanceRequest) async throws
@@ -988,19 +988,15 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func revertInstancePollingUntilDone(request: RevertInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.revertInstancePollingUntilDone(request: request, options: .init())
+    return try await self.revertInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func revertInstancePollingUntilDone(
     request: RevertInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInstance(request: DeleteInstanceRequest) async throws
@@ -1015,29 +1011,23 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstancePollingUntilDone(request: request)
+    try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func listSnapshots(request: ListSnapshotsRequest) async throws
@@ -1118,26 +1108,22 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func createSnapshotPollingUntilDone(request: CreateSnapshotRequest) async throws
-    -> any GoogleGax.PollableOperation<Snapshot>
+    -> Snapshot
   {
-    try await self.createSnapshotPollingUntilDone(request: request, options: .init())
+    return try await self.createSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Snapshot>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Snapshot {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createSnapshotPollingUntilDone(
     parent: Swift.String,
     snapshot: Snapshot?,
     snapshotId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let request = CreateSnapshotRequest().with {
       $0.parent = parent
       $0.snapshot = snapshot
@@ -1158,29 +1144,23 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSnapshotPollingUntilDone(request: DeleteSnapshotRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteSnapshotPollingUntilDone(request: DeleteSnapshotRequest) async throws {
     try await self.deleteSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSnapshotPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSnapshotRequest().with {
       $0.name = name
     }
-    return try await self.deleteSnapshotPollingUntilDone(request: request)
+    try await self.deleteSnapshotPollingUntilDone(request: request)
   }
 
   public func updateSnapshot(request: UpdateSnapshotRequest) async throws
@@ -1196,25 +1176,21 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func updateSnapshotPollingUntilDone(request: UpdateSnapshotRequest) async throws
-    -> any GoogleGax.PollableOperation<Snapshot>
+    -> Snapshot
   {
-    try await self.updateSnapshotPollingUntilDone(request: request, options: .init())
+    return try await self.updateSnapshotPollingUntilDone(request: request, options: .init())
   }
 
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Snapshot>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Snapshot {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateSnapshotPollingUntilDone(
     snapshot: Snapshot?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Snapshot> {
+  ) async throws -> Snapshot {
     let request = UpdateSnapshotRequest().with {
       $0.snapshot = snapshot
       $0.updateMask = updateMask
@@ -1295,27 +1271,21 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.createBackupPollingUntilDone(request: request, options: .init())
+  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws -> Backup {
+    return try await self.createBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupPollingUntilDone(
     parent: Swift.String,
     backup: Backup?,
     backupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let request = CreateBackupRequest().with {
       $0.parent = parent
       $0.backup = backup
@@ -1335,29 +1305,23 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupPollingUntilDone(request: request)
+    try await self.deleteBackupPollingUntilDone(request: request)
   }
 
   public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
@@ -1371,26 +1335,20 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.updateBackupPollingUntilDone(request: request, options: .init())
+  public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws -> Backup {
+    return try await self.updateBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupPollingUntilDone(
     backup: Backup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
       $0.updateMask = updateMask
@@ -1411,19 +1369,15 @@ extension Clients.CloudFilestoreManagerProtocol {
   }
 
   public func promoteReplicaPollingUntilDone(request: PromoteReplicaRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.promoteReplicaPollingUntilDone(request: request, options: .init())
+    return try await self.promoteReplicaPollingUntilDone(request: request, options: .init())
   }
 
   public func promoteReplicaPollingUntilDone(
     request: PromoteReplicaRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

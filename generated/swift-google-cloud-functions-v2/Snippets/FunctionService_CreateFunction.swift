@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FunctionServiceClient, parent: String) async throws {
-  let poller = try await client.createFunctionPollingUntilDone(
+  let response = try await client.createFunctionPollingUntilDone(
     request: CreateFunctionRequest()
       .with {
         $0.parent = "\(parent)"
@@ -32,7 +32,6 @@ func sample(client: FunctionServiceClient, parent: String) async throws {
         $0.function = Function() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -21,11 +21,10 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: VersionsClient) async throws {
-  let poller = try await client.createVersionPollingUntilDone(
+  let response = try await client.createVersionPollingUntilDone(
     request: CreateVersionRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

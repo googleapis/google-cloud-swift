@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: AppPlatformClient, projectId: String, locationId: String, processorId: String)
   async throws
 {
-  let poller = try await client.deleteProcessorPollingUntilDone(
+  try await client.deleteProcessorPollingUntilDone(
     request: DeleteProcessorRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/processors/\(processorId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

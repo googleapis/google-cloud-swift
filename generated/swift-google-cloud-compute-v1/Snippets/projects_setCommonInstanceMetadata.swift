@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: ProjectsClient) async throws {
-    let poller = try await client.setCommonInstanceMetadataPollingUntilDone(
+    let response = try await client.setCommonInstanceMetadataPollingUntilDone(
       request: ProjectsClient.SetCommonInstanceMetadataRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

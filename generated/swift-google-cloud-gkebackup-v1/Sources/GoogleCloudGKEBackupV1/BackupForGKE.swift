@@ -59,7 +59,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_CreateBackupPlan")
   public func createBackupPlanPollingUntilDone(
     request: CreateBackupPlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
+  ) async throws -> BackupPlan {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupPlan>.State in
@@ -72,12 +72,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists BackupPlans in a given location.
@@ -112,7 +113,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_UpdateBackupPlan")
   public func updateBackupPlanPollingUntilDone(
     request: UpdateBackupPlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
+  ) async throws -> BackupPlan {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupPlan>.State in
@@ -125,12 +126,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an existing BackupPlan.
@@ -147,7 +149,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_DeleteBackupPlan")
   public func deleteBackupPlanPollingUntilDone(
     request: DeleteBackupPlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -160,12 +162,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a new BackupChannel in a given location.
@@ -182,7 +185,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_CreateBackupChannel")
   public func createBackupChannelPollingUntilDone(
     request: CreateBackupChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
+  ) async throws -> BackupChannel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupChannel>.State in
@@ -196,12 +199,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists BackupChannels in a given location.
@@ -236,7 +240,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_UpdateBackupChannel")
   public func updateBackupChannelPollingUntilDone(
     request: UpdateBackupChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
+  ) async throws -> BackupChannel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackupChannel>.State in
@@ -250,12 +254,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an existing BackupChannel.
@@ -272,7 +277,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_DeleteBackupChannel")
   public func deleteBackupChannelPollingUntilDone(
     request: DeleteBackupChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -285,12 +290,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists BackupPlanBindings in a given location.
@@ -325,7 +331,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_CreateBackup")
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -338,12 +344,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the Backups for a given BackupPlan.
@@ -378,7 +385,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_UpdateBackup")
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Backup>.State in
@@ -391,12 +398,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an existing Backup.
@@ -413,7 +421,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_DeleteBackup")
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -426,12 +434,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists the VolumeBackups for a given Backup.
@@ -466,7 +475,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_CreateRestorePlan")
   public func createRestorePlanPollingUntilDone(
     request: CreateRestorePlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
+  ) async throws -> RestorePlan {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestorePlan>.State in
@@ -479,12 +488,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists RestorePlans in a given location.
@@ -519,7 +529,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_UpdateRestorePlan")
   public func updateRestorePlanPollingUntilDone(
     request: UpdateRestorePlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
+  ) async throws -> RestorePlan {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestorePlan>.State in
@@ -532,12 +542,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an existing RestorePlan.
@@ -554,7 +565,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_DeleteRestorePlan")
   public func deleteRestorePlanPollingUntilDone(
     request: DeleteRestorePlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -567,12 +578,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a new RestoreChannel in a given location.
@@ -589,7 +601,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_CreateRestoreChannel")
   public func createRestoreChannelPollingUntilDone(
     request: CreateRestoreChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
+  ) async throws -> RestoreChannel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestoreChannel>.State in
@@ -603,12 +615,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists RestoreChannels in a given location.
@@ -643,7 +656,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_UpdateRestoreChannel")
   public func updateRestoreChannelPollingUntilDone(
     request: UpdateRestoreChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
+  ) async throws -> RestoreChannel {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestoreChannel>.State in
@@ -657,12 +670,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an existing RestoreChannel.
@@ -679,7 +693,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_DeleteRestoreChannel")
   public func deleteRestoreChannelPollingUntilDone(
     request: DeleteRestoreChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -692,12 +706,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists RestorePlanBindings in a given location.
@@ -732,7 +747,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_CreateRestore")
   public func createRestorePollingUntilDone(
     request: CreateRestoreRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Restore> {
+  ) async throws -> Restore {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Restore>.State in
@@ -745,12 +760,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the Restores for a given RestorePlan.
@@ -785,7 +801,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_UpdateRestore")
   public func updateRestorePollingUntilDone(
     request: UpdateRestoreRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Restore> {
+  ) async throws -> Restore {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Restore>.State in
@@ -798,12 +814,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an existing Restore.
@@ -820,7 +837,7 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
   /// @Snippet(path: "BackupForGKE_DeleteRestore")
   public func deleteRestorePollingUntilDone(
     request: DeleteRestoreRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -833,12 +850,13 @@ public final class BackupForGKEClient: Clients.BackupForGKEProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists the VolumeRestores for a given Restore.
@@ -984,7 +1002,7 @@ extension Clients {
     /// See `BackupForGKEClient.createBackupPlan`.
     func createBackupPlanPollingUntilDone(
       request: CreateBackupPlanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupPlan>
+    ) async throws -> BackupPlan
 
     /// See `BackupForGKEClient.listBackupPlans`.
     func listBackupPlans(
@@ -1004,7 +1022,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateBackupPlan`.
     func updateBackupPlanPollingUntilDone(
       request: UpdateBackupPlanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupPlan>
+    ) async throws -> BackupPlan
 
     /// See `BackupForGKEClient.deleteBackupPlan`.
     func deleteBackupPlan(
@@ -1014,7 +1032,7 @@ extension Clients {
     /// See `BackupForGKEClient.deleteBackupPlan`.
     func deleteBackupPlanPollingUntilDone(
       request: DeleteBackupPlanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BackupForGKEClient.createBackupChannel`.
     func createBackupChannel(
@@ -1024,7 +1042,7 @@ extension Clients {
     /// See `BackupForGKEClient.createBackupChannel`.
     func createBackupChannelPollingUntilDone(
       request: CreateBackupChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupChannel>
+    ) async throws -> BackupChannel
 
     /// See `BackupForGKEClient.listBackupChannels`.
     func listBackupChannels(
@@ -1044,7 +1062,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateBackupChannel`.
     func updateBackupChannelPollingUntilDone(
       request: UpdateBackupChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackupChannel>
+    ) async throws -> BackupChannel
 
     /// See `BackupForGKEClient.deleteBackupChannel`.
     func deleteBackupChannel(
@@ -1054,7 +1072,7 @@ extension Clients {
     /// See `BackupForGKEClient.deleteBackupChannel`.
     func deleteBackupChannelPollingUntilDone(
       request: DeleteBackupChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BackupForGKEClient.listBackupPlanBindings`.
     func listBackupPlanBindings(
@@ -1074,7 +1092,7 @@ extension Clients {
     /// See `BackupForGKEClient.createBackup`.
     func createBackupPollingUntilDone(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `BackupForGKEClient.listBackups`.
     func listBackups(
@@ -1094,7 +1112,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateBackup`.
     func updateBackupPollingUntilDone(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Backup>
+    ) async throws -> Backup
 
     /// See `BackupForGKEClient.deleteBackup`.
     func deleteBackup(
@@ -1104,7 +1122,7 @@ extension Clients {
     /// See `BackupForGKEClient.deleteBackup`.
     func deleteBackupPollingUntilDone(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BackupForGKEClient.listVolumeBackups`.
     func listVolumeBackups(
@@ -1124,7 +1142,7 @@ extension Clients {
     /// See `BackupForGKEClient.createRestorePlan`.
     func createRestorePlanPollingUntilDone(
       request: CreateRestorePlanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RestorePlan>
+    ) async throws -> RestorePlan
 
     /// See `BackupForGKEClient.listRestorePlans`.
     func listRestorePlans(
@@ -1144,7 +1162,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateRestorePlan`.
     func updateRestorePlanPollingUntilDone(
       request: UpdateRestorePlanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RestorePlan>
+    ) async throws -> RestorePlan
 
     /// See `BackupForGKEClient.deleteRestorePlan`.
     func deleteRestorePlan(
@@ -1154,7 +1172,7 @@ extension Clients {
     /// See `BackupForGKEClient.deleteRestorePlan`.
     func deleteRestorePlanPollingUntilDone(
       request: DeleteRestorePlanRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BackupForGKEClient.createRestoreChannel`.
     func createRestoreChannel(
@@ -1164,7 +1182,7 @@ extension Clients {
     /// See `BackupForGKEClient.createRestoreChannel`.
     func createRestoreChannelPollingUntilDone(
       request: CreateRestoreChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RestoreChannel>
+    ) async throws -> RestoreChannel
 
     /// See `BackupForGKEClient.listRestoreChannels`.
     func listRestoreChannels(
@@ -1184,7 +1202,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateRestoreChannel`.
     func updateRestoreChannelPollingUntilDone(
       request: UpdateRestoreChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RestoreChannel>
+    ) async throws -> RestoreChannel
 
     /// See `BackupForGKEClient.deleteRestoreChannel`.
     func deleteRestoreChannel(
@@ -1194,7 +1212,7 @@ extension Clients {
     /// See `BackupForGKEClient.deleteRestoreChannel`.
     func deleteRestoreChannelPollingUntilDone(
       request: DeleteRestoreChannelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BackupForGKEClient.listRestorePlanBindings`.
     func listRestorePlanBindings(
@@ -1214,7 +1232,7 @@ extension Clients {
     /// See `BackupForGKEClient.createRestore`.
     func createRestorePollingUntilDone(
       request: CreateRestoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Restore>
+    ) async throws -> Restore
 
     /// See `BackupForGKEClient.listRestores`.
     func listRestores(
@@ -1234,7 +1252,7 @@ extension Clients {
     /// See `BackupForGKEClient.updateRestore`.
     func updateRestorePollingUntilDone(
       request: UpdateRestoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Restore>
+    ) async throws -> Restore
 
     /// See `BackupForGKEClient.deleteRestore`.
     func deleteRestore(
@@ -1244,7 +1262,7 @@ extension Clients {
     /// See `BackupForGKEClient.deleteRestore`.
     func deleteRestorePollingUntilDone(
       request: DeleteRestoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BackupForGKEClient.listVolumeRestores`.
     func listVolumeRestores(
@@ -1318,26 +1336,22 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func createBackupPlanPollingUntilDone(request: CreateBackupPlanRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupPlan>
+    -> BackupPlan
   {
-    try await self.createBackupPlanPollingUntilDone(request: request, options: .init())
+    return try await self.createBackupPlanPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupPlanPollingUntilDone(
     request: CreateBackupPlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupPlan>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupPlan {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupPlanPollingUntilDone(
     parent: Swift.String,
     backupPlan: BackupPlan?,
     backupPlanId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
+  ) async throws -> BackupPlan {
     let request = CreateBackupPlanRequest().with {
       $0.parent = parent
       $0.backupPlan = backupPlan
@@ -1423,25 +1437,21 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func updateBackupPlanPollingUntilDone(request: UpdateBackupPlanRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupPlan>
+    -> BackupPlan
   {
-    try await self.updateBackupPlanPollingUntilDone(request: request, options: .init())
+    return try await self.updateBackupPlanPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupPlanPollingUntilDone(
     request: UpdateBackupPlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupPlan>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupPlan {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupPlanPollingUntilDone(
     backupPlan: BackupPlan?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<BackupPlan> {
+  ) async throws -> BackupPlan {
     let request = UpdateBackupPlanRequest().with {
       $0.backupPlan = backupPlan
       $0.updateMask = updateMask
@@ -1461,29 +1471,23 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupPlanPollingUntilDone(request: DeleteBackupPlanRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupPlanPollingUntilDone(request: DeleteBackupPlanRequest) async throws {
     try await self.deleteBackupPlanPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupPlanPollingUntilDone(
     request: DeleteBackupPlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupPlanPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupPlanRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupPlanPollingUntilDone(request: request)
+    try await self.deleteBackupPlanPollingUntilDone(request: request)
   }
 
   public func createBackupChannel(request: CreateBackupChannelRequest) async throws
@@ -1499,27 +1503,22 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func createBackupChannelPollingUntilDone(request: CreateBackupChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupChannel>
+    -> BackupChannel
   {
-    try await self.createBackupChannelPollingUntilDone(request: request, options: .init())
+    return try await self.createBackupChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupChannelPollingUntilDone(
     request: CreateBackupChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupChannel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupChannel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupChannelPollingUntilDone(
     parent: Swift.String,
     backupChannel: BackupChannel?,
     backupChannelId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
+  ) async throws -> BackupChannel {
     let request = CreateBackupChannelRequest().with {
       $0.parent = parent
       $0.backupChannel = backupChannel
@@ -1605,26 +1604,21 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func updateBackupChannelPollingUntilDone(request: UpdateBackupChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<BackupChannel>
+    -> BackupChannel
   {
-    try await self.updateBackupChannelPollingUntilDone(request: request, options: .init())
+    return try await self.updateBackupChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupChannelPollingUntilDone(
     request: UpdateBackupChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BackupChannel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackupChannel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupChannelPollingUntilDone(
     backupChannel: BackupChannel?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<BackupChannel> {
+  ) async throws -> BackupChannel {
     let request = UpdateBackupChannelRequest().with {
       $0.backupChannel = backupChannel
       $0.updateMask = updateMask
@@ -1645,28 +1639,23 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func deleteBackupChannelPollingUntilDone(request: DeleteBackupChannelRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
   {
     try await self.deleteBackupChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupChannelPollingUntilDone(
     request: DeleteBackupChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupChannelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupChannelRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupChannelPollingUntilDone(request: request)
+    try await self.deleteBackupChannelPollingUntilDone(request: request)
   }
 
   public func listBackupPlanBindings(request: ListBackupPlanBindingsRequest) async throws
@@ -1744,27 +1733,21 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.createBackupPollingUntilDone(request: request, options: .init())
+  public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws -> Backup {
+    return try await self.createBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackupPollingUntilDone(
     parent: Swift.String,
     backup: Backup?,
     backupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let request = CreateBackupRequest().with {
       $0.parent = parent
       $0.backup = backup
@@ -1845,26 +1828,20 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Backup>
-  {
-    try await self.updateBackupPollingUntilDone(request: request, options: .init())
+  public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws -> Backup {
+    return try await self.updateBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Backup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Backup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackupPollingUntilDone(
     backup: Backup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Backup> {
+  ) async throws -> Backup {
     let request = UpdateBackupRequest().with {
       $0.backup = backup
       $0.updateMask = updateMask
@@ -1883,29 +1860,23 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackupRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackupPollingUntilDone(request: request)
+    try await self.deleteBackupPollingUntilDone(request: request)
   }
 
   public func listVolumeBackups(request: ListVolumeBackupsRequest) async throws
@@ -1985,26 +1956,22 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func createRestorePlanPollingUntilDone(request: CreateRestorePlanRequest) async throws
-    -> any GoogleGax.PollableOperation<RestorePlan>
+    -> RestorePlan
   {
-    try await self.createRestorePlanPollingUntilDone(request: request, options: .init())
+    return try await self.createRestorePlanPollingUntilDone(request: request, options: .init())
   }
 
   public func createRestorePlanPollingUntilDone(
     request: CreateRestorePlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestorePlan>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RestorePlan {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createRestorePlanPollingUntilDone(
     parent: Swift.String,
     restorePlan: RestorePlan?,
     restorePlanId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
+  ) async throws -> RestorePlan {
     let request = CreateRestorePlanRequest().with {
       $0.parent = parent
       $0.restorePlan = restorePlan
@@ -2090,25 +2057,21 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func updateRestorePlanPollingUntilDone(request: UpdateRestorePlanRequest) async throws
-    -> any GoogleGax.PollableOperation<RestorePlan>
+    -> RestorePlan
   {
-    try await self.updateRestorePlanPollingUntilDone(request: request, options: .init())
+    return try await self.updateRestorePlanPollingUntilDone(request: request, options: .init())
   }
 
   public func updateRestorePlanPollingUntilDone(
     request: UpdateRestorePlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestorePlan>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RestorePlan {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateRestorePlanPollingUntilDone(
     restorePlan: RestorePlan?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<RestorePlan> {
+  ) async throws -> RestorePlan {
     let request = UpdateRestorePlanRequest().with {
       $0.restorePlan = restorePlan
       $0.updateMask = updateMask
@@ -2128,29 +2091,23 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteRestorePlanPollingUntilDone(request: DeleteRestorePlanRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteRestorePlanPollingUntilDone(request: DeleteRestorePlanRequest) async throws {
     try await self.deleteRestorePlanPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteRestorePlanPollingUntilDone(
     request: DeleteRestorePlanRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteRestorePlanPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteRestorePlanRequest().with {
       $0.name = name
     }
-    return try await self.deleteRestorePlanPollingUntilDone(request: request)
+    try await self.deleteRestorePlanPollingUntilDone(request: request)
   }
 
   public func createRestoreChannel(request: CreateRestoreChannelRequest) async throws
@@ -2166,27 +2123,22 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func createRestoreChannelPollingUntilDone(request: CreateRestoreChannelRequest)
-    async throws -> any GoogleGax.PollableOperation<RestoreChannel>
+    async throws -> RestoreChannel
   {
-    try await self.createRestoreChannelPollingUntilDone(request: request, options: .init())
+    return try await self.createRestoreChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func createRestoreChannelPollingUntilDone(
     request: CreateRestoreChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreChannel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RestoreChannel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createRestoreChannelPollingUntilDone(
     parent: Swift.String,
     restoreChannel: RestoreChannel?,
     restoreChannelId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
+  ) async throws -> RestoreChannel {
     let request = CreateRestoreChannelRequest().with {
       $0.parent = parent
       $0.restoreChannel = restoreChannel
@@ -2272,26 +2224,21 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func updateRestoreChannelPollingUntilDone(request: UpdateRestoreChannelRequest)
-    async throws -> any GoogleGax.PollableOperation<RestoreChannel>
+    async throws -> RestoreChannel
   {
-    try await self.updateRestoreChannelPollingUntilDone(request: request, options: .init())
+    return try await self.updateRestoreChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func updateRestoreChannelPollingUntilDone(
     request: UpdateRestoreChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreChannel>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RestoreChannel {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateRestoreChannelPollingUntilDone(
     restoreChannel: RestoreChannel?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<RestoreChannel> {
+  ) async throws -> RestoreChannel {
     let request = UpdateRestoreChannelRequest().with {
       $0.restoreChannel = restoreChannel
       $0.updateMask = updateMask
@@ -2312,28 +2259,24 @@ extension Clients.BackupForGKEProtocol {
   }
 
   public func deleteRestoreChannelPollingUntilDone(request: DeleteRestoreChannelRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteRestoreChannelPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteRestoreChannelPollingUntilDone(
     request: DeleteRestoreChannelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteRestoreChannelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteRestoreChannelRequest().with {
       $0.name = name
     }
-    return try await self.deleteRestoreChannelPollingUntilDone(request: request)
+    try await self.deleteRestoreChannelPollingUntilDone(request: request)
   }
 
   public func listRestorePlanBindings(request: ListRestorePlanBindingsRequest) async throws
@@ -2412,27 +2355,21 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createRestorePollingUntilDone(request: CreateRestoreRequest) async throws
-    -> any GoogleGax.PollableOperation<Restore>
-  {
-    try await self.createRestorePollingUntilDone(request: request, options: .init())
+  public func createRestorePollingUntilDone(request: CreateRestoreRequest) async throws -> Restore {
+    return try await self.createRestorePollingUntilDone(request: request, options: .init())
   }
 
   public func createRestorePollingUntilDone(
     request: CreateRestoreRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Restore> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Restore>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Restore {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createRestorePollingUntilDone(
     parent: Swift.String,
     restore: Restore?,
     restoreId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Restore> {
+  ) async throws -> Restore {
     let request = CreateRestoreRequest().with {
       $0.parent = parent
       $0.restore = restore
@@ -2515,26 +2452,20 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateRestorePollingUntilDone(request: UpdateRestoreRequest) async throws
-    -> any GoogleGax.PollableOperation<Restore>
-  {
-    try await self.updateRestorePollingUntilDone(request: request, options: .init())
+  public func updateRestorePollingUntilDone(request: UpdateRestoreRequest) async throws -> Restore {
+    return try await self.updateRestorePollingUntilDone(request: request, options: .init())
   }
 
   public func updateRestorePollingUntilDone(
     request: UpdateRestoreRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Restore> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Restore>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Restore {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateRestorePollingUntilDone(
     restore: Restore?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Restore> {
+  ) async throws -> Restore {
     let request = UpdateRestoreRequest().with {
       $0.restore = restore
       $0.updateMask = updateMask
@@ -2554,29 +2485,23 @@ extension Clients.BackupForGKEProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteRestorePollingUntilDone(request: DeleteRestoreRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteRestorePollingUntilDone(request: DeleteRestoreRequest) async throws {
     try await self.deleteRestorePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteRestorePollingUntilDone(
     request: DeleteRestoreRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteRestorePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteRestoreRequest().with {
       $0.name = name
     }
-    return try await self.deleteRestorePollingUntilDone(request: request)
+    try await self.deleteRestorePollingUntilDone(request: request)
   }
 
   public func listVolumeRestores(request: ListVolumeRestoresRequest) async throws

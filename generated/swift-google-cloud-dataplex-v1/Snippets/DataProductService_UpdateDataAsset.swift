@@ -27,7 +27,7 @@ func sample(
   client: DataProductServiceClient, projectId: String, locationId: String, dataProductId: String,
   dataAssetId: String
 ) async throws {
-  let poller = try await client.updateDataAssetPollingUntilDone(
+  let response = try await client.updateDataAssetPollingUntilDone(
     request: UpdateDataAssetRequest()
       .with {
         $0.dataAsset = DataAsset().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

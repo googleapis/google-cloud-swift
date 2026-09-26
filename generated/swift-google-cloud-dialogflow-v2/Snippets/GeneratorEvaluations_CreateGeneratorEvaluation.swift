@@ -25,14 +25,13 @@
   func sample(
     client: GeneratorEvaluationsClient, projectId: String, locationId: String, generatorId: String
   ) async throws {
-    let poller = try await client.createGeneratorEvaluationPollingUntilDone(
+    let response = try await client.createGeneratorEvaluationPollingUntilDone(
       request: CreateGeneratorEvaluationRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)/generators/\(generatorId)"
           $0.generatorEvaluation = GeneratorEvaluation() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

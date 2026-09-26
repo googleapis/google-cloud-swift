@@ -25,7 +25,7 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String
   ) async throws {
-    let poller = try await client.createTargetSitePollingUntilDone(
+    let response = try await client.createTargetSitePollingUntilDone(
       request: CreateTargetSiteRequest()
         .with {
           $0.parent =
@@ -33,7 +33,6 @@
           $0.targetSite = TargetSite() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

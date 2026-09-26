@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(client: NetworkServicesClient, projectId: String, locationId: String, meshId: String)
   async throws
 {
-  let poller = try await client.deleteMeshPollingUntilDone(
+  try await client.deleteMeshPollingUntilDone(
     request: DeleteMeshRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/meshes/\(meshId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

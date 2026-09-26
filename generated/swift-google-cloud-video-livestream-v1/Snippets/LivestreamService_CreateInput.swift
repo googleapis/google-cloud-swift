@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: LivestreamServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createInputPollingUntilDone(
+  let response = try await client.createInputPollingUntilDone(
     request: CreateInputRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: LivestreamServiceClient, projectId: String, locationId: Stri
         $0.input = Input() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

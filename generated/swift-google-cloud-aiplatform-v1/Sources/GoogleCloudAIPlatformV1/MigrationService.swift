@@ -72,7 +72,7 @@
     /// @Snippet(path: "MigrationService_BatchMigrateResources")
     public func batchMigrateResourcesPollingUntilDone(
       request: BatchMigrateResourcesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse> {
+    ) async throws -> BatchMigrateResourcesResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchMigrateResourcesResponse>.State in
@@ -87,12 +87,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -227,7 +228,7 @@
       /// See `MigrationServiceClient.batchMigrateResources`.
       func batchMigrateResourcesPollingUntilDone(
         request: BatchMigrateResourcesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse>
+      ) async throws -> BatchMigrateResourcesResponse
 
       /// See `MigrationServiceClient.listLocations`.
       func listLocations(
@@ -336,27 +337,22 @@
     }
 
     public func batchMigrateResourcesPollingUntilDone(request: BatchMigrateResourcesRequest)
-      async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse>
+      async throws -> BatchMigrateResourcesResponse
     {
-      try await self.batchMigrateResourcesPollingUntilDone(request: request, options: .init())
+      return try await self.batchMigrateResourcesPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func batchMigrateResourcesPollingUntilDone(
       request: BatchMigrateResourcesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<BatchMigrateResourcesResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> BatchMigrateResourcesResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func batchMigrateResourcesPollingUntilDone(
       parent: Swift.String,
       migrateResourceRequests: [MigrateResourceRequest],
-    ) async throws -> any GoogleGax.PollableOperation<BatchMigrateResourcesResponse> {
+    ) async throws -> BatchMigrateResourcesResponse {
       let request = BatchMigrateResourcesRequest().with {
         $0.parent = parent
         $0.migrateResourceRequests = migrateResourceRequests

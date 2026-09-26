@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, membershipId: String)
   async throws
 {
-  let poller = try await client.deleteMembershipPollingUntilDone(
+  try await client.deleteMembershipPollingUntilDone(
     request: DeleteMembershipRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/memberships/\(membershipId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

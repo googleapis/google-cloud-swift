@@ -77,7 +77,7 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// @Snippet(path: "ManagedKafkaConnect_CreateConnectCluster")
   public func createConnectClusterPollingUntilDone(
     request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ConnectCluster> {
+  ) async throws -> ConnectCluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ConnectCluster>.State in
@@ -91,12 +91,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the properties of a single Kafka Connect cluster.
@@ -113,7 +114,7 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// @Snippet(path: "ManagedKafkaConnect_UpdateConnectCluster")
   public func updateConnectClusterPollingUntilDone(
     request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ConnectCluster> {
+  ) async throws -> ConnectCluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ConnectCluster>.State in
@@ -127,12 +128,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Connect cluster.
@@ -149,7 +151,7 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// @Snippet(path: "ManagedKafkaConnect_DeleteConnectCluster")
   public func deleteConnectClusterPollingUntilDone(
     request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -162,12 +164,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists the connectors in a given Connect cluster.
@@ -339,7 +342,7 @@ extension Clients {
     /// See `ManagedKafkaConnectClient.createConnectCluster`.
     func createConnectClusterPollingUntilDone(
       request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ConnectCluster>
+    ) async throws -> ConnectCluster
 
     /// See `ManagedKafkaConnectClient.updateConnectCluster`.
     func updateConnectCluster(
@@ -349,7 +352,7 @@ extension Clients {
     /// See `ManagedKafkaConnectClient.updateConnectCluster`.
     func updateConnectClusterPollingUntilDone(
       request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ConnectCluster>
+    ) async throws -> ConnectCluster
 
     /// See `ManagedKafkaConnectClient.deleteConnectCluster`.
     func deleteConnectCluster(
@@ -359,7 +362,7 @@ extension Clients {
     /// See `ManagedKafkaConnectClient.deleteConnectCluster`.
     func deleteConnectClusterPollingUntilDone(
       request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `ManagedKafkaConnectClient.listConnectors`.
     func listConnectors(
@@ -512,27 +515,22 @@ extension Clients.ManagedKafkaConnectProtocol {
   }
 
   public func createConnectClusterPollingUntilDone(request: CreateConnectClusterRequest)
-    async throws -> any GoogleGax.PollableOperation<ConnectCluster>
+    async throws -> ConnectCluster
   {
-    try await self.createConnectClusterPollingUntilDone(request: request, options: .init())
+    return try await self.createConnectClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func createConnectClusterPollingUntilDone(
     request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ConnectCluster> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConnectCluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ConnectCluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createConnectClusterPollingUntilDone(
     parent: Swift.String,
     connectCluster: ConnectCluster?,
     connectClusterId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ConnectCluster> {
+  ) async throws -> ConnectCluster {
     let request = CreateConnectClusterRequest().with {
       $0.parent = parent
       $0.connectCluster = connectCluster
@@ -554,26 +552,21 @@ extension Clients.ManagedKafkaConnectProtocol {
   }
 
   public func updateConnectClusterPollingUntilDone(request: UpdateConnectClusterRequest)
-    async throws -> any GoogleGax.PollableOperation<ConnectCluster>
+    async throws -> ConnectCluster
   {
-    try await self.updateConnectClusterPollingUntilDone(request: request, options: .init())
+    return try await self.updateConnectClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func updateConnectClusterPollingUntilDone(
     request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ConnectCluster> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ConnectCluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ConnectCluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateConnectClusterPollingUntilDone(
     connectCluster: ConnectCluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<ConnectCluster> {
+  ) async throws -> ConnectCluster {
     let request = UpdateConnectClusterRequest().with {
       $0.connectCluster = connectCluster
       $0.updateMask = updateMask
@@ -594,28 +587,24 @@ extension Clients.ManagedKafkaConnectProtocol {
   }
 
   public func deleteConnectClusterPollingUntilDone(request: DeleteConnectClusterRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteConnectClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteConnectClusterPollingUntilDone(
     request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteConnectClusterPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteConnectClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteConnectClusterPollingUntilDone(request: request)
+    try await self.deleteConnectClusterPollingUntilDone(request: request)
   }
 
   public func listConnectors(request: ListConnectorsRequest) async throws

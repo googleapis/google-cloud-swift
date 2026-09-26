@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: InterceptClient, projectId: String, locationId: String, interceptDeploymentGroupId: String
 ) async throws {
-  let poller = try await client.deleteInterceptDeploymentGroupPollingUntilDone(
+  try await client.deleteInterceptDeploymentGroupPollingUntilDone(
     request: DeleteInterceptDeploymentGroupRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/interceptDeploymentGroups/\(interceptDeploymentGroupId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

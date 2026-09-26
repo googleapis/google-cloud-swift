@@ -27,7 +27,7 @@
   func sample(
     client: FeaturestoreServiceClient, projectId: String, locationId: String, featurestoreId: String
   ) async throws {
-    let poller = try await client.createEntityTypePollingUntilDone(
+    let response = try await client.createEntityTypePollingUntilDone(
       request: CreateEntityTypeRequest()
         .with {
           $0.parent =
@@ -35,7 +35,6 @@
           $0.entityType = EntityType() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

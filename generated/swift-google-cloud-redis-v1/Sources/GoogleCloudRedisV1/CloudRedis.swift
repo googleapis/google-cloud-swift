@@ -130,7 +130,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_CreateInstance")
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -143,12 +143,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the metadata and configuration of a specific Redis instance.
@@ -173,7 +174,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_UpdateInstance")
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -186,12 +187,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Upgrades Redis instance to the newer Redis version specified in the
@@ -210,7 +212,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_UpgradeInstance")
   public func upgradeInstancePollingUntilDone(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -223,12 +225,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
@@ -259,7 +262,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_ImportInstance")
   public func importInstancePollingUntilDone(
     request: ImportInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -272,12 +275,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Export Redis instance data into a Redis RDB format file in Cloud Storage.
@@ -304,7 +308,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_ExportInstance")
   public func exportInstancePollingUntilDone(
     request: ExportInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -317,12 +321,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Initiates a failover of the primary node to current replica node for a
@@ -341,7 +346,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_FailoverInstance")
   public func failoverInstancePollingUntilDone(
     request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -354,12 +359,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a specific Redis instance.  Instance stops serving and data is
@@ -378,7 +384,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_DeleteInstance")
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -391,12 +397,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Reschedule maintenance for a given instance in a given project and
@@ -415,7 +422,7 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// @Snippet(path: "CloudRedis_RescheduleMaintenance")
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -428,12 +435,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -529,7 +537,7 @@ extension Clients {
     /// See `CloudRedisClient.createInstance`.
     func createInstancePollingUntilDone(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.updateInstance`.
     func updateInstance(
@@ -539,7 +547,7 @@ extension Clients {
     /// See `CloudRedisClient.updateInstance`.
     func updateInstancePollingUntilDone(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.upgradeInstance`.
     func upgradeInstance(
@@ -549,7 +557,7 @@ extension Clients {
     /// See `CloudRedisClient.upgradeInstance`.
     func upgradeInstancePollingUntilDone(
       request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.importInstance`.
     func importInstance(
@@ -559,7 +567,7 @@ extension Clients {
     /// See `CloudRedisClient.importInstance`.
     func importInstancePollingUntilDone(
       request: ImportInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.exportInstance`.
     func exportInstance(
@@ -569,7 +577,7 @@ extension Clients {
     /// See `CloudRedisClient.exportInstance`.
     func exportInstancePollingUntilDone(
       request: ExportInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.failoverInstance`.
     func failoverInstance(
@@ -579,7 +587,7 @@ extension Clients {
     /// See `CloudRedisClient.failoverInstance`.
     func failoverInstancePollingUntilDone(
       request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.deleteInstance`.
     func deleteInstance(
@@ -589,7 +597,7 @@ extension Clients {
     /// See `CloudRedisClient.deleteInstance`.
     func deleteInstancePollingUntilDone(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CloudRedisClient.rescheduleMaintenance`.
     func rescheduleMaintenance(
@@ -599,7 +607,7 @@ extension Clients {
     /// See `CloudRedisClient.rescheduleMaintenance`.
     func rescheduleMaintenancePollingUntilDone(
       request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `CloudRedisClient.listLocations`.
     func listLocations(
@@ -733,26 +741,22 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.createInstancePollingUntilDone(request: request, options: .init())
+    return try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instanceId: Swift.String,
     instance: Instance?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = CreateInstanceRequest().with {
       $0.parent = parent
       $0.instanceId = instanceId
@@ -774,25 +778,21 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.updateInstancePollingUntilDone(request: request, options: .init())
+    return try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInstancePollingUntilDone(
     updateMask: GoogleWKT.WKTFieldMask?,
     instance: Instance?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = UpdateInstanceRequest().with {
       $0.updateMask = updateMask
       $0.instance = instance
@@ -813,25 +813,21 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func upgradeInstancePollingUntilDone(request: UpgradeInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.upgradeInstancePollingUntilDone(request: request, options: .init())
+    return try await self.upgradeInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func upgradeInstancePollingUntilDone(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func upgradeInstancePollingUntilDone(
     name: Swift.String,
     redisVersion: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = UpgradeInstanceRequest().with {
       $0.name = name
       $0.redisVersion = redisVersion
@@ -852,25 +848,21 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func importInstancePollingUntilDone(request: ImportInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.importInstancePollingUntilDone(request: request, options: .init())
+    return try await self.importInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func importInstancePollingUntilDone(
     request: ImportInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func importInstancePollingUntilDone(
     name: Swift.String,
     inputConfig: InputConfig?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = ImportInstanceRequest().with {
       $0.name = name
       $0.inputConfig = inputConfig
@@ -891,25 +883,21 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func exportInstancePollingUntilDone(request: ExportInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.exportInstancePollingUntilDone(request: request, options: .init())
+    return try await self.exportInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func exportInstancePollingUntilDone(
     request: ExportInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportInstancePollingUntilDone(
     name: Swift.String,
     outputConfig: OutputConfig?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = ExportInstanceRequest().with {
       $0.name = name
       $0.outputConfig = outputConfig
@@ -930,25 +918,21 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func failoverInstancePollingUntilDone(request: FailoverInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.failoverInstancePollingUntilDone(request: request, options: .init())
+    return try await self.failoverInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func failoverInstancePollingUntilDone(
     request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func failoverInstancePollingUntilDone(
     name: Swift.String,
     dataProtectionMode: FailoverInstanceRequest.DataProtectionMode,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = FailoverInstanceRequest().with {
       $0.name = name
       $0.dataProtectionMode = dataProtectionMode
@@ -968,29 +952,23 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstancePollingUntilDone(request: request)
+    try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
@@ -1006,26 +984,22 @@ extension Clients.CloudRedisProtocol {
   }
 
   public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
-    async throws -> any GoogleGax.PollableOperation<Instance>
+    async throws -> Instance
   {
-    try await self.rescheduleMaintenancePollingUntilDone(request: request, options: .init())
+    return try await self.rescheduleMaintenancePollingUntilDone(request: request, options: .init())
   }
 
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func rescheduleMaintenancePollingUntilDone(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
     scheduleTime: GoogleWKT.WKTTimestamp?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = RescheduleMaintenanceRequest().with {
       $0.name = name
       $0.rescheduleType = rescheduleType

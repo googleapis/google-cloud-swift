@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String, routerId: String
 ) async throws {
-  let poller = try await client.updateRouterPollingUntilDone(
+  let response = try await client.updateRouterPollingUntilDone(
     request: UpdateRouterRequest()
       .with {
         $0.router = Router().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: CloudFtpClient, projectId: String, locationId: String, serverId: String)
   async throws
 {
-  let poller = try await client.createUserPollingUntilDone(
+  let response = try await client.createUserPollingUntilDone(
     request: CreateUserRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/servers/\(serverId)"
@@ -33,7 +33,6 @@ func sample(client: CloudFtpClient, projectId: String, locationId: String, serve
         $0.user = User() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

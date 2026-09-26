@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, backupVaultId: String)
   async throws
 {
-  let poller = try await client.deleteBackupVaultPollingUntilDone(
+  try await client.deleteBackupVaultPollingUntilDone(
     request: DeleteBackupVaultRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/backupVaults/\(backupVaultId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

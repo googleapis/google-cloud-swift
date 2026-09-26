@@ -64,7 +64,7 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   /// @Snippet(path: "VideoIntelligenceService_AnnotateVideo")
   public func annotateVideoPollingUntilDone(
     request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
+  ) async throws -> AnnotateVideoResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
@@ -78,12 +78,13 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -146,7 +147,7 @@ extension Clients {
     /// See `VideoIntelligenceServiceClient.annotateVideo`.
     func annotateVideoPollingUntilDone(
       request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
+    ) async throws -> AnnotateVideoResponse
 
     /// See `VideoIntelligenceServiceClient.listOperations`.
     func listOperations(
@@ -180,26 +181,21 @@ extension Clients.VideoIntelligenceServiceProtocol {
   }
 
   public func annotateVideoPollingUntilDone(request: AnnotateVideoRequest) async throws
-    -> any GoogleGax.PollableOperation<AnnotateVideoResponse>
+    -> AnnotateVideoResponse
   {
-    try await self.annotateVideoPollingUntilDone(request: request, options: .init())
+    return try await self.annotateVideoPollingUntilDone(request: request, options: .init())
   }
 
   public func annotateVideoPollingUntilDone(
     request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AnnotateVideoResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AnnotateVideoResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func annotateVideoPollingUntilDone(
     inputUri: Swift.String,
     features: [Feature],
-  ) async throws -> any GoogleGax.PollableOperation<AnnotateVideoResponse> {
+  ) async throws -> AnnotateVideoResponse {
     let request = AnnotateVideoRequest().with {
       $0.inputUri = inputUri
       $0.features = features

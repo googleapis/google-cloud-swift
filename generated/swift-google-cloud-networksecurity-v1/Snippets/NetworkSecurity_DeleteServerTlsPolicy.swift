@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: NetworkSecurityClient, projectId: String, locationId: String, serverTlsPolicyId: String
 ) async throws {
-  let poller = try await client.deleteServerTlsPolicyPollingUntilDone(
+  try await client.deleteServerTlsPolicyPollingUntilDone(
     request: DeleteServerTlsPolicyRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/serverTlsPolicies/\(serverTlsPolicyId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

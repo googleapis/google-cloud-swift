@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: LiveVideoAnalyticsClient, projectId: String, locationId: String, clusterId: String
 ) async throws {
-  let poller = try await client.createProcessPollingUntilDone(
+  let response = try await client.createProcessPollingUntilDone(
     request: CreateProcessRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
@@ -33,7 +33,6 @@ func sample(
         $0.process = Process() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

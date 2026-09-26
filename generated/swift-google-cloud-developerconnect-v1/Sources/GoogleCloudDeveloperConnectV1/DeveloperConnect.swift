@@ -75,7 +75,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_CreateConnection")
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Connection>.State in
@@ -88,12 +88,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Connection.
@@ -110,7 +111,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_UpdateConnection")
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Connection>.State in
@@ -123,12 +124,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Connection.
@@ -145,7 +147,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_DeleteConnection")
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -158,12 +160,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a GitRepositoryLink. Upon linking a Git Repository, Developer
@@ -190,7 +193,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_CreateGitRepositoryLink")
   public func createGitRepositoryLinkPollingUntilDone(
     request: CreateGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GitRepositoryLink> {
+  ) async throws -> GitRepositoryLink {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GitRepositoryLink>.State in
@@ -204,12 +207,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single GitRepositoryLink.
@@ -226,7 +230,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_DeleteGitRepositoryLink")
   public func deleteGitRepositoryLinkPollingUntilDone(
     request: DeleteGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -239,12 +243,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists GitRepositoryLinks in a given project, location, and connection.
@@ -346,7 +351,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_CreateAccountConnector")
   public func createAccountConnectorPollingUntilDone(
     request: CreateAccountConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
+  ) async throws -> AccountConnector {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccountConnector>.State in
@@ -360,12 +365,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single AccountConnector.
@@ -382,7 +388,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_UpdateAccountConnector")
   public func updateAccountConnectorPollingUntilDone(
     request: UpdateAccountConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
+  ) async throws -> AccountConnector {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccountConnector>.State in
@@ -396,12 +402,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single AccountConnector.
@@ -418,7 +425,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_DeleteAccountConnector")
   public func deleteAccountConnectorPollingUntilDone(
     request: DeleteAccountConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -431,12 +438,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Fetches OAuth access token based on end user credentials.
@@ -471,7 +479,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_DeleteUser")
   public func deleteUserPollingUntilDone(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -484,12 +492,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Fetch the User based on the user credentials.
@@ -515,7 +524,7 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// @Snippet(path: "DeveloperConnect_DeleteSelf")
   public func deleteSelfPollingUntilDone(
     request: DeleteSelfRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -528,12 +537,13 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Starts OAuth flow for an account connector.
@@ -649,7 +659,7 @@ extension Clients {
     /// See `DeveloperConnectClient.createConnection`.
     func createConnectionPollingUntilDone(
       request: CreateConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
+    ) async throws -> Connection
 
     /// See `DeveloperConnectClient.updateConnection`.
     func updateConnection(
@@ -659,7 +669,7 @@ extension Clients {
     /// See `DeveloperConnectClient.updateConnection`.
     func updateConnectionPollingUntilDone(
       request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Connection>
+    ) async throws -> Connection
 
     /// See `DeveloperConnectClient.deleteConnection`.
     func deleteConnection(
@@ -669,7 +679,7 @@ extension Clients {
     /// See `DeveloperConnectClient.deleteConnection`.
     func deleteConnectionPollingUntilDone(
       request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DeveloperConnectClient.createGitRepositoryLink`.
     func createGitRepositoryLink(
@@ -679,7 +689,7 @@ extension Clients {
     /// See `DeveloperConnectClient.createGitRepositoryLink`.
     func createGitRepositoryLinkPollingUntilDone(
       request: CreateGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GitRepositoryLink>
+    ) async throws -> GitRepositoryLink
 
     /// See `DeveloperConnectClient.deleteGitRepositoryLink`.
     func deleteGitRepositoryLink(
@@ -689,7 +699,7 @@ extension Clients {
     /// See `DeveloperConnectClient.deleteGitRepositoryLink`.
     func deleteGitRepositoryLinkPollingUntilDone(
       request: DeleteGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DeveloperConnectClient.listGitRepositoryLinks`.
     func listGitRepositoryLinks(
@@ -744,7 +754,7 @@ extension Clients {
     /// See `DeveloperConnectClient.createAccountConnector`.
     func createAccountConnectorPollingUntilDone(
       request: CreateAccountConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AccountConnector>
+    ) async throws -> AccountConnector
 
     /// See `DeveloperConnectClient.updateAccountConnector`.
     func updateAccountConnector(
@@ -754,7 +764,7 @@ extension Clients {
     /// See `DeveloperConnectClient.updateAccountConnector`.
     func updateAccountConnectorPollingUntilDone(
       request: UpdateAccountConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AccountConnector>
+    ) async throws -> AccountConnector
 
     /// See `DeveloperConnectClient.deleteAccountConnector`.
     func deleteAccountConnector(
@@ -764,7 +774,7 @@ extension Clients {
     /// See `DeveloperConnectClient.deleteAccountConnector`.
     func deleteAccountConnectorPollingUntilDone(
       request: DeleteAccountConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DeveloperConnectClient.fetchAccessToken`.
     func fetchAccessToken(
@@ -784,7 +794,7 @@ extension Clients {
     /// See `DeveloperConnectClient.deleteUser`.
     func deleteUserPollingUntilDone(
       request: DeleteUserRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DeveloperConnectClient.fetchSelf`.
     func fetchSelf(
@@ -799,7 +809,7 @@ extension Clients {
     /// See `DeveloperConnectClient.deleteSelf`.
     func deleteSelfPollingUntilDone(
       request: DeleteSelfRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DeveloperConnectClient.startOauth`.
     func startOauth(
@@ -917,26 +927,22 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func createConnectionPollingUntilDone(request: CreateConnectionRequest) async throws
-    -> any GoogleGax.PollableOperation<Connection>
+    -> Connection
   {
-    try await self.createConnectionPollingUntilDone(request: request, options: .init())
+    return try await self.createConnectionPollingUntilDone(request: request, options: .init())
   }
 
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Connection>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Connection {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createConnectionPollingUntilDone(
     parent: Swift.String,
     connection: Connection?,
     connectionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let request = CreateConnectionRequest().with {
       $0.parent = parent
       $0.connection = connection
@@ -958,25 +964,21 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func updateConnectionPollingUntilDone(request: UpdateConnectionRequest) async throws
-    -> any GoogleGax.PollableOperation<Connection>
+    -> Connection
   {
-    try await self.updateConnectionPollingUntilDone(request: request, options: .init())
+    return try await self.updateConnectionPollingUntilDone(request: request, options: .init())
   }
 
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Connection>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Connection {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateConnectionPollingUntilDone(
     connection: Connection?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Connection> {
+  ) async throws -> Connection {
     let request = UpdateConnectionRequest().with {
       $0.connection = connection
       $0.updateMask = updateMask
@@ -996,29 +998,23 @@ extension Clients.DeveloperConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteConnectionPollingUntilDone(request: DeleteConnectionRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteConnectionPollingUntilDone(request: DeleteConnectionRequest) async throws {
     try await self.deleteConnectionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteConnectionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteConnectionRequest().with {
       $0.name = name
     }
-    return try await self.deleteConnectionPollingUntilDone(request: request)
+    try await self.deleteConnectionPollingUntilDone(request: request)
   }
 
   public func createGitRepositoryLink(request: CreateGitRepositoryLinkRequest) async throws
@@ -1034,27 +1030,23 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func createGitRepositoryLinkPollingUntilDone(request: CreateGitRepositoryLinkRequest)
-    async throws -> any GoogleGax.PollableOperation<GitRepositoryLink>
+    async throws -> GitRepositoryLink
   {
-    try await self.createGitRepositoryLinkPollingUntilDone(request: request, options: .init())
+    return try await self.createGitRepositoryLinkPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createGitRepositoryLinkPollingUntilDone(
     request: CreateGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GitRepositoryLink> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GitRepositoryLink>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GitRepositoryLink {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createGitRepositoryLinkPollingUntilDone(
     parent: Swift.String,
     gitRepositoryLink: GitRepositoryLink?,
     gitRepositoryLinkId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GitRepositoryLink> {
+  ) async throws -> GitRepositoryLink {
     let request = CreateGitRepositoryLinkRequest().with {
       $0.parent = parent
       $0.gitRepositoryLink = gitRepositoryLink
@@ -1076,28 +1068,24 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func deleteGitRepositoryLinkPollingUntilDone(request: DeleteGitRepositoryLinkRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteGitRepositoryLinkPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteGitRepositoryLinkPollingUntilDone(
     request: DeleteGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteGitRepositoryLinkPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteGitRepositoryLinkRequest().with {
       $0.name = name
     }
-    return try await self.deleteGitRepositoryLinkPollingUntilDone(request: request)
+    try await self.deleteGitRepositoryLinkPollingUntilDone(request: request)
   }
 
   public func listGitRepositoryLinks(request: ListGitRepositoryLinksRequest) async throws
@@ -1371,27 +1359,22 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func createAccountConnectorPollingUntilDone(request: CreateAccountConnectorRequest)
-    async throws -> any GoogleGax.PollableOperation<AccountConnector>
+    async throws -> AccountConnector
   {
-    try await self.createAccountConnectorPollingUntilDone(request: request, options: .init())
+    return try await self.createAccountConnectorPollingUntilDone(request: request, options: .init())
   }
 
   public func createAccountConnectorPollingUntilDone(
     request: CreateAccountConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccountConnector>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AccountConnector {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAccountConnectorPollingUntilDone(
     parent: Swift.String,
     accountConnector: AccountConnector?,
     accountConnectorId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
+  ) async throws -> AccountConnector {
     let request = CreateAccountConnectorRequest().with {
       $0.parent = parent
       $0.accountConnector = accountConnector
@@ -1413,26 +1396,21 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func updateAccountConnectorPollingUntilDone(request: UpdateAccountConnectorRequest)
-    async throws -> any GoogleGax.PollableOperation<AccountConnector>
+    async throws -> AccountConnector
   {
-    try await self.updateAccountConnectorPollingUntilDone(request: request, options: .init())
+    return try await self.updateAccountConnectorPollingUntilDone(request: request, options: .init())
   }
 
   public func updateAccountConnectorPollingUntilDone(
     request: UpdateAccountConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccountConnector>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AccountConnector {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateAccountConnectorPollingUntilDone(
     accountConnector: AccountConnector?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<AccountConnector> {
+  ) async throws -> AccountConnector {
     let request = UpdateAccountConnectorRequest().with {
       $0.accountConnector = accountConnector
       $0.updateMask = updateMask
@@ -1453,28 +1431,24 @@ extension Clients.DeveloperConnectProtocol {
   }
 
   public func deleteAccountConnectorPollingUntilDone(request: DeleteAccountConnectorRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteAccountConnectorPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAccountConnectorPollingUntilDone(
     request: DeleteAccountConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAccountConnectorPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAccountConnectorRequest().with {
       $0.name = name
     }
-    return try await self.deleteAccountConnectorPollingUntilDone(request: request)
+    try await self.deleteAccountConnectorPollingUntilDone(request: request)
   }
 
   public func fetchAccessToken(request: FetchAccessTokenRequest) async throws
@@ -1551,29 +1525,23 @@ extension Clients.DeveloperConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteUserPollingUntilDone(request: DeleteUserRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteUserPollingUntilDone(request: DeleteUserRequest) async throws {
     try await self.deleteUserPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteUserPollingUntilDone(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteUserPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteUserRequest().with {
       $0.name = name
     }
-    return try await self.deleteUserPollingUntilDone(request: request)
+    try await self.deleteUserPollingUntilDone(request: request)
   }
 
   public func fetchSelf(request: FetchSelfRequest) async throws
@@ -1607,29 +1575,23 @@ extension Clients.DeveloperConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteSelfPollingUntilDone(request: DeleteSelfRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteSelfPollingUntilDone(request: DeleteSelfRequest) async throws {
     try await self.deleteSelfPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSelfPollingUntilDone(
     request: DeleteSelfRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSelfPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSelfRequest().with {
       $0.name = name
     }
-    return try await self.deleteSelfPollingUntilDone(request: request)
+    try await self.deleteSelfPollingUntilDone(request: request)
   }
 
   public func startOauth(request: StartOAuthRequest) async throws

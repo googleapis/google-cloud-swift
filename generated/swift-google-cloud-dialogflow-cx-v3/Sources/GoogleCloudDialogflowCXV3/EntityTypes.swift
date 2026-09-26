@@ -117,7 +117,7 @@
     /// @Snippet(path: "EntityTypes_ExportEntityTypes")
     public func exportEntityTypesPollingUntilDone(
       request: ExportEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportEntityTypesResponse> {
+    ) async throws -> ExportEntityTypesResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
@@ -132,12 +132,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Imports the specified entitytypes into the agent.
@@ -154,7 +155,7 @@
     /// @Snippet(path: "EntityTypes_ImportEntityTypes")
     public func importEntityTypesPollingUntilDone(
       request: ImportEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportEntityTypesResponse> {
+    ) async throws -> ImportEntityTypesResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
@@ -169,12 +170,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -286,7 +288,7 @@
       /// See `EntityTypesClient.exportEntityTypes`.
       func exportEntityTypesPollingUntilDone(
         request: ExportEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ExportEntityTypesResponse>
+      ) async throws -> ExportEntityTypesResponse
 
       /// See `EntityTypesClient.importEntityTypes`.
       func importEntityTypes(
@@ -296,7 +298,7 @@
       /// See `EntityTypesClient.importEntityTypes`.
       func importEntityTypesPollingUntilDone(
         request: ImportEntityTypesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportEntityTypesResponse>
+      ) async throws -> ImportEntityTypesResponse
 
       /// See `EntityTypesClient.listLocations`.
       func listLocations(
@@ -464,21 +466,15 @@
     }
 
     public func exportEntityTypesPollingUntilDone(request: ExportEntityTypesRequest) async throws
-      -> any GoogleGax.PollableOperation<ExportEntityTypesResponse>
+      -> ExportEntityTypesResponse
     {
-      try await self.exportEntityTypesPollingUntilDone(request: request, options: .init())
+      return try await self.exportEntityTypesPollingUntilDone(request: request, options: .init())
     }
 
     public func exportEntityTypesPollingUntilDone(
       request: ExportEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportEntityTypesResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<ExportEntityTypesResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ExportEntityTypesResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func importEntityTypes(request: ImportEntityTypesRequest) async throws
@@ -494,21 +490,15 @@
     }
 
     public func importEntityTypesPollingUntilDone(request: ImportEntityTypesRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportEntityTypesResponse>
+      -> ImportEntityTypesResponse
     {
-      try await self.importEntityTypesPollingUntilDone(request: request, options: .init())
+      return try await self.importEntityTypesPollingUntilDone(request: request, options: .init())
     }
 
     public func importEntityTypesPollingUntilDone(
       request: ImportEntityTypesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportEntityTypesResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<ImportEntityTypesResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportEntityTypesResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

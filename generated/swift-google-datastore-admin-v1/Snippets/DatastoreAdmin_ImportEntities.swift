@@ -21,11 +21,10 @@ import GoogleCloudDatastoreAdminV1
 import GoogleLongRunning
 
 func sample(client: DatastoreAdminClient) async throws {
-  let poller = try await client.importEntitiesPollingUntilDone(
+  try await client.importEntitiesPollingUntilDone(
     request: ImportEntitiesRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

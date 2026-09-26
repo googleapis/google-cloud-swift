@@ -58,7 +58,7 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// @Snippet(path: "VpcAccessService_CreateConnector")
   public func createConnectorPollingUntilDone(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connector> {
+  ) async throws -> Connector {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Connector>.State in
@@ -71,12 +71,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource
@@ -114,7 +115,7 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// @Snippet(path: "VpcAccessService_DeleteConnector")
   public func deleteConnectorPollingUntilDone(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -127,12 +128,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -182,7 +184,7 @@ extension Clients {
     /// See `VpcAccessServiceClient.createConnector`.
     func createConnectorPollingUntilDone(
       request: CreateConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Connector>
+    ) async throws -> Connector
 
     /// See `VpcAccessServiceClient.getConnector`.
     func getConnector(
@@ -202,7 +204,7 @@ extension Clients {
     /// See `VpcAccessServiceClient.deleteConnector`.
     func deleteConnectorPollingUntilDone(
       request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `VpcAccessServiceClient.listLocations`.
     func listLocations(
@@ -231,26 +233,22 @@ extension Clients.VpcAccessServiceProtocol {
   }
 
   public func createConnectorPollingUntilDone(request: CreateConnectorRequest) async throws
-    -> any GoogleGax.PollableOperation<Connector>
+    -> Connector
   {
-    try await self.createConnectorPollingUntilDone(request: request, options: .init())
+    return try await self.createConnectorPollingUntilDone(request: request, options: .init())
   }
 
   public func createConnectorPollingUntilDone(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Connector> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Connector>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Connector {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createConnectorPollingUntilDone(
     parent: Swift.String,
     connectorId: Swift.String,
     connector: Connector?,
-  ) async throws -> any GoogleGax.PollableOperation<Connector> {
+  ) async throws -> Connector {
     let request = CreateConnectorRequest().with {
       $0.parent = parent
       $0.connectorId = connectorId
@@ -335,29 +333,23 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteConnectorPollingUntilDone(request: DeleteConnectorRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteConnectorPollingUntilDone(request: DeleteConnectorRequest) async throws {
     try await self.deleteConnectorPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteConnectorPollingUntilDone(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteConnectorPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteConnectorRequest().with {
       $0.name = name
     }
-    return try await self.deleteConnectorPollingUntilDone(request: request)
+    try await self.deleteConnectorPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

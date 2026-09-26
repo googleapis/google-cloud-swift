@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, cdnKeyId: String
 ) async throws {
-  let poller = try await client.updateCdnKeyPollingUntilDone(
+  let response = try await client.updateCdnKeyPollingUntilDone(
     request: UpdateCdnKeyRequest()
       .with {
         $0.cdnKey = CdnKey().with {
@@ -33,7 +33,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

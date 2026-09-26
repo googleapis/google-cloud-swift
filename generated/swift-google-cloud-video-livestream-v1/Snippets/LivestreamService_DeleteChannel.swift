@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let poller = try await client.deleteChannelPollingUntilDone(
+  try await client.deleteChannelPollingUntilDone(
     request: DeleteChannelRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

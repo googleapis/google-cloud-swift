@@ -28,14 +28,13 @@
     client: MetadataServiceClient, projectId: String, locationId: String, metadataStoreId: String,
     contextId: String
   ) async throws {
-    let poller = try await client.deleteContextPollingUntilDone(
+    try await client.deleteContextPollingUntilDone(
       request: DeleteContextRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/metadataStores/\(metadataStoreId)/contexts/\(contextId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

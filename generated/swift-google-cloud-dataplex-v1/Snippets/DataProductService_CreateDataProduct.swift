@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataProductServiceClient, parent: String) async throws {
-  let poller = try await client.createDataProductPollingUntilDone(
+  let response = try await client.createDataProductPollingUntilDone(
     request: CreateDataProductRequest()
       .with {
         $0.parent = "\(parent)"
         $0.dataProduct = DataProduct() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

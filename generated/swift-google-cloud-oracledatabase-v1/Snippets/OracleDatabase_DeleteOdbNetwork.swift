@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, odbNetworkId: String
 ) async throws {
-  let poller = try await client.deleteOdbNetworkPollingUntilDone(
+  try await client.deleteOdbNetworkPollingUntilDone(
     request: DeleteOdbNetworkRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/odbNetworks/\(odbNetworkId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

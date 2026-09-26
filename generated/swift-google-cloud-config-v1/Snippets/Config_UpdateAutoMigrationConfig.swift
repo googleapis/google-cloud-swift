@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.updateAutoMigrationConfigPollingUntilDone(
+  let response = try await client.updateAutoMigrationConfigPollingUntilDone(
     request: UpdateAutoMigrationConfigRequest()
       .with {
         $0.autoMigrationConfig = AutoMigrationConfig().with {
@@ -33,7 +33,6 @@ func sample(client: ConfigClient, projectId: String, locationId: String) async t
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

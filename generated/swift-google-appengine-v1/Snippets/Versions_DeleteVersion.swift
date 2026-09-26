@@ -21,11 +21,10 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: VersionsClient) async throws {
-  let poller = try await client.deleteVersionPollingUntilDone(
+  try await client.deleteVersionPollingUntilDone(
     request: DeleteVersionRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, parent: String) async throws {
-  let poller = try await client.createNodePollingUntilDone(
+  let response = try await client.createNodePollingUntilDone(
     request: CreateNodeRequest()
       .with {
         $0.parent = "\(parent)"
@@ -31,7 +31,6 @@ func sample(client: TpuClient, parent: String) async throws {
         $0.node = Node() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

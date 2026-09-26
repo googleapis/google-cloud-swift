@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: OracleDatabaseClient) async throws {
-  let poller = try await client.stopGoldengateDeploymentPollingUntilDone(
+  let response = try await client.stopGoldengateDeploymentPollingUntilDone(
     request: StopGoldengateDeploymentRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

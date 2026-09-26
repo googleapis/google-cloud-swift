@@ -26,14 +26,13 @@ func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String,
   engineConfigId: String
 ) async throws {
-  let poller = try await client.deleteEngineConfigPollingUntilDone(
+  try await client.deleteEngineConfigPollingUntilDone(
     request: DeleteEngineConfigRequest()
       .with {
         $0.name =
           "projects/\(projectNumId)/locations/\(locationId)/instances/\(instanceId)/engineConfigs/\(engineConfigId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

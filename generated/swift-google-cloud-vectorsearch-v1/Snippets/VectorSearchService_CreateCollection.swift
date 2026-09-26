@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VectorSearchServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createCollectionPollingUntilDone(
+  let response = try await client.createCollectionPollingUntilDone(
     request: CreateCollectionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: VectorSearchServiceClient, projectId: String, locationId: St
         $0.collection = Collection() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

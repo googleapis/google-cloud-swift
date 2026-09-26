@@ -22,14 +22,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudBuildClient, parent: String) async throws {
-  let poller = try await client.createWorkerPoolPollingUntilDone(
+  let response = try await client.createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest()
       .with {
         $0.parent = "\(parent)"
         $0.workerPool = WorkerPool() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, parent: String) async throws {
-  let poller = try await client.createGatewayPollingUntilDone(
+  let response = try await client.createGatewayPollingUntilDone(
     request: CreateGatewayRequest()
       .with {
         $0.parent = "\(parent)"
@@ -30,7 +30,6 @@ func sample(client: ApiGatewayServiceClient, parent: String) async throws {
         $0.gateway = Gateway() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

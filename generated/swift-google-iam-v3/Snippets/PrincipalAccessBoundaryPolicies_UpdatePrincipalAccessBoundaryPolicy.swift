@@ -25,7 +25,7 @@ func sample(
   client: PrincipalAccessBoundaryPoliciesClient, organizationId: String, locationId: String,
   principalAccessBoundaryPolicyId: String
 ) async throws {
-  let poller = try await client.updatePrincipalAccessBoundaryPolicyPollingUntilDone(
+  let response = try await client.updatePrincipalAccessBoundaryPolicyPollingUntilDone(
     request: UpdatePrincipalAccessBoundaryPolicyRequest()
       .with {
         $0.principalAccessBoundaryPolicy = PrincipalAccessBoundaryPolicy().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MirroringClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createMirroringDeploymentGroupPollingUntilDone(
+  let response = try await client.createMirroringDeploymentGroupPollingUntilDone(
     request: CreateMirroringDeploymentGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.mirroringDeploymentGroup = MirroringDeploymentGroup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

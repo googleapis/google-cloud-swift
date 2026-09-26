@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient, parent: String) async throws {
-  let poller = try await client.createAspectTypePollingUntilDone(
+  let response = try await client.createAspectTypePollingUntilDone(
     request: CreateAspectTypeRequest()
       .with {
         $0.parent = "\(parent)"
         $0.aspectType = AspectType() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

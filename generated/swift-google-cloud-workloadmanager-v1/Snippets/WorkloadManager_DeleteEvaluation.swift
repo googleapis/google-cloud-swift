@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: WorkloadManagerClient, projectId: String, locationId: String, evaluationId: String
 ) async throws {
-  let poller = try await client.deleteEvaluationPollingUntilDone(
+  try await client.deleteEvaluationPollingUntilDone(
     request: DeleteEvaluationRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/evaluations/\(evaluationId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

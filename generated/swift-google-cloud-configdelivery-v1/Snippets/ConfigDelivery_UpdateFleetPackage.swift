@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: ConfigDeliveryClient, projectId: String, locationId: String, fleetPackageId: String
 ) async throws {
-  let poller = try await client.updateFleetPackagePollingUntilDone(
+  let response = try await client.updateFleetPackagePollingUntilDone(
     request: UpdateFleetPackageRequest()
       .with {
         $0.fleetPackage = FleetPackage().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

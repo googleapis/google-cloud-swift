@@ -26,11 +26,10 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataCatalogClient) async throws {
-  let poller = try await client.importEntriesPollingUntilDone(
+  let response = try await client.importEntriesPollingUntilDone(
     request: ImportEntriesRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

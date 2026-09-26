@@ -24,14 +24,13 @@ import GoogleWKT
 func sample(client: ModelServiceClient, projectId: String, locationId: String, catalogId: String)
   async throws
 {
-  let poller = try await client.createModelPollingUntilDone(
+  let response = try await client.createModelPollingUntilDone(
     request: CreateModelRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/catalogs/\(catalogId)"
         $0.model = Model() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

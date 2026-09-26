@@ -23,11 +23,10 @@ import GoogleLongRunning
 
 func sample() async throws {
   let client = try GoogleCloudWorkloadIdentityV1.WorkloadIdentityClient()
-  let poller = try await client.generateServiceAgentsPollingUntilDone(
+  let response = try await client.generateServiceAgentsPollingUntilDone(
     request: GenerateServiceAgentsRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

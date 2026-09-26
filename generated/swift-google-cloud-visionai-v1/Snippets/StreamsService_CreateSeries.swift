@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let poller = try await client.createSeriesPollingUntilDone(
+  let response = try await client.createSeriesPollingUntilDone(
     request: CreateSeriesRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
@@ -33,7 +33,6 @@ func sample(client: StreamsServiceClient, projectId: String, locationId: String,
         $0.series = Series() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -59,7 +59,7 @@
     /// @Snippet(path: "MetadataService_CreateMetadataStore")
     public func createMetadataStorePollingUntilDone(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MetadataStore> {
+    ) async throws -> MetadataStore {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
@@ -73,12 +73,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Retrieves a specific MetadataStore.
@@ -115,7 +116,7 @@
     /// @Snippet(path: "MetadataService_DeleteMetadataStore")
     public func deleteMetadataStorePollingUntilDone(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -129,12 +130,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Creates an Artifact associated with a MetadataStore.
@@ -187,7 +189,7 @@
     /// @Snippet(path: "MetadataService_DeleteArtifact")
     public func deleteArtifactPollingUntilDone(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -201,12 +203,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Purges Artifacts.
@@ -223,7 +226,7 @@
     /// @Snippet(path: "MetadataService_PurgeArtifacts")
     public func purgeArtifactsPollingUntilDone(
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PurgeArtifactsResponse> {
+    ) async throws -> PurgeArtifactsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State in
@@ -238,12 +241,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Creates a Context associated with a MetadataStore.
@@ -296,7 +300,7 @@
     /// @Snippet(path: "MetadataService_DeleteContext")
     public func deleteContextPollingUntilDone(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -310,12 +314,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Purges Contexts.
@@ -332,7 +337,7 @@
     /// @Snippet(path: "MetadataService_PurgeContexts")
     public func purgeContextsPollingUntilDone(
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PurgeContextsResponse> {
+    ) async throws -> PurgeContextsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State in
@@ -347,12 +352,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Adds a set of Artifacts and Executions to a Context. If any of the
@@ -450,7 +456,7 @@
     /// @Snippet(path: "MetadataService_DeleteExecution")
     public func deleteExecutionPollingUntilDone(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -464,12 +470,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Purges Executions.
@@ -486,7 +493,7 @@
     /// @Snippet(path: "MetadataService_PurgeExecutions")
     public func purgeExecutionsPollingUntilDone(
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PurgeExecutionsResponse> {
+    ) async throws -> PurgeExecutionsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State in
@@ -501,12 +508,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Adds Events to the specified Execution. An Event indicates whether an
@@ -696,7 +704,7 @@
       /// See `MetadataServiceClient.createMetadataStore`.
       func createMetadataStorePollingUntilDone(
         request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<MetadataStore>
+      ) async throws -> MetadataStore
 
       /// See `MetadataServiceClient.getMetadataStore`.
       func getMetadataStore(
@@ -716,7 +724,7 @@
       /// See `MetadataServiceClient.deleteMetadataStore`.
       func deleteMetadataStorePollingUntilDone(
         request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `MetadataServiceClient.createArtifact`.
       func createArtifact(
@@ -746,7 +754,7 @@
       /// See `MetadataServiceClient.deleteArtifact`.
       func deleteArtifactPollingUntilDone(
         request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `MetadataServiceClient.purgeArtifacts`.
       func purgeArtifacts(
@@ -756,7 +764,7 @@
       /// See `MetadataServiceClient.purgeArtifacts`.
       func purgeArtifactsPollingUntilDone(
         request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<PurgeArtifactsResponse>
+      ) async throws -> PurgeArtifactsResponse
 
       /// See `MetadataServiceClient.createContext`.
       func createContext(
@@ -786,7 +794,7 @@
       /// See `MetadataServiceClient.deleteContext`.
       func deleteContextPollingUntilDone(
         request: DeleteContextRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `MetadataServiceClient.purgeContexts`.
       func purgeContexts(
@@ -796,7 +804,7 @@
       /// See `MetadataServiceClient.purgeContexts`.
       func purgeContextsPollingUntilDone(
         request: PurgeContextsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<PurgeContextsResponse>
+      ) async throws -> PurgeContextsResponse
 
       /// See `MetadataServiceClient.addContextArtifactsAndExecutions`.
       func addContextArtifactsAndExecutions(
@@ -846,7 +854,7 @@
       /// See `MetadataServiceClient.deleteExecution`.
       func deleteExecutionPollingUntilDone(
         request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `MetadataServiceClient.purgeExecutions`.
       func purgeExecutions(
@@ -856,7 +864,7 @@
       /// See `MetadataServiceClient.purgeExecutions`.
       func purgeExecutionsPollingUntilDone(
         request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<PurgeExecutionsResponse>
+      ) async throws -> PurgeExecutionsResponse
 
       /// See `MetadataServiceClient.addExecutionEvents`.
       func addExecutionEvents(
@@ -950,27 +958,22 @@
     }
 
     public func createMetadataStorePollingUntilDone(request: CreateMetadataStoreRequest)
-      async throws -> any GoogleGax.PollableOperation<MetadataStore>
+      async throws -> MetadataStore
     {
-      try await self.createMetadataStorePollingUntilDone(request: request, options: .init())
+      return try await self.createMetadataStorePollingUntilDone(request: request, options: .init())
     }
 
     public func createMetadataStorePollingUntilDone(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<MetadataStore> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<MetadataStore>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> MetadataStore {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createMetadataStorePollingUntilDone(
       parent: Swift.String,
       metadataStore: MetadataStore?,
       metadataStoreId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<MetadataStore> {
+    ) async throws -> MetadataStore {
       let request = CreateMetadataStoreRequest().with {
         $0.parent = parent
         $0.metadataStore = metadataStore
@@ -1056,20 +1059,15 @@
     }
 
     public func deleteMetadataStorePollingUntilDone(request: DeleteMetadataStoreRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.deleteMetadataStorePollingUntilDone(request: request, options: .init())
     }
 
     public func deleteMetadataStorePollingUntilDone(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     #if hasAttribute(diagnose)
@@ -1077,11 +1075,11 @@
     #endif
     public func deleteMetadataStorePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteMetadataStoreRequest().with {
         $0.name = name
       }
-      return try await self.deleteMetadataStorePollingUntilDone(request: request)
+      try await self.deleteMetadataStorePollingUntilDone(request: request)
     }
 
     public func createArtifact(request: CreateArtifactRequest) async throws
@@ -1208,30 +1206,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteArtifactPollingUntilDone(request: DeleteArtifactRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteArtifactPollingUntilDone(request: DeleteArtifactRequest) async throws {
       try await self.deleteArtifactPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteArtifactPollingUntilDone(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteArtifactPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteArtifactRequest().with {
         $0.name = name
       }
-      return try await self.deleteArtifactPollingUntilDone(request: request)
+      try await self.deleteArtifactPollingUntilDone(request: request)
     }
 
     public func purgeArtifacts(request: PurgeArtifactsRequest) async throws
@@ -1247,26 +1238,20 @@
     }
 
     public func purgeArtifactsPollingUntilDone(request: PurgeArtifactsRequest) async throws
-      -> any GoogleGax.PollableOperation<PurgeArtifactsResponse>
+      -> PurgeArtifactsResponse
     {
-      try await self.purgeArtifactsPollingUntilDone(request: request, options: .init())
+      return try await self.purgeArtifactsPollingUntilDone(request: request, options: .init())
     }
 
     public func purgeArtifactsPollingUntilDone(
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PurgeArtifactsResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeArtifactsResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> PurgeArtifactsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func purgeArtifactsPollingUntilDone(
       parent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PurgeArtifactsResponse> {
+    ) async throws -> PurgeArtifactsResponse {
       let request = PurgeArtifactsRequest().with {
         $0.parent = parent
       }
@@ -1397,30 +1382,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteContextPollingUntilDone(request: DeleteContextRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteContextPollingUntilDone(request: DeleteContextRequest) async throws {
       try await self.deleteContextPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteContextPollingUntilDone(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteContextPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteContextRequest().with {
         $0.name = name
       }
-      return try await self.deleteContextPollingUntilDone(request: request)
+      try await self.deleteContextPollingUntilDone(request: request)
     }
 
     public func purgeContexts(request: PurgeContextsRequest) async throws
@@ -1436,26 +1414,20 @@
     }
 
     public func purgeContextsPollingUntilDone(request: PurgeContextsRequest) async throws
-      -> any GoogleGax.PollableOperation<PurgeContextsResponse>
+      -> PurgeContextsResponse
     {
-      try await self.purgeContextsPollingUntilDone(request: request, options: .init())
+      return try await self.purgeContextsPollingUntilDone(request: request, options: .init())
     }
 
     public func purgeContextsPollingUntilDone(
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PurgeContextsResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeContextsResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> PurgeContextsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func purgeContextsPollingUntilDone(
       parent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PurgeContextsResponse> {
+    ) async throws -> PurgeContextsResponse {
       let request = PurgeContextsRequest().with {
         $0.parent = parent
       }
@@ -1678,30 +1650,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws {
       try await self.deleteExecutionPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteExecutionPollingUntilDone(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteExecutionPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteExecutionRequest().with {
         $0.name = name
       }
-      return try await self.deleteExecutionPollingUntilDone(request: request)
+      try await self.deleteExecutionPollingUntilDone(request: request)
     }
 
     public func purgeExecutions(request: PurgeExecutionsRequest) async throws
@@ -1717,26 +1682,20 @@
     }
 
     public func purgeExecutionsPollingUntilDone(request: PurgeExecutionsRequest) async throws
-      -> any GoogleGax.PollableOperation<PurgeExecutionsResponse>
+      -> PurgeExecutionsResponse
     {
-      try await self.purgeExecutionsPollingUntilDone(request: request, options: .init())
+      return try await self.purgeExecutionsPollingUntilDone(request: request, options: .init())
     }
 
     public func purgeExecutionsPollingUntilDone(
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PurgeExecutionsResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<PurgeExecutionsResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> PurgeExecutionsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func purgeExecutionsPollingUntilDone(
       parent: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<PurgeExecutionsResponse> {
+    ) async throws -> PurgeExecutionsResponse {
       let request = PurgeExecutionsRequest().with {
         $0.parent = parent
       }

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, backupVaultId: String)
   async throws
 {
-  let poller = try await client.updateBackupVaultPollingUntilDone(
+  let response = try await client.updateBackupVaultPollingUntilDone(
     request: UpdateBackupVaultRequest()
       .with {
         $0.backupVault = BackupVault().with {
@@ -34,7 +34,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, backupV
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

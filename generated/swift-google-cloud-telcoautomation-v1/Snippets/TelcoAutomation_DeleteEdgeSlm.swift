@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: TelcoAutomationClient, projectId: String, locationId: String, edgeSlmId: String)
   async throws
 {
-  let poller = try await client.deleteEdgeSlmPollingUntilDone(
+  try await client.deleteEdgeSlmPollingUntilDone(
     request: DeleteEdgeSlmRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/edgeSlms/\(edgeSlmId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

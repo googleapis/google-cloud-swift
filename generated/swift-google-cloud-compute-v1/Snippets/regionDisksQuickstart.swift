@@ -22,11 +22,10 @@
 
   func sample() async throws {
     let client = try GoogleCloudComputeV1.RegionDisksClient()
-    let poller = try await client.addResourcePoliciesPollingUntilDone(
+    let response = try await client.addResourcePoliciesPollingUntilDone(
       request: RegionDisksClient.AddResourcePoliciesRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

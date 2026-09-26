@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, httpRouteId: String
 ) async throws {
-  let poller = try await client.deleteHttpRoutePollingUntilDone(
+  try await client.deleteHttpRoutePollingUntilDone(
     request: DeleteHttpRouteRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/httpRoutes/\(httpRouteId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

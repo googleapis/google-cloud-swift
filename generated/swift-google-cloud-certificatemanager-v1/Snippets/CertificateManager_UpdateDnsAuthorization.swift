@@ -26,7 +26,7 @@ func sample(
   client: CertificateManagerClient, projectId: String, locationId: String,
   dnsAuthorizationId: String
 ) async throws {
-  let poller = try await client.updateDnsAuthorizationPollingUntilDone(
+  let response = try await client.updateDnsAuthorizationPollingUntilDone(
     request: UpdateDnsAuthorizationRequest()
       .with {
         $0.dnsAuthorization = DnsAuthorization().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

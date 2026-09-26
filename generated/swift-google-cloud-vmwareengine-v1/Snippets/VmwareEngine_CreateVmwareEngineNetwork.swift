@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmwareEngineClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createVmwareEngineNetworkPollingUntilDone(
+  let response = try await client.createVmwareEngineNetworkPollingUntilDone(
     request: CreateVmwareEngineNetworkRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.vmwareEngineNetwork = VmwareEngineNetwork() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,7 +26,7 @@
   func sample(
     client: DocumentsClient, projectId: String, knowledgeBaseId: String, documentId: String
   ) async throws {
-    let poller = try await client.updateDocumentPollingUntilDone(
+    let response = try await client.updateDocumentPollingUntilDone(
       request: UpdateDocumentRequest()
         .with {
           $0.document = Document().with {
@@ -36,7 +36,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

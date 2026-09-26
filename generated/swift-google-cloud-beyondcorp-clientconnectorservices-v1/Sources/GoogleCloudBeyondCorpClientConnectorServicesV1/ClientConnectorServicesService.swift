@@ -91,7 +91,7 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// @Snippet(path: "ClientConnectorServicesService_CreateClientConnectorService")
   public func createClientConnectorServicePollingUntilDone(
     request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
+  ) async throws -> ClientConnectorService {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
@@ -105,12 +105,13 @@ public final class ClientConnectorServicesServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single ClientConnectorService.
@@ -127,7 +128,7 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// @Snippet(path: "ClientConnectorServicesService_UpdateClientConnectorService")
   public func updateClientConnectorServicePollingUntilDone(
     request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
+  ) async throws -> ClientConnectorService {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
@@ -141,12 +142,13 @@ public final class ClientConnectorServicesServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single ClientConnectorService.
@@ -163,7 +165,7 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// @Snippet(path: "ClientConnectorServicesService_DeleteClientConnectorService")
   public func deleteClientConnectorServicePollingUntilDone(
     request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -176,12 +178,13 @@ public final class ClientConnectorServicesServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -311,7 +314,7 @@ extension Clients {
     /// See `ClientConnectorServicesServiceClient.createClientConnectorService`.
     func createClientConnectorServicePollingUntilDone(
       request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService>
+    ) async throws -> ClientConnectorService
 
     /// See `ClientConnectorServicesServiceClient.updateClientConnectorService`.
     func updateClientConnectorService(
@@ -321,7 +324,7 @@ extension Clients {
     /// See `ClientConnectorServicesServiceClient.updateClientConnectorService`.
     func updateClientConnectorServicePollingUntilDone(
       request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService>
+    ) async throws -> ClientConnectorService
 
     /// See `ClientConnectorServicesServiceClient.deleteClientConnectorService`.
     func deleteClientConnectorService(
@@ -331,7 +334,7 @@ extension Clients {
     /// See `ClientConnectorServicesServiceClient.deleteClientConnectorService`.
     func deleteClientConnectorServicePollingUntilDone(
       request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `ClientConnectorServicesServiceClient.listLocations`.
     func listLocations(
@@ -457,26 +460,22 @@ extension Clients.ClientConnectorServicesServiceProtocol {
 
   public func createClientConnectorServicePollingUntilDone(
     request: CreateClientConnectorServiceRequest
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
-    try await self.createClientConnectorServicePollingUntilDone(request: request, options: .init())
+  ) async throws -> ClientConnectorService {
+    return try await self.createClientConnectorServicePollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createClientConnectorServicePollingUntilDone(
     request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ClientConnectorService {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createClientConnectorServicePollingUntilDone(
     parent: Swift.String,
     clientConnectorService: ClientConnectorService?,
     clientConnectorServiceId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
+  ) async throws -> ClientConnectorService {
     let request = CreateClientConnectorServiceRequest().with {
       $0.parent = parent
       $0.clientConnectorService = clientConnectorService
@@ -499,25 +498,21 @@ extension Clients.ClientConnectorServicesServiceProtocol {
 
   public func updateClientConnectorServicePollingUntilDone(
     request: UpdateClientConnectorServiceRequest
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
-    try await self.updateClientConnectorServicePollingUntilDone(request: request, options: .init())
+  ) async throws -> ClientConnectorService {
+    return try await self.updateClientConnectorServicePollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateClientConnectorServicePollingUntilDone(
     request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientConnectorService>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ClientConnectorService {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateClientConnectorServicePollingUntilDone(
     clientConnectorService: ClientConnectorService?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<ClientConnectorService> {
+  ) async throws -> ClientConnectorService {
     let request = UpdateClientConnectorServiceRequest().with {
       $0.clientConnectorService = clientConnectorService
       $0.updateMask = updateMask
@@ -539,27 +534,23 @@ extension Clients.ClientConnectorServicesServiceProtocol {
 
   public func deleteClientConnectorServicePollingUntilDone(
     request: DeleteClientConnectorServiceRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteClientConnectorServicePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteClientConnectorServicePollingUntilDone(
     request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteClientConnectorServicePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteClientConnectorServiceRequest().with {
       $0.name = name
     }
-    return try await self.deleteClientConnectorServicePollingUntilDone(request: request)
+    try await self.deleteClientConnectorServicePollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

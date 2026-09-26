@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AddressGroupServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAddressGroupPollingUntilDone(
+  let response = try await client.createAddressGroupPollingUntilDone(
     request: CreateAddressGroupRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.addressGroup = AddressGroup() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

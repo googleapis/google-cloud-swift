@@ -123,7 +123,7 @@
     /// @Snippet(path: "VizierService_SuggestTrials")
     public func suggestTrialsPollingUntilDone(
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse> {
+    ) async throws -> SuggestTrialsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State in
@@ -138,12 +138,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Adds a user provided Trial to a Study.
@@ -225,7 +226,7 @@
     /// @Snippet(path: "VizierService_CheckTrialEarlyStoppingState")
     public func checkTrialEarlyStoppingStatePollingUntilDone(
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
+    ) async throws -> CheckTrialEarlyStoppingStateResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<CheckTrialEarlyStoppingStateResponse>.State in
@@ -240,12 +241,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Stops a Trial.
@@ -421,7 +423,7 @@
       /// See `VizierServiceClient.suggestTrials`.
       func suggestTrialsPollingUntilDone(
         request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse>
+      ) async throws -> SuggestTrialsResponse
 
       /// See `VizierServiceClient.createTrial`.
       func createTrial(
@@ -461,7 +463,7 @@
       /// See `VizierServiceClient.checkTrialEarlyStoppingState`.
       func checkTrialEarlyStoppingStatePollingUntilDone(
         request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse>
+      ) async throws -> CheckTrialEarlyStoppingStateResponse
 
       /// See `VizierServiceClient.stopTrial`.
       func stopTrial(
@@ -660,21 +662,15 @@
     }
 
     public func suggestTrialsPollingUntilDone(request: SuggestTrialsRequest) async throws
-      -> any GoogleGax.PollableOperation<SuggestTrialsResponse>
+      -> SuggestTrialsResponse
     {
-      try await self.suggestTrialsPollingUntilDone(request: request, options: .init())
+      return try await self.suggestTrialsPollingUntilDone(request: request, options: .init())
     }
 
     public func suggestTrialsPollingUntilDone(
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SuggestTrialsResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<SuggestTrialsResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> SuggestTrialsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createTrial(request: CreateTrialRequest) async throws
@@ -819,21 +815,15 @@
 
     public func checkTrialEarlyStoppingStatePollingUntilDone(
       request: CheckTrialEarlyStoppingStateRequest
-    ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
-      try await self.checkTrialEarlyStoppingStatePollingUntilDone(
+    ) async throws -> CheckTrialEarlyStoppingStateResponse {
+      return try await self.checkTrialEarlyStoppingStatePollingUntilDone(
         request: request, options: .init())
     }
 
     public func checkTrialEarlyStoppingStatePollingUntilDone(
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CheckTrialEarlyStoppingStateResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<CheckTrialEarlyStoppingStateResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> CheckTrialEarlyStoppingStateResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func stopTrial(request: StopTrialRequest) async throws -> GoogleCloudAIPlatformV1.Trial {

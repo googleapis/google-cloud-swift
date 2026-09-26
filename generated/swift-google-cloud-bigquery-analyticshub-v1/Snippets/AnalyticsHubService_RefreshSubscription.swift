@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AnalyticsHubServiceClient) async throws {
-  let poller = try await client.refreshSubscriptionPollingUntilDone(
+  let response = try await client.refreshSubscriptionPollingUntilDone(
     request: RefreshSubscriptionRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

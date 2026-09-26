@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String, snapshotId: String
 ) async throws {
-  let poller = try await client.updateSnapshotPollingUntilDone(
+  let response = try await client.updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest()
       .with {
         $0.snapshot = Snapshot().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

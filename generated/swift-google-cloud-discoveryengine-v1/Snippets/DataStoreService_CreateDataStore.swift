@@ -23,14 +23,13 @@
   import GoogleWKT
 
   func sample(client: DataStoreServiceClient, parent: String) async throws {
-    let poller = try await client.createDataStorePollingUntilDone(
+    let response = try await client.createDataStorePollingUntilDone(
       request: CreateDataStoreRequest()
         .with {
           $0.parent = "\(parent)"
           $0.dataStore = DataStore() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

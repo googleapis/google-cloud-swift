@@ -94,7 +94,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_CreateFirewallEndpoint")
   public func createFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
@@ -108,12 +108,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a new FirewallEndpoint in a given project and location.
@@ -130,7 +131,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_CreateProjectFirewallEndpoint")
   public func createProjectFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
@@ -144,12 +145,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single org Endpoint.
@@ -166,7 +168,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_DeleteFirewallEndpoint")
   public func deleteFirewallEndpointPollingUntilDone(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -179,12 +181,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Deletes a single project Endpoint.
@@ -201,7 +204,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_DeleteProjectFirewallEndpoint")
   public func deleteProjectFirewallEndpointPollingUntilDone(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -214,12 +217,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Update a single org Endpoint.
@@ -236,7 +240,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_UpdateFirewallEndpoint")
   public func updateFirewallEndpointPollingUntilDone(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
@@ -250,12 +254,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update a single project Endpoint.
@@ -272,7 +277,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_UpdateProjectFirewallEndpoint")
   public func updateProjectFirewallEndpointPollingUntilDone(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
@@ -286,12 +291,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists Associations in a given project and location.
@@ -326,7 +332,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_CreateFirewallEndpointAssociation")
   public func createFirewallEndpointAssociationPollingUntilDone(
     request: CreateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
+  ) async throws -> FirewallEndpointAssociation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FirewallEndpointAssociation>.State in
@@ -341,12 +347,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single FirewallEndpointAssociation.
@@ -363,7 +370,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_DeleteFirewallEndpointAssociation")
   public func deleteFirewallEndpointAssociationPollingUntilDone(
     request: DeleteFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -376,12 +383,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Update a single FirewallEndpointAssociation.
@@ -398,7 +406,7 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// @Snippet(path: "FirewallActivation_UpdateFirewallEndpointAssociation")
   public func updateFirewallEndpointAssociationPollingUntilDone(
     request: UpdateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
+  ) async throws -> FirewallEndpointAssociation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<FirewallEndpointAssociation>.State in
@@ -413,12 +421,13 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -574,7 +583,7 @@ extension Clients {
     /// See `FirewallActivationClient.createFirewallEndpoint`.
     func createFirewallEndpointPollingUntilDone(
       request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    ) async throws -> FirewallEndpoint
 
     /// See `FirewallActivationClient.createProjectFirewallEndpoint`.
     func createProjectFirewallEndpoint(
@@ -584,7 +593,7 @@ extension Clients {
     /// See `FirewallActivationClient.createProjectFirewallEndpoint`.
     func createProjectFirewallEndpointPollingUntilDone(
       request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    ) async throws -> FirewallEndpoint
 
     /// See `FirewallActivationClient.deleteFirewallEndpoint`.
     func deleteFirewallEndpoint(
@@ -594,7 +603,7 @@ extension Clients {
     /// See `FirewallActivationClient.deleteFirewallEndpoint`.
     func deleteFirewallEndpointPollingUntilDone(
       request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `FirewallActivationClient.deleteProjectFirewallEndpoint`.
     func deleteProjectFirewallEndpoint(
@@ -604,7 +613,7 @@ extension Clients {
     /// See `FirewallActivationClient.deleteProjectFirewallEndpoint`.
     func deleteProjectFirewallEndpointPollingUntilDone(
       request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `FirewallActivationClient.updateFirewallEndpoint`.
     func updateFirewallEndpoint(
@@ -614,7 +623,7 @@ extension Clients {
     /// See `FirewallActivationClient.updateFirewallEndpoint`.
     func updateFirewallEndpointPollingUntilDone(
       request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    ) async throws -> FirewallEndpoint
 
     /// See `FirewallActivationClient.updateProjectFirewallEndpoint`.
     func updateProjectFirewallEndpoint(
@@ -624,7 +633,7 @@ extension Clients {
     /// See `FirewallActivationClient.updateProjectFirewallEndpoint`.
     func updateProjectFirewallEndpointPollingUntilDone(
       request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    ) async throws -> FirewallEndpoint
 
     /// See `FirewallActivationClient.listFirewallEndpointAssociations`.
     func listFirewallEndpointAssociations(
@@ -644,7 +653,7 @@ extension Clients {
     /// See `FirewallActivationClient.createFirewallEndpointAssociation`.
     func createFirewallEndpointAssociationPollingUntilDone(
       request: CreateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation>
+    ) async throws -> FirewallEndpointAssociation
 
     /// See `FirewallActivationClient.deleteFirewallEndpointAssociation`.
     func deleteFirewallEndpointAssociation(
@@ -654,7 +663,7 @@ extension Clients {
     /// See `FirewallActivationClient.deleteFirewallEndpointAssociation`.
     func deleteFirewallEndpointAssociationPollingUntilDone(
       request: DeleteFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `FirewallActivationClient.updateFirewallEndpointAssociation`.
     func updateFirewallEndpointAssociation(
@@ -664,7 +673,7 @@ extension Clients {
     /// See `FirewallActivationClient.updateFirewallEndpointAssociation`.
     func updateFirewallEndpointAssociationPollingUntilDone(
       request: UpdateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation>
+    ) async throws -> FirewallEndpointAssociation
 
     /// See `FirewallActivationClient.listLocations`.
     func listLocations(
@@ -851,27 +860,22 @@ extension Clients.FirewallActivationProtocol {
   }
 
   public func createFirewallEndpointPollingUntilDone(request: CreateFirewallEndpointRequest)
-    async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    async throws -> FirewallEndpoint
   {
-    try await self.createFirewallEndpointPollingUntilDone(request: request, options: .init())
+    return try await self.createFirewallEndpointPollingUntilDone(request: request, options: .init())
   }
 
   public func createFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FirewallEndpoint {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createFirewallEndpointPollingUntilDone(
     parent: Swift.String,
     firewallEndpoint: FirewallEndpoint?,
     firewallEndpointId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let request = CreateFirewallEndpointRequest().with {
       $0.parent = parent
       $0.firewallEndpoint = firewallEndpoint
@@ -893,27 +897,23 @@ extension Clients.FirewallActivationProtocol {
   }
 
   public func createProjectFirewallEndpointPollingUntilDone(request: CreateFirewallEndpointRequest)
-    async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    async throws -> FirewallEndpoint
   {
-    try await self.createProjectFirewallEndpointPollingUntilDone(request: request, options: .init())
+    return try await self.createProjectFirewallEndpointPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createProjectFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FirewallEndpoint {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createProjectFirewallEndpointPollingUntilDone(
     parent: Swift.String,
     firewallEndpoint: FirewallEndpoint?,
     firewallEndpointId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let request = CreateFirewallEndpointRequest().with {
       $0.parent = parent
       $0.firewallEndpoint = firewallEndpoint
@@ -935,28 +935,24 @@ extension Clients.FirewallActivationProtocol {
   }
 
   public func deleteFirewallEndpointPollingUntilDone(request: DeleteFirewallEndpointRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteFirewallEndpointPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteFirewallEndpointPollingUntilDone(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteFirewallEndpointPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteFirewallEndpointRequest().with {
       $0.name = name
     }
-    return try await self.deleteFirewallEndpointPollingUntilDone(request: request)
+    try await self.deleteFirewallEndpointPollingUntilDone(request: request)
   }
 
   public func deleteProjectFirewallEndpoint(request: DeleteFirewallEndpointRequest) async throws
@@ -972,28 +968,24 @@ extension Clients.FirewallActivationProtocol {
   }
 
   public func deleteProjectFirewallEndpointPollingUntilDone(request: DeleteFirewallEndpointRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteProjectFirewallEndpointPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteProjectFirewallEndpointPollingUntilDone(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteProjectFirewallEndpointPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteFirewallEndpointRequest().with {
       $0.name = name
     }
-    return try await self.deleteProjectFirewallEndpointPollingUntilDone(request: request)
+    try await self.deleteProjectFirewallEndpointPollingUntilDone(request: request)
   }
 
   public func updateFirewallEndpoint(request: UpdateFirewallEndpointRequest) async throws
@@ -1009,26 +1001,21 @@ extension Clients.FirewallActivationProtocol {
   }
 
   public func updateFirewallEndpointPollingUntilDone(request: UpdateFirewallEndpointRequest)
-    async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    async throws -> FirewallEndpoint
   {
-    try await self.updateFirewallEndpointPollingUntilDone(request: request, options: .init())
+    return try await self.updateFirewallEndpointPollingUntilDone(request: request, options: .init())
   }
 
   public func updateFirewallEndpointPollingUntilDone(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FirewallEndpoint {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateFirewallEndpointPollingUntilDone(
     firewallEndpoint: FirewallEndpoint?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let request = UpdateFirewallEndpointRequest().with {
       $0.firewallEndpoint = firewallEndpoint
       $0.updateMask = updateMask
@@ -1049,26 +1036,22 @@ extension Clients.FirewallActivationProtocol {
   }
 
   public func updateProjectFirewallEndpointPollingUntilDone(request: UpdateFirewallEndpointRequest)
-    async throws -> any GoogleGax.PollableOperation<FirewallEndpoint>
+    async throws -> FirewallEndpoint
   {
-    try await self.updateProjectFirewallEndpointPollingUntilDone(request: request, options: .init())
+    return try await self.updateProjectFirewallEndpointPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateProjectFirewallEndpointPollingUntilDone(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<FirewallEndpoint>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FirewallEndpoint {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateProjectFirewallEndpointPollingUntilDone(
     firewallEndpoint: FirewallEndpoint?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpoint> {
+  ) async throws -> FirewallEndpoint {
     let request = UpdateFirewallEndpointRequest().with {
       $0.firewallEndpoint = firewallEndpoint
       $0.updateMask = updateMask
@@ -1154,28 +1137,22 @@ extension Clients.FirewallActivationProtocol {
 
   public func createFirewallEndpointAssociationPollingUntilDone(
     request: CreateFirewallEndpointAssociationRequest
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
-    try await self.createFirewallEndpointAssociationPollingUntilDone(
+  ) async throws -> FirewallEndpointAssociation {
+    return try await self.createFirewallEndpointAssociationPollingUntilDone(
       request: request, options: .init())
   }
 
   public func createFirewallEndpointAssociationPollingUntilDone(
     request: CreateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<FirewallEndpointAssociation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FirewallEndpointAssociation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createFirewallEndpointAssociationPollingUntilDone(
     parent: Swift.String,
     firewallEndpointAssociation: FirewallEndpointAssociation?,
     firewallEndpointAssociationId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
+  ) async throws -> FirewallEndpointAssociation {
     let request = CreateFirewallEndpointAssociationRequest().with {
       $0.parent = parent
       $0.firewallEndpointAssociation = firewallEndpointAssociation
@@ -1198,28 +1175,24 @@ extension Clients.FirewallActivationProtocol {
 
   public func deleteFirewallEndpointAssociationPollingUntilDone(
     request: DeleteFirewallEndpointAssociationRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteFirewallEndpointAssociationPollingUntilDone(
       request: request, options: .init())
   }
 
   public func deleteFirewallEndpointAssociationPollingUntilDone(
     request: DeleteFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteFirewallEndpointAssociationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteFirewallEndpointAssociationRequest().with {
       $0.name = name
     }
-    return try await self.deleteFirewallEndpointAssociationPollingUntilDone(request: request)
+    try await self.deleteFirewallEndpointAssociationPollingUntilDone(request: request)
   }
 
   public func updateFirewallEndpointAssociation(request: UpdateFirewallEndpointAssociationRequest)
@@ -1236,27 +1209,21 @@ extension Clients.FirewallActivationProtocol {
 
   public func updateFirewallEndpointAssociationPollingUntilDone(
     request: UpdateFirewallEndpointAssociationRequest
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
-    try await self.updateFirewallEndpointAssociationPollingUntilDone(
+  ) async throws -> FirewallEndpointAssociation {
+    return try await self.updateFirewallEndpointAssociationPollingUntilDone(
       request: request, options: .init())
   }
 
   public func updateFirewallEndpointAssociationPollingUntilDone(
     request: UpdateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<FirewallEndpointAssociation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> FirewallEndpointAssociation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateFirewallEndpointAssociationPollingUntilDone(
     firewallEndpointAssociation: FirewallEndpointAssociation?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<FirewallEndpointAssociation> {
+  ) async throws -> FirewallEndpointAssociation {
     let request = UpdateFirewallEndpointAssociationRequest().with {
       $0.firewallEndpointAssociation = firewallEndpointAssociation
       $0.updateMask = updateMask

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String, quotaRuleId: String
 ) async throws {
-  let poller = try await client.updateQuotaRulePollingUntilDone(
+  let response = try await client.updateQuotaRulePollingUntilDone(
     request: UpdateQuotaRuleRequest()
       .with {
         $0.quotaRule = QuotaRule().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

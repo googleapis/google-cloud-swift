@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: TargetHttpProxiesClient) async throws {
-    let poller = try await client.deletePollingUntilDone(
+    let response = try await client.deletePollingUntilDone(
       request: TargetHttpProxiesClient.DeleteRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

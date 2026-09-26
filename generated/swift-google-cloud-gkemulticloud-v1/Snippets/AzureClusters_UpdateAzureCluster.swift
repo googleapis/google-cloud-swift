@@ -27,7 +27,7 @@ import GoogleWKT
 func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String
 ) async throws {
-  let poller = try await client.updateAzureClusterPollingUntilDone(
+  let response = try await client.updateAzureClusterPollingUntilDone(
     request: UpdateAzureClusterRequest()
       .with {
         $0.azureCluster = AzureCluster().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

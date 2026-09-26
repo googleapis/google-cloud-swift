@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, networkPeeringId: String
 ) async throws {
-  let poller = try await client.deleteNetworkPeeringPollingUntilDone(
+  try await client.deleteNetworkPeeringPollingUntilDone(
     request: DeleteNetworkPeeringRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/networkPeerings/\(networkPeeringId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

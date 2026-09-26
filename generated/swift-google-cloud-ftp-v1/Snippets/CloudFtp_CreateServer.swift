@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFtpClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createServerPollingUntilDone(
+  let response = try await client.createServerPollingUntilDone(
     request: CreateServerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: CloudFtpClient, projectId: String, locationId: String) async
         $0.server = Server() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

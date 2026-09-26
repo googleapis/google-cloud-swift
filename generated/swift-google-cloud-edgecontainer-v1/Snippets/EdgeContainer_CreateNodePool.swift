@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(client: EdgeContainerClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let poller = try await client.createNodePoolPollingUntilDone(
+  let response = try await client.createNodePoolPollingUntilDone(
     request: CreateNodePoolRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)"
         $0.nodePool = NodePool() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -68,7 +68,7 @@
     /// @Snippet(path: "UserLicenseService_BatchUpdateUserLicenses")
     public func batchUpdateUserLicensesPollingUntilDone(
       request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse> {
+    ) async throws -> BatchUpdateUserLicensesResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<BatchUpdateUserLicensesResponse>.State in
@@ -83,12 +83,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -145,7 +146,7 @@
       /// See `UserLicenseServiceClient.batchUpdateUserLicenses`.
       func batchUpdateUserLicensesPollingUntilDone(
         request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
+      ) async throws -> BatchUpdateUserLicensesResponse
 
       /// See `UserLicenseServiceClient.listOperations`.
       func listOperations(
@@ -217,21 +218,16 @@
     }
 
     public func batchUpdateUserLicensesPollingUntilDone(request: BatchUpdateUserLicensesRequest)
-      async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse>
+      async throws -> BatchUpdateUserLicensesResponse
     {
-      try await self.batchUpdateUserLicensesPollingUntilDone(request: request, options: .init())
+      return try await self.batchUpdateUserLicensesPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func batchUpdateUserLicensesPollingUntilDone(
       request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchUpdateUserLicensesResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<BatchUpdateUserLicensesResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> BatchUpdateUserLicensesResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws

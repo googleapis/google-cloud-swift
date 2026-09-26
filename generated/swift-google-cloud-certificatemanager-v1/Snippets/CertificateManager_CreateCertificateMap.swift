@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateManagerClient, parent: String) async throws {
-  let poller = try await client.createCertificateMapPollingUntilDone(
+  let response = try await client.createCertificateMapPollingUntilDone(
     request: CreateCertificateMapRequest()
       .with {
         $0.parent = "\(parent)"
         $0.certificateMap = CertificateMap() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -97,7 +97,7 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// @Snippet(path: "Autokey_CreateKeyHandle")
   public func createKeyHandlePollingUntilDone(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KeyHandle> {
+  ) async throws -> KeyHandle {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
@@ -110,12 +110,13 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Returns the [KeyHandle][google.cloud.kms.v1.KeyHandle].
@@ -240,7 +241,7 @@ extension Clients {
     /// See `AutokeyClient.createKeyHandle`.
     func createKeyHandlePollingUntilDone(
       request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<KeyHandle>
+    ) async throws -> KeyHandle
 
     /// See `AutokeyClient.getKeyHandle`.
     func getKeyHandle(
@@ -294,26 +295,22 @@ extension Clients.AutokeyProtocol {
   }
 
   public func createKeyHandlePollingUntilDone(request: CreateKeyHandleRequest) async throws
-    -> any GoogleGax.PollableOperation<KeyHandle>
+    -> KeyHandle
   {
-    try await self.createKeyHandlePollingUntilDone(request: request, options: .init())
+    return try await self.createKeyHandlePollingUntilDone(request: request, options: .init())
   }
 
   public func createKeyHandlePollingUntilDone(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<KeyHandle> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<KeyHandle>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> KeyHandle {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createKeyHandlePollingUntilDone(
     parent: Swift.String,
     keyHandle: KeyHandle?,
     keyHandleId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<KeyHandle> {
+  ) async throws -> KeyHandle {
     let request = CreateKeyHandleRequest().with {
       $0.parent = parent
       $0.keyHandle = keyHandle

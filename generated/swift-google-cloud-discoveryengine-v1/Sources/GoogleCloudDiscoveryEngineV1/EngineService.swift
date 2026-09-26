@@ -64,7 +64,7 @@
     /// @Snippet(path: "EngineService_CreateEngine")
     public func createEnginePollingUntilDone(
       request: CreateEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Engine> {
+    ) async throws -> Engine {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Engine>.State in
@@ -77,12 +77,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Deletes a [Engine][google.cloud.discoveryengine.v1.Engine].
@@ -103,7 +104,7 @@
     /// @Snippet(path: "EngineService_DeleteEngine")
     public func deleteEnginePollingUntilDone(
       request: DeleteEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -117,12 +118,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Updates an [Engine][google.cloud.discoveryengine.v1.Engine]
@@ -208,7 +210,7 @@
       /// See `EngineServiceClient.createEngine`.
       func createEnginePollingUntilDone(
         request: CreateEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Engine>
+      ) async throws -> Engine
 
       /// See `EngineServiceClient.deleteEngine`.
       func deleteEngine(
@@ -218,7 +220,7 @@
       /// See `EngineServiceClient.deleteEngine`.
       func deleteEnginePollingUntilDone(
         request: DeleteEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `EngineServiceClient.updateEngine`.
       func updateEngine(
@@ -261,27 +263,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func createEnginePollingUntilDone(request: CreateEngineRequest) async throws
-      -> any GoogleGax.PollableOperation<Engine>
-    {
-      try await self.createEnginePollingUntilDone(request: request, options: .init())
+    public func createEnginePollingUntilDone(request: CreateEngineRequest) async throws -> Engine {
+      return try await self.createEnginePollingUntilDone(request: request, options: .init())
     }
 
     public func createEnginePollingUntilDone(
       request: CreateEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Engine> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Engine>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> Engine {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createEnginePollingUntilDone(
       parent: Swift.String,
       engine: Engine?,
       engineId: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Engine> {
+    ) async throws -> Engine {
       let request = CreateEngineRequest().with {
         $0.parent = parent
         $0.engine = engine
@@ -302,30 +298,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteEnginePollingUntilDone(request: DeleteEngineRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteEnginePollingUntilDone(request: DeleteEngineRequest) async throws {
       try await self.deleteEnginePollingUntilDone(request: request, options: .init())
     }
 
     public func deleteEnginePollingUntilDone(
       request: DeleteEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteEnginePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteEngineRequest().with {
         $0.name = name
       }
-      return try await self.deleteEnginePollingUntilDone(request: request)
+      try await self.deleteEnginePollingUntilDone(request: request)
     }
 
     public func updateEngine(request: UpdateEngineRequest) async throws

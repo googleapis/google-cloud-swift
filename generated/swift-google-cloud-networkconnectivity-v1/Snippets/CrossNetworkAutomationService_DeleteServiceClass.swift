@@ -27,13 +27,12 @@ func sample(
   client: CrossNetworkAutomationServiceClient, projectId: String, locationId: String,
   serviceClassId: String
 ) async throws {
-  let poller = try await client.deleteServiceClassPollingUntilDone(
+  try await client.deleteServiceClassPollingUntilDone(
     request: DeleteServiceClassRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/serviceClasses/\(serviceClassId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

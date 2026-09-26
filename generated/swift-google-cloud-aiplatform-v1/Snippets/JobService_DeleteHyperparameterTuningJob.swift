@@ -28,14 +28,13 @@
     client: JobServiceClient, projectId: String, locationId: String,
     hyperparameterTuningJobId: String
   ) async throws {
-    let poller = try await client.deleteHyperparameterTuningJobPollingUntilDone(
+    try await client.deleteHyperparameterTuningJobPollingUntilDone(
       request: DeleteHyperparameterTuningJobRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/hyperparameterTuningJobs/\(hyperparameterTuningJobId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

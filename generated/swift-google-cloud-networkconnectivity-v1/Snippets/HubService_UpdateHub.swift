@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, projectId: String, hubId: String) async throws {
-  let poller = try await client.updateHubPollingUntilDone(
+  let response = try await client.updateHubPollingUntilDone(
     request: UpdateHubRequest()
       .with {
         $0.hub = Hub().with {
@@ -33,7 +33,6 @@ func sample(client: HubServiceClient, projectId: String, hubId: String) async th
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

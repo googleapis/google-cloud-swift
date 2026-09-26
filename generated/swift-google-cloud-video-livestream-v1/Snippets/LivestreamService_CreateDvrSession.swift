@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String
 ) async throws {
-  let poller = try await client.createDvrSessionPollingUntilDone(
+  let response = try await client.createDvrSessionPollingUntilDone(
     request: CreateDvrSessionRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/channels/\(channelId)"
         $0.dvrSession = DvrSession() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

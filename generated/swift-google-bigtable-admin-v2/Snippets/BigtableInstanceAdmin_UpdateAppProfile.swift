@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, appProfileId: String
 ) async throws {
-  let poller = try await client.updateAppProfilePollingUntilDone(
+  let response = try await client.updateAppProfilePollingUntilDone(
     request: UpdateAppProfileRequest()
       .with {
         $0.appProfile = AppProfile().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -30,7 +30,7 @@ func sample(
   client: DataTaxonomyServiceClient, projectId: String, locationId: String, dataTaxonomyId: String,
   dataAttributeId: String
 ) async throws {
-  let poller = try await client.updateDataAttributePollingUntilDone(
+  let response = try await client.updateDataAttributePollingUntilDone(
     request: UpdateDataAttributeRequest()
       .with {
         $0.dataAttribute = DataAttribute().with {
@@ -40,7 +40,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

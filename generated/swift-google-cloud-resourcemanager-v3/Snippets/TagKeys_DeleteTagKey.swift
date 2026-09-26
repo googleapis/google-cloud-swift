@@ -23,13 +23,12 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TagKeysClient, tagKeyId: String) async throws {
-  let poller = try await client.deleteTagKeyPollingUntilDone(
+  let response = try await client.deleteTagKeyPollingUntilDone(
     request: DeleteTagKeyRequest()
       .with {
         $0.name = "tagKeys/\(tagKeyId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

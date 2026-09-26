@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CertificateManagerClient, parent: String) async throws {
-  let poller = try await client.createDnsAuthorizationPollingUntilDone(
+  let response = try await client.createDnsAuthorizationPollingUntilDone(
     request: CreateDnsAuthorizationRequest()
       .with {
         $0.parent = "\(parent)"
         $0.dnsAuthorization = DnsAuthorization() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

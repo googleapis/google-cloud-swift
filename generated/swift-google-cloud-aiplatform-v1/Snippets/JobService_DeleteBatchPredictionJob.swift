@@ -27,14 +27,13 @@
   func sample(
     client: JobServiceClient, projectId: String, locationId: String, batchPredictionJobId: String
   ) async throws {
-    let poller = try await client.deleteBatchPredictionJobPollingUntilDone(
+    try await client.deleteBatchPredictionJobPollingUntilDone(
       request: DeleteBatchPredictionJobRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/batchPredictionJobs/\(batchPredictionJobId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -58,7 +58,7 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
   public func generateServiceAgentsPollingUntilDone(
     request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
+  ) async throws -> GenerateServiceAgentsResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
@@ -73,12 +73,13 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -176,7 +177,7 @@ extension Clients {
     /// See `WorkloadIdentityClient.generateServiceAgents`.
     func generateServiceAgentsPollingUntilDone(
       request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
+    ) async throws -> GenerateServiceAgentsResponse
 
     /// See `WorkloadIdentityClient.listLocations`.
     func listLocations(
@@ -220,26 +221,20 @@ extension Clients.WorkloadIdentityProtocol {
   }
 
   public func generateServiceAgentsPollingUntilDone(request: GenerateServiceAgentsRequest)
-    async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse>
+    async throws -> GenerateServiceAgentsResponse
   {
-    try await self.generateServiceAgentsPollingUntilDone(request: request, options: .init())
+    return try await self.generateServiceAgentsPollingUntilDone(request: request, options: .init())
   }
 
   public func generateServiceAgentsPollingUntilDone(
     request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<GenerateServiceAgentsResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GenerateServiceAgentsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func generateServiceAgentsPollingUntilDone(
     parent: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GenerateServiceAgentsResponse> {
+  ) async throws -> GenerateServiceAgentsResponse {
     let request = GenerateServiceAgentsRequest().with {
       $0.parent = parent
     }

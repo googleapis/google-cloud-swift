@@ -27,14 +27,13 @@ func sample(
   client: KeyManagementServiceClient, projectId: String, locationId: String, keyRingId: String,
   cryptoKeyId: String, cryptoKeyVersionId: String
 ) async throws {
-  let poller = try await client.deleteCryptoKeyVersionPollingUntilDone(
+  try await client.deleteCryptoKeyVersionPollingUntilDone(
     request: DeleteCryptoKeyVersionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/keyRings/\(keyRingId)/cryptoKeys/\(cryptoKeyId)/cryptoKeyVersions/\(cryptoKeyVersionId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

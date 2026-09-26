@@ -24,14 +24,13 @@
   import GoogleLongRunning
 
   func sample(client: VertexRagDataServiceClient, parent: String) async throws {
-    let poller = try await client.createRagCorpusPollingUntilDone(
+    let response = try await client.createRagCorpusPollingUntilDone(
       request: CreateRagCorpusRequest()
         .with {
           $0.parent = "\(parent)"
           $0.ragCorpus = RagCorpus() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

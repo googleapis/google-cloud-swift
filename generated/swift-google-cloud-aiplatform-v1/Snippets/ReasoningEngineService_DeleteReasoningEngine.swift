@@ -28,14 +28,13 @@
     client: ReasoningEngineServiceClient, projectId: String, locationId: String,
     reasoningEngineId: String
   ) async throws {
-    let poller = try await client.deleteReasoningEnginePollingUntilDone(
+    try await client.deleteReasoningEnginePollingUntilDone(
       request: DeleteReasoningEngineRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/reasoningEngines/\(reasoningEngineId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

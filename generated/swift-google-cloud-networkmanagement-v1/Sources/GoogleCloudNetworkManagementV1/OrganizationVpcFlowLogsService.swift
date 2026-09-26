@@ -110,7 +110,7 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// @Snippet(path: "OrganizationVpcFlowLogsService_CreateVpcFlowLogsConfig")
   public func createVpcFlowLogsConfigPollingUntilDone(
     request: CreateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
+  ) async throws -> VpcFlowLogsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<VpcFlowLogsConfig>.State in
@@ -124,12 +124,13 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates an existing `VpcFlowLogsConfig`.
@@ -174,7 +175,7 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// @Snippet(path: "OrganizationVpcFlowLogsService_UpdateVpcFlowLogsConfig")
   public func updateVpcFlowLogsConfigPollingUntilDone(
     request: UpdateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
+  ) async throws -> VpcFlowLogsConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<VpcFlowLogsConfig>.State in
@@ -188,12 +189,13 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a specific `VpcFlowLogsConfig`.
@@ -210,7 +212,7 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// @Snippet(path: "OrganizationVpcFlowLogsService_DeleteVpcFlowLogsConfig")
   public func deleteVpcFlowLogsConfigPollingUntilDone(
     request: DeleteVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -223,12 +225,13 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -364,7 +367,7 @@ extension Clients {
     /// See `OrganizationVpcFlowLogsServiceClient.createVpcFlowLogsConfig`.
     func createVpcFlowLogsConfigPollingUntilDone(
       request: CreateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
+    ) async throws -> VpcFlowLogsConfig
 
     /// See `OrganizationVpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
     func updateVpcFlowLogsConfig(
@@ -374,7 +377,7 @@ extension Clients {
     /// See `OrganizationVpcFlowLogsServiceClient.updateVpcFlowLogsConfig`.
     func updateVpcFlowLogsConfigPollingUntilDone(
       request: UpdateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
+    ) async throws -> VpcFlowLogsConfig
 
     /// See `OrganizationVpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
     func deleteVpcFlowLogsConfig(
@@ -384,7 +387,7 @@ extension Clients {
     /// See `OrganizationVpcFlowLogsServiceClient.deleteVpcFlowLogsConfig`.
     func deleteVpcFlowLogsConfigPollingUntilDone(
       request: DeleteVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `OrganizationVpcFlowLogsServiceClient.listLocations`.
     func listLocations(
@@ -507,27 +510,23 @@ extension Clients.OrganizationVpcFlowLogsServiceProtocol {
   }
 
   public func createVpcFlowLogsConfigPollingUntilDone(request: CreateVpcFlowLogsConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
+    async throws -> VpcFlowLogsConfig
   {
-    try await self.createVpcFlowLogsConfigPollingUntilDone(request: request, options: .init())
+    return try await self.createVpcFlowLogsConfigPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createVpcFlowLogsConfigPollingUntilDone(
     request: CreateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VpcFlowLogsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> VpcFlowLogsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createVpcFlowLogsConfigPollingUntilDone(
     parent: Swift.String,
     vpcFlowLogsConfig: VpcFlowLogsConfig?,
     vpcFlowLogsConfigId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
+  ) async throws -> VpcFlowLogsConfig {
     let request = CreateVpcFlowLogsConfigRequest().with {
       $0.parent = parent
       $0.vpcFlowLogsConfig = vpcFlowLogsConfig
@@ -549,26 +548,22 @@ extension Clients.OrganizationVpcFlowLogsServiceProtocol {
   }
 
   public func updateVpcFlowLogsConfigPollingUntilDone(request: UpdateVpcFlowLogsConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig>
+    async throws -> VpcFlowLogsConfig
   {
-    try await self.updateVpcFlowLogsConfigPollingUntilDone(request: request, options: .init())
+    return try await self.updateVpcFlowLogsConfigPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateVpcFlowLogsConfigPollingUntilDone(
     request: UpdateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<VpcFlowLogsConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> VpcFlowLogsConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateVpcFlowLogsConfigPollingUntilDone(
     vpcFlowLogsConfig: VpcFlowLogsConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<VpcFlowLogsConfig> {
+  ) async throws -> VpcFlowLogsConfig {
     let request = UpdateVpcFlowLogsConfigRequest().with {
       $0.vpcFlowLogsConfig = vpcFlowLogsConfig
       $0.updateMask = updateMask
@@ -589,28 +584,24 @@ extension Clients.OrganizationVpcFlowLogsServiceProtocol {
   }
 
   public func deleteVpcFlowLogsConfigPollingUntilDone(request: DeleteVpcFlowLogsConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteVpcFlowLogsConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteVpcFlowLogsConfigPollingUntilDone(
     request: DeleteVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteVpcFlowLogsConfigPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteVpcFlowLogsConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteVpcFlowLogsConfigPollingUntilDone(request: request)
+    try await self.deleteVpcFlowLogsConfigPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

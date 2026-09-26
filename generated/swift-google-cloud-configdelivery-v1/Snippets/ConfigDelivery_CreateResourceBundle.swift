@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ConfigDeliveryClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createResourceBundlePollingUntilDone(
+  let response = try await client.createResourceBundlePollingUntilDone(
     request: CreateResourceBundleRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.resourceBundle = ResourceBundle() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

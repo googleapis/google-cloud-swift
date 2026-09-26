@@ -22,14 +22,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AttachedClustersClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAttachedClusterPollingUntilDone(
+  let response = try await client.createAttachedClusterPollingUntilDone(
     request: CreateAttachedClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.attachedCluster = AttachedCluster() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

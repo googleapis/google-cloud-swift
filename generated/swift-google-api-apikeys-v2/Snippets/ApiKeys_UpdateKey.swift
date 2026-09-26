@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: ApiKeysClient, projectId: String, locationId: String, keyId: String)
   async throws
 {
-  let poller = try await client.updateKeyPollingUntilDone(
+  let response = try await client.updateKeyPollingUntilDone(
     request: UpdateKeyRequest()
       .with {
         $0.key = Key().with {
@@ -33,7 +33,6 @@ func sample(client: ApiKeysClient, projectId: String, locationId: String, keyId:
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

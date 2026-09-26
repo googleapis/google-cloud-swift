@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: BackupDRClient, projectId: String, locationId: String, backupPlanAssociationId: String
 ) async throws {
-  let poller = try await client.updateBackupPlanAssociationPollingUntilDone(
+  let response = try await client.updateBackupPlanAssociationPollingUntilDone(
     request: UpdateBackupPlanAssociationRequest()
       .with {
         $0.backupPlanAssociation = BackupPlanAssociation().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

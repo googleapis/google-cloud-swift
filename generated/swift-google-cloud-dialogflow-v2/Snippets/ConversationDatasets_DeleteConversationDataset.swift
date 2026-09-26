@@ -26,14 +26,13 @@
     client: ConversationDatasetsClient, projectId: String, locationId: String,
     conversationDatasetId: String
   ) async throws {
-    let poller = try await client.deleteConversationDatasetPollingUntilDone(
+    try await client.deleteConversationDatasetPollingUntilDone(
       request: DeleteConversationDatasetRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/conversationDatasets/\(conversationDatasetId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AssetServiceClient) async throws {
-  let poller = try await client.exportAssetsPollingUntilDone(
+  let response = try await client.exportAssetsPollingUntilDone(
     request: ExportAssetsRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

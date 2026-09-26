@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: SecurityPostureClient, organizationId: String, locationId: String, postureId: String
 ) async throws {
-  let poller = try await client.updatePosturePollingUntilDone(
+  let response = try await client.updatePosturePollingUntilDone(
     request: UpdatePostureRequest()
       .with {
         $0.posture = Posture().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

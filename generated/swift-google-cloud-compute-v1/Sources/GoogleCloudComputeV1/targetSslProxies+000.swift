@@ -55,7 +55,7 @@
     /// @Snippet(path: "targetSslProxies_delete")
     public func deletePollingUntilDone(
       request: TargetSslProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -82,12 +82,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns the specified TargetSslProxy resource.
@@ -115,7 +116,7 @@
     /// @Snippet(path: "targetSslProxies_insert")
     public func insertPollingUntilDone(
       request: TargetSslProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -142,12 +143,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the list of TargetSslProxy resources
@@ -174,7 +176,7 @@
     /// @Snippet(path: "targetSslProxies_setBackendService")
     public func setBackendServicePollingUntilDone(
       request: TargetSslProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -201,12 +203,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Changes the Certificate Map for TargetSslProxy.
@@ -223,7 +226,7 @@
     /// @Snippet(path: "targetSslProxies_setCertificateMap")
     public func setCertificateMapPollingUntilDone(
       request: TargetSslProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -250,12 +253,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Changes the ProxyHeaderType for TargetSslProxy.
@@ -272,7 +276,7 @@
     /// @Snippet(path: "targetSslProxies_setProxyHeader")
     public func setProxyHeaderPollingUntilDone(
       request: TargetSslProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -299,12 +303,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Changes SslCertificates for TargetSslProxy.
@@ -321,7 +326,7 @@
     /// @Snippet(path: "targetSslProxies_setSslCertificates")
     public func setSslCertificatesPollingUntilDone(
       request: TargetSslProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -348,12 +353,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Sets the SSL policy for TargetSslProxy. The SSL policy specifies the
@@ -376,7 +382,7 @@
     /// @Snippet(path: "targetSslProxies_setSslPolicy")
     public func setSslPolicyPollingUntilDone(
       request: TargetSslProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -403,12 +409,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns permissions that a caller has on the specified resource.
@@ -445,7 +452,7 @@
       /// See `TargetSslProxiesClient.delete`.
       func deletePollingUntilDone(
         request: TargetSslProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.`get``.
       func `get`(
@@ -460,7 +467,7 @@
       /// See `TargetSslProxiesClient.insert`.
       func insertPollingUntilDone(
         request: TargetSslProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.list`.
       func list(
@@ -475,7 +482,7 @@
       /// See `TargetSslProxiesClient.setBackendService`.
       func setBackendServicePollingUntilDone(
         request: TargetSslProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.setCertificateMap`.
       func setCertificateMap(
@@ -485,7 +492,7 @@
       /// See `TargetSslProxiesClient.setCertificateMap`.
       func setCertificateMapPollingUntilDone(
         request: TargetSslProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.setProxyHeader`.
       func setProxyHeader(
@@ -495,7 +502,7 @@
       /// See `TargetSslProxiesClient.setProxyHeader`.
       func setProxyHeaderPollingUntilDone(
         request: TargetSslProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.setSslCertificates`.
       func setSslCertificates(
@@ -505,7 +512,7 @@
       /// See `TargetSslProxiesClient.setSslCertificates`.
       func setSslCertificatesPollingUntilDone(
         request: TargetSslProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.setSslPolicy`.
       func setSslPolicy(
@@ -515,7 +522,7 @@
       /// See `TargetSslProxiesClient.setSslPolicy`.
       func setSslPolicyPollingUntilDone(
         request: TargetSslProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `TargetSslProxiesClient.testIamPermissions`.
       func testIamPermissions(
@@ -540,26 +547,20 @@
 
     public func deletePollingUntilDone(
       request: TargetSslProxiesClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: TargetSslProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       targetSslProxy: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.DeleteRequest().with {
         $0.project = project
         $0.targetSslProxy = targetSslProxy
@@ -604,26 +605,20 @@
 
     public func insertPollingUntilDone(
       request: TargetSslProxiesClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: TargetSslProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       body: TargetSslProxy?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.InsertRequest().with {
         $0.project = project
         $0.body = body
@@ -688,27 +683,21 @@
 
     public func setBackendServicePollingUntilDone(
       request: TargetSslProxiesClient.SetBackendServiceRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setBackendServicePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setBackendServicePollingUntilDone(request: request, options: .init())
     }
 
     public func setBackendServicePollingUntilDone(
       request: TargetSslProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setBackendServicePollingUntilDone(
       project: Swift.String,
       targetSslProxy: Swift.String,
       body: TargetSslProxiesSetBackendServiceRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.SetBackendServiceRequest().with {
         $0.project = project
         $0.targetSslProxy = targetSslProxy
@@ -731,27 +720,21 @@
 
     public func setCertificateMapPollingUntilDone(
       request: TargetSslProxiesClient.SetCertificateMapRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setCertificateMapPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setCertificateMapPollingUntilDone(request: request, options: .init())
     }
 
     public func setCertificateMapPollingUntilDone(
       request: TargetSslProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setCertificateMapPollingUntilDone(
       project: Swift.String,
       targetSslProxy: Swift.String,
       body: TargetSslProxiesSetCertificateMapRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.SetCertificateMapRequest().with {
         $0.project = project
         $0.targetSslProxy = targetSslProxy
@@ -774,27 +757,21 @@
 
     public func setProxyHeaderPollingUntilDone(
       request: TargetSslProxiesClient.SetProxyHeaderRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setProxyHeaderPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setProxyHeaderPollingUntilDone(request: request, options: .init())
     }
 
     public func setProxyHeaderPollingUntilDone(
       request: TargetSslProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setProxyHeaderPollingUntilDone(
       project: Swift.String,
       targetSslProxy: Swift.String,
       body: TargetSslProxiesSetProxyHeaderRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.SetProxyHeaderRequest().with {
         $0.project = project
         $0.targetSslProxy = targetSslProxy
@@ -817,27 +794,21 @@
 
     public func setSslCertificatesPollingUntilDone(
       request: TargetSslProxiesClient.SetSslCertificatesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setSslCertificatesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setSslCertificatesPollingUntilDone(request: request, options: .init())
     }
 
     public func setSslCertificatesPollingUntilDone(
       request: TargetSslProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setSslCertificatesPollingUntilDone(
       project: Swift.String,
       targetSslProxy: Swift.String,
       body: TargetSslProxiesSetSslCertificatesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.SetSslCertificatesRequest().with {
         $0.project = project
         $0.targetSslProxy = targetSslProxy
@@ -860,27 +831,21 @@
 
     public func setSslPolicyPollingUntilDone(
       request: TargetSslProxiesClient.SetSslPolicyRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setSslPolicyPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setSslPolicyPollingUntilDone(request: request, options: .init())
     }
 
     public func setSslPolicyPollingUntilDone(
       request: TargetSslProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setSslPolicyPollingUntilDone(
       project: Swift.String,
       targetSslProxy: Swift.String,
       body: SslPolicyReference?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = TargetSslProxiesClient.SetSslPolicyRequest().with {
         $0.project = project
         $0.targetSslProxy = targetSslProxy

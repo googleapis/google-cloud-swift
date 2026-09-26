@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: ArtifactRegistryClient, projectId: String, locationId: String, repositoryId: String
 ) async throws {
-  let poller = try await client.deleteRepositoryPollingUntilDone(
+  try await client.deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MemorystoreClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createInstancePollingUntilDone(
+  let response = try await client.createInstancePollingUntilDone(
     request: CreateInstanceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: MemorystoreClient, projectId: String, locationId: String) as
         $0.instance = Instance() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

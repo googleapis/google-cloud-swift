@@ -22,7 +22,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createFeaturePollingUntilDone(
+  let response = try await client.createFeaturePollingUntilDone(
     request: CreateFeatureRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -30,7 +30,6 @@ func sample(client: GkeHubClient, projectId: String, locationId: String) async t
         $0.resource = Feature() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, messageBusId: String)
   async throws
 {
-  let poller = try await client.deleteMessageBusPollingUntilDone(
+  let response = try await client.deleteMessageBusPollingUntilDone(
     request: DeleteMessageBusRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/messageBuses/\(messageBusId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

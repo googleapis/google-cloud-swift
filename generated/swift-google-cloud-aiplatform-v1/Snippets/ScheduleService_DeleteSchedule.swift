@@ -27,13 +27,12 @@
   func sample(
     client: ScheduleServiceClient, projectId: String, locationId: String, scheduleId: String
   ) async throws {
-    let poller = try await client.deleteSchedulePollingUntilDone(
+    try await client.deleteSchedulePollingUntilDone(
       request: DeleteScheduleRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/schedules/\(scheduleId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

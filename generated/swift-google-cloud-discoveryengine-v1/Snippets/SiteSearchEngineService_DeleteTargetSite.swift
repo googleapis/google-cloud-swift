@@ -25,14 +25,13 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String, targetSiteId: String
   ) async throws {
-    let poller = try await client.deleteTargetSitePollingUntilDone(
+    try await client.deleteTargetSitePollingUntilDone(
       request: DeleteTargetSiteRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/siteSearchEngine/targetSites/\(targetSiteId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: CatalogServiceClient, projectId: String, locationId: String, entryGroupId: String
 ) async throws {
-  let poller = try await client.deleteEntryGroupPollingUntilDone(
+  try await client.deleteEntryGroupPollingUntilDone(
     request: DeleteEntryGroupRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/entryGroups/\(entryGroupId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

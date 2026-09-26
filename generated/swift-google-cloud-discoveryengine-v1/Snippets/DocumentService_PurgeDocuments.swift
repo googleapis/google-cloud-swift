@@ -23,11 +23,10 @@
   import GoogleWKT
 
   func sample(client: DocumentServiceClient) async throws {
-    let poller = try await client.purgeDocumentsPollingUntilDone(
+    let response = try await client.purgeDocumentsPollingUntilDone(
       request: PurgeDocumentsRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -23,14 +23,13 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: SSERealmServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createSacrealmPollingUntilDone(
+  let response = try await client.createSacrealmPollingUntilDone(
     request: CreateSACRealmRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.sacRealm = SACRealm() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

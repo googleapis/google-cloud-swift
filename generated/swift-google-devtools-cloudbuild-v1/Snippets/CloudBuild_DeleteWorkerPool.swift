@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(client: CloudBuildClient, projectId: String, locationId: String, workerPoolId: String)
   async throws
 {
-  let poller = try await client.deleteWorkerPoolPollingUntilDone(
+  try await client.deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/workerPools/\(workerPoolId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

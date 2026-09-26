@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TagKeysClient) async throws {
-  let poller = try await client.createTagKeyPollingUntilDone(
+  let response = try await client.createTagKeyPollingUntilDone(
     request: CreateTagKeyRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

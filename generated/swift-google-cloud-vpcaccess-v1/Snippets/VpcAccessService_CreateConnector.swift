@@ -22,7 +22,7 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: VpcAccessServiceClient, parent: String) async throws {
-  let poller = try await client.createConnectorPollingUntilDone(
+  let response = try await client.createConnectorPollingUntilDone(
     request: CreateConnectorRequest()
       .with {
         $0.parent = "\(parent)"
@@ -30,7 +30,6 @@ func sample(client: VpcAccessServiceClient, parent: String) async throws {
         $0.connector = Connector() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -24,11 +24,10 @@
   import GoogleLongRunning
 
   func sample(client: ModelGardenServiceClient) async throws {
-    let poller = try await client.deployPollingUntilDone(
+    let response = try await client.deployPollingUntilDone(
       request: DeployRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

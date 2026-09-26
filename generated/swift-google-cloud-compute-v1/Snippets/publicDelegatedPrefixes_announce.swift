@@ -21,11 +21,10 @@
   import GoogleCloudComputeV1
 
   func sample(client: PublicDelegatedPrefixesClient) async throws {
-    let poller = try await client.announcePollingUntilDone(
+    let response = try await client.announcePollingUntilDone(
       request: PublicDelegatedPrefixesClient.AnnounceRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

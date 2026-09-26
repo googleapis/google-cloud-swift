@@ -58,7 +58,7 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
   /// @Snippet(path: "ApiHubCollect_CollectApiData")
   public func collectApiDataPollingUntilDone(
     request: CollectApiDataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CollectApiDataResponse> {
+  ) async throws -> CollectApiDataResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<CollectApiDataResponse>.State in
@@ -72,12 +72,13 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -158,7 +159,7 @@ extension Clients {
     /// See `ApiHubCollectClient.collectApiData`.
     func collectApiDataPollingUntilDone(
       request: CollectApiDataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<CollectApiDataResponse>
+    ) async throws -> CollectApiDataResponse
 
     /// See `ApiHubCollectClient.listLocations`.
     func listLocations(
@@ -202,27 +203,22 @@ extension Clients.ApiHubCollectProtocol {
   }
 
   public func collectApiDataPollingUntilDone(request: CollectApiDataRequest) async throws
-    -> any GoogleGax.PollableOperation<CollectApiDataResponse>
+    -> CollectApiDataResponse
   {
-    try await self.collectApiDataPollingUntilDone(request: request, options: .init())
+    return try await self.collectApiDataPollingUntilDone(request: request, options: .init())
   }
 
   public func collectApiDataPollingUntilDone(
     request: CollectApiDataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<CollectApiDataResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<CollectApiDataResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> CollectApiDataResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func collectApiDataPollingUntilDone(
     location: Swift.String,
     collectionType: CollectionType,
     apiData: ApiData?,
-  ) async throws -> any GoogleGax.PollableOperation<CollectApiDataResponse> {
+  ) async throws -> CollectApiDataResponse {
     let request = CollectApiDataRequest().with {
       $0.location = location
       $0.collectionType = collectionType

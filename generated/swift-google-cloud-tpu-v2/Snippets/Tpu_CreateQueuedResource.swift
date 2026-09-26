@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, parent: String) async throws {
-  let poller = try await client.createQueuedResourcePollingUntilDone(
+  let response = try await client.createQueuedResourcePollingUntilDone(
     request: CreateQueuedResourceRequest()
       .with {
         $0.parent = "\(parent)"
         $0.queuedResource = QueuedResource() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

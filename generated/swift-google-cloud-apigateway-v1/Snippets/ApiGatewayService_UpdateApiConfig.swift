@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String, apiConfigId: String)
   async throws
 {
-  let poller = try await client.updateApiConfigPollingUntilDone(
+  let response = try await client.updateApiConfigPollingUntilDone(
     request: UpdateApiConfigRequest()
       .with {
         $0.apiConfig = ApiConfig().with {
@@ -33,7 +33,6 @@ func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String, a
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

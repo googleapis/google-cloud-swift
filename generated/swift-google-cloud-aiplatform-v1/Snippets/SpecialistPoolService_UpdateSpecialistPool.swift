@@ -28,7 +28,7 @@
     client: SpecialistPoolServiceClient, projectId: String, locationId: String,
     specialistPoolId: String
   ) async throws {
-    let poller = try await client.updateSpecialistPoolPollingUntilDone(
+    let response = try await client.updateSpecialistPoolPollingUntilDone(
       request: UpdateSpecialistPoolRequest()
         .with {
           $0.specialistPool = SpecialistPool().with {
@@ -38,7 +38,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

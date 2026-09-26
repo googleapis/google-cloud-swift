@@ -23,11 +23,10 @@
   import GoogleLongRunning
 
   func sample(client: UserEventServiceClient) async throws {
-    let poller = try await client.purgeUserEventsPollingUntilDone(
+    let response = try await client.purgeUserEventsPollingUntilDone(
       request: PurgeUserEventsRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

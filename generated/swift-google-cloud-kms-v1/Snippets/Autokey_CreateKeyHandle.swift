@@ -23,14 +23,13 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: AutokeyClient, parent: String) async throws {
-  let poller = try await client.createKeyHandlePollingUntilDone(
+  let response = try await client.createKeyHandlePollingUntilDone(
     request: CreateKeyHandleRequest()
       .with {
         $0.parent = "\(parent)"
         $0.keyHandle = KeyHandle() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

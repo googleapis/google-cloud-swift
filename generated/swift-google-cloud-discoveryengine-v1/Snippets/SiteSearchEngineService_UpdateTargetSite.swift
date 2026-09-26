@@ -25,7 +25,7 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String, targetSiteId: String
   ) async throws {
-    let poller = try await client.updateTargetSitePollingUntilDone(
+    let response = try await client.updateTargetSitePollingUntilDone(
       request: UpdateTargetSiteRequest()
         .with {
           $0.targetSite = TargetSite().with {
@@ -34,7 +34,6 @@
           }
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

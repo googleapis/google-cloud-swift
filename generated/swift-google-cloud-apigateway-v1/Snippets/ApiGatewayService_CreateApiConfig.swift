@@ -22,14 +22,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ApiGatewayServiceClient, projectId: String, apiId: String) async throws {
-  let poller = try await client.createApiConfigPollingUntilDone(
+  let response = try await client.createApiConfigPollingUntilDone(
     request: CreateApiConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/global/apis/\(apiId)"
         $0.apiConfig = ApiConfig() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

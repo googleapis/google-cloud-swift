@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: HubServiceClient, parent: String) async throws {
-  let poller = try await client.createSpokePollingUntilDone(
+  let response = try await client.createSpokePollingUntilDone(
     request: CreateSpokeRequest()
       .with {
         $0.parent = "\(parent)"
@@ -32,7 +32,6 @@ func sample(client: HubServiceClient, parent: String) async throws {
         $0.spoke = Spoke() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

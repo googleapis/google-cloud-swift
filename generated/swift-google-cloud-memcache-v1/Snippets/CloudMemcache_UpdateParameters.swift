@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudMemcacheClient) async throws {
-  let poller = try await client.updateParametersPollingUntilDone(
+  let response = try await client.updateParametersPollingUntilDone(
     request: UpdateParametersRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

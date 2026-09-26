@@ -22,11 +22,10 @@ import GoogleCloudLocation
 import GoogleLongRunning
 
 func sample(client: ApiHubCollectClient) async throws {
-  let poller = try await client.collectApiDataPollingUntilDone(
+  let response = try await client.collectApiDataPollingUntilDone(
     request: CollectApiDataRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

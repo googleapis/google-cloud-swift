@@ -27,14 +27,13 @@ func sample(
   client: ArtifactRegistryClient, projectId: String, locationId: String, repositoryId: String,
   packageId: String
 ) async throws {
-  let poller = try await client.deletePackagePollingUntilDone(
+  try await client.deletePackagePollingUntilDone(
     request: DeletePackageRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/repositories/\(repositoryId)/packages/\(packageId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, odbNetworkId: String
 ) async throws {
-  let poller = try await client.createOdbSubnetPollingUntilDone(
+  let response = try await client.createOdbSubnetPollingUntilDone(
     request: CreateOdbSubnetRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/odbNetworks/\(odbNetworkId)"
         $0.odbSubnet = OdbSubnet() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

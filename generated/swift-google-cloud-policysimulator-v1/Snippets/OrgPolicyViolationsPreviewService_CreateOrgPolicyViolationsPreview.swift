@@ -23,14 +23,13 @@ import GoogleLongRunning
 func sample(
   client: OrgPolicyViolationsPreviewServiceClient, organizationId: String, locationId: String
 ) async throws {
-  let poller = try await client.createOrgPolicyViolationsPreviewPollingUntilDone(
+  let response = try await client.createOrgPolicyViolationsPreviewPollingUntilDone(
     request: CreateOrgPolicyViolationsPreviewRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.orgPolicyViolationsPreview = OrgPolicyViolationsPreview() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

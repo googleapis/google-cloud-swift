@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetAppClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createActiveDirectoryPollingUntilDone(
+  let response = try await client.createActiveDirectoryPollingUntilDone(
     request: CreateActiveDirectoryRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.activeDirectory = ActiveDirectory() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

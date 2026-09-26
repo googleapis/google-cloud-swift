@@ -21,11 +21,10 @@ import GoogleCloudVisionV1
 import GoogleLongRunning
 
 func sample(client: ImageAnnotatorClient) async throws {
-  let poller = try await client.asyncBatchAnnotateFilesPollingUntilDone(
+  let response = try await client.asyncBatchAnnotateFilesPollingUntilDone(
     request: AsyncBatchAnnotateFilesRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

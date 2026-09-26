@@ -26,7 +26,7 @@ func sample(
   client: LivestreamServiceClient, projectId: String, locationId: String, channelId: String,
   dvrSessionId: String
 ) async throws {
-  let poller = try await client.updateDvrSessionPollingUntilDone(
+  let response = try await client.updateDvrSessionPollingUntilDone(
     request: UpdateDvrSessionRequest()
       .with {
         $0.dvrSession = DvrSession().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

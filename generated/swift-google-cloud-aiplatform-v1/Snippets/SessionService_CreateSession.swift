@@ -27,7 +27,7 @@
   func sample(
     client: SessionServiceClient, projectId: String, locationId: String, reasoningEngineId: String
   ) async throws {
-    let poller = try await client.createSessionPollingUntilDone(
+    let response = try await client.createSessionPollingUntilDone(
       request: CreateSessionRequest()
         .with {
           $0.parent =
@@ -36,7 +36,6 @@
           $0.session = Session() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

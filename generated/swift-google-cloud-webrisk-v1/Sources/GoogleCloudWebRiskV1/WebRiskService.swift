@@ -129,7 +129,7 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// @Snippet(path: "WebRiskService_SubmitUri")
   public func submitUriPollingUntilDone(
     request: SubmitUriRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Submission> {
+  ) async throws -> Submission {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Submission>.State in
@@ -142,12 +142,13 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -230,7 +231,7 @@ extension Clients {
     /// See `WebRiskServiceClient.submitUri`.
     func submitUriPollingUntilDone(
       request: SubmitUriRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Submission>
+    ) async throws -> Submission
 
     /// See `WebRiskServiceClient.listOperations`.
     func listOperations(
@@ -355,26 +356,20 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func submitUriPollingUntilDone(request: SubmitUriRequest) async throws -> any GoogleGax
-    .PollableOperation<Submission>
-  {
-    try await self.submitUriPollingUntilDone(request: request, options: .init())
+  public func submitUriPollingUntilDone(request: SubmitUriRequest) async throws -> Submission {
+    return try await self.submitUriPollingUntilDone(request: request, options: .init())
   }
 
   public func submitUriPollingUntilDone(
     request: SubmitUriRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Submission> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Submission>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Submission {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func submitUriPollingUntilDone(
     parent: Swift.String,
     submission: Submission?,
-  ) async throws -> any GoogleGax.PollableOperation<Submission> {
+  ) async throws -> Submission {
     let request = SubmitUriRequest().with {
       $0.parent = parent
       $0.submission = submission

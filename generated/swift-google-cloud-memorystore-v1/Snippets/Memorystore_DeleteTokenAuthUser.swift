@@ -26,14 +26,13 @@ func sample(
   client: MemorystoreClient, projectId: String, locationId: String, instanceId: String,
   tokenAuthUserId: String
 ) async throws {
-  let poller = try await client.deleteTokenAuthUserPollingUntilDone(
+  try await client.deleteTokenAuthUserPollingUntilDone(
     request: DeleteTokenAuthUserRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/instances/\(instanceId)/tokenAuthUsers/\(tokenAuthUserId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

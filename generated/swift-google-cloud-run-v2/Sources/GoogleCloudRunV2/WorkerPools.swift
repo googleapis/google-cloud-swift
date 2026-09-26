@@ -57,7 +57,7 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// @Snippet(path: "WorkerPools_CreateWorkerPool")
   public func createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
@@ -70,12 +70,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets information about a WorkerPool.
@@ -110,7 +111,7 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
   public func updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
@@ -123,12 +124,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a WorkerPool.
@@ -145,7 +147,7 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// @Snippet(path: "WorkerPools_DeleteWorkerPool")
   public func deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
@@ -158,12 +160,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets the IAM Access Control policy currently in effect for the given
@@ -257,7 +260,7 @@ extension Clients {
     /// See `WorkerPoolsClient.createWorkerPool`.
     func createWorkerPoolPollingUntilDone(
       request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
+    ) async throws -> WorkerPool
 
     /// See `WorkerPoolsClient.getWorkerPool`.
     func getWorkerPool(
@@ -277,7 +280,7 @@ extension Clients {
     /// See `WorkerPoolsClient.updateWorkerPool`.
     func updateWorkerPoolPollingUntilDone(
       request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
+    ) async throws -> WorkerPool
 
     /// See `WorkerPoolsClient.deleteWorkerPool`.
     func deleteWorkerPool(
@@ -287,7 +290,7 @@ extension Clients {
     /// See `WorkerPoolsClient.deleteWorkerPool`.
     func deleteWorkerPoolPollingUntilDone(
       request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<WorkerPool>
+    ) async throws -> WorkerPool
 
     /// See `WorkerPoolsClient.getIamPolicy`.
     func getIamPolicy(
@@ -336,26 +339,22 @@ extension Clients.WorkerPoolsProtocol {
   }
 
   public func createWorkerPoolPollingUntilDone(request: CreateWorkerPoolRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkerPool>
+    -> WorkerPool
   {
-    try await self.createWorkerPoolPollingUntilDone(request: request, options: .init())
+    return try await self.createWorkerPoolPollingUntilDone(request: request, options: .init())
   }
 
   public func createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> WorkerPool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createWorkerPoolPollingUntilDone(
     parent: Swift.String,
     workerPool: WorkerPool?,
     workerPoolId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let request = CreateWorkerPoolRequest().with {
       $0.parent = parent
       $0.workerPool = workerPool
@@ -440,24 +439,20 @@ extension Clients.WorkerPoolsProtocol {
   }
 
   public func updateWorkerPoolPollingUntilDone(request: UpdateWorkerPoolRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkerPool>
+    -> WorkerPool
   {
-    try await self.updateWorkerPoolPollingUntilDone(request: request, options: .init())
+    return try await self.updateWorkerPoolPollingUntilDone(request: request, options: .init())
   }
 
   public func updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> WorkerPool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateWorkerPoolPollingUntilDone(
     workerPool: WorkerPool?,
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let request = UpdateWorkerPoolRequest().with {
       $0.workerPool = workerPool
     }
@@ -467,7 +462,7 @@ extension Clients.WorkerPoolsProtocol {
   public func updateWorkerPoolPollingUntilDone(
     workerPool: WorkerPool?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let request = UpdateWorkerPoolRequest().with {
       $0.workerPool = workerPool
       $0.updateMask = updateMask
@@ -488,24 +483,20 @@ extension Clients.WorkerPoolsProtocol {
   }
 
   public func deleteWorkerPoolPollingUntilDone(request: DeleteWorkerPoolRequest) async throws
-    -> any GoogleGax.PollableOperation<WorkerPool>
+    -> WorkerPool
   {
-    try await self.deleteWorkerPoolPollingUntilDone(request: request, options: .init())
+    return try await self.deleteWorkerPoolPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<WorkerPool>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> WorkerPool {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteWorkerPoolPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<WorkerPool> {
+  ) async throws -> WorkerPool {
     let request = DeleteWorkerPoolRequest().with {
       $0.name = name
     }

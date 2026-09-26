@@ -25,7 +25,7 @@
     client: SiteSearchEngineServiceClient, projectId: String, locationId: String,
     dataStoreId: String
   ) async throws {
-    let poller = try await client.createSitemapPollingUntilDone(
+    let response = try await client.createSitemapPollingUntilDone(
       request: CreateSitemapRequest()
         .with {
           $0.parent =
@@ -33,7 +33,6 @@
           $0.sitemap = Sitemap() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

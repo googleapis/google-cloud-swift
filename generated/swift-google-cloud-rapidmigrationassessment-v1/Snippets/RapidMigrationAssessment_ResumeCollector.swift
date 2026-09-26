@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: RapidMigrationAssessmentClient) async throws {
-  let poller = try await client.resumeCollectorPollingUntilDone(
+  let response = try await client.resumeCollectorPollingUntilDone(
     request: ResumeCollectorRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

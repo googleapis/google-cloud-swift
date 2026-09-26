@@ -28,7 +28,7 @@
     client: DeploymentResourcePoolServiceClient, projectId: String, locationId: String,
     deploymentResourcePoolId: String
   ) async throws {
-    let poller = try await client.updateDeploymentResourcePoolPollingUntilDone(
+    let response = try await client.updateDeploymentResourcePoolPollingUntilDone(
       request: UpdateDeploymentResourcePoolRequest()
         .with {
           $0.deploymentResourcePool = DeploymentResourcePool().with {
@@ -38,7 +38,6 @@
           $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

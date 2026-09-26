@@ -28,7 +28,7 @@ func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String,
   azureNodePoolId: String
 ) async throws {
-  let poller = try await client.updateAzureNodePoolPollingUntilDone(
+  let response = try await client.updateAzureNodePoolPollingUntilDone(
     request: UpdateAzureNodePoolRequest()
       .with {
         $0.azureNodePool = AzureNodePool().with {
@@ -38,7 +38,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

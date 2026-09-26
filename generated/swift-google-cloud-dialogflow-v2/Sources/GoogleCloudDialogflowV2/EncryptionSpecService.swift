@@ -75,7 +75,7 @@
     /// @Snippet(path: "EncryptionSpecService_InitializeEncryptionSpec")
     public func initializeEncryptionSpecPollingUntilDone(
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
+    ) async throws -> InitializeEncryptionSpecResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State in
@@ -90,12 +90,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -187,7 +188,7 @@
       /// See `EncryptionSpecServiceClient.initializeEncryptionSpec`.
       func initializeEncryptionSpecPollingUntilDone(
         request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
+      ) async throws -> InitializeEncryptionSpecResponse
 
       /// See `EncryptionSpecServiceClient.listLocations`.
       func listLocations(
@@ -247,26 +248,21 @@
     }
 
     public func initializeEncryptionSpecPollingUntilDone(request: InitializeEncryptionSpecRequest)
-      async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse>
+      async throws -> InitializeEncryptionSpecResponse
     {
-      try await self.initializeEncryptionSpecPollingUntilDone(request: request, options: .init())
+      return try await self.initializeEncryptionSpecPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func initializeEncryptionSpecPollingUntilDone(
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<InitializeEncryptionSpecResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> InitializeEncryptionSpecResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func initializeEncryptionSpecPollingUntilDone(
       encryptionSpec: EncryptionSpec?,
-    ) async throws -> any GoogleGax.PollableOperation<InitializeEncryptionSpecResponse> {
+    ) async throws -> InitializeEncryptionSpecResponse {
       let request = InitializeEncryptionSpecRequest().with {
         $0.encryptionSpec = encryptionSpec
       }

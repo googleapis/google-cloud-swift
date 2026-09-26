@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AgentServiceClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createAppPollingUntilDone(
+  let response = try await client.createAppPollingUntilDone(
     request: CreateAppRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -31,7 +31,6 @@ func sample(client: AgentServiceClient, projectId: String, locationId: String) a
         $0.app = App() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

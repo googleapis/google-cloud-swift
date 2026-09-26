@@ -26,7 +26,7 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let poller = try await client.updateMigratingVmPollingUntilDone(
+  let response = try await client.updateMigratingVmPollingUntilDone(
     request: UpdateMigratingVmRequest()
       .with {
         $0.migratingVm = MigratingVm().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

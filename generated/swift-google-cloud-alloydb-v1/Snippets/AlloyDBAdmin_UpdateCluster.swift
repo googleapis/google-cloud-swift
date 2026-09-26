@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AlloyDBAdminClient, projectId: String, locationId: String, clusterId: String)
   async throws
 {
-  let poller = try await client.updateClusterPollingUntilDone(
+  let response = try await client.updateClusterPollingUntilDone(
     request: UpdateClusterRequest()
       .with {
         $0.cluster = Cluster().with {
@@ -34,7 +34,6 @@ func sample(client: AlloyDBAdminClient, projectId: String, locationId: String, c
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

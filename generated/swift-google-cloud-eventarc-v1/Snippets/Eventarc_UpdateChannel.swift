@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: EventarcClient, projectId: String, locationId: String, channelId: String)
   async throws
 {
-  let poller = try await client.updateChannelPollingUntilDone(
+  let response = try await client.updateChannelPollingUntilDone(
     request: UpdateChannelRequest()
       .with {
         $0.channel = Channel().with {
@@ -35,7 +35,6 @@ func sample(client: EventarcClient, projectId: String, locationId: String, chann
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

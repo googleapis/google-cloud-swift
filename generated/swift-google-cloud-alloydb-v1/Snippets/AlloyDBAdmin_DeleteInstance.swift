@@ -26,14 +26,13 @@ func sample(
   client: AlloyDBAdminClient, projectId: String, locationId: String, clusterId: String,
   instanceId: String
 ) async throws {
-  let poller = try await client.deleteInstancePollingUntilDone(
+  try await client.deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/clusters/\(clusterId)/instances/\(instanceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -26,7 +26,7 @@ func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String,
   materializedViewId: String
 ) async throws {
-  let poller = try await client.updateMaterializedViewPollingUntilDone(
+  let response = try await client.updateMaterializedViewPollingUntilDone(
     request: UpdateMaterializedViewRequest()
       .with {
         $0.materializedView = MaterializedView().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

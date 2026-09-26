@@ -24,11 +24,10 @@
   import GoogleLongRunning
 
   func sample(client: ReasoningEngineExecutionServiceClient) async throws {
-    let poller = try await client.asyncQueryReasoningEnginePollingUntilDone(
+    let response = try await client.asyncQueryReasoningEnginePollingUntilDone(
       request: AsyncQueryReasoningEngineRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

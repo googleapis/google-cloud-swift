@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String
 ) async throws {
-  let poller = try await client.createClusterPollingUntilDone(
+  let response = try await client.createClusterPollingUntilDone(
     request: CreateClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/privateClouds/\(privateCloudId)"
@@ -34,7 +34,6 @@ func sample(
         $0.cluster = Cluster() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

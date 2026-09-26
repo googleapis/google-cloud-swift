@@ -26,14 +26,13 @@ func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String,
   interconnectAttachmentId: String
 ) async throws {
-  let poller = try await client.deleteInterconnectAttachmentPollingUntilDone(
+  try await client.deleteInterconnectAttachmentPollingUntilDone(
     request: DeleteInterconnectAttachmentRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)/interconnectAttachments/\(interconnectAttachmentId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

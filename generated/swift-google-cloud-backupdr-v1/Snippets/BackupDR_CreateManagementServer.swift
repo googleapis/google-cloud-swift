@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupDRClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createManagementServerPollingUntilDone(
+  let response = try await client.createManagementServerPollingUntilDone(
     request: CreateManagementServerRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.managementServer = ManagementServer() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

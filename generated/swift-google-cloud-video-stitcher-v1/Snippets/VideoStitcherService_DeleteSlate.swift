@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, slateId: String
 ) async throws {
-  let poller = try await client.deleteSlatePollingUntilDone(
+  try await client.deleteSlatePollingUntilDone(
     request: DeleteSlateRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/slates/\(slateId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

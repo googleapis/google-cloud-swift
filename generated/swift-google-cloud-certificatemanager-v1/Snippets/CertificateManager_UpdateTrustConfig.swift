@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, trustConfigId: String
 ) async throws {
-  let poller = try await client.updateTrustConfigPollingUntilDone(
+  let response = try await client.updateTrustConfigPollingUntilDone(
     request: UpdateTrustConfigRequest()
       .with {
         $0.trustConfig = TrustConfig().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

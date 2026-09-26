@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CatalogServiceClient, parent: String) async throws {
-  let poller = try await client.createMetadataFeedPollingUntilDone(
+  let response = try await client.createMetadataFeedPollingUntilDone(
     request: CreateMetadataFeedRequest()
       .with {
         $0.parent = "\(parent)"
         $0.metadataFeed = MetadataFeed() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

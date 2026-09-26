@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WarehouseClient) async throws {
-  let poller = try await client.analyzeCorpusPollingUntilDone(
+  let response = try await client.analyzeCorpusPollingUntilDone(
     request: AnalyzeCorpusRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

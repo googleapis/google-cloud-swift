@@ -27,13 +27,12 @@ func sample(
   client: DataprocMetastoreFederationClient, projectId: String, locationId: String,
   federationId: String
 ) async throws {
-  let poller = try await client.deleteFederationPollingUntilDone(
+  try await client.deleteFederationPollingUntilDone(
     request: DeleteFederationRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/federations/\(federationId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

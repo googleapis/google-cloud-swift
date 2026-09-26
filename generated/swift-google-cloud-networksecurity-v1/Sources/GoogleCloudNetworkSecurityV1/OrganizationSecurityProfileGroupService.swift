@@ -79,7 +79,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_CreateSecurityProfileGroup")
   public func createSecurityProfileGroupPollingUntilDone(
     request: CreateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
+  ) async throws -> SecurityProfileGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SecurityProfileGroup>.State in
@@ -93,12 +93,13 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single SecurityProfileGroup.
@@ -115,7 +116,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_UpdateSecurityProfileGroup")
   public func updateSecurityProfileGroupPollingUntilDone(
     request: UpdateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
+  ) async throws -> SecurityProfileGroup {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SecurityProfileGroup>.State in
@@ -129,12 +130,13 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single SecurityProfileGroup.
@@ -151,7 +153,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_DeleteSecurityProfileGroup")
   public func deleteSecurityProfileGroupPollingUntilDone(
     request: DeleteSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -164,12 +166,13 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists SecurityProfiles in a given organization and location.
@@ -204,7 +207,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_CreateSecurityProfile")
   public func createSecurityProfilePollingUntilDone(
     request: CreateSecurityProfileRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
+  ) async throws -> SecurityProfile {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SecurityProfile>.State in
@@ -218,12 +221,13 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single SecurityProfile.
@@ -240,7 +244,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_UpdateSecurityProfile")
   public func updateSecurityProfilePollingUntilDone(
     request: UpdateSecurityProfileRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
+  ) async throws -> SecurityProfile {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SecurityProfile>.State in
@@ -254,12 +258,13 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single SecurityProfile.
@@ -276,7 +281,7 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
   /// @Snippet(path: "OrganizationSecurityProfileGroupService_DeleteSecurityProfile")
   public func deleteSecurityProfilePollingUntilDone(
     request: DeleteSecurityProfileRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -289,12 +294,13 @@ public final class OrganizationSecurityProfileGroupServiceClient: Clients
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -440,7 +446,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.createSecurityProfileGroup`.
     func createSecurityProfileGroupPollingUntilDone(
       request: CreateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
+    ) async throws -> SecurityProfileGroup
 
     /// See `OrganizationSecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
     func updateSecurityProfileGroup(
@@ -450,7 +456,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.updateSecurityProfileGroup`.
     func updateSecurityProfileGroupPollingUntilDone(
       request: UpdateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
+    ) async throws -> SecurityProfileGroup
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
     func deleteSecurityProfileGroup(
@@ -460,7 +466,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfileGroup`.
     func deleteSecurityProfileGroupPollingUntilDone(
       request: DeleteSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listSecurityProfiles`.
     func listSecurityProfiles(
@@ -480,7 +486,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.createSecurityProfile`.
     func createSecurityProfilePollingUntilDone(
       request: CreateSecurityProfileRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfile>
+    ) async throws -> SecurityProfile
 
     /// See `OrganizationSecurityProfileGroupServiceClient.updateSecurityProfile`.
     func updateSecurityProfile(
@@ -490,7 +496,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.updateSecurityProfile`.
     func updateSecurityProfilePollingUntilDone(
       request: UpdateSecurityProfileRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SecurityProfile>
+    ) async throws -> SecurityProfile
 
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfile`.
     func deleteSecurityProfile(
@@ -500,7 +506,7 @@ extension Clients {
     /// See `OrganizationSecurityProfileGroupServiceClient.deleteSecurityProfile`.
     func deleteSecurityProfilePollingUntilDone(
       request: DeleteSecurityProfileRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `OrganizationSecurityProfileGroupServiceClient.listLocations`.
     func listLocations(
@@ -623,27 +629,23 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func createSecurityProfileGroupPollingUntilDone(request: CreateSecurityProfileGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
+    async throws -> SecurityProfileGroup
   {
-    try await self.createSecurityProfileGroupPollingUntilDone(request: request, options: .init())
+    return try await self.createSecurityProfileGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createSecurityProfileGroupPollingUntilDone(
     request: CreateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SecurityProfileGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SecurityProfileGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createSecurityProfileGroupPollingUntilDone(
     parent: Swift.String,
     securityProfileGroup: SecurityProfileGroup?,
     securityProfileGroupId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
+  ) async throws -> SecurityProfileGroup {
     let request = CreateSecurityProfileGroupRequest().with {
       $0.parent = parent
       $0.securityProfileGroup = securityProfileGroup
@@ -665,26 +667,22 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func updateSecurityProfileGroupPollingUntilDone(request: UpdateSecurityProfileGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup>
+    async throws -> SecurityProfileGroup
   {
-    try await self.updateSecurityProfileGroupPollingUntilDone(request: request, options: .init())
+    return try await self.updateSecurityProfileGroupPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateSecurityProfileGroupPollingUntilDone(
     request: UpdateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SecurityProfileGroup>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SecurityProfileGroup {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateSecurityProfileGroupPollingUntilDone(
     securityProfileGroup: SecurityProfileGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfileGroup> {
+  ) async throws -> SecurityProfileGroup {
     let request = UpdateSecurityProfileGroupRequest().with {
       $0.securityProfileGroup = securityProfileGroup
       $0.updateMask = updateMask
@@ -705,28 +703,24 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func deleteSecurityProfileGroupPollingUntilDone(request: DeleteSecurityProfileGroupRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteSecurityProfileGroupPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSecurityProfileGroupPollingUntilDone(
     request: DeleteSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSecurityProfileGroupPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSecurityProfileGroupRequest().with {
       $0.name = name
     }
-    return try await self.deleteSecurityProfileGroupPollingUntilDone(request: request)
+    try await self.deleteSecurityProfileGroupPollingUntilDone(request: request)
   }
 
   public func listSecurityProfiles(request: ListSecurityProfilesRequest) async throws
@@ -806,27 +800,22 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func createSecurityProfilePollingUntilDone(request: CreateSecurityProfileRequest)
-    async throws -> any GoogleGax.PollableOperation<SecurityProfile>
+    async throws -> SecurityProfile
   {
-    try await self.createSecurityProfilePollingUntilDone(request: request, options: .init())
+    return try await self.createSecurityProfilePollingUntilDone(request: request, options: .init())
   }
 
   public func createSecurityProfilePollingUntilDone(
     request: CreateSecurityProfileRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SecurityProfile>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SecurityProfile {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createSecurityProfilePollingUntilDone(
     parent: Swift.String,
     securityProfile: SecurityProfile?,
     securityProfileId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
+  ) async throws -> SecurityProfile {
     let request = CreateSecurityProfileRequest().with {
       $0.parent = parent
       $0.securityProfile = securityProfile
@@ -848,26 +837,21 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func updateSecurityProfilePollingUntilDone(request: UpdateSecurityProfileRequest)
-    async throws -> any GoogleGax.PollableOperation<SecurityProfile>
+    async throws -> SecurityProfile
   {
-    try await self.updateSecurityProfilePollingUntilDone(request: request, options: .init())
+    return try await self.updateSecurityProfilePollingUntilDone(request: request, options: .init())
   }
 
   public func updateSecurityProfilePollingUntilDone(
     request: UpdateSecurityProfileRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<SecurityProfile>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SecurityProfile {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateSecurityProfilePollingUntilDone(
     securityProfile: SecurityProfile?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<SecurityProfile> {
+  ) async throws -> SecurityProfile {
     let request = UpdateSecurityProfileRequest().with {
       $0.securityProfile = securityProfile
       $0.updateMask = updateMask
@@ -888,28 +872,24 @@ extension Clients.OrganizationSecurityProfileGroupServiceProtocol {
   }
 
   public func deleteSecurityProfilePollingUntilDone(request: DeleteSecurityProfileRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteSecurityProfilePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteSecurityProfilePollingUntilDone(
     request: DeleteSecurityProfileRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteSecurityProfilePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteSecurityProfileRequest().with {
       $0.name = name
     }
-    return try await self.deleteSecurityProfilePollingUntilDone(request: request)
+    try await self.deleteSecurityProfilePollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

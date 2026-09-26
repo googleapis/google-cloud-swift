@@ -24,13 +24,12 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: ReachabilityServiceClient, projectId: String, testId: String) async throws {
-  let poller = try await client.deleteConnectivityTestPollingUntilDone(
+  try await client.deleteConnectivityTestPollingUntilDone(
     request: DeleteConnectivityTestRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/global/connectivityTests/\(testId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

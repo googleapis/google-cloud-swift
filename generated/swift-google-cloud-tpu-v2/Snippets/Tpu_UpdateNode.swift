@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TpuClient, projectId: String, locationId: String, nodeId: String) async throws {
-  let poller = try await client.updateNodePollingUntilDone(
+  let response = try await client.updateNodePollingUntilDone(
     request: UpdateNodeRequest()
       .with {
         $0.node = Node().with {
@@ -32,7 +32,6 @@ func sample(client: TpuClient, projectId: String, locationId: String, nodeId: St
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

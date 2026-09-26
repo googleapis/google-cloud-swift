@@ -26,7 +26,7 @@ func sample(
   client: BigtableTableAdminClient, projectId: String, instanceId: String, tableId: String,
   authorizedViewId: String
 ) async throws {
-  let poller = try await client.updateAuthorizedViewPollingUntilDone(
+  let response = try await client.updateAuthorizedViewPollingUntilDone(
     request: UpdateAuthorizedViewRequest()
       .with {
         $0.authorizedView = AuthorizedView().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: BackupForGKEClient, parent: String) async throws {
-  let poller = try await client.createBackupPlanPollingUntilDone(
+  let response = try await client.createBackupPlanPollingUntilDone(
     request: CreateBackupPlanRequest()
       .with {
         $0.parent = "\(parent)"
         $0.backupPlan = BackupPlan() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

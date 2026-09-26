@@ -25,14 +25,13 @@
   import GoogleWKT
 
   func sample(client: DatasetServiceClient, parent: String) async throws {
-    let poller = try await client.createDatasetPollingUntilDone(
+    let response = try await client.createDatasetPollingUntilDone(
       request: CreateDatasetRequest()
         .with {
           $0.parent = "\(parent)"
           $0.dataset = Dataset() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

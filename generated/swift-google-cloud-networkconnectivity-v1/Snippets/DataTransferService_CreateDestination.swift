@@ -27,7 +27,7 @@ func sample(
   client: DataTransferServiceClient, projectId: String, locationId: String,
   multicloudDataTransferConfigId: String
 ) async throws {
-  let poller = try await client.createDestinationPollingUntilDone(
+  let response = try await client.createDestinationPollingUntilDone(
     request: CreateDestinationRequest()
       .with {
         $0.parent =
@@ -36,7 +36,6 @@ func sample(
         $0.destination = Destination() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

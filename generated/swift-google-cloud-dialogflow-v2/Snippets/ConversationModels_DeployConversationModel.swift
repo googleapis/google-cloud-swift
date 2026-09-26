@@ -23,11 +23,10 @@
   import GoogleLongRunning
 
   func sample(client: ConversationModelsClient) async throws {
-    let poller = try await client.deployConversationModelPollingUntilDone(
+    try await client.deployConversationModelPollingUntilDone(
       request: DeployConversationModelRequest()
         /* set fields using .with { $0... } */
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

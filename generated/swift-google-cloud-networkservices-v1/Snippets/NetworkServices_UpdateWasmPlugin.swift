@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, wasmPluginId: String
 ) async throws {
-  let poller = try await client.updateWasmPluginPollingUntilDone(
+  let response = try await client.updateWasmPluginPollingUntilDone(
     request: UpdateWasmPluginRequest()
       .with {
         $0.wasmPlugin = WasmPlugin().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

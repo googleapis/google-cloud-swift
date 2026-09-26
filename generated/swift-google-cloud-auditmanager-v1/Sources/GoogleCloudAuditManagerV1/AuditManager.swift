@@ -126,7 +126,7 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// @Snippet(path: "AuditManager_GenerateAuditReport")
   public func generateAuditReportPollingUntilDone(
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
+  ) async throws -> AuditReport {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuditReport>.State in
@@ -139,12 +139,13 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the audit reports for the organization, folder, or project that you
@@ -320,7 +321,7 @@ extension Clients {
     /// See `AuditManagerClient.generateAuditReport`.
     func generateAuditReportPollingUntilDone(
       request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuditReport>
+    ) async throws -> AuditReport
 
     /// See `AuditManagerClient.listAuditReports`.
     func listAuditReports(
@@ -552,19 +553,15 @@ extension Clients.AuditManagerProtocol {
   }
 
   public func generateAuditReportPollingUntilDone(request: GenerateAuditReportRequest) async throws
-    -> any GoogleGax.PollableOperation<AuditReport>
+    -> AuditReport
   {
-    try await self.generateAuditReportPollingUntilDone(request: request, options: .init())
+    return try await self.generateAuditReportPollingUntilDone(request: request, options: .init())
   }
 
   public func generateAuditReportPollingUntilDone(
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuditReport>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuditReport {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   #if hasAttribute(diagnose)
@@ -575,7 +572,7 @@ extension Clients.AuditManagerProtocol {
     gcsUri: Swift.String,
     complianceStandard: Swift.String,
     reportFormat: GenerateAuditReportRequest.AuditReportFormat,
-  ) async throws -> any GoogleGax.PollableOperation<AuditReport> {
+  ) async throws -> AuditReport {
     let request = GenerateAuditReportRequest().with {
       $0.scope = scope
       $0.destination = .gcsUri(gcsUri)

@@ -88,7 +88,7 @@
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -116,12 +116,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Apply updates to selected instances the managed instance group.
@@ -140,7 +141,7 @@
     public func applyUpdatesToInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -168,12 +169,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Creates instances with per-instance configurations in this regional managed
@@ -202,7 +204,7 @@
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -230,12 +232,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Deletes the specified managed instance group and all of the instances
@@ -254,7 +257,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_delete")
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -282,12 +285,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Flags the specified instances in the managed instance group to be
@@ -334,7 +338,7 @@
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -362,12 +366,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Deletes selected per-instance configurations for the managed instance
@@ -388,7 +393,7 @@
     public func deletePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -416,12 +421,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Returns all of the details about the specified managed instance group.
@@ -463,7 +469,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_insert")
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -491,12 +497,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the list of managed instance groups that are contained
@@ -588,7 +595,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_patch")
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -616,12 +623,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Inserts or patches per-instance configurations for the managed instance
@@ -644,7 +652,7 @@
     public func patchPerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -672,12 +680,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Flags the specified VM instances in the managed instance group to be
@@ -720,7 +729,7 @@
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -748,12 +757,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Changes the intended size of the managed instance group. If you increase
@@ -794,7 +804,7 @@
     /// @Snippet(path: "regionInstanceGroupManagers_resize")
     public func resizePollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -822,12 +832,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Flags the specified instances in the managed instance group to be
@@ -876,7 +887,7 @@
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -904,12 +915,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Sets the instance template to use when creating new instances or recreating
@@ -930,7 +942,7 @@
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -958,12 +970,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Modifies the target pools to which all new instances in this group are
@@ -984,7 +997,7 @@
     public func setTargetPoolsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -1012,12 +1025,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Flags the specified instances in the managed instance group to be
@@ -1066,7 +1080,7 @@
     public func startInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -1094,12 +1108,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Flags the specified instances in the managed instance group to be
@@ -1166,7 +1181,7 @@
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -1194,12 +1209,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Flags the specified instances in the managed instance group to be
@@ -1266,7 +1282,7 @@
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -1294,12 +1310,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Inserts or updates per-instance configurations for the managed instance
@@ -1322,7 +1339,7 @@
     public func updatePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let extractStatus = {
         @Sendable (op: GoogleCloudComputeV1.Operation) throws
           -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
@@ -1350,12 +1367,13 @@
           }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll
       )
+      return try await poller.wait()
     }
 
     /// Retrieves the specified region-specific Operations resource.
@@ -1385,7 +1403,7 @@
       func abandonInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.applyUpdatesToInstances`.
       func applyUpdatesToInstances(
@@ -1397,7 +1415,7 @@
       func applyUpdatesToInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.createInstances`.
       func createInstances(
@@ -1409,7 +1427,7 @@
       func createInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.delete`.
       func delete(
@@ -1419,7 +1437,7 @@
       /// See `RegionInstanceGroupManagersClient.delete`.
       func deletePollingUntilDone(
         request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.deleteInstances`.
       func deleteInstances(
@@ -1431,7 +1449,7 @@
       func deleteInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.deletePerInstanceConfigs`.
       func deletePerInstanceConfigs(
@@ -1443,7 +1461,7 @@
       func deletePerInstanceConfigsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.`get``.
       func `get`(
@@ -1458,7 +1476,7 @@
       /// See `RegionInstanceGroupManagersClient.insert`.
       func insertPollingUntilDone(
         request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.list`.
       func list(
@@ -1491,7 +1509,7 @@
       /// See `RegionInstanceGroupManagersClient.patch`.
       func patchPollingUntilDone(
         request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.patchPerInstanceConfigs`.
       func patchPerInstanceConfigs(
@@ -1503,7 +1521,7 @@
       func patchPerInstanceConfigsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.recreateInstances`.
       func recreateInstances(
@@ -1515,7 +1533,7 @@
       func recreateInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.resize`.
       func resize(
@@ -1525,7 +1543,7 @@
       /// See `RegionInstanceGroupManagersClient.resize`.
       func resizePollingUntilDone(
         request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.resumeInstances`.
       func resumeInstances(
@@ -1537,7 +1555,7 @@
       func resumeInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.setInstanceTemplate`.
       func setInstanceTemplate(
@@ -1549,7 +1567,7 @@
       func setInstanceTemplatePollingUntilDone(
         request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.setTargetPools`.
       func setTargetPools(
@@ -1561,7 +1579,7 @@
       func setTargetPoolsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.startInstances`.
       func startInstances(
@@ -1573,7 +1591,7 @@
       func startInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.StartInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.stopInstances`.
       func stopInstances(
@@ -1585,7 +1603,7 @@
       func stopInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.StopInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.suspendInstances`.
       func suspendInstances(
@@ -1597,7 +1615,7 @@
       func suspendInstancesPollingUntilDone(
         request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
 
       /// See `RegionInstanceGroupManagersClient.updatePerInstanceConfigs`.
       func updatePerInstanceConfigs(
@@ -1609,7 +1627,7 @@
       func updatePerInstanceConfigsPollingUntilDone(
         request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
         options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation>
+      ) async throws -> GoogleCloudComputeV1.Operation
     }
   }
 
@@ -1630,21 +1648,15 @@
 
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.abandonInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.abandonInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func abandonInstancesPollingUntilDone(
@@ -1652,7 +1664,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersAbandonInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.AbandonInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -1677,21 +1689,16 @@
 
     public func applyUpdatesToInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.applyUpdatesToInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.applyUpdatesToInstancesPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func applyUpdatesToInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func applyUpdatesToInstancesPollingUntilDone(
@@ -1699,7 +1706,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersApplyUpdatesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -1724,21 +1731,15 @@
 
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.createInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.createInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createInstancesPollingUntilDone(
@@ -1746,7 +1747,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersCreateInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.CreateInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -1770,27 +1771,21 @@
 
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePollingUntilDone(request: request, options: .init())
     }
 
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       instanceGroupManager: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.DeleteRequest().with {
         $0.project = project
         $0.region = region
@@ -1814,21 +1809,15 @@
 
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deleteInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deleteInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteInstancesPollingUntilDone(
@@ -1836,7 +1825,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersDeleteInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.DeleteInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -1861,21 +1850,16 @@
 
     public func deletePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.deletePerInstanceConfigsPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.deletePerInstanceConfigsPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func deletePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deletePerInstanceConfigsPollingUntilDone(
@@ -1883,7 +1867,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagerDeleteInstanceConfigReq?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest().with {
         $0.project = project
         $0.region = region
@@ -1932,27 +1916,21 @@
 
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagersClient.InsertRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.insertPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.insertPollingUntilDone(request: request, options: .init())
     }
 
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
       body: InstanceGroupManager?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.InsertRequest().with {
         $0.project = project
         $0.region = region
@@ -2175,20 +2153,14 @@
 
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patchPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.patchPollingUntilDone(request: request, options: .init())
     }
 
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func patchPollingUntilDone(
@@ -2196,7 +2168,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: InstanceGroupManager?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.PatchRequest().with {
         $0.project = project
         $0.region = region
@@ -2221,21 +2193,16 @@
 
     public func patchPerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.patchPerInstanceConfigsPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.patchPerInstanceConfigsPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func patchPerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func patchPerInstanceConfigsPollingUntilDone(
@@ -2243,7 +2210,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagerPatchInstanceConfigReq?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest().with {
         $0.project = project
         $0.region = region
@@ -2268,21 +2235,15 @@
 
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.recreateInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.recreateInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func recreateInstancesPollingUntilDone(
@@ -2290,7 +2251,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersRecreateRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.RecreateInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -2314,20 +2275,14 @@
 
     public func resizePollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResizeRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.resizePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.resizePollingUntilDone(request: request, options: .init())
     }
 
     public func resizePollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func resizePollingUntilDone(
@@ -2335,7 +2290,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       size: Swift.Int32,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.ResizeRequest().with {
         $0.project = project
         $0.region = region
@@ -2360,21 +2315,15 @@
 
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.resumeInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.resumeInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func resumeInstancesPollingUntilDone(
@@ -2382,7 +2331,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersResumeInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.ResumeInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -2407,21 +2356,15 @@
 
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setInstanceTemplatePollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setInstanceTemplatePollingUntilDone(request: request, options: .init())
     }
 
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setInstanceTemplatePollingUntilDone(
@@ -2429,7 +2372,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersSetTemplateRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.SetInstanceTemplateRequest().with {
         $0.project = project
         $0.region = region
@@ -2454,21 +2397,15 @@
 
     public func setTargetPoolsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.setTargetPoolsPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.setTargetPoolsPollingUntilDone(request: request, options: .init())
     }
 
     public func setTargetPoolsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func setTargetPoolsPollingUntilDone(
@@ -2476,7 +2413,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersSetTargetPoolsRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.SetTargetPoolsRequest().with {
         $0.project = project
         $0.region = region
@@ -2501,21 +2438,15 @@
 
     public func startInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.startInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.startInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func startInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func startInstancesPollingUntilDone(
@@ -2523,7 +2454,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersStartInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.StartInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -2548,21 +2479,15 @@
 
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.stopInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.stopInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func stopInstancesPollingUntilDone(
@@ -2570,7 +2495,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersStopInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.StopInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -2595,21 +2520,15 @@
 
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.suspendInstancesPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.suspendInstancesPollingUntilDone(request: request, options: .init())
     }
 
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func suspendInstancesPollingUntilDone(
@@ -2617,7 +2536,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagersSuspendInstancesRequest?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.SuspendInstancesRequest().with {
         $0.project = project
         $0.region = region
@@ -2642,21 +2561,16 @@
 
     public func updatePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      try await self.updatePerInstanceConfigsPollingUntilDone(request: request, options: .init())
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      return try await self.updatePerInstanceConfigsPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func updatePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<GoogleCloudComputeV1.Operation>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> GoogleCloudComputeV1.Operation {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updatePerInstanceConfigsPollingUntilDone(
@@ -2664,7 +2578,7 @@
       region: Swift.String,
       instanceGroupManager: Swift.String,
       body: RegionInstanceGroupManagerUpdateInstanceConfigReq?,
-    ) async throws -> any GoogleGax.PollableOperation<GoogleCloudComputeV1.Operation> {
+    ) async throws -> GoogleCloudComputeV1.Operation {
       let request = RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest().with {
         $0.project = project
         $0.region = region

@@ -27,13 +27,12 @@ import GoogleWKT
 func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClientId: String
 ) async throws {
-  let poller = try await client.deleteAzureClientPollingUntilDone(
+  try await client.deleteAzureClientPollingUntilDone(
     request: DeleteAzureClientRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/azureClients/\(azureClientId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -26,14 +26,13 @@ func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String,
   cloudExadataInfrastructureId: String
 ) async throws {
-  let poller = try await client.deleteCloudExadataInfrastructurePollingUntilDone(
+  try await client.deleteCloudExadataInfrastructurePollingUntilDone(
     request: DeleteCloudExadataInfrastructureRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/cloudExadataInfrastructures/\(cloudExadataInfrastructureId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

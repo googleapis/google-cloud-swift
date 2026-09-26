@@ -24,14 +24,13 @@ func sample(
   client: RevisionsClient, projectId: String, locationId: String, serviceId: String,
   revisionId: String
 ) async throws {
-  let poller = try await client.deleteRevisionPollingUntilDone(
+  let response = try await client.deleteRevisionPollingUntilDone(
     request: DeleteRevisionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)/revisions/\(revisionId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

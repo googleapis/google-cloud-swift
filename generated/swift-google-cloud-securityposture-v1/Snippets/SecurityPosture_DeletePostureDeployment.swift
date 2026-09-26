@@ -26,14 +26,13 @@ func sample(
   client: SecurityPostureClient, organizationId: String, locationId: String,
   postureDeploymentId: String
 ) async throws {
-  let poller = try await client.deletePostureDeploymentPollingUntilDone(
+  try await client.deletePostureDeploymentPollingUntilDone(
     request: DeletePostureDeploymentRequest()
       .with {
         $0.name =
           "organizations/\(organizationId)/locations/\(locationId)/postureDeployments/\(postureDeploymentId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

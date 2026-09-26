@@ -28,7 +28,7 @@ func sample(
   client: AwsClustersClient, projectId: String, locationId: String, awsClusterId: String,
   awsNodePoolId: String
 ) async throws {
-  let poller = try await client.updateAwsNodePoolPollingUntilDone(
+  let response = try await client.updateAwsNodePoolPollingUntilDone(
     request: UpdateAwsNodePoolRequest()
       .with {
         $0.awsNodePool = AwsNodePool().with {
@@ -38,7 +38,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

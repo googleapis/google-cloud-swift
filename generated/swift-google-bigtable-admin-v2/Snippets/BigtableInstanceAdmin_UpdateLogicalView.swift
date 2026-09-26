@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BigtableInstanceAdminClient, projectId: String, instanceId: String, logicalViewId: String
 ) async throws {
-  let poller = try await client.updateLogicalViewPollingUntilDone(
+  let response = try await client.updateLogicalViewPollingUntilDone(
     request: UpdateLogicalViewRequest()
       .with {
         $0.logicalView = LogicalView().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

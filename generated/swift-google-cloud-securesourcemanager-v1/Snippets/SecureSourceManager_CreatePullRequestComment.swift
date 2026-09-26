@@ -27,7 +27,7 @@ func sample(
   client: SecureSourceManagerClient, projectId: String, locationId: String, repositoryId: String,
   pullRequestId: String
 ) async throws {
-  let poller = try await client.createPullRequestCommentPollingUntilDone(
+  let response = try await client.createPullRequestCommentPollingUntilDone(
     request: CreatePullRequestCommentRequest()
       .with {
         $0.parent =
@@ -35,7 +35,6 @@ func sample(
         $0.pullRequestComment = PullRequestComment() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

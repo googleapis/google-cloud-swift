@@ -69,7 +69,7 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// @Snippet(path: "TagBindings_CreateTagBinding")
   public func createTagBindingPollingUntilDone(
     request: CreateTagBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TagBinding> {
+  ) async throws -> TagBinding {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TagBinding>.State in
@@ -82,12 +82,13 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a TagBinding.
@@ -104,7 +105,7 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// @Snippet(path: "TagBindings_DeleteTagBinding")
   public func deleteTagBindingPollingUntilDone(
     request: DeleteTagBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -117,12 +118,13 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Return a list of effective tags for the given Google Cloud resource, as
@@ -167,7 +169,7 @@ extension Clients {
     /// See `TagBindingsClient.createTagBinding`.
     func createTagBindingPollingUntilDone(
       request: CreateTagBindingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TagBinding>
+    ) async throws -> TagBinding
 
     /// See `TagBindingsClient.deleteTagBinding`.
     func deleteTagBinding(
@@ -177,7 +179,7 @@ extension Clients {
     /// See `TagBindingsClient.deleteTagBinding`.
     func deleteTagBindingPollingUntilDone(
       request: DeleteTagBindingRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `TagBindingsClient.listEffectiveTags`.
     func listEffectiveTags(
@@ -248,24 +250,20 @@ extension Clients.TagBindingsProtocol {
   }
 
   public func createTagBindingPollingUntilDone(request: CreateTagBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<TagBinding>
+    -> TagBinding
   {
-    try await self.createTagBindingPollingUntilDone(request: request, options: .init())
+    return try await self.createTagBindingPollingUntilDone(request: request, options: .init())
   }
 
   public func createTagBindingPollingUntilDone(
     request: CreateTagBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TagBinding> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<TagBinding>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TagBinding {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createTagBindingPollingUntilDone(
     tagBinding: TagBinding?,
-  ) async throws -> any GoogleGax.PollableOperation<TagBinding> {
+  ) async throws -> TagBinding {
     let request = CreateTagBindingRequest().with {
       $0.tagBinding = tagBinding
     }
@@ -284,29 +282,23 @@ extension Clients.TagBindingsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteTagBindingPollingUntilDone(request: DeleteTagBindingRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteTagBindingPollingUntilDone(request: DeleteTagBindingRequest) async throws {
     try await self.deleteTagBindingPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteTagBindingPollingUntilDone(
     request: DeleteTagBindingRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteTagBindingPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteTagBindingRequest().with {
       $0.name = name
     }
-    return try await self.deleteTagBindingPollingUntilDone(request: request)
+    try await self.deleteTagBindingPollingUntilDone(request: request)
   }
 
   public func listEffectiveTags(request: ListEffectiveTagsRequest) async throws

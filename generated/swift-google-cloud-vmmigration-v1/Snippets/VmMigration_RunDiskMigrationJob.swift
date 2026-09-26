@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: VmMigrationClient) async throws {
-  let poller = try await client.runDiskMigrationJobPollingUntilDone(
+  let response = try await client.runDiskMigrationJobPollingUntilDone(
     request: RunDiskMigrationJobRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

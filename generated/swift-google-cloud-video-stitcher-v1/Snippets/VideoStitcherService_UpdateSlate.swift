@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, slateId: String
 ) async throws {
-  let poller = try await client.updateSlatePollingUntilDone(
+  let response = try await client.updateSlatePollingUntilDone(
     request: UpdateSlateRequest()
       .with {
         $0.slate = Slate().with {
@@ -33,7 +33,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

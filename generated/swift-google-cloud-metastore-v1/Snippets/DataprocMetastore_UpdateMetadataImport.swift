@@ -27,7 +27,7 @@ func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String,
   metadataImportId: String
 ) async throws {
-  let poller = try await client.updateMetadataImportPollingUntilDone(
+  let response = try await client.updateMetadataImportPollingUntilDone(
     request: UpdateMetadataImportRequest()
       .with {
         $0.metadataImport = MetadataImport().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

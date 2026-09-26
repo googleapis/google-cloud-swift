@@ -28,14 +28,13 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String
   ) async throws {
-    let poller = try await client.deleteFeatureOnlineStorePollingUntilDone(
+    try await client.deleteFeatureOnlineStorePollingUntilDone(
       request: DeleteFeatureOnlineStoreRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/featureOnlineStores/\(featureOnlineStoreId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

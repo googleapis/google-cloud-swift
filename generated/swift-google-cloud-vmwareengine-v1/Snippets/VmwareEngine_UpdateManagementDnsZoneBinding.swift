@@ -27,7 +27,7 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   managementDnsZoneBindingId: String
 ) async throws {
-  let poller = try await client.updateManagementDnsZoneBindingPollingUntilDone(
+  let response = try await client.updateManagementDnsZoneBindingPollingUntilDone(
     request: UpdateManagementDnsZoneBindingRequest()
       .with {
         $0.managementDnsZoneBinding = ManagementDnsZoneBinding().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

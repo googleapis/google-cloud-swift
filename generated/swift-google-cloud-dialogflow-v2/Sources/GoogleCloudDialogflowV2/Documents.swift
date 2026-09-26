@@ -101,7 +101,7 @@
     /// @Snippet(path: "Documents_CreateDocument")
     public func createDocumentPollingUntilDone(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Document>.State in
@@ -114,12 +114,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Creates documents by importing data from external sources.
@@ -164,7 +165,7 @@
     /// @Snippet(path: "Documents_ImportDocuments")
     public func importDocumentsPollingUntilDone(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportDocumentsResponse> {
+    ) async throws -> ImportDocumentsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportDocumentsResponse>.State in
@@ -179,12 +180,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Deletes the specified document.
@@ -223,7 +225,7 @@
     /// @Snippet(path: "Documents_DeleteDocument")
     public func deleteDocumentPollingUntilDone(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -237,12 +239,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Updates the specified document.
@@ -281,7 +284,7 @@
     /// @Snippet(path: "Documents_UpdateDocument")
     public func updateDocumentPollingUntilDone(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Document>.State in
@@ -294,12 +297,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Reloads the specified document from its specified source, content_uri or
@@ -350,7 +354,7 @@
     /// @Snippet(path: "Documents_ReloadDocument")
     public func reloadDocumentPollingUntilDone(
       request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Document>.State in
@@ -363,12 +367,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Exports a smart messaging candidate document into the specified
@@ -409,7 +414,7 @@
     /// @Snippet(path: "Documents_ExportDocument")
     public func exportDocumentPollingUntilDone(
       request: ExportDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Document>.State in
@@ -422,12 +427,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -524,7 +530,7 @@
       /// See `DocumentsClient.createDocument`.
       func createDocumentPollingUntilDone(
         request: CreateDocumentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Document>
+      ) async throws -> Document
 
       /// See `DocumentsClient.importDocuments`.
       func importDocuments(
@@ -534,7 +540,7 @@
       /// See `DocumentsClient.importDocuments`.
       func importDocumentsPollingUntilDone(
         request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportDocumentsResponse>
+      ) async throws -> ImportDocumentsResponse
 
       /// See `DocumentsClient.deleteDocument`.
       func deleteDocument(
@@ -544,7 +550,7 @@
       /// See `DocumentsClient.deleteDocument`.
       func deleteDocumentPollingUntilDone(
         request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `DocumentsClient.updateDocument`.
       func updateDocument(
@@ -554,7 +560,7 @@
       /// See `DocumentsClient.updateDocument`.
       func updateDocumentPollingUntilDone(
         request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Document>
+      ) async throws -> Document
 
       /// See `DocumentsClient.reloadDocument`.
       func reloadDocument(
@@ -564,7 +570,7 @@
       /// See `DocumentsClient.reloadDocument`.
       func reloadDocumentPollingUntilDone(
         request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Document>
+      ) async throws -> Document
 
       /// See `DocumentsClient.exportDocument`.
       func exportDocument(
@@ -574,7 +580,7 @@
       /// See `DocumentsClient.exportDocument`.
       func exportDocumentPollingUntilDone(
         request: ExportDocumentRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Document>
+      ) async throws -> Document
 
       /// See `DocumentsClient.listLocations`.
       func listLocations(
@@ -677,25 +683,21 @@
     }
 
     public func createDocumentPollingUntilDone(request: CreateDocumentRequest) async throws
-      -> any GoogleGax.PollableOperation<Document>
+      -> Document
     {
-      try await self.createDocumentPollingUntilDone(request: request, options: .init())
+      return try await self.createDocumentPollingUntilDone(request: request, options: .init())
     }
 
     public func createDocumentPollingUntilDone(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Document>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> Document {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createDocumentPollingUntilDone(
       parent: Swift.String,
       document: Document?,
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let request = CreateDocumentRequest().with {
         $0.parent = parent
         $0.document = document
@@ -716,21 +718,15 @@
     }
 
     public func importDocumentsPollingUntilDone(request: ImportDocumentsRequest) async throws
-      -> any GoogleGax.PollableOperation<ImportDocumentsResponse>
+      -> ImportDocumentsResponse
     {
-      try await self.importDocumentsPollingUntilDone(request: request, options: .init())
+      return try await self.importDocumentsPollingUntilDone(request: request, options: .init())
     }
 
     public func importDocumentsPollingUntilDone(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportDocumentsResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportDocumentsResponse>.State
-        in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportDocumentsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteDocument(request: DeleteDocumentRequest) async throws
@@ -745,30 +741,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func deleteDocumentPollingUntilDone(request: DeleteDocumentRequest) async throws
-      -> any GoogleGax.PollableOperation<Swift.Void>
-    {
+    public func deleteDocumentPollingUntilDone(request: DeleteDocumentRequest) async throws {
       try await self.deleteDocumentPollingUntilDone(request: request, options: .init())
     }
 
     public func deleteDocumentPollingUntilDone(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteDocumentPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteDocumentRequest().with {
         $0.name = name
       }
-      return try await self.deleteDocumentPollingUntilDone(request: request)
+      try await self.deleteDocumentPollingUntilDone(request: request)
     }
 
     public func updateDocument(request: UpdateDocumentRequest) async throws
@@ -784,25 +773,21 @@
     }
 
     public func updateDocumentPollingUntilDone(request: UpdateDocumentRequest) async throws
-      -> any GoogleGax.PollableOperation<Document>
+      -> Document
     {
-      try await self.updateDocumentPollingUntilDone(request: request, options: .init())
+      return try await self.updateDocumentPollingUntilDone(request: request, options: .init())
     }
 
     public func updateDocumentPollingUntilDone(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Document>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> Document {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updateDocumentPollingUntilDone(
       document: Document?,
       updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let request = UpdateDocumentRequest().with {
         $0.document = document
         $0.updateMask = updateMask
@@ -823,25 +808,21 @@
     }
 
     public func reloadDocumentPollingUntilDone(request: ReloadDocumentRequest) async throws
-      -> any GoogleGax.PollableOperation<Document>
+      -> Document
     {
-      try await self.reloadDocumentPollingUntilDone(request: request, options: .init())
+      return try await self.reloadDocumentPollingUntilDone(request: request, options: .init())
     }
 
     public func reloadDocumentPollingUntilDone(
       request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Document>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> Document {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func reloadDocumentPollingUntilDone(
       name: Swift.String,
       contentUri: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
+    ) async throws -> Document {
       let request = ReloadDocumentRequest().with {
         $0.name = name
         $0.source = .contentUri(contentUri)
@@ -862,19 +843,15 @@
     }
 
     public func exportDocumentPollingUntilDone(request: ExportDocumentRequest) async throws
-      -> any GoogleGax.PollableOperation<Document>
+      -> Document
     {
-      try await self.exportDocumentPollingUntilDone(request: request, options: .init())
+      return try await self.exportDocumentPollingUntilDone(request: request, options: .init())
     }
 
     public func exportDocumentPollingUntilDone(
       request: ExportDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Document> {
-      let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Document>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> Document {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

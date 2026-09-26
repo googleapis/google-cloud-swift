@@ -77,7 +77,7 @@
     /// @Snippet(path: "IdentityMappingStoreService_DeleteIdentityMappingStore")
     public func deleteIdentityMappingStorePollingUntilDone(
       request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -91,12 +91,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Imports a list of Identity Mapping Entries to an Identity Mapping Store.
@@ -113,7 +114,7 @@
     /// @Snippet(path: "IdentityMappingStoreService_ImportIdentityMappings")
     public func importIdentityMappingsPollingUntilDone(
       request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportIdentityMappingsResponse> {
+    ) async throws -> ImportIdentityMappingsResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportIdentityMappingsResponse>.State in
@@ -128,12 +129,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Purges specified or all Identity Mapping Entries from an Identity Mapping
@@ -152,7 +154,7 @@
     /// @Snippet(path: "IdentityMappingStoreService_PurgeIdentityMappings")
     public func purgeIdentityMappingsPollingUntilDone(
       request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -166,12 +168,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Lists Identity Mappings in an Identity Mapping Store.
@@ -251,7 +254,7 @@
       /// See `IdentityMappingStoreServiceClient.deleteIdentityMappingStore`.
       func deleteIdentityMappingStorePollingUntilDone(
         request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `IdentityMappingStoreServiceClient.importIdentityMappings`.
       func importIdentityMappings(
@@ -261,7 +264,7 @@
       /// See `IdentityMappingStoreServiceClient.importIdentityMappings`.
       func importIdentityMappingsPollingUntilDone(
         request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportIdentityMappingsResponse>
+      ) async throws -> ImportIdentityMappingsResponse
 
       /// See `IdentityMappingStoreServiceClient.purgeIdentityMappings`.
       func purgeIdentityMappings(
@@ -271,7 +274,7 @@
       /// See `IdentityMappingStoreServiceClient.purgeIdentityMappings`.
       func purgeIdentityMappingsPollingUntilDone(
         request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `IdentityMappingStoreServiceClient.listIdentityMappings`.
       func listIdentityMappings(
@@ -357,28 +360,23 @@
 
     public func deleteIdentityMappingStorePollingUntilDone(
       request: DeleteIdentityMappingStoreRequest
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       try await self.deleteIdentityMappingStorePollingUntilDone(request: request, options: .init())
     }
 
     public func deleteIdentityMappingStorePollingUntilDone(
       request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteIdentityMappingStorePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteIdentityMappingStoreRequest().with {
         $0.name = name
       }
-      return try await self.deleteIdentityMappingStorePollingUntilDone(request: request)
+      try await self.deleteIdentityMappingStorePollingUntilDone(request: request)
     }
 
     public func importIdentityMappings(request: ImportIdentityMappingsRequest) async throws
@@ -394,21 +392,16 @@
     }
 
     public func importIdentityMappingsPollingUntilDone(request: ImportIdentityMappingsRequest)
-      async throws -> any GoogleGax.PollableOperation<ImportIdentityMappingsResponse>
+      async throws -> ImportIdentityMappingsResponse
     {
-      try await self.importIdentityMappingsPollingUntilDone(request: request, options: .init())
+      return try await self.importIdentityMappingsPollingUntilDone(
+        request: request, options: .init())
     }
 
     public func importIdentityMappingsPollingUntilDone(
       request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportIdentityMappingsResponse> {
-      let poll = {
-        @Sendable () async throws
-          -> GoogleGax._PollableOperationImpl<ImportIdentityMappingsResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportIdentityMappingsResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func purgeIdentityMappings(request: PurgeIdentityMappingsRequest) async throws
@@ -424,20 +417,15 @@
     }
 
     public func purgeIdentityMappingsPollingUntilDone(request: PurgeIdentityMappingsRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.purgeIdentityMappingsPollingUntilDone(request: request, options: .init())
     }
 
     public func purgeIdentityMappingsPollingUntilDone(
       request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func listIdentityMappings(request: ListIdentityMappingsRequest) async throws

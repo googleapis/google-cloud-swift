@@ -24,14 +24,13 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, membershipId: String)
   async throws
 {
-  let poller = try await client.createMembershipBindingPollingUntilDone(
+  let response = try await client.createMembershipBindingPollingUntilDone(
     request: CreateMembershipBindingRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/memberships/\(membershipId)"
         $0.membershipBinding = MembershipBinding() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,14 +25,13 @@
   import GoogleWKT
 
   func sample(client: SpecialistPoolServiceClient, parent: String) async throws {
-    let poller = try await client.createSpecialistPoolPollingUntilDone(
+    let response = try await client.createSpecialistPoolPollingUntilDone(
       request: CreateSpecialistPoolRequest()
         .with {
           $0.parent = "\(parent)"
           $0.specialistPool = SpecialistPool() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

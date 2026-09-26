@@ -26,7 +26,7 @@ func sample(
   client: StreamsServiceClient, projectId: String, locationId: String, clusterId: String,
   eventId: String
 ) async throws {
-  let poller = try await client.updateEventPollingUntilDone(
+  let response = try await client.updateEventPollingUntilDone(
     request: UpdateEventRequest()
       .with {
         $0.event = Event().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

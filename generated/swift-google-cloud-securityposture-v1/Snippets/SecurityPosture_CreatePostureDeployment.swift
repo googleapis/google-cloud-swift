@@ -24,14 +24,13 @@ import GoogleWKT
 
 func sample(client: SecurityPostureClient, organizationId: String, locationId: String) async throws
 {
-  let poller = try await client.createPostureDeploymentPollingUntilDone(
+  let response = try await client.createPostureDeploymentPollingUntilDone(
     request: CreatePostureDeploymentRequest()
       .with {
         $0.parent = "organizations/\(organizationId)/locations/\(locationId)"
         $0.postureDeployment = PostureDeployment() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

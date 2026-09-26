@@ -111,7 +111,7 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   /// @Snippet(path: "FleetRouting_BatchOptimizeTours")
   public func batchOptimizeToursPollingUntilDone(
     request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse> {
+  ) async throws -> BatchOptimizeToursResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchOptimizeToursResponse>.State in
@@ -126,12 +126,13 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -166,7 +167,7 @@ extension Clients {
     /// See `FleetRoutingClient.batchOptimizeTours`.
     func batchOptimizeToursPollingUntilDone(
       request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse>
+    ) async throws -> BatchOptimizeToursResponse
   }
 }
 
@@ -197,21 +198,15 @@ extension Clients.FleetRoutingProtocol {
   }
 
   public func batchOptimizeToursPollingUntilDone(request: BatchOptimizeToursRequest) async throws
-    -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse>
+    -> BatchOptimizeToursResponse
   {
-    try await self.batchOptimizeToursPollingUntilDone(request: request, options: .init())
+    return try await self.batchOptimizeToursPollingUntilDone(request: request, options: .init())
   }
 
   public func batchOptimizeToursPollingUntilDone(
     request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchOptimizeToursResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<BatchOptimizeToursResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BatchOptimizeToursResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws

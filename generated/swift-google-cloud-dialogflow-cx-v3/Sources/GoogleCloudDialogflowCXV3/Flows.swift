@@ -141,7 +141,7 @@
     /// @Snippet(path: "Flows_TrainFlow")
     public func trainFlowPollingUntilDone(
       request: TrainFlowRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -155,12 +155,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Validates the specified flow and creates or updates validation results.
@@ -228,7 +229,7 @@
     /// @Snippet(path: "Flows_ImportFlow")
     public func importFlowPollingUntilDone(
       request: ImportFlowRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportFlowResponse> {
+    ) async throws -> ImportFlowResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ImportFlowResponse>.State in
@@ -242,12 +243,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Exports the specified flow to a binary file.
@@ -292,7 +294,7 @@
     /// @Snippet(path: "Flows_ExportFlow")
     public func exportFlowPollingUntilDone(
       request: ExportFlowRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportFlowResponse> {
+    ) async throws -> ExportFlowResponse {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ExportFlowResponse>.State in
@@ -306,12 +308,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -423,7 +426,7 @@
       /// See `FlowsClient.trainFlow`.
       func trainFlowPollingUntilDone(
         request: TrainFlowRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `FlowsClient.validateFlow`.
       func validateFlow(
@@ -443,7 +446,7 @@
       /// See `FlowsClient.importFlow`.
       func importFlowPollingUntilDone(
         request: ImportFlowRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ImportFlowResponse>
+      ) async throws -> ImportFlowResponse
 
       /// See `FlowsClient.exportFlow`.
       func exportFlow(
@@ -453,7 +456,7 @@
       /// See `FlowsClient.exportFlow`.
       func exportFlowPollingUntilDone(
         request: ExportFlowRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ExportFlowResponse>
+      ) async throws -> ExportFlowResponse
 
       /// See `FlowsClient.listLocations`.
       func listLocations(
@@ -616,30 +619,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func trainFlowPollingUntilDone(request: TrainFlowRequest) async throws -> any GoogleGax
-      .PollableOperation<Swift.Void>
-    {
+    public func trainFlowPollingUntilDone(request: TrainFlowRequest) async throws {
       try await self.trainFlowPollingUntilDone(request: request, options: .init())
     }
 
     public func trainFlowPollingUntilDone(
       request: TrainFlowRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func trainFlowPollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = TrainFlowRequest().with {
         $0.name = name
       }
-      return try await self.trainFlowPollingUntilDone(request: request)
+      try await self.trainFlowPollingUntilDone(request: request)
     }
 
     public func validateFlow(request: ValidateFlowRequest) async throws
@@ -685,21 +681,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func importFlowPollingUntilDone(request: ImportFlowRequest) async throws -> any GoogleGax
-      .PollableOperation<ImportFlowResponse>
+    public func importFlowPollingUntilDone(request: ImportFlowRequest) async throws
+      -> ImportFlowResponse
     {
-      try await self.importFlowPollingUntilDone(request: request, options: .init())
+      return try await self.importFlowPollingUntilDone(request: request, options: .init())
     }
 
     public func importFlowPollingUntilDone(
       request: ImportFlowRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportFlowResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportFlowResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ImportFlowResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func exportFlow(request: ExportFlowRequest) async throws -> GoogleLongRunning.Operation {
@@ -712,21 +703,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
-    public func exportFlowPollingUntilDone(request: ExportFlowRequest) async throws -> any GoogleGax
-      .PollableOperation<ExportFlowResponse>
+    public func exportFlowPollingUntilDone(request: ExportFlowRequest) async throws
+      -> ExportFlowResponse
     {
-      try await self.exportFlowPollingUntilDone(request: request, options: .init())
+      return try await self.exportFlowPollingUntilDone(request: request, options: .init())
     }
 
     public func exportFlowPollingUntilDone(
       request: ExportFlowRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportFlowResponse> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportFlowResponse>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ExportFlowResponse {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

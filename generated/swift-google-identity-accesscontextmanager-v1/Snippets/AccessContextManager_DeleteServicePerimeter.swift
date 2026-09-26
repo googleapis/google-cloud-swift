@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(client: AccessContextManagerClient, accessPolicyId: String, servicePerimeterId: String)
   async throws
 {
-  let poller = try await client.deleteServicePerimeterPollingUntilDone(
+  try await client.deleteServicePerimeterPollingUntilDone(
     request: DeleteServicePerimeterRequest()
       .with {
         $0.name = "accessPolicies/\(accessPolicyId)/servicePerimeters/\(servicePerimeterId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

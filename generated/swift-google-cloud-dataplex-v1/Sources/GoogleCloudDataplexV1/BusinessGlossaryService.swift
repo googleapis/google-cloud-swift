@@ -65,7 +65,7 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// @Snippet(path: "BusinessGlossaryService_CreateGlossary")
   public func createGlossaryPollingUntilDone(
     request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Glossary> {
+  ) async throws -> Glossary {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Glossary>.State in
@@ -78,12 +78,13 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates a Glossary resource.
@@ -100,7 +101,7 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// @Snippet(path: "BusinessGlossaryService_UpdateGlossary")
   public func updateGlossaryPollingUntilDone(
     request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Glossary> {
+  ) async throws -> Glossary {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Glossary>.State in
@@ -113,12 +114,13 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a Glossary resource. All the categories and terms within the
@@ -137,7 +139,7 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// @Snippet(path: "BusinessGlossaryService_DeleteGlossary")
   public func deleteGlossaryPollingUntilDone(
     request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -150,12 +152,13 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets a Glossary resource.
@@ -401,7 +404,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.createGlossary`.
     func createGlossaryPollingUntilDone(
       request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Glossary>
+    ) async throws -> Glossary
 
     /// See `BusinessGlossaryServiceClient.updateGlossary`.
     func updateGlossary(
@@ -411,7 +414,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.updateGlossary`.
     func updateGlossaryPollingUntilDone(
       request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Glossary>
+    ) async throws -> Glossary
 
     /// See `BusinessGlossaryServiceClient.deleteGlossary`.
     func deleteGlossary(
@@ -421,7 +424,7 @@ extension Clients {
     /// See `BusinessGlossaryServiceClient.deleteGlossary`.
     func deleteGlossaryPollingUntilDone(
       request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `BusinessGlossaryServiceClient.getGlossary`.
     func getGlossary(
@@ -540,26 +543,22 @@ extension Clients.BusinessGlossaryServiceProtocol {
   }
 
   public func createGlossaryPollingUntilDone(request: CreateGlossaryRequest) async throws
-    -> any GoogleGax.PollableOperation<Glossary>
+    -> Glossary
   {
-    try await self.createGlossaryPollingUntilDone(request: request, options: .init())
+    return try await self.createGlossaryPollingUntilDone(request: request, options: .init())
   }
 
   public func createGlossaryPollingUntilDone(
     request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Glossary> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Glossary>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Glossary {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createGlossaryPollingUntilDone(
     parent: Swift.String,
     glossary: Glossary?,
     glossaryId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Glossary> {
+  ) async throws -> Glossary {
     let request = CreateGlossaryRequest().with {
       $0.parent = parent
       $0.glossary = glossary
@@ -581,25 +580,21 @@ extension Clients.BusinessGlossaryServiceProtocol {
   }
 
   public func updateGlossaryPollingUntilDone(request: UpdateGlossaryRequest) async throws
-    -> any GoogleGax.PollableOperation<Glossary>
+    -> Glossary
   {
-    try await self.updateGlossaryPollingUntilDone(request: request, options: .init())
+    return try await self.updateGlossaryPollingUntilDone(request: request, options: .init())
   }
 
   public func updateGlossaryPollingUntilDone(
     request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Glossary> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Glossary>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Glossary {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateGlossaryPollingUntilDone(
     glossary: Glossary?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Glossary> {
+  ) async throws -> Glossary {
     let request = UpdateGlossaryRequest().with {
       $0.glossary = glossary
       $0.updateMask = updateMask
@@ -619,29 +614,23 @@ extension Clients.BusinessGlossaryServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteGlossaryPollingUntilDone(request: DeleteGlossaryRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteGlossaryPollingUntilDone(request: DeleteGlossaryRequest) async throws {
     try await self.deleteGlossaryPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteGlossaryPollingUntilDone(
     request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteGlossaryPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteGlossaryRequest().with {
       $0.name = name
     }
-    return try await self.deleteGlossaryPollingUntilDone(request: request)
+    try await self.deleteGlossaryPollingUntilDone(request: request)
   }
 
   public func getGlossary(request: GetGlossaryRequest) async throws

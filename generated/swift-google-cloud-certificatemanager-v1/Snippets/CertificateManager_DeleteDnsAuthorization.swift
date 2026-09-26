@@ -26,14 +26,13 @@ func sample(
   client: CertificateManagerClient, projectId: String, locationId: String,
   dnsAuthorizationId: String
 ) async throws {
-  let poller = try await client.deleteDnsAuthorizationPollingUntilDone(
+  try await client.deleteDnsAuthorizationPollingUntilDone(
     request: DeleteDnsAuthorizationRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/dnsAuthorizations/\(dnsAuthorizationId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

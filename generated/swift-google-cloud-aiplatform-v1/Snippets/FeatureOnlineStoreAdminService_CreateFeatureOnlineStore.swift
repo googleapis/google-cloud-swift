@@ -27,14 +27,13 @@
   func sample(client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let poller = try await client.createFeatureOnlineStorePollingUntilDone(
+    let response = try await client.createFeatureOnlineStorePollingUntilDone(
       request: CreateFeatureOnlineStoreRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
           $0.featureOnlineStore = FeatureOnlineStore() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

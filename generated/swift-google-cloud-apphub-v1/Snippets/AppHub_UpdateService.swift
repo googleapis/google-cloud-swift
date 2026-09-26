@@ -27,7 +27,7 @@ func sample(
   client: AppHubClient, projectId: String, locationId: String, applicationId: String,
   serviceId: String
 ) async throws {
-  let poller = try await client.updateServicePollingUntilDone(
+  let response = try await client.updateServicePollingUntilDone(
     request: UpdateServiceRequest()
       .with {
         $0.service = Service().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

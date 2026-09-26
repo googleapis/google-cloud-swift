@@ -22,11 +22,10 @@
   import GoogleLongRunning
 
   func sample(client: CompletionServiceClient) async throws {
-    let poller = try await client.importCompletionSuggestionsPollingUntilDone(
+    let response = try await client.importCompletionSuggestionsPollingUntilDone(
       request: ImportCompletionSuggestionsRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

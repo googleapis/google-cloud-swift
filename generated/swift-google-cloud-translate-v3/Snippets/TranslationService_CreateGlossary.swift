@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TranslationServiceClient, parent: String) async throws {
-  let poller = try await client.createGlossaryPollingUntilDone(
+  let response = try await client.createGlossaryPollingUntilDone(
     request: CreateGlossaryRequest()
       .with {
         $0.parent = "\(parent)"
         $0.glossary = Glossary() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

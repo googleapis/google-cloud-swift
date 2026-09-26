@@ -26,14 +26,13 @@ import GoogleWKT
 func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String, caPoolId: String
 ) async throws {
-  let poller = try await client.createCertificateAuthorityPollingUntilDone(
+  let response = try await client.createCertificateAuthorityPollingUntilDone(
     request: CreateCertificateAuthorityRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/caPools/\(caPoolId)"
         $0.certificateAuthority = CertificateAuthority() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, kmsConfigId: String)
   async throws
 {
-  let poller = try await client.updateKmsConfigPollingUntilDone(
+  let response = try await client.updateKmsConfigPollingUntilDone(
     request: UpdateKmsConfigRequest()
       .with {
         $0.kmsConfig = KmsConfig().with {
@@ -34,7 +34,6 @@ func sample(client: NetAppClient, projectId: String, locationId: String, kmsConf
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: AccessContextManagerClient, accessPolicyId: String) async throws {
-  let poller = try await client.createServicePerimeterPollingUntilDone(
+  let response = try await client.createServicePerimeterPollingUntilDone(
     request: CreateServicePerimeterRequest()
       .with {
         $0.parent = "accessPolicies/\(accessPolicyId)"
         $0.servicePerimeter = ServicePerimeter() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

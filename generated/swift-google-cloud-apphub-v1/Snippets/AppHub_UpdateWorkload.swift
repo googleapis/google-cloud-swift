@@ -27,7 +27,7 @@ func sample(
   client: AppHubClient, projectId: String, locationId: String, applicationId: String,
   workloadId: String
 ) async throws {
-  let poller = try await client.updateWorkloadPollingUntilDone(
+  let response = try await client.updateWorkloadPollingUntilDone(
     request: UpdateWorkloadRequest()
       .with {
         $0.workload = Workload().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

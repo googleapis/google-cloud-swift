@@ -24,14 +24,13 @@ func sample(
   client: ExecutionsClient, projectId: String, locationId: String, jobId: String,
   executionId: String
 ) async throws {
-  let poller = try await client.deleteExecutionPollingUntilDone(
+  let response = try await client.deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)/executions/\(executionId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

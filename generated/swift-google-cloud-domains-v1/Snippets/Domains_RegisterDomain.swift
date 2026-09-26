@@ -23,11 +23,10 @@ import GoogleType
 import GoogleWKT
 
 func sample(client: DomainsClient) async throws {
-  let poller = try await client.registerDomainPollingUntilDone(
+  let response = try await client.registerDomainPollingUntilDone(
     request: RegisterDomainRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

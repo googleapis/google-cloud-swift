@@ -25,13 +25,12 @@ import GoogleWKT
 func sample(
   client: AnalyticsHubServiceClient, projectId: String, locationId: String, subscriptionId: String
 ) async throws {
-  let poller = try await client.deleteSubscriptionPollingUntilDone(
+  try await client.deleteSubscriptionPollingUntilDone(
     request: DeleteSubscriptionRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/subscriptions/\(subscriptionId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

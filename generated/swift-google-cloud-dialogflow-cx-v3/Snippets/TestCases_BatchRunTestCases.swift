@@ -24,11 +24,10 @@
   import GoogleWKT
 
   func sample(client: TestCasesClient) async throws {
-    let poller = try await client.batchRunTestCasesPollingUntilDone(
+    let response = try await client.batchRunTestCasesPollingUntilDone(
       request: BatchRunTestCasesRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

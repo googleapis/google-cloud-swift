@@ -76,7 +76,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_CreateInstance")
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -89,12 +89,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Instance.
@@ -111,7 +112,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_UpdateInstance")
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Instance>.State in
@@ -124,12 +125,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an instance.
@@ -146,7 +148,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_DeleteInstance")
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -159,12 +161,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Imports the list of registered parties. See
@@ -187,7 +190,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ImportRegisteredParties")
   public func importRegisteredPartiesPollingUntilDone(
     request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse> {
+  ) async throws -> ImportRegisteredPartiesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
@@ -202,12 +205,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Exports the list of registered parties. See
@@ -230,7 +234,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ExportRegisteredParties")
   public func exportRegisteredPartiesPollingUntilDone(
     request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse> {
+  ) async throws -> ExportRegisteredPartiesResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
@@ -245,12 +249,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists datasets.
@@ -285,7 +290,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_CreateDataset")
   public func createDatasetPollingUntilDone(
     request: CreateDatasetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Dataset> {
+  ) async throws -> Dataset {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Dataset>.State in
@@ -298,12 +303,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Dataset.
@@ -320,7 +326,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_UpdateDataset")
   public func updateDatasetPollingUntilDone(
     request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Dataset> {
+  ) async throws -> Dataset {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Dataset>.State in
@@ -333,12 +339,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a dataset.
@@ -355,7 +362,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_DeleteDataset")
   public func deleteDatasetPollingUntilDone(
     request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -368,12 +375,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists models.
@@ -408,7 +416,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_CreateModel")
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Model> {
+  ) async throws -> Model {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Model>.State in
@@ -421,12 +429,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Model.
@@ -443,7 +452,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_UpdateModel")
   public func updateModelPollingUntilDone(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Model> {
+  ) async throws -> Model {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Model>.State in
@@ -456,12 +465,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Export governance information for a Model resource. For
@@ -484,7 +494,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ExportModelMetadata")
   public func exportModelMetadataPollingUntilDone(
     request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse> {
+  ) async throws -> ExportModelMetadataResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
@@ -499,12 +509,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a model.
@@ -521,7 +532,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_DeleteModel")
   public func deleteModelPollingUntilDone(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -534,12 +545,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists engine configs.
@@ -574,7 +586,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_CreateEngineConfig")
   public func createEngineConfigPollingUntilDone(
     request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
+  ) async throws -> EngineConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
@@ -588,12 +600,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single EngineConfig.
@@ -610,7 +623,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_UpdateEngineConfig")
   public func updateEngineConfigPollingUntilDone(
     request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
+  ) async throws -> EngineConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
@@ -624,12 +637,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Export governance information for an EngineConfig resource. For
@@ -652,7 +666,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ExportEngineConfigMetadata")
   public func exportEngineConfigMetadataPollingUntilDone(
     request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse> {
+  ) async throws -> ExportEngineConfigMetadataResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State in
@@ -667,12 +681,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an engine config.
@@ -689,7 +704,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_DeleteEngineConfig")
   public func deleteEngineConfigPollingUntilDone(
     request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -702,12 +717,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Gets a single EngineVersion.
@@ -760,7 +776,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_CreatePredictionResult")
   public func createPredictionResultPollingUntilDone(
     request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
+  ) async throws -> PredictionResult {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
@@ -774,12 +790,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single PredictionResult.
@@ -796,7 +813,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_UpdatePredictionResult")
   public func updatePredictionResultPollingUntilDone(
     request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
+  ) async throws -> PredictionResult {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
@@ -810,12 +827,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Export governance information for a PredictionResult resource. For
@@ -838,7 +856,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ExportPredictionResultMetadata")
   public func exportPredictionResultMetadataPollingUntilDone(
     request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse> {
+  ) async throws -> ExportPredictionResultMetadataResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportPredictionResultMetadataResponse>.State in
@@ -853,12 +871,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a PredictionResult.
@@ -875,7 +894,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_DeletePredictionResult")
   public func deletePredictionResultPollingUntilDone(
     request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -888,12 +907,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// List BacktestResults.
@@ -928,7 +948,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_CreateBacktestResult")
   public func createBacktestResultPollingUntilDone(
     request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
+  ) async throws -> BacktestResult {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
@@ -942,12 +962,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single BacktestResult.
@@ -964,7 +985,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_UpdateBacktestResult")
   public func updateBacktestResultPollingUntilDone(
     request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
+  ) async throws -> BacktestResult {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
@@ -978,12 +999,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Export governance information for a BacktestResult resource. For
@@ -1006,7 +1028,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_ExportBacktestResultMetadata")
   public func exportBacktestResultMetadataPollingUntilDone(
     request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse> {
+  ) async throws -> ExportBacktestResultMetadataResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportBacktestResultMetadataResponse>.State in
@@ -1021,12 +1043,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a BacktestResult.
@@ -1043,7 +1066,7 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// @Snippet(path: "AML_DeleteBacktestResult")
   public func deleteBacktestResultPollingUntilDone(
     request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1056,12 +1079,13 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -1152,7 +1176,7 @@ extension Clients {
     /// See `AMLClient.createInstance`.
     func createInstancePollingUntilDone(
       request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `AMLClient.updateInstance`.
     func updateInstance(
@@ -1162,7 +1186,7 @@ extension Clients {
     /// See `AMLClient.updateInstance`.
     func updateInstancePollingUntilDone(
       request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Instance>
+    ) async throws -> Instance
 
     /// See `AMLClient.deleteInstance`.
     func deleteInstance(
@@ -1172,7 +1196,7 @@ extension Clients {
     /// See `AMLClient.deleteInstance`.
     func deleteInstancePollingUntilDone(
       request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AMLClient.importRegisteredParties`.
     func importRegisteredParties(
@@ -1182,7 +1206,7 @@ extension Clients {
     /// See `AMLClient.importRegisteredParties`.
     func importRegisteredPartiesPollingUntilDone(
       request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse>
+    ) async throws -> ImportRegisteredPartiesResponse
 
     /// See `AMLClient.exportRegisteredParties`.
     func exportRegisteredParties(
@@ -1192,7 +1216,7 @@ extension Clients {
     /// See `AMLClient.exportRegisteredParties`.
     func exportRegisteredPartiesPollingUntilDone(
       request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse>
+    ) async throws -> ExportRegisteredPartiesResponse
 
     /// See `AMLClient.listDatasets`.
     func listDatasets(
@@ -1212,7 +1236,7 @@ extension Clients {
     /// See `AMLClient.createDataset`.
     func createDatasetPollingUntilDone(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Dataset>
+    ) async throws -> Dataset
 
     /// See `AMLClient.updateDataset`.
     func updateDataset(
@@ -1222,7 +1246,7 @@ extension Clients {
     /// See `AMLClient.updateDataset`.
     func updateDatasetPollingUntilDone(
       request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Dataset>
+    ) async throws -> Dataset
 
     /// See `AMLClient.deleteDataset`.
     func deleteDataset(
@@ -1232,7 +1256,7 @@ extension Clients {
     /// See `AMLClient.deleteDataset`.
     func deleteDatasetPollingUntilDone(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AMLClient.listModels`.
     func listModels(
@@ -1252,7 +1276,7 @@ extension Clients {
     /// See `AMLClient.createModel`.
     func createModelPollingUntilDone(
       request: CreateModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Model>
+    ) async throws -> Model
 
     /// See `AMLClient.updateModel`.
     func updateModel(
@@ -1262,7 +1286,7 @@ extension Clients {
     /// See `AMLClient.updateModel`.
     func updateModelPollingUntilDone(
       request: UpdateModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Model>
+    ) async throws -> Model
 
     /// See `AMLClient.exportModelMetadata`.
     func exportModelMetadata(
@@ -1272,7 +1296,7 @@ extension Clients {
     /// See `AMLClient.exportModelMetadata`.
     func exportModelMetadataPollingUntilDone(
       request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse>
+    ) async throws -> ExportModelMetadataResponse
 
     /// See `AMLClient.deleteModel`.
     func deleteModel(
@@ -1282,7 +1306,7 @@ extension Clients {
     /// See `AMLClient.deleteModel`.
     func deleteModelPollingUntilDone(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AMLClient.listEngineConfigs`.
     func listEngineConfigs(
@@ -1302,7 +1326,7 @@ extension Clients {
     /// See `AMLClient.createEngineConfig`.
     func createEngineConfigPollingUntilDone(
       request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EngineConfig>
+    ) async throws -> EngineConfig
 
     /// See `AMLClient.updateEngineConfig`.
     func updateEngineConfig(
@@ -1312,7 +1336,7 @@ extension Clients {
     /// See `AMLClient.updateEngineConfig`.
     func updateEngineConfigPollingUntilDone(
       request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EngineConfig>
+    ) async throws -> EngineConfig
 
     /// See `AMLClient.exportEngineConfigMetadata`.
     func exportEngineConfigMetadata(
@@ -1322,7 +1346,7 @@ extension Clients {
     /// See `AMLClient.exportEngineConfigMetadata`.
     func exportEngineConfigMetadataPollingUntilDone(
       request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse>
+    ) async throws -> ExportEngineConfigMetadataResponse
 
     /// See `AMLClient.deleteEngineConfig`.
     func deleteEngineConfig(
@@ -1332,7 +1356,7 @@ extension Clients {
     /// See `AMLClient.deleteEngineConfig`.
     func deleteEngineConfigPollingUntilDone(
       request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AMLClient.getEngineVersion`.
     func getEngineVersion(
@@ -1362,7 +1386,7 @@ extension Clients {
     /// See `AMLClient.createPredictionResult`.
     func createPredictionResultPollingUntilDone(
       request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PredictionResult>
+    ) async throws -> PredictionResult
 
     /// See `AMLClient.updatePredictionResult`.
     func updatePredictionResult(
@@ -1372,7 +1396,7 @@ extension Clients {
     /// See `AMLClient.updatePredictionResult`.
     func updatePredictionResultPollingUntilDone(
       request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<PredictionResult>
+    ) async throws -> PredictionResult
 
     /// See `AMLClient.exportPredictionResultMetadata`.
     func exportPredictionResultMetadata(
@@ -1382,7 +1406,7 @@ extension Clients {
     /// See `AMLClient.exportPredictionResultMetadata`.
     func exportPredictionResultMetadataPollingUntilDone(
       request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse>
+    ) async throws -> ExportPredictionResultMetadataResponse
 
     /// See `AMLClient.deletePredictionResult`.
     func deletePredictionResult(
@@ -1392,7 +1416,7 @@ extension Clients {
     /// See `AMLClient.deletePredictionResult`.
     func deletePredictionResultPollingUntilDone(
       request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AMLClient.listBacktestResults`.
     func listBacktestResults(
@@ -1412,7 +1436,7 @@ extension Clients {
     /// See `AMLClient.createBacktestResult`.
     func createBacktestResultPollingUntilDone(
       request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BacktestResult>
+    ) async throws -> BacktestResult
 
     /// See `AMLClient.updateBacktestResult`.
     func updateBacktestResult(
@@ -1422,7 +1446,7 @@ extension Clients {
     /// See `AMLClient.updateBacktestResult`.
     func updateBacktestResultPollingUntilDone(
       request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BacktestResult>
+    ) async throws -> BacktestResult
 
     /// See `AMLClient.exportBacktestResultMetadata`.
     func exportBacktestResultMetadata(
@@ -1432,7 +1456,7 @@ extension Clients {
     /// See `AMLClient.exportBacktestResultMetadata`.
     func exportBacktestResultMetadataPollingUntilDone(
       request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse>
+    ) async throws -> ExportBacktestResultMetadataResponse
 
     /// See `AMLClient.deleteBacktestResult`.
     func deleteBacktestResult(
@@ -1442,7 +1466,7 @@ extension Clients {
     /// See `AMLClient.deleteBacktestResult`.
     func deleteBacktestResultPollingUntilDone(
       request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AMLClient.listLocations`.
     func listLocations(
@@ -1550,26 +1574,22 @@ extension Clients.AMLProtocol {
   }
 
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.createInstancePollingUntilDone(request: request, options: .init())
+    return try await self.createInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
     instanceId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = CreateInstanceRequest().with {
       $0.parent = parent
       $0.instance = instance
@@ -1591,25 +1611,21 @@ extension Clients.AMLProtocol {
   }
 
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Instance>
+    -> Instance
   {
-    try await self.updateInstancePollingUntilDone(request: request, options: .init())
+    return try await self.updateInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Instance>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Instance {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Instance> {
+  ) async throws -> Instance {
     let request = UpdateInstanceRequest().with {
       $0.instance = instance
       $0.updateMask = updateMask
@@ -1629,29 +1645,23 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
 
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteInstanceRequest().with {
       $0.name = name
     }
-    return try await self.deleteInstancePollingUntilDone(request: request)
+    try await self.deleteInstancePollingUntilDone(request: request)
   }
 
   public func importRegisteredParties(request: ImportRegisteredPartiesRequest) async throws
@@ -1667,21 +1677,16 @@ extension Clients.AMLProtocol {
   }
 
   public func importRegisteredPartiesPollingUntilDone(request: ImportRegisteredPartiesRequest)
-    async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse>
+    async throws -> ImportRegisteredPartiesResponse
   {
-    try await self.importRegisteredPartiesPollingUntilDone(request: request, options: .init())
+    return try await self.importRegisteredPartiesPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func importRegisteredPartiesPollingUntilDone(
     request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ImportRegisteredPartiesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ImportRegisteredPartiesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func importRegisteredPartiesPollingUntilDone(
@@ -1689,7 +1694,7 @@ extension Clients.AMLProtocol {
     mode: ImportRegisteredPartiesRequest.UpdateMode,
     lineOfBusiness: LineOfBusiness,
     partyTables: [Swift.String],
-  ) async throws -> any GoogleGax.PollableOperation<ImportRegisteredPartiesResponse> {
+  ) async throws -> ImportRegisteredPartiesResponse {
     let request = ImportRegisteredPartiesRequest().with {
       $0.name = name
       $0.mode = mode
@@ -1712,28 +1717,23 @@ extension Clients.AMLProtocol {
   }
 
   public func exportRegisteredPartiesPollingUntilDone(request: ExportRegisteredPartiesRequest)
-    async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse>
+    async throws -> ExportRegisteredPartiesResponse
   {
-    try await self.exportRegisteredPartiesPollingUntilDone(request: request, options: .init())
+    return try await self.exportRegisteredPartiesPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func exportRegisteredPartiesPollingUntilDone(
     request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ExportRegisteredPartiesResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportRegisteredPartiesResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportRegisteredPartiesPollingUntilDone(
     name: Swift.String,
     dataset: BigQueryDestination?,
     lineOfBusiness: LineOfBusiness,
-  ) async throws -> any GoogleGax.PollableOperation<ExportRegisteredPartiesResponse> {
+  ) async throws -> ExportRegisteredPartiesResponse {
     let request = ExportRegisteredPartiesRequest().with {
       $0.name = name
       $0.dataset = dataset
@@ -1818,27 +1818,21 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws
-    -> any GoogleGax.PollableOperation<Dataset>
-  {
-    try await self.createDatasetPollingUntilDone(request: request, options: .init())
+  public func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws -> Dataset {
+    return try await self.createDatasetPollingUntilDone(request: request, options: .init())
   }
 
   public func createDatasetPollingUntilDone(
     request: CreateDatasetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Dataset> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Dataset {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createDatasetPollingUntilDone(
     parent: Swift.String,
     dataset: Dataset?,
     datasetId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Dataset> {
+  ) async throws -> Dataset {
     let request = CreateDatasetRequest().with {
       $0.parent = parent
       $0.dataset = dataset
@@ -1859,26 +1853,20 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateDatasetPollingUntilDone(request: UpdateDatasetRequest) async throws
-    -> any GoogleGax.PollableOperation<Dataset>
-  {
-    try await self.updateDatasetPollingUntilDone(request: request, options: .init())
+  public func updateDatasetPollingUntilDone(request: UpdateDatasetRequest) async throws -> Dataset {
+    return try await self.updateDatasetPollingUntilDone(request: request, options: .init())
   }
 
   public func updateDatasetPollingUntilDone(
     request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Dataset> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Dataset>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Dataset {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateDatasetPollingUntilDone(
     dataset: Dataset?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Dataset> {
+  ) async throws -> Dataset {
     let request = UpdateDatasetRequest().with {
       $0.dataset = dataset
       $0.updateMask = updateMask
@@ -1898,29 +1886,23 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws {
     try await self.deleteDatasetPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteDatasetPollingUntilDone(
     request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteDatasetPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteDatasetRequest().with {
       $0.name = name
     }
-    return try await self.deleteDatasetPollingUntilDone(request: request)
+    try await self.deleteDatasetPollingUntilDone(request: request)
   }
 
   public func listModels(request: ListModelsRequest) async throws
@@ -1997,27 +1979,21 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createModelPollingUntilDone(request: CreateModelRequest) async throws -> any GoogleGax
-    .PollableOperation<Model>
-  {
-    try await self.createModelPollingUntilDone(request: request, options: .init())
+  public func createModelPollingUntilDone(request: CreateModelRequest) async throws -> Model {
+    return try await self.createModelPollingUntilDone(request: request, options: .init())
   }
 
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Model> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Model {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createModelPollingUntilDone(
     parent: Swift.String,
     model: Model?,
     modelId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Model> {
+  ) async throws -> Model {
     let request = CreateModelRequest().with {
       $0.parent = parent
       $0.model = model
@@ -2036,26 +2012,20 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateModelPollingUntilDone(request: UpdateModelRequest) async throws -> any GoogleGax
-    .PollableOperation<Model>
-  {
-    try await self.updateModelPollingUntilDone(request: request, options: .init())
+  public func updateModelPollingUntilDone(request: UpdateModelRequest) async throws -> Model {
+    return try await self.updateModelPollingUntilDone(request: request, options: .init())
   }
 
   public func updateModelPollingUntilDone(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Model> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Model>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Model {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateModelPollingUntilDone(
     model: Model?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Model> {
+  ) async throws -> Model {
     let request = UpdateModelRequest().with {
       $0.model = model
       $0.updateMask = updateMask
@@ -2076,27 +2046,21 @@ extension Clients.AMLProtocol {
   }
 
   public func exportModelMetadataPollingUntilDone(request: ExportModelMetadataRequest) async throws
-    -> any GoogleGax.PollableOperation<ExportModelMetadataResponse>
+    -> ExportModelMetadataResponse
   {
-    try await self.exportModelMetadataPollingUntilDone(request: request, options: .init())
+    return try await self.exportModelMetadataPollingUntilDone(request: request, options: .init())
   }
 
   public func exportModelMetadataPollingUntilDone(
     request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ExportModelMetadataResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportModelMetadataResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportModelMetadataPollingUntilDone(
     model: Swift.String,
     structuredMetadataDestination: BigQueryDestination?,
-  ) async throws -> any GoogleGax.PollableOperation<ExportModelMetadataResponse> {
+  ) async throws -> ExportModelMetadataResponse {
     let request = ExportModelMetadataRequest().with {
       $0.model = model
       $0.structuredMetadataDestination = structuredMetadataDestination
@@ -2114,29 +2078,23 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws {
     try await self.deleteModelPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteModelPollingUntilDone(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteModelPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteModelRequest().with {
       $0.name = name
     }
-    return try await self.deleteModelPollingUntilDone(request: request)
+    try await self.deleteModelPollingUntilDone(request: request)
   }
 
   public func listEngineConfigs(request: ListEngineConfigsRequest) async throws
@@ -2216,27 +2174,22 @@ extension Clients.AMLProtocol {
   }
 
   public func createEngineConfigPollingUntilDone(request: CreateEngineConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<EngineConfig>
+    -> EngineConfig
   {
-    try await self.createEngineConfigPollingUntilDone(request: request, options: .init())
+    return try await self.createEngineConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func createEngineConfigPollingUntilDone(
     request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EngineConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEngineConfigPollingUntilDone(
     parent: Swift.String,
     engineConfig: EngineConfig?,
     engineConfigId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
+  ) async throws -> EngineConfig {
     let request = CreateEngineConfigRequest().with {
       $0.parent = parent
       $0.engineConfig = engineConfig
@@ -2258,26 +2211,21 @@ extension Clients.AMLProtocol {
   }
 
   public func updateEngineConfigPollingUntilDone(request: UpdateEngineConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<EngineConfig>
+    -> EngineConfig
   {
-    try await self.updateEngineConfigPollingUntilDone(request: request, options: .init())
+    return try await self.updateEngineConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func updateEngineConfigPollingUntilDone(
     request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EngineConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EngineConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEngineConfigPollingUntilDone(
     engineConfig: EngineConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<EngineConfig> {
+  ) async throws -> EngineConfig {
     let request = UpdateEngineConfigRequest().with {
       $0.engineConfig = engineConfig
       $0.updateMask = updateMask
@@ -2298,27 +2246,22 @@ extension Clients.AMLProtocol {
   }
 
   public func exportEngineConfigMetadataPollingUntilDone(request: ExportEngineConfigMetadataRequest)
-    async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse>
+    async throws -> ExportEngineConfigMetadataResponse
   {
-    try await self.exportEngineConfigMetadataPollingUntilDone(request: request, options: .init())
+    return try await self.exportEngineConfigMetadataPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func exportEngineConfigMetadataPollingUntilDone(
     request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ExportEngineConfigMetadataResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportEngineConfigMetadataResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportEngineConfigMetadataPollingUntilDone(
     engineConfig: Swift.String,
     structuredMetadataDestination: BigQueryDestination?,
-  ) async throws -> any GoogleGax.PollableOperation<ExportEngineConfigMetadataResponse> {
+  ) async throws -> ExportEngineConfigMetadataResponse {
     let request = ExportEngineConfigMetadataRequest().with {
       $0.engineConfig = engineConfig
       $0.structuredMetadataDestination = structuredMetadataDestination
@@ -2338,29 +2281,23 @@ extension Clients.AMLProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEngineConfigPollingUntilDone(request: DeleteEngineConfigRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteEngineConfigPollingUntilDone(request: DeleteEngineConfigRequest) async throws {
     try await self.deleteEngineConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEngineConfigPollingUntilDone(
     request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEngineConfigPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEngineConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteEngineConfigPollingUntilDone(request: request)
+    try await self.deleteEngineConfigPollingUntilDone(request: request)
   }
 
   public func getEngineVersion(request: GetEngineVersionRequest) async throws
@@ -2504,27 +2441,22 @@ extension Clients.AMLProtocol {
   }
 
   public func createPredictionResultPollingUntilDone(request: CreatePredictionResultRequest)
-    async throws -> any GoogleGax.PollableOperation<PredictionResult>
+    async throws -> PredictionResult
   {
-    try await self.createPredictionResultPollingUntilDone(request: request, options: .init())
+    return try await self.createPredictionResultPollingUntilDone(request: request, options: .init())
   }
 
   public func createPredictionResultPollingUntilDone(
     request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> PredictionResult {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createPredictionResultPollingUntilDone(
     parent: Swift.String,
     predictionResult: PredictionResult?,
     predictionResultId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
+  ) async throws -> PredictionResult {
     let request = CreatePredictionResultRequest().with {
       $0.parent = parent
       $0.predictionResult = predictionResult
@@ -2546,26 +2478,21 @@ extension Clients.AMLProtocol {
   }
 
   public func updatePredictionResultPollingUntilDone(request: UpdatePredictionResultRequest)
-    async throws -> any GoogleGax.PollableOperation<PredictionResult>
+    async throws -> PredictionResult
   {
-    try await self.updatePredictionResultPollingUntilDone(request: request, options: .init())
+    return try await self.updatePredictionResultPollingUntilDone(request: request, options: .init())
   }
 
   public func updatePredictionResultPollingUntilDone(
     request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<PredictionResult>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> PredictionResult {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updatePredictionResultPollingUntilDone(
     predictionResult: PredictionResult?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<PredictionResult> {
+  ) async throws -> PredictionResult {
     let request = UpdatePredictionResultRequest().with {
       $0.predictionResult = predictionResult
       $0.updateMask = updateMask
@@ -2587,27 +2514,21 @@ extension Clients.AMLProtocol {
 
   public func exportPredictionResultMetadataPollingUntilDone(
     request: ExportPredictionResultMetadataRequest
-  ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse> {
-    try await self.exportPredictionResultMetadataPollingUntilDone(
+  ) async throws -> ExportPredictionResultMetadataResponse {
+    return try await self.exportPredictionResultMetadataPollingUntilDone(
       request: request, options: .init())
   }
 
   public func exportPredictionResultMetadataPollingUntilDone(
     request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ExportPredictionResultMetadataResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportPredictionResultMetadataResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportPredictionResultMetadataPollingUntilDone(
     predictionResult: Swift.String,
     structuredMetadataDestination: BigQueryDestination?,
-  ) async throws -> any GoogleGax.PollableOperation<ExportPredictionResultMetadataResponse> {
+  ) async throws -> ExportPredictionResultMetadataResponse {
     let request = ExportPredictionResultMetadataRequest().with {
       $0.predictionResult = predictionResult
       $0.structuredMetadataDestination = structuredMetadataDestination
@@ -2628,28 +2549,24 @@ extension Clients.AMLProtocol {
   }
 
   public func deletePredictionResultPollingUntilDone(request: DeletePredictionResultRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deletePredictionResultPollingUntilDone(request: request, options: .init())
   }
 
   public func deletePredictionResultPollingUntilDone(
     request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deletePredictionResultPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeletePredictionResultRequest().with {
       $0.name = name
     }
-    return try await self.deletePredictionResultPollingUntilDone(request: request)
+    try await self.deletePredictionResultPollingUntilDone(request: request)
   }
 
   public func listBacktestResults(request: ListBacktestResultsRequest) async throws
@@ -2729,27 +2646,22 @@ extension Clients.AMLProtocol {
   }
 
   public func createBacktestResultPollingUntilDone(request: CreateBacktestResultRequest)
-    async throws -> any GoogleGax.PollableOperation<BacktestResult>
+    async throws -> BacktestResult
   {
-    try await self.createBacktestResultPollingUntilDone(request: request, options: .init())
+    return try await self.createBacktestResultPollingUntilDone(request: request, options: .init())
   }
 
   public func createBacktestResultPollingUntilDone(
     request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BacktestResult {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBacktestResultPollingUntilDone(
     parent: Swift.String,
     backtestResult: BacktestResult?,
     backtestResultId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
+  ) async throws -> BacktestResult {
     let request = CreateBacktestResultRequest().with {
       $0.parent = parent
       $0.backtestResult = backtestResult
@@ -2771,26 +2683,21 @@ extension Clients.AMLProtocol {
   }
 
   public func updateBacktestResultPollingUntilDone(request: UpdateBacktestResultRequest)
-    async throws -> any GoogleGax.PollableOperation<BacktestResult>
+    async throws -> BacktestResult
   {
-    try await self.updateBacktestResultPollingUntilDone(request: request, options: .init())
+    return try await self.updateBacktestResultPollingUntilDone(request: request, options: .init())
   }
 
   public func updateBacktestResultPollingUntilDone(
     request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BacktestResult>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BacktestResult {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBacktestResultPollingUntilDone(
     backtestResult: BacktestResult?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<BacktestResult> {
+  ) async throws -> BacktestResult {
     let request = UpdateBacktestResultRequest().with {
       $0.backtestResult = backtestResult
       $0.updateMask = updateMask
@@ -2812,26 +2719,21 @@ extension Clients.AMLProtocol {
 
   public func exportBacktestResultMetadataPollingUntilDone(
     request: ExportBacktestResultMetadataRequest
-  ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse> {
-    try await self.exportBacktestResultMetadataPollingUntilDone(request: request, options: .init())
+  ) async throws -> ExportBacktestResultMetadataResponse {
+    return try await self.exportBacktestResultMetadataPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func exportBacktestResultMetadataPollingUntilDone(
     request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<ExportBacktestResultMetadataResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportBacktestResultMetadataResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportBacktestResultMetadataPollingUntilDone(
     backtestResult: Swift.String,
     structuredMetadataDestination: BigQueryDestination?,
-  ) async throws -> any GoogleGax.PollableOperation<ExportBacktestResultMetadataResponse> {
+  ) async throws -> ExportBacktestResultMetadataResponse {
     let request = ExportBacktestResultMetadataRequest().with {
       $0.backtestResult = backtestResult
       $0.structuredMetadataDestination = structuredMetadataDestination
@@ -2852,28 +2754,24 @@ extension Clients.AMLProtocol {
   }
 
   public func deleteBacktestResultPollingUntilDone(request: DeleteBacktestResultRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteBacktestResultPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteBacktestResultPollingUntilDone(
     request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBacktestResultPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBacktestResultRequest().with {
       $0.name = name
     }
-    return try await self.deleteBacktestResultPollingUntilDone(request: request)
+    try await self.deleteBacktestResultPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

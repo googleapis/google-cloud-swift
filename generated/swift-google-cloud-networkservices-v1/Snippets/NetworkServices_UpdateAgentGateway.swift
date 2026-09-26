@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: NetworkServicesClient, projectId: String, locationId: String, agentGatewayId: String
 ) async throws {
-  let poller = try await client.updateAgentGatewayPollingUntilDone(
+  let response = try await client.updateAgentGatewayPollingUntilDone(
     request: UpdateAgentGatewayRequest()
       .with {
         $0.agentGateway = AgentGateway().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

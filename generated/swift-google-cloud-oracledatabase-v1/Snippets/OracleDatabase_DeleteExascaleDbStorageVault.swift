@@ -26,14 +26,13 @@ func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String,
   exascaleDbStorageVaultId: String
 ) async throws {
-  let poller = try await client.deleteExascaleDbStorageVaultPollingUntilDone(
+  try await client.deleteExascaleDbStorageVaultPollingUntilDone(
     request: DeleteExascaleDbStorageVaultRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/exascaleDbStorageVaults/\(exascaleDbStorageVaultId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

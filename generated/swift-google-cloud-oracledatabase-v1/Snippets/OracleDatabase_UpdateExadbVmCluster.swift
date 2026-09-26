@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: OracleDatabaseClient, projectId: String, locationId: String, exadbVmClusterId: String
 ) async throws {
-  let poller = try await client.updateExadbVmClusterPollingUntilDone(
+  let response = try await client.updateExadbVmClusterPollingUntilDone(
     request: UpdateExadbVmClusterRequest()
       .with {
         $0.exadbVmCluster = ExadbVmCluster().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

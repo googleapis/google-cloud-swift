@@ -24,7 +24,7 @@ import GoogleLongRunning
 func sample(client: StorageBatchOperationsClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createJobPollingUntilDone(
+  let response = try await client.createJobPollingUntilDone(
     request: CreateJobRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: StorageBatchOperationsClient, projectId: String, locationId:
         $0.job = Job() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

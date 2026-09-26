@@ -24,13 +24,12 @@ import GoogleLongRunning
 func sample(
   client: SessionControllerClient, projectId: String, locationId: String, sessionId: String
 ) async throws {
-  let poller = try await client.deleteSessionPollingUntilDone(
+  let response = try await client.deleteSessionPollingUntilDone(
     request: DeleteSessionRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/sessions/\(sessionId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

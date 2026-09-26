@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: MirroringClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createMirroringEndpointGroupAssociationPollingUntilDone(
+  let response = try await client.createMirroringEndpointGroupAssociationPollingUntilDone(
     request: CreateMirroringEndpointGroupAssociationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: MirroringClient, projectId: String, locationId: String) asyn
           MirroringEndpointGroupAssociation() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

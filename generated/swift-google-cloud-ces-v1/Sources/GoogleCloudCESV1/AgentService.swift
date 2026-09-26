@@ -76,7 +76,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_CreateApp")
   public func createAppPollingUntilDone(
     request: CreateAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<App> {
+  ) async throws -> App {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<App>.State in
@@ -89,12 +89,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the specified app.
@@ -120,7 +121,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_DeleteApp")
   public func deleteAppPollingUntilDone(
     request: DeleteAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -133,12 +134,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Exports the specified app.
@@ -155,7 +157,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ExportApp")
   public func exportAppPollingUntilDone(
     request: ExportAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportAppResponse> {
+  ) async throws -> ExportAppResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
@@ -169,12 +171,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Imports the specified app.
@@ -191,7 +194,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_ImportApp")
   public func importAppPollingUntilDone(
     request: ImportAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImportAppResponse> {
+  ) async throws -> ImportAppResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
@@ -205,12 +208,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists agents in the given app.
@@ -362,7 +366,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_BatchDeleteConversations")
   public func batchDeleteConversationsPollingUntilDone(
     request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse> {
+  ) async throws -> BatchDeleteConversationsResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
@@ -377,12 +381,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a new tool in the given app.
@@ -601,7 +606,7 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// @Snippet(path: "AgentService_RestoreAppVersion")
   public func restoreAppVersionPollingUntilDone(
     request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreAppVersionResponse> {
+  ) async throws -> RestoreAppVersionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State in
@@ -616,12 +621,13 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Lists the changelogs of the specified app.
@@ -747,7 +753,7 @@ extension Clients {
     /// See `AgentServiceClient.createApp`.
     func createAppPollingUntilDone(
       request: CreateAppRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<App>
+    ) async throws -> App
 
     /// See `AgentServiceClient.updateApp`.
     func updateApp(
@@ -762,7 +768,7 @@ extension Clients {
     /// See `AgentServiceClient.deleteApp`.
     func deleteAppPollingUntilDone(
       request: DeleteAppRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AgentServiceClient.exportApp`.
     func exportApp(
@@ -772,7 +778,7 @@ extension Clients {
     /// See `AgentServiceClient.exportApp`.
     func exportAppPollingUntilDone(
       request: ExportAppRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ExportAppResponse>
+    ) async throws -> ExportAppResponse
 
     /// See `AgentServiceClient.importApp`.
     func importApp(
@@ -782,7 +788,7 @@ extension Clients {
     /// See `AgentServiceClient.importApp`.
     func importAppPollingUntilDone(
       request: ImportAppRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ImportAppResponse>
+    ) async throws -> ImportAppResponse
 
     /// See `AgentServiceClient.listAgents`.
     func listAgents(
@@ -867,7 +873,7 @@ extension Clients {
     /// See `AgentServiceClient.batchDeleteConversations`.
     func batchDeleteConversationsPollingUntilDone(
       request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse>
+    ) async throws -> BatchDeleteConversationsResponse
 
     /// See `AgentServiceClient.createTool`.
     func createTool(
@@ -987,7 +993,7 @@ extension Clients {
     /// See `AgentServiceClient.restoreAppVersion`.
     func restoreAppVersionPollingUntilDone(
       request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<RestoreAppVersionResponse>
+    ) async throws -> RestoreAppVersionResponse
 
     /// See `AgentServiceClient.listChangelogs`.
     func listChangelogs(
@@ -1097,27 +1103,21 @@ extension Clients.AgentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createAppPollingUntilDone(request: CreateAppRequest) async throws -> any GoogleGax
-    .PollableOperation<App>
-  {
-    try await self.createAppPollingUntilDone(request: request, options: .init())
+  public func createAppPollingUntilDone(request: CreateAppRequest) async throws -> App {
+    return try await self.createAppPollingUntilDone(request: request, options: .init())
   }
 
   public func createAppPollingUntilDone(
     request: CreateAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<App> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<App>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> App {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAppPollingUntilDone(
     parent: Swift.String,
     app: App?,
     appId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<App> {
+  ) async throws -> App {
     let request = CreateAppRequest().with {
       $0.parent = parent
       $0.app = app
@@ -1129,7 +1129,7 @@ extension Clients.AgentServiceProtocol {
   public func createAppPollingUntilDone(
     parent: Swift.String,
     app: App?,
-  ) async throws -> any GoogleGax.PollableOperation<App> {
+  ) async throws -> App {
     let request = CreateAppRequest().with {
       $0.parent = parent
       $0.app = app
@@ -1168,29 +1168,23 @@ extension Clients.AgentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAppPollingUntilDone(request: DeleteAppRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteAppPollingUntilDone(request: DeleteAppRequest) async throws {
     try await self.deleteAppPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAppPollingUntilDone(
     request: DeleteAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAppPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAppRequest().with {
       $0.name = name
     }
-    return try await self.deleteAppPollingUntilDone(request: request)
+    try await self.deleteAppPollingUntilDone(request: request)
   }
 
   public func exportApp(request: ExportAppRequest) async throws -> GoogleLongRunning.Operation {
@@ -1203,26 +1197,20 @@ extension Clients.AgentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func exportAppPollingUntilDone(request: ExportAppRequest) async throws -> any GoogleGax
-    .PollableOperation<ExportAppResponse>
+  public func exportAppPollingUntilDone(request: ExportAppRequest) async throws -> ExportAppResponse
   {
-    try await self.exportAppPollingUntilDone(request: request, options: .init())
+    return try await self.exportAppPollingUntilDone(request: request, options: .init())
   }
 
   public func exportAppPollingUntilDone(
     request: ExportAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ExportAppResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ExportAppResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ExportAppResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func exportAppPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ExportAppResponse> {
+  ) async throws -> ExportAppResponse {
     let request = ExportAppRequest().with {
       $0.name = name
     }
@@ -1239,28 +1227,22 @@ extension Clients.AgentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func importAppPollingUntilDone(request: ImportAppRequest) async throws -> any GoogleGax
-    .PollableOperation<ImportAppResponse>
+  public func importAppPollingUntilDone(request: ImportAppRequest) async throws -> ImportAppResponse
   {
-    try await self.importAppPollingUntilDone(request: request, options: .init())
+    return try await self.importAppPollingUntilDone(request: request, options: .init())
   }
 
   public func importAppPollingUntilDone(
     request: ImportAppRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ImportAppResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ImportAppResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ImportAppResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func importAppPollingUntilDone(
     parent: Swift.String,
     displayName: Swift.String,
     appId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ImportAppResponse> {
+  ) async throws -> ImportAppResponse {
     let request = ImportAppRequest().with {
       $0.parent = parent
       $0.displayName = displayName
@@ -1703,26 +1685,21 @@ extension Clients.AgentServiceProtocol {
   }
 
   public func batchDeleteConversationsPollingUntilDone(request: BatchDeleteConversationsRequest)
-    async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse>
+    async throws -> BatchDeleteConversationsResponse
   {
-    try await self.batchDeleteConversationsPollingUntilDone(request: request, options: .init())
+    return try await self.batchDeleteConversationsPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func batchDeleteConversationsPollingUntilDone(
     request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<BatchDeleteConversationsResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BatchDeleteConversationsResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func batchDeleteConversationsPollingUntilDone(
     parent: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BatchDeleteConversationsResponse> {
+  ) async throws -> BatchDeleteConversationsResponse {
     let request = BatchDeleteConversationsRequest().with {
       $0.parent = parent
     }
@@ -2352,26 +2329,20 @@ extension Clients.AgentServiceProtocol {
   }
 
   public func restoreAppVersionPollingUntilDone(request: RestoreAppVersionRequest) async throws
-    -> any GoogleGax.PollableOperation<RestoreAppVersionResponse>
+    -> RestoreAppVersionResponse
   {
-    try await self.restoreAppVersionPollingUntilDone(request: request, options: .init())
+    return try await self.restoreAppVersionPollingUntilDone(request: request, options: .init())
   }
 
   public func restoreAppVersionPollingUntilDone(
     request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<RestoreAppVersionResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<RestoreAppVersionResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> RestoreAppVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func restoreAppVersionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<RestoreAppVersionResponse> {
+  ) async throws -> RestoreAppVersionResponse {
     let request = RestoreAppVersionRequest().with {
       $0.name = name
     }

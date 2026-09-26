@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: AccessContextManagerClient, organizationId: String, gcpUserAccessBindingId: String
 ) async throws {
-  let poller = try await client.updateGcpUserAccessBindingPollingUntilDone(
+  let response = try await client.updateGcpUserAccessBindingPollingUntilDone(
     request: UpdateGcpUserAccessBindingRequest()
       .with {
         $0.gcpUserAccessBinding = GcpUserAccessBinding().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

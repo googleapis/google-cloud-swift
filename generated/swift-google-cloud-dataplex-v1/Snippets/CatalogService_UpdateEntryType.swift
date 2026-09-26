@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: CatalogServiceClient, projectId: String, locationId: String, entryTypeId: String
 ) async throws {
-  let poller = try await client.updateEntryTypePollingUntilDone(
+  let response = try await client.updateEntryTypePollingUntilDone(
     request: UpdateEntryTypeRequest()
       .with {
         $0.entryType = EntryType().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

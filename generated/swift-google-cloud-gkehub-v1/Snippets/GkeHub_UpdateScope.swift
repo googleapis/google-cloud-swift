@@ -24,7 +24,7 @@ import GoogleWKT
 func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId: String)
   async throws
 {
-  let poller = try await client.updateScopePollingUntilDone(
+  let response = try await client.updateScopePollingUntilDone(
     request: UpdateScopeRequest()
       .with {
         $0.scope = Scope().with {
@@ -33,7 +33,6 @@ func sample(client: GkeHubClient, projectId: String, locationId: String, scopeId
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

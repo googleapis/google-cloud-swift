@@ -28,14 +28,13 @@
     client: DeploymentResourcePoolServiceClient, projectId: String, locationId: String,
     deploymentResourcePoolId: String
   ) async throws {
-    let poller = try await client.deleteDeploymentResourcePoolPollingUntilDone(
+    try await client.deleteDeploymentResourcePoolPollingUntilDone(
       request: DeleteDeploymentResourcePoolRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/deploymentResourcePools/\(deploymentResourcePoolId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

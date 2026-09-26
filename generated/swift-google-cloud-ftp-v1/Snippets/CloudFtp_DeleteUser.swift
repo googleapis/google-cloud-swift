@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: CloudFtpClient, projectId: String, locationId: String, serverId: String, userId: String
 ) async throws {
-  let poller = try await client.deleteUserPollingUntilDone(
+  try await client.deleteUserPollingUntilDone(
     request: DeleteUserRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/servers/\(serverId)/users/\(userId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

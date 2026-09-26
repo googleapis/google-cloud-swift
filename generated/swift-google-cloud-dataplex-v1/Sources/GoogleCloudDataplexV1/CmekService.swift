@@ -58,7 +58,7 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// @Snippet(path: "CmekService_CreateEncryptionConfig")
   public func createEncryptionConfigPollingUntilDone(
     request: CreateEncryptionConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
+  ) async throws -> EncryptionConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EncryptionConfig>.State in
@@ -72,12 +72,13 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Update an EncryptionConfig.
@@ -94,7 +95,7 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// @Snippet(path: "CmekService_UpdateEncryptionConfig")
   public func updateEncryptionConfigPollingUntilDone(
     request: UpdateEncryptionConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
+  ) async throws -> EncryptionConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EncryptionConfig>.State in
@@ -108,12 +109,13 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Delete an EncryptionConfig.
@@ -130,7 +132,7 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// @Snippet(path: "CmekService_DeleteEncryptionConfig")
   public func deleteEncryptionConfigPollingUntilDone(
     request: DeleteEncryptionConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -143,12 +145,13 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// List EncryptionConfigs.
@@ -302,7 +305,7 @@ extension Clients {
     /// See `CmekServiceClient.createEncryptionConfig`.
     func createEncryptionConfigPollingUntilDone(
       request: CreateEncryptionConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
+    ) async throws -> EncryptionConfig
 
     /// See `CmekServiceClient.updateEncryptionConfig`.
     func updateEncryptionConfig(
@@ -312,7 +315,7 @@ extension Clients {
     /// See `CmekServiceClient.updateEncryptionConfig`.
     func updateEncryptionConfigPollingUntilDone(
       request: UpdateEncryptionConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
+    ) async throws -> EncryptionConfig
 
     /// See `CmekServiceClient.deleteEncryptionConfig`.
     func deleteEncryptionConfig(
@@ -322,7 +325,7 @@ extension Clients {
     /// See `CmekServiceClient.deleteEncryptionConfig`.
     func deleteEncryptionConfigPollingUntilDone(
       request: DeleteEncryptionConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `CmekServiceClient.listEncryptionConfigs`.
     func listEncryptionConfigs(
@@ -391,27 +394,22 @@ extension Clients.CmekServiceProtocol {
   }
 
   public func createEncryptionConfigPollingUntilDone(request: CreateEncryptionConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
+    async throws -> EncryptionConfig
   {
-    try await self.createEncryptionConfigPollingUntilDone(request: request, options: .init())
+    return try await self.createEncryptionConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func createEncryptionConfigPollingUntilDone(
     request: CreateEncryptionConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EncryptionConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EncryptionConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEncryptionConfigPollingUntilDone(
     parent: Swift.String,
     encryptionConfig: EncryptionConfig?,
     encryptionConfigId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
+  ) async throws -> EncryptionConfig {
     let request = CreateEncryptionConfigRequest().with {
       $0.parent = parent
       $0.encryptionConfig = encryptionConfig
@@ -433,26 +431,21 @@ extension Clients.CmekServiceProtocol {
   }
 
   public func updateEncryptionConfigPollingUntilDone(request: UpdateEncryptionConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<EncryptionConfig>
+    async throws -> EncryptionConfig
   {
-    try await self.updateEncryptionConfigPollingUntilDone(request: request, options: .init())
+    return try await self.updateEncryptionConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func updateEncryptionConfigPollingUntilDone(
     request: UpdateEncryptionConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EncryptionConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EncryptionConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEncryptionConfigPollingUntilDone(
     encryptionConfig: EncryptionConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<EncryptionConfig> {
+  ) async throws -> EncryptionConfig {
     let request = UpdateEncryptionConfigRequest().with {
       $0.encryptionConfig = encryptionConfig
       $0.updateMask = updateMask
@@ -473,28 +466,24 @@ extension Clients.CmekServiceProtocol {
   }
 
   public func deleteEncryptionConfigPollingUntilDone(request: DeleteEncryptionConfigRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteEncryptionConfigPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEncryptionConfigPollingUntilDone(
     request: DeleteEncryptionConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEncryptionConfigPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEncryptionConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteEncryptionConfigPollingUntilDone(request: request)
+    try await self.deleteEncryptionConfigPollingUntilDone(request: request)
   }
 
   public func listEncryptionConfigs(request: ListEncryptionConfigsRequest) async throws

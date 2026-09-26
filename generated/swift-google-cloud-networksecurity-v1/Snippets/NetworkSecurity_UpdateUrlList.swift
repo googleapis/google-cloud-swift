@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String, urlListId: String)
   async throws
 {
-  let poller = try await client.updateUrlListPollingUntilDone(
+  let response = try await client.updateUrlListPollingUntilDone(
     request: UpdateUrlListRequest()
       .with {
         $0.urlList = UrlList().with {
@@ -35,7 +35,6 @@ func sample(client: NetworkSecurityClient, projectId: String, locationId: String
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

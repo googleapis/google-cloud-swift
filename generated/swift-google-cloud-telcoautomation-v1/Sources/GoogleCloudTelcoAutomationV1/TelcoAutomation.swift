@@ -79,7 +79,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_CreateOrchestrationCluster")
   public func createOrchestrationClusterPollingUntilDone(
     request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster> {
+  ) async throws -> OrchestrationCluster {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
@@ -93,12 +93,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single OrchestrationCluster.
@@ -115,7 +116,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_DeleteOrchestrationCluster")
   public func deleteOrchestrationClusterPollingUntilDone(
     request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -128,12 +129,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists EdgeSlms in a given project and location.
@@ -168,7 +170,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_CreateEdgeSlm")
   public func createEdgeSlmPollingUntilDone(
     request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EdgeSlm> {
+  ) async throws -> EdgeSlm {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
@@ -181,12 +183,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single EdgeSlm.
@@ -203,7 +206,7 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// @Snippet(path: "TelcoAutomation_DeleteEdgeSlm")
   public func deleteEdgeSlmPollingUntilDone(
     request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -216,12 +219,13 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a blueprint.
@@ -571,7 +575,7 @@ extension Clients {
     /// See `TelcoAutomationClient.createOrchestrationCluster`.
     func createOrchestrationClusterPollingUntilDone(
       request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster>
+    ) async throws -> OrchestrationCluster
 
     /// See `TelcoAutomationClient.deleteOrchestrationCluster`.
     func deleteOrchestrationCluster(
@@ -581,7 +585,7 @@ extension Clients {
     /// See `TelcoAutomationClient.deleteOrchestrationCluster`.
     func deleteOrchestrationClusterPollingUntilDone(
       request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `TelcoAutomationClient.listEdgeSlms`.
     func listEdgeSlms(
@@ -601,7 +605,7 @@ extension Clients {
     /// See `TelcoAutomationClient.createEdgeSlm`.
     func createEdgeSlmPollingUntilDone(
       request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EdgeSlm>
+    ) async throws -> EdgeSlm
 
     /// See `TelcoAutomationClient.deleteEdgeSlm`.
     func deleteEdgeSlm(
@@ -611,7 +615,7 @@ extension Clients {
     /// See `TelcoAutomationClient.deleteEdgeSlm`.
     func deleteEdgeSlmPollingUntilDone(
       request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `TelcoAutomationClient.createBlueprint`.
     func createBlueprint(
@@ -859,27 +863,23 @@ extension Clients.TelcoAutomationProtocol {
   }
 
   public func createOrchestrationClusterPollingUntilDone(request: CreateOrchestrationClusterRequest)
-    async throws -> any GoogleGax.PollableOperation<OrchestrationCluster>
+    async throws -> OrchestrationCluster
   {
-    try await self.createOrchestrationClusterPollingUntilDone(request: request, options: .init())
+    return try await self.createOrchestrationClusterPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createOrchestrationClusterPollingUntilDone(
     request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<OrchestrationCluster>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> OrchestrationCluster {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createOrchestrationClusterPollingUntilDone(
     parent: Swift.String,
     orchestrationCluster: OrchestrationCluster?,
     orchestrationClusterId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<OrchestrationCluster> {
+  ) async throws -> OrchestrationCluster {
     let request = CreateOrchestrationClusterRequest().with {
       $0.parent = parent
       $0.orchestrationCluster = orchestrationCluster
@@ -901,28 +901,24 @@ extension Clients.TelcoAutomationProtocol {
   }
 
   public func deleteOrchestrationClusterPollingUntilDone(request: DeleteOrchestrationClusterRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteOrchestrationClusterPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteOrchestrationClusterPollingUntilDone(
     request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteOrchestrationClusterPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteOrchestrationClusterRequest().with {
       $0.name = name
     }
-    return try await self.deleteOrchestrationClusterPollingUntilDone(request: request)
+    try await self.deleteOrchestrationClusterPollingUntilDone(request: request)
   }
 
   public func listEdgeSlms(request: ListEdgeSlmsRequest) async throws
@@ -1001,27 +997,21 @@ extension Clients.TelcoAutomationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createEdgeSlmPollingUntilDone(request: CreateEdgeSlmRequest) async throws
-    -> any GoogleGax.PollableOperation<EdgeSlm>
-  {
-    try await self.createEdgeSlmPollingUntilDone(request: request, options: .init())
+  public func createEdgeSlmPollingUntilDone(request: CreateEdgeSlmRequest) async throws -> EdgeSlm {
+    return try await self.createEdgeSlmPollingUntilDone(request: request, options: .init())
   }
 
   public func createEdgeSlmPollingUntilDone(
     request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EdgeSlm> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<EdgeSlm>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EdgeSlm {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEdgeSlmPollingUntilDone(
     parent: Swift.String,
     edgeSlm: EdgeSlm?,
     edgeSlmId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EdgeSlm> {
+  ) async throws -> EdgeSlm {
     let request = CreateEdgeSlmRequest().with {
       $0.parent = parent
       $0.edgeSlm = edgeSlm
@@ -1042,29 +1032,23 @@ extension Clients.TelcoAutomationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEdgeSlmPollingUntilDone(request: DeleteEdgeSlmRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteEdgeSlmPollingUntilDone(request: DeleteEdgeSlmRequest) async throws {
     try await self.deleteEdgeSlmPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEdgeSlmPollingUntilDone(
     request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEdgeSlmPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEdgeSlmRequest().with {
       $0.name = name
     }
-    return try await self.deleteEdgeSlmPollingUntilDone(request: request)
+    try await self.deleteEdgeSlmPollingUntilDone(request: request)
   }
 
   public func createBlueprint(request: CreateBlueprintRequest) async throws

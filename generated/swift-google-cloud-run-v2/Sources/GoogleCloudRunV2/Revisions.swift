@@ -74,7 +74,7 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   /// @Snippet(path: "Revisions_DeleteRevision")
   public func deleteRevisionPollingUntilDone(
     request: DeleteRevisionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Revision> {
+  ) async throws -> Revision {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Revision>.State in
@@ -87,12 +87,13 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
@@ -165,7 +166,7 @@ extension Clients {
     /// See `RevisionsClient.deleteRevision`.
     func deleteRevisionPollingUntilDone(
       request: DeleteRevisionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Revision>
+    ) async throws -> Revision
 
     /// See `RevisionsClient.listOperations`.
     func listOperations(
@@ -261,24 +262,20 @@ extension Clients.RevisionsProtocol {
   }
 
   public func deleteRevisionPollingUntilDone(request: DeleteRevisionRequest) async throws
-    -> any GoogleGax.PollableOperation<Revision>
+    -> Revision
   {
-    try await self.deleteRevisionPollingUntilDone(request: request, options: .init())
+    return try await self.deleteRevisionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteRevisionPollingUntilDone(
     request: DeleteRevisionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Revision> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Revision>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Revision {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteRevisionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Revision> {
+  ) async throws -> Revision {
     let request = DeleteRevisionRequest().with {
       $0.name = name
     }

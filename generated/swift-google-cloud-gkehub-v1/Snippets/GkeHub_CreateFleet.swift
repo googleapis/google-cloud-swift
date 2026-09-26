@@ -22,14 +22,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: GkeHubClient, parent: String) async throws {
-  let poller = try await client.createFleetPollingUntilDone(
+  let response = try await client.createFleetPollingUntilDone(
     request: CreateFleetRequest()
       .with {
         $0.parent = "\(parent)"
         $0.fleet = Fleet() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

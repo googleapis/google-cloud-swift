@@ -126,7 +126,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// @Snippet(path: "WorkflowTemplateService_InstantiateWorkflowTemplate")
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -139,12 +139,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Instantiates a template and begins execution.
@@ -223,7 +224,7 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// @Snippet(path: "WorkflowTemplateService_InstantiateInlineWorkflowTemplate")
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -236,12 +237,13 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Updates (replaces) workflow template. The updated template
@@ -380,7 +382,7 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.instantiateWorkflowTemplate`.
     func instantiateWorkflowTemplatePollingUntilDone(
       request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplate(
@@ -390,7 +392,7 @@ extension Clients {
     /// See `WorkflowTemplateServiceClient.instantiateInlineWorkflowTemplate`.
     func instantiateInlineWorkflowTemplatePollingUntilDone(
       request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `WorkflowTemplateServiceClient.updateWorkflowTemplate`.
     func updateWorkflowTemplate(
@@ -499,38 +501,34 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.instantiateWorkflowTemplatePollingUntilDone(request: request, options: .init())
   }
 
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func instantiateWorkflowTemplatePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = InstantiateWorkflowTemplateRequest().with {
       $0.name = name
     }
-    return try await self.instantiateWorkflowTemplatePollingUntilDone(request: request)
+    try await self.instantiateWorkflowTemplatePollingUntilDone(request: request)
   }
 
   public func instantiateWorkflowTemplatePollingUntilDone(
     name: Swift.String,
     parameters: [Swift.String: Swift.String],
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = InstantiateWorkflowTemplateRequest().with {
       $0.name = name
       $0.parameters = parameters
     }
-    return try await self.instantiateWorkflowTemplatePollingUntilDone(request: request)
+    try await self.instantiateWorkflowTemplatePollingUntilDone(request: request)
   }
 
   public func instantiateInlineWorkflowTemplate(request: InstantiateInlineWorkflowTemplateRequest)
@@ -547,30 +545,26 @@ extension Clients.WorkflowTemplateServiceProtocol {
 
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.instantiateInlineWorkflowTemplatePollingUntilDone(
       request: request, options: .init())
   }
 
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     parent: Swift.String,
     template: WorkflowTemplate?,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = InstantiateInlineWorkflowTemplateRequest().with {
       $0.parent = parent
       $0.template = template
     }
-    return try await self.instantiateInlineWorkflowTemplatePollingUntilDone(request: request)
+    try await self.instantiateInlineWorkflowTemplatePollingUntilDone(request: request)
   }
 
   public func updateWorkflowTemplate(request: UpdateWorkflowTemplateRequest) async throws

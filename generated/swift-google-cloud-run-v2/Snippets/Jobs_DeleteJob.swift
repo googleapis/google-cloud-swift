@@ -22,13 +22,12 @@ import GoogleIAMV1
 import GoogleLongRunning
 
 func sample(client: JobsClient, projectId: String, locationId: String, jobId: String) async throws {
-  let poller = try await client.deleteJobPollingUntilDone(
+  let response = try await client.deleteJobPollingUntilDone(
     request: DeleteJobRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/jobs/\(jobId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

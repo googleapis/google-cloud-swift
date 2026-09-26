@@ -27,14 +27,13 @@
   func sample(client: FeatureRegistryServiceClient, projectId: String, locationId: String)
     async throws
   {
-    let poller = try await client.createFeatureGroupPollingUntilDone(
+    let response = try await client.createFeatureGroupPollingUntilDone(
       request: CreateFeatureGroupRequest()
         .with {
           $0.parent = "projects/\(projectId)/locations/\(locationId)"
           $0.featureGroup = FeatureGroup() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

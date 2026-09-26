@@ -27,14 +27,13 @@ import GoogleWKT
   @diagnose(DeprecatedDeclaration, as: ignored)
 #endif
 func sample(client: DataTaxonomyServiceClient, parent: String) async throws {
-  let poller = try await client.createDataTaxonomyPollingUntilDone(
+  let response = try await client.createDataTaxonomyPollingUntilDone(
     request: CreateDataTaxonomyRequest()
       .with {
         $0.parent = "\(parent)"
         $0.dataTaxonomy = DataTaxonomy() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

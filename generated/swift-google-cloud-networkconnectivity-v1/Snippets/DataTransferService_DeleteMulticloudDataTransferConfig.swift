@@ -27,14 +27,13 @@ func sample(
   client: DataTransferServiceClient, projectId: String, locationId: String,
   multicloudDataTransferConfigId: String
 ) async throws {
-  let poller = try await client.deleteMulticloudDataTransferConfigPollingUntilDone(
+  try await client.deleteMulticloudDataTransferConfigPollingUntilDone(
     request: DeleteMulticloudDataTransferConfigRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/multicloudDataTransferConfigs/\(multicloudDataTransferConfigId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

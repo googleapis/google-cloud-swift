@@ -23,14 +23,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TelcoAutomationClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createOrchestrationClusterPollingUntilDone(
+  let response = try await client.createOrchestrationClusterPollingUntilDone(
     request: CreateOrchestrationClusterRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.orchestrationCluster = OrchestrationCluster() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

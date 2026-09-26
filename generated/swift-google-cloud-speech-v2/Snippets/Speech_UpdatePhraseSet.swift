@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: SpeechClient, projectId: String, locationId: String, phraseSetId: String)
   async throws
 {
-  let poller = try await client.updatePhraseSetPollingUntilDone(
+  let response = try await client.updatePhraseSetPollingUntilDone(
     request: UpdatePhraseSetRequest()
       .with {
         $0.phraseSet = PhraseSet().with {
@@ -34,7 +34,6 @@ func sample(client: SpeechClient, projectId: String, locationId: String, phraseS
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

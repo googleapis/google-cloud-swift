@@ -23,14 +23,13 @@ import GoogleWKT
 
 func sample(client: VideoStitcherServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createLiveConfigPollingUntilDone(
+  let response = try await client.createLiveConfigPollingUntilDone(
     request: CreateLiveConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.liveConfig = LiveConfig() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

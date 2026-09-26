@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataprocMetastoreClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createServicePollingUntilDone(
+  let response = try await client.createServicePollingUntilDone(
     request: CreateServiceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: DataprocMetastoreClient, projectId: String, locationId: Stri
         $0.service = Service() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

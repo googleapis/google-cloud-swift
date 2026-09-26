@@ -26,14 +26,13 @@ func sample(
   client: TelcoAutomationClient, projectId: String, locationId: String,
   orchestrationClusterId: String
 ) async throws {
-  let poller = try await client.deleteOrchestrationClusterPollingUntilDone(
+  try await client.deleteOrchestrationClusterPollingUntilDone(
     request: DeleteOrchestrationClusterRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/orchestrationClusters/\(orchestrationClusterId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

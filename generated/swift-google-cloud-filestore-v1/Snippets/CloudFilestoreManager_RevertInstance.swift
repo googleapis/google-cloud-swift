@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudFilestoreManagerClient) async throws {
-  let poller = try await client.revertInstancePollingUntilDone(
+  let response = try await client.revertInstancePollingUntilDone(
     request: RevertInstanceRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

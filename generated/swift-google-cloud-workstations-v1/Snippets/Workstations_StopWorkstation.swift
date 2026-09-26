@@ -23,11 +23,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkstationsClient) async throws {
-  let poller = try await client.stopWorkstationPollingUntilDone(
+  let response = try await client.stopWorkstationPollingUntilDone(
     request: StopWorkstationRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

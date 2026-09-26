@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: InterceptClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createInterceptEndpointGroupAssociationPollingUntilDone(
+  let response = try await client.createInterceptEndpointGroupAssociationPollingUntilDone(
     request: CreateInterceptEndpointGroupAssociationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -32,7 +32,6 @@ func sample(client: InterceptClient, projectId: String, locationId: String) asyn
           InterceptEndpointGroupAssociation() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

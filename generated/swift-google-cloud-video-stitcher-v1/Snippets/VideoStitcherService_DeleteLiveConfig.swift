@@ -24,13 +24,12 @@ import GoogleWKT
 func sample(
   client: VideoStitcherServiceClient, projectId: String, locationId: String, liveConfigId: String
 ) async throws {
-  let poller = try await client.deleteLiveConfigPollingUntilDone(
+  try await client.deleteLiveConfigPollingUntilDone(
     request: DeleteLiveConfigRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/liveConfigs/\(liveConfigId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

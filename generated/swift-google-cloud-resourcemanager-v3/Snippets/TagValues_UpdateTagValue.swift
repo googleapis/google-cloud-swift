@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: TagValuesClient, tagValueId: String) async throws {
-  let poller = try await client.updateTagValuePollingUntilDone(
+  let response = try await client.updateTagValuePollingUntilDone(
     request: UpdateTagValueRequest()
       .with {
         $0.tagValue = TagValue().with {
@@ -32,7 +32,6 @@ func sample(client: TagValuesClient, tagValueId: String) async throws {
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

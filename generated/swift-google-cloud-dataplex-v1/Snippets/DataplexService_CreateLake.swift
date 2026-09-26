@@ -24,7 +24,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: DataplexServiceClient, parent: String) async throws {
-  let poller = try await client.createLakePollingUntilDone(
+  let response = try await client.createLakePollingUntilDone(
     request: CreateLakeRequest()
       .with {
         $0.parent = "\(parent)"
@@ -32,7 +32,6 @@ func sample(client: DataplexServiceClient, parent: String) async throws {
         $0.lake = Lake() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -28,14 +28,13 @@ func sample(
   client: AzureClustersClient, projectId: String, locationId: String, azureClusterId: String,
   azureNodePoolId: String
 ) async throws {
-  let poller = try await client.deleteAzureNodePoolPollingUntilDone(
+  try await client.deleteAzureNodePoolPollingUntilDone(
     request: DeleteAzureNodePoolRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/azureClusters/\(azureClusterId)/azureNodePools/\(azureNodePoolId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

@@ -26,13 +26,12 @@ import GoogleWKT
 func sample(
   client: InternalRangeServiceClient, projectId: String, locationId: String, internalRangeId: String
 ) async throws {
-  let poller = try await client.deleteInternalRangePollingUntilDone(
+  try await client.deleteInternalRangePollingUntilDone(
     request: DeleteInternalRangeRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/internalRanges/\(internalRangeId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

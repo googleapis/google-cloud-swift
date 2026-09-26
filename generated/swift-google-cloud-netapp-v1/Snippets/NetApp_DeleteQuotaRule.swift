@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: NetAppClient, projectId: String, locationId: String, volumeId: String, quotaRuleId: String
 ) async throws {
-  let poller = try await client.deleteQuotaRulePollingUntilDone(
+  try await client.deleteQuotaRulePollingUntilDone(
     request: DeleteQuotaRuleRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/volumes/\(volumeId)/quotaRules/\(quotaRuleId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

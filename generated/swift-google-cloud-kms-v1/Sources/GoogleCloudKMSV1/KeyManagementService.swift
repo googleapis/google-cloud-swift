@@ -283,7 +283,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_DeleteCryptoKey")
   public func deleteCryptoKeyPollingUntilDone(
     request: DeleteCryptoKeyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -296,12 +296,13 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Permanently deletes the given
@@ -344,7 +345,7 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
   /// @Snippet(path: "KeyManagementService_DeleteCryptoKeyVersion")
   public func deleteCryptoKeyVersionPollingUntilDone(
     request: DeleteCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -357,12 +358,13 @@ public final class KeyManagementServiceClient: Clients.KeyManagementServiceProto
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Import wrapped key material into a
@@ -889,7 +891,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.deleteCryptoKey`.
     func deleteCryptoKeyPollingUntilDone(
       request: DeleteCryptoKeyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersion(
@@ -899,7 +901,7 @@ extension Clients {
     /// See `KeyManagementServiceClient.deleteCryptoKeyVersion`.
     func deleteCryptoKeyVersionPollingUntilDone(
       request: DeleteCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `KeyManagementServiceClient.importCryptoKeyVersion`.
     func importCryptoKeyVersion(
@@ -1455,29 +1457,23 @@ extension Clients.KeyManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteCryptoKeyPollingUntilDone(request: DeleteCryptoKeyRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteCryptoKeyPollingUntilDone(request: DeleteCryptoKeyRequest) async throws {
     try await self.deleteCryptoKeyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteCryptoKeyPollingUntilDone(
     request: DeleteCryptoKeyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteCryptoKeyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteCryptoKeyRequest().with {
       $0.name = name
     }
-    return try await self.deleteCryptoKeyPollingUntilDone(request: request)
+    try await self.deleteCryptoKeyPollingUntilDone(request: request)
   }
 
   public func deleteCryptoKeyVersion(request: DeleteCryptoKeyVersionRequest) async throws
@@ -1493,28 +1489,24 @@ extension Clients.KeyManagementServiceProtocol {
   }
 
   public func deleteCryptoKeyVersionPollingUntilDone(request: DeleteCryptoKeyVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteCryptoKeyVersionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteCryptoKeyVersionPollingUntilDone(
     request: DeleteCryptoKeyVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteCryptoKeyVersionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteCryptoKeyVersionRequest().with {
       $0.name = name
     }
-    return try await self.deleteCryptoKeyVersionPollingUntilDone(request: request)
+    try await self.deleteCryptoKeyVersionPollingUntilDone(request: request)
   }
 
   public func importCryptoKeyVersion(request: ImportCryptoKeyVersionRequest) async throws

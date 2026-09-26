@@ -73,7 +73,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_BatchProcessDocuments")
   public func batchProcessDocumentsPollingUntilDone(
     request: BatchProcessRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchProcessResponse> {
+  ) async throws -> BatchProcessResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BatchProcessResponse>.State in
@@ -87,12 +87,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Fetches processor types. Note that we don't use
@@ -166,7 +167,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_TrainProcessorVersion")
   public func trainProcessorVersionPollingUntilDone(
     request: TrainProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TrainProcessorVersionResponse> {
+  ) async throws -> TrainProcessorVersionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TrainProcessorVersionResponse>.State in
@@ -181,12 +182,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets a processor version detail.
@@ -223,7 +225,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_DeleteProcessorVersion")
   public func deleteProcessorVersionPollingUntilDone(
     request: DeleteProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -236,12 +238,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Deploys the processor version.
@@ -258,7 +261,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_DeployProcessorVersion")
   public func deployProcessorVersionPollingUntilDone(
     request: DeployProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DeployProcessorVersionResponse> {
+  ) async throws -> DeployProcessorVersionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DeployProcessorVersionResponse>.State in
@@ -273,12 +276,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Undeploys the processor version.
@@ -295,7 +299,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_UndeployProcessorVersion")
   public func undeployProcessorVersionPollingUntilDone(
     request: UndeployProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse> {
+  ) async throws -> UndeployProcessorVersionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UndeployProcessorVersionResponse>.State in
@@ -310,12 +314,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Creates a processor from the
@@ -351,7 +356,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_DeleteProcessor")
   public func deleteProcessorPollingUntilDone(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -364,12 +369,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Enables a processor
@@ -386,7 +392,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_EnableProcessor")
   public func enableProcessorPollingUntilDone(
     request: EnableProcessorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EnableProcessorResponse> {
+  ) async throws -> EnableProcessorResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EnableProcessorResponse>.State in
@@ -401,12 +407,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Disables a processor
@@ -423,7 +430,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_DisableProcessor")
   public func disableProcessorPollingUntilDone(
     request: DisableProcessorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DisableProcessorResponse> {
+  ) async throws -> DisableProcessorResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<DisableProcessorResponse>.State in
@@ -438,12 +445,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Set the default (active) version of a
@@ -476,7 +484,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_SetDefaultProcessorVersion")
   public func setDefaultProcessorVersionPollingUntilDone(
     request: SetDefaultProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SetDefaultProcessorVersionResponse> {
+  ) async throws -> SetDefaultProcessorVersionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<SetDefaultProcessorVersionResponse>.State in
@@ -491,12 +499,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Send a document for Human Review. The input document should be processed by
@@ -515,7 +524,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_ReviewDocument")
   public func reviewDocumentPollingUntilDone(
     request: ReviewDocumentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ReviewDocumentResponse> {
+  ) async throws -> ReviewDocumentResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ReviewDocumentResponse>.State in
@@ -529,12 +538,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Evaluates a ProcessorVersion against annotated documents, producing an
@@ -553,7 +563,7 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// @Snippet(path: "DocumentProcessorService_EvaluateProcessorVersion")
   public func evaluateProcessorVersionPollingUntilDone(
     request: EvaluateProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse> {
+  ) async throws -> EvaluateProcessorVersionResponse {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<EvaluateProcessorVersionResponse>.State in
@@ -568,12 +578,13 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Retrieves a specific evaluation.
@@ -666,7 +677,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.batchProcessDocuments`.
     func batchProcessDocumentsPollingUntilDone(
       request: BatchProcessRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BatchProcessResponse>
+    ) async throws -> BatchProcessResponse
 
     /// See `DocumentProcessorServiceClient.fetchProcessorTypes`.
     func fetchProcessorTypes(
@@ -701,7 +712,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.trainProcessorVersion`.
     func trainProcessorVersionPollingUntilDone(
       request: TrainProcessorVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TrainProcessorVersionResponse>
+    ) async throws -> TrainProcessorVersionResponse
 
     /// See `DocumentProcessorServiceClient.getProcessorVersion`.
     func getProcessorVersion(
@@ -721,7 +732,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.deleteProcessorVersion`.
     func deleteProcessorVersionPollingUntilDone(
       request: DeleteProcessorVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DocumentProcessorServiceClient.deployProcessorVersion`.
     func deployProcessorVersion(
@@ -731,7 +742,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.deployProcessorVersion`.
     func deployProcessorVersionPollingUntilDone(
       request: DeployProcessorVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DeployProcessorVersionResponse>
+    ) async throws -> DeployProcessorVersionResponse
 
     /// See `DocumentProcessorServiceClient.undeployProcessorVersion`.
     func undeployProcessorVersion(
@@ -741,7 +752,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.undeployProcessorVersion`.
     func undeployProcessorVersionPollingUntilDone(
       request: UndeployProcessorVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse>
+    ) async throws -> UndeployProcessorVersionResponse
 
     /// See `DocumentProcessorServiceClient.createProcessor`.
     func createProcessor(
@@ -756,7 +767,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.deleteProcessor`.
     func deleteProcessorPollingUntilDone(
       request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `DocumentProcessorServiceClient.enableProcessor`.
     func enableProcessor(
@@ -766,7 +777,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.enableProcessor`.
     func enableProcessorPollingUntilDone(
       request: EnableProcessorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EnableProcessorResponse>
+    ) async throws -> EnableProcessorResponse
 
     /// See `DocumentProcessorServiceClient.disableProcessor`.
     func disableProcessor(
@@ -776,7 +787,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.disableProcessor`.
     func disableProcessorPollingUntilDone(
       request: DisableProcessorRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<DisableProcessorResponse>
+    ) async throws -> DisableProcessorResponse
 
     /// See `DocumentProcessorServiceClient.setDefaultProcessorVersion`.
     func setDefaultProcessorVersion(
@@ -786,7 +797,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.setDefaultProcessorVersion`.
     func setDefaultProcessorVersionPollingUntilDone(
       request: SetDefaultProcessorVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<SetDefaultProcessorVersionResponse>
+    ) async throws -> SetDefaultProcessorVersionResponse
 
     /// See `DocumentProcessorServiceClient.reviewDocument`.
     func reviewDocument(
@@ -796,7 +807,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.reviewDocument`.
     func reviewDocumentPollingUntilDone(
       request: ReviewDocumentRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ReviewDocumentResponse>
+    ) async throws -> ReviewDocumentResponse
 
     /// See `DocumentProcessorServiceClient.evaluateProcessorVersion`.
     func evaluateProcessorVersion(
@@ -806,7 +817,7 @@ extension Clients {
     /// See `DocumentProcessorServiceClient.evaluateProcessorVersion`.
     func evaluateProcessorVersionPollingUntilDone(
       request: EvaluateProcessorVersionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse>
+    ) async throws -> EvaluateProcessorVersionResponse
 
     /// See `DocumentProcessorServiceClient.getEvaluation`.
     func getEvaluation(
@@ -876,25 +887,20 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func batchProcessDocumentsPollingUntilDone(request: BatchProcessRequest) async throws
-    -> any GoogleGax.PollableOperation<BatchProcessResponse>
+    -> BatchProcessResponse
   {
-    try await self.batchProcessDocumentsPollingUntilDone(request: request, options: .init())
+    return try await self.batchProcessDocumentsPollingUntilDone(request: request, options: .init())
   }
 
   public func batchProcessDocumentsPollingUntilDone(
     request: BatchProcessRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BatchProcessResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<BatchProcessResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BatchProcessResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func batchProcessDocumentsPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BatchProcessResponse> {
+  ) async throws -> BatchProcessResponse {
     let request = BatchProcessRequest().with {
       $0.name = name
     }
@@ -1063,27 +1069,21 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func trainProcessorVersionPollingUntilDone(request: TrainProcessorVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<TrainProcessorVersionResponse>
+    async throws -> TrainProcessorVersionResponse
   {
-    try await self.trainProcessorVersionPollingUntilDone(request: request, options: .init())
+    return try await self.trainProcessorVersionPollingUntilDone(request: request, options: .init())
   }
 
   public func trainProcessorVersionPollingUntilDone(
     request: TrainProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TrainProcessorVersionResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<TrainProcessorVersionResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TrainProcessorVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func trainProcessorVersionPollingUntilDone(
     parent: Swift.String,
     processorVersion: ProcessorVersion?,
-  ) async throws -> any GoogleGax.PollableOperation<TrainProcessorVersionResponse> {
+  ) async throws -> TrainProcessorVersionResponse {
     let request = TrainProcessorVersionRequest().with {
       $0.parent = parent
       $0.processorVersion = processorVersion
@@ -1168,28 +1168,24 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func deleteProcessorVersionPollingUntilDone(request: DeleteProcessorVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteProcessorVersionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteProcessorVersionPollingUntilDone(
     request: DeleteProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteProcessorVersionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteProcessorVersionRequest().with {
       $0.name = name
     }
-    return try await self.deleteProcessorVersionPollingUntilDone(request: request)
+    try await self.deleteProcessorVersionPollingUntilDone(request: request)
   }
 
   public func deployProcessorVersion(request: DeployProcessorVersionRequest) async throws
@@ -1205,26 +1201,20 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func deployProcessorVersionPollingUntilDone(request: DeployProcessorVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<DeployProcessorVersionResponse>
+    async throws -> DeployProcessorVersionResponse
   {
-    try await self.deployProcessorVersionPollingUntilDone(request: request, options: .init())
+    return try await self.deployProcessorVersionPollingUntilDone(request: request, options: .init())
   }
 
   public func deployProcessorVersionPollingUntilDone(
     request: DeployProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DeployProcessorVersionResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<DeployProcessorVersionResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DeployProcessorVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deployProcessorVersionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<DeployProcessorVersionResponse> {
+  ) async throws -> DeployProcessorVersionResponse {
     let request = DeployProcessorVersionRequest().with {
       $0.name = name
     }
@@ -1244,26 +1234,21 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func undeployProcessorVersionPollingUntilDone(request: UndeployProcessorVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse>
+    async throws -> UndeployProcessorVersionResponse
   {
-    try await self.undeployProcessorVersionPollingUntilDone(request: request, options: .init())
+    return try await self.undeployProcessorVersionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func undeployProcessorVersionPollingUntilDone(
     request: UndeployProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<UndeployProcessorVersionResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> UndeployProcessorVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func undeployProcessorVersionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<UndeployProcessorVersionResponse> {
+  ) async throws -> UndeployProcessorVersionResponse {
     let request = UndeployProcessorVersionRequest().with {
       $0.name = name
     }
@@ -1305,29 +1290,23 @@ extension Clients.DocumentProcessorServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteProcessorPollingUntilDone(request: DeleteProcessorRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteProcessorPollingUntilDone(request: DeleteProcessorRequest) async throws {
     try await self.deleteProcessorPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteProcessorPollingUntilDone(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteProcessorPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteProcessorRequest().with {
       $0.name = name
     }
-    return try await self.deleteProcessorPollingUntilDone(request: request)
+    try await self.deleteProcessorPollingUntilDone(request: request)
   }
 
   public func enableProcessor(request: EnableProcessorRequest) async throws
@@ -1343,21 +1322,15 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func enableProcessorPollingUntilDone(request: EnableProcessorRequest) async throws
-    -> any GoogleGax.PollableOperation<EnableProcessorResponse>
+    -> EnableProcessorResponse
   {
-    try await self.enableProcessorPollingUntilDone(request: request, options: .init())
+    return try await self.enableProcessorPollingUntilDone(request: request, options: .init())
   }
 
   public func enableProcessorPollingUntilDone(
     request: EnableProcessorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EnableProcessorResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<EnableProcessorResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EnableProcessorResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func disableProcessor(request: DisableProcessorRequest) async throws
@@ -1373,21 +1346,15 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func disableProcessorPollingUntilDone(request: DisableProcessorRequest) async throws
-    -> any GoogleGax.PollableOperation<DisableProcessorResponse>
+    -> DisableProcessorResponse
   {
-    try await self.disableProcessorPollingUntilDone(request: request, options: .init())
+    return try await self.disableProcessorPollingUntilDone(request: request, options: .init())
   }
 
   public func disableProcessorPollingUntilDone(
     request: DisableProcessorRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<DisableProcessorResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<DisableProcessorResponse>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> DisableProcessorResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func setDefaultProcessorVersion(request: SetDefaultProcessorVersionRequest) async throws
@@ -1403,21 +1370,16 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func setDefaultProcessorVersionPollingUntilDone(request: SetDefaultProcessorVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<SetDefaultProcessorVersionResponse>
+    async throws -> SetDefaultProcessorVersionResponse
   {
-    try await self.setDefaultProcessorVersionPollingUntilDone(request: request, options: .init())
+    return try await self.setDefaultProcessorVersionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func setDefaultProcessorVersionPollingUntilDone(
     request: SetDefaultProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<SetDefaultProcessorVersionResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<SetDefaultProcessorVersionResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> SetDefaultProcessorVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func reviewDocument(request: ReviewDocumentRequest) async throws
@@ -1433,25 +1395,20 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func reviewDocumentPollingUntilDone(request: ReviewDocumentRequest) async throws
-    -> any GoogleGax.PollableOperation<ReviewDocumentResponse>
+    -> ReviewDocumentResponse
   {
-    try await self.reviewDocumentPollingUntilDone(request: request, options: .init())
+    return try await self.reviewDocumentPollingUntilDone(request: request, options: .init())
   }
 
   public func reviewDocumentPollingUntilDone(
     request: ReviewDocumentRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ReviewDocumentResponse> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReviewDocumentResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ReviewDocumentResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func reviewDocumentPollingUntilDone(
     humanReviewConfig: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ReviewDocumentResponse> {
+  ) async throws -> ReviewDocumentResponse {
     let request = ReviewDocumentRequest().with {
       $0.humanReviewConfig = humanReviewConfig
     }
@@ -1471,26 +1428,21 @@ extension Clients.DocumentProcessorServiceProtocol {
   }
 
   public func evaluateProcessorVersionPollingUntilDone(request: EvaluateProcessorVersionRequest)
-    async throws -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse>
+    async throws -> EvaluateProcessorVersionResponse
   {
-    try await self.evaluateProcessorVersionPollingUntilDone(request: request, options: .init())
+    return try await self.evaluateProcessorVersionPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func evaluateProcessorVersionPollingUntilDone(
     request: EvaluateProcessorVersionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<EvaluateProcessorVersionResponse>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> EvaluateProcessorVersionResponse {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func evaluateProcessorVersionPollingUntilDone(
     processorVersion: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<EvaluateProcessorVersionResponse> {
+  ) async throws -> EvaluateProcessorVersionResponse {
     let request = EvaluateProcessorVersionRequest().with {
       $0.processorVersion = processorVersion
     }

@@ -23,13 +23,12 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: FoldersClient, folderId: String) async throws {
-  let poller = try await client.deleteFolderPollingUntilDone(
+  let response = try await client.deleteFolderPollingUntilDone(
     request: DeleteFolderRequest()
       .with {
         $0.name = "folders/\(folderId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

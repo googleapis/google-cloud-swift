@@ -25,14 +25,13 @@ import GoogleWKT
 
 func sample(client: DataMigrationServiceClient, projectId: String, locationId: String) async throws
 {
-  let poller = try await client.createConversionWorkspacePollingUntilDone(
+  let response = try await client.createConversionWorkspacePollingUntilDone(
     request: CreateConversionWorkspaceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.conversionWorkspace = ConversionWorkspace() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

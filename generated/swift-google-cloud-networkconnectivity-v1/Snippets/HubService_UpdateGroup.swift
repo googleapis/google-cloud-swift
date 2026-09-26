@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: HubServiceClient, projectId: String, hubId: String, groupId: String)
   async throws
 {
-  let poller = try await client.updateGroupPollingUntilDone(
+  let response = try await client.updateGroupPollingUntilDone(
     request: UpdateGroupRequest()
       .with {
         $0.group = Group().with {
@@ -35,7 +35,6 @@ func sample(client: HubServiceClient, projectId: String, hubId: String, groupId:
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

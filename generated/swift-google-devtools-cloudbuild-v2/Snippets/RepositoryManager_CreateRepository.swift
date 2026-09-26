@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: RepositoryManagerClient, projectId: String, locationId: String, connectionId: String
 ) async throws {
-  let poller = try await client.createRepositoryPollingUntilDone(
+  let response = try await client.createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/connections/\(connectionId)"
@@ -33,7 +33,6 @@ func sample(
         $0.repository = Repository() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

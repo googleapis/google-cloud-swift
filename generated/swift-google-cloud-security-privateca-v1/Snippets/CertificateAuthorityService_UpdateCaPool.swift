@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: CertificateAuthorityServiceClient, projectId: String, locationId: String, caPoolId: String
 ) async throws {
-  let poller = try await client.updateCaPoolPollingUntilDone(
+  let response = try await client.updateCaPoolPollingUntilDone(
     request: UpdateCaPoolRequest()
       .with {
         $0.caPool = CaPool().with {
@@ -35,7 +35,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

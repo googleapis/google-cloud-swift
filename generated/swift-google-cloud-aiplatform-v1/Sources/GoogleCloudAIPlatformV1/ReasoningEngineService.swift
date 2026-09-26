@@ -61,7 +61,7 @@
     /// @Snippet(path: "ReasoningEngineService_CreateReasoningEngine")
     public func createReasoningEnginePollingUntilDone(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
+    ) async throws -> ReasoningEngine {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
@@ -75,12 +75,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Gets a reasoning engine.
@@ -115,7 +116,7 @@
     /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
     public func updateReasoningEnginePollingUntilDone(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
+    ) async throws -> ReasoningEngine {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
@@ -129,12 +130,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      return try await poller.wait()
     }
 
     /// Deletes a reasoning engine.
@@ -151,7 +153,7 @@
     /// @Snippet(path: "ReasoningEngineService_DeleteReasoningEngine")
     public func deleteReasoningEnginePollingUntilDone(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let extractStatus = {
         @Sendable (op: GoogleLongRunning.Operation) throws
           -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -165,12 +167,13 @@
           request: .init().with { $0.name = rawOp.name }, options: options)
         return try extractStatus(op)
       }
-      return GoogleGax._PollableOperationImpl(
+      let poller = GoogleGax._PollableOperationImpl(
         initialState: initialState,
         polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
         backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
         poll: poll,
       )
+      try await poller.wait()
     }
 
     /// Lists information about the supported locations for this service.
@@ -300,7 +303,7 @@
       /// See `ReasoningEngineServiceClient.createReasoningEngine`.
       func createReasoningEnginePollingUntilDone(
         request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
+      ) async throws -> ReasoningEngine
 
       /// See `ReasoningEngineServiceClient.getReasoningEngine`.
       func getReasoningEngine(
@@ -320,7 +323,7 @@
       /// See `ReasoningEngineServiceClient.updateReasoningEngine`.
       func updateReasoningEnginePollingUntilDone(
         request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
+      ) async throws -> ReasoningEngine
 
       /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
       func deleteReasoningEngine(
@@ -330,7 +333,7 @@
       /// See `ReasoningEngineServiceClient.deleteReasoningEngine`.
       func deleteReasoningEnginePollingUntilDone(
         request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
-      ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      ) async throws
 
       /// See `ReasoningEngineServiceClient.listLocations`.
       func listLocations(
@@ -394,26 +397,22 @@
     }
 
     public func createReasoningEnginePollingUntilDone(request: CreateReasoningEngineRequest)
-      async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
+      async throws -> ReasoningEngine
     {
-      try await self.createReasoningEnginePollingUntilDone(request: request, options: .init())
+      return try await self.createReasoningEnginePollingUntilDone(
+        request: request, options: .init())
     }
 
     public func createReasoningEnginePollingUntilDone(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ReasoningEngine {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func createReasoningEnginePollingUntilDone(
       parent: Swift.String,
       reasoningEngine: ReasoningEngine?,
-    ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
+    ) async throws -> ReasoningEngine {
       let request = CreateReasoningEngineRequest().with {
         $0.parent = parent
         $0.reasoningEngine = reasoningEngine
@@ -498,26 +497,22 @@
     }
 
     public func updateReasoningEnginePollingUntilDone(request: UpdateReasoningEngineRequest)
-      async throws -> any GoogleGax.PollableOperation<ReasoningEngine>
+      async throws -> ReasoningEngine
     {
-      try await self.updateReasoningEnginePollingUntilDone(request: request, options: .init())
+      return try await self.updateReasoningEnginePollingUntilDone(
+        request: request, options: .init())
     }
 
     public func updateReasoningEnginePollingUntilDone(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<ReasoningEngine>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws -> ReasoningEngine {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func updateReasoningEnginePollingUntilDone(
       reasoningEngine: ReasoningEngine?,
       updateMask: GoogleWKT.WKTFieldMask?,
-    ) async throws -> any GoogleGax.PollableOperation<ReasoningEngine> {
+    ) async throws -> ReasoningEngine {
       let request = UpdateReasoningEngineRequest().with {
         $0.reasoningEngine = reasoningEngine
         $0.updateMask = updateMask
@@ -538,29 +533,24 @@
     }
 
     public func deleteReasoningEnginePollingUntilDone(request: DeleteReasoningEngineRequest)
-      async throws -> any GoogleGax.PollableOperation<Swift.Void>
+      async throws
     {
       try await self.deleteReasoningEnginePollingUntilDone(request: request, options: .init())
     }
 
     public func deleteReasoningEnginePollingUntilDone(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-      let poll = {
-        @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-        throw GoogleGax.RequestError.unimplemented
-      }
-      return GoogleGax._PollableOperationImpl(
-        initialState: .init(done: false, result: nil), poll: poll)
+    ) async throws {
+      throw GoogleGax.RequestError.unimplemented
     }
 
     public func deleteReasoningEnginePollingUntilDone(
       name: Swift.String,
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+    ) async throws {
       let request = DeleteReasoningEngineRequest().with {
         $0.name = name
       }
-      return try await self.deleteReasoningEnginePollingUntilDone(request: request)
+      try await self.deleteReasoningEnginePollingUntilDone(request: request)
     }
 
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

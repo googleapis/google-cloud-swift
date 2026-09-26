@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: EdgeNetworkClient, projectId: String, locationId: String, zoneId: String, subnetId: String
 ) async throws {
-  let poller = try await client.deleteSubnetPollingUntilDone(
+  try await client.deleteSubnetPollingUntilDone(
     request: DeleteSubnetRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/zones/\(zoneId)/subnets/\(subnetId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

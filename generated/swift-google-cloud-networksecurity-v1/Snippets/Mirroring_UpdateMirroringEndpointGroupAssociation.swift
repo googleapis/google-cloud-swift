@@ -27,7 +27,7 @@ func sample(
   client: MirroringClient, projectId: String, locationId: String,
   mirroringEndpointGroupAssociationId: String
 ) async throws {
-  let poller = try await client.updateMirroringEndpointGroupAssociationPollingUntilDone(
+  let response = try await client.updateMirroringEndpointGroupAssociationPollingUntilDone(
     request: UpdateMirroringEndpointGroupAssociationRequest()
       .with {
         $0.mirroringEndpointGroupAssociation = MirroringEndpointGroupAssociation().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

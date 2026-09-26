@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudDeployClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createCustomTargetTypePollingUntilDone(
+  let response = try await client.createCustomTargetTypePollingUntilDone(
     request: CreateCustomTargetTypeRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.customTargetType = CustomTargetType() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

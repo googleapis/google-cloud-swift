@@ -55,7 +55,7 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// @Snippet(path: "AccessPolicies_CreateAccessPolicy")
   public func createAccessPolicyPollingUntilDone(
     request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
+  ) async throws -> AccessPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
@@ -69,12 +69,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Gets an access policy.
@@ -100,7 +101,7 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// @Snippet(path: "AccessPolicies_UpdateAccessPolicy")
   public func updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
+  ) async throws -> AccessPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
@@ -114,12 +115,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes an access policy.
@@ -136,7 +138,7 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// @Snippet(path: "AccessPolicies_DeleteAccessPolicy")
   public func deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -149,12 +151,13 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists access policies.
@@ -203,7 +206,7 @@ extension Clients {
     /// See `AccessPoliciesClient.createAccessPolicy`.
     func createAccessPolicyPollingUntilDone(
       request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AccessPolicy>
+    ) async throws -> AccessPolicy
 
     /// See `AccessPoliciesClient.getAccessPolicy`.
     func getAccessPolicy(
@@ -218,7 +221,7 @@ extension Clients {
     /// See `AccessPoliciesClient.updateAccessPolicy`.
     func updateAccessPolicyPollingUntilDone(
       request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AccessPolicy>
+    ) async throws -> AccessPolicy
 
     /// See `AccessPoliciesClient.deleteAccessPolicy`.
     func deleteAccessPolicy(
@@ -228,7 +231,7 @@ extension Clients {
     /// See `AccessPoliciesClient.deleteAccessPolicy`.
     func deleteAccessPolicyPollingUntilDone(
       request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `AccessPoliciesClient.listAccessPolicies`.
     func listAccessPolicies(
@@ -257,27 +260,22 @@ extension Clients.AccessPoliciesProtocol {
   }
 
   public func createAccessPolicyPollingUntilDone(request: CreateAccessPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<AccessPolicy>
+    -> AccessPolicy
   {
-    try await self.createAccessPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createAccessPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func createAccessPolicyPollingUntilDone(
     request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AccessPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAccessPolicyPollingUntilDone(
     parent: Swift.String,
     accessPolicy: AccessPolicy?,
     accessPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
+  ) async throws -> AccessPolicy {
     let request = CreateAccessPolicyRequest().with {
       $0.parent = parent
       $0.accessPolicy = accessPolicy
@@ -320,20 +318,15 @@ extension Clients.AccessPoliciesProtocol {
   }
 
   public func updateAccessPolicyPollingUntilDone(request: UpdateAccessPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<AccessPolicy>
+    -> AccessPolicy
   {
-    try await self.updateAccessPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateAccessPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AccessPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AccessPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AccessPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAccessPolicy(request: DeleteAccessPolicyRequest) async throws
@@ -348,29 +341,23 @@ extension Clients.AccessPoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAccessPolicyPollingUntilDone(request: DeleteAccessPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteAccessPolicyPollingUntilDone(request: DeleteAccessPolicyRequest) async throws {
     try await self.deleteAccessPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAccessPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAccessPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteAccessPolicyPollingUntilDone(request: request)
+    try await self.deleteAccessPolicyPollingUntilDone(request: request)
   }
 
   public func listAccessPolicies(request: ListAccessPoliciesRequest) async throws

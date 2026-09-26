@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: DatastreamClient, projectId: String, locationId: String, connectionProfileId: String
 ) async throws {
-  let poller = try await client.deleteConnectionProfilePollingUntilDone(
+  try await client.deleteConnectionProfilePollingUntilDone(
     request: DeleteConnectionProfileRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/connectionProfiles/\(connectionProfileId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

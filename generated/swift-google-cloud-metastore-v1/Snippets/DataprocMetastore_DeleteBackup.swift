@@ -27,14 +27,13 @@ func sample(
   client: DataprocMetastoreClient, projectId: String, locationId: String, serviceId: String,
   backupId: String
 ) async throws {
-  let poller = try await client.deleteBackupPollingUntilDone(
+  try await client.deleteBackupPollingUntilDone(
     request: DeleteBackupRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/services/\(serviceId)/backups/\(backupId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

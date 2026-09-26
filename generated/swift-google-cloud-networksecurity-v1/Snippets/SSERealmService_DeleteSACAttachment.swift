@@ -25,13 +25,12 @@ import GoogleLongRunning
 func sample(
   client: SSERealmServiceClient, projectId: String, locationId: String, sacAttachmentId: String
 ) async throws {
-  let poller = try await client.deleteSacattachmentPollingUntilDone(
+  try await client.deleteSacattachmentPollingUntilDone(
     request: DeleteSACAttachmentRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/sacAttachments/\(sacAttachmentId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

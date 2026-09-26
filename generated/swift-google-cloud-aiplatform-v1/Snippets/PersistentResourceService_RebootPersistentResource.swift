@@ -25,11 +25,10 @@
   import GoogleWKT
 
   func sample(client: PersistentResourceServiceClient) async throws {
-    let poller = try await client.rebootPersistentResourcePollingUntilDone(
+    let response = try await client.rebootPersistentResourcePollingUntilDone(
       request: RebootPersistentResourceRequest()
         /* set fields using .with { $0... } */
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

@@ -24,14 +24,13 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: NetworkSecurityClient, projectId: String, locationId: String) async throws {
-  let poller = try await client.createBackendAuthenticationConfigPollingUntilDone(
+  let response = try await client.createBackendAuthenticationConfigPollingUntilDone(
     request: CreateBackendAuthenticationConfigRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
         $0.backendAuthenticationConfig = BackendAuthenticationConfig() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

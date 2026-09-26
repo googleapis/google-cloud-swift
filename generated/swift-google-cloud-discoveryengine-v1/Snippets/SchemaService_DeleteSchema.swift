@@ -25,14 +25,13 @@
     client: SchemaServiceClient, projectId: String, locationId: String, dataStoreId: String,
     schemaId: String
   ) async throws {
-    let poller = try await client.deleteSchemaPollingUntilDone(
+    try await client.deleteSchemaPollingUntilDone(
       request: DeleteSchemaRequest()
         .with {
           $0.name =
             "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)/schemas/\(schemaId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -78,7 +78,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateAuthorizationPolicy")
   public func createAuthorizationPolicyPollingUntilDone(
     request: CreateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy> {
+  ) async throws -> AuthorizationPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthorizationPolicy>.State in
@@ -92,12 +92,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single AuthorizationPolicy.
@@ -114,7 +115,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateAuthorizationPolicy")
   public func updateAuthorizationPolicyPollingUntilDone(
     request: UpdateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy> {
+  ) async throws -> AuthorizationPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthorizationPolicy>.State in
@@ -128,12 +129,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single AuthorizationPolicy.
@@ -150,7 +152,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteAuthorizationPolicy")
   public func deleteAuthorizationPolicyPollingUntilDone(
     request: DeleteAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -163,12 +165,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists BackendAuthenticationConfigs in a given project and location.
@@ -204,7 +207,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateBackendAuthenticationConfig")
   public func createBackendAuthenticationConfigPollingUntilDone(
     request: CreateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
+  ) async throws -> BackendAuthenticationConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackendAuthenticationConfig>.State in
@@ -219,12 +222,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single BackendAuthenticationConfig to
@@ -243,7 +247,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateBackendAuthenticationConfig")
   public func updateBackendAuthenticationConfigPollingUntilDone(
     request: UpdateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
+  ) async throws -> BackendAuthenticationConfig {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<BackendAuthenticationConfig>.State in
@@ -258,12 +262,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single BackendAuthenticationConfig to
@@ -282,7 +287,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteBackendAuthenticationConfig")
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     request: DeleteBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -295,12 +300,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists ServerTlsPolicies in a given project and location.
@@ -335,7 +341,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateServerTlsPolicy")
   public func createServerTlsPolicyPollingUntilDone(
     request: CreateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy> {
+  ) async throws -> ServerTlsPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServerTlsPolicy>.State in
@@ -349,12 +355,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single ServerTlsPolicy.
@@ -371,7 +378,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateServerTlsPolicy")
   public func updateServerTlsPolicyPollingUntilDone(
     request: UpdateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy> {
+  ) async throws -> ServerTlsPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ServerTlsPolicy>.State in
@@ -385,12 +392,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single ServerTlsPolicy.
@@ -407,7 +415,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteServerTlsPolicy")
   public func deleteServerTlsPolicyPollingUntilDone(
     request: DeleteServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -420,12 +428,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists ClientTlsPolicies in a given project and location.
@@ -460,7 +469,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateClientTlsPolicy")
   public func createClientTlsPolicyPollingUntilDone(
     request: CreateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy> {
+  ) async throws -> ClientTlsPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientTlsPolicy>.State in
@@ -474,12 +483,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single ClientTlsPolicy.
@@ -496,7 +506,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateClientTlsPolicy")
   public func updateClientTlsPolicyPollingUntilDone(
     request: UpdateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy> {
+  ) async throws -> ClientTlsPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<ClientTlsPolicy>.State in
@@ -510,12 +520,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single ClientTlsPolicy.
@@ -532,7 +543,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteClientTlsPolicy")
   public func deleteClientTlsPolicyPollingUntilDone(
     request: DeleteClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -545,12 +556,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists GatewaySecurityPolicies in a given project and location.
@@ -585,7 +597,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicy")
   public func createGatewaySecurityPolicyPollingUntilDone(
     request: CreateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
+  ) async throws -> GatewaySecurityPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicy>.State in
@@ -599,12 +611,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single GatewaySecurityPolicy.
@@ -621,7 +634,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicy")
   public func updateGatewaySecurityPolicyPollingUntilDone(
     request: UpdateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
+  ) async throws -> GatewaySecurityPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicy>.State in
@@ -635,12 +648,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single GatewaySecurityPolicy.
@@ -657,7 +671,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicy")
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     request: DeleteGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -670,12 +684,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists GatewaySecurityPolicyRules in a given project and location.
@@ -710,7 +725,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicyRule")
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     request: CreateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
+  ) async throws -> GatewaySecurityPolicyRule {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicyRule>.State in
@@ -725,12 +740,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single GatewaySecurityPolicyRule.
@@ -747,7 +763,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicyRule")
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     request: UpdateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
+  ) async throws -> GatewaySecurityPolicyRule {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicyRule>.State in
@@ -762,12 +778,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single GatewaySecurityPolicyRule.
@@ -784,7 +801,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicyRule")
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     request: DeleteGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -797,12 +814,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists UrlLists in a given project and location.
@@ -837,7 +855,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateUrlList")
   public func createUrlListPollingUntilDone(
     request: CreateUrlListRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UrlList> {
+  ) async throws -> UrlList {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UrlList>.State in
@@ -850,12 +868,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single UrlList.
@@ -872,7 +891,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateUrlList")
   public func updateUrlListPollingUntilDone(
     request: UpdateUrlListRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UrlList> {
+  ) async throws -> UrlList {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<UrlList>.State in
@@ -885,12 +904,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single UrlList.
@@ -907,7 +927,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteUrlList")
   public func deleteUrlListPollingUntilDone(
     request: DeleteUrlListRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -920,12 +940,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists TlsInspectionPolicies in a given project and location.
@@ -960,7 +981,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateTlsInspectionPolicy")
   public func createTlsInspectionPolicyPollingUntilDone(
     request: CreateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy> {
+  ) async throws -> TlsInspectionPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TlsInspectionPolicy>.State in
@@ -974,12 +995,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single TlsInspectionPolicy.
@@ -996,7 +1018,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateTlsInspectionPolicy")
   public func updateTlsInspectionPolicyPollingUntilDone(
     request: UpdateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy> {
+  ) async throws -> TlsInspectionPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<TlsInspectionPolicy>.State in
@@ -1010,12 +1032,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single TlsInspectionPolicy.
@@ -1032,7 +1055,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteTlsInspectionPolicy")
   public func deleteTlsInspectionPolicyPollingUntilDone(
     request: DeleteTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1045,12 +1068,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists AuthzPolicies in a given project and location.
@@ -1085,7 +1109,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_CreateAuthzPolicy")
   public func createAuthzPolicyPollingUntilDone(
     request: CreateAuthzPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy> {
+  ) async throws -> AuthzPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthzPolicy>.State in
@@ -1098,12 +1122,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single AuthzPolicy.
@@ -1120,7 +1145,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_UpdateAuthzPolicy")
   public func updateAuthzPolicyPollingUntilDone(
     request: UpdateAuthzPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy> {
+  ) async throws -> AuthzPolicy {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<AuthzPolicy>.State in
@@ -1133,12 +1158,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single AuthzPolicy.
@@ -1155,7 +1181,7 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// @Snippet(path: "NetworkSecurity_DeleteAuthzPolicy")
   public func deleteAuthzPolicyPollingUntilDone(
     request: DeleteAuthzPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -1168,12 +1194,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists information about the supported locations for this service.
@@ -1319,7 +1346,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createAuthorizationPolicy`.
     func createAuthorizationPolicyPollingUntilDone(
       request: CreateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy>
+    ) async throws -> AuthorizationPolicy
 
     /// See `NetworkSecurityClient.updateAuthorizationPolicy`.
     func updateAuthorizationPolicy(
@@ -1329,7 +1356,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateAuthorizationPolicy`.
     func updateAuthorizationPolicyPollingUntilDone(
       request: UpdateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy>
+    ) async throws -> AuthorizationPolicy
 
     /// See `NetworkSecurityClient.deleteAuthorizationPolicy`.
     func deleteAuthorizationPolicy(
@@ -1339,7 +1366,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteAuthorizationPolicy`.
     func deleteAuthorizationPolicyPollingUntilDone(
       request: DeleteAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listBackendAuthenticationConfigs`.
     func listBackendAuthenticationConfigs(
@@ -1359,7 +1386,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createBackendAuthenticationConfig`.
     func createBackendAuthenticationConfigPollingUntilDone(
       request: CreateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig>
+    ) async throws -> BackendAuthenticationConfig
 
     /// See `NetworkSecurityClient.updateBackendAuthenticationConfig`.
     func updateBackendAuthenticationConfig(
@@ -1369,7 +1396,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateBackendAuthenticationConfig`.
     func updateBackendAuthenticationConfigPollingUntilDone(
       request: UpdateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig>
+    ) async throws -> BackendAuthenticationConfig
 
     /// See `NetworkSecurityClient.deleteBackendAuthenticationConfig`.
     func deleteBackendAuthenticationConfig(
@@ -1379,7 +1406,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteBackendAuthenticationConfig`.
     func deleteBackendAuthenticationConfigPollingUntilDone(
       request: DeleteBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listServerTlsPolicies`.
     func listServerTlsPolicies(
@@ -1399,7 +1426,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createServerTlsPolicy`.
     func createServerTlsPolicyPollingUntilDone(
       request: CreateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy>
+    ) async throws -> ServerTlsPolicy
 
     /// See `NetworkSecurityClient.updateServerTlsPolicy`.
     func updateServerTlsPolicy(
@@ -1409,7 +1436,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateServerTlsPolicy`.
     func updateServerTlsPolicyPollingUntilDone(
       request: UpdateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy>
+    ) async throws -> ServerTlsPolicy
 
     /// See `NetworkSecurityClient.deleteServerTlsPolicy`.
     func deleteServerTlsPolicy(
@@ -1419,7 +1446,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteServerTlsPolicy`.
     func deleteServerTlsPolicyPollingUntilDone(
       request: DeleteServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listClientTlsPolicies`.
     func listClientTlsPolicies(
@@ -1439,7 +1466,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createClientTlsPolicy`.
     func createClientTlsPolicyPollingUntilDone(
       request: CreateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy>
+    ) async throws -> ClientTlsPolicy
 
     /// See `NetworkSecurityClient.updateClientTlsPolicy`.
     func updateClientTlsPolicy(
@@ -1449,7 +1476,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateClientTlsPolicy`.
     func updateClientTlsPolicyPollingUntilDone(
       request: UpdateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy>
+    ) async throws -> ClientTlsPolicy
 
     /// See `NetworkSecurityClient.deleteClientTlsPolicy`.
     func deleteClientTlsPolicy(
@@ -1459,7 +1486,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteClientTlsPolicy`.
     func deleteClientTlsPolicyPollingUntilDone(
       request: DeleteClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listGatewaySecurityPolicies`.
     func listGatewaySecurityPolicies(
@@ -1479,7 +1506,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createGatewaySecurityPolicy`.
     func createGatewaySecurityPolicyPollingUntilDone(
       request: CreateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy>
+    ) async throws -> GatewaySecurityPolicy
 
     /// See `NetworkSecurityClient.updateGatewaySecurityPolicy`.
     func updateGatewaySecurityPolicy(
@@ -1489,7 +1516,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateGatewaySecurityPolicy`.
     func updateGatewaySecurityPolicyPollingUntilDone(
       request: UpdateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy>
+    ) async throws -> GatewaySecurityPolicy
 
     /// See `NetworkSecurityClient.deleteGatewaySecurityPolicy`.
     func deleteGatewaySecurityPolicy(
@@ -1499,7 +1526,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteGatewaySecurityPolicy`.
     func deleteGatewaySecurityPolicyPollingUntilDone(
       request: DeleteGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listGatewaySecurityPolicyRules`.
     func listGatewaySecurityPolicyRules(
@@ -1519,7 +1546,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createGatewaySecurityPolicyRule`.
     func createGatewaySecurityPolicyRulePollingUntilDone(
       request: CreateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule>
+    ) async throws -> GatewaySecurityPolicyRule
 
     /// See `NetworkSecurityClient.updateGatewaySecurityPolicyRule`.
     func updateGatewaySecurityPolicyRule(
@@ -1529,7 +1556,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateGatewaySecurityPolicyRule`.
     func updateGatewaySecurityPolicyRulePollingUntilDone(
       request: UpdateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule>
+    ) async throws -> GatewaySecurityPolicyRule
 
     /// See `NetworkSecurityClient.deleteGatewaySecurityPolicyRule`.
     func deleteGatewaySecurityPolicyRule(
@@ -1539,7 +1566,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteGatewaySecurityPolicyRule`.
     func deleteGatewaySecurityPolicyRulePollingUntilDone(
       request: DeleteGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listUrlLists`.
     func listUrlLists(
@@ -1559,7 +1586,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createUrlList`.
     func createUrlListPollingUntilDone(
       request: CreateUrlListRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UrlList>
+    ) async throws -> UrlList
 
     /// See `NetworkSecurityClient.updateUrlList`.
     func updateUrlList(
@@ -1569,7 +1596,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateUrlList`.
     func updateUrlListPollingUntilDone(
       request: UpdateUrlListRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<UrlList>
+    ) async throws -> UrlList
 
     /// See `NetworkSecurityClient.deleteUrlList`.
     func deleteUrlList(
@@ -1579,7 +1606,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteUrlList`.
     func deleteUrlListPollingUntilDone(
       request: DeleteUrlListRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listTlsInspectionPolicies`.
     func listTlsInspectionPolicies(
@@ -1599,7 +1626,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createTlsInspectionPolicy`.
     func createTlsInspectionPolicyPollingUntilDone(
       request: CreateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy>
+    ) async throws -> TlsInspectionPolicy
 
     /// See `NetworkSecurityClient.updateTlsInspectionPolicy`.
     func updateTlsInspectionPolicy(
@@ -1609,7 +1636,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateTlsInspectionPolicy`.
     func updateTlsInspectionPolicyPollingUntilDone(
       request: UpdateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy>
+    ) async throws -> TlsInspectionPolicy
 
     /// See `NetworkSecurityClient.deleteTlsInspectionPolicy`.
     func deleteTlsInspectionPolicy(
@@ -1619,7 +1646,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteTlsInspectionPolicy`.
     func deleteTlsInspectionPolicyPollingUntilDone(
       request: DeleteTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listAuthzPolicies`.
     func listAuthzPolicies(
@@ -1639,7 +1666,7 @@ extension Clients {
     /// See `NetworkSecurityClient.createAuthzPolicy`.
     func createAuthzPolicyPollingUntilDone(
       request: CreateAuthzPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy>
+    ) async throws -> AuthzPolicy
 
     /// See `NetworkSecurityClient.updateAuthzPolicy`.
     func updateAuthzPolicy(
@@ -1649,7 +1676,7 @@ extension Clients {
     /// See `NetworkSecurityClient.updateAuthzPolicy`.
     func updateAuthzPolicyPollingUntilDone(
       request: UpdateAuthzPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy>
+    ) async throws -> AuthzPolicy
 
     /// See `NetworkSecurityClient.deleteAuthzPolicy`.
     func deleteAuthzPolicy(
@@ -1659,7 +1686,7 @@ extension Clients {
     /// See `NetworkSecurityClient.deleteAuthzPolicy`.
     func deleteAuthzPolicyPollingUntilDone(
       request: DeleteAuthzPolicyRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `NetworkSecurityClient.listLocations`.
     func listLocations(
@@ -1782,27 +1809,23 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func createAuthorizationPolicyPollingUntilDone(request: CreateAuthorizationPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy>
+    async throws -> AuthorizationPolicy
   {
-    try await self.createAuthorizationPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createAuthorizationPolicyPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createAuthorizationPolicyPollingUntilDone(
     request: CreateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuthorizationPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuthorizationPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAuthorizationPolicyPollingUntilDone(
     parent: Swift.String,
     authorizationPolicy: AuthorizationPolicy?,
     authorizationPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy> {
+  ) async throws -> AuthorizationPolicy {
     let request = CreateAuthorizationPolicyRequest().with {
       $0.parent = parent
       $0.authorizationPolicy = authorizationPolicy
@@ -1824,26 +1847,22 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func updateAuthorizationPolicyPollingUntilDone(request: UpdateAuthorizationPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy>
+    async throws -> AuthorizationPolicy
   {
-    try await self.updateAuthorizationPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateAuthorizationPolicyPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateAuthorizationPolicyPollingUntilDone(
     request: UpdateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuthorizationPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuthorizationPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateAuthorizationPolicyPollingUntilDone(
     authorizationPolicy: AuthorizationPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<AuthorizationPolicy> {
+  ) async throws -> AuthorizationPolicy {
     let request = UpdateAuthorizationPolicyRequest().with {
       $0.authorizationPolicy = authorizationPolicy
       $0.updateMask = updateMask
@@ -1864,28 +1883,24 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func deleteAuthorizationPolicyPollingUntilDone(request: DeleteAuthorizationPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteAuthorizationPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAuthorizationPolicyPollingUntilDone(
     request: DeleteAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAuthorizationPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAuthorizationPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteAuthorizationPolicyPollingUntilDone(request: request)
+    try await self.deleteAuthorizationPolicyPollingUntilDone(request: request)
   }
 
   public func listBackendAuthenticationConfigs(request: ListBackendAuthenticationConfigsRequest)
@@ -1966,28 +1981,22 @@ extension Clients.NetworkSecurityProtocol {
 
   public func createBackendAuthenticationConfigPollingUntilDone(
     request: CreateBackendAuthenticationConfigRequest
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
-    try await self.createBackendAuthenticationConfigPollingUntilDone(
+  ) async throws -> BackendAuthenticationConfig {
+    return try await self.createBackendAuthenticationConfigPollingUntilDone(
       request: request, options: .init())
   }
 
   public func createBackendAuthenticationConfigPollingUntilDone(
     request: CreateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<BackendAuthenticationConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackendAuthenticationConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createBackendAuthenticationConfigPollingUntilDone(
     parent: Swift.String,
     backendAuthenticationConfig: BackendAuthenticationConfig?,
     backendAuthenticationConfigId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
+  ) async throws -> BackendAuthenticationConfig {
     let request = CreateBackendAuthenticationConfigRequest().with {
       $0.parent = parent
       $0.backendAuthenticationConfig = backendAuthenticationConfig
@@ -2010,27 +2019,21 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateBackendAuthenticationConfigPollingUntilDone(
     request: UpdateBackendAuthenticationConfigRequest
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
-    try await self.updateBackendAuthenticationConfigPollingUntilDone(
+  ) async throws -> BackendAuthenticationConfig {
+    return try await self.updateBackendAuthenticationConfigPollingUntilDone(
       request: request, options: .init())
   }
 
   public func updateBackendAuthenticationConfigPollingUntilDone(
     request: UpdateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
-    let poll = {
-      @Sendable () async throws
-        -> GoogleGax._PollableOperationImpl<BackendAuthenticationConfig>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> BackendAuthenticationConfig {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateBackendAuthenticationConfigPollingUntilDone(
     backendAuthenticationConfig: BackendAuthenticationConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<BackendAuthenticationConfig> {
+  ) async throws -> BackendAuthenticationConfig {
     let request = UpdateBackendAuthenticationConfigRequest().with {
       $0.backendAuthenticationConfig = backendAuthenticationConfig
       $0.updateMask = updateMask
@@ -2052,28 +2055,24 @@ extension Clients.NetworkSecurityProtocol {
 
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     request: DeleteBackendAuthenticationConfigRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteBackendAuthenticationConfigPollingUntilDone(
       request: request, options: .init())
   }
 
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     request: DeleteBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteBackendAuthenticationConfigRequest().with {
       $0.name = name
     }
-    return try await self.deleteBackendAuthenticationConfigPollingUntilDone(request: request)
+    try await self.deleteBackendAuthenticationConfigPollingUntilDone(request: request)
   }
 
   public func listServerTlsPolicies(request: ListServerTlsPoliciesRequest) async throws
@@ -2153,27 +2152,22 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func createServerTlsPolicyPollingUntilDone(request: CreateServerTlsPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy>
+    async throws -> ServerTlsPolicy
   {
-    try await self.createServerTlsPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createServerTlsPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func createServerTlsPolicyPollingUntilDone(
     request: CreateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServerTlsPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ServerTlsPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createServerTlsPolicyPollingUntilDone(
     parent: Swift.String,
     serverTlsPolicy: ServerTlsPolicy?,
     serverTlsPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy> {
+  ) async throws -> ServerTlsPolicy {
     let request = CreateServerTlsPolicyRequest().with {
       $0.parent = parent
       $0.serverTlsPolicy = serverTlsPolicy
@@ -2195,26 +2189,21 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func updateServerTlsPolicyPollingUntilDone(request: UpdateServerTlsPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy>
+    async throws -> ServerTlsPolicy
   {
-    try await self.updateServerTlsPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateServerTlsPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func updateServerTlsPolicyPollingUntilDone(
     request: UpdateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ServerTlsPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ServerTlsPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateServerTlsPolicyPollingUntilDone(
     serverTlsPolicy: ServerTlsPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<ServerTlsPolicy> {
+  ) async throws -> ServerTlsPolicy {
     let request = UpdateServerTlsPolicyRequest().with {
       $0.serverTlsPolicy = serverTlsPolicy
       $0.updateMask = updateMask
@@ -2235,28 +2224,24 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func deleteServerTlsPolicyPollingUntilDone(request: DeleteServerTlsPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteServerTlsPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteServerTlsPolicyPollingUntilDone(
     request: DeleteServerTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteServerTlsPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteServerTlsPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteServerTlsPolicyPollingUntilDone(request: request)
+    try await self.deleteServerTlsPolicyPollingUntilDone(request: request)
   }
 
   public func listClientTlsPolicies(request: ListClientTlsPoliciesRequest) async throws
@@ -2336,27 +2321,22 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func createClientTlsPolicyPollingUntilDone(request: CreateClientTlsPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy>
+    async throws -> ClientTlsPolicy
   {
-    try await self.createClientTlsPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createClientTlsPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func createClientTlsPolicyPollingUntilDone(
     request: CreateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientTlsPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ClientTlsPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createClientTlsPolicyPollingUntilDone(
     parent: Swift.String,
     clientTlsPolicy: ClientTlsPolicy?,
     clientTlsPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy> {
+  ) async throws -> ClientTlsPolicy {
     let request = CreateClientTlsPolicyRequest().with {
       $0.parent = parent
       $0.clientTlsPolicy = clientTlsPolicy
@@ -2378,26 +2358,21 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func updateClientTlsPolicyPollingUntilDone(request: UpdateClientTlsPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy>
+    async throws -> ClientTlsPolicy
   {
-    try await self.updateClientTlsPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateClientTlsPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func updateClientTlsPolicyPollingUntilDone(
     request: UpdateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<ClientTlsPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> ClientTlsPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateClientTlsPolicyPollingUntilDone(
     clientTlsPolicy: ClientTlsPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<ClientTlsPolicy> {
+  ) async throws -> ClientTlsPolicy {
     let request = UpdateClientTlsPolicyRequest().with {
       $0.clientTlsPolicy = clientTlsPolicy
       $0.updateMask = updateMask
@@ -2418,28 +2393,24 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func deleteClientTlsPolicyPollingUntilDone(request: DeleteClientTlsPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteClientTlsPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteClientTlsPolicyPollingUntilDone(
     request: DeleteClientTlsPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteClientTlsPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteClientTlsPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteClientTlsPolicyPollingUntilDone(request: request)
+    try await self.deleteClientTlsPolicyPollingUntilDone(request: request)
   }
 
   public func listGatewaySecurityPolicies(request: ListGatewaySecurityPoliciesRequest) async throws
@@ -2520,26 +2491,22 @@ extension Clients.NetworkSecurityProtocol {
 
   public func createGatewaySecurityPolicyPollingUntilDone(
     request: CreateGatewaySecurityPolicyRequest
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
-    try await self.createGatewaySecurityPolicyPollingUntilDone(request: request, options: .init())
+  ) async throws -> GatewaySecurityPolicy {
+    return try await self.createGatewaySecurityPolicyPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createGatewaySecurityPolicyPollingUntilDone(
     request: CreateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GatewaySecurityPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createGatewaySecurityPolicyPollingUntilDone(
     parent: Swift.String,
     gatewaySecurityPolicy: GatewaySecurityPolicy?,
     gatewaySecurityPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
+  ) async throws -> GatewaySecurityPolicy {
     let request = CreateGatewaySecurityPolicyRequest().with {
       $0.parent = parent
       $0.gatewaySecurityPolicy = gatewaySecurityPolicy
@@ -2562,25 +2529,21 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateGatewaySecurityPolicyPollingUntilDone(
     request: UpdateGatewaySecurityPolicyRequest
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
-    try await self.updateGatewaySecurityPolicyPollingUntilDone(request: request, options: .init())
+  ) async throws -> GatewaySecurityPolicy {
+    return try await self.updateGatewaySecurityPolicyPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateGatewaySecurityPolicyPollingUntilDone(
     request: UpdateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GatewaySecurityPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateGatewaySecurityPolicyPollingUntilDone(
     gatewaySecurityPolicy: GatewaySecurityPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicy> {
+  ) async throws -> GatewaySecurityPolicy {
     let request = UpdateGatewaySecurityPolicyRequest().with {
       $0.gatewaySecurityPolicy = gatewaySecurityPolicy
       $0.updateMask = updateMask
@@ -2602,27 +2565,23 @@ extension Clients.NetworkSecurityProtocol {
 
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     request: DeleteGatewaySecurityPolicyRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteGatewaySecurityPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     request: DeleteGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteGatewaySecurityPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteGatewaySecurityPolicyPollingUntilDone(request: request)
+    try await self.deleteGatewaySecurityPolicyPollingUntilDone(request: request)
   }
 
   public func listGatewaySecurityPolicyRules(request: ListGatewaySecurityPolicyRulesRequest)
@@ -2703,28 +2662,22 @@ extension Clients.NetworkSecurityProtocol {
 
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     request: CreateGatewaySecurityPolicyRuleRequest
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
-    try await self.createGatewaySecurityPolicyRulePollingUntilDone(
+  ) async throws -> GatewaySecurityPolicyRule {
+    return try await self.createGatewaySecurityPolicyRulePollingUntilDone(
       request: request, options: .init())
   }
 
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     request: CreateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicyRule>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GatewaySecurityPolicyRule {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     parent: Swift.String,
     gatewaySecurityPolicyRule: GatewaySecurityPolicyRule?,
     gatewaySecurityPolicyRuleId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
+  ) async throws -> GatewaySecurityPolicyRule {
     let request = CreateGatewaySecurityPolicyRuleRequest().with {
       $0.parent = parent
       $0.gatewaySecurityPolicyRule = gatewaySecurityPolicyRule
@@ -2747,27 +2700,21 @@ extension Clients.NetworkSecurityProtocol {
 
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     request: UpdateGatewaySecurityPolicyRuleRequest
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
-    try await self.updateGatewaySecurityPolicyRulePollingUntilDone(
+  ) async throws -> GatewaySecurityPolicyRule {
+    return try await self.updateGatewaySecurityPolicyRulePollingUntilDone(
       request: request, options: .init())
   }
 
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     request: UpdateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<GatewaySecurityPolicyRule>.State
-      in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> GatewaySecurityPolicyRule {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     gatewaySecurityPolicyRule: GatewaySecurityPolicyRule?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<GatewaySecurityPolicyRule> {
+  ) async throws -> GatewaySecurityPolicyRule {
     let request = UpdateGatewaySecurityPolicyRuleRequest().with {
       $0.gatewaySecurityPolicyRule = gatewaySecurityPolicyRule
       $0.updateMask = updateMask
@@ -2789,28 +2736,24 @@ extension Clients.NetworkSecurityProtocol {
 
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     request: DeleteGatewaySecurityPolicyRuleRequest
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     try await self.deleteGatewaySecurityPolicyRulePollingUntilDone(
       request: request, options: .init())
   }
 
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     request: DeleteGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteGatewaySecurityPolicyRuleRequest().with {
       $0.name = name
     }
-    return try await self.deleteGatewaySecurityPolicyRulePollingUntilDone(request: request)
+    try await self.deleteGatewaySecurityPolicyRulePollingUntilDone(request: request)
   }
 
   public func listUrlLists(request: ListUrlListsRequest) async throws
@@ -2889,27 +2832,21 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func createUrlListPollingUntilDone(request: CreateUrlListRequest) async throws
-    -> any GoogleGax.PollableOperation<UrlList>
-  {
-    try await self.createUrlListPollingUntilDone(request: request, options: .init())
+  public func createUrlListPollingUntilDone(request: CreateUrlListRequest) async throws -> UrlList {
+    return try await self.createUrlListPollingUntilDone(request: request, options: .init())
   }
 
   public func createUrlListPollingUntilDone(
     request: CreateUrlListRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UrlList> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<UrlList>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> UrlList {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createUrlListPollingUntilDone(
     parent: Swift.String,
     urlList: UrlList?,
     urlListId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<UrlList> {
+  ) async throws -> UrlList {
     let request = CreateUrlListRequest().with {
       $0.parent = parent
       $0.urlList = urlList
@@ -2930,26 +2867,20 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func updateUrlListPollingUntilDone(request: UpdateUrlListRequest) async throws
-    -> any GoogleGax.PollableOperation<UrlList>
-  {
-    try await self.updateUrlListPollingUntilDone(request: request, options: .init())
+  public func updateUrlListPollingUntilDone(request: UpdateUrlListRequest) async throws -> UrlList {
+    return try await self.updateUrlListPollingUntilDone(request: request, options: .init())
   }
 
   public func updateUrlListPollingUntilDone(
     request: UpdateUrlListRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<UrlList> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<UrlList>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> UrlList {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateUrlListPollingUntilDone(
     urlList: UrlList?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<UrlList> {
+  ) async throws -> UrlList {
     let request = UpdateUrlListRequest().with {
       $0.urlList = urlList
       $0.updateMask = updateMask
@@ -2969,29 +2900,23 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteUrlListPollingUntilDone(request: DeleteUrlListRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteUrlListPollingUntilDone(request: DeleteUrlListRequest) async throws {
     try await self.deleteUrlListPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteUrlListPollingUntilDone(
     request: DeleteUrlListRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteUrlListPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteUrlListRequest().with {
       $0.name = name
     }
-    return try await self.deleteUrlListPollingUntilDone(request: request)
+    try await self.deleteUrlListPollingUntilDone(request: request)
   }
 
   public func listTlsInspectionPolicies(request: ListTlsInspectionPoliciesRequest) async throws
@@ -3071,27 +2996,23 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func createTlsInspectionPolicyPollingUntilDone(request: CreateTlsInspectionPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy>
+    async throws -> TlsInspectionPolicy
   {
-    try await self.createTlsInspectionPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createTlsInspectionPolicyPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func createTlsInspectionPolicyPollingUntilDone(
     request: CreateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TlsInspectionPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TlsInspectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createTlsInspectionPolicyPollingUntilDone(
     parent: Swift.String,
     tlsInspectionPolicy: TlsInspectionPolicy?,
     tlsInspectionPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy> {
+  ) async throws -> TlsInspectionPolicy {
     let request = CreateTlsInspectionPolicyRequest().with {
       $0.parent = parent
       $0.tlsInspectionPolicy = tlsInspectionPolicy
@@ -3113,26 +3034,22 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func updateTlsInspectionPolicyPollingUntilDone(request: UpdateTlsInspectionPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy>
+    async throws -> TlsInspectionPolicy
   {
-    try await self.updateTlsInspectionPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateTlsInspectionPolicyPollingUntilDone(
+      request: request, options: .init())
   }
 
   public func updateTlsInspectionPolicyPollingUntilDone(
     request: UpdateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy> {
-    let poll = {
-      @Sendable () async throws -> GoogleGax._PollableOperationImpl<TlsInspectionPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> TlsInspectionPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateTlsInspectionPolicyPollingUntilDone(
     tlsInspectionPolicy: TlsInspectionPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<TlsInspectionPolicy> {
+  ) async throws -> TlsInspectionPolicy {
     let request = UpdateTlsInspectionPolicyRequest().with {
       $0.tlsInspectionPolicy = tlsInspectionPolicy
       $0.updateMask = updateMask
@@ -3153,28 +3070,24 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func deleteTlsInspectionPolicyPollingUntilDone(request: DeleteTlsInspectionPolicyRequest)
-    async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    async throws
   {
     try await self.deleteTlsInspectionPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteTlsInspectionPolicyPollingUntilDone(
     request: DeleteTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteTlsInspectionPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteTlsInspectionPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteTlsInspectionPolicyPollingUntilDone(request: request)
+    try await self.deleteTlsInspectionPolicyPollingUntilDone(request: request)
   }
 
   public func listAuthzPolicies(request: ListAuthzPoliciesRequest) async throws
@@ -3254,26 +3167,22 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func createAuthzPolicyPollingUntilDone(request: CreateAuthzPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<AuthzPolicy>
+    -> AuthzPolicy
   {
-    try await self.createAuthzPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.createAuthzPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func createAuthzPolicyPollingUntilDone(
     request: CreateAuthzPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuthzPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuthzPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createAuthzPolicyPollingUntilDone(
     parent: Swift.String,
     authzPolicy: AuthzPolicy?,
     authzPolicyId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy> {
+  ) async throws -> AuthzPolicy {
     let request = CreateAuthzPolicyRequest().with {
       $0.parent = parent
       $0.authzPolicy = authzPolicy
@@ -3295,25 +3204,21 @@ extension Clients.NetworkSecurityProtocol {
   }
 
   public func updateAuthzPolicyPollingUntilDone(request: UpdateAuthzPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<AuthzPolicy>
+    -> AuthzPolicy
   {
-    try await self.updateAuthzPolicyPollingUntilDone(request: request, options: .init())
+    return try await self.updateAuthzPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func updateAuthzPolicyPollingUntilDone(
     request: UpdateAuthzPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<AuthzPolicy>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> AuthzPolicy {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateAuthzPolicyPollingUntilDone(
     authzPolicy: AuthzPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<AuthzPolicy> {
+  ) async throws -> AuthzPolicy {
     let request = UpdateAuthzPolicyRequest().with {
       $0.authzPolicy = authzPolicy
       $0.updateMask = updateMask
@@ -3333,29 +3238,23 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteAuthzPolicyPollingUntilDone(request: DeleteAuthzPolicyRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteAuthzPolicyPollingUntilDone(request: DeleteAuthzPolicyRequest) async throws {
     try await self.deleteAuthzPolicyPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteAuthzPolicyPollingUntilDone(
     request: DeleteAuthzPolicyRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteAuthzPolicyPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteAuthzPolicyRequest().with {
       $0.name = name
     }
-    return try await self.deleteAuthzPolicyPollingUntilDone(request: request)
+    try await self.deleteAuthzPolicyPollingUntilDone(request: request)
   }
 
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws

@@ -26,14 +26,13 @@ func sample(
   client: AMLClient, projectNumId: String, locationId: String, instanceId: String,
   predictionResultId: String
 ) async throws {
-  let poller = try await client.deletePredictionResultPollingUntilDone(
+  try await client.deletePredictionResultPollingUntilDone(
     request: DeletePredictionResultRequest()
       .with {
         $0.name =
           "projects/\(projectNumId)/locations/\(locationId)/instances/\(instanceId)/predictionResults/\(predictionResultId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

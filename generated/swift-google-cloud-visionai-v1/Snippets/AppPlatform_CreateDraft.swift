@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AppPlatformClient, projectId: String, locationId: String, applicationId: String)
   async throws
 {
-  let poller = try await client.createDraftPollingUntilDone(
+  let response = try await client.createDraftPollingUntilDone(
     request: CreateDraftRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)"
@@ -33,7 +33,6 @@ func sample(client: AppPlatformClient, projectId: String, locationId: String, ap
         $0.draft = Draft() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

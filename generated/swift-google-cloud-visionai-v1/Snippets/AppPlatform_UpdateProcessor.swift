@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(client: AppPlatformClient, projectId: String, locationId: String, processorId: String)
   async throws
 {
-  let poller = try await client.updateProcessorPollingUntilDone(
+  let response = try await client.updateProcessorPollingUntilDone(
     request: UpdateProcessorRequest()
       .with {
         $0.processor = Processor().with {
@@ -34,7 +34,6 @@ func sample(client: AppPlatformClient, projectId: String, locationId: String, pr
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

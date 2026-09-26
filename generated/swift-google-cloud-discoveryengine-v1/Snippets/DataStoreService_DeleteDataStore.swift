@@ -25,13 +25,12 @@
   func sample(
     client: DataStoreServiceClient, projectId: String, locationId: String, dataStoreId: String
   ) async throws {
-    let poller = try await client.deleteDataStorePollingUntilDone(
+    try await client.deleteDataStorePollingUntilDone(
       request: DeleteDataStoreRequest()
         .with {
           $0.name = "projects/\(projectId)/locations/\(locationId)/dataStores/\(dataStoreId)"
         }
     )
-    try await poller.wait()
     print("Success")
   }
   // snippet.hide

@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(
   client: MirroringClient, projectId: String, locationId: String, mirroringEndpointGroupId: String
 ) async throws {
-  let poller = try await client.updateMirroringEndpointGroupPollingUntilDone(
+  let response = try await client.updateMirroringEndpointGroupPollingUntilDone(
     request: UpdateMirroringEndpointGroupRequest()
       .with {
         $0.mirroringEndpointGroup = MirroringEndpointGroup().with {
@@ -36,7 +36,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

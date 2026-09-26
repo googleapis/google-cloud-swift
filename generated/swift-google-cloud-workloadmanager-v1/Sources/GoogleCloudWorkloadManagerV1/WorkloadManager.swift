@@ -76,7 +76,7 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// @Snippet(path: "WorkloadManager_CreateEvaluation")
   public func createEvaluationPollingUntilDone(
     request: CreateEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
+  ) async throws -> Evaluation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Evaluation>.State in
@@ -89,12 +89,13 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Updates the parameters of a single Evaluation.
@@ -111,7 +112,7 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// @Snippet(path: "WorkloadManager_UpdateEvaluation")
   public func updateEvaluationPollingUntilDone(
     request: UpdateEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
+  ) async throws -> Evaluation {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Evaluation>.State in
@@ -124,12 +125,13 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Evaluation.
@@ -146,7 +148,7 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// @Snippet(path: "WorkloadManager_DeleteEvaluation")
   public func deleteEvaluationPollingUntilDone(
     request: DeleteEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -159,12 +161,13 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists Executions in a given project and location.
@@ -199,7 +202,7 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// @Snippet(path: "WorkloadManager_RunEvaluation")
   public func runEvaluationPollingUntilDone(
     request: RunEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Execution> {
+  ) async throws -> Execution {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Execution>.State in
@@ -212,12 +215,13 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    return try await poller.wait()
   }
 
   /// Deletes a single Execution.
@@ -234,7 +238,7 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// @Snippet(path: "WorkloadManager_DeleteExecution")
   public func deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -247,12 +251,13 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Lists the result of a single evaluation.
@@ -377,7 +382,7 @@ extension Clients {
     /// See `WorkloadManagerClient.createEvaluation`.
     func createEvaluationPollingUntilDone(
       request: CreateEvaluationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Evaluation>
+    ) async throws -> Evaluation
 
     /// See `WorkloadManagerClient.updateEvaluation`.
     func updateEvaluation(
@@ -387,7 +392,7 @@ extension Clients {
     /// See `WorkloadManagerClient.updateEvaluation`.
     func updateEvaluationPollingUntilDone(
       request: UpdateEvaluationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Evaluation>
+    ) async throws -> Evaluation
 
     /// See `WorkloadManagerClient.deleteEvaluation`.
     func deleteEvaluation(
@@ -397,7 +402,7 @@ extension Clients {
     /// See `WorkloadManagerClient.deleteEvaluation`.
     func deleteEvaluationPollingUntilDone(
       request: DeleteEvaluationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `WorkloadManagerClient.listExecutions`.
     func listExecutions(
@@ -417,7 +422,7 @@ extension Clients {
     /// See `WorkloadManagerClient.runEvaluation`.
     func runEvaluationPollingUntilDone(
       request: RunEvaluationRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Execution>
+    ) async throws -> Execution
 
     /// See `WorkloadManagerClient.deleteExecution`.
     func deleteExecution(
@@ -427,7 +432,7 @@ extension Clients {
     /// See `WorkloadManagerClient.deleteExecution`.
     func deleteExecutionPollingUntilDone(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `WorkloadManagerClient.listExecutionResults`.
     func listExecutionResults(
@@ -550,26 +555,22 @@ extension Clients.WorkloadManagerProtocol {
   }
 
   public func createEvaluationPollingUntilDone(request: CreateEvaluationRequest) async throws
-    -> any GoogleGax.PollableOperation<Evaluation>
+    -> Evaluation
   {
-    try await self.createEvaluationPollingUntilDone(request: request, options: .init())
+    return try await self.createEvaluationPollingUntilDone(request: request, options: .init())
   }
 
   public func createEvaluationPollingUntilDone(
     request: CreateEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Evaluation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Evaluation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func createEvaluationPollingUntilDone(
     parent: Swift.String,
     evaluation: Evaluation?,
     evaluationId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
+  ) async throws -> Evaluation {
     let request = CreateEvaluationRequest().with {
       $0.parent = parent
       $0.evaluation = evaluation
@@ -591,25 +592,21 @@ extension Clients.WorkloadManagerProtocol {
   }
 
   public func updateEvaluationPollingUntilDone(request: UpdateEvaluationRequest) async throws
-    -> any GoogleGax.PollableOperation<Evaluation>
+    -> Evaluation
   {
-    try await self.updateEvaluationPollingUntilDone(request: request, options: .init())
+    return try await self.updateEvaluationPollingUntilDone(request: request, options: .init())
   }
 
   public func updateEvaluationPollingUntilDone(
     request: UpdateEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Evaluation>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Evaluation {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func updateEvaluationPollingUntilDone(
     evaluation: Evaluation?,
     updateMask: GoogleWKT.WKTFieldMask?,
-  ) async throws -> any GoogleGax.PollableOperation<Evaluation> {
+  ) async throws -> Evaluation {
     let request = UpdateEvaluationRequest().with {
       $0.evaluation = evaluation
       $0.updateMask = updateMask
@@ -629,29 +626,23 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteEvaluationPollingUntilDone(request: DeleteEvaluationRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteEvaluationPollingUntilDone(request: DeleteEvaluationRequest) async throws {
     try await self.deleteEvaluationPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteEvaluationPollingUntilDone(
     request: DeleteEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteEvaluationPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteEvaluationRequest().with {
       $0.name = name
     }
-    return try await self.deleteEvaluationPollingUntilDone(request: request)
+    try await self.deleteEvaluationPollingUntilDone(request: request)
   }
 
   public func listExecutions(request: ListExecutionsRequest) async throws
@@ -730,27 +721,22 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func runEvaluationPollingUntilDone(request: RunEvaluationRequest) async throws
-    -> any GoogleGax.PollableOperation<Execution>
+  public func runEvaluationPollingUntilDone(request: RunEvaluationRequest) async throws -> Execution
   {
-    try await self.runEvaluationPollingUntilDone(request: request, options: .init())
+    return try await self.runEvaluationPollingUntilDone(request: request, options: .init())
   }
 
   public func runEvaluationPollingUntilDone(
     request: RunEvaluationRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Execution> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Execution>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws -> Execution {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func runEvaluationPollingUntilDone(
     name: Swift.String,
     execution: Execution?,
     executionId: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Execution> {
+  ) async throws -> Execution {
     let request = RunEvaluationRequest().with {
       $0.name = name
       $0.execution = execution
@@ -771,29 +757,23 @@ extension Clients.WorkloadManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws {
     try await self.deleteExecutionPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteExecutionPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteExecutionRequest().with {
       $0.name = name
     }
-    return try await self.deleteExecutionPollingUntilDone(request: request)
+    try await self.deleteExecutionPollingUntilDone(request: request)
   }
 
   public func listExecutionResults(request: ListExecutionResultsRequest) async throws

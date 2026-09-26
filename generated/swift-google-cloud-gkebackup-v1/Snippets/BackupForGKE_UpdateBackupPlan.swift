@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: BackupForGKEClient, projectId: String, locationId: String, backupPlanId: String)
   async throws
 {
-  let poller = try await client.updateBackupPlanPollingUntilDone(
+  let response = try await client.updateBackupPlanPollingUntilDone(
     request: UpdateBackupPlanRequest()
       .with {
         $0.backupPlan = BackupPlan().with {
@@ -35,7 +35,6 @@ func sample(client: BackupForGKEClient, projectId: String, locationId: String, b
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

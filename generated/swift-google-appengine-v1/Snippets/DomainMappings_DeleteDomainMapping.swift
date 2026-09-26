@@ -21,11 +21,10 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: DomainMappingsClient) async throws {
-  let poller = try await client.deleteDomainMappingPollingUntilDone(
+  try await client.deleteDomainMappingPollingUntilDone(
     request: DeleteDomainMappingRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

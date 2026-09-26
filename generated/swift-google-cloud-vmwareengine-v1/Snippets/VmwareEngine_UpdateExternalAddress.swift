@@ -27,7 +27,7 @@ func sample(
   client: VmwareEngineClient, projectId: String, locationId: String, privateCloudId: String,
   externalAddressId: String
 ) async throws {
-  let poller = try await client.updateExternalAddressPollingUntilDone(
+  let response = try await client.updateExternalAddressPollingUntilDone(
     request: UpdateExternalAddressRequest()
       .with {
         $0.externalAddress = ExternalAddress().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

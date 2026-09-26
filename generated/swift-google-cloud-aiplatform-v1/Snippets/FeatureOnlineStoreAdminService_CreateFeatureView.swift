@@ -28,7 +28,7 @@
     client: FeatureOnlineStoreAdminServiceClient, projectId: String, locationId: String,
     featureOnlineStoreId: String
   ) async throws {
-    let poller = try await client.createFeatureViewPollingUntilDone(
+    let response = try await client.createFeatureViewPollingUntilDone(
       request: CreateFeatureViewRequest()
         .with {
           $0.parent =
@@ -36,7 +36,6 @@
           $0.featureView = FeatureView() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

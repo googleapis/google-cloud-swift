@@ -27,7 +27,7 @@ func sample(
   client: AppConnectionsServiceClient, projectId: String, locationId: String,
   appConnectionId: String
 ) async throws {
-  let poller = try await client.updateAppConnectionPollingUntilDone(
+  let response = try await client.updateAppConnectionPollingUntilDone(
     request: UpdateAppConnectionRequest()
       .with {
         $0.appConnection = AppConnection().with {
@@ -37,7 +37,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

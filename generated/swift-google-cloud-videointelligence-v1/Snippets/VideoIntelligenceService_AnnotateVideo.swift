@@ -21,11 +21,10 @@ import GoogleCloudVideoIntelligenceV1
 import GoogleLongRunning
 
 func sample(client: VideoIntelligenceServiceClient) async throws {
-  let poller = try await client.annotateVideoPollingUntilDone(
+  let response = try await client.annotateVideoPollingUntilDone(
     request: AnnotateVideoRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

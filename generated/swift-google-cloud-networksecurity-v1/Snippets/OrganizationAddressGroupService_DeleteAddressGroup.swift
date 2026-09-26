@@ -27,13 +27,12 @@ func sample(
   client: OrganizationAddressGroupServiceClient, projectId: String, locationId: String,
   addressGroupId: String
 ) async throws {
-  let poller = try await client.deleteAddressGroupPollingUntilDone(
+  try await client.deleteAddressGroupPollingUntilDone(
     request: DeleteAddressGroupRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/addressGroups/\(addressGroupId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

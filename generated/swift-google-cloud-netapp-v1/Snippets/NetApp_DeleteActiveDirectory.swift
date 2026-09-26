@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(client: NetAppClient, projectId: String, locationId: String, activeDirectoryId: String)
   async throws
 {
-  let poller = try await client.deleteActiveDirectoryPollingUntilDone(
+  try await client.deleteActiveDirectoryPollingUntilDone(
     request: DeleteActiveDirectoryRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/activeDirectories/\(activeDirectoryId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

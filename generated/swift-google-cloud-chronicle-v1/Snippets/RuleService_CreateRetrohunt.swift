@@ -25,7 +25,7 @@ func sample(
   client: RuleServiceClient, projectId: String, locationId: String, instanceId: String,
   ruleId: String
 ) async throws {
-  let poller = try await client.createRetrohuntPollingUntilDone(
+  let response = try await client.createRetrohuntPollingUntilDone(
     request: CreateRetrohuntRequest()
       .with {
         $0.parent =
@@ -33,7 +33,6 @@ func sample(
         $0.retrohunt = Retrohunt() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

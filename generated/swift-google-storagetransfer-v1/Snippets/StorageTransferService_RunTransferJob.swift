@@ -22,11 +22,10 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: StorageTransferServiceClient) async throws {
-  let poller = try await client.runTransferJobPollingUntilDone(
+  try await client.runTransferJobPollingUntilDone(
     request: RunTransferJobRequest()
       /* set fields using .with { $0... } */
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

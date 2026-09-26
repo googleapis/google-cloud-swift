@@ -25,14 +25,13 @@ import GoogleWKT
 func sample(
   client: CertificateManagerClient, projectId: String, locationId: String, certificateMapId: String
 ) async throws {
-  let poller = try await client.deleteCertificateMapPollingUntilDone(
+  try await client.deleteCertificateMapPollingUntilDone(
     request: DeleteCertificateMapRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/certificateMaps/\(certificateMapId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

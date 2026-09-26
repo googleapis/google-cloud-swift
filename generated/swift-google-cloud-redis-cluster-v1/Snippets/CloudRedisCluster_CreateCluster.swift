@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: CloudRedisClusterClient, parent: String) async throws {
-  let poller = try await client.createClusterPollingUntilDone(
+  let response = try await client.createClusterPollingUntilDone(
     request: CreateClusterRequest()
       .with {
         $0.parent = "\(parent)"
@@ -31,7 +31,6 @@ func sample(client: CloudRedisClusterClient, parent: String) async throws {
         $0.cluster = Cluster() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -25,7 +25,7 @@ import GoogleWKT
 func sample(
   client: BareMetalSolutionClient, projectId: String, locationId: String, nfsShareId: String
 ) async throws {
-  let poller = try await client.updateNfsSharePollingUntilDone(
+  let response = try await client.updateNfsSharePollingUntilDone(
     request: UpdateNfsShareRequest()
       .with {
         $0.nfsShare = NfsShare().with {
@@ -34,7 +34,6 @@ func sample(
         $0.updateMask = GoogleWKT.WKTFieldMask(paths: ["field.path1", "field.path2"])
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

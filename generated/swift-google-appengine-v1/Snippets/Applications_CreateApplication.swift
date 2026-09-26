@@ -21,11 +21,10 @@ import GoogleAppEngineV1
 import GoogleLongRunning
 
 func sample(client: ApplicationsClient) async throws {
-  let poller = try await client.createApplicationPollingUntilDone(
+  let response = try await client.createApplicationPollingUntilDone(
     request: CreateApplicationRequest()
       /* set fields using .with { $0... } */
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

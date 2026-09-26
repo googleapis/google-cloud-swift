@@ -21,14 +21,13 @@ import GoogleCloudResourceManagerV3
 import GoogleLongRunning
 
 func sample(client: TagHoldsClient, tagValueId: String) async throws {
-  let poller = try await client.createTagHoldPollingUntilDone(
+  let response = try await client.createTagHoldPollingUntilDone(
     request: CreateTagHoldRequest()
       .with {
         $0.parent = "tagValues/\(tagValueId)"
         $0.tagHold = TagHold() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

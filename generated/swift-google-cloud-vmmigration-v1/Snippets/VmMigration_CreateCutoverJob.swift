@@ -26,7 +26,7 @@ func sample(
   client: VmMigrationClient, projectId: String, locationId: String, sourceId: String,
   migratingVmId: String
 ) async throws {
-  let poller = try await client.createCutoverJobPollingUntilDone(
+  let response = try await client.createCutoverJobPollingUntilDone(
     request: CreateCutoverJobRequest()
       .with {
         $0.parent =
@@ -34,7 +34,6 @@ func sample(
         $0.cutoverJob = CutoverJob() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

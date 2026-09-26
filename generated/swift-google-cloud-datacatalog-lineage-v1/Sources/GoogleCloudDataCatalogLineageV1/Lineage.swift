@@ -110,7 +110,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_DeleteProcess")
   public func deleteProcessPollingUntilDone(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -123,12 +123,13 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a new run.
@@ -182,7 +183,7 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// @Snippet(path: "Lineage_DeleteRun")
   public func deleteRunPollingUntilDone(
     request: DeleteRunRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let extractStatus = {
       @Sendable (op: GoogleLongRunning.Operation) throws
         -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
@@ -195,12 +196,13 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
         request: .init().with { $0.name = rawOp.name }, options: options)
       return try extractStatus(op)
     }
-    return GoogleGax._PollableOperationImpl(
+    let poller = GoogleGax._PollableOperationImpl(
       initialState: initialState,
       polling: options.pollingErrorPolicy ?? self.pollingErrorPolicy,
       backoff: options.pollingBackoffPolicy ?? self.pollingBackoffPolicy,
       poll: poll,
     )
+    try await poller.wait()
   }
 
   /// Creates a new lineage event.
@@ -366,7 +368,7 @@ extension Clients {
     /// See `LineageClient.deleteProcess`.
     func deleteProcessPollingUntilDone(
       request: DeleteProcessRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LineageClient.createRun`.
     func createRun(
@@ -396,7 +398,7 @@ extension Clients {
     /// See `LineageClient.deleteRun`.
     func deleteRunPollingUntilDone(
       request: DeleteRunRequest, options: GoogleGax.RequestOptions
-    ) async throws -> any GoogleGax.PollableOperation<Swift.Void>
+    ) async throws
 
     /// See `LineageClient.createLineageEvent`.
     func createLineageEvent(
@@ -593,29 +595,23 @@ extension Clients.LineageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteProcessPollingUntilDone(request: DeleteProcessRequest) async throws
-    -> any GoogleGax.PollableOperation<Swift.Void>
-  {
+  public func deleteProcessPollingUntilDone(request: DeleteProcessRequest) async throws {
     try await self.deleteProcessPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteProcessPollingUntilDone(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteProcessPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteProcessRequest().with {
       $0.name = name
     }
-    return try await self.deleteProcessPollingUntilDone(request: request)
+    try await self.deleteProcessPollingUntilDone(request: request)
   }
 
   public func createRun(request: CreateRunRequest) async throws
@@ -737,29 +733,23 @@ extension Clients.LineageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
-  public func deleteRunPollingUntilDone(request: DeleteRunRequest) async throws -> any GoogleGax
-    .PollableOperation<Swift.Void>
-  {
+  public func deleteRunPollingUntilDone(request: DeleteRunRequest) async throws {
     try await self.deleteRunPollingUntilDone(request: request, options: .init())
   }
 
   public func deleteRunPollingUntilDone(
     request: DeleteRunRequest, options: GoogleGax.RequestOptions
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
-    let poll = { @Sendable () async throws -> GoogleGax._PollableOperationImpl<Swift.Void>.State in
-      throw GoogleGax.RequestError.unimplemented
-    }
-    return GoogleGax._PollableOperationImpl(
-      initialState: .init(done: false, result: nil), poll: poll)
+  ) async throws {
+    throw GoogleGax.RequestError.unimplemented
   }
 
   public func deleteRunPollingUntilDone(
     name: Swift.String,
-  ) async throws -> any GoogleGax.PollableOperation<Swift.Void> {
+  ) async throws {
     let request = DeleteRunRequest().with {
       $0.name = name
     }
-    return try await self.deleteRunPollingUntilDone(request: request)
+    try await self.deleteRunPollingUntilDone(request: request)
   }
 
   public func createLineageEvent(request: CreateLineageEventRequest) async throws

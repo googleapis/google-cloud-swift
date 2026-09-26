@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: DataprocMetastoreFederationClient, projectId: String, locationId: String)
   async throws
 {
-  let poller = try await client.createFederationPollingUntilDone(
+  let response = try await client.createFederationPollingUntilDone(
     request: CreateFederationRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)"
@@ -34,7 +34,6 @@ func sample(client: DataprocMetastoreFederationClient, projectId: String, locati
         $0.federation = Federation() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

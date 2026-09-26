@@ -23,7 +23,7 @@ import GoogleLongRunning
 import GoogleWKT
 
 func sample(client: WorkflowsClient, parent: String) async throws {
-  let poller = try await client.createWorkflowPollingUntilDone(
+  let response = try await client.createWorkflowPollingUntilDone(
     request: CreateWorkflowRequest()
       .with {
         $0.parent = "\(parent)"
@@ -31,7 +31,6 @@ func sample(client: WorkflowsClient, parent: String) async throws {
         $0.workflow = Workflow() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

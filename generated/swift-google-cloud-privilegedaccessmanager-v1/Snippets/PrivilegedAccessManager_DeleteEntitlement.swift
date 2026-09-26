@@ -26,13 +26,12 @@ func sample(
   client: PrivilegedAccessManagerClient, projectId: String, locationId: String,
   entitlementId: String
 ) async throws {
-  let poller = try await client.deleteEntitlementPollingUntilDone(
+  let response = try await client.deleteEntitlementPollingUntilDone(
     request: DeleteEntitlementRequest()
       .with {
         $0.name = "projects/\(projectId)/locations/\(locationId)/entitlements/\(entitlementId)"
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide

@@ -23,7 +23,7 @@
   import GoogleWKT
 
   func sample(client: EngineServiceClient, parent: String) async throws {
-    let poller = try await client.createEnginePollingUntilDone(
+    let response = try await client.createEnginePollingUntilDone(
       request: CreateEngineRequest()
         .with {
           $0.parent = "\(parent)"
@@ -31,7 +31,6 @@
           $0.engine = Engine() /* .with { ... } */
         }
     )
-    let response = try await poller.wait()
     print("Success: \(response)")
   }
   // snippet.hide

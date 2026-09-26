@@ -26,14 +26,13 @@ func sample(
   client: ApiHubPluginClient, projectId: String, locationId: String, pluginId: String,
   instanceId: String
 ) async throws {
-  let poller = try await client.deletePluginInstancePollingUntilDone(
+  try await client.deletePluginInstancePollingUntilDone(
     request: DeletePluginInstanceRequest()
       .with {
         $0.name =
           "projects/\(projectId)/locations/\(locationId)/plugins/\(pluginId)/instances/\(instanceId)"
       }
   )
-  try await poller.wait()
   print("Success")
 }
 // snippet.hide

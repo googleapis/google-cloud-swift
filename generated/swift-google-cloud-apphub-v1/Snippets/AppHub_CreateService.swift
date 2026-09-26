@@ -26,7 +26,7 @@ import GoogleWKT
 func sample(client: AppHubClient, projectId: String, locationId: String, applicationId: String)
   async throws
 {
-  let poller = try await client.createServicePollingUntilDone(
+  let response = try await client.createServicePollingUntilDone(
     request: CreateServiceRequest()
       .with {
         $0.parent = "projects/\(projectId)/locations/\(locationId)/applications/\(applicationId)"
@@ -34,7 +34,6 @@ func sample(client: AppHubClient, projectId: String, locationId: String, applica
         $0.service = Service() /* .with { ... } */
       }
   )
-  let response = try await poller.wait()
   print("Success: \(response)")
 }
 // snippet.hide
