@@ -57,7 +57,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateFolderRequest, o: GoogleGax.RequestOptions) async throws -> Folder
           in
@@ -71,7 +71,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: { (r: DeleteFolderRequest, o: GoogleGax.RequestOptions) async throws -> Void in
           return try await self.inner.deleteFolder(request: r, options: o)
         })
@@ -111,7 +111,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: RenameFolderRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -126,7 +126,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: DeleteFolderRecursiveRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -155,7 +155,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateManagedFolderRequest, o: GoogleGax.RequestOptions) async throws -> ManagedFolder
           in
@@ -169,7 +169,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: DeleteManagedFolderRequest, o: GoogleGax.RequestOptions) async throws -> Void in
           return try await self.inner.deleteManagedFolder(request: r, options: o)
@@ -182,7 +182,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: GetManagedFolderRequest, o: GoogleGax.RequestOptions) async throws -> ManagedFolder
           in
@@ -196,7 +196,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: ListManagedFoldersRequest, o: GoogleGax.RequestOptions) async throws
             -> ListManagedFoldersResponse
@@ -225,7 +225,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: CreateAnywhereCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -240,7 +240,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: UpdateAnywhereCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> GoogleLongRunning.Operation
@@ -255,7 +255,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: DisableAnywhereCacheRequest, o: GoogleGax.RequestOptions) async throws
             -> AnywhereCache
@@ -270,7 +270,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: PauseAnywhereCacheRequest, o: GoogleGax.RequestOptions) async throws -> AnywhereCache
           in
@@ -284,7 +284,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: ResumeAnywhereCacheRequest, o: GoogleGax.RequestOptions) async throws -> AnywhereCache
           in
@@ -298,7 +298,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: GetAnywhereCacheRequest, o: GoogleGax.RequestOptions) async throws -> AnywhereCache
           in
@@ -312,7 +312,7 @@ extension Clients {
       try await self._intercept(
         request: request,
         options: options,
-        idempotent: false,
+        idempotent: true,
         action: {
           (r: ListAnywhereCachesRequest, o: GoogleGax.RequestOptions) async throws
             -> ListAnywhereCachesResponse
