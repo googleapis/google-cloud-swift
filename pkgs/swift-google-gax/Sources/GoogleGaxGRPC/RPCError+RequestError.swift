@@ -17,7 +17,7 @@ import GRPCCore
 import GRPCProtobuf
 import GoogleGax
 @_spi(GoogleCloudInternal) import GoogleWKT
-import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 import GoogleRpc
 import SwiftProtobuf
 

@@ -20,7 +20,7 @@ internal import StorageControlProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleRpc.Status {
   internal typealias ProtoType = StorageControlProtos.Google_Rpc_Status

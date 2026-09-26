@@ -20,7 +20,7 @@ import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGaxGRPC
 import GoogleWKT
 internal import StorageProtos
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 internal import SwiftProtobuf
 
 extension Clients {

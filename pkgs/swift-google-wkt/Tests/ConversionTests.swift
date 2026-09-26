@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleWKT
-import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKT
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 import SwiftProtobuf
 import Testing
 

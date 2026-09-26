@@ -21,7 +21,7 @@ internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleRpc
 @_spi(GoogleCloudInternal) import GoogleType
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension IntelligenceFinding {
   internal typealias ProtoType = StorageControlProtos.Google_Storage_Control_V2_IntelligenceFinding

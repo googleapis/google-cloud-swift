@@ -20,7 +20,7 @@ internal import StorageControlProtos
 internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleType
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleType.Interval {
   internal typealias ProtoType = StorageControlProtos.Google_Type_Interval

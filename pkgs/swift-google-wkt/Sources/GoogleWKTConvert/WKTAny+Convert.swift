@@ -16,6 +16,7 @@ import Foundation
 @_spi(GoogleCloudInternal) public import GoogleWKT
 public import SwiftProtobuf
 
+@_spi(GoogleCloudInternal)
 extension GoogleWKT.WKTAny {
   public init(proto: SwiftProtobuf.Google_Protobuf_Any) throws {
     let json = try proto.jsonUTF8Data()

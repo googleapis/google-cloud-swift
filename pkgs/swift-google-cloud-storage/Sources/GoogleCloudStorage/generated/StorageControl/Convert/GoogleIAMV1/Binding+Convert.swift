@@ -21,7 +21,7 @@ internal import SwiftProtobuf
 @_spi(GoogleCloudInternal) import GoogleIAMV1
 @_spi(GoogleCloudInternal) import GoogleType
 @_spi(GoogleCloudInternal) import GoogleWKT
-internal import GoogleWKTConvert
+@_spi(GoogleCloudInternal) import GoogleWKTConvert
 
 extension GoogleIAMV1.Binding {
   internal typealias ProtoType = StorageControlProtos.Google_Iam_V1_Binding
