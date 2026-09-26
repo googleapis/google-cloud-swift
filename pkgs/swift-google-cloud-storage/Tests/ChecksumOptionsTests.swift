@@ -24,8 +24,8 @@ import Testing
     #expect(options == ChecksumOptions.default)
   }
 
-  @Test func noneOptions() {
-    let options = ChecksumOptions.none
+  @Test func offOptions() {
+    let options = ChecksumOptions.off
     #expect(options.crc32c == nil)
     #expect(options.md5 == nil)
   }

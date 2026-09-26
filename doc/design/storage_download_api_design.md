@@ -157,7 +157,7 @@ public struct ChecksumOptions: Sendable, Hashable {
   public init(crc32c: ChecksumValue? = .auto, md5: ChecksumValue? = nil)
 
   public static var `default`: ChecksumOptions { ChecksumOptions(crc32c: .auto, md5: nil) }
-  public static var none: ChecksumOptions { ChecksumOptions(crc32c: nil, md5: nil) }
+  public static var off: ChecksumOptions { ChecksumOptions(crc32c: nil, md5: nil) }
 }
 ```
 
@@ -165,7 +165,7 @@ When downloading:
 - `checksums.crc32c = .auto` (or `.default`): Automatically validates the received CRC32C stream against `x-goog-hash` upon download completion.
 - `checksums.crc32c = .value("...")` (or `.value(12345)`): Validates the downloaded stream against a specific user-expected CRC32C value.
 - `checksums.md5 = .auto` (or `.value("...")`): Validates MD5 against `x-goog-hash` or a user-provided expected value.
-- `checksums = .none`: Disables client-side checksum validation for the download.
+- `checksums = .off`: Disables client-side checksum validation for the download.
 
 ---
 
@@ -207,10 +207,10 @@ public struct ReadObjectOptions: Sendable {
   public var generation: UInt64?
   public var preconditions: StoragePreconditions?
   public var customerEncryptionKey: CustomerEncryptionKeyOptions?
-  public var range: ReadObjectRange = .entire
+  public var range: ReadObjectRange?
 
-  public var enableDecompressiveTranscoding: Bool = true
-  public var checksums: ChecksumOptions = .default
+  public var enableDecompressiveTranscoding: Bool?
+  public var checksums: ChecksumOptions?
   public var resumePolicy: (any ResumePolicy<ReadObjectDetails>)? = nil
   public var backoffPolicy: (any BackoffPolicy)? = nil
 

@@ -129,7 +129,7 @@ import Testing
       metadataJson: metadataJson,
       contentType: "text/plain",
       totalSize: UInt64(payload.count),
-      options: .none,
+      options: .off,
       chunkSize: 4
     )
     let stream = prepared.stream
@@ -247,7 +247,7 @@ import Testing
       metadataJson: Data("{}".utf8),
       contentType: "application/octet-stream",
       totalSize: UInt64(payload.count),
-      options: .none,
+      options: .off,
       chunkSize: 4
     )
 

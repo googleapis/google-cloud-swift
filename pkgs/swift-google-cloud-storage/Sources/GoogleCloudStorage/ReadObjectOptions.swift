@@ -262,7 +262,7 @@ struct HttpContentRange: Sendable, Hashable, Equatable {
 ///
 /// // Disable checksum validation
 /// let options = ReadObjectOptions().with {
-///   $0.checksums = .none
+///   $0.checksums = .off
 /// }
 /// ```
 ///
@@ -280,19 +280,26 @@ public struct ReadObjectOptions: Sendable {
   /// Options for Customer-Supplied Encryption Keys (CSEK).
   public var customerEncryptionKey: CustomerEncryptionKeyOptions?
 
-  /// Byte range for partial/ranged reads. Defaults to `.entire`.
-  public var range: ReadObjectRange = .entire
+  /// Byte range for partial/ranged reads.
+  ///
+  /// When `nil`, the download operation falls back to `StorageClientOptions.readObject.range`
+  /// or `.entire`.
+  public var range: ReadObjectRange?
 
-  /// Flag to enable automatic decompressive transcoding by GCS. Defaults to `true`.
-  public var enableDecompressiveTranscoding: Bool = true
+  /// Flag to enable automatic decompressive transcoding by GCS.
+  ///
+  /// When `nil`, the download operation falls back to
+  /// `StorageClientOptions.readObject.enableDecompressiveTranscoding` or `true`.
+  public var enableDecompressiveTranscoding: Bool?
 
   /// Configures client-side checksum validation for the downloaded object payload.
   ///
-  /// By default, `.default` enables auto-validation which automatically verifies CRC32C and/or MD5
-  /// checksums against the object's server metadata upon reaching EOF.
+  /// When `nil`, the download operation falls back to `StorageClientOptions.readObject.checksums`
+  /// or `.default`, which automatically verifies CRC32C checksums against the object's server
+  /// metadata upon reaching EOF.
   ///
   /// If a checksum mismatch is detected, `ReadObjectError.checksumMismatch` is thrown.
-  public var checksums: ChecksumOptions = .default
+  public var checksums: ChecksumOptions?
 
   /// Overrides the resume policy for this download.
   public var resumePolicy: (any ResumePolicy<ReadObjectDetails>)? = nil
@@ -342,6 +349,13 @@ public struct ReadObjectOptions: Sendable {
 extension ReadObjectOptions {
   internal func withDefaults(_ defaults: Self) -> Self {
     var copy = self
+    copy.generation = self.generation ?? defaults.generation
+    copy.preconditions = self.preconditions ?? defaults.preconditions
+    copy.customerEncryptionKey = self.customerEncryptionKey ?? defaults.customerEncryptionKey
+    copy.range = self.range ?? defaults.range ?? .entire
+    copy.enableDecompressiveTranscoding =
+      self.enableDecompressiveTranscoding ?? defaults.enableDecompressiveTranscoding ?? true
+    copy.checksums = self.checksums ?? defaults.checksums ?? .default
     copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
     copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
     copy.quotaProject = self.quotaProject ?? defaults.quotaProject

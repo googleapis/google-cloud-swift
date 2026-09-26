@@ -456,8 +456,11 @@ public struct WriteObjectOptions: Sendable {
   /// The default threshold in bytes (8 MB) between simple and resumable uploads.
   public static let defaultResumableUploadThreshold: Int = 8 * 1024 * 1024
 
-  /// The chunk size in bytes for resumable uploads. Defaults to `defaultChunkSize` (8 MB).
-  public var chunkSize: Int = defaultChunkSize
+  /// The chunk size in bytes for resumable uploads.
+  ///
+  /// When `nil`, the upload operation falls back to `StorageClientOptions.writeObject.chunkSize`
+  /// or the default chunk size (`defaultChunkSize`, 8 MB).
+  public var chunkSize: Int?
 
   /// The threshold in bytes between simple and resumable uploads.
   ///
@@ -477,7 +480,10 @@ public struct WriteObjectOptions: Sendable {
   public var customerEncryptionKey: CustomerEncryptionKeyOptions?
 
   /// Configuration options for upload checksum validation.
-  public var checksums: ChecksumOptions = .default
+  ///
+  /// When `nil`, the upload operation falls back to `StorageClientOptions.writeObject.checksums`
+  /// or `.default` (automatic CRC32C calculation).
+  public var checksums: ChecksumOptions?
 
   /// Metadata associated with the object to be created.
   public var metadata: WriteObjectMetadata?
@@ -545,8 +551,16 @@ public struct WriteObjectOptions: Sendable {
 extension WriteObjectOptions {
   internal func withDefaults(_ defaults: Self) -> Self {
     var copy = self
+    copy.chunkSize = self.chunkSize ?? defaults.chunkSize ?? Self.defaultChunkSize
     copy.resumableUploadThreshold =
       self.resumableUploadThreshold ?? defaults.resumableUploadThreshold
+      ?? Self.defaultResumableUploadThreshold
+    copy.preconditions = self.preconditions ?? defaults.preconditions
+    copy.kmsKeyName = self.kmsKeyName ?? defaults.kmsKeyName
+    copy.customerEncryptionKey = self.customerEncryptionKey ?? defaults.customerEncryptionKey
+    copy.checksums = self.checksums ?? defaults.checksums ?? .default
+    copy.metadata = self.metadata ?? defaults.metadata
+    copy.predefinedAcl = self.predefinedAcl ?? defaults.predefinedAcl
     copy.resumePolicy = self.resumePolicy ?? defaults.resumePolicy
     copy.backoffPolicy = self.backoffPolicy ?? defaults.backoffPolicy
     copy.quotaProject = self.quotaProject ?? defaults.quotaProject

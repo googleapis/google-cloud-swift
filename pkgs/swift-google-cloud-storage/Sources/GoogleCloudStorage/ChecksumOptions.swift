@@ -70,7 +70,7 @@ public struct ChecksumOptions: Sendable, Hashable {
   }
 
   /// No checksum validation.
-  public static var none: ChecksumOptions {
+  public static var off: ChecksumOptions {
     ChecksumOptions(crc32c: nil, md5: nil)
   }
 }

@@ -24,16 +24,25 @@ import Testing
 
     let options = WriteObjectOptions.default
     #expect(options.resumableUploadThreshold == nil)
-    #expect(options.chunkSize == WriteObjectOptions.defaultChunkSize)
+    #expect(options.chunkSize == nil)
     #expect(options.preconditions == nil)
     #expect(options.kmsKeyName == nil)
     #expect(options.customerEncryptionKey == nil)
-    #expect(options.checksums == .default)
+    #expect(options.checksums == nil)
     #expect(options.metadata == nil)
     #expect(options.predefinedAcl == nil)
     #expect(options.resumePolicy == nil)
     #expect(options.backoffPolicy == nil)
     #expect(options.quotaProject == nil)
+    #expect(options.idempotency == nil)
+
+    let effectiveOptions = options.withDefaults(.default)
+    #expect(
+      effectiveOptions.resumableUploadThreshold
+        == WriteObjectOptions.defaultResumableUploadThreshold
+    )
+    #expect(effectiveOptions.chunkSize == WriteObjectOptions.defaultChunkSize)
+    #expect(effectiveOptions.checksums == .default)
   }
 
   @Test func writeObjectOptionsWithBuilder() throws {
@@ -51,7 +60,7 @@ import Testing
       $0.preconditions = preconditions
       $0.kmsKeyName = "projects/p/locations/l/keyRings/r/cryptoKeys/k"
       $0.customerEncryptionKey = csek
-      $0.checksums = .none
+      $0.checksums = .off
       $0.metadata = metadata
       $0.predefinedAcl = .publicRead
       $0.resumePolicy = NeverResume<WriteObjectDetails>()
@@ -63,55 +72,91 @@ import Testing
     #expect(options.preconditions?.ifGenerationMatch == 100)
     #expect(options.kmsKeyName == "projects/p/locations/l/keyRings/r/cryptoKeys/k")
     #expect(options.customerEncryptionKey == csek)
-    #expect(options.checksums == .none)
+    #expect(options.checksums == .off)
     #expect(options.metadata?.contentType == "application/json")
     #expect(options.predefinedAcl == .publicRead)
     #expect(options.resumePolicy != nil)
     #expect(options.quotaProject == "upload-quota-project")
   }
 
-  @Test(
-    arguments: [
-      (
-        options: WriteObjectOptions(),
-        expectedThreshold: 16 * 1024 * 1024,
-        expectedIsAlwaysResume: false,
-        expectedQuotaProject: "default-upload-quota"
-      ),
-      (
-        options: WriteObjectOptions().with {
-          $0.resumableUploadThreshold = 32 * 1024 * 1024
-          $0.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
-          $0.quotaProject = "override-upload-quota"
-        },
-        expectedThreshold: 32 * 1024 * 1024,
-        expectedIsAlwaysResume: true,
-        expectedQuotaProject: "override-upload-quota"
-      ),
-    ]
-  )
-  func writeObjectOptionsWithDefaults(
-    options: WriteObjectOptions,
-    expectedThreshold: Int,
-    expectedIsAlwaysResume: Bool,
-    expectedQuotaProject: String
-  ) {
+  @Test func writeObjectOptionsWithDefaultsInheritsAllProperties() throws {
+    let defaultCsek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x11, count: 32))
     let defaults = WriteObjectOptions().with {
+      $0.chunkSize = 4 * 1024 * 1024
       $0.resumableUploadThreshold = 16 * 1024 * 1024
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 1 }
+      $0.kmsKeyName = "default-kms-key"
+      $0.customerEncryptionKey = defaultCsek
+      $0.checksums = .off
+      $0.metadata = WriteObjectMetadata().with { $0.contentType = "text/plain" }
+      $0.predefinedAcl = .private
       $0.resumePolicy = NeverResume<WriteObjectDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-upload-quota"
+      $0.idempotency = true
+    }
+
+    let resolved = WriteObjectOptions().withDefaults(defaults)
+    #expect(resolved.chunkSize == 4 * 1024 * 1024)
+    #expect(resolved.resumableUploadThreshold == 16 * 1024 * 1024)
+    #expect(resolved.preconditions?.ifGenerationMatch == 1)
+    #expect(resolved.kmsKeyName == "default-kms-key")
+    #expect(resolved.customerEncryptionKey == defaultCsek)
+    #expect(resolved.checksums == .off)
+    #expect(resolved.metadata?.contentType == "text/plain")
+    #expect(resolved.predefinedAcl == .private)
+    #expect(resolved.resumePolicy is NeverResume<WriteObjectDetails>)
+    #expect(resolved.backoffPolicy is ExponentialBackoff)
+    #expect(resolved.quotaProject == "default-upload-quota")
+    #expect(resolved.requestOptions.quotaProject == "default-upload-quota")
+    #expect(resolved.idempotency == true)
+  }
+
+  @Test func writeObjectOptionsWithDefaultsOverridesAllProperties() throws {
+    let defaultCsek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x11, count: 32))
+    let overrideCsek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x22, count: 32))
+    let defaults = WriteObjectOptions().with {
+      $0.chunkSize = 4 * 1024 * 1024
+      $0.resumableUploadThreshold = 16 * 1024 * 1024
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 1 }
+      $0.kmsKeyName = "default-kms-key"
+      $0.customerEncryptionKey = defaultCsek
+      $0.checksums = .off
+      $0.metadata = WriteObjectMetadata().with { $0.contentType = "text/plain" }
+      $0.predefinedAcl = .private
+      $0.resumePolicy = NeverResume<WriteObjectDetails>()
+      $0.backoffPolicy = ExponentialBackoff()
+      $0.quotaProject = "default-upload-quota"
+      $0.idempotency = true
+    }
+
+    let options = WriteObjectOptions().with {
+      $0.chunkSize = 8 * 1024 * 1024
+      $0.resumableUploadThreshold = 32 * 1024 * 1024
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 2 }
+      $0.kmsKeyName = "override-kms-key"
+      $0.customerEncryptionKey = overrideCsek
+      $0.checksums = .default
+      $0.metadata = WriteObjectMetadata().with { $0.contentType = "application/octet-stream" }
+      $0.predefinedAcl = .publicRead
+      $0.resumePolicy = AlwaysResume<WriteObjectDetails>.unbounded()
+      $0.quotaProject = "override-upload-quota"
+      $0.idempotency = false
     }
 
     let resolved = options.withDefaults(defaults)
-    #expect(resolved.resumableUploadThreshold == expectedThreshold)
-    if expectedIsAlwaysResume {
-      #expect(resolved.resumePolicy is AlwaysResume<WriteObjectDetails>)
-    } else {
-      #expect(resolved.resumePolicy is NeverResume<WriteObjectDetails>)
-    }
+    #expect(resolved.chunkSize == 8 * 1024 * 1024)
+    #expect(resolved.resumableUploadThreshold == 32 * 1024 * 1024)
+    #expect(resolved.preconditions?.ifGenerationMatch == 2)
+    #expect(resolved.kmsKeyName == "override-kms-key")
+    #expect(resolved.customerEncryptionKey == overrideCsek)
+    #expect(resolved.checksums == .default)
+    #expect(resolved.metadata?.contentType == "application/octet-stream")
+    #expect(resolved.predefinedAcl == .publicRead)
+    #expect(resolved.resumePolicy is AlwaysResume<WriteObjectDetails>)
     #expect(resolved.backoffPolicy is ExponentialBackoff)
-    #expect(resolved.quotaProject == expectedQuotaProject)
-    #expect(resolved.requestOptions.quotaProject == expectedQuotaProject)
+    #expect(resolved.quotaProject == "override-upload-quota")
+    #expect(resolved.requestOptions.quotaProject == "override-upload-quota")
+    #expect(resolved.idempotency == false)
   }
 }

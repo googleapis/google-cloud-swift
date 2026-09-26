@@ -1543,4 +1543,50 @@ import Testing
     }
     #expect(received == chunk1)
   }
+
+  @Test func downloadObjectAppliesClientReadObjectOptionDefaults() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "client-read-defaults.txt"
+    let payload = Data("0123456789".utf8)
+    let downloadUrl = registry.url(
+      "/storage/v1/b/\(bucket)/o/\(objectName)?alt=media&generation=42&ifGenerationMatch=42"
+    )
+
+    // Register response with mismatched CRC32C to verify client-level checksums = .off is honored
+    registry.register(
+      response: .success(
+        statusCode: 206,
+        data: payload,
+        headers: [
+          "Content-Length": String(payload.count),
+          "Content-Range": "bytes 0-9/100",
+          "x-goog-hash": "crc32c=//////==",
+        ]
+      ),
+      for: downloadUrl
+    )
+
+    let clientOptions = StorageClientOptions().with {
+      $0.client.endpoint = registry.endpoint
+      $0.readObject.generation = 42
+      $0.readObject.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 42 }
+      $0.readObject.range = ReadObjectRange(prefix: 10)
+      $0.readObject.enableDecompressiveTranscoding = false
+      $0.readObject.checksums = .off
+    }
+    let client = try StorageClient(clientOptions, mock: registry)
+
+    let download = client.readObject(from: bucket, object: objectName)
+    var received = Data()
+    for try await chunk in download.body {
+      received.append(contentsOf: chunk)
+    }
+    #expect(received == payload)
+
+    let req = registry.lastRequest(for: downloadUrl)
+    #expect(req != nil)
+    #expect(req?.value(forHTTPHeaderField: "Range") == "bytes=0-9")
+    #expect(req?.value(forHTTPHeaderField: "Accept-Encoding") == "gzip")
+  }
 }

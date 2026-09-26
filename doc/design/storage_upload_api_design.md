@@ -216,7 +216,7 @@ public struct ChecksumOptions: Sendable, Hashable {
     public init(crc32c: ChecksumValue? = .auto, md5: ChecksumValue? = nil)
 
     public static var `default`: ChecksumOptions { ChecksumOptions(crc32c: .auto, md5: nil) }
-    public static var none: ChecksumOptions { ChecksumOptions(crc32c: nil, md5: nil) }
+    public static var off: ChecksumOptions { ChecksumOptions(crc32c: nil, md5: nil) }
 }
 ```
 
@@ -268,12 +268,12 @@ Configuration options for the upload request/session.
 
 ```swift
 public struct WriteObjectOptions: Sendable {
-    public var chunkSize: Int
+    public var chunkSize: Int?
     public var preconditions: StoragePreconditions?
     public var kmsKeyName: String?
     public var customerEncryptionKey: CustomerEncryptionKeyOptions?
-    public var checksums: ChecksumOptions
-    public var resumableUploadThreshold: Int
+    public var checksums: ChecksumOptions?
+    public var resumableUploadThreshold: Int?
     public var resumePolicy: (any ResumePolicy<WriteObjectDetails>)?
     public var backoffPolicy: (any BackoffPolicy)?
 

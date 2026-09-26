@@ -208,10 +208,10 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     self.httpClient = httpClient
     self.resumeLoop = resumeLoop
     self.resumeState = ResumeState(details: ReadObjectDetails())
-    if options.checksums.crc32c != nil {
+    if options.checksums?.crc32c != nil {
       self.crc32cCalculator = CRC32CCalculator()
     }
-    if options.checksums.md5 != nil {
+    if options.checksums?.md5 != nil {
       self.md5Calculator = MD5Calculator()
     }
   }
@@ -281,7 +281,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     }
     guard !lock.withLock({ isFinished }) else { return nil }
 
-    if options.range.isZeroBytes {
+    if options.range?.isZeroBytes == true {
       lock.withLock { isFinished = true }
       return nil
     }
@@ -383,11 +383,11 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     hasValidatedChecksums = true
 
     let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
-    let isRangedRead = (options.range != .entire)
+    let isRangedRead = (options.range ?? .entire) != .entire
     let isDecompressedTranscoding =
       (currentMetadata.storedContentLength != nil && currentMetadata.contentEncoding == nil)
 
-    if let crcOption = options.checksums.crc32c, let calc = crc32cCalculator {
+    if let crcOption = options.checksums?.crc32c, let calc = crc32cCalculator {
       let actual = calc.finalize()
       switch crcOption {
       case .auto:
@@ -411,7 +411,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
       }
     }
 
-    if let md5Option = options.checksums.md5, let calc = md5Calculator {
+    if let md5Option = options.checksums?.md5, let calc = md5Calculator {
       let actual = calc.finalize()
       switch md5Option {
       case .auto:
@@ -440,7 +440,7 @@ final class ReadObjectCoordinator: @unchecked Sendable {
     let currentMetadata = lock.withLock { self.metadata } ?? ReadObjectMetadata()
     guard
       let resumeRange = calculateResumeRange(
-        originalRange: options.range,
+        originalRange: options.range ?? .entire,
         bytesReceived: bytesReceived,
         totalSize: currentMetadata.size > 0 ? currentMetadata.size : nil
       )

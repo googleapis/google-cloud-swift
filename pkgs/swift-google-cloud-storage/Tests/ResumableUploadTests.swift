@@ -2855,6 +2855,62 @@ import Testing
       _ = try await task.value
     }
   }
+
+  /// Tests that client-level `StorageClientOptions.writeObject.chunkSize` and `checksums` take effect when not overridden in per-call `WriteObjectOptions`.
+  @Test func resumableUploadAppliesClientWriteObjectChunkSizeAndChecksumsDefaults() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "client-chunk-defaults"
+    let clientChunkSize = 4 * 1024 * 1024  // 4MiB (instead of 8MiB default)
+    let data = Data(repeating: 0x55, count: 8 * 1024 * 1024)  // 8MiB -> 2 chunks of 4MiB
+    let source = BytesSource(data: data)
+
+    let startUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)")
+    let chunkUrl = registry.url("/upload/storage/v1/b/\(bucket)/o?upload_id=client-chunk-id")
+
+    registry.register(
+      response: .success(
+        statusCode: 200, data: Data(),
+        headers: ["Location": chunkUrl.absoluteString]),
+      for: startUrl)
+    registry.register(
+      response: .success(
+        statusCode: 308, data: Data(),
+        headers: ["Range": "bytes=0-\(clientChunkSize - 1)"]),
+      for: chunkUrl)
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: chunkUrl)
+
+    let clientOptions = StorageClientOptions().with {
+      $0.client.endpoint = registry.endpoint
+      $0.writeObject.chunkSize = clientChunkSize
+      $0.writeObject.checksums = .off
+    }
+    let client = try StorageClient(clientOptions, mock: registry)
+
+    // Pass per-call options that only set metadata; chunkSize and checksums should come from client defaults.
+    let callOptions = WriteObjectOptions().with {
+      $0.metadata = WriteObjectMetadata().with { $0.contentType = "application/octet-stream" }
+    }
+    let object = try await client.writeObject(
+      source, to: bucket, as: objectName, options: callOptions)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 3)
+    #expect(
+      requests[1].value(forHTTPHeaderField: "Content-Range")
+        == "bytes 0-\(clientChunkSize - 1)/\(data.count)")
+    #expect(
+      requests[2].value(forHTTPHeaderField: "Content-Range")
+        == "bytes \(clientChunkSize)-\(data.count - 1)/\(data.count)")
+    #expect(requests[2].value(forHTTPHeaderField: "x-goog-hash") == nil)
+  }
 }
 
 // MARK: - Test Helper Sources

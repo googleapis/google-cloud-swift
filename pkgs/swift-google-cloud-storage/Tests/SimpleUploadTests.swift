@@ -973,4 +973,45 @@ import Testing
       _ = try await task.value
     }
   }
+
+  /// Tests that client-level `StorageClientOptions.writeObject` defaults (e.g. `checksums`, `kmsKeyName`, `predefinedAcl`, `preconditions`, `metadata`) take effect when not overridden per call.
+  @Test func simpleUploadAppliesClientWriteObjectOptionDefaults() async throws {
+    let registry = MockRegistry.create()
+    let bucket = "test-bucket"
+    let objectName = "client-defaults-object"
+    let data = Data("Hello Client Defaults".utf8)
+    let source = BytesSource(data: data)
+
+    let simpleUploadUrl = registry.url(
+      "/upload/storage/v1/b/\(bucket)/o?uploadType=multipart&name=\(objectName)&kmsKeyName=projects/p/locations/l/keyRings/r/cryptoKeys/k&predefinedAcl=publicRead&ifGenerationMatch=0"
+    )
+
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: data.count),
+        headers: nil),
+      for: simpleUploadUrl)
+
+    let clientOptions = StorageClientOptions().with {
+      $0.client.endpoint = registry.endpoint
+      $0.writeObject.checksums = .off
+      $0.writeObject.kmsKeyName = "projects/p/locations/l/keyRings/r/cryptoKeys/k"
+      $0.writeObject.predefinedAcl = .publicRead
+      $0.writeObject.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 0 }
+      $0.writeObject.metadata = WriteObjectMetadata().with { $0.contentType = "text/plain" }
+    }
+    let client = try StorageClient(clientOptions, mock: registry)
+
+    let object = try await client.writeObject(source, to: bucket, as: objectName)
+    #expect(object.name == objectName)
+
+    let requests = registry.recordedRequests()
+    #expect(requests.count == 1)
+    let req = requests[0]
+    #expect(req.url?.absoluteString == simpleUploadUrl.absoluteString)
+    #expect(req.value(forHTTPHeaderField: "x-goog-hash") == nil)
+    let bodyString = String(data: req.httpBody ?? Data(), encoding: .utf8) ?? ""
+    #expect(bodyString.contains("\"contentType\":\"text/plain\""))
+  }
 }

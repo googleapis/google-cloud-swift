@@ -149,7 +149,7 @@ struct StorageClientReadObjectChecksumIntegrationTests {
     let storage = try StorageClient()
 
     let options = ReadObjectOptions().with {
-      $0.checksums = .none
+      $0.checksums = .off
     }
     let result = storage.readObject(
       from: fixture.bucketName, object: fixture.objectName, options: options)

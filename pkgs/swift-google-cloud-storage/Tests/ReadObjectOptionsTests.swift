@@ -47,11 +47,17 @@ import Testing
     #expect(defaultOptions.generation == nil)
     #expect(defaultOptions.preconditions == nil)
     #expect(defaultOptions.customerEncryptionKey == nil)
-    #expect(defaultOptions.range == .entire)
-    #expect(defaultOptions.enableDecompressiveTranscoding == true)
-    #expect(defaultOptions.checksums == .default)
+    #expect(defaultOptions.range == nil)
+    #expect(defaultOptions.enableDecompressiveTranscoding == nil)
+    #expect(defaultOptions.checksums == nil)
     #expect(defaultOptions.resumePolicy == nil)
     #expect(defaultOptions.backoffPolicy == nil)
+    #expect(defaultOptions.quotaProject == nil)
+
+    let effectiveOptions = defaultOptions.withDefaults(.default)
+    #expect(effectiveOptions.range == .entire)
+    #expect(effectiveOptions.enableDecompressiveTranscoding == true)
+    #expect(effectiveOptions.checksums == .default)
   }
 
   @Test func readObjectOptionsWithBuilder() throws {
@@ -66,7 +72,7 @@ import Testing
       $0.range = ReadObjectRange(range: 0...1024)!
       $0.enableDecompressiveTranscoding = false
       $0.resumePolicy = NeverResume<ReadObjectDetails>()
-      $0.checksums = .none
+      $0.checksums = .off
     }
 
     #expect(options.generation == 456)
@@ -75,7 +81,7 @@ import Testing
     #expect(options.range == ReadObjectRange(range: 0...1024)!)
     #expect(options.enableDecompressiveTranscoding == false)
     #expect(options.resumePolicy != nil)
-    #expect(options.checksums == .none)
+    #expect(options.checksums == .off)
   }
 
   @Test func readObjectMetadataProperties() {
@@ -229,42 +235,69 @@ import Testing
     #expect(custom.quotaProject == "my-download-quota-project")
   }
 
-  @Test(
-    arguments: [
-      (
-        options: ReadObjectOptions(),
-        expectedIsAlwaysResume: false,
-        expectedQuotaProject: "default-download-quota"
-      ),
-      (
-        options: ReadObjectOptions().with {
-          $0.resumePolicy = AlwaysResume<ReadObjectDetails>.unbounded()
-          $0.quotaProject = "override-download-quota"
-        },
-        expectedIsAlwaysResume: true,
-        expectedQuotaProject: "override-download-quota"
-      ),
-    ]
-  )
-  func readObjectOptionsWithDefaults(
-    options: ReadObjectOptions,
-    expectedIsAlwaysResume: Bool,
-    expectedQuotaProject: String
-  ) {
+  @Test func readObjectOptionsWithDefaultsInheritsAllProperties() throws {
+    let defaultCsek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x11, count: 32))
     let defaults = ReadObjectOptions().with {
+      $0.generation = 100
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 100 }
+      $0.customerEncryptionKey = defaultCsek
+      $0.range = ReadObjectRange(prefix: 512)
+      $0.enableDecompressiveTranscoding = false
+      $0.checksums = .off
       $0.resumePolicy = NeverResume<ReadObjectDetails>()
       $0.backoffPolicy = ExponentialBackoff()
       $0.quotaProject = "default-download-quota"
     }
 
-    let resolved = options.withDefaults(defaults)
-    if expectedIsAlwaysResume {
-      #expect(resolved.resumePolicy is AlwaysResume<ReadObjectDetails>)
-    } else {
-      #expect(resolved.resumePolicy is NeverResume<ReadObjectDetails>)
-    }
+    let resolved = ReadObjectOptions().withDefaults(defaults)
+    #expect(resolved.generation == 100)
+    #expect(resolved.preconditions?.ifGenerationMatch == 100)
+    #expect(resolved.customerEncryptionKey == defaultCsek)
+    #expect(resolved.range == ReadObjectRange(prefix: 512))
+    #expect(resolved.enableDecompressiveTranscoding == false)
+    #expect(resolved.checksums == .off)
+    #expect(resolved.resumePolicy is NeverResume<ReadObjectDetails>)
     #expect(resolved.backoffPolicy is ExponentialBackoff)
-    #expect(resolved.quotaProject == expectedQuotaProject)
-    #expect(resolved.requestOptions.quotaProject == expectedQuotaProject)
+    #expect(resolved.quotaProject == "default-download-quota")
+    #expect(resolved.requestOptions.quotaProject == "default-download-quota")
+  }
+
+  @Test func readObjectOptionsWithDefaultsOverridesAllProperties() throws {
+    let defaultCsek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x11, count: 32))
+    let overrideCsek = try CustomerEncryptionKeyOptions(key: Data(repeating: 0x22, count: 32))
+    let defaults = ReadObjectOptions().with {
+      $0.generation = 100
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 100 }
+      $0.customerEncryptionKey = defaultCsek
+      $0.range = ReadObjectRange(prefix: 512)
+      $0.enableDecompressiveTranscoding = false
+      $0.checksums = .off
+      $0.resumePolicy = NeverResume<ReadObjectDetails>()
+      $0.backoffPolicy = ExponentialBackoff()
+      $0.quotaProject = "default-download-quota"
+    }
+
+    let options = ReadObjectOptions().with {
+      $0.generation = 200
+      $0.preconditions = StoragePreconditions().with { $0.ifGenerationMatch = 200 }
+      $0.customerEncryptionKey = overrideCsek
+      $0.range = .entire
+      $0.enableDecompressiveTranscoding = true
+      $0.checksums = .default
+      $0.resumePolicy = AlwaysResume<ReadObjectDetails>.unbounded()
+      $0.quotaProject = "override-download-quota"
+    }
+
+    let resolved = options.withDefaults(defaults)
+    #expect(resolved.generation == 200)
+    #expect(resolved.preconditions?.ifGenerationMatch == 200)
+    #expect(resolved.customerEncryptionKey == overrideCsek)
+    #expect(resolved.range == .entire)
+    #expect(resolved.enableDecompressiveTranscoding == true)
+    #expect(resolved.checksums == .default)
+    #expect(resolved.resumePolicy is AlwaysResume<ReadObjectDetails>)
+    #expect(resolved.backoffPolicy is ExponentialBackoff)
+    #expect(resolved.quotaProject == "override-download-quota")
+    #expect(resolved.requestOptions.quotaProject == "override-download-quota")
   }
 }

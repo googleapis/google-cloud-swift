@@ -447,7 +447,7 @@ import Testing
 
     let client = try makeClient(registry: registry)
     let options = ReadObjectOptions().with {
-      $0.checksums = .none
+      $0.checksums = .off
     }
     let result = client.readObject(from: bucket, object: objectName, options: options)
 
