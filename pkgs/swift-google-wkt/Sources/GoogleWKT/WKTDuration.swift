@@ -173,7 +173,7 @@ extension WKTDuration: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(string: try self.toString())]
+    return [WKTAny.valueField: .string(try self.toString())]
   }
 }
 

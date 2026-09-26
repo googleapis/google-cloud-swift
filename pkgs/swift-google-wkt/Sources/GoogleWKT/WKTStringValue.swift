@@ -36,6 +36,6 @@ extension Swift.String: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(string: self)]
+    return [WKTAny.valueField: .string(self)]
   }
 }

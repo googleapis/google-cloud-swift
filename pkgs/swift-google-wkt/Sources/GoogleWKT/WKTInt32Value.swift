@@ -46,6 +46,6 @@ extension Swift.Int32: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(number: Double(self))]
+    return [WKTAny.valueField: .number(Double(self))]
   }
 }

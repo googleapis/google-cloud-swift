@@ -37,6 +37,6 @@ extension Swift.Float: _AnyPackable {
 
   public func _pack() throws -> WKTStruct {
     let rounded = Double(String(self)) ?? Double(self)
-    return [WKTAny.valueField: WKTValue(number: rounded)]
+    return [WKTAny.valueField: .number(rounded)]
   }
 }

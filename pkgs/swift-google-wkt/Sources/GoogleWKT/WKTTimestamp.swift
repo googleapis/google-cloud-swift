@@ -353,7 +353,7 @@ extension WKTTimestamp: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(string: self.toString())]
+    return [WKTAny.valueField: .string(self.toString())]
   }
 }
 

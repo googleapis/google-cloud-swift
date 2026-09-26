@@ -27,63 +27,6 @@ import Testing
     #expect(got == .null(WKTNullValue()))
   }
 
-  @Test("Value null initializer")
-  func valueInitNull() {
-    let got = WKTValue(null: WKTNullValue())
-    #expect(got == .null(WKTNullValue()))
-  }
-
-  @Test("Value number initializer")
-  func valueInitNumber() {
-    let got = WKTValue(number: 123.45)
-    #expect(got == .number(123.45))
-  }
-
-  @Test("Value string initializer")
-  func valueInitString() {
-    let got = WKTValue(string: "foo")
-    #expect(got == .string("foo"))
-  }
-
-  @Test("Value bool initializer")
-  func valueInitBool() {
-    let gotTrue = WKTValue(bool: true)
-    #expect(gotTrue == .bool(true))
-    let gotFalse = WKTValue(bool: false)
-    #expect(gotFalse == .bool(false))
-  }
-
-  @Test("Value object initializer")
-  func valueInitObject() {
-    // Empty dictionary
-    #expect(WKTValue(object: [:]) == .object([:]))
-
-    // One value
-    #expect(WKTValue(object: ["a": .string("b")]) == .object(["a": .string("b")]))
-
-    // Two values of different types
-    let twoValues: [String: WKTValue] = ["a": .number(1), "b": .bool(true)]
-    #expect(WKTValue(object: twoValues) == .object(twoValues))
-
-    // One value is null
-    #expect(WKTValue(object: ["a": WKTValue()]) == .object(["a": WKTValue()]))
-  }
-
-  @Test("Value array initializer")
-  func valueInitArray() {
-    // Empty array
-    #expect(WKTValue(array: []) == .array([]))
-
-    // One value
-    #expect(WKTValue(array: [.string("a")]) == .array([.string("a")]))
-
-    // Two values of different types
-    #expect(WKTValue(array: [.number(1), .bool(true)]) == .array([.number(1), .bool(true)]))
-
-    // One non-null and one null value
-    #expect(WKTValue(array: [.string("a"), WKTValue()]) == .array([.string("a"), WKTValue()]))
-  }
-
   @Test(
     "Value encoding",
     arguments: [
@@ -273,7 +216,7 @@ import Testing
       (#""value":{}"#, [:]),
       (
         #""value":{"a":123.45,"b":"foo"}"#,
-        ["a": WKTValue(number: 123.45), "b": WKTValue(string: "foo")]
+        ["a": WKTValue.number(123.45), "b": WKTValue.string("foo")]
       ),
     ])
   func structAnyUnpack(fragment: String, want: WKTStruct) throws {
@@ -307,7 +250,7 @@ import Testing
       (#""value":{}"#, [:]),
       (
         #""value":{"a":123.45,"b":"foo"}"#,
-        ["a": WKTValue(number: 123.45), "b": WKTValue(string: "foo")]
+        ["a": WKTValue.number(123.45), "b": WKTValue.string("foo")]
       ),
     ])
   func structAnyPack(fragment: String, input: WKTStruct) throws {
@@ -329,7 +272,7 @@ import Testing
       (#""value":[]"#, []),
       (
         #""value":["a",123.45,"b"]"#,
-        [WKTValue(string: "a"), WKTValue(number: 123.45), WKTValue(string: "b")]
+        [WKTValue.string("a"), WKTValue.number(123.45), WKTValue.string("b")]
       ),
     ])
   func listValueAnyUnpack(fragment: String, want: WKTListValue) throws {
@@ -363,7 +306,7 @@ import Testing
       (#""value":[]"#, []),
       (
         #""value":["a",123.45,"b"]"#,
-        [WKTValue(string: "a"), WKTValue(number: 123.45), WKTValue(string: "b")]
+        [WKTValue.string("a"), WKTValue.number(123.45), WKTValue.string("b")]
       ),
     ])
   func listValueAnyPack(fragment: String, input: WKTListValue) throws {

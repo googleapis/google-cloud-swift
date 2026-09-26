@@ -74,7 +74,7 @@ extension WKTFieldMask: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(string: toString())]
+    return [WKTAny.valueField: .string(toString())]
   }
 }
 

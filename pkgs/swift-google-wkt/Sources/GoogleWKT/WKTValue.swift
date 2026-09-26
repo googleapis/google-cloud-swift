@@ -51,36 +51,6 @@ public enum WKTValue: Codable, Equatable, Sendable {
     self = .null(WKTNullValue())
   }
 
-  /// Initialize a value from a ``WKTNullValue``.
-  public init(null v: WKTNullValue) {
-    self = .null(WKTNullValue())
-  }
-
-  /// Initialize a value from a number.
-  public init(number v: Double) {
-    self = .number(v)
-  }
-
-  /// Initialize a value from a string.
-  public init(string v: String) {
-    self = .string(v)
-  }
-
-  /// Initialize a value from a boolean.
-  public init(bool v: Bool) {
-    self = .bool(v)
-  }
-
-  /// Initialize a value from an object.
-  public init(object v: WKTStruct) {
-    self = .object(v)
-  }
-
-  /// Initialize a `WKTValue` with an array.
-  public init(array v: WKTListValue) {
-    self = .array(v)
-  }
-
   /// Creates a new instance by decoding from the given decoder.
   ///
   /// This function throws an error if the data does not decode to any of the
@@ -190,7 +160,7 @@ extension WKTStruct: _AnyPackable {
     self = v
   }
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(object: self)]
+    return [WKTAny.valueField: .object(self)]
   }
 }
 
@@ -212,7 +182,7 @@ extension WKTListValue: _AnyPackable {
     self = v
   }
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(array: self)]
+    return [WKTAny.valueField: .array(self)]
   }
 }
 

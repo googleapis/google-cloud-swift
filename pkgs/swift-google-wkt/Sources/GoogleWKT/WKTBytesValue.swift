@@ -41,6 +41,6 @@ extension Foundation.Data: _AnyPackable {
   }
 
   public func _pack() throws -> WKTStruct {
-    return [WKTAny.valueField: WKTValue(string: self.base64EncodedString())]
+    return [WKTAny.valueField: .string(self.base64EncodedString())]
   }
 }
