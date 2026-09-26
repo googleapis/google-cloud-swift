@@ -20,13 +20,12 @@ public func renameFolder(
 ) async throws {
   let folderId = "example-folder-id"
   let destinationFolderId = "renamed-folder-id"
-  let poller = try await client.renameFolderPollingUntilDone(
+  let folder = try await client.renameFolderPollingUntilDone(
     request: .init().with {
       $0.name = "projects/_/buckets/\(bucketId)/folders/\(folderId)"
       $0.destinationFolderId = destinationFolderId
     }
   )
-  let folder = try await poller.wait()
   print("folder successfully renamed \(folder)")
 }
 // [END storage_control_rename_folder]

@@ -65,9 +65,8 @@ public enum LongrunningOperations {
 
     let workflow: Workflow
     do {
-      let createLro = try await client.createWorkflowPollingUntilDone(
+      workflow = try await client.createWorkflowPollingUntilDone(
         request: create, options: testRetryOptions)
-      workflow = try await createLro.wait()
     } catch let error where error.isAlreadyExists {
       // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.
       logger.info("createWorkflow() returned alreadyExists; fetching existing workflow")
@@ -81,11 +80,10 @@ public enum LongrunningOperations {
 
     logger.info("\nTesting deleteWorkflow() for \(workflow.name)")
     do {
-      let deleteLro = try await client.deleteWorkflowPollingUntilDone(
+      try await client.deleteWorkflowPollingUntilDone(
         request: .init().with { $0.name = workflow.name },
         options: testRetryOptions
       )
-      _ = try await deleteLro.wait()
       logger.info("deleteWorkflow() was successful")
     } catch let error where error.isNotFound {
       // This error is acceptable because we retry a non-idempotent operation, the alternative is flakes in our CI.

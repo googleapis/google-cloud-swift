@@ -174,20 +174,17 @@ Generated clients provide two interfaces for long-running operations:
   issues the initial RPC and immediately returns the unpolled `Operation` token.
   Callers managing custom state machines or external scheduling can inspect the
   initial metadata and poll manually.
-- **Pollable Operation:** Calling `createFunctionPollingUntilDone(request:options:) async throws -> any PollableOperation<Function>`
-  initiates the operation and returns a `PollableOperation` handle.
+- **Poll Until Done:** Calling `createFunctionPollingUntilDone(request:options:) async throws -> Function`
+  initiates the operation and automatically polls until completion, returning the finished resource.
 
 ```swift
 // Initiate the operation and await completion
-let operation = try await client.createFunctionPollingUntilDone(request: request)
-let function = try await operation.wait()
+let function = try await client.createFunctionPollingUntilDone(request: request)
 ```
 
-When `wait()` is called, the poller queries the operation status periodically
-using a backoff policy (`defaultPollingBackoffPolicy`), retries transient polling
-failures according to a polling error policy (`defaultPollingErrorPolicy`), and
-suspends execution non-blockingly via `Task.sleep(for:)` until the operation
-reaches completion.
+The method queries the operation status periodically using a backoff policy (`defaultPollingBackoffPolicy`),
+retries transient polling failures according to a polling error policy (`defaultPollingErrorPolicy`),
+and suspends execution non-blockingly via `Task.sleep(for:)` until the operation reaches completion.
 
 ## Method overloads and convenience helpers
 

@@ -18,7 +18,7 @@ import GoogleCloudStorage
 public func createAnywhereCache(
   client: StorageControlClient, bucketId: String, zone: String
 ) async throws {
-  let poller = try await client.createAnywhereCachePollingUntilDone(
+  let cache = try await client.createAnywhereCachePollingUntilDone(
     request: .init().with {
       $0.parent = "projects/_/buckets/\(bucketId)"
       $0.anywhereCache = .init().with { cache in
@@ -27,7 +27,6 @@ public func createAnywhereCache(
       }
     }
   )
-  let cache = try await poller.wait()
   print("Created anywhere cache: \(cache)")
 }
 // [END storage_control_create_anywhere_cache]

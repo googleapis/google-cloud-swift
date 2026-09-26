@@ -19,7 +19,7 @@ import GoogleWKT
 public func updateAnywhereCache(
   client: StorageControlClient, bucketId: String, cacheId: String
 ) async throws {
-  let poller = try await client.updateAnywhereCachePollingUntilDone(
+  let cache = try await client.updateAnywhereCachePollingUntilDone(
     request: .init().with {
       $0.anywhereCache = .init().with { cache in
         cache.name = "projects/_/buckets/\(bucketId)/anywhereCaches/\(cacheId)"
@@ -28,7 +28,6 @@ public func updateAnywhereCache(
       $0.updateMask = .init(paths: ["admission_policy"])
     }
   )
-  let cache = try await poller.wait()
   print("Updated anywhere cache: \(cache)")
 }
 // [END storage_control_update_anywhere_cache]
