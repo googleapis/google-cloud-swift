@@ -258,6 +258,7 @@ libraries:
       per_service_traits: true
       default_traits:
         - PredictionService
+      quickstart_service_override: PredictionService
   - name: google-cloud-aiplatform-v1-schema-predict-instance
     version: 0.3.0
     copyright_year: "2026"
@@ -502,6 +503,7 @@ libraries:
             method_id: .google.cloud.compute.v1.globalOperations.get
           - prefix: compute/v1/
             method_id: .google.cloud.compute.v1.globalOrganizationOperations.get
+      quickstart_service_override: Instances
   - name: google-cloud-confidentialcomputing-v1
     version: 0.3.0
     copyright_year: "2026"
@@ -996,6 +998,7 @@ libraries:
     copyright_year: "2026"
     swift:
       per_service_traits: true
+      quickstart_service_override: SqlInstancesService
   - name: google-cloud-storage
     version: 0.3.0
     copyright_year: "2026"
