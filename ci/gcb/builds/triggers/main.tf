@@ -52,6 +52,21 @@ locals {
       script  = "full"
       pool_id = "swift-sdk-pool-large"
     }
+    unit-tests = {
+      config  = "scripted.yaml"
+      script  = "unit-tests"
+      pool_id = "swift-sdk-pool-large"
+    }
+    intermediate-swift = {
+      config  = "intermediate-swift.yaml"
+      script  = "unit-tests"
+      pool_id = "swift-sdk-pool-large"
+    }
+    minimum-swift = {
+      config  = "minimum-swift.yaml"
+      script  = "unit-tests"
+      pool_id = "swift-sdk-pool-large"
+    }
   }
 
   # These are builds that only run Post Merge.

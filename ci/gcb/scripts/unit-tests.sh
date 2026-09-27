@@ -28,7 +28,7 @@ count=0
 flags=("${build_flags[@]}")
 source "${REPO_ROOT}/ci/package-dependencies.sh"
 
-mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-cache -o -name generated \) -prune -o -type f -name Package.swift -exec dirname {} \; | sort -u)
+mapfile -t packages < <(find . \( -name Sources -o -name .build -o -name .build-cache -o -name generated -o -name guide \) -prune -o -type f -name Package.swift -exec dirname {} \; | sort -u)
 for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
