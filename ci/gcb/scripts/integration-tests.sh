@@ -57,26 +57,9 @@ else
     echo; echo "✗ integration tests failed"
     errors=$((errors + 1))
 fi
-restore_package_dependencies .
-
-for dir in pkgs/*; do
-    [[ -f "${dir}/Package.swift" ]] || continue
-    [[ -d "${dir}/Tests" ]] || continue
-    count=$((count + 1))
-    edit_package_dependencies "${dir}"
-    echo "--- Running ${dir} integration tests ---"
-    if swift test "${flags[@]}" --quiet --package-path "${dir}" --enable-all-traits; then
-        echo; echo "✓ ${dir} passed"
-    else
-        echo; echo "✗ ${dir} failed"
-        errors=$((errors + 1))
-    fi
-    restore_package_dependencies "${dir}"
-done
 
 count=$((count + 1))
 echo "--- Smoke testing the StorageW1R3 benchmark ---"
-edit_package_dependencies .
 benchmark_args=(
     --bucket-name "${GOOGLE_CLOUD_SWIFT_TEST_BUCKET}"
     --min-object-size 0KiB
@@ -91,6 +74,21 @@ else
     errors=$((errors + 1))
 fi
 restore_package_dependencies .
+
+for dir in pkgs/*; do
+    [[ -f "${dir}/Package.swift" ]] || continue
+    [[ -d "${dir}/Tests/IntegrationTests" ]] || continue
+    count=$((count + 1))
+    edit_package_dependencies "${dir}"
+    echo "--- Running ${dir} integration tests ---"
+    if swift test "${flags[@]}" --quiet --package-path "${dir}" --enable-all-traits; then
+        echo; echo "✓ ${dir} passed"
+    else
+        echo; echo "✗ ${dir} failed"
+        errors=$((errors + 1))
+    fi
+    restore_package_dependencies "${dir}"
+done
 
 echo; echo; echo "${count} local package(s) tested, ${errors} failure(s)."
 
