@@ -14,9 +14,10 @@ proposed policy.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``OrgPolicyViolationsPreviewServiceClient``: Violations Preview API service for OrgPolicy. (Recommended starting point)
+- ``OrgPolicyViolationsPreviewServiceClient``: Violations Preview API service for OrgPolicy.
 - ``SimulatorClient``: Policy Simulator API service.
 
 ## Quickstart
@@ -24,4 +25,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``OrgPolicyViolationsPreviewServiceClient``:
 
 @Snippet(path: "OrgPolicyViolationsPreviewServiceQuickstart")
-

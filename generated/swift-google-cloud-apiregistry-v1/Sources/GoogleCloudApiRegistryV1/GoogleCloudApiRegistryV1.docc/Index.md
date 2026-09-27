@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``CloudApiRegistryClient``: The Cloud API Registry service provides a central registry for managing API Data.
 
@@ -12,4 +13,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CloudApiRegistryClient``:
 
 @Snippet(path: "CloudApiRegistryQuickstart")
-

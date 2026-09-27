@@ -6,7 +6,8 @@ see the Workflows Executions API.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``WorkflowsClient``: Workflows is used to deploy and execute workflow programs.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``WorkflowsClient``:
 
 @Snippet(path: "WorkflowsQuickstart")
-

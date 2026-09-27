@@ -12,7 +12,8 @@ API overview</a>.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `TranscoderServiceClient`: Using the Transcoder API, you can queue asynchronous jobs for transcoding media into various output formats.
 

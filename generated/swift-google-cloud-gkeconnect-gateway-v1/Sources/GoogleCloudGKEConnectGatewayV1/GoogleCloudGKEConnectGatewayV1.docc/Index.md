@@ -6,7 +6,8 @@ connected Kubernetes clusters.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``GatewayControlClient``: GatewayControl is the control plane API for Connect Gateway.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``GatewayControlClient``:
 
 @Snippet(path: "GatewayControlQuickstart")
-

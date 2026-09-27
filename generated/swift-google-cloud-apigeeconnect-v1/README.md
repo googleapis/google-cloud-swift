@@ -7,9 +7,10 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `ConnectionServiceClient`: Service Interface for the Apigee Connect connection management APIs. (Recommended starting point)
+- `ConnectionServiceClient`: Service Interface for the Apigee Connect connection management APIs.
 - `TetherClient`: Tether provides a way for the control plane to send HTTP API requests to services in data planes that runs in a remote datacenter without requiring customers to open firewalls on their runtime plane.
 
 ## Quickstart

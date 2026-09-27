@@ -6,10 +6,11 @@ learning expertise and effort.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``DataFoundryServiceClient``: Service for generating and preparing datasets for Gen AI evaluation. (enabled by the `DataFoundryService` trait)
-- ``DatasetServiceClient``: The service that manages Vertex AI Dataset and its child resources. (Recommended starting point) (enabled by the `DatasetService` trait)
+- ``DatasetServiceClient``: The service that manages Vertex AI Dataset and its child resources. (enabled by the `DatasetService` trait)
 - ``DeploymentResourcePoolServiceClient``: A service that manages the DeploymentResourcePool resource. (enabled by the `DeploymentResourcePoolService` trait)
 - ``EndpointServiceClient``: A service for managing Vertex AI's Endpoints. (enabled by the `EndpointService` trait)
 - ``EvaluationServiceClient``: Vertex AI Online Evaluation Service. (enabled by the `EvaluationService` trait)
@@ -45,11 +46,10 @@ Most applications use the `*Client` types in this library:
 
 ## Quickstart
 
-The following example demonstrates using ``DatasetServiceClient``:
+The following example demonstrates using ``PredictionServiceClient``:
 
-@Snippet(path: "DatasetServiceQuickstart")
+@Snippet(path: "PredictionServiceQuickstart")
 
 ## See Also
 
 - <doc:PackageTraits>
-

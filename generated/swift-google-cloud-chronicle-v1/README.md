@@ -11,9 +11,10 @@ their lifecycle.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `BigQueryExportServiceClient`: Service for managing BigQuery export configurations for Chronicle instances. (Recommended starting point)
+- `BigQueryExportServiceClient`: Service for managing BigQuery export configurations for Chronicle instances.
 - `DashboardChartServiceClient`: A service providing functionality for managing dashboards' charts.
 - `DashboardQueryServiceClient`: A service providing functionality for managing dashboards' queries.
 - `DataAccessControlServiceClient`: DataAccessControlService exposes resources and endpoints related to data access control.

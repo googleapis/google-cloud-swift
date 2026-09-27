@@ -5,7 +5,8 @@ An API for accessing Advisory Notifications in Google Cloud
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AdvisoryNotificationsServiceClient``: Service to manage Security and Privacy Notifications.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AdvisoryNotificationsServiceClient``:
 
 @Snippet(path: "AdvisoryNotificationsServiceQuickstart")
-

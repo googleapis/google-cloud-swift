@@ -9,10 +9,11 @@ Discovery Engine API.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `AssistantServiceClient`: Service for managing Assistant configuration and assisting users. (enabled by the `AssistantService` trait)
-- `CmekConfigServiceClient`: Service for managing CMEK related tasks. (Recommended starting point) (enabled by the `CmekConfigService` trait)
+- `CmekConfigServiceClient`: Service for managing CMEK related tasks. (enabled by the `CmekConfigService` trait)
 - `CompletionServiceClient`: Service for Auto-Completion. (enabled by the `CompletionService` trait)
 - `ControlServiceClient`: Service for performing CRUD operations on Controls. (enabled by the `ControlService` trait)
 - `ConversationalSearchServiceClient`: Service for conversational search. (enabled by the `ConversationalSearchService` trait)

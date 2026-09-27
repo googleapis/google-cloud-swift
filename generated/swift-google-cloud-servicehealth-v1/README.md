@@ -10,7 +10,8 @@ events impacting Google Cloud products.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ServiceHealthClient`: Request service health events relevant to your Google Cloud project.
 

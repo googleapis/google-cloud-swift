@@ -7,7 +7,8 @@ annotations, to developers.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``LanguageServiceClient``: Provides text analysis operations such as sentiment analysis and entity recognition.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``LanguageServiceClient``:
 
 @Snippet(path: "LanguageServiceQuickstart")
-

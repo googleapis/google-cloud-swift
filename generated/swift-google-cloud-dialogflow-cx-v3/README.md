@@ -10,9 +10,10 @@ apps and devices).
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AgentsClient`: Service for managing Agents. (Recommended starting point) (enabled by the `Agents` trait)
+- `AgentsClient`: Service for managing Agents. (enabled by the `Agents` trait)
 - `ChangelogsClient`: Service for managing Changelogs. (enabled by the `Changelogs` trait)
 - `DeploymentsClient`: Service for managing Deployments. (enabled by the `Deployments` trait)
 - `EntityTypesClient`: Service for managing EntityTypes. (enabled by the `EntityTypes` trait)

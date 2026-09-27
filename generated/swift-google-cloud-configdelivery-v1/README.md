@@ -10,7 +10,8 @@ to a fleet of kubernetes clusters.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ConfigDeliveryClient`: ConfigDelivery service manages the deployment of kubernetes configuration to a fleet of kubernetes clusters.
 

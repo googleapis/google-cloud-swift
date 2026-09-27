@@ -6,14 +6,14 @@ services.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``LookupServiceClient``: Service Directory API for looking up service data at runtime.
-- ``RegistrationServiceClient``: Service Directory API for registering services. (Recommended starting point)
+- ``RegistrationServiceClient``: Service Directory API for registering services.
 
 ## Quickstart
 
 The following example demonstrates using ``RegistrationServiceClient``:
 
 @Snippet(path: "RegistrationServiceQuickstart")
-

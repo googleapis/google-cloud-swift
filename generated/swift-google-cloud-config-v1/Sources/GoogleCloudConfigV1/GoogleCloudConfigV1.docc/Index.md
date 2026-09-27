@@ -5,7 +5,8 @@ Creates and manages Google Cloud Platform resources and infrastructure.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ConfigClient``: Infrastructure Manager is a managed service that automates the deployment and management of Google Cloud infrastructure resources.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ConfigClient``:
 
 @Snippet(path: "ConfigQuickstart")
-

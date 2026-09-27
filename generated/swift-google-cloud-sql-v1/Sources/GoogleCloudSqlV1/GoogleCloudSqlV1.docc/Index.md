@@ -5,11 +5,12 @@ Cloud SQL Admin API
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``SqlAvailableDatabaseVersionsServiceClient``: Service that exposes Cloud SQL database versions information. (enabled by the `SqlAvailableDatabaseVersionsService` trait)
 - ``SqlBackupRunsServiceClient``: Service for managing database backups. (enabled by the `SqlBackupRunsService` trait)
-- ``SqlBackupsServiceClient``: Client for the SqlBackupsService. (Recommended starting point) (enabled by the `SqlBackupsService` trait)
+- ``SqlBackupsServiceClient``: Client for the SqlBackupsService. (enabled by the `SqlBackupsService` trait)
 - ``SqlConnectServiceClient``: Cloud SQL connect service. (enabled by the `SqlConnectService` trait)
 - ``SqlDatabasesServiceClient``: Service to manage databases. (enabled by the `SqlDatabasesService` trait)
 - ``SqlEventsServiceClient``: Service that exposes Cloud SQL event information. (enabled by the `SqlEventsService` trait)
@@ -26,11 +27,10 @@ Most applications use the `*Client` types in this library:
 
 ## Quickstart
 
-The following example demonstrates using ``SqlBackupsServiceClient``:
+The following example demonstrates using ``SqlInstancesServiceClient``:
 
-@Snippet(path: "SqlBackupsServiceQuickstart")
+@Snippet(path: "SqlInstancesServiceQuickstart")
 
 ## See Also
 
 - <doc:PackageTraits>
-

@@ -9,7 +9,8 @@ The Cloud API for device streaming usage.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DirectAccessServiceClient`: A service for allocating Android devices and interacting with the live-allocated devices.
 

@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``StorageBatchOperationsClient``: Storage Batch Operations offers a managed experience to perform batch operations on millions of Cloud Storage objects in a serverless fashion.
 
@@ -12,4 +13,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``StorageBatchOperationsClient``:
 
 @Snippet(path: "StorageBatchOperationsQuickstart")
-

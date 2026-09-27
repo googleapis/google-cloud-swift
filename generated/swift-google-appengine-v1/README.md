@@ -9,12 +9,13 @@ Provisions and manages developers' App Engine applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ApplicationsClient`: Manages App Engine applications.
 - `ServicesClient`: Manages services of an application.
 - `VersionsClient`: Manages versions of a service.
-- `InstancesClient`: Manages instances of a version. (Recommended starting point)
+- `InstancesClient`: Manages instances of a version.
 - `FirewallClient`: Firewall resources are used to define a collection of access control rules for an Application.
 - `AuthorizedDomainsClient`: Manages domains a user is authorized to administer.
 - `AuthorizedCertificatesClient`: Manages SSL certificates a user is authorized to administer.

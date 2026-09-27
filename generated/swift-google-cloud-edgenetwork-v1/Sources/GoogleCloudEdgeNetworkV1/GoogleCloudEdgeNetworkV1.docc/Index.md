@@ -5,7 +5,8 @@ Network management API for Distributed Cloud Edge.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``EdgeNetworkClient``: EdgeNetwork API provides managed, highly available cloud dynamic network configuration service to the GEC customer to enable edge application and network function solutions.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``EdgeNetworkClient``:
 
 @Snippet(path: "EdgeNetworkQuickstart")
-

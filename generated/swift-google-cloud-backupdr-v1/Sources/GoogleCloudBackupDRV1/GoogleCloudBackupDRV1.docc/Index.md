@@ -3,9 +3,10 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``BackupDRClient``: The BackupDR Service. (Recommended starting point)
+- ``BackupDRClient``: The BackupDR Service.
 - ``BackupDrProtectionSummaryClient``: The Protection Summary service.
 
 ## Quickstart
@@ -13,4 +14,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``BackupDRClient``:
 
 @Snippet(path: "BackupDRQuickstart")
-

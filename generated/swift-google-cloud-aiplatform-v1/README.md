@@ -10,10 +10,11 @@ learning expertise and effort.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DataFoundryServiceClient`: Service for generating and preparing datasets for Gen AI evaluation. (enabled by the `DataFoundryService` trait)
-- `DatasetServiceClient`: The service that manages Vertex AI Dataset and its child resources. (Recommended starting point) (enabled by the `DatasetService` trait)
+- `DatasetServiceClient`: The service that manages Vertex AI Dataset and its child resources. (enabled by the `DatasetService` trait)
 - `DeploymentResourcePoolServiceClient`: A service that manages the DeploymentResourcePool resource. (enabled by the `DeploymentResourcePoolService` trait)
 - `EndpointServiceClient`: A service for managing Vertex AI's Endpoints. (enabled by the `EndpointService` trait)
 - `EvaluationServiceClient`: Vertex AI Online Evaluation Service. (enabled by the `EvaluationService` trait)
@@ -49,27 +50,24 @@ Most applications use the `*Client` types in this library:
 
 ## Quickstart
 
-The following example demonstrates using `DatasetServiceClient`:
+The following example demonstrates using `PredictionServiceClient`:
 
 ```swift
 import Foundation
 import GoogleCloudAIPlatformV1
+import GoogleApi
 import GoogleCloudLocation
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleWKT
 
-func sample(parent: String, ) async throws {
-  let client = try GoogleCloudAIPlatformV1.DatasetServiceClient()
-  let items = client.listDatasetsByItems(
-    request: ListDatasetsRequest()
-  .with {
-    $0.parent = "\(parent)"
-  }
+func sample() async throws {
+  let client = try GoogleCloudAIPlatformV1.PredictionServiceClient()
+  let response = try await client.predict(
+    request: PredictRequest()
+  /* set fields using .with { $0... } */
 )
-  for try await item in items {
-    print("  \(item)")
-  }
+  print("Success: \(response)")
 }
 ```
 

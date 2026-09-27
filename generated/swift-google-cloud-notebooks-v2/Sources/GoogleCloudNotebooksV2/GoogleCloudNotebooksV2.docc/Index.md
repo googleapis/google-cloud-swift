@@ -5,7 +5,8 @@ Notebooks API is used to manage notebook resources in Google Cloud.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``NotebookServiceClient``: API v2 service for Workbench Notebooks Instances.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``NotebookServiceClient``:
 
 @Snippet(path: "NotebookServiceQuickstart")
-

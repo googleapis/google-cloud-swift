@@ -7,14 +7,14 @@ of explicit content, into applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ImageAnnotatorClient``: Service that performs Google Cloud Vision API detection tasks over client images, such as face, landmark, logo, label, and text detection.
-- ``ProductSearchClient``: In parallel,. (Recommended starting point)
+- ``ProductSearchClient``: In parallel,.
 
 ## Quickstart
 
 The following example demonstrates using ``ProductSearchClient``:
 
 @Snippet(path: "ProductSearchQuickstart")
-

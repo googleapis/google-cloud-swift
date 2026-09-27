@@ -7,7 +7,8 @@ zones, regions, and countries.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``LocationsClient``: An abstract interface that provides location-related information for a service.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``LocationsClient``:
 
 @Snippet(path: "LocationsQuickstart")
-

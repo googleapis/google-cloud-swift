@@ -5,7 +5,8 @@ A unified, intelligent governance solution for data and AI assets.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``BusinessGlossaryServiceClient``: BusinessGlossaryService provides APIs for managing business glossary resources for enterprise customers.
 - ``CatalogServiceClient``: The primary resources offered by this service are EntryGroups, EntryTypes, AspectTypes, Entries and EntryLinks.
@@ -15,11 +16,10 @@ Most applications use the `*Client` types in this library:
 - ``DataTaxonomyServiceClient``: DataTaxonomyService enables attribute-based governance.
 - ``DataScanServiceClient``: DataScanService manages DataScan resources which can be configured to run various types of data scanning workload and generate enriched metadata (e.g.
 - ``MetadataServiceClient``: Metadata service manages metadata resources such as tables, filesets and partitions.
-- ``DataplexServiceClient``: Dataplex service provides data lakes as a service. (Recommended starting point)
+- ``DataplexServiceClient``: Dataplex service provides data lakes as a service.
 
 ## Quickstart
 
 The following example demonstrates using ``DataplexServiceClient``:
 
 @Snippet(path: "DataplexServiceQuickstart")
-

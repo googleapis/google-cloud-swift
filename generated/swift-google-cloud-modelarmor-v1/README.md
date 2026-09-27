@@ -11,7 +11,8 @@ define policies that filter user prompts and model responses.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ModelArmorClient`: Service describing handlers for resources.
 

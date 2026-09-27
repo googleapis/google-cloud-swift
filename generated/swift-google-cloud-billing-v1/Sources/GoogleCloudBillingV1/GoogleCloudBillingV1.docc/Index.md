@@ -6,9 +6,10 @@ projects     programmatically.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``CloudBillingClient``: Retrieves the Google Cloud Console billing accounts and associates them with projects. (Recommended starting point)
+- ``CloudBillingClient``: Retrieves the Google Cloud Console billing accounts and associates them with projects.
 - ``CloudCatalogClient``: A catalog of Google Cloud Platform services and SKUs.
 
 ## Quickstart
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CloudBillingClient``:
 
 @Snippet(path: "CloudBillingQuickstart")
-

@@ -6,7 +6,8 @@ with Service Infrastructure.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ServiceControllerClient``: This API provides admission control and telemetry reporting for services that are integrated with Service Infrastructure.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ServiceControllerClient``:
 
 @Snippet(path: "ServiceControllerQuickstart")
-

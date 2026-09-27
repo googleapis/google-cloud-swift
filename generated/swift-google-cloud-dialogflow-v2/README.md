@@ -10,10 +10,11 @@ apps and devices).
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `AgentsClient`: Service for managing Agents. (enabled by the `Agents` trait)
-- `AnswerRecordsClient`: Service for managing AnswerRecords. (Recommended starting point) (enabled by the `AnswerRecords` trait)
+- `AnswerRecordsClient`: Service for managing AnswerRecords. (enabled by the `AnswerRecords` trait)
 - `ContextsClient`: Service for managing Contexts. (enabled by the `Contexts` trait)
 - `ConversationsClient`: Service for managing Conversations. (enabled by the `Conversations` trait)
 - `ConversationDatasetsClient`: Conversation datasets. (enabled by the `ConversationDatasets` trait)

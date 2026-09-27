@@ -11,7 +11,8 @@ used for querying Apache Iceberg tables in BigQuery.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `MetastoreServiceClient`: BigLake Metastore is a serverless, highly available, multi-tenant runtime metastore for Google Cloud Data Analytics products.
 

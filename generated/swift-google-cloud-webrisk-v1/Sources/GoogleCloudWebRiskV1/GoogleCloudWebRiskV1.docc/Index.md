@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``WebRiskServiceClient``: Web Risk API defines an interface to detect malicious URLs on your website and in client applications.
 
@@ -12,4 +13,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``WebRiskServiceClient``:
 
 @Snippet(path: "WebRiskServiceQuickstart")
-

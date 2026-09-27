@@ -6,7 +6,8 @@ and third-party business applications using the Connectors interface.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ConnectorsClient``: Connectors is the interface for managing Connectors.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ConnectorsClient``:
 
 @Snippet(path: "ConnectorsQuickstart")
-

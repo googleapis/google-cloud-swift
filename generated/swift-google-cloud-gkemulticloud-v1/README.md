@@ -17,9 +17,10 @@ command-line tools.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AttachedClustersClient`: The AttachedClusters API provides a single centrally managed service to register and manage Anthos attached clusters that run on customer's owned infrastructure. (Recommended starting point)
+- `AttachedClustersClient`: The AttachedClusters API provides a single centrally managed service to register and manage Anthos attached clusters that run on customer's owned infrastructure.
 - `AwsClustersClient`: The AwsClusters API provides a single centrally managed service to create and manage Anthos clusters that run on AWS infrastructure.
 - `AzureClustersClient`: The AzureClusters API provides a single centrally managed service to create and manage Anthos clusters that run on Azure infrastructure.
 

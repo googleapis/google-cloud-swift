@@ -5,9 +5,10 @@ Enables consumers to procure products served by Cloud Marketplace platform
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``LicenseManagementServiceClient``: Service for managing licenses. (Recommended starting point)
+- ``LicenseManagementServiceClient``: Service for managing licenses.
 - ``ConsumerProcurementServiceClient``: ConsumerProcurementService allows customers to make purchases of products served by the Cloud Commerce platform.
 
 ## Quickstart
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``LicenseManagementServiceClient``:
 
 @Snippet(path: "LicenseManagementServiceQuickstart")
-

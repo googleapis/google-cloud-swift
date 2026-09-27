@@ -7,7 +7,8 @@ that service consumers no longer use.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ServiceUsageClient``: Enables services that service consumers want to use on Google Cloud Platform, lists the available or enabled services, or disables services that service consumers no longer use.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ServiceUsageClient``:
 
 @Snippet(path: "ServiceUsageQuickstart")
-

@@ -5,7 +5,8 @@ Manage Apache Kafka clusters and resources.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ManagedSchemaRegistryClient``: SchemaRegistry is the root resource to represent a schema registry instance.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ManagedSchemaRegistryClient``:
 
 @Snippet(path: "ManagedSchemaRegistryQuickstart")
-

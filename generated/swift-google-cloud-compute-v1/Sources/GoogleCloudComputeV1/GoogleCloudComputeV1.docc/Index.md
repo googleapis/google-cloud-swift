@@ -7,9 +7,10 @@ Creates and runs virtual machines on Google Cloud Platform.
 
 This client library was generated from the "20260821" revision of the API.
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``AcceleratorTypesClient``: Service for the acceleratorTypes resource. (Recommended starting point) (enabled by the `AcceleratorTypes` trait)
+- ``AcceleratorTypesClient``: Service for the acceleratorTypes resource. (enabled by the `AcceleratorTypes` trait)
 - ``AddressesClient``: Service for the addresses resource. (enabled by the `Addresses` trait)
 - ``AdviceClient``: Service for the advice resource. (enabled by the `Advice` trait)
 - ``AutoscalersClient``: Service for the autoscalers resource. (enabled by the `Autoscalers` trait)
@@ -139,11 +140,10 @@ Most applications use the `*Client` types in this library:
 
 ## Quickstart
 
-The following example demonstrates using ``AcceleratorTypesClient``:
+The following example demonstrates using ``InstancesClient``:
 
-@Snippet(path: "acceleratorTypesQuickstart")
+@Snippet(path: "instancesQuickstart")
 
 ## See Also
 
 - <doc:PackageTraits>
-

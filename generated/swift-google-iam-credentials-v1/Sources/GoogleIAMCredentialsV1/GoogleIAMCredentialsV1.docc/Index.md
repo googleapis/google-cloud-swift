@@ -5,7 +5,8 @@ Creates short-lived, limited-privilege credentials for IAM service accounts.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``IAMCredentialsClient``: A service account is a special type of Google account that belongs to your application or a virtual machine (VM), instead of to an individual end user.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``IAMCredentialsClient``:
 
 @Snippet(path: "IAMCredentialsQuickstart")
-

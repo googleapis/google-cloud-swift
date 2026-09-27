@@ -9,9 +9,10 @@ Manages Hadoop-based clusters and jobs on Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AutoscalingPolicyServiceClient`: The API interface for managing autoscaling policies in the Dataproc API. (Recommended starting point)
+- `AutoscalingPolicyServiceClient`: The API interface for managing autoscaling policies in the Dataproc API.
 - `BatchControllerClient`: The BatchController provides methods to manage batch workloads.
 - `ClusterControllerClient`: The ClusterControllerService provides methods to manage clusters of Compute Engine instances.
 - `JobControllerClient`: The JobController provides methods to manage jobs.

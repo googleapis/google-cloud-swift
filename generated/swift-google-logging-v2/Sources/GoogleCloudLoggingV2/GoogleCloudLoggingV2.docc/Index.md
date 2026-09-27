@@ -5,9 +5,10 @@ Writes log entries and manages your Cloud Logging configuration.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``LoggingServiceV2Client``: Service for ingesting and querying logs. (Recommended starting point)
+- ``LoggingServiceV2Client``: Service for ingesting and querying logs.
 - ``ConfigServiceV2Client``: Service for configuring sinks used to route log entries.
 - ``MetricsServiceV2Client``: Service for configuring logs-based metrics.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``LoggingServiceV2Client``:
 
 @Snippet(path: "LoggingServiceV2Quickstart")
-

@@ -9,7 +9,8 @@ Manages the API keys associated with developer projects.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ApiKeysClient`: Manages the API keys associated with projects.
 

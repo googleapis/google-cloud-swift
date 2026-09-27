@@ -9,7 +9,8 @@ APIs to automate management of cloud infrastructure for network functions.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `TelcoAutomationClient`: TelcoAutomation Service manages the control plane cluster a.k.a.
 

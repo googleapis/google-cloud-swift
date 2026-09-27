@@ -15,7 +15,8 @@ without having to wrestle with infrastructure.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DataFusionClient`: Service for creating and managing Data Fusion instances.
 

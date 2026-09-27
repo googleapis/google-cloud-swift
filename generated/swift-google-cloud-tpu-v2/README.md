@@ -9,7 +9,8 @@ TPU API provides customers with access to Google TPU technology.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `TpuClient`: TPU API v2.
 

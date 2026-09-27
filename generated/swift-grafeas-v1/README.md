@@ -10,7 +10,8 @@ retrieval of critical metadata about all of your software artifacts.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `GrafeasClient`: Grafeas API.
 

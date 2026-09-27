@@ -9,7 +9,8 @@ Security Posture is a comprehensive framework of policy sets that empowers organ
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `SecurityPostureClient`: Service describing handlers for resources.
 

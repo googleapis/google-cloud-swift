@@ -7,7 +7,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `RecommenderClient`: Provides insights and recommendations for cloud customers for various categories like performance optimization, cost savings, reliability, feature discovery, etc.
 

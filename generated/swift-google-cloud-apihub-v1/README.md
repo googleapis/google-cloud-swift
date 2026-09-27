@@ -7,9 +7,10 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `ApiHubClient`: This service provides all methods related to the API hub. (Recommended starting point)
+- `ApiHubClient`: This service provides all methods related to the API hub.
 - `ApiHubDependenciesClient`: This service provides methods for various operations related to a Dependency in the API hub.
 - `ApiHubCollectClient`: This service exposes methods used for collecting various types of data from different first party and third party sources and push it to Hub's collect layer.
 - `ApiHubCurateClient`: This service is used for managing curations for processing API data consumed from collect layer.

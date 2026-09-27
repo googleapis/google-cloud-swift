@@ -3,9 +3,10 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``KeyDashboardServiceClient``: Provides a cross-region view of all Cloud KMS keys in a given Cloud project. (Recommended starting point)
+- ``KeyDashboardServiceClient``: Provides a cross-region view of all Cloud KMS keys in a given Cloud project.
 - ``KeyTrackingServiceClient``: Returns information about the resources in an org that are protected by a given Cloud KMS key via CMEK.
 
 ## Quickstart
@@ -13,4 +14,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``KeyDashboardServiceClient``:
 
 @Snippet(path: "KeyDashboardServiceQuickstart")
-

@@ -6,7 +6,8 @@ assessment and planning tool.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``RapidMigrationAssessmentClient``: Service describing handlers for resources.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``RapidMigrationAssessmentClient``:
 
 @Snippet(path: "RapidMigrationAssessmentQuickstart")
-

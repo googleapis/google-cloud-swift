@@ -10,7 +10,8 @@ managing Memcached instances in GCP.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `CloudMemcacheClient`: Configures and manages Cloud Memorystore for Memcached instances.
 

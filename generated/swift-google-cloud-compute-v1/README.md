@@ -11,9 +11,10 @@ This client library was generated from the "20260821" revision of the API.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AcceleratorTypesClient`: Service for the acceleratorTypes resource. (Recommended starting point) (enabled by the `AcceleratorTypes` trait)
+- `AcceleratorTypesClient`: Service for the acceleratorTypes resource. (enabled by the `AcceleratorTypes` trait)
 - `AddressesClient`: Service for the addresses resource. (enabled by the `Addresses` trait)
 - `AdviceClient`: Service for the advice resource. (enabled by the `Advice` trait)
 - `AutoscalersClient`: Service for the autoscalers resource. (enabled by the `Autoscalers` trait)
@@ -143,21 +144,19 @@ Most applications use the `*Client` types in this library:
 
 ## Quickstart
 
-The following example demonstrates using `AcceleratorTypesClient`:
+The following example demonstrates using `InstancesClient`:
 
 ```swift
 import Foundation
 import GoogleCloudComputeV1
 
 func sample() async throws {
-  let client = try GoogleCloudComputeV1.AcceleratorTypesClient()
-  let items = client.aggregatedListByItems(
-    request: AcceleratorTypesClient.AggregatedListRequest()
+  let client = try GoogleCloudComputeV1.InstancesClient()
+  let response = try await client.addAccessConfigPollingUntilDone(
+    request: InstancesClient.AddAccessConfigRequest()
   /* set fields using .with { $0... } */
 )
-  for try await item in items {
-    print("  \(item)")
-  }
+  print("Success: \(response)")
 }
 ```
 

@@ -7,7 +7,8 @@ against best practices and recommendations.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``WorkloadManagerClient``: The Workload Manager provides various tools to deploy, validate and observe your workloads running on Google Cloud.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``WorkloadManagerClient``:
 
 @Snippet(path: "WorkloadManagerQuickstart")
-

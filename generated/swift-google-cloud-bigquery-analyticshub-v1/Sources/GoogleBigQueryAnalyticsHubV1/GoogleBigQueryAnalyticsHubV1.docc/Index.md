@@ -5,7 +5,8 @@ Exchange data and analytics assets securely and efficiently.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AnalyticsHubServiceClient``: The AnalyticsHubService API facilitates data sharing within and across organizations.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AnalyticsHubServiceClient``:
 
 @Snippet(path: "AnalyticsHubServiceQuickstart")
-

@@ -5,7 +5,8 @@ Creates and manages Redis instances on the Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``CloudRedisClient``: Google Cloud Memorystore for Redis v1.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CloudRedisClient``:
 
 @Snippet(path: "CloudRedisQuickstart")
-

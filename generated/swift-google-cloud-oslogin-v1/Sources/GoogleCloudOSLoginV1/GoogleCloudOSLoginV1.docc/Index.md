@@ -5,7 +5,8 @@ You can use OS Login to manage access to your VM instances using IAM roles.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``OsLoginServiceClient``: The Cloud OS Login API allows you to manage users and their associated SSH public keys for logging into virtual machines on Google Cloud Platform.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``OsLoginServiceClient``:
 
 @Snippet(path: "OsLoginServiceQuickstart")
-

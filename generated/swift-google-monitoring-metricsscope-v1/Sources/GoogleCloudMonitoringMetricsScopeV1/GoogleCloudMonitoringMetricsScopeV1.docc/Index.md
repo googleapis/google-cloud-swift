@@ -10,7 +10,8 @@ documentation](https://cloud.google.com/monitoring/docs).
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``MetricsScopesClient``: Manages Cloud Monitoring Metrics Scopes, and the monitoring of Google Cloud projects and AWS accounts.
 
@@ -19,4 +20,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``MetricsScopesClient``:
 
 @Snippet(path: "MetricsScopesQuickstart")
-

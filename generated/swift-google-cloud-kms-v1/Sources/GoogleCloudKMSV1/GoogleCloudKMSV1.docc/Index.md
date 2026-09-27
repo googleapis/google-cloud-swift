@@ -6,9 +6,10 @@ service, for direct use by other cloud resources and applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``AutokeyClient``: Provides interfaces for using Cloud KMS Autokey to provision new CryptoKeys, ready for Customer Managed Encryption Key (CMEK) use, on-demand. (Recommended starting point)
+- ``AutokeyClient``: Provides interfaces for using Cloud KMS Autokey to provision new CryptoKeys, ready for Customer Managed Encryption Key (CMEK) use, on-demand.
 - ``AutokeyAdminClient``: Provides interfaces for managing Cloud KMS Autokey folder-level or project-level configurations.
 - ``EkmServiceClient``: Manages external cryptographic keys and operations using those keys.
 - ``HsmManagementClient``: Provides interfaces for managing HSM instances.
@@ -19,4 +20,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AutokeyClient``:
 
 @Snippet(path: "AutokeyQuickstart")
-

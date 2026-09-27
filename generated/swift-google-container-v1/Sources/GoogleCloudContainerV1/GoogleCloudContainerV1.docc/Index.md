@@ -6,7 +6,8 @@ Kubernetes technology.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ClusterManagerClient``: Google Kubernetes Engine Cluster Manager v1.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ClusterManagerClient``:
 
 @Snippet(path: "ClusterManagerQuickstart")
-

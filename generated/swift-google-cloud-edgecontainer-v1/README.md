@@ -7,7 +7,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `EdgeContainerClient`: EdgeContainer API provides management of Kubernetes Clusters on Google Edge Cloud deployments.
 

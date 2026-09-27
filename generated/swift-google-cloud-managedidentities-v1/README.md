@@ -11,7 +11,8 @@ a highly available, hardened service running Microsoft Active Directory
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ManagedIdentitiesServiceClient`: The managedidentites.googleapis.com service implements the Google Cloud Managed Identites API for identity services (e.g.
 

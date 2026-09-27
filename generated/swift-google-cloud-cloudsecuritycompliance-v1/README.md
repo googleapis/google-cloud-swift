@@ -7,9 +7,10 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AuditClient`: Service describing handlers for resources. (Recommended starting point)
+- `AuditClient`: Service describing handlers for resources.
 - `CmEnrollmentServiceClient`: Service describing CmEnrollment related RPCs for complianceManager.
 - `ConfigClient`: Config Service manages compliance frameworks, cloud controls, and their configurations.
 - `DeploymentClient`: Deployment service allows users to manage deployments of Frameworks and Cloud Controls on a target resource.

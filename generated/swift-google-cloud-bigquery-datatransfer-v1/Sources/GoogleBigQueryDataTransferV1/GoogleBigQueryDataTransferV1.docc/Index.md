@@ -6,7 +6,8 @@ BigQuery on a regular basis.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``DataTransferServiceClient``: This API allows users to manage their data transfers into BigQuery.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``DataTransferServiceClient``:
 
 @Snippet(path: "DataTransferServiceQuickstart")
-

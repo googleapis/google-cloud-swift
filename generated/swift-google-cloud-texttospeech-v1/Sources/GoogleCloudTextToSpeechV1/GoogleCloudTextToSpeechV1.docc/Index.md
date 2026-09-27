@@ -6,9 +6,10 @@ models.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``TextToSpeechClient``: Service that implements Google Cloud Text-to-Speech API. (Recommended starting point)
+- ``TextToSpeechClient``: Service that implements Google Cloud Text-to-Speech API.
 - ``TextToSpeechLongAudioSynthesizeClient``: Service that implements Google Cloud Text-to-Speech API.
 
 ## Quickstart
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``TextToSpeechClient``:
 
 @Snippet(path: "TextToSpeechQuickstart")
-

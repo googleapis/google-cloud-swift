@@ -12,7 +12,8 @@ about all of your software artifacts.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ContainerAnalysisClient``: Retrieves analysis results of Cloud components such as Docker container images.
 
@@ -21,4 +22,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ContainerAnalysisClient``:
 
 @Snippet(path: "ContainerAnalysisQuickstart")
-

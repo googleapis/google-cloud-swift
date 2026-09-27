@@ -7,4 +7,3 @@ Defines common types for Google APIs.
 
 This is a type-only library containing a collection of common types used by other
 Google Cloud packages. It does not contain client types to make RPCs.
-

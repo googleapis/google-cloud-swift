@@ -11,7 +11,8 @@ plan.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `BudgetServiceClient`: BudgetService stores Cloud Billing budgets, which define a budget plan and rules to execute as we track spend against that plan.
 

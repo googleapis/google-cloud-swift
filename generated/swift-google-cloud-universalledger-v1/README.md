@@ -9,7 +9,8 @@ Universal Ledger API.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `UniversalLedgerClient`: A service for interacting with the Google Cloud Universal Ledger.
 

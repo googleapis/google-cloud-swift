@@ -6,9 +6,10 @@ containers.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``FoldersClient``: Manages Cloud Platform folder resources. (Recommended starting point)
+- ``FoldersClient``: Manages Cloud Platform folder resources.
 - ``OrganizationsClient``: Allows users to manage their organization resources.
 - ``ProjectsClient``: Manages Google Cloud Projects.
 - ``TagBindingsClient``: Allow users to create and manage TagBindings between TagValues and different Google Cloud resources throughout the GCP resource hierarchy.
@@ -21,4 +22,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``FoldersClient``:
 
 @Snippet(path: "FoldersQuickstart")
-

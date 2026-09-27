@@ -5,7 +5,8 @@ Manages lightweight user-provided functions executed in response to events.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``FunctionServiceClient``: Google Cloud Functions is used to deploy functions that are executed by Google in response to various events.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``FunctionServiceClient``:
 
 @Snippet(path: "FunctionServiceQuickstart")
-

@@ -9,7 +9,8 @@ Manage Cloud Database Migration Service resources on Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DataMigrationServiceClient`: Database Migration service.
 

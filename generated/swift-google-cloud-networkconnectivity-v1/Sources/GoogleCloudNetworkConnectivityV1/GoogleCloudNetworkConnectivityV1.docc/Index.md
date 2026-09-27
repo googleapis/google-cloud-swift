@@ -5,9 +5,10 @@ This API enables connectivity with and between Google Cloud resources.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``CrossNetworkAutomationServiceClient``: The service for CrossNetworkAutomation resources. (Recommended starting point)
+- ``CrossNetworkAutomationServiceClient``: The service for CrossNetworkAutomation resources.
 - ``DataTransferServiceClient``: DataTransferService is the service for the Data Transfer API.
 - ``HubServiceClient``: Network Connectivity Center is a hub-and-spoke abstraction for network connectivity management in Google Cloud.
 - ``InternalRangeServiceClient``: The CLH-based service for internal range resources used to perform IPAM operations within a VPC network.
@@ -18,4 +19,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CrossNetworkAutomationServiceClient``:
 
 @Snippet(path: "CrossNetworkAutomationServiceQuickstart")
-

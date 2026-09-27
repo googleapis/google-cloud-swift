@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``BlockchainNodeEngineClient``: This service is the control plane API for Blockchain Node Engine, and can be used to create, read, and delete blockchain nodes.
 
@@ -12,4 +13,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``BlockchainNodeEngineClient``:
 
 @Snippet(path: "BlockchainNodeEngineQuickstart")
-

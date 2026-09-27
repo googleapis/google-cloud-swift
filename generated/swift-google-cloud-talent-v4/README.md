@@ -10,12 +10,13 @@ delete job postings, as well as search jobs based on keywords and filters.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `CompanyServiceClient`: A service that handles company management, including CRUD and enumeration.
 - `CompletionClient`: A service handles auto completion.
 - `EventServiceClient`: A service handles client event report.
-- `JobServiceClient`: A service handles job management, including job CRUD, enumeration and search. (Recommended starting point)
+- `JobServiceClient`: A service handles job management, including job CRUD, enumeration and search.
 - `TenantServiceClient`: A service that handles tenant management, including CRUD and enumeration.
 
 ## Quickstart

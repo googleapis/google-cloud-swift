@@ -5,9 +5,10 @@ Controls access to cloud applications running on Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``IdentityAwareProxyAdminServiceClient``: APIs for Identity-Aware Proxy Admin configurations. (Recommended starting point)
+- ``IdentityAwareProxyAdminServiceClient``: APIs for Identity-Aware Proxy Admin configurations.
 - ``IdentityAwareProxyOAuthServiceClient``: API to programmatically create, list and retrieve Identity Aware Proxy (IAP) OAuth brands; and create, retrieve, delete and reset-secret of IAP OAuth clients.
 
 ## Quickstart
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``IdentityAwareProxyAdminServiceClient``:
 
 @Snippet(path: "IdentityAwareProxyAdminServiceQuickstart")
-

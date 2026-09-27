@@ -7,9 +7,10 @@ services they consume.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``CloudQuotasClient``: The Cloud Quotas API is an infrastructure service for Google Cloud that lets service consumers list and manage their resource usage limits. (Recommended starting point)
+- ``CloudQuotasClient``: The Cloud Quotas API is an infrastructure service for Google Cloud that lets service consumers list and manage their resource usage limits.
 - ``QuotaAdjusterSettingsManagerClient``: The Quotas Adjuster Settings API is an infrastructure service for Google Cloud that lets service consumers view and update their quota adjuster settings.
 
 ## Quickstart
@@ -17,4 +18,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CloudQuotasClient``:
 
 @Snippet(path: "CloudQuotasQuickstart")
-

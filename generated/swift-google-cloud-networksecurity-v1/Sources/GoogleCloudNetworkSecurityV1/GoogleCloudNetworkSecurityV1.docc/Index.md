@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AddressGroupServiceClient``: AddressGroup is a resource that manages a collection of IP or Domain Names, it can be used in Firewall Policy to represent allow or deny traffic from all the IP or Domain Names from the Address Group.
 - ``OrganizationAddressGroupServiceClient``: Organization AddressGroup is created under organization.
@@ -11,7 +12,7 @@ Most applications use the `*Client` types in this library:
 - ``FirewallActivationClient``: Service for managing Firewall Endpoints and Associations.
 - ``InterceptClient``: Service for Third-Party Packet Intercept (TPPI).
 - ``MirroringClient``: PM2 is the "out-of-band" flavor of the Network Security Integrations product.
-- ``NetworkSecurityClient``: Network Security API provides resources to configure authentication and authorization policies. (Recommended starting point)
+- ``NetworkSecurityClient``: Network Security API provides resources to configure authentication and authorization policies.
 - ``SecurityProfileGroupServiceClient``: SecurityProfileGroup is a resource that defines an action for specific threat signatures or severity levels.
 - ``OrganizationSecurityProfileGroupServiceClient``: Organization SecurityProfileGroup is created under organization.
 - ``SSERealmServiceClient``: Service describing handlers for resources.
@@ -21,4 +22,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``NetworkSecurityClient``:
 
 @Snippet(path: "NetworkSecurityQuickstart")
-

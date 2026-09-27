@@ -5,7 +5,8 @@ The Audit Manager API allows customers to manage compliance audits.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AuditManagerClient``: Service describing handlers for resources.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AuditManagerClient``:
 
 @Snippet(path: "AuditManagerQuickstart")
-

@@ -17,11 +17,12 @@ items at scale.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DataObjectSearchServiceClient`: Service for searching data objects.
 - `DataObjectServiceClient`: Service for creating and managing data objects.
-- `VectorSearchServiceClient`: VectorSearchService provides methods for managing Collection resources, and Collection Index resources. (Recommended starting point)
+- `VectorSearchServiceClient`: VectorSearchService provides methods for managing Collection resources, and Collection Index resources.
 
 ## Quickstart
 

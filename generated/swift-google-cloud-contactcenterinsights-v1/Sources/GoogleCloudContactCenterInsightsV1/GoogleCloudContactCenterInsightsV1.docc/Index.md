@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ContactCenterInsightsClient``: An API that lets users analyze and explore their business conversation data.
 
@@ -12,4 +13,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ContactCenterInsightsClient``:
 
 @Snippet(path: "ContactCenterInsightsQuickstart")
-

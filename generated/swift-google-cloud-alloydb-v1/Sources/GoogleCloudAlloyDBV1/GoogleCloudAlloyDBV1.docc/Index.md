@@ -15,14 +15,14 @@ application changes; and modernize legacy proprietary databases.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AlloyDBCSQLAdminClient``: Service for interactions with CloudSQL.
-- ``AlloyDBAdminClient``: Service describing handlers for resources. (Recommended starting point)
+- ``AlloyDBAdminClient``: Service describing handlers for resources.
 
 ## Quickstart
 
 The following example demonstrates using ``AlloyDBAdminClient``:
 
 @Snippet(path: "AlloyDBAdminQuickstart")
-

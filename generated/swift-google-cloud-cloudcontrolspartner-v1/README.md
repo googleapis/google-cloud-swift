@@ -10,9 +10,10 @@ your Sovereign Controls by Partners offering.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `CloudControlsPartnerCoreClient`: Service describing handlers for resources. (Recommended starting point)
+- `CloudControlsPartnerCoreClient`: Service describing handlers for resources.
 - `CloudControlsPartnerMonitoringClient`: Service describing handlers for resources.
 
 ## Quickstart

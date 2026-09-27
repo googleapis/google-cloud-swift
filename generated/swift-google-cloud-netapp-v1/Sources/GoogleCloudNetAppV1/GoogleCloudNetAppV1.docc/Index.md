@@ -7,7 +7,8 @@ scalable performance with global availability.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``NetAppClient``: NetApp Files Google Cloud Service.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``NetAppClient``:
 
 @Snippet(path: "NetAppQuickstart")
-

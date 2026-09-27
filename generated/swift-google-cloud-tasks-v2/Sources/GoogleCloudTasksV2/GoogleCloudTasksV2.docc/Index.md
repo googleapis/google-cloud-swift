@@ -5,7 +5,8 @@ Manages the execution of large numbers of distributed requests.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``CloudTasksClient``: Cloud Tasks allows developers to manage the execution of background work in their applications.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CloudTasksClient``:
 
 @Snippet(path: "CloudTasksQuickstart")
-

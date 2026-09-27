@@ -6,7 +6,8 @@ Oracle database services, such as Exadata and Autonomous Databases.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``OracleDatabaseClient``: Service describing handlers for resources.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``OracleDatabaseClient``:
 
 @Snippet(path: "OracleDatabaseQuickstart")
-

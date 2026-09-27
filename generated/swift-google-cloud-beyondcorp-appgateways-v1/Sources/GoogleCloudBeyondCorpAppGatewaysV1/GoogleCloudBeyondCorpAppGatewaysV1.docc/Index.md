@@ -8,7 +8,8 @@ connectivity using the App Connector hybrid connectivity solution.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AppGatewaysServiceClient``: The beyondcorp.googleapis.com service implements the Google Cloud BeyondCorp API.
 
@@ -17,4 +18,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AppGatewaysServiceClient``:
 
 @Snippet(path: "AppGatewaysServiceQuickstart")
-

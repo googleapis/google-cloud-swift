@@ -7,7 +7,8 @@ authenticate to Google and make API calls.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``IAMClient``: Creates and manages Identity and Access Management (IAM) resources.
 
@@ -16,4 +17,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``IAMClient``:
 
 @Snippet(path: "IAMQuickstart")
-

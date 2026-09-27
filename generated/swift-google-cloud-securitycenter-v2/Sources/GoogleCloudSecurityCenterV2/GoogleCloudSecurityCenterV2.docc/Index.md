@@ -6,7 +6,8 @@ findings within an organization.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``SecurityCenterClient``: V2 APIs for Security Center service.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``SecurityCenterClient``:
 
 @Snippet(path: "SecurityCenterQuickstart")
-

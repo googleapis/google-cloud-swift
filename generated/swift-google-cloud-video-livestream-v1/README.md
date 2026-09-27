@@ -7,7 +7,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `LivestreamServiceClient`: Using Live Stream API, you can generate live streams in the various renditions and streaming formats.
 

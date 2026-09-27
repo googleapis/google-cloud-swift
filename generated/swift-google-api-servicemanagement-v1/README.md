@@ -11,7 +11,8 @@ by service consumers.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ServiceManagerClient`: Google Service Management API.
 

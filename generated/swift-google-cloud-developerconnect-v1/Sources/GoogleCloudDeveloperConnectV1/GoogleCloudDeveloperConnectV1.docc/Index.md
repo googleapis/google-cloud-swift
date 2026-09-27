@@ -5,9 +5,10 @@ Connect third-party source code management to Google
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``DeveloperConnectClient``: Service describing handlers for resources. (Recommended starting point)
+- ``DeveloperConnectClient``: Service describing handlers for resources.
 - ``InsightsConfigServiceClient``: Creates and manages InsightsConfigs.
 
 ## Quickstart
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``DeveloperConnectClient``:
 
 @Snippet(path: "DeveloperConnectQuickstart")
-

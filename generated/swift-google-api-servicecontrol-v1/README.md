@@ -10,10 +10,11 @@ with Service Infrastructure.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `QuotaControllerClient`: Allows clients to allocate and release quota against a managed service.
-- `ServiceControllerClient`: Lets clients check and report operations against a managed service. (Recommended starting point)
+- `ServiceControllerClient`: Lets clients check and report operations against a managed service.
 
 ## Quickstart
 

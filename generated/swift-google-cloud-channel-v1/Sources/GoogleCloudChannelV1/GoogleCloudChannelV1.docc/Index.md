@@ -7,14 +7,14 @@ Workspace, Maps and Chrome.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``CloudChannelReportsServiceClient``: Deprecated: This service is being deprecated.
-- ``CloudChannelServiceClient``: CloudChannelService lets Google cloud resellers and distributors manage their customers, channel partners, entitlements, and reports. (Recommended starting point)
+- ``CloudChannelServiceClient``: CloudChannelService lets Google cloud resellers and distributors manage their customers, channel partners, entitlements, and reports.
 
 ## Quickstart
 
 The following example demonstrates using ``CloudChannelServiceClient``:
 
 @Snippet(path: "CloudChannelServiceQuickstart")
-

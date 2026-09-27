@@ -9,7 +9,8 @@ Execute workflows created with Workflows API.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `ExecutionsClient`: Executions is used to start and manage running instances of Workflows called executions.
 

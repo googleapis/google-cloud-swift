@@ -13,7 +13,8 @@ your application for Stackdriver Trace, we recommend using OpenTelemetry.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `TraceServiceClient`: Service for collecting and viewing traces and spans within a trace.
 

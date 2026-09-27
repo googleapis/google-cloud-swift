@@ -10,9 +10,10 @@ offerings.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `CaseAttachmentServiceClient`: A service to manage file attachments for Google Cloud support cases. (Recommended starting point)
+- `CaseAttachmentServiceClient`: A service to manage file attachments for Google Cloud support cases.
 - `CaseServiceClient`: A service to manage Google Cloud support cases.
 - `CommentServiceClient`: A service to manage comments on cases.
 - `SupportEventSubscriptionServiceClient`: Service for managing customer support event subscriptions.

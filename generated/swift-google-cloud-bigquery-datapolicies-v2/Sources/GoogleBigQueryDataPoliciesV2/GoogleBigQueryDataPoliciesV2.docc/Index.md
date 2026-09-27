@@ -5,7 +5,8 @@ Allows users to manage BigQuery data policies.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``DataPolicyServiceClient``: Data Policy Service provides APIs for managing the BigQuery Data Policy.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``DataPolicyServiceClient``:
 
 @Snippet(path: "DataPolicyServiceQuickstart")
-

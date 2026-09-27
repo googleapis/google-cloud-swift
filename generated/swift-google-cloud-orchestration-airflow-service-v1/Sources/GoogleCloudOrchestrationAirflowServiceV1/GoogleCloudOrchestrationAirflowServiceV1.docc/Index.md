@@ -5,9 +5,10 @@ Manages Apache Airflow environments on Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``EnvironmentsClient``: Managed Apache Airflow Environments. (Recommended starting point)
+- ``EnvironmentsClient``: Managed Apache Airflow Environments.
 - ``ImageVersionsClient``: Readonly service to query available ImageVersions.
 
 ## Quickstart
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``EnvironmentsClient``:
 
 @Snippet(path: "EnvironmentsQuickstart")
-

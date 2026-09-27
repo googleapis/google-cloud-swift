@@ -5,7 +5,8 @@ An API to manage the running of Batch resources on Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``BatchServiceClient``: Google Batch Service. The service manages user submitted batch jobs and allocates Google Compute Engine VM instances to run the jobs.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``BatchServiceClient``:
 
 @Snippet(path: "BatchServiceQuickstart")
-

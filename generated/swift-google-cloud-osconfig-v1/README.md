@@ -10,9 +10,10 @@ compliance, and configuration management on VM instances.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `OsConfigServiceClient`: The OS Config service is a server-side component that you can use to manage package installations and patch jobs for virtual machine instances. (Recommended starting point)
+- `OsConfigServiceClient`: The OS Config service is a server-side component that you can use to manage package installations and patch jobs for virtual machine instances.
 - `OsConfigZonalServiceClient`: The OS Config service is the server-side component that allows users to manage package installations and patch jobs for Compute Engine VM instances.
 
 ## Quickstart

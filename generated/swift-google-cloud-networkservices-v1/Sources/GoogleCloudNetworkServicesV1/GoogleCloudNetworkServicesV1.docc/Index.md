@@ -3,14 +3,14 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``DepServiceClient``: Service describing handlers for resources.
-- ``NetworkServicesClient``: Service describing handlers for resources. (Recommended starting point)
+- ``NetworkServicesClient``: Service describing handlers for resources.
 
 ## Quickstart
 
 The following example demonstrates using ``NetworkServicesClient``:
 
 @Snippet(path: "NetworkServicesQuickstart")
-

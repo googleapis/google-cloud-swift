@@ -13,7 +13,8 @@ windows, rescheduling, and on-demand updates.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `MaintenanceClient`: Unified Maintenance service.
 

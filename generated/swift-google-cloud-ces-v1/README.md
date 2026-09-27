@@ -7,9 +7,10 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AgentServiceClient`: The service that manages agent-related resources in Gemini Enterprise for Customer Engagement (CES). (Recommended starting point)
+- `AgentServiceClient`: The service that manages agent-related resources in Gemini Enterprise for Customer Engagement (CES).
 - `SessionServiceClient`: Session service provides APIs for interacting with CES agents.
 - `ToolServiceClient`: Tool service provides APIs for interacting with CES tools.
 - `WidgetServiceClient`: Provides APIs for widgets to interact with CES APIs.

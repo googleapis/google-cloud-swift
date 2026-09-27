@@ -12,10 +12,11 @@ API standards, as described in https://google.aip.dev/.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `BuildsClient`: Cloud Run Build Control Plane API.
-- `ExecutionsClient`: Cloud Run Execution Control Plane API. (Recommended starting point)
+- `ExecutionsClient`: Cloud Run Execution Control Plane API.
 - `InstancesClient`: The Cloud Run Instances API allows you to manage Cloud Run Instances.
 - `JobsClient`: Cloud Run Job Control Plane API.
 - `RevisionsClient`: Cloud Run Revision Control Plane API.

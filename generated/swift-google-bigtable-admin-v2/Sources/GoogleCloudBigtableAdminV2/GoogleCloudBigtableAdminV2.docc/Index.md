@@ -5,9 +5,10 @@ Administer your Cloud Bigtable tables and instances.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``BigtableInstanceAdminClient``: Service for creating, configuring, and deleting Cloud Bigtable Instances and Clusters. (Recommended starting point)
+- ``BigtableInstanceAdminClient``: Service for creating, configuring, and deleting Cloud Bigtable Instances and Clusters.
 - ``BigtableTableAdminClient``: Service for creating, configuring, and deleting Cloud Bigtable tables.
 
 ## Quickstart
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``BigtableInstanceAdminClient``:
 
 @Snippet(path: "BigtableInstanceAdminQuickstart")
-

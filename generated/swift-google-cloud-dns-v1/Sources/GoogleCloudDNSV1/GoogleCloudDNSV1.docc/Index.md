@@ -5,10 +5,11 @@
 
 This client library was generated from the "20260714" revision of the API.
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``ChangesClient``: Service for the changes resource.
-- ``DnsKeysClient``: Service for the dnsKeys resource. (Recommended starting point)
+- ``DnsKeysClient``: Service for the dnsKeys resource.
 - ``ManagedZoneOperationsClient``: Service for the managedZoneOperations resource.
 - ``ManagedZonesClient``: Service for the managedZones resource.
 - ``PoliciesClient``: Service for the policies resource.
@@ -22,4 +23,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``DnsKeysClient``:
 
 @Snippet(path: "dnsKeysQuickstart")
-

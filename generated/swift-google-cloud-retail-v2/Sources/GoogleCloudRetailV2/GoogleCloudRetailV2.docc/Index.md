@@ -8,10 +8,11 @@ models, across your websites and mobile applications.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AnalyticsServiceClient``: Service for managing & accessing retail search business metric.
-- ``CatalogServiceClient``: Service for managing catalog configuration. (Recommended starting point)
+- ``CatalogServiceClient``: Service for managing catalog configuration.
 - ``CompletionServiceClient``: Autocomplete service for retail.
 - ``ControlServiceClient``: Service for modifying Control.
 - ``ConversationalSearchServiceClient``: Service for retail conversational search.
@@ -28,4 +29,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CatalogServiceClient``:
 
 @Snippet(path: "CatalogServiceQuickstart")
-

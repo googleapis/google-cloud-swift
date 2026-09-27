@@ -5,7 +5,8 @@ An API for controlling access to data by Google personnel.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AccessApprovalClient``: The service also periodically emails a list of recipients, defined at the Project/Folder/Organization level in the accessApprovalSettings, when there is a pending ApprovalRequest for them to act on.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AccessApprovalClient``:
 
 @Snippet(path: "AccessApprovalQuickstart")
-

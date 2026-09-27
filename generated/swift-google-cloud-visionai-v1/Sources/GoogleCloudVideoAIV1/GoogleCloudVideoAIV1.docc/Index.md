@@ -3,10 +3,11 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``HealthCheckServiceClient``: HealthCheckService provides an interface for Vertex AI Vision Cluster Health Check.
-- ``LiveVideoAnalyticsClient``: Service describing handlers for resources. (Recommended starting point)
+- ``LiveVideoAnalyticsClient``: Service describing handlers for resources.
 - ``AppPlatformClient``: Service describing handlers for resources.
 - ``StreamingServiceClient``: Streaming service for receiving and sending packets.
 - ``StreamsServiceClient``: Service describing handlers for resources.
@@ -17,4 +18,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``LiveVideoAnalyticsClient``:
 
 @Snippet(path: "LiveVideoAnalyticsQuickstart")
-

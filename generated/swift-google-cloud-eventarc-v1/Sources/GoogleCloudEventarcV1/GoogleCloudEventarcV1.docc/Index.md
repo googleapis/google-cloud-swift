@@ -5,7 +5,8 @@ Build event-driven applications on Google Cloud Platform.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``EventarcClient``: Eventarc allows users to subscribe to various events that are provided by Google Cloud services and forward them to supported destinations.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``EventarcClient``:
 
 @Snippet(path: "EventarcQuickstart")
-

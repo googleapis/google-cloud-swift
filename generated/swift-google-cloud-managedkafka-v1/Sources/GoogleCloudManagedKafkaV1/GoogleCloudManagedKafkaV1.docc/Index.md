@@ -5,9 +5,10 @@ Manage Apache Kafka clusters and resources.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- ``ManagedKafkaClient``: The service that a client application uses to manage Apache Kafka clusters, topics and consumer groups. (Recommended starting point)
+- ``ManagedKafkaClient``: The service that a client application uses to manage Apache Kafka clusters, topics and consumer groups.
 - ``ManagedKafkaConnectClient``: The service that a client application uses to manage Apache Kafka Connect clusters and connectors.
 
 ## Quickstart
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``ManagedKafkaClient``:
 
 @Snippet(path: "ManagedKafkaQuickstart")
-

@@ -10,7 +10,8 @@ service for GKE clusters.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `BackupForGKEClient`: BackupForGKE allows Kubernetes administrators to configure, execute, and manage backup and restore operations for their GKE clusters.
 

@@ -9,7 +9,8 @@ Scans your Compute and App Engine apps for common web vulnerabilities.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `WebSecurityScannerClient`: Web Security Scanner Service identifies security vulnerabilities in web applications hosted on Google Cloud.
 

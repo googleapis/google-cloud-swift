@@ -11,7 +11,8 @@ ease.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DlpServiceClient`: Sensitive Data Protection provides access to a powerful sensitive data inspection, classification, and de-identification platform that works on text, images, and Google Cloud storage repositories.
 

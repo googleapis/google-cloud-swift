@@ -6,7 +6,8 @@ services.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AccessContextManagerClient``: API for setting [access levels] [google.identity.accesscontextmanager.v1.AccessLevel] and [service perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter] for Google Cloud projects.
 
@@ -15,4 +16,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AccessContextManagerClient``:
 
 @Snippet(path: "AccessContextManagerQuickstart")
-

@@ -10,10 +10,11 @@ service.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `DataCatalogClient`: Deprecated: Please use Dataplex Catalog instead.
-- `PolicyTagManagerClient`: Policy Tag Manager API service allows you to manage your policy tags and taxonomies. (Recommended starting point)
+- `PolicyTagManagerClient`: Policy Tag Manager API service allows you to manage your policy tags and taxonomies.
 - `PolicyTagManagerSerializationClient`: Policy Tag Manager Serialization API service allows you to manipulate your policy tags and taxonomies in a serialized format.
 
 ## Quickstart

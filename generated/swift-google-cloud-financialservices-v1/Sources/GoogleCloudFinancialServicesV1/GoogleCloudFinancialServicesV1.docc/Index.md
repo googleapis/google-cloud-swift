@@ -3,7 +3,8 @@
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``AMLClient``: The AML (Anti Money Laundering) service allows users to perform REST operations on aml.
 
@@ -12,4 +13,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``AMLClient``:
 
 @Snippet(path: "AMLQuickstart")
-

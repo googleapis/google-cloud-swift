@@ -5,7 +5,8 @@ Creates and manages jobs run on a regular recurring schedule.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - ``CloudSchedulerClient``: The Cloud Scheduler API allows external entities to reliably schedule asynchronous jobs.
 
@@ -14,4 +15,3 @@ Most applications use the `*Client` types in this library:
 The following example demonstrates using ``CloudSchedulerClient``:
 
 @Snippet(path: "CloudSchedulerQuickstart")
-

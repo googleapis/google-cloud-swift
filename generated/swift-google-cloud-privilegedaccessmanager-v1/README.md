@@ -21,7 +21,8 @@ to service accounts for automated tasks, and more.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
 - `PrivilegedAccessManagerClient`: This API allows customers to manage temporary, request based privileged access to their resources.
 

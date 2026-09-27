@@ -14,9 +14,10 @@ API.
 
 ## Overview
 
-Most applications use the `*Client` types in this library:
+The following types provide methods to make RPCs. They are a good starting point
+to learn about this library.
 
-- `AccessPoliciesClient`: Manages Identity and Access Management (IAM) access policies. (Recommended starting point)
+- `AccessPoliciesClient`: Manages Identity and Access Management (IAM) access policies.
 - `PolicyBindingsClient`: An interface for managing Identity and Access Management (IAM) policy bindings.
 - `PrincipalAccessBoundaryPoliciesClient`: Manages Identity and Access Management (IAM) principal access boundary policies.
 
