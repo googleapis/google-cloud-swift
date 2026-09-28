@@ -19,7 +19,7 @@ import GoogleGax
 
 @Suite struct CircuitBreakerTests {
   @Test func construction() throws {
-    #expect(throws: RetryThrottlerError.tooFewMinTokens(min: 200, initial: 100)) {
+    #expect(throws: RetryThrottlerError.tooFewMinTokens(tokens: 100, minTokens: 200)) {
       try CircuitBreaker(tokens: 100, minTokens: 200, errorCost: 1)
     }
     #expect(throws: RetryThrottlerError.tokensOutOfRange(tokens: -1, minTokens: 10, errorCost: 5)) {

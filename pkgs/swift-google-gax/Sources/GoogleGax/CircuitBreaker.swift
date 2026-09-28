@@ -64,14 +64,14 @@ public final class CircuitBreaker: RetryThrottler, Sendable {
   ///   - errorCost: Decrease the token count by this value on failed request attempts.
   /// - Throws:
   ///   - ``RetryThrottlerError/tokensOutOfRange(tokens:minTokens:errorCost:)`` if any parameter is negative.
-  ///   - ``RetryThrottlerError/tooFewMinTokens(min:initial:)`` if `minTokens` > `tokens`.
+  ///   - ``RetryThrottlerError/tooFewMinTokens(tokens:minTokens:)`` if `minTokens` > `tokens`.
   public init(tokens: Int, minTokens: Int, errorCost: Int) throws {
     if tokens < 0 || minTokens < 0 || errorCost < 0 {
       throw RetryThrottlerError.tokensOutOfRange(
         tokens: tokens, minTokens: minTokens, errorCost: errorCost)
     }
     if minTokens > tokens {
-      throw RetryThrottlerError.tooFewMinTokens(min: minTokens, initial: tokens)
+      throw RetryThrottlerError.tooFewMinTokens(tokens: tokens, minTokens: minTokens)
     }
     self.maxTokens = tokens
     self.minTokens = minTokens

@@ -19,7 +19,7 @@ import Testing
 
 @Suite struct AdaptiveThrottlerTests {
   @Test func construction() throws {
-    #expect(throws: RetryThrottlerError.scalingOutOfRange(-1.0)) {
+    #expect(throws: RetryThrottlerError.factorOutOfRange(-1.0)) {
       try AdaptiveThrottler(factor: -1.0)
     }
     let _ = try AdaptiveThrottler(factor: 0.0)
