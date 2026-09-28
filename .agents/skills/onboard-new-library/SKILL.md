@@ -43,12 +43,8 @@ Before running code generation, verify that all required tools and compilers are
      ```
    *Installation if missing*:
    ```bash
-   mkdir -p "${HOME}/.local/bin"
-   BUILD_DIR=$(mktemp -d)
-   git clone --depth 1 --branch "1.38.1" https://github.com/apple/swift-protobuf.git "${BUILD_DIR}/swift-protobuf"
-   (cd "${BUILD_DIR}/swift-protobuf" && swift build -c release && cp .build/release/protoc-gen-swift "${HOME}/.local/bin/")
-   rm -rf "${BUILD_DIR}"
-   export PATH="${HOME}/.local/bin:${PATH}"
+   V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get version)
+   go run github.com/googleapis/librarian/cmd/librarian@${V} -v install
    ```
 
 5. **GitHub CLI (`gh`)**:

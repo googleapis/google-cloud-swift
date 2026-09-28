@@ -60,7 +60,7 @@ Always remember to restore dependencies with `swift package unedit` or
 Validate the code compiles using:
 
 ```shell
-swift build --target <SamplesTarget>
+GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build --target <SamplesTarget>
 ```
 
 ### Identify and run the sample test driver

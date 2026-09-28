@@ -10,8 +10,8 @@ We recommend that you follow the [Getting Started][getting-started-swift] guide.
 Once you have `swiftly` and `swift` installed the rest is relatively easy.
 
 We support and test against the last 3 minor releases of Swift (currently 6.2,
-6.3, and 6.4). You will need Swift >= 6.2. Check the version you have installed
-with:
+6.3, and 6.4). You should be using Swift >= 6.4 for development. Earlier
+versions emit too many warnings. Check the version you have installed with:
 
 ```shell
 swift --version
@@ -45,9 +45,28 @@ can be used with many IDEs.
 
 ## Compile the Code
 
+By default the code is configured to compile against released dependencies. This
+is almost always the wrong configuration for development. We use an environment
+variable to switch modes:
+
+```bash
+export GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true
+```
+
+Then you can use:
+
 ```bash
 swift build
 ```
+
+You may prefer:
+
+```bash
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build
+```
+
+This guide uses the latter style. You are welcome to use whichever style works
+best for you.
 
 > [!NOTE] If you encounter an error like `fatal: cannot use bare repository '...' (safe.bareRepository is 'explicit')` when SwiftPM tries to fetch or
 > update dependencies, you may need to update your global git configuration:
@@ -68,26 +87,27 @@ swift build
 ## Run the unit tests
 
 ```bash
-swift test
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test
 ```
 
 ## Run the unit tests for a specific package
 
 ```bash
-swift test --quiet --package-path pkgs/swift-google-gax
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test --quiet --package-path pkgs/swift-google-gax
 ```
 
 ## Sharing a build cache
 
 By default, when using `--package-path` does not reuse the build results for
 common libraries like `swift-crypto` or `gax`. You can add a build cache using
-`--scratch-path` to a common directory.
+`--build-path` to a common directory.
 
 For example, if using `bash`, you set this in your startup scripts:
 
 ```bash
-alias sbuild='swift build --scratch-path $(git rev-parse --show-toplevel)/.build-cache'
-alias stest='swift test --scratch-path $(git rev-parse --show-toplevel)/.build-cache'
+alias sbuild='env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build --build-path $(git rev-parse --show-toplevel)/.build-cache'
+alias stest ='env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test  --build-path $(git rev-parse --show-toplevel)/.build-cache --quiet'
+alias stestv='env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test  --build-path $(git rev-parse --show-toplevel)/.build-cache'
 ```
 
 Then use these aliases to speed up testing:
@@ -112,55 +132,6 @@ You can customize these aliases even further. Consider
     with `@diagnose(DeprecatedDeclaration, as: ignored)`, so the flag is not
     needed, and leaving it off also catches genuine use of deprecated APIs.
 - Add `--quiet` to `stest` to reduce the noise and only see test failures
-
-## Testing with local dependencies (`swift package edit`)
-
-Packages in this repository declare dependencies on `swift-google-auth` and
-`swift-google-wkt` via their published remote GitHub repository URLs (e.g.,
-`https://github.com/googleapis/swift-google-auth`).
-
-When developing locally and modifying code in `pkgs/swift-google-auth` or
-`pkgs/swift-google-wkt`, testing a dependent package (such as
-`pkgs/swift-google-gax`, `pkgs/swift-google-cloud-storage`, or any
-generated client library) will **not** automatically pick up your local changes.
-By default, SwiftPM resolves and builds against the remote git checkouts.
-
-To test your local changes in dependent packages, put the dependency into
-editable mode pointing to your local working directory:
-
-```bash
-REPO_ROOT="$(git rev-parse --show-toplevel)"
-swift package --package-path pkgs/swift-google-gax edit \
-  --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
-```
-
-If you are using `--scratch-path` (such as via the `sbuild` / `stest` aliases),
-pass the matching `--scratch-path` to the edit command:
-
-```bash
-swift package --scratch-path "${REPO_ROOT}/.build-cache" \
-  --package-path pkgs/swift-google-gax edit \
-  --path "${REPO_ROOT}/pkgs/swift-google-auth" swift-google-auth
-```
-
-Once you have finished testing, restore the dependency back to the remote version:
-
-```bash
-swift package --package-path pkgs/swift-google-gax unedit --force swift-google-auth
-```
-
-or with `--scratch-path` if used:
-
-```bash
-swift package --scratch-path "${REPO_ROOT}/.build-cache" \
-  --package-path pkgs/swift-google-gax unedit --force swift-google-auth
-```
-
-> [!TIP]
-> The `./ci/test.sh` script automatically puts dependencies into edit mode for
-> all packages in the repository and restores them upon exit (even if tests fail).
-> You can use `./ci/test.sh` to run full validation across all packages without
-> manually editing and restoring each package.
 
 ## Exhaustive builds and tests
 
@@ -267,12 +238,14 @@ env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
   GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1 \
+  GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true \
   swift test
 
 env GOOGLE_CLOUD_PROJECT=${P_ID} \
   GOOGLE_CLOUD_SWIFT_TEST_BUCKET="${P_ID}-bucket" \
   GOOGLE_CLOUD_SWIFT_TEST_SERVICE_ACCOUNT=swift-sdk-test@${P_ID}.iam.gserviceaccount.com \
   GOOGLE_CLOUD_SWIFT_TEST_STORAGE_KMS_KEY_RING=us-central1 \
+  GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true \
   swift test --package-path pkgs/swift-google-cloud-storage
 ```
 
@@ -281,22 +254,22 @@ env GOOGLE_CLOUD_PROJECT=${P_ID} \
 To preview the user guide use:
 
 ```bash
-swift package --disable-sandbox preview-documentation --target UserGuide
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift package --disable-sandbox preview-documentation --target UserGuide
 ```
 
 To preview one of the handcrafted packages use:
 
 ```bash
-swift package --disable-sandbox preview-documentation --target GoogleAuth
-swift package --disable-sandbox preview-documentation --target GoogleWKT
-swift package --disable-sandbox preview-documentation --target GoogleGax
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift package --disable-sandbox preview-documentation --target GoogleAuth
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift package --disable-sandbox preview-documentation --target GoogleWKT
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift package --disable-sandbox preview-documentation --target GoogleGax
 ```
 
 You can also preview the GAPICs used by the top-level tests, for example:
 
 ```bash
-swift package --disable-sandbox preview-documentation --target GoogleCloudSecretManagerV1
-swift package --disable-sandbox preview-documentation --target GoogleCloudComputeV1
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift package --disable-sandbox preview-documentation --target GoogleCloudSecretManagerV1
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift package --disable-sandbox preview-documentation --target GoogleCloudComputeV1
 ```
 
 ### Preview Other Generated Packages
@@ -309,6 +282,7 @@ in your shell to load that package into the workspace:
 
 ```bash
 env GOOGLE_CLOUD_SWIFT_EXTRA_PACKAGES="swift-google-cloud-vision-v1" \
+  GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true \
   swift package --disable-sandbox preview-documentation --target GoogleCloudVisionV1
 ```
 
@@ -316,6 +290,7 @@ If you need to resolve all generated packages, set `GOOGLE_CLOUD_SWIFT_FULL_BUIL
 
 ```bash
 env GOOGLE_CLOUD_SWIFT_FULL_BUILD=true \
+  GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true \
   swift package --disable-sandbox preview-documentation --target GoogleCloudVisionV1
 ```
 
