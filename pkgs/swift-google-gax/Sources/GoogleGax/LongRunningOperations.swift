@@ -118,7 +118,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
     var pollingState = PollingState()
     while !state.done {
       switch pollingPolicy.onInProgress(state: pollingState) {
-      case .continue:
+      case .keepPolling:
         break
       case .exhausted(let error):
         throw error

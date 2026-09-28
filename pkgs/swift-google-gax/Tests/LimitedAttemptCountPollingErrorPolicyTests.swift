@@ -54,12 +54,12 @@ import Testing
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
-      return .continue
+      return .keepPolling
     })
     let policy = mock.withAttemptLimit(3)
 
     let state = PollingState().with { $0.attemptCount = 2 }
-    #expect(policy.onInProgress(state: state) == .continue)
+    #expect(policy.onInProgress(state: state) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 

@@ -23,7 +23,7 @@ import Foundation
 ///   clause in `switch` statements.
 public enum InProgressResult: Sendable {
   /// The operation is still in progress and within policy limits; continue polling.
-  case `continue`
+  case keepPolling
 
   /// The operation is still in progress, but the polling policy is stopping the loop.
   ///

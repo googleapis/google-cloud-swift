@@ -35,11 +35,11 @@ import Testing
     let called = Mutex(false)
     let mock = MockPollingPolicy(onInProgress: { _ in
       called.withLock { $0 = true }
-      return .continue
+      return .keepPolling
     })
     let policy = mock.continueOnTooManyRequests()
 
-    #expect(policy.onInProgress(state: PollingState()) == .continue)
+    #expect(policy.onInProgress(state: PollingState()) == .keepPolling)
     #expect(called.withLock { $0 })
   }
 

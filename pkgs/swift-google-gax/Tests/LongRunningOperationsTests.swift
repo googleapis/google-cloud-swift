@@ -198,7 +198,7 @@ import GoogleRpc
     }
     pollingPolicy.onInProgress = { _ in
       inProgressCount.add(1, ordering: .sequentiallyConsistent)
-      return .continue
+      return .keepPolling
     }
 
     let backoffPolicy = MockBackoff()
@@ -238,7 +238,7 @@ import GoogleRpc
     }
     pollingPolicy.onInProgress = { _ in
       inProgressCount.add(1, ordering: .sequentiallyConsistent)
-      return .continue
+      return .keepPolling
     }
 
     let backoffPolicy = MockBackoff()

@@ -33,11 +33,11 @@ extension LimitedAttemptCount: PollingErrorPolicy where P: PollingErrorPolicy & 
     switch inner.onInProgress(state: state) {
     case .exhausted(let e):
       return .exhausted(e)
-    case .continue:
+    case .keepPolling:
       if state.attemptCount >= maximumAttempts {
         return .exhausted(RequestError.exhausted(.attemptCount(maximumAttempts: maximumAttempts)))
       }
-      return .continue
+      return .keepPolling
     }
   }
 }

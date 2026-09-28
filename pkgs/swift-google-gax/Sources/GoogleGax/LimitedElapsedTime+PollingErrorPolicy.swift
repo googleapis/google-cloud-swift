@@ -33,11 +33,11 @@ extension LimitedElapsedTime: PollingErrorPolicy where P: PollingErrorPolicy {
     switch inner.onInProgress(state: state) {
     case .exhausted(let e):
       return .exhausted(e)
-    case .continue:
+    case .keepPolling:
       if ContinuousClock.now >= state.start + maximumDuration {
         return .exhausted(RequestError.exhausted(.elapsedTime(maximumDuration: maximumDuration)))
       }
-      return .continue
+      return .keepPolling
     }
   }
 }

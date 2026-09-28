@@ -34,7 +34,7 @@ import Testing
     #expect(p.onError(state: state, error: unavailable) == .retry(unavailable))
     #expect(p.onError(state: state, error: resourceExhausted) == .retry(resourceExhausted))
     #expect(p.onError(state: state, error: permissionDenied) == .permanent(permissionDenied))
-    #expect(p.onInProgress(state: state) == .continue)
+    #expect(p.onInProgress(state: state) == .keepPolling)
   }
 
   @Test("Verify BasePollingErrorPolicy.defaultPolicy enforces 30-minute limit")
@@ -49,7 +49,7 @@ import Testing
       $0.attemptCount = 1
     }
     #expect(p.onError(state: activeState, error: unavailable) == .retry(unavailable))
-    #expect(p.onInProgress(state: activeState) == .continue)
+    #expect(p.onInProgress(state: activeState) == .keepPolling)
 
     let expiredState = PollingState().with {
       $0.start = start - .seconds(30 * 60 + 1)

@@ -17,7 +17,7 @@ import GoogleGax
 extension InProgressResult: Equatable {
   static func == (lhs: InProgressResult, rhs: InProgressResult) -> Bool {
     switch (lhs, rhs) {
-    case (.continue, .continue): return true
+    case (.keepPolling, .keepPolling): return true
     case (.exhausted(let l), .exhausted(let r)): return l == r
     default: return false
     }

@@ -49,6 +49,6 @@ public protocol PollingErrorPolicy: Sendable {
 extension PollingErrorPolicy {
   /// By default, this method continues polling.
   public func onInProgress(state: PollingState) -> InProgressResult {
-    .continue
+    .keepPolling
   }
 }

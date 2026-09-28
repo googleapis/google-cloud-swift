@@ -45,7 +45,7 @@ import Testing
   @Test("Verify AIP194 onInProgress continues")
   func onInProgress() {
     let p: any PollingErrorPolicy = AIP194.unbounded()
-    #expect(p.onInProgress(state: PollingState()) == .continue)
+    #expect(p.onInProgress(state: PollingState()) == .keepPolling)
   }
 
   static func unavailable() -> RequestError {

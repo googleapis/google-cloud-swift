@@ -34,7 +34,7 @@ import Testing
 
   @Test func alwaysPollOnInProgress() {
     let p = AlwaysPoll.unbounded()
-    #expect(p.onInProgress(state: PollingState()) == .continue)
+    #expect(p.onInProgress(state: PollingState()) == .keepPolling)
   }
 
   @Test func equatable() {
