@@ -15,7 +15,7 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
 import GoogleIAMV1
 import GoogleLongRunning
 import GoogleRpc
