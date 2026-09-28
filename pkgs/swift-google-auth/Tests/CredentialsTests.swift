@@ -31,7 +31,7 @@ import Testing
   }
 
   @Test func resolveProviderForADC() async throws {
-    let credentials = try Credentials(configuration: .adc(environment: [:]))
+    let credentials = try Credentials(configuration: .adc(), environment: [:])
 
     #expect(
       String(describing: type(of: credentials.credentialsProvider)).contains("MDSCredentials")
@@ -49,11 +49,12 @@ import Testing
     }
     // Run with an environment that will fail.
     let credentials = try Credentials(
-      configuration: try .adc(environment: [
+      configuration: .adc(),
+      environment: [
         "GCE_METADATA_HOST": "https://not-valid.internal.:1",
         "HOME": tempDirectoryURL.absoluteString,
-        "__TEST_SIMULATE_ADC": "true",
-      ]))
+      ]
+    )
 
     let error = await #expect(throws: CredentialsError.self) {
       try await credentials.headers()

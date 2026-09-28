@@ -97,12 +97,10 @@ public enum CredentialsConfiguration: Sendable {
   ///   - universeDomain: Target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (defaults to `googleapis.com`).
   ///     Override this if your application is operating in a custom sovereign or air-gapped cloud.
   ///   - scopes: Scopes requested for the access token, further restricting what the token can be used for.
-  ///   - environment: Optional environment variable dictionary override (defaults to the current process environment).
   case adc(
     quotaProjectID: String? = nil,
     universeDomain: String? = nil,
-    scopes: [String] = [],
-    environment: [String: String]? = nil
+    scopes: [String] = []
   )
 
   /// Returns a stub credential that provides no headers (unauthenticated).
@@ -353,8 +351,20 @@ public struct Credentials: Sendable {
   /// - Parameter configuration: The configuration describing the credential source and parameters.
   /// - Throws: A `CredentialsError` if the credentials cannot be loaded, parsed, or if the configuration is unsupported.
   public init(configuration: CredentialsConfiguration = .adc()) throws {
+    try self.init(
+      configuration: configuration,
+      environment: ProcessInfo.processInfo.environment
+    )
+  }
+
+  init(
+    configuration: CredentialsConfiguration = .adc(),
+    environment: [String: String]
+  ) throws {
     self.credentialsProvider = try Self.resolveCredentialsProvider(
-      configuration: configuration)
+      configuration: configuration,
+      environment: environment
+    )
   }
 
   /// Asynchronously retrieves the request headers required to authenticate a request.
@@ -368,16 +378,19 @@ public struct Credentials: Sendable {
 
   // MARK: - Backend Resolvers
 
-  private static func resolveCredentialsProvider(configuration: CredentialsConfiguration) throws
+  private static func resolveCredentialsProvider(
+    configuration: CredentialsConfiguration,
+    environment: [String: String]
+  ) throws
     -> any CredentialsProvider
   {
     switch configuration {
-    case let .adc(quotaProjectID, universeDomain, scopes, environment):
+    case let .adc(quotaProjectID, universeDomain, scopes):
       return try ADC.resolve(
         quotaProjectID: quotaProjectID,
         universeDomain: universeDomain,
         scopes: scopes,
-        environment: environment ?? ProcessInfo.processInfo.environment
+        environment: environment
       )
     case .anonymous:
       return AnonymousCredentials()
