@@ -170,7 +170,7 @@ public enum CredentialsConfiguration: Sendable {
     scopes: [String] = []
   )
 
-  /// Programmatic credentials configuration for Workload and Workforce Identity Federation.
+  /// External account credentials configuration for Workload and Workforce Identity Federation.
   ///
   /// [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) and
   /// [Workforce Identity Federation](https://cloud.google.com/iam/docs/workforce-identity-federation) allow
@@ -182,7 +182,7 @@ public enum CredentialsConfiguration: Sendable {
   /// [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
   ///
   /// - Parameter config: The configuration defining the external account parameters and token source.
-  case programmaticExternalAccount(ExternalAccountConfig)
+  case externalAccount(ExternalAccountConfig)
 
   /// An API key credential that associates requests with a Google Cloud project.
   ///
@@ -395,7 +395,7 @@ public struct Credentials: Sendable {
         universeDomain: universeDomain,
         scopes: scopes
       )
-    case let .programmaticExternalAccount(config):
+    case let .externalAccount(config):
       return try ExternalAccountCredentials(
         credentialSource: config.credentialSource,
         audience: config.audience,

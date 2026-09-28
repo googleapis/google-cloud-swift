@@ -73,7 +73,7 @@ struct ExternalAccountIntegrationTests {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
     )
-    let credentials = try Credentials(configuration: .programmaticExternalAccount(config))
+    let credentials = try Credentials(configuration: .externalAccount(config))
 
     let headers = try await credentials.headers()
     let authHeader = headers.first(where: { $0.0.lowercased() == "authorization" })
@@ -98,7 +98,7 @@ struct ExternalAccountIntegrationTests {
       subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
       tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
     )
-    let credentials = try Credentials(configuration: .programmaticExternalAccount(config))
+    let credentials = try Credentials(configuration: .externalAccount(config))
 
     let headers = try await credentials.headers()
     let authHeader = headers.first(where: { $0.0.lowercased() == "authorization" })

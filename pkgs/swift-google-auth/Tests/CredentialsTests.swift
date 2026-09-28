@@ -82,7 +82,7 @@ import Testing
     )
   }
 
-  @Test func resolveProviderForProgrammaticExternalAccount() async throws {
+  @Test func resolveProviderForExternalAccount() async throws {
     struct MockSubjectTokenProvider: SubjectTokenProvider {
       func subjectToken() async throws -> String { "token" }
     }
@@ -97,7 +97,7 @@ import Testing
     }
 
     let credentials = try Credentials(
-      configuration: .programmaticExternalAccount(config)
+      configuration: .externalAccount(config)
     )
 
     #expect(credentials.credentialsProvider is ExternalAccountCredentials)

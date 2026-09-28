@@ -163,7 +163,7 @@ The test (`Tests/Auth/ExternalAccountIntegrationTests.swift`):
 1. Instantiates `ExternalAccountCredentials` using the programmatic credential source and the returned subject token.
 1. Invokes `creds.headers()` to trigger a live HTTP POST exchange with Google STS (`https://sts.googleapis.com/v1/token`).
 1. Asserts that the response headers contain an `Authorization` header with a valid Google Cloud access token starting with `Bearer ya29.`.
-1. Also instantiates the top-level public `Credentials(configuration: .programmaticExternalAccount(config))` entry point and verifies that public API resolution succeeds.
+1. Also instantiates the top-level public `Credentials(configuration: .externalAccount(config))` entry point and verifies that public API resolution succeeds.
 
 ______________________________________________________________________
 
