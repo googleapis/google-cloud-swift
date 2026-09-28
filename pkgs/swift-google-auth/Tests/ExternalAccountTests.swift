@@ -50,7 +50,6 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       tokenURL: targetURL,
       clientID: "client-id",
       clientSecret: "client-secret",
-      targetPrincipal: nil,
       workforcePoolUserProject: nil,
       scopes: ["scope1", "scope2"],
       universeDomain: "custom-universe.com"
@@ -63,7 +62,6 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(creds.tokenURL == targetURL)
     #expect(creds.clientID == "client-id")
     #expect(creds.clientSecret == "client-secret")
-    #expect(creds.targetPrincipal == nil)
     #expect(creds.workforcePoolUserProject == nil)
     #expect(creds.scopes == ["scope1", "scope2"])
     #expect(creds.universeDomain == "custom-universe.com")
@@ -123,22 +121,6 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
         audience: "aud",
         subjectTokenType: "",
         tokenURL: targetURL
-      )
-    }
-  }
-
-  @Test("Throws notSupported error when targetPrincipal is provided")
-  func createProgrammaticCredentialsFailsWhenImpersonationIsProvided() throws {
-    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
-    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
-
-    #expect(throws: CredentialsError.self) {
-      _ = try ExternalAccountCredentials(
-        credentialSource: .programmatic(subjectTokenProvider: provider),
-        audience: "aud",
-        subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-        tokenURL: targetURL,
-        targetPrincipal: "target-sa@project.iam.gserviceaccount.com"
       )
     }
   }

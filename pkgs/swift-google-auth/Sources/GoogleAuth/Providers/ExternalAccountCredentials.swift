@@ -183,9 +183,6 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   /// An optional client secret for workforce identity pool authentication.
   let clientSecret: String?
 
-  /// An optional service account email to impersonate after initial STS exchange.
-  let targetPrincipal: String?
-
   /// The project ID to attribute quota and billing to when accessing workforce pools.
   let workforcePoolUserProject: String?
 
@@ -204,14 +201,12 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   ///   - tokenURL: The STS token endpoint URL.
   ///   - clientID: Optional client ID for workforce pool authentication.
   ///   - clientSecret: Optional client secret for workforce pool authentication.
-  ///   - targetPrincipal: Optional service account to impersonate (currently unsupported).
   ///   - workforcePoolUserProject: Optional quota project for workforce identity pools.
   ///   - scopes: Array of requested OAuth 2.0 scopes.
   ///   - universeDomain: Target universe domain.
   ///   - retryConfiguration: Optional retry policy configuration.
   ///   - httpClient: HTTP client instance.
-  /// - Throws: `CredentialsError.parseError` if parameters are invalid or `CredentialsError.notSupported`
-  ///   if unsupported features (such as `targetPrincipal` impersonation) are specified.
+  /// - Throws: `CredentialsError.parseError` if parameters are invalid.
   init(
     credentialSource: ExternalAccountConfig.CredentialSource,
     audience: String,
@@ -219,7 +214,6 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     tokenURL: URL,
     clientID: String? = nil,
     clientSecret: String? = nil,
-    targetPrincipal: String? = nil,
     workforcePoolUserProject: String? = nil,
     scopes: [String] = [],
     universeDomain: String? = nil,
@@ -238,11 +232,6 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
       throw CredentialsError.parseError("subjectTokenType parameter must not be empty")
     }
 
-    if let targetPrincipal = targetPrincipal, !targetPrincipal.isEmpty {
-      throw CredentialsError.notSupported(
-        "Service account impersonation (targetPrincipal) is not supported yet")
-    }
-
     // Billing constraints validation: workforce pool user project should only be set for global workforce pools.
     if let workforcePoolUserProject = workforcePoolUserProject, !workforcePoolUserProject.isEmpty {
       guard isValidWorkforcePoolAudience(audience) else {
@@ -259,7 +248,6 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
     self.tokenURL = tokenURL
     self.clientID = clientID
     self.clientSecret = clientSecret
-    self.targetPrincipal = targetPrincipal
     self.workforcePoolUserProject = workforcePoolUserProject
     self.scopes = effectiveScopes
     self.universeDomain = universeDomain

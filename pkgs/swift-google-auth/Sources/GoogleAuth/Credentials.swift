@@ -256,12 +256,6 @@ public struct ExternalAccountConfig: Sendable {
   /// Optional OAuth client secret used for client authentication via HTTP Basic Auth.
   public var clientSecret: String? = nil
 
-  /// Optional email of a target service account to impersonate.
-  ///
-  /// When set, the exchanged STS token is used to call the IAM Credentials API to obtain short-lived
-  /// credentials for this target service account via [Service Account Impersonation](https://cloud.google.com/iam/docs/service-account-impersonation).
-  public var targetPrincipal: String? = nil
-
   /// Optional user project ID used to assert billing and quota constraints (`x-goog-user-project`).
   ///
   /// This parameter is only allowed when exchanging tokens for a global workforce pool. Setting this
@@ -403,7 +397,6 @@ public struct Credentials: Sendable {
         tokenURL: config.tokenURL,
         clientID: config.clientID,
         clientSecret: config.clientSecret,
-        targetPrincipal: config.targetPrincipal,
         workforcePoolUserProject: config.workforcePoolUserProject,
         scopes: config.scopes,
         universeDomain: config.universeDomain
