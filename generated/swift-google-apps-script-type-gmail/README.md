@@ -21,7 +21,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-apps-script-type-gmail` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-gmail.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-apps-script-type-gmail.git --from 0.4.0
 ```
 
 Then add `GoogleAppsScriptTypeGmail` to your target's dependencies:

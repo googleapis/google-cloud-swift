@@ -58,27 +58,27 @@ let baseDependencies: [Package.Dependency] = [
   localOrRemotePackage(
     url: "https://github.com/googleapis/swift-google-auth",
     path: "pkgs/swift-google-auth",
-    from: "0.3.0"
+    from: "0.4.0"
   ),
   localOrRemotePackage(
     url: "https://github.com/googleapis/swift-google-gax",
     path: "pkgs/swift-google-gax",
-    from: "0.3.0"
+    from: "0.4.0"
   ),
   localOrRemotePackage(
     url: "https://github.com/googleapis/swift-google-gax-grpc",
     path: "pkgs/swift-google-gax-grpc",
-    from: "0.3.0"
+    from: "0.4.0"
   ),
   localOrRemotePackage(
     url: "https://github.com/googleapis/swift-google-wkt",
     path: "pkgs/swift-google-wkt",
-    from: "0.3.0"
+    from: "0.4.0"
   ),
   localOrRemotePackage(
     url: "https://github.com/googleapis/swift-google-wkt-convert",
     path: "pkgs/swift-google-wkt-convert",
-    from: "0.3.0"
+    from: "0.4.0"
   ),
   // Reference local packages via paths
   .package(path: "./pkgs/swift-google-cloud-storage"),

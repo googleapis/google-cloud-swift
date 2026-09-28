@@ -27,12 +27,12 @@ let package = Package(
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-cloud-datastream-v1",
       path: "generated/swift-google-cloud-datastream-v1",
-      from: "0.3.0"
+      from: "0.4.0"
     ),
     localOrRemotePackage(
       url: "https://github.com/googleapis/swift-google-wkt",
       path: "pkgs/swift-google-wkt",
-      from: "0.3.0"
+      from: "0.4.0"
     ),
   ],
   targets: [

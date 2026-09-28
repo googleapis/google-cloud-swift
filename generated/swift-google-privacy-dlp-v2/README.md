@@ -50,7 +50,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-privacy-dlp-v2` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-privacy-dlp-v2.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-privacy-dlp-v2.git --from 0.4.0
 ```
 
 Then add `GoogleCloudDLPV2` to your target's dependencies:

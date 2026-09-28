@@ -49,7 +49,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-bigquery-datapolicies-v2` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-bigquery-datapolicies-v2.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-bigquery-datapolicies-v2.git --from 0.4.0
 ```
 
 Then add `GoogleBigQueryDataPoliciesV2` to your target's dependencies:
