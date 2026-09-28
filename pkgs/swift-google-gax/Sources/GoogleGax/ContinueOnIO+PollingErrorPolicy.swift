@@ -32,7 +32,7 @@ extension PollingErrorPolicy {
   /// an I/O error, otherwise it delegates to the inner policy.
   ///
   /// For other errors it returns the same value as the inner policy.
-  public func continueOnIoErrors() -> ContinueOnIO<Self> {
+  public func continueOnIO() -> ContinueOnIO<Self> {
     ContinueOnIO(inner: self)
   }
 }

@@ -28,7 +28,7 @@ public struct BasePollingErrorPolicy: PollingErrorPolicy, Sendable, Equatable {
   let inner: TooManyRequests<ContinueOnIO<Aip194>>
 
   init() {
-    self.inner = Aip194().continueOnIoErrors().continueOnTooManyRequests()
+    self.inner = Aip194().continueOnIO().continueOnTooManyRequests()
   }
 
   /// Creates an unconstrained base polling error policy without attempt or time limits.
