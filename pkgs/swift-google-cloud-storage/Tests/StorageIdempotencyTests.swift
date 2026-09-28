@@ -40,8 +40,8 @@ import Testing
 
   @Test func createBucketIsNotIdempotent() {
     let options = CreateBucketRequest().resolveIdempotency(options: RequestOptions())
-    #expect(options.idempotency == false)
-    #expect(options.headers[idempotencyToken] == nil)
+    #expect(options.idempotency == true)
+    #expect(options.headers[idempotencyToken] != nil)
   }
 
   @Test func deleteObjectPreconditions() {

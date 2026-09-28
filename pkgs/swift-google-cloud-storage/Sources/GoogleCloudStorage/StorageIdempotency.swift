@@ -59,7 +59,7 @@ extension ListObjectsRequest {
 
 extension CreateBucketRequest {
   package func resolveIdempotency(options: GoogleGax.RequestOptions) -> GoogleGax.RequestOptions {
-    resolveStorageIdempotency(isIdempotent: false, isMutating: true, options: options)
+    resolveStorageIdempotency(isIdempotent: true, isMutating: true, options: options)
   }
 }
 
