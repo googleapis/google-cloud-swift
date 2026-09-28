@@ -64,6 +64,22 @@ V=$(go run github.com/googleapis/librarian/cmd/librarian@latest config get versi
 go run github.com/googleapis/librarian/cmd/librarian@${V} update sources.discovery
 go run github.com/googleapis/librarian/cmd/librarian@${V} update sources.googleapis
 go run github.com/googleapis/librarian/cmd/librarian@${V} generate --all
+go run github.com/googleapis/librarian/cmd/librarian@${V} tidy
+```
+
+Verify that `pkgs/swift-google-cloud-storage` compiles with the updated generated code:
+
+```bash
+env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build --build-tests -Xswiftc -warnings-as-errors --package-path pkgs/swift-google-cloud-storage
+```
+
+If the storage library fails to compile because of a missing idempotency hook:
+- You can fix the problem in the same PR by implementing the missing `resolveIdempotency(options:)` hook in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift` using the rules in `pkgs/swift-google-cloud-storage/GEMINI.md`.
+- Alternatively, add `skip_release: true` to the `google-cloud-storage` entry in `librarian.yaml`, run `librarian tidy`, and create a GitHub tracking issue to fix the hooks in a separate PR.
+
+Once validated, commit all changes and send a PR:
+
+```bash
 git add .
 git commit -m"chore: update discovery and googleapis SHA circa $(date +%Y-%m-%d)" .
 ```

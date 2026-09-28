@@ -145,6 +145,17 @@ Updating sources to newer commit SHAs may introduce new protos, messages, or cro
      ```
    - Run `go run github.com/googleapis/librarian/cmd/librarian@${V} tidy` and re-run `go run github.com/googleapis/librarian/cmd/librarian@${V} generate --all`.
 
+3. **Missing Idempotency Hook in `pkgs/swift-google-cloud-storage`**:
+   - *Symptom*:
+     ```text
+     error: value of type '<RequestType>' has no member 'resolveIdempotency'
+     ```
+     in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/Storage/Storage+Retry.swift`.
+   - *Context*: `librarian.yaml` specifies `idempotency_hook: resolveIdempotency` for the `google-cloud-storage` package. If the updated `googleapis` SHA introduces new RPC methods to `google/storage/v2`, the generated retry client invokes `request.resolveIdempotency(options: options)`, which requires an extension implemented in handwritten code.
+   - *Resolution Options*:
+     - **Option A (Fix in the same PR)**: Implement the missing `resolveIdempotency(options:)` extension in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and add corresponding unit tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift`, following the rules in [`pkgs/swift-google-cloud-storage/GEMINI.md`](../../../pkgs/swift-google-cloud-storage/GEMINI.md).
+     - **Option B (Fix in a separate PR)**: Add `skip_release: true` to the `google-cloud-storage` entry in [`librarian.yaml`](../../../librarian.yaml), run `go run github.com/googleapis/librarian/cmd/librarian@${V} tidy`, and offer to create a GitHub issue to track fixing the hook in a follow-up PR.
+
 ### Step 6: Validate the Changes
 
 1. **Review Changed Files**:
@@ -152,7 +163,7 @@ Updating sources to newer commit SHAs may introduce new protos, messages, or cro
    git status
    git diff --stat
    ```
-   Ensure that only [`librarian.yaml`](../../../librarian.yaml) and files in `generated/` are modified.
+   Ensure that only [`librarian.yaml`](../../../librarian.yaml) and files in `generated/` (or `pkgs/swift-google-cloud-storage/` if fixing hooks in the same PR) are modified.
 
 2. **Build and Test Sample/Key Generated Packages**:
    Run the CI check script for generated packages:
@@ -164,7 +175,20 @@ Updating sources to newer commit SHAs may introduce new protos, messages, or cro
    swift test --package-path generated/<modified-library-name>
    ```
 
-3. **Lint Code**:
+3. **Build and Test `pkgs/swift-google-cloud-storage`**:
+   Verify that the storage library compiles with the regenerated code:
+   ```bash
+   env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift build --build-tests -Xswiftc -warnings-as-errors --package-path pkgs/swift-google-cloud-storage
+   ```
+   *(Note: On gLinux workstations, add `-Xcc --gcc-toolchain=/usr -Xcxx --gcc-toolchain=/usr` to locate the C++ standard library).*
+
+   - **If compilation fails due to a missing idempotency hook**:
+     Prompt the user to ask how they wish to proceed:
+     - **Choice 1**: Fix the problem in the same PR, implementing the hook and unit test using the rules in [`pkgs/swift-google-cloud-storage/GEMINI.md`](../../../pkgs/swift-google-cloud-storage/GEMINI.md).
+     - **Choice 2**: Add `skip_release: true` to `google-cloud-storage` in [`librarian.yaml`](../../../librarian.yaml), and fix the problem in a separate PR.
+     - **If the user chooses Choice 2**: Offer to create a GitHub tracking issue for them using `gh issue create`.
+
+4. **Lint Code**:
    ```bash
    ./ci/lint.sh
    ```

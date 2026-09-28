@@ -92,6 +92,31 @@ Remember to use `librarian tidy` after your manual edits, and then regenerate.
 **Resolution:** most likely this is a bug in the code generator. Please contact
 the Swift SDK team.
 
+## Missing Idempotency Hook in Storage Client
+
+**Symptom:** building `pkgs/swift-google-cloud-storage` fails with an error similar to:
+
+```text
+error: value of type '<RequestType>' has no member 'resolveIdempotency'
+```
+
+in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/generated/Storage/Storage+Retry.swift`.
+
+**Context:** The `google-cloud-storage` entry in `librarian.yaml` configures:
+
+```yaml
+idempotency_hook: resolveIdempotency
+```
+
+When new RPCs are added to the Google Cloud Storage API definitions in `googleapis`, the generated retry client calls `request.resolveIdempotency(options: options)`. Because these hooks are handwritten, the new request type must be extended with `resolveIdempotency(options:)`.
+
+**Resolution:** You have two options:
+
+1. **Implement the missing hook in the same PR**:
+   Add the `resolveIdempotency(options:)` extension in `pkgs/swift-google-cloud-storage/Sources/GoogleCloudStorage/StorageIdempotency.swift` and corresponding unit tests in `pkgs/swift-google-cloud-storage/Tests/StorageIdempotencyTests.swift`. Consult [`pkgs/swift-google-cloud-storage/GEMINI.md`](../../pkgs/swift-google-cloud-storage/GEMINI.md) for the rules on read-only vs mutating, precondition handling, and `etag` exclusion.
+2. **Defer to a separate PR**:
+   Add `skip_release: true` to the `google-cloud-storage` entry in `librarian.yaml` (under `- name: google-cloud-storage`), run `librarian tidy`, and open a GitHub issue to fix the hooks in a follow-up PR.
+
 ## Other
 
 Please contact the Swift SDK team.
