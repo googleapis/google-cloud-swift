@@ -282,9 +282,6 @@ public struct ExternalAccountConfig: Sendable {
   /// Defaults to `https://sts.googleapis.com/v1/token`.
   public let tokenURL: URL
 
-  /// The OAuth client credentials type used for client authentication via HTTP Basic Auth.
-  public typealias ClientAuthentication = GoogleAuth.ClientAuthentication
-
   /// Optional OAuth client credentials used for client authentication via HTTP Basic Auth.
   public var clientAuthentication: ClientAuthentication? = nil
 
