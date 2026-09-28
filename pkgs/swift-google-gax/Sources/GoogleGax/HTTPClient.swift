@@ -79,6 +79,24 @@ import struct AsyncHTTPClient.HTTPClientResponse
     return parsed
   }
 
+  private func configureHeaders(
+    on request: inout _HTTPClientRequest,
+    options: RequestOptions
+  ) async throws {
+    let authHeaders = try await self.credentials.headers()
+    let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
+    for (key, value) in customHeaders {
+      request.setHeader(name: key, value: value)
+    }
+    for (key, value) in authHeaders {
+      request.addHeader(name: key, value: value)
+    }
+    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
+      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
+    }
+    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
+  }
+
   public func newRequest(
     path: String,
     query: [URLQueryItem],
@@ -90,17 +108,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
       components.queryItems = query
     }
     var request = _HTTPClientRequest(self.inner, url: components)
-    let headers = try await self.credentials.headers()
-    for (key, value) in headers {
-      request.addHeader(name: key, value: value)
-    }
-    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
-      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
-    }
-    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
-    for (key, value) in options.headers {
-      request.addHeader(name: key, value: value)
-    }
+    try await self.configureHeaders(on: &request, options: options)
     return request
   }
 
@@ -117,17 +125,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     }
     components.percentEncodedPath = percentEncodedPath
     var request = _HTTPClientRequest(self.inner, url: components)
-    let headers = try await self.credentials.headers()
-    for (key, value) in headers {
-      request.addHeader(name: key, value: value)
-    }
-    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
-      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
-    }
-    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
-    for (key, value) in options.headers {
-      request.addHeader(name: key, value: value)
-    }
+    try await self.configureHeaders(on: &request, options: options)
     return request
   }
 
@@ -136,17 +134,7 @@ import struct AsyncHTTPClient.HTTPClientResponse
     options: RequestOptions = .init()
   ) async throws -> _HTTPClientRequest {
     var request = _HTTPClientRequest(self.inner, url: urlComponents)
-    let headers = try await self.credentials.headers()
-    for (key, value) in headers {
-      request.addHeader(name: key, value: value)
-    }
-    if let effectiveQuotaProject = options.quotaProject ?? self.quotaProject {
-      request.setHeader(name: _HeaderNames.userProject, value: effectiveQuotaProject)
-    }
-    request.setHeader(name: _HeaderNames.host, value: self.hostHeader)
-    for (key, value) in options.headers {
-      request.addHeader(name: key, value: value)
-    }
+    try await self.configureHeaders(on: &request, options: options)
     return request
   }
 

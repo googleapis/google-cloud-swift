@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+public import struct GoogleAuth.AuthHeaders
 
 /// Common Google header names used across HTTP and gRPC transports.
 @_spi(GoogleCloudInternal)
@@ -21,4 +22,38 @@ public enum _HeaderNames {
   public static let requestParams = "x-goog-request-params"
   public static let userProject = "x-goog-user-project"
   public static let host = "Host"
+  public static let authorization = "authorization"
+  public static let apiKey = "x-goog-api-key"
+  public static let userAgent = "user-agent"
+
+  /// Reserved system and authentication headers that cannot be set or overridden
+  /// via `RequestOptions.headers`.
+  public static let reservedCustomHeaders: Set<String> = [
+    apiClient,
+    requestParams,
+    userProject,
+    host.lowercased(),
+    authorization,
+    apiKey,
+    userAgent,
+  ]
+}
+
+/// Sanitizes custom headers by stripping reserved system/auth headers and any header
+/// provided by `authHeaders`.
+@_spi(GoogleCloudInternal)
+public func _sanitizeCustomHeaders(
+  _ headers: [String: String],
+  excluding authHeaders: GoogleAuth.AuthHeaders? = nil
+) -> [String: String] {
+  headers.filter { key, _ in
+    let lower = key.lowercased()
+    if _HeaderNames.reservedCustomHeaders.contains(lower) {
+      return false
+    }
+    if let authHeaders, authHeaders.contains(name: key) {
+      return false
+    }
+    return true
+  }
 }

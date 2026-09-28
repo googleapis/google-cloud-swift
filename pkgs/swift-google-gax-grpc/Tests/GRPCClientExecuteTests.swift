@@ -371,9 +371,23 @@ import Testing
     actor MetadataCollector {
       var idempotencyTokens: [String] = []
       var customHeaders: [String] = []
-      func record(token: [String], custom: [String]) {
+      var authorizations: [String] = []
+      var apiKeys: [String] = []
+      var userProjects: [String] = []
+      var apiClients: [String] = []
+      var requestParams: [String] = []
+
+      func record(
+        token: [String], custom: [String], auth: [String], key: [String],
+        userProject: [String], apiClient: [String], params: [String]
+      ) {
         idempotencyTokens = token
         customHeaders = custom
+        authorizations = auth
+        apiKeys = key
+        userProjects = userProject
+        apiClients = apiClient
+        requestParams = params
       }
     }
     let collector = MetadataCollector()
@@ -393,7 +407,24 @@ import Testing
             String($0)
           }
           let customValues = request.metadata[stringValues: "x-custom-header"].map { String($0) }
-          await collector.record(token: tokenValues, custom: customValues)
+          let authValues = request.metadata[stringValues: "authorization"].map { String($0) }
+          let keyValues = request.metadata[stringValues: "x-goog-api-key"].map { String($0) }
+          let projectValues = request.metadata[stringValues: "x-goog-user-project"].map {
+            String($0)
+          }
+          let clientValues = request.metadata[stringValues: "x-goog-api-client"].map { String($0) }
+          let paramValues = request.metadata[stringValues: "x-goog-request-params"].map {
+            String($0)
+          }
+          await collector.record(
+            token: tokenValues,
+            custom: customValues,
+            auth: authValues,
+            key: keyValues,
+            userProject: projectValues,
+            apiClient: clientValues,
+            params: paramValues
+          )
           return StreamingServerResponse(metadata: [:]) { writer in
             try await writer.write(Google_Protobuf_Empty())
             return [:]
@@ -436,15 +467,26 @@ import Testing
       let requestOptions = RequestOptions().with {
         $0.headers["x-goog-gcs-idempotency-token"] = "token-12345"
         $0.headers["x-custom-header"] = "custom-val"
+        $0.headers["authorization"] = "Bearer bad-token"
+        $0.headers["x-goog-api-key"] = "bad-key"
+        $0.headers["x-goog-user-project"] = "bad-project"
+        $0.headers["x-goog-api-client"] = "bad-client"
+        $0.headers["x-goog-request-params"] = "bad-params"
       }
       let _: Google_Protobuf_Empty = try await client.execute(
         path: "/test.Echo/Echo",
         request: Google_Protobuf_Empty(),
         options: requestOptions,
-        clientHeader: ""
+        clientHeader: "test-client-header",
+        routingParams: ["foo=bar"]
       )
       #expect(await collector.idempotencyTokens == ["token-12345"])
       #expect(await collector.customHeaders == ["custom-val"])
+      #expect(await collector.authorizations.isEmpty)
+      #expect(await collector.apiKeys.isEmpty)
+      #expect(await collector.userProjects.isEmpty)
+      #expect(await collector.apiClients == ["test-client-header"])
+      #expect(await collector.requestParams == ["foo=bar"])
     }
   }
 }

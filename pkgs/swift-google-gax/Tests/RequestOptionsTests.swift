@@ -18,7 +18,8 @@ import Foundation
 #endif
 import Testing
 
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
+import GoogleAuth
 
 @Suite struct RequestOptionsTests {
   struct TestError: Error, Equatable {}
@@ -66,5 +67,43 @@ import GoogleGax
       $0.headers["x-custom-header"] = "custom-value"
     }
     #expect(got.headers["x-custom-header"] == "custom-value")
+  }
+
+  @Test func sanitizeCustomHeadersStripsReserved() {
+    let input: [String: String] = [
+      "authorization": "Bearer bad",
+      "AUTHORIZATION": "Bearer bad-upper",
+      "Authorization": "Bearer bad-title",
+      "x-goog-api-key": "bad-key",
+      "X-Goog-Api-Key": "bad-key-upper",
+      "x-goog-user-project": "bad-project",
+      "X-Goog-User-Project": "bad-project-upper",
+      "host": "bad-host",
+      "Host": "bad-host-upper",
+      "x-goog-api-client": "bad-client",
+      "x-goog-request-params": "bad-params",
+      "user-agent": "bad-agent",
+      "User-Agent": "bad-agent-upper",
+      "x-goog-gcs-idempotency-token": "token-123",
+      "x-custom-header": "custom-val",
+    ]
+    let sanitized = _sanitizeCustomHeaders(input)
+    #expect(sanitized.count == 2)
+    #expect(sanitized["x-goog-gcs-idempotency-token"] == "token-123")
+    #expect(sanitized["x-custom-header"] == "custom-val")
+  }
+
+  @Test func sanitizeCustomHeadersExcludesAuthHeaders() {
+    let input: [String: String] = [
+      "x-custom-future-auth": "custom-value",
+      "X-Another-Future-Auth": "another-value",
+      "x-legitimate-custom": "legit-val",
+    ]
+    let authHeaders = GoogleAuth.AuthHeaders([
+      ("x-custom-future-auth", "real-auth-val"),
+      ("x-another-future-auth", "real-another-val"),
+    ])
+    let sanitized = _sanitizeCustomHeaders(input, excluding: authHeaders)
+    #expect(sanitized == ["x-legitimate-custom": "legit-val"])
   }
 }

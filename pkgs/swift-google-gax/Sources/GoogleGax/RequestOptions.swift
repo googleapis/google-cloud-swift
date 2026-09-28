@@ -109,5 +109,10 @@ public struct RequestOptions: Sendable {
   public var quotaProject: String? = nil
 
   /// Additional HTTP headers or gRPC metadata to send with this request.
+  ///
+  /// Standard system headers (such as `Host`, `x-goog-user-project`, `x-goog-api-client`, and
+  /// `x-goog-request-params`) and authentication headers (such as `authorization` and `x-goog-api-key`,
+  /// or any header returned by the client's credentials) take precedence and cannot be overridden via
+  /// `headers`.
   public var headers: [String: String] = [:]
 }

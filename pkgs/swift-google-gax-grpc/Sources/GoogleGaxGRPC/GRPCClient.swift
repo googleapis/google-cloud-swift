@@ -118,6 +118,11 @@ public final class _GRPCClient: Sendable {
     let effectiveQuotaProject = options.quotaProject ?? self.quotaProject
     var metadata = Metadata()
     let authHeaders = try await self.credentials.headers()
+    let customHeaders = _sanitizeCustomHeaders(options.headers, excluding: authHeaders)
+    for (key, value) in customHeaders {
+      metadata.replaceOrAddString(value, forKey: key)
+    }
+
     for (key, value) in authHeaders {
       if effectiveQuotaProject != nil && key.lowercased() == _HeaderNames.userProject {
         continue
@@ -125,18 +130,15 @@ public final class _GRPCClient: Sendable {
       metadata.addString(value, forKey: key)
     }
     if let effectiveQuotaProject {
-      metadata.addString(effectiveQuotaProject, forKey: _HeaderNames.userProject)
+      metadata.replaceOrAddString(effectiveQuotaProject, forKey: _HeaderNames.userProject)
     }
 
-    metadata.addString(clientHeader, forKey: GoogleGax._HeaderNames.apiClient)
+    metadata.replaceOrAddString(clientHeader, forKey: GoogleGax._HeaderNames.apiClient)
     if !routingParams.isEmpty {
-      metadata.addString(
+      metadata.replaceOrAddString(
         routingParams.joined(separator: "&"),
         forKey: _HeaderNames.requestParams
       )
-    }
-    for (key, value) in options.headers {
-      metadata.addString(value, forKey: key)
     }
 
     let normalizedPath = path.hasPrefix("/") ? String(path.dropFirst()) : path
