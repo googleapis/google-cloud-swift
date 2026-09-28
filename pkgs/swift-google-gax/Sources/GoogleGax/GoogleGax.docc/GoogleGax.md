@@ -60,6 +60,6 @@ Likewise, there are two orthogonal controls for the polling loop:
   `BasePollingErrorPolicy.unbounded()` decorated with
   ``PollingErrorPolicy/withAttemptLimit(_:)`` and/or
   ``PollingErrorPolicy/withTimeLimit(_:)``).
-- Types conforming to the ``BackoffPolicy`` protocol (the same protocol used for
-  retry loops) determine how long the polling loop waits before polling again.
-  The most common implementation is ``ExponentialBackoff``.
+- Types conforming to the ``PollingBackoffPolicy`` protocol determine how long
+  the polling loop waits before polling again. The most common implementation is
+  ``ExponentialBackoff``.

@@ -13,10 +13,9 @@
 // limitations under the License.
 
 import Foundation
-import GoogleGax
 
-struct MockBackoff: BackoffPolicy, PollingBackoffPolicy {
-  var delay: Duration = .zero
-  func backoffDelayFor(_ state: RetryState) -> Duration { delay }
-  func backoffDelayFor(_ state: PollingState) -> Duration { delay }
+extension LinearBackoffPolicy: BackoffPolicy {
+  public func backoffDelayFor(_ state: RetryState) -> Duration {
+    return self.delay
+  }
 }

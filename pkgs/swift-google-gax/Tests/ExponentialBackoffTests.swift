@@ -47,12 +47,26 @@ import Testing
 
     #expect(backoff.delay(attemptCount: -1) == .seconds(1))
     #expect(backoff.delay(attemptCount: 0) == .seconds(1))
-    #expect(backoff.delay(attemptCount: 1) == .seconds(1))
-    #expect(backoff.delay(attemptCount: 2) == .seconds(2))
-    #expect(backoff.delay(attemptCount: 3) == .seconds(4))
-    #expect(backoff.delay(attemptCount: 4) == .seconds(8))
-    #expect(backoff.delay(attemptCount: 5) == .seconds(10))
+    #expect(backoff.delay(attemptCount: 1) == .seconds(2))
+    #expect(backoff.delay(attemptCount: 2) == .seconds(4))
+    #expect(backoff.delay(attemptCount: 3) == .seconds(8))
+    #expect(backoff.delay(attemptCount: 4) == .seconds(10))
     #expect(backoff.delay(attemptCount: 100) == .seconds(10))
+  }
+
+  @Test func pollingBackoffDelayFor() throws {
+    let config = ExponentialBackoffConfig().with {
+      $0.initialDelay = .seconds(1)
+      $0.maximumDelay = .seconds(10)
+      $0.scaling = 2.0
+    }
+    let backoff: any PollingBackoffPolicy = try ExponentialBackoff(config: config)
+
+    #expect(backoff.backoffDelayFor(PollingState().with { $0.attemptCount = 0 }) == .seconds(1))
+    #expect(backoff.backoffDelayFor(PollingState().with { $0.attemptCount = 1 }) == .seconds(2))
+    #expect(backoff.backoffDelayFor(PollingState().with { $0.attemptCount = 2 }) == .seconds(4))
+    #expect(backoff.backoffDelayFor(PollingState().with { $0.attemptCount = 3 }) == .seconds(8))
+    #expect(backoff.backoffDelayFor(PollingState().with { $0.attemptCount = 4 }) == .seconds(10))
   }
 
   @Test func invalidConfigs() {
@@ -97,10 +111,13 @@ import Testing
 
   @Test func jitterRange() throws {
     let backoff = ExponentialBackoff()
-    let state = RetryState().with { $0.attemptCount = 1 }
+    let state1 = RetryState().with { $0.attemptCount = 1 }
+    let state2 = RetryState().with { $0.attemptCount = 2 }
     for _ in 0..<100 {
-      let d = backoff.backoffDelayFor(state)
-      #expect(d >= .seconds(0) && d <= .seconds(1))
+      let d1 = backoff.backoffDelayFor(state1)
+      #expect(d1 >= .seconds(0) && d1 <= .seconds(1))
+      let d2 = backoff.backoffDelayFor(state2)
+      #expect(d2 >= .seconds(0) && d2 <= .seconds(2))
     }
   }
 

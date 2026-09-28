@@ -22,18 +22,21 @@ import Testing
     let policy = LinearBackoffPolicy()
     #expect(policy.delay == .seconds(5))
     #expect(policy.backoffDelayFor(RetryState()) == .seconds(5))
+    #expect(policy.backoffDelayFor(PollingState()) == .seconds(5))
   }
 
   @Test func customDelay() {
     let policy = LinearBackoffPolicy(delay: .seconds(2))
     #expect(policy.delay == .seconds(2))
     #expect(policy.backoffDelayFor(RetryState()) == .seconds(2))
+    #expect(policy.backoffDelayFor(PollingState()) == .seconds(2))
   }
 
   @Test func clamping() {
     let policy = LinearBackoffPolicy(delay: .seconds(-1))
     #expect(policy.delay == .zero)
     #expect(policy.backoffDelayFor(RetryState()) == .zero)
+    #expect(policy.backoffDelayFor(PollingState()) == .zero)
   }
 
   @Test func equatable() {

@@ -84,7 +84,7 @@ public struct RequestOptions: Sendable {
   /// Overrides the default polling backoff policy.
   ///
   /// Without an override, the request uses the polling backoff policy configured in the client.
-  public var pollingBackoffPolicy: (any BackoffPolicy)? = nil
+  public var pollingBackoffPolicy: (any PollingBackoffPolicy)? = nil
 
   /// Overrides the quota project for this request.
   ///

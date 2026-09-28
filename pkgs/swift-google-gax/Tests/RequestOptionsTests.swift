@@ -40,9 +40,11 @@ import GoogleGax
           $0.initialDelay = .milliseconds(100)
         }
       )
+      $0.pollingBackoffPolicy = LinearBackoffPolicy(delay: .seconds(2))
     }
     #expect(got.retryPolicy != nil)
     #expect(got.backoffPolicy != nil)
+    #expect(got.pollingBackoffPolicy is LinearBackoffPolicy)
 
     #expect(throws: TestError()) {
       try RequestOptions().with { _ in
@@ -55,5 +57,6 @@ import GoogleGax
     let got = RequestOptions()
     #expect(got.attemptTimeout == nil)
     #expect(got.quotaProject == nil)
+    #expect(got.pollingBackoffPolicy == nil)
   }
 }

@@ -62,7 +62,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
   private let pollOp: Poll
   private let sleep: Sleep
   private let pollingPolicy: any PollingErrorPolicy
-  private let backoffPolicy: any BackoffPolicy
+  private let backoffPolicy: any PollingBackoffPolicy
 
   /// Initializes a new pollable operation implementation.
   ///
@@ -93,7 +93,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
   public init(
     initialState: State,
     polling: any PollingErrorPolicy,
-    backoff: any BackoffPolicy,
+    backoff: any PollingBackoffPolicy,
     poll: @escaping Poll,
     sleep: @escaping Sleep = { try await Task.sleep(for: $0) },
   ) {
@@ -118,7 +118,7 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
     var pollingState = PollingState()
     while !state.done {
       try pollingPolicy.onInProgress(state: pollingState)
-      let delay = backoffPolicy.backoffDelayFor(pollingState.asRetryState())
+      let delay = backoffPolicy.backoffDelayFor(pollingState)
       try await sleep(delay)
       pollingState.attemptCount += 1
       do {
@@ -143,15 +143,6 @@ public final class _PollableOperationImpl<ResponseType: Sendable>: PollableOpera
       throw error
     case .none:
       throw RequestError.malformedResponse("Operation completed but result was missing")
-    }
-  }
-}
-
-extension PollingState {
-  func asRetryState() -> RetryState {
-    RetryState(idempotent: false).with {
-      $0.attemptCount = self.attemptCount
-      $0.start = self.start
     }
   }
 }

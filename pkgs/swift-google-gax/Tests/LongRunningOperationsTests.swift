@@ -359,6 +359,38 @@ import GoogleRpc
     #expect(sleepProvider.sleepCount == 3)
   }
 
+  @Test func waitScalesExponentialBackoffDelays() async throws {
+    let results: [@Sendable () throws -> _PollableOperationImpl<String>.State] = [
+      { () in Self.pendingState() },
+      { () in Self.pendingState() },
+      { () in Self.successState() },
+    ]
+    let pollProvider = MockPoller<String>()
+    pollProvider.responses = results
+    let recordedDelays = Mutex<[Duration]>([])
+    let backoff = try ExponentialBackoff(
+      config: ExponentialBackoffConfig().with {
+        $0.initialDelay = .seconds(1)
+        $0.maximumDelay = .seconds(10)
+        $0.scaling = 2.0
+      }
+    )
+
+    let op = _PollableOperationImpl<String>(
+      initialState: Self.pendingState(),
+      polling: BasePollingErrorPolicy.defaultPolicy,
+      backoff: backoff,
+      poll: pollProvider.poll,
+      sleep: { delay in
+        recordedDelays.withLock { $0.append(delay) }
+      }
+    )
+
+    let res = try await op.wait()
+    #expect(res == "polling success")
+    #expect(recordedDelays.withLock { $0 } == [.seconds(1), .seconds(2), .seconds(4)])
+  }
+
   @Test func pollableOperationIsSendable() async throws {
     let state = Self.successState("success")
     let op: any PollableOperation<String> = _PollableOperationImpl(initialState: state) {

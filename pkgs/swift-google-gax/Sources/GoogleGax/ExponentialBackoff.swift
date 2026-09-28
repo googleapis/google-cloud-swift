@@ -48,16 +48,17 @@ public struct ExponentialBackoffConfig: Sendable, Equatable {
   }
 }
 
-/// Implements truncated [exponential backoff] with jitter.
+/// Implements truncated [exponential backoff].
 ///
-/// This struct conforms to the ``BackoffPolicy`` protocol. It implements an exponential backoff
-/// algorithm, where the delay between attempts grows exponentially on each attempt, typically
-/// doubling. That quickly smears the retry attempts over time. To minimize the chances of
-/// simultaneous retry attempts, each delay has randomized jitter. Finally, the delay is truncated
-/// if it grows beyond some maximum delay.
+/// This struct conforms to the ``BackoffPolicy`` and ``PollingBackoffPolicy`` protocols. It
+/// implements an exponential backoff algorithm, where the delay between attempts grows
+/// exponentially on each attempt, typically doubling. When used as a ``BackoffPolicy`` for RPC
+/// retries, each delay includes randomized jitter to minimize simultaneous retry attempts. When
+/// used as a ``PollingBackoffPolicy`` for long-running operations, the delay grows without jitter.
+/// Finally, the delay is truncated if it grows beyond some maximum delay.
 ///
 /// [Exponential backoff]: https://en.wikipedia.org/wiki/Exponential_backoff
-public struct ExponentialBackoff: BackoffPolicy, Sendable, Equatable {
+public struct ExponentialBackoff: Sendable, Equatable {
   public let initialDelay: Duration
   public let maximumDelay: Duration
   public let scaling: Double
@@ -109,14 +110,9 @@ public struct ExponentialBackoff: BackoffPolicy, Sendable, Equatable {
     self.initialDelay = min(max(config.initialDelay, minInitial), self.maximumDelay)
   }
 
-  public func backoffDelayFor(_ state: RetryState) -> Duration {
-    let d = delay(attemptCount: state.attemptCount)
-    return Duration(attoseconds: Int128.random(in: 0...d.attoseconds))
-  }
-
-  /// Internal method to calculate the delay without jitter.
+  /// Internal method to calculate the delay without jitter for a 0-based attempt count.
   func delay(attemptCount: Int) -> Duration {
-    let exp = max(0, attemptCount - 1)
+    let exp = max(0, attemptCount)
     let s = pow(scaling, Double(exp))
     // Avoid overflow or extremely large values before multiplying by initialDelay.
     if s >= (maximumDelay / initialDelay) {

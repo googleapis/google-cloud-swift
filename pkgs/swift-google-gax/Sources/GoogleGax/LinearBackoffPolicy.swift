@@ -16,20 +16,16 @@ import Foundation
 
 /// Implements a linear backoff policy with constant delay.
 ///
-/// This struct conforms to the ``BackoffPolicy`` protocol. It implements a simple linear backoff
-/// algorithm, where the delay between retry attempts remains constant.
-public struct LinearBackoffPolicy: BackoffPolicy, Sendable, Equatable {
+/// This struct conforms to the ``BackoffPolicy`` and ``PollingBackoffPolicy`` protocols. It
+/// implements a simple linear backoff algorithm, where the delay between attempts remains constant.
+public struct LinearBackoffPolicy: Sendable, Equatable {
   public let delay: Duration
 
   /// Create a new linear backoff policy with the specified constant delay.
   ///
-  /// - Parameter delay: The constant delay between retry attempts.
+  /// - Parameter delay: The constant delay between attempts.
   ///   Clamped to be non-negative (`max(.zero, delay)`).
   public init(delay: Duration = .seconds(5)) {
     self.delay = max(.zero, delay)
-  }
-
-  public func backoffDelayFor(_ state: RetryState) -> Duration {
-    return self.delay
   }
 }

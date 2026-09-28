@@ -143,11 +143,11 @@ public struct ClientOptions: Sendable {
   /// By default the clients use ``BasePollingErrorPolicy`` with a limit of 30 minutes.
   public var pollingErrorPolicy: any PollingErrorPolicy = defaultPollingErrorPolicy()
 
-  /// Configures the client's backoff policy.
+  /// Configures the client's polling backoff policy.
   ///
   /// By default the clients use ``ExponentialBackoff`` with an initial backoff of 1 seconds,
   /// doubling each time the default initialization.
-  public var pollingBackoffPolicy: any BackoffPolicy = defaultPollingBackoffPolicy()
+  public var pollingBackoffPolicy: any PollingBackoffPolicy = defaultPollingBackoffPolicy()
 }
 
 func defaultAttemptTimeout() -> Duration? {
@@ -170,7 +170,7 @@ func defaultPollingErrorPolicy() -> some PollingErrorPolicy {
   BasePollingErrorPolicy.defaultPolicy
 }
 
-func defaultPollingBackoffPolicy() -> some BackoffPolicy {
+func defaultPollingBackoffPolicy() -> some PollingBackoffPolicy {
   // This try! is needed because `ExponentialBackoff.init()` may throw in the configuration is
   // invalid, e.g., the the minimum delay is higher than the maximum. In this case we know it won't
   // fail because the values are fixed.
