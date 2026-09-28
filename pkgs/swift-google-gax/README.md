@@ -17,10 +17,10 @@ and long-running operations.
 
 ## Libraries & Products
 
-- **`GoogleGax`**: Core HTTP transport (using `AsyncHTTPClient` and
-  `SwiftNIO`), client and request configuration options (`ClientOptions`,
-  `RequestOptions`), retry and backoff loops, circuit breakers, adaptive
-  throttlers, LRO polling policies, and error models.
+This package provides the **`GoogleGax`** library: core HTTP transport (using
+`AsyncHTTPClient` and `SwiftNIO`), client and request configuration options
+(`ClientOptions`, `RequestOptions`), retry and backoff loops, circuit breakers,
+adaptive throttlers, LRO polling policies, and error models.
 
 For gRPC transport support, see the separate `swift-google-gax-grpc`
 (`GoogleGaxGRPC`) package.
