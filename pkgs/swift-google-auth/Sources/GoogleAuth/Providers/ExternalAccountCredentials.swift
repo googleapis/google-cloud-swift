@@ -39,7 +39,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   private let tokenURL: URL
 
   /// The URI identifier specifying the format of the subject token (e.g. `urn:ietf:params:oauth:token-type:jwt`).
-  private let subjectTokenType: String
+  private let subjectTokenType: ExternalAccountConfig.SubjectTokenType
 
   /// The STS audience resource name identifying the target workload or workforce identity pool provider.
   private let audience: String
@@ -75,7 +75,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
   init(
     subjectTokenProvider: any SubjectTokenProvider,
     tokenURL: URL,
-    subjectTokenType: String,
+    subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     audience: String,
     scopes: [String],
     workforcePoolUserProject: String?,
@@ -172,7 +172,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   let audience: String
 
   /// The URI specifying the format of the subject token.
-  let subjectTokenType: String
+  let subjectTokenType: ExternalAccountConfig.SubjectTokenType
 
   /// The Security Token Service endpoint URL.
   let tokenURL: URL
@@ -210,7 +210,7 @@ struct ExternalAccountCredentials: CredentialsProvider, Sendable {
   init(
     credentialSource: ExternalAccountConfig.CredentialSource,
     audience: String,
-    subjectTokenType: String,
+    subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     tokenURL: URL,
     clientID: String? = nil,
     clientSecret: String? = nil,

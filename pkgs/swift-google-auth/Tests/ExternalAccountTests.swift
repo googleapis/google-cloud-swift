@@ -594,4 +594,41 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
 
     _ = try await creds.headers()
   }
+
+  @Test("Validates SubjectTokenType properties, constants, and codable support")
+  func subjectTokenTypeBehavior() throws {
+    typealias SubjectTokenType = ExternalAccountConfig.SubjectTokenType
+
+    #expect(SubjectTokenType.idToken.rawValue == "urn:ietf:params:oauth:token-type:id_token")
+    #expect(SubjectTokenType.jwt.rawValue == "urn:ietf:params:oauth:token-type:jwt")
+
+    #expect(SubjectTokenType.idToken.description == "urn:ietf:params:oauth:token-type:id_token")
+    #expect(SubjectTokenType.jwt.description == "urn:ietf:params:oauth:token-type:jwt")
+
+    #expect(!SubjectTokenType.idToken.isEmpty)
+    #expect(!SubjectTokenType.jwt.isEmpty)
+    #expect(SubjectTokenType(rawValue: "").isEmpty)
+
+    let literalToken: SubjectTokenType = "custom-token-type"
+    #expect(literalToken.rawValue == "custom-token-type")
+    #expect(!literalToken.isEmpty)
+
+    let rawToken = SubjectTokenType(rawValue: "custom-token-type")
+    #expect(literalToken == rawToken)
+
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(
+        subjectTokenProvider: MockSubjectTokenProvider(token: "token")),
+      audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+    )
+    #expect(config.subjectTokenType == .idToken)
+    #expect(config.subjectTokenType == "urn:ietf:params:oauth:token-type:id_token")
+
+    let encoder = JSONEncoder()
+    let data = try encoder.encode(SubjectTokenType.idToken)
+    let decoded = try JSONDecoder().decode(SubjectTokenType.self, from: data)
+    #expect(decoded == .idToken)
+  }
 }

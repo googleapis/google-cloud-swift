@@ -24,7 +24,7 @@ struct ExchangeTokenRequest: Sendable {
   /// The raw subject token issued by the external identity provider (e.g. an OIDC JWT).
   let subjectToken: String
   /// The type of the subject token (e.g., `urn:ietf:params:oauth:token-type:id_token` or `urn:ietf:params:oauth:token-type:jwt`).
-  let subjectTokenType: String
+  let subjectTokenType: ExternalAccountConfig.SubjectTokenType
   /// The target audience URI for the exchanged token (e.g. workforce or workload pool provider URI).
   let audience: String?
   /// The OAuth scopes requested for the exchanged token.
@@ -36,7 +36,7 @@ struct ExchangeTokenRequest: Sendable {
 
   init(
     subjectToken: String,
-    subjectTokenType: String,
+    subjectTokenType: ExternalAccountConfig.SubjectTokenType,
     audience: String? = nil,
     scopes: [String] = [],
     workforcePoolUserProject: String? = nil,
@@ -140,7 +140,7 @@ struct STSHandler: Sendable {
       "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
       "requested_token_type": "urn:ietf:params:oauth:token-type:access_token",
       "subject_token": request.subjectToken,
-      "subject_token_type": request.subjectTokenType,
+      "subject_token_type": request.subjectTokenType.rawValue,
     ]
 
     if !request.scopes.isEmpty {

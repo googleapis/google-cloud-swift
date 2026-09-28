@@ -241,9 +241,9 @@ public struct ExternalAccountConfig: Sendable {
   /// The type of the subject token being exchanged.
   ///
   /// Standard values defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693) include:
-  /// - `urn:ietf:params:oauth:token-type:id_token`: An OIDC ID token.
-  /// - `urn:ietf:params:oauth:token-type:jwt`: A generic JSON Web Token.
-  public let subjectTokenType: String
+  /// - `.idToken`: An OIDC ID token (`urn:ietf:params:oauth:token-type:id_token`).
+  /// - `.jwt`: A generic JSON Web Token (`urn:ietf:params:oauth:token-type:jwt`).
+  public let subjectTokenType: SubjectTokenType
 
   /// The Security Token Service (STS) token exchange endpoint.
   ///
@@ -281,7 +281,7 @@ public struct ExternalAccountConfig: Sendable {
   public init(
     credentialSource: CredentialSource,
     audience: String,
-    subjectTokenType: String,
+    subjectTokenType: SubjectTokenType,
     tokenURL: URL
   ) {
     self.credentialSource = credentialSource
@@ -298,6 +298,46 @@ public struct ExternalAccountConfig: Sendable {
     try configure(&copy)
     return copy
   }
+}
+
+extension ExternalAccountConfig {
+  /// Represents the type of subject token being exchanged with Google Cloud STS.
+  ///
+  /// Standard values are defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
+  public struct SubjectTokenType: RawRepresentable, Sendable, Hashable,
+    CustomStringConvertible, ExpressibleByStringLiteral, Codable
+  {
+    /// The raw string value representing the subject token type URN.
+    public let rawValue: String
+
+    /// Initializes a subject token type with the specified raw string value.
+    public init(rawValue: String) {
+      self.rawValue = rawValue
+    }
+
+    /// Initializes a subject token type from a string literal.
+    public init(stringLiteral value: String) {
+      self.rawValue = value
+    }
+
+    /// A Boolean value indicating whether the token type URN is empty.
+    public var isEmpty: Bool {
+      rawValue.isEmpty
+    }
+
+    /// The string description of the subject token type.
+    public var description: String {
+      rawValue
+    }
+  }
+}
+
+extension ExternalAccountConfig.SubjectTokenType {
+  /// An OIDC ID token as defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
+  public static let idToken: Self = "urn:ietf:params:oauth:token-type:id_token"
+
+  /// A JSON Web Token as defined in [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693).
+  public static let jwt: Self = "urn:ietf:params:oauth:token-type:jwt"
 }
 
 /// A type that can provide authentication headers for Google Cloud API requests.
